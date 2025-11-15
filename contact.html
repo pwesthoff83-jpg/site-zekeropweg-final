@@ -1,66 +1,106 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – ZekerOpWeg</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – Zeker op Weg</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <header class="sub-header">
-    <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="logo-small" />
-    <h1>Contact</h1>
-  </header>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Zeker op Weg</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="diensten.html">Diensten</a>
+                <a href="prijzen.html">Prijzen</a>
+                <a href="over.html">Over</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-  <main class="content">
+    <!-- HERO -->
+    <section class="hero-subpage" style="background-image: url('assets/images/contact.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="hero-text">
+            <h1>Contact</h1>
+            <p>Persoonlijk en eerlijk advies — ik help je graag verder</p>
+        </div>
+    </section>
 
-    <h2>Neem contact op</h2>
-    <p>
-      Heeft u interesse in aankoopbegeleiding, advies of wilt u eerst even kennismaken?  
-      Ik help u graag — gevestigd in Barendrecht, maar beschikbaar voor klanten uit heel Nederland.
-    </p>
+    <!-- CONTACT BLOK -->
+    <section class="contact container fade-in">
 
-    <div class="contact-block">
-
-      <div class="contact-item">
-        <h3>📞 Telefoon</h3>
-        <p><a href="tel:+31623452349">06-23452349</a></p>
-      </div>
-
-      <div class="contact-item">
-        <h3>💬 WhatsApp</h3>
-        <p>
-          <a href="https://wa.me/31623452349" target="_blank">Stuur een bericht</a>
+        <h2>Neem contact op</h2>
+        <p class="intro">
+            Heb je vragen, wil je advies of wil je direct een zoekopdracht starten?
+            Ik reageer altijd persoonlijk en meestal binnen enkele uren.
         </p>
-      </div>
 
-      <div class="contact-item">
-        <h3>✉️ E-mail</h3>
-        <p><a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a></p>
-      </div>
+        <div class="contact-grid">
 
-      <div class="contact-item">
-        <h3>📍 Locatie</h3>
-        <p>Barendrecht, actief in heel Nederland</p>
-      </div>
+            <!-- Contactgegevens -->
+            <div class="contact-info">
+                <h3>Gegevens</h3>
 
-    </div>
+                <p>
+                    <strong>Zeker op Weg</strong><br>
+                    Onafhankelijk advies & begeleiding bij occasionaankoop<br>
+                    Gevestigd in Barendrecht — werkzaam door heel Nederland
+                </p>
 
-    <a href="index.html" class="btn">Terug naar home</a>
+                <ul class="streep-lijst">
+                    <li><strong>Telefoon:</strong> 06 – 123 456 78</li>
+                    <li><strong>E-mail:</strong> info@zekeropweg.nu</li>
+                    <li><strong>WhatsApp:</strong> Direct contact via de knop hieronder</li>
+                </ul>
 
-  </main>
+                <a class="cta-button whatsapp-button" href="https://wa.me/31612345678" target="_blank">
+                    📱 WhatsApp direct
+                </a>
+            </div>
 
-  <footer>
-    <p>© 2025 ZekerOpWeg</p>
-    <p>
-      📞 06-23452349 —
-      <a href="https://wa.me/31623452349" target="_blank">WhatsApp</a> —
-      ✉️ <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>
-    </p>
-  </footer>
+            <!-- Formulier -->
+            <div class="contact-form">
+                <h3>Stuur een bericht</h3>
+
+                <form action="#" method="POST" class="form">
+
+                    <label>Naam</label>
+                    <input type="text" name="naam" required>
+
+                    <label>E-mail</label>
+                    <input type="email" name="email" required>
+
+                    <label>Telefoonnummer</label>
+                    <input type="text" name="telefoon">
+
+                    <label>Bericht</label>
+                    <textarea name="bericht" rows="5" required></textarea>
+
+                    <button type="submit" class="cta-button">Verstuur bericht</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Klaar om zeker op weg te gaan?</h2>
+            <a href="contact.html" class="cta-button">Vraag persoonlijk advies aan</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© Zeker op Weg — Onafhankelijk advies bij occasionaankoop</p>
+    </footer>
 
 </body>
 </html>
