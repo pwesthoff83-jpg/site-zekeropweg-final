@@ -35,13 +35,14 @@
 </head>
 <body>
 
-<header class="site-header">
+<header class="header">
     <div class="container header-container">
-        <a href="index.html" class="logo-link">
+
+        <a href="index.html" class="header-logo-link">
             <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
 
-        <nav class="main-nav">
+        <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="diensten.html">Diensten</a></li>
@@ -50,8 +51,18 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+
+        <!-- Mobiel menu knop -->
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
     </div>
 </header>
+
+<script>
+function toggleMenu() {
+    document.getElementById("mainNav").classList.toggle("open");
+}
+</script>
 
 
 <section class="hero-sub" style="background-image: url('assets/images/contact.jpg');">
@@ -129,5 +140,6 @@
 
 </body>
 </html>
+
 
 
