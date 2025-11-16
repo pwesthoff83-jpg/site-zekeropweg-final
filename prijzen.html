@@ -1,170 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Prijzen – Occasion aankoopadvies & Begeleiding | ZekerOpWeg</title>
-  <meta name="description" content="Transparante prijzen voor zoekopdrachten, bezichtigingsbegeleiding en volledige aankoopbegeleiding. Minimale kosten en duidelijke voorwaarden.">
-  <link rel="canonical" href="https://zekeropweg.nu/prijzen.html">
-  <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
-
-  <meta property="og:title" content="Prijzen – ZekerOpWeg">
-  <meta property="og:description" content="Duidelijke tarieven voor zoekopdrachten, bezichtigingsbegeleiding en volledige aankoopbegeleiding.">
-  <meta property="og:image" content="https://zekeropweg.nu/assets/images/prijzen.jpg">
-  <meta property="og:url" content="https://zekeropweg.nu/prijzen.html">
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "serviceType":"Prijzen en tarieven",
-    "provider":{
-      "@type":"LocalBusiness",
-      "name":"ZekerOpWeg",
-      "telephone":"+31623452349",
-      "address":{
-        "@type":"PostalAddress",
-        "addressLocality":"Barendrecht",
-        "addressRegion":"Zuid-Holland",
-        "addressCountry":"NL"
-      }
-    }
-  }
-  </script>
-
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijzen | ZekerOpWeg</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header class="site-header">
+<!-- HEADER -->
+<header class="header">
     <div class="container header-container">
-        <a href="index.html" class="logo-link">
+
+        <a href="index.html" class="header-logo-link">
             <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
 
-        <nav class="main-nav">
+        <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="diensten.html">Diensten</a></li>
-                <li><a href="prijzen.html">Prijzen</a></li>
+                <li><a href="prijzen.html" class="active">Prijzen</a></li>
                 <li><a href="over.html">Over</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
     </div>
 </header>
 
+<!-- HERO -->
+<section class="hero-sub" style="background-image:url('assets/images/prijzen.jpg');">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Prijzen</h1>
+        <p>Transparant. Eerlijk. Geen verrassingen.</p>
+    </div>
+</section>
+
+<!-- TARIEVEN -->
 <section class="container prijzen-section">
-
     <h2 class="section-title">Onze tarieven</h2>
-
-    <p class="prijzen-intro">
-        Duidelijke en eerlijke tarieven. Voor kleinere diensten hanteren we vaste prijzen.
-        Voor het volledige aankooptraject geldt een percentage van de aankoopwaarde.
-    </p>
 
     <div class="prijzen-grid">
 
-        <!-- Adviesgesprek -->
         <div class="prijs-card">
-            <div class="prijs-icon">💬</div>
             <h3>Adviesgesprek (inventarisatie wensen)</h3>
-            <p>Kennismaking en inventarisatie van wensen en budget — geheel vrijblijvend.</p>
-            <div class="prijs-bedrag gratis">Gratis</div>
+            <p>Kennismaking en inventarisatie — vrijblijvend.</p>
+            <div class="prijs-tag">Gratis</div>
         </div>
 
-        <!-- Zoekopdracht -->
         <div class="prijs-card">
-            <div class="prijs-icon">🔍</div>
             <h3>Zoekopdracht</h3>
-            <p>Wij zoeken geschikte occasions die passen bij uw wensen.</p>
-            <div class="prijs-bedrag">€ 79,-</div>
+            <p>Wij zoeken geschikte occasions die aansluiten bij uw wensen.</p>
+            <div class="prijs-tag">€ 79,-</div>
         </div>
 
-        <!-- Begeleiding bij bezichtiging -->
         <div class="prijs-card">
-            <div class="prijs-icon">🚗</div>
             <h3>Begeleiding bij bezichtiging</h3>
-            <p>Volledige controle tijdens bezichtiging zodat u geen verrassingen tegenkomt.</p>
-            <div class="prijs-bedrag">€ 189,-</div>
+            <p>Volledige controle tijdens bezichtiging, zodat u zeker weet dat u goed zit.</p>
+            <div class="prijs-tag">€ 189,-</div>
         </div>
 
-        <!-- Extra bezichtiging -->
         <div class="prijs-card">
-            <div class="prijs-icon">🛠️</div>
             <h3>Extra bezichtiging</h3>
-            <p>Voor iedere extra auto die we samen beoordelen.</p>
-            <div class="prijs-bedrag">€ 99,-</div>
+            <p>Voor iedere extra auto die wij samen beoordelen.</p>
+            <div class="prijs-tag">€ 99,-</div>
         </div>
 
-        <!-- Volledig aankooptraject -->
         <div class="prijs-card">
-            <div class="prijs-icon">🏆</div>
             <h3>Volledig aankooptraject</h3>
-            <p>
-                Inclusief zoeken, vergelijken, prijsanalyse, bezichtigingen en onderhandelingsadvies.
-            </p>
-            <div class="prijs-bedrag">v.a. € 299,-</div>
-            <p class="kleine-tekst">
-                De kosten zijn gebaseerd op 2,5%–5% van de aankoopwaarde (min. € 299,-).
-            </p>
+            <p>Van zoektocht tot onderhandelingen en aankoopkeuring.</p>
+            <div class="prijs-tag">v.a. € 299,-</div>
+            <p class="small-info">2,5 – 5% van de aankoopwaarde (min. € 299,-)</p>
         </div>
 
-        <!-- Verkoop/inruiladvies -->
         <div class="prijs-card">
-            <div class="prijs-icon">📈</div>
-            <h3>Verkoop- & inruiladvies</h3>
-            <p>Professioneel advies voor maximale opbrengst bij verkoop of inruil.</p>
-            <div class="prijs-bedrag">Prijs op aanvraag</div>
+            <h3>Verkoop- & Inruiladvies</h3>
+            <p>Advies op maat voor uw verkoop- of inruiltraject.</p>
+            <div class="prijs-tag">Prijs op aanvraag</div>
         </div>
 
     </div>
-
 </section>
 
-
-</main>
-
-<footer class="site-footer">
-    <div class="container footer-container">
-        <div class="footer-logo">
-            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="footer-logo-img">
-        </div>
-
-        <div class="footer-columns">
-            <div>
-                <h4>Diensten</h4>
-                <ul>
-                    <li><a href="diensten.html">Adviesgesprek</a></li>
-                    <li><a href="diensten.html">Zoekopdracht</a></li>
-                    <li><a href="diensten.html">Bezichtingsbegeleiding</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="contact.html">Neem contact op</a></li>
-                    <li><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4>Snel naar</h4>
-                <ul>
-                    <li><a href="prijzen.html">Prijzen</a></li>
-                    <li><a href="over.html">Over</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <p class="footer-copy">© 2025 ZekerOpWeg — Advies & Bemiddeling Occasionaankoop</p>
-    </div>
-</footer>
-
+<script>
+function toggleMenu() {
+    document.getElementById("mainNav").classList.toggle("open");
+}
+</script>
 
 </body>
 </html>
-
-
-
