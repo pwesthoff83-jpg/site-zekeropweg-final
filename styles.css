@@ -40,3 +40,72 @@ body {
     position: sticky;
     top: 0;
     z-index: 999
+
+/* -------------------------------------
+   MOBIEL – Prijzenpagina optimalisatie
+------------------------------------- */
+@media (max-width: 768px) {
+
+    /* Titel en intro */
+    .section-title {
+        font-size: 1.7rem;
+        margin: 30px 0 15px;
+    }
+
+    .prijzen-intro {
+        font-size: 1rem;
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+
+    /* Grid wordt 1 kolom */
+    .prijzen-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    /* Kaarten */
+    .prijs-card {
+        padding: 22px;
+        border-radius: 10px;
+    }
+
+    .prijs-icon {
+        font-size: 1.8rem;
+        margin-bottom: 6px;
+    }
+
+    .prijs-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .prijs-bedrag {
+        font-size: 1.25rem;
+        margin-top: 10px;
+    }
+
+    .kleine-tekst {
+        font-size: 0.8rem;
+        margin-top: 4px;
+    }
+}
+
+/* Ultra small screens (iPhone SE / 360px) */
+@media (max-width: 390px) {
+
+    .prijzen-intro {
+        font-size: 0.95rem;
+    }
+
+    .prijs-card {
+        padding: 20px;
+    }
+
+    .prijs-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .prijs-bedrag {
+        font-size: 1.15rem;
+    }
+}
