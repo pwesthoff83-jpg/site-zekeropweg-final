@@ -13,17 +13,18 @@
 
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="fade-in">
 
 <!-- HEADER -->
-<header class="header">
+<header class="header fade-in">
     <div class="container header-container">
 
         <a href="index.html" class="header-logo-link">
             <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
-        <nav class="main-nav" id="mainNav">
+        <nav class="main-nav" id="mainNav" aria-label="Hoofdmenu">
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="diensten.html">Diensten</a></li>
@@ -34,14 +35,13 @@
         </nav>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
     </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO (geen fade-in voor performance en flow) -->
 <section class="hero-main" style="background-image:url('assets/images/hero.jpg');">
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container fade-in">
         <div class="hero-main-content">
             <h1>Zeker naar je volgende auto, zonder gedoe</h1>
             <p>Samen vinden we een betrouwbare auto die écht bij je past – voor de beste deal.</p>
@@ -59,8 +59,8 @@
     </div>
 </section>
 
-<!-- DIENSTEN OVERZICHT (NIEUWE TEKSTEN, JOUW ONTWERP) -->
-<section class="section diensten-section">
+<!-- DIENSTEN -->
+<section class="section diensten-section fade-in">
     <div class="container">
         <h2 class="section-title">Zo zorg ik dat jij zeker op weg gaat</h2>
 
@@ -88,7 +88,7 @@
 </section>
 
 <!-- REVIEW BAND -->
-<section class="review-band">
+<section class="review-band fade-in">
     <div class="container review-inner">
         <div class="review-text">
             <h2 class="section-title" style="margin-top:0;">Waarom klanten voor ZekerOpWeg kiezen</h2>
@@ -108,7 +108,7 @@
 </section>
 
 <!-- OVER MIJ -->
-<section class="section">
+<section class="section fade-in">
     <div class="container">
         <h2 class="section-title">Over mij</h2>
         <p style="max-width:720px;">
@@ -122,7 +122,7 @@
 </section>
 
 <!-- WERKGEBIED -->
-<section class="section">
+<section class="section fade-in">
     <div class="container">
         <h2 class="section-title">Waar ik werk</h2>
         <p style="max-width:720px;">
@@ -132,7 +132,7 @@
 </section>
 
 <!-- CTA -->
-<section class="section" style="text-align:center;">
+<section class="section fade-in" style="text-align:center;">
     <div class="container">
         <h2 class="section-title">Klaar voor een auto waar je écht zeker over bent?</h2>
         <p style="max-width:720px;margin:0 auto;">
@@ -143,7 +143,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer fade-in">
     <div class="container footer-container">
 
         <div>
@@ -180,6 +180,3 @@ function toggleMenu() {
 
 </body>
 </html>
-
-
-
