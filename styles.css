@@ -29,7 +29,7 @@ body {
 }
 
 /* -------------------------------------
-   HEADER & NAVIGATIE
+   HEADER
 ------------------------------------- */
 .header {
     background: #ffffff;
@@ -47,11 +47,18 @@ body {
 }
 
 .site-logo {
-    height: 58px;
+    height: 120px;
     width: auto;
     object-fit: contain;
 }
 
+@media (max-width: 768px) {
+    .site-logo {
+        height: 70px;
+    }
+}
+
+/* Navigatie */
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -83,14 +90,16 @@ body {
 /* -------------------------------------
    HERO SECTIES
 ------------------------------------- */
-
-/* Grote hero op de homepage */
-.hero-main {
+.hero-main,
+.hero-sub {
     position: relative;
-    height: 70vh;
-    min-height: 460px;
     background-size: cover;
     background-position: center;
+}
+
+.hero-main {
+    height: 70vh;
+    min-height: 460px;
     display: flex;
     align-items: center;
 }
@@ -99,11 +108,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(14, 26, 42, 0.75),
-        rgba(14, 26, 42, 0.15)
-    );
+    background: linear-gradient(to right, rgba(14, 26, 42, 0.75), rgba(14, 26, 42, 0.15));
 }
 
 .hero-main-content {
@@ -123,24 +128,9 @@ body {
     margin-bottom: 20px;
 }
 
-.hero-bullets {
-    list-style: none;
-    margin-bottom: 22px;
-}
-
-.hero-bullets li::before {
-    content: "✓";
-    color: var(--gold);
-    margin-right: 6px;
-}
-
-/* Subhero op binnenpagina's */
 .hero-sub {
-    position: relative;
     height: 45vh;
     min-height: 260px;
-    background-size: cover;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,12 +145,11 @@ body {
 .hero-content {
     position: relative;
     text-align: center;
-    color: #ffffff;
+    color: #fff;
 }
 
 .hero-content h1 {
     font-size: 2.5rem;
-    margin-bottom: 8px;
 }
 
 .hero-content p {
@@ -173,8 +162,8 @@ body {
 ------------------------------------- */
 .btn-row {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .btn-primary,
@@ -190,27 +179,24 @@ body {
 
 .btn-primary {
     background: var(--olive);
-    color: #ffffff;
+    color: #fff;
     border: 1px solid var(--olive-dark);
 }
-
 .btn-primary:hover {
     background: var(--olive-dark);
 }
 
 .btn-outline {
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
 }
-
 .btn-outline:hover {
-    background: #ffffff;
+    background: #fff;
     color: #333;
 }
 
 /* -------------------------------------
-   SECTIE TITELS & GENERIEKE SECTIES
+   SECTIES & TITELS
 ------------------------------------- */
 .section {
     padding: 60px 0;
@@ -227,10 +213,6 @@ body {
 /* -------------------------------------
    DIENSTEN GRID
 ------------------------------------- */
-.diensten-section {
-    padding-bottom: 60px;
-}
-
 .diensten-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -238,12 +220,12 @@ body {
 }
 
 .dienst-card {
-    background: #ffffff;
+    background: #fff;
     padding: 24px;
     border-radius: 10px;
     border: 1px solid #e4e4e4;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: 0.2s;
 }
 
 .dienst-card:hover {
@@ -253,8 +235,8 @@ body {
 
 .dienst-card h3 {
     margin-bottom: 10px;
-    color: var(--olive-dark);
     font-size: 1.25rem;
+    color: var(--olive-dark);
 }
 
 .dienst-card p {
@@ -262,30 +244,30 @@ body {
 }
 
 /* -------------------------------------
-   PRIJZEN GRID
+   PRIJZEN GRID (met uitlijning!)
 ------------------------------------- */
-.prijzen-section {
-    padding: 60px 0;
-}
-
 .prijzen-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
-    margin-top: 20px;
 }
 
 .prijs-card {
-    background: #ffffff;
+    background: #fff;
     padding: 24px;
     border-radius: 10px;
     border: 1px solid #e3e3e3;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    
+    display: flex;               /* ⬅ BELANGRIJK */
+    flex-direction: column;      /* ⬅ prijs onderaan */
+    justify-content: space-between;
+    min-height: 260px;           /* ⬅ alle kaarten even hoog */
 }
 
 .prijs-card h3 {
-    margin-bottom: 8px;
     color: var(--olive-dark);
+    margin-bottom: 8px;
 }
 
 .prijs-card p {
@@ -293,7 +275,7 @@ body {
 }
 
 .prijs-tag {
-    margin-top: 10px;
+    margin-top: auto;
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--olive);
@@ -301,8 +283,8 @@ body {
 
 .small-info {
     font-size: 0.9rem;
-    margin-top: 6px;
     opacity: 0.8;
+    margin-top: 6px;
 }
 
 /* -------------------------------------
@@ -319,15 +301,14 @@ body {
 
 .over-tekst {
     max-width: 820px;
-    font-size: 1.05rem;
     color: #333;
+    font-size: 1.05rem;
 }
 
 .over-tekst p {
     margin-bottom: 18px;
 }
 
-/* Missie blok */
 .missie-section {
     background: var(--cream);
     padding: 40px 0;
@@ -344,10 +325,6 @@ body {
 /* -------------------------------------
    CONTACT PAGINA
 ------------------------------------- */
-.contact-section {
-    padding: 60px 0;
-}
-
 .contact-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -355,7 +332,7 @@ body {
 }
 
 .contact-card {
-    background: #ffffff;
+    background: #fff;
     padding: 24px;
     border-radius: 10px;
     border: 1px solid #e4e4e4;
@@ -365,7 +342,6 @@ body {
 .contact-detail {
     margin: 10px 0;
     font-size: 1.05rem;
-    color: #333;
 }
 
 .contact-detail span {
@@ -377,11 +353,11 @@ body {
     margin-top: 12px;
     padding: 10px 18px;
     background: var(--olive-dark);
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     border-radius: 6px;
-    transition: background 0.2s;
+    transition: 0.2s;
 }
 
 .whatsapp-btn:hover {
@@ -392,7 +368,7 @@ body {
    REVIEW BAND
 ------------------------------------- */
 .review-band {
-    background: #ffffff;
+    background: #fff;
     padding: 40px 0;
     border-top: 1px solid #e3e3e3;
 }
@@ -401,10 +377,6 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
-}
-
-.review-text {
-    flex: 1;
 }
 
 .review-text p {
@@ -423,16 +395,13 @@ body {
 
 .footer-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 40px;
-    align-items: flex-start;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .footer-logo-img {
     height: 46px;
-    width: auto;
-    opacity: 0.98;
 }
 
 .footer-columns {
@@ -441,19 +410,16 @@ body {
 }
 
 .footer-column h4 {
-    margin-bottom: 8px;
     color: var(--gold);
-    font-size: 1rem;
+    margin-bottom: 8px;
 }
 
 .footer-column a {
     color: #ffffffb3;
     text-decoration: none;
-    font-size: 0.95rem;
 }
-
 .footer-column a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 
 .footer-copy {
@@ -471,10 +437,6 @@ body {
         height: auto;
         min-height: 0;
         padding: 70px 0 40px;
-    }
-
-    .hero-main-content h1 {
-        font-size: 2.2rem;
     }
 
     .review-inner {
@@ -501,7 +463,7 @@ body {
     .main-nav {
         display: none;
         width: 100%;
-        background: #ffffff;
+        background: #fff;
         position: absolute;
         top: 90px;
         left: 0;
@@ -532,38 +494,5 @@ body {
 
     .section {
         padding: 45px 0;
-    }
-
-    .site-logo {
-        height: 50px;
-    }
-}
-
-/* --- LOGO FORMATTING --- */
-.site-logo {
-    height: 82px;       /* Perfect formaat voor moderne headers */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .site-logo {
-        height: 60px;  /* iets kleiner voor mobiel */
-    }
-}
-
-/* --- DEFINITIEVE LOGO STYLING --- */
-.site-logo {
-    height: 120px;     /* groter + breder */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-/* Mobiele weergave */
-@media (max-width: 768px) {
-    .site-logo {
-        height: 70px;   /* mooi proportioneel */
     }
 }
