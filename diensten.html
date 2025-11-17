@@ -5,25 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diensten | ZekerOpWeg</title>
 
-    <meta name="description" content="Bekijk de diensten van ZekerOpWeg: adviesgesprek, zoekopdracht, voorverkenning, extra bezichtigingen en volledige aankoopbegeleiding. Altijd eerlijk en onafhankelijk advies.">
-    <meta name="robots" content="index,follow">
-
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
-
+    <meta name="description" content="Bekijk alle diensten: adviesgesprek, zoekopdracht, voorverkenning, extra bezichtiging en volledige aankoopbegeleiding.">
+    
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
 </head>
 
-<body class="fade-in">
+<body>
 
-<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
-        </a>
-
+        <a href="index.html"><img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo"></a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -33,97 +26,66 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 </header>
 
-<!-- HERO -->
 <section class="hero-sub" style="background-image:url('assets/images/diensten.webp');">
-    <div class="overlay"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Diensten</h1>
         <p>Van eerste oriëntatie tot volledige aankoopbegeleiding.</p>
     </div>
 </section>
 
-<!-- DIENSTEN -->
-<section class="section diensten-section">
+<section class="section">
     <div class="container">
+
         <h2 class="section-title">Wat ik voor je kan betekenen</h2>
 
         <div class="diensten-grid">
 
             <div class="dienst-card">
-                <h3>1. Adviesgesprek</h3>
-                <p>We bespreken jouw wensen, gebruik, gezinssituatie en budget. Dit gesprek is vrijblijvend en kosteloos.</p>
+                <h3>Adviesgesprek</h3>
+                <p>Direct duidelijkheid over wat bij jou past, inclusief aandachtspunten en tips om miskopen te voorkomen.</p>
             </div>
 
             <div class="dienst-card">
-                <h3>2. Zoekopdracht</h3>
-                <p>Ik zoek en selecteer betrouwbare occasions op basis van jouw wensen. Je ontvangt een duidelijke selectie met uitleg per auto.</p>
+                <h3>Zoekopdracht</h3>
+                <p>Selectie van betrouwbare auto’s die écht passen bij jouw gebruik, wensen en budget.</p>
             </div>
 
             <div class="dienst-card">
-                <h3>3. Voorverkenning</h3>
-                <p>Ik beoordeel de auto op locatie: onderhoud, historie, technische staat, proefrit, verkoper en garantievoorwaarden.</p>
+                <h3>Voorverkenning</h3>
+                <p>Inspectie op locatie: onderhoud, staat van het voertuig, proefritadvies, verkoper & garantiecontrole.</p>
             </div>
 
             <div class="dienst-card">
-                <h3>4. Extra bezichtiging</h3>
-                <p>Heb je meerdere auto’s op het oog? Ik vergelijk ze eerlijk en zet de verschillen voor je op een rij.</p>
+                <h3>Extra bezichtiging</h3>
+                <p>Ideaal wanneer je twijfelt tussen meerdere auto’s. Ik vergelijk ze eerlijk en duidelijk voor je.</p>
             </div>
 
             <div class="dienst-card">
-                <h3>5. Volledig aankooptraject</h3>
-                <p>Compleet traject van selectie tot aankoop. Inclusief advies, begeleiding en hulp bij onderhandelen.</p>
+                <h3>Volledig aankooptraject</h3>
+                <p>Van selectie tot proefrit, onderhandelen en afronding. Je staat er nooit alleen voor.</p>
             </div>
 
             <div class="dienst-card">
-                <h3>6. Verkoop- & inruiladvies</h3>
-                <p>Ondersteuning en advies bij het verkopen of inruilen van je huidige auto voor een eerlijke prijs.</p>
+                <h3>Verkoop- & inruiladvies</h3>
+                <p>Helder advies over verkoopwaarde, realistische prijzen en beste opties voor inruil.</p>
             </div>
 
         </div>
+
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container footer-container">
-        <div>
-            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="footer-logo-img">
-            <p style="margin-top:10px; max-width:260px;">Onafhankelijk advies en aankoopbegeleiding voor occasions.</p>
-        </div>
-
-        <div class="footer-columns">
-            <div class="footer-column">
-                <h4>Navigatie</h4>
-                <a href="index.html">Home</a><br>
-                <a href="diensten.html">Diensten</a><br>
-                <a href="prijzen.html">Prijzen</a><br>
-                <a href="over.html">Over</a><br>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <span>Regio Zuid-Holland</span><br>
-                <span>E-mail: advies@zekeropweg.nu</span><br>
-                <span>WhatsApp: 06-2345 2349</span>
-            </div>
-        </div>
-    </div>
-
-    <p class="footer-copy">© 2025 ZekerOpWeg</p>
-</footer>
-
-<!-- SCRIPT -->
 <script>
 function toggleMenu() {
-    document.getElementById("mainNav").classList.toggle("open");
+    document.getElementById('mainNav').classList.toggle('open');
 }
 </script>
 
 </body>
 </html>
+
+
