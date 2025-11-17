@@ -503,3 +503,15 @@ body {
 .hero-main-content {
     max-width: 620px;
 }
+
+.hero-main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(10, 20, 30, 0.55),
+        rgba(10, 20, 30, 0.55)
+    ) !important; /* Niet te donker maar ideaal */
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
