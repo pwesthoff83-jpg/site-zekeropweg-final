@@ -439,3 +439,16 @@ body {
     }
 }
 
+/* FIX voor overlappende tekst bij diensten & prijzen */
+.dienst-card,
+.prijs-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 260px; /* voorkomt overlappende tekst */
+}
+.dienst-card p,
+.prijs-card p {
+    margin-bottom: 10px;
+}
+
