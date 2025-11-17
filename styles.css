@@ -60,13 +60,19 @@ body {
     align-items: center;
 }
 
+/* Logo – geoptimaliseerd */
 .site-logo {
-    height: 110px;
+    height: 90px;      /* perfect formaat */
     width: auto;
+    object-fit: contain;
 }
+
 @media (max-width: 768px) {
-    .site-logo { height: 70px; }
+    .site-logo {
+        height: 60px;  /* mooi compact op mobiel */
+    }
 }
+
 
 .main-nav ul {
     list-style: none;
@@ -341,4 +347,5 @@ body {
     .hero-content h1 { font-size: 2rem; }
     .btn-row { flex-direction: column; }
 }
+
 
