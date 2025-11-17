@@ -1,23 +1,22 @@
-oop<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg – Onafhankelijke aankoopbegeleiding</title>
+    <title>ZekerOpWeg — Onafhankelijke aankoopbegeleiding</title>
+    <link rel="stylesheet" href="assets/styles.css">
 
-    <meta name="description" content="Onafhankelijke aankoopbegeleiding bij de aankoop van een betrouwbare auto. 16+ jaar ervaring, eerlijk advies en volledig aan jouw kant.">
-    
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
         <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -34,64 +33,92 @@ oop<!DOCTYPE html>
     </div>
 </header>
 
-<!-- HERO -->
-<section class="hero-main" style="background-image:url('assets/images/hero.webp');">
-    <div class="hero-overlay"></div>
 
-    <div class="container hero-content fade-in">
-
+<!-- =====================================
+     HERO – COMPACTE VERSIE
+===================================== -->
+<section class="hero-main" style="height:45vh; min-height:320px; background-image:url('assets/images/hero.webp');">
+    <div class="hero-main-content fade-in">
         <h1>Zeker naar je volgende auto,<br>zonder gedoe</h1>
-
         <p>
-            Met meer dan 16 jaar verkoopervaring bij verschillende dealerbedrijven help ik je bij het vinden en 
-            beoordelen van een auto die écht bij je past - eerlijk, duidelijk en volledig aan jouw kant.         
+            Met meer dan 16 jaar verkoopervaring bij verschillende dealerbedrijven
+            help ik je bij het vinden en beoordelen van een auto die écht bij je past –
+            eerlijk, duidelijk en volledig aan jouw kant.
         </p>
 
         <div class="btn-row">
             <a href="contact.html" class="btn-primary">Plan een kennismaking</a>
             <a href="diensten.html" class="btn-outline">Bekijk wat ik voor je doe</a>
         </div>
-
     </div>
 </section>
-<!-- USP BLOCK ------------------------------------------------------ -->
-<section class="usp-section fade-in">
+
+
+<!-- =====================================
+     USP BLOKKEN
+===================================== -->
+<section class="usp-section">
     <div class="container usp-grid">
 
-        <div class="usp-item">
+        <div class="usp-card">
             <h3>16 jaar ervaring</h3>
-            <p>Jarenlange praktijkervaring bij meerdere dealerbedrijven.</p>
+            <p>Jarenlange praktijkervaring in aankoop, verkoop, taxaties en inruil bij dealerbedrijven.</p>
         </div>
 
-        <div class="usp-item">
+        <div class="usp-card">
             <h3>Volledig onafhankelijk</h3>
-            <p>Geen belang bij dealers of merken — alleen jouw belang telt.</p>
+            <p>Geen belang bij dealers of merken — ik werk uitsluitend voor jóu.</p>
         </div>
 
-        <div class="usp-item">
+        <div class="usp-card">
             <h3>Eerlijk & betrouwbaar advies</h3>
-            <p>Duidelijke uitleg, realistische verwachtingen en geen onzin.</p>
+            <p>Transparant, duidelijk en professioneel — precies wat je nodig hebt.</p>
         </div>
 
-        <div class="usp-item">
+        <div class="usp-card">
             <h3>Je bespaart tijd & geld</h3>
-            <p>Slim onderhandelen en betere deals door jarenlange kennis.</p>
+            <p>Betere deals, betere auto’s en geen verrassingen achteraf.</p>
         </div>
 
     </div>
 </section>
 
 
+<!-- =====================================
+     REVIEW SECTIE
+===================================== -->
+<section class="review-band">
+    <div class="container review-inner fade-in">
+
+        <img src="assets/images/review.webp" alt="Review foto" style="width:110px; border-radius:8px;">
+
+        <div>
+            <h3 style="margin-bottom:8px; color:var(--olive-dark);">⭐ Klantreview – Peter</h3>
+            <p>
+                Peter had al een offerte liggen voor de aankoop van een occasion en
+                de inruil van zijn huidige auto. Met die offerte kwam hij bij mij.
+                Ik heb namens hem onderhandeld: een betere prijs bedongen zónder inruil,
+                en zijn eigen auto elders laten inruilen voor een hogere waarde.
+            </p>
+            <p>
+                Resultaat: <strong>€ 1.250,- voordeel</strong> gerealiseerd.  
+                Zelfs na mijn bemiddelingskosten was Peter bijna <strong>€ 1.000,- goedkoper uit</strong>.
+            </p>
+        </div>
 
     </div>
 </section>
 
+
+<!-- =====================================
+     FOOTER
+===================================== -->
 <footer class="site-footer">
     <div class="container footer-container">
 
-        <div class="footer-brand">
-            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
-            <p class="footer-text">
+        <div>
+            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg">
+            <p style="margin-top:10px; max-width:260px;">
                 Onafhankelijk advies en professionele begeleiding bij de aankoop van jouw occasion.
             </p>
         </div>
@@ -109,19 +136,21 @@ oop<!DOCTYPE html>
 
             <div class="footer-column">
                 <h4>Contact</h4>
-                <span>Regio Zuid-Holland</span><br>
-                <span>E-mail: advies@zekeropweg.nu</span><br>
-                <span>WhatsApp: 06-2345 2349</span><br>
+                Regio Zuid-Holland<br>
+                E-mail: advies@zekeropweg.nu<br>
+                WhatsApp: 06-2345 2349
             </div>
 
         </div>
 
     </div>
 
-    <p class="footer-copy">© 2025 ZekerOpWeg — Alle rechten voorbehouden</p>
+    <div class="footer-copy">
+        © 2025 ZekerOpWeg – Alle rechten voorbehouden
+    </div>
 </footer>
 
-<!-- MENU SCRIPT -->
+
 <script>
 function toggleMenu() {
     document.getElementById("mainNav").classList.toggle("open");
@@ -130,10 +159,3 @@ function toggleMenu() {
 
 </body>
 </html>
-
-
-
-
-
-
-
