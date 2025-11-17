@@ -452,3 +452,16 @@ body {
     margin-bottom: 10px;
 }
 
+/* Fix overlap in diensten- en prijzencards */
+.dienst-card,
+.prijs-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* zorgt dat prijs onderaan blijft */
+    min-height: 260px; /* voorkomt overlappen */
+}
+
+.prijs-tag {
+    margin-top: auto; /* duwt prijs omlaag */
+}
+
