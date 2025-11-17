@@ -121,51 +121,55 @@ body {
     }
 }
 
-/* -------------------------------------
-   HERO – uniform voor ALLE PAGINA’S
-------------------------------------- */
-/* --- HERO FOTO SMALLER & NETTER --- */
+/* HERO – Nieuwe instellingen */
 .hero-main {
-    height: 52vh;                /* SMALLER HERO */
-    min-height: 380px;
-    max-height: 520px;           /* voorkomt gigantische hoogte op grote schermen */
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-size: cover;
-    background-position: center 30%; /* iets naar boven uitgezoomd */
+    height: 60vh;
+    min-height: 420px;
+
+    background-image: url('assets/images/hero2.webp');
+    background-size: contain;     /* FOTO COMPLEET IN BEELD */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #e8e6e3;    /* zachte achtergrond achter de foto */
 }
 
-/* Donkere overlay, subtieler */
-.hero-main::before {
-    content: "";
+.hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(10, 15, 20, 0.55),   /* donker links voor tekst */
-        rgba(10, 15, 20, 0.15)    /* lichter naar rechts */
-    );
+    background: rgba(20, 20, 20, 0.45); /* overlay voor leesbaarheid */
     z-index: 1;
 }
 
-/* Tekstblok */
 .hero-main-content {
     position: relative;
     z-index: 2;
-    max-width: 550px;
-    padding: 20px;
+    max-width: 520px;
+    padding-top: 40px;
 }
 
 .hero-main-content h1 {
-    font-size: 2.4rem;           /* iets kleiner */
-    line-height: 1.25;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 16px;
 }
 
 .hero-main-content p {
-    font-size: 1.05rem;
-    margin-top: 12px;
+    color: #f2f2f2;
+    margin-bottom: 20px;
+}
+
+/* Mobiel */
+@media (max-width: 768px) {
+    .hero-main {
+        height: 50vh;
+        background-size: cover;   /* mobiel iets meer vullend */
+        background-position: center;
+    }
+
+    .hero-main-content h1 {
+        font-size: 1.9rem;
+    }
 }
 
 
@@ -521,6 +525,7 @@ body {
     background-repeat: no-repeat;
 }
 background-position: top center;
+
 
 
 
