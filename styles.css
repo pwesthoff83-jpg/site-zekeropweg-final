@@ -456,3 +456,32 @@ body {
     }
 }
 
+/* --- FIX: Mobiel menu klikbaar maken --- */
+.header {
+    z-index: 5000;
+}
+
+.menu-toggle {
+    display: block;
+    z-index: 9999;
+    position: relative;
+}
+
+.main-nav {
+    z-index: 9998;
+}
+
+.main-nav.open {
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+}
+
+.hero-main::before,
+.overlay {
+    z-index: 1 !important;
+}
+
