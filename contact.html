@@ -5,25 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | ZekerOpWeg</title>
 
-    <meta name="description" content="Neem contact op met ZekerOpWeg voor persoonlijk aankoopadvies, begeleiding bij bezichtigingen of een volledige aankoopservice. Altijd eerlijk, duidelijk en onafhankelijk.">
-    <meta name="robots" content="index,follow">
-
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
-
+    <meta name="description" content="Neem contact op voor onafhankelijk aankoopadvies of begeleiding bij het vinden van jouw volgende auto.">
+    
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
 </head>
 
-<body class="fade-in">
+<body>
 
-<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
-        </a>
-
+        <a href="index.html"><img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo"></a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -33,97 +26,49 @@
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 </header>
 
-<!-- HERO -->
 <section class="hero-sub" style="background-image:url('assets/images/contact.webp');">
-    <div class="overlay"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Contact</h1>
-        <p>Persoonlijk, duidelijk en laagdrempelig.</p>
+        <p>Vrijblijvend kennismaken? Ik help je graag verder.</p>
     </div>
 </section>
 
-<!-- CONTACT INFORMATIE -->
-<section class="section contact-section">
-    <div class="container">
-        <h2 class="section-title">Plan jouw adviesmoment</h2>
-
-        <p style="max-width:720px; margin:0 auto 32px; text-align:center;">
-            Wil je weten wat ik voor je kan betekenen? Stuur gerust een bericht met je vragen, wensen of auto's die je op het oog hebt.  
-            Ik reageer meestal dezelfde dag, of de volgende ochtend bij een bericht in de avond.
-        </p>
-
-        <div class="contact-grid">
-
-            <!-- Contactgegevens -->
-            <div class="contact-card">
-                <p class="contact-detail"><span>Naam:</span> ZekerOpWeg</p>
-                <p class="contact-detail"><span>Regio:</span> Zuid-Holland</p>
-                <p class="contact-detail"><span>E-mail:</span> advies@zekeropweg.nu</p>
-                <p class="contact-detail"><span>WhatsApp:</span> 06-2345 2349</p>
-
-                <a href="https://wa.me/31623452349" target="_blank" class="whatsapp-btn">
-                    Stuur een WhatsApp-bericht
-                </a>
-            </div>
-
-            <!-- Tekst / uitleg -->
-            <div class="contact-card">
-                <p>
-                    Wil je advies over een auto die je hebt gezien? Of weet je nog niet goed waar je moet beginnen?
-                    Ik denk met je mee en help je stap voor stap naar een betrouwbare keuze.
-                </p>
-
-                <p style="margin-top:10px;">
-                    Liever bellen? Stuur even een WhatsApp-berichtje, dan plannen we een rustig moment in waarop het jou uitkomt.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container footer-container">
+<section class="section">
+    <div class="container contact-grid">
 
         <div>
-            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
-            <p style="margin-top:10px; max-width:260px;">Onafhankelijk advies bij de aankoop van jouw occasion.</p>
+            <h2 class="section-title" style="text-align:left;">Contactgegevens</h2>
+
+            <p class="contact-detail"><span>Regio:</span> Zuid-Holland</p>
+            <p class="contact-detail"><span>E-mail:</span> advies@zekeropweg.nu</p>
+            <p class="contact-detail"><span>WhatsApp:</span> 06-2345 2349</p>
+
+            <a href="https://wa.me/31623452349" class="whatsapp-btn">Stuur een WhatsApp</a>
         </div>
 
-        <div class="footer-columns">
-            <div class="footer-column">
-                <h4>Navigatie</h4>
-                <a href="index.html">Home</a><br>
-                <a href="diensten.html">Diensten</a><br>
-                <a href="prijzen.html">Prijzen</a><br>
-                <a href="over.html">Over</a><br>
-                <a href="contact.html">Contact</a>
-            </div>
+        <div class="contact-card">
+            <h3>Plan een kennismaking</h3>
+            <p>
+                Vertel kort waar je naar op zoek bent. Ik reageer meestal dezelfde dag.
+            </p>
 
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <span>Regio Zuid-Holland</span><br>
-                <span>E-mail: advies@zekeropweg.nu</span><br>
-                <span>WhatsApp: 06-2345 2349</span>
-            </div>
+            <a href="mailto:advies@zekeropweg.nu" class="btn-primary" style="margin-top:15px; display:inline-block;">
+                E-mail sturen
+            </a>
         </div>
+
     </div>
-
-    <p class="footer-copy">© 2025 ZekerOpWeg</p>
-</footer>
+</section>
 
 <script>
 function toggleMenu() {
-    document.getElementById("mainNav").classList.toggle("open");
+    document.getElementById('mainNav').classList.toggle('open');
 }
 </script>
 
 </body>
 </html>
-
