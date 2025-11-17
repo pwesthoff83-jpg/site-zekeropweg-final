@@ -484,4 +484,48 @@ body {
 .overlay {
     z-index: 1 !important;
 }
+/* ====================================
+   MOBIEL MENU – DEFINITIEVE FIXES
+   ==================================== */
+
+/* Header staat altijd boven hero's */
+.header {
+    z-index: 9997;
+    position: relative;
+}
+
+/* Hamburger button – altijd klikbaar */
+.menu-toggle {
+    display: block;
+    z-index: 10000;         /* boven alles */
+    position: relative;
+}
+
+/* Standaard nav */
+.main-nav {
+    z-index: 9998;
+}
+
+/* Mobiel menu open */
+.main-nav.open {
+    display: block;
+    position: absolute;
+    top: 100%;              /* direct onder de header */
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+
+    z-index: 9999;          /* boven hero */
+    max-height: 100vh;      /* voorkom dat het verdwijnt */
+    overflow-y: auto;       /* menu kan scrollen */
+}
+
+/* Zorg dat hero overlays nooit boven menu komen */
+.hero-main::before,
+.overlay {
+    z-index: 1 !important;
+}
+
 
