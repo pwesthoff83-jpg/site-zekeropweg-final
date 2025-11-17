@@ -166,6 +166,7 @@ body {
 ------------------------------------- */
 .btn-primary,
 .btn-outline {
+    display: inline-block;       /* FIX: voorkomt overlappen met tekst */
     padding: 10px 20px;
     border-radius: 999px;
     font-weight: 600;
@@ -179,7 +180,9 @@ body {
     color: #fff;
     border: 1px solid var(--olive-dark);
 }
-.btn-primary:hover { background: var(--olive-dark); }
+.btn-primary:hover {
+    background: var(--olive-dark);
+}
 
 .btn-outline {
     background: transparent;
@@ -243,21 +246,20 @@ body {
 .dienst-card p,
 .prijs-card p {
     color: #444;
+    margin-bottom: 10px;
 }
 
-/* -------------------------------------
-   DIENSTEN GRID
-------------------------------------- */
-.diensten-grid,
-.prijzen-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 26px;
+/* Diensten- en prijzencards: flex zodat prijs netjes onderaan blijft */
+.dienst-card,
+.prijs-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 260px;
 }
 
-/* Price tags */
 .prijs-tag {
-    margin-top: 12px;
+    margin-top: auto;      /* duwt prijs naar beneden in de kaart */
     font-size: 1.3rem;
     color: var(--olive);
     font-weight: 700;
@@ -267,6 +269,16 @@ body {
     font-size: 0.9rem;
     margin-top: 6px;
     opacity: 0.8;
+}
+
+/* -------------------------------------
+   DIENSTEN & PRIJZEN GRID
+------------------------------------- */
+.diensten-grid,
+.prijzen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 26px;
 }
 
 /* -------------------------------------
@@ -282,7 +294,10 @@ body {
     font-size: 1.05rem;
     color: #333;
 }
-.over-tekst p { margin-bottom: 18px; }
+
+.over-tekst p {
+    margin-bottom: 18px;
+}
 
 /* -------------------------------------
    MISSIE SECTION
@@ -377,7 +392,9 @@ body {
     color: #ffffffc7;
     text-decoration: none;
 }
-.footer-column a:hover { color: #fff; }
+.footer-column a:hover {
+    color: #fff;
+}
 
 .footer-copy {
     margin-top: 26px;
@@ -437,31 +454,5 @@ body {
     .hero-main-content h1 {
         font-size: 2rem;
     }
-}
-
-/* FIX voor overlappende tekst bij diensten & prijzen */
-.dienst-card,
-.prijs-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 260px; /* voorkomt overlappende tekst */
-}
-.dienst-card p,
-.prijs-card p {
-    margin-bottom: 10px;
-}
-
-/* Fix overlap in diensten- en prijzencards */
-.dienst-card,
-.prijs-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* zorgt dat prijs onderaan blijft */
-    min-height: 260px; /* voorkomt overlappen */
-}
-
-.prijs-tag {
-    margin-top: auto; /* duwt prijs omlaag */
 }
 
