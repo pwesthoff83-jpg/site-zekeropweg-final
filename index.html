@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg – Onafhankelijke aankoopbegeleiding</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
-
+    <title>ZekerOpWeg – Zekerheid bij het kopen van een occasion</title>
+    <meta name="description" content="Persoonlijke aankoopbegeleiding voor occasions. Eerlijk, onafhankelijk en gebaseerd op 16 jaar ervaring bij dealerbedrijven.">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="fade-in">
 
 <!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html">
+        <a href="index.html" class="logo-wrap">
             <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
             <ul>
@@ -29,91 +29,128 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 </header>
 
-
 <!-- HERO -->
 <section class="hero-main" style="background-image:url('assets/images/hero2.webp');">
-    <div class="hero-overlay"></div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="hero-main-content">
+            <h1>Zeker naar je volgende auto, zonder gedoe</h1>
+            <p>Samen vinden we een betrouwbare auto die écht bij je past – voor de beste deal.</p>
 
-    <div class="hero-main-content container">
-        <h1>Zeker naar je volgende auto,<br>zonder gedoe</h1>
+            <p style="margin-top:12px;">
+                Mijn naam is Pepijn en met ruim 16 jaar ervaring in de autobranche help ik je bij het vinden en beoordelen van een auto die écht bij je past — eerlijk, duidelijk en volledig aan jouw kant.
+            </p>
 
-        <p>
-            Met meer dan 16 jaar verkoopervaring bij verschillende dealerbedrijven help ik je bij het vinden en beoordelen van een auto die écht bij je past — eerlijk, duidelijk en volledig aan jouw kant.
-        </p>
-
-        <div class="btn-row">
-            <a href="contact.html" class="btn-primary">Plan een kennismaking</a>
-            <a href="diensten.html" class="btn-outline">Bekijk wat ik voor je doe</a>
+            <div class="btn-row" style="margin-top:24px;">
+                <a href="contact.html" class="btn-primary">Plan een kennismaking</a>
+                <a href="contact.html" class="btn-outline">Vertel me wat je zoekt</a>
+            </div>
         </div>
     </div>
 </section>
 
-
-<!-- USP BLOKKEN -->
-<section class="section">
+<!-- USP BLOK -->
+<section class="usp-block section">
     <div class="container usp-grid">
 
-        <div class="usp-card">
-            <h3>16 jaar ervaring</h3>
-            <p>Praktijkervaring in verkoop, taxaties en inruil bij meerdere dealerbedrijven.</p>
+        <div class="usp-item">
+            <h3>16+ jaar ervaring</h3>
+            <p>Dealerervaring en uitgebreide kennis van inruil, taxaties en verkoop.</p>
         </div>
 
-        <div class="usp-card">
+        <div class="usp-item">
             <h3>Volledig onafhankelijk</h3>
-            <p>Ik werk uitsluitend voor jou — geen belang bij een dealer, merk of auto.</p>
+            <p>Geen belang bij merken, dealers of verkoopresultaten – alleen jouw belang telt.</p>
         </div>
 
-        <div class="usp-card">
+        <div class="usp-item">
             <h3>Eerlijk & betrouwbaar advies</h3>
-            <p>Duidelijke uitleg en realistische verwachtingen, zonder verkooppraatjes.</p>
+            <p>Je krijgt duidelijke uitleg en een objectieve beoordeling van elke auto.</p>
         </div>
 
-        <div class="usp-card">
+        <div class="usp-item">
             <h3>Je bespaart tijd & geld</h3>
-            <p>Door scherpe selectie en betere onderhandeling voorkom je fouten én betaal je nooit te veel.</p>
+            <p>Je voorkomt dure fouten en betaalt nooit te veel door slimme selectie & onderhandeling.</p>
         </div>
 
     </div>
 </section>
 
+<!-- DIENSTEN -->
+<section class="section diensten-section">
+    <div class="container">
+        <h2 class="section-title">Zo zorg ik dat jij zeker op weg gaat</h2>
+
+        <p style="max-width:720px; margin:0 auto 32px;">
+            Of je nu weinig van auto’s weet of juist heel kritisch bent: ik help je stap voor stap bij het vinden én beoordelen van een betrouwbare auto.
+        </p>
+
+        <div class="diensten-grid">
+
+            <div class="dienst-card">
+                <h3>1. Samen je wensen scherpstellen</h3>
+                <p>We brengen budget, gebruik, gezinssituatie en wensen in kaart, zodat we gericht kunnen zoeken.</p>
+            </div>
+
+            <div class="dienst-card">
+                <h3>2. Zoek- en selectiehulp</h3>
+                <p>Ik filter het aanbod, beoordeel auto’s op betrouwbaarheid, onderhoud, kilometerstand en eerlijkheid van de prijs.</p>
+            </div>
+
+            <div class="dienst-card">
+                <h3>3. Controle en onderhandeling</h3>
+                <p>Ik kijk kritisch mee naar de auto, de proefrit, het rapport en de deal – zodat jij met een goed gevoel kunt tekenen.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 <!-- REVIEW -->
 <section class="review-band">
     <div class="container review-inner">
 
-        <img src="assets/images/review.webp" alt="Klantreview" style="width:140px; border-radius:10px;">
+        <div class="review-text">
+            <h2 class="section-title" style="margin-top:0;">Ervaringen van klanten</h2>
+
+            <p><strong>Peter:</strong>  
+            Ik had al een offerte liggen voor de aankoop van een occasion en de inruil van mijn auto. Pepijn keek mee en wist bij de verkoper een betere prijs zonder inruil te regelen, én mijn auto voor een hogere prijs elders in te ruilen. In totaal scheelde dit €1250. Zelfs na zijn bemiddelingskosten was ik nog bijna €1000 goedkoper uit.</p>
+        </div>
 
         <div>
-            <h3>Klantervaring – Peter</h3>
-            <p>
-                Ik had al een offerte liggen voor de aankoop van een occasion inclusief inruil.
-                Pepijn schakelde namens mij met de verkoper, regelde een betere prijs zonder inruil
-                en wist mijn inruilauto elders hoger weg te zetten. 
-            </p>
-            <p><strong>Resultaat: €1250 voordeel — zelfs na zijn kosten nog bijna €1000 bespaard.</strong></p>
+            <img src="assets/images/review.webp" alt="Klantreview" class="review-image">
         </div>
 
     </div>
 </section>
 
+<!-- CTA -->
+<section class="section" style="text-align:center;">
+    <div class="container">
+        <h2 class="section-title">Klaar voor een auto waar je zeker van bent?</h2>
+        <p style="max-width:720px; margin:0 auto;">
+            Vertel me wat je zoekt, dan kijken we samen welke auto bij je past – en hoe je die zo verstandig mogelijk kunt kopen.
+        </p>
+        <a href="contact.html" class="btn-primary" style="margin-top:20px;">Start met een gratis kennismaking</a>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
     <div class="container footer-container">
 
         <div>
-            <img src="assets/images/logo.png" class="footer-logo-img" alt="Logo">
-            <p style="max-width:260px; margin-top:10px;">
-                Onafhankelijke begeleiding bij de aankoop van jouw occasion.
+            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="footer-logo-img">
+            <p style="margin-top:10px; max-width:260px;">
+                Onafhankelijk advies en begeleiding bij de aankoop van jouw volgende occasion.
             </p>
         </div>
 
         <div class="footer-columns">
+
             <div class="footer-column">
                 <h4>Navigatie</h4>
                 <a href="index.html">Home</a><br>
@@ -125,17 +162,16 @@
 
             <div class="footer-column">
                 <h4>Contact</h4>
-                Regio Zuid-Holland<br>
-                advies@zekeropweg.nu<br>
-                WhatsApp: 06-2345 2349
+                <span>Regio Zuid-Holland</span><br>
+                <span>E-mail: advies@zekeropweg.nu</span><br>
+                <span>WhatsApp: 06-2345 2349</span>
             </div>
-        </div>
 
+        </div>
     </div>
 
-    <p class="footer-copy">© 2025 ZekerOpWeg</p>
+    <p class="footer-copy">© 2025 ZekerOpWeg – Advies en begeleiding bij occasionaankoop.</p>
 </footer>
-
 
 <script>
 function toggleMenu() {
@@ -145,6 +181,7 @@ function toggleMenu() {
 
 </body>
 </html>
+
 
 
 
