@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | ZekerOpWeg</title>
 
-    <meta name="description" content="Neem contact op voor onafhankelijk aankoopadvies of begeleiding bij het vinden van jouw volgende auto.">
-    
+    <meta name="description" content="Neem contact op met ZekerOpWeg voor persoonlijk advies, begeleiding bij bezichtiging of een volledig aankooptraject. Snel, duidelijk en onafhankelijk.">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
 </head>
 
 <body>
 
+<!-- HEADER ---------------------------------------------------------- -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html"><img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo"></a>
+
+        <a href="index.html">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+        </a>
+
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -26,49 +32,118 @@
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
+
     </div>
 </header>
 
+<!-- HERO ------------------------------------------------------------ -->
 <section class="hero-sub" style="background-image:url('assets/images/contact.webp');">
     <div class="hero-overlay"></div>
-    <div class="hero-content">
+
+    <div class="hero-content fade-in">
         <h1>Contact</h1>
-        <p>Vrijblijvend kennismaken? Ik help je graag verder.</p>
+        <p>Persoonlijk, duidelijk en altijd in jouw voordeel.</p>
     </div>
 </section>
 
-<section class="section">
-    <div class="container contact-grid">
+<!-- CONTACT --------------------------------------------------------- -->
+<section class="section contact-section fade-in">
+    <div class="container">
+        <h2 class="section-title">Plan jouw adviesmoment</h2>
+
+        <div class="contact-grid">
+
+            <!-- Linker kaart -->
+            <div class="contact-card">
+                <p class="contact-detail"><span>Naam:</span> ZekerOpWeg</p>
+                <p class="contact-detail"><span>Regio:</span> Zuid-Holland</p>
+                <p class="contact-detail"><span>E-mail:</span> advies@zekeropweg.nu</p>
+                <p class="contact-detail"><span>WhatsApp:</span> 06-2345 2349</p>
+
+                <a href="https://wa.me/31623452349" target="_blank" class="whatsapp-btn">
+                    Stuur een WhatsApp-bericht
+                </a>
+            </div>
+
+            <!-- Rechter kaart -->
+            <div class="contact-card">
+                <p>Heb je een vraag of wil je weten of ik je kan helpen? Stuur me gerust een bericht met wat je zoekt, je budget of auto's die je al hebt gevonden.</p>
+
+                <p style="margin-top:10px;">
+                    Ik reageer meestal dezelfde dag.  
+                    Als je ’s avonds laat iets stuurt, krijg je de volgende ochtend antwoord.
+                </p>
+
+                <p style="margin-top:10px;">
+                    Liever bellen? Stuur een WhatsApp en ik plan een rustig moment met je in.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -------------------------------------------------------------- -->
+<section class="section fade-in" style="text-align:center;">
+    <div class="container">
+
+        <h2 class="section-title">Samen zeker op weg?</h2>
+
+        <p style="max-width:700px; margin:0 auto;">
+            Stuur me een bericht, dan help ik je graag verder — van advies tot volledige aankoopbegeleiding.
+        </p>
+
+        <a href="https://wa.me/31623452349" target="_blank" class="btn-primary" style="margin-top:20px;">
+            Stuur direct een WhatsApp
+        </a>
+
+    </div>
+</section>
+
+<!-- FOOTER ----------------------------------------------------------- -->
+<footer class="site-footer">
+    <div class="container footer-container">
 
         <div>
-            <h2 class="section-title" style="text-align:left;">Contactgegevens</h2>
-
-            <p class="contact-detail"><span>Regio:</span> Zuid-Holland</p>
-            <p class="contact-detail"><span>E-mail:</span> advies@zekeropweg.nu</p>
-            <p class="contact-detail"><span>WhatsApp:</span> 06-2345 2349</p>
-
-            <a href="https://wa.me/31623452349" class="whatsapp-btn">Stuur een WhatsApp</a>
+            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
+            <p style="margin-top:10px; max-width:260px;">
+                Onafhankelijk advies en professionele begeleiding bij de aankoop van jouw occasion.
+            </p>
         </div>
 
-        <div class="contact-card">
-            <h3>Plan een kennismaking</h3>
-            <p>
-                Vertel kort waar je naar op zoek bent. Ik reageer meestal dezelfde dag.
-            </p>
+        <div class="footer-columns">
 
-            <a href="mailto:advies@zekeropweg.nu" class="btn-primary" style="margin-top:15px; display:inline-block;">
-                E-mail sturen
-            </a>
+            <div class="footer-column">
+                <h4>Navigatie</h4>
+                <a href="index.html">Home</a><br>
+                <a href="diensten.html">Diensten</a><br>
+                <a href="prijzen.html">Prijzen</a><br>
+                <a href="over.html">Over</a><br>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <span>Regio Zuid-Holland</span><br>
+                <span>E-mail: advies@zekeropweg.nu</span><br>
+                <span>WhatsApp: 06-2345 2349</span><br>
+            </div>
+
         </div>
 
     </div>
-</section>
 
+    <p class="footer-copy">© 2025 ZekerOpWeg — Alle rechten voorbehouden</p>
+</footer>
+
+<!-- MENU SCRIPT ------------------------------------------------------ -->
 <script>
 function toggleMenu() {
-    document.getElementById('mainNav').classList.toggle('open');
+    document.getElementById("mainNav").classList.toggle("open");
 }
 </script>
 
 </body>
 </html>
+
+
