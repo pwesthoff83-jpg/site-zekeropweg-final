@@ -391,6 +391,46 @@ body {
     .hero-content h1 { font-size: 2rem; }
     .btn-row { flex-direction: column; }
 }
+/* ============================================
+   GLOBALE FIX: Buttons mogen nooit overlappen
+   ============================================ */
+
+/* Buttons altijd inline-block zodat ze hun eigen ruimte claimen */
+.btn-primary,
+.btn-outline,
+.whatsapp-btn {
+    display: inline-block !important;
+    position: relative !important;
+    margin: 14px 0 !important;
+}
+
+/* voorkomt dat kaarten of grids knoppen omhoog drukken */
+.dienst-card,
+.prijs-card,
+.contact-card {
+    position: relative;
+}
+
+/* voorkomt dat sections in elkaar schuiven */
+.section {
+    position: relative;
+    z-index: 1;
+}
+
+/* WhatsApp-knop onderaan contactpagina correct centreren */
+.center-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+/* Hero-buttons correct */
+.hero-buttons {
+    margin-top: 25px;
+    position: relative;
+    z-index: 5;
+}
+
 
 
 
