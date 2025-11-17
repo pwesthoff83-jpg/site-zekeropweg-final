@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prijzen | ZekerOpWeg</title>
-
-    <meta name="description" content="Transparante tarieven voor advies, selectie, bezichtigingen en volledige aankoopbegeleiding. Eerlijk, duidelijk en zonder verrassingen.">
-    <meta name="robots" content="index,follow">
-
+    <meta name="description" content="Bekijk de transparante tarieven voor advies, zoekopdrachten, bezichtigingen en volledige aankoopbegeleiding.">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,11 +14,13 @@
 <!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
 
-        <nav class="main-nav" id="mainNav" aria-label="Hoofdmenu">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="diensten.html">Diensten</a></li>
@@ -30,8 +29,6 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
 </header>
 
@@ -40,90 +37,57 @@
     <div class="overlay"></div>
     <div class="hero-content">
         <h1>Prijzen</h1>
-        <p>Eerlijk. Transparant. Zonder verrassingen.</p>
+        <p>Eerlijk. Transparant. Geen verrassingen.</p>
     </div>
 </section>
 
-<!-- PRIJZEN GRID -->
+<!-- PRIJZEN -->
 <section class="section">
     <div class="container">
         <h2 class="section-title">Onze tarieven</h2>
 
-        <p style="max-width:720px;margin:0 auto 18px;">
-            Je betaalt alleen voor wat je nodig hebt — geen pakketten, geen verkooptrucs. 
-            Gewoon duidelijk advies en begeleiding, op een manier die bij jou past.
-        </p>
-
-        <!-- NIEUWE TOEGEVOEGDE ALINEA -->
-        <p style="max-width:720px;margin:0 auto 32px;">
-            In veel gevallen verdien je deze kosten eenvoudig terug. Dankzij mijn onderhandelingservaring en inzicht in marktprijzen 
-            betaal je vaak aanzienlijk minder dan het oorspronkelijke voorstel van de verkoper. 
-            Zo levert deskundige begeleiding niet alleen zekerheid op, maar ook direct financieel voordeel.
+        <p style="max-width:720px; margin: 0 auto 32px; text-align:center;">
+            Bij ZekerOpWeg weet je altijd wat je betaalt. Geen kleine lettertjes — gewoon duidelijke tarieven.
+            In veel gevallen worden de kosten ruimschoots terugverdiend door een betere onderhandeling of scherpere deal.
         </p>
 
         <div class="prijzen-grid">
 
-            <!-- Adviesgesprek -->
             <div class="prijs-card">
                 <h3>Adviesgesprek</h3>
-                <p>Vrijblijvende kennismaking waarin we jouw situatie, wensen en budget bespreken.</p>
-                <p>Je krijgt direct duidelijkheid over wat verstandig is én waar je op moet letten.</p>
+                <p>Vrijblijvende kennismaking en inventarisatie van jouw wensen en budget.</p>
                 <div class="prijs-tag">Gratis</div>
             </div>
 
-            <!-- Zoekopdracht -->
             <div class="prijs-card">
                 <h3>Zoekopdracht</h3>
-                <p>Ik selecteer betrouwbare auto's die passen bij jouw wensen en beoordeel ze op:</p>
-                <ul style="margin-left:16px; margin-top:6px; line-height:1.5;">
-                    <li>Onderhoud en historie</li>
-                    <li>Kilometerstand en herkomst</li>
-                    <li>Prijs-kwaliteit en marktpositie</li>
-                    <li>Betrouwbaarheid van aanbieder</li>
-                </ul>
+                <p>Gerichte zoektocht naar betrouwbare occasions die bij je passen.</p>
                 <div class="prijs-tag">€ 79,-</div>
             </div>
 
-            <!-- Voorverkenning -->
             <div class="prijs-card">
                 <h3>Voorverkenning</h3>
-                <p>Ik controleer de auto persoonlijk op locatie en beoordeel onder andere:</p>
-                <ul style="margin-left:16px; margin-top:6px; line-height:1.5;">
-                    <li>Technische en cosmetische staat</li>
-                    <li>Bekende zwakke punten</li>
-                    <li>Onderhoud en reparatiegeschiedenis</li>
-                    <li>Verkoper en voorwaarden</li>
-                </ul>
+                <p>Controle op locatie van onderhoud, historie en technische staat.</p>
+                <div class="price-spacer"></div>
                 <div class="prijs-tag">€ 189,-</div>
             </div>
 
-            <!-- Extra bezichtiging -->
             <div class="prijs-card">
                 <h3>Extra bezichtiging</h3>
-                <p>Wil je meerdere auto's vergelijken? Ik beoordeel elke extra auto met dezelfde zorgvuldigheid.</p>
+                <p>Voor elke extra auto die je wilt vergelijken.</p>
                 <div class="prijs-tag">€ 99,-</div>
             </div>
 
-            <!-- Volledig aankooptraject -->
             <div class="prijs-card">
                 <h3>Volledig aankooptraject</h3>
-                <p>Complete begeleiding van A tot Z, inclusief:</p>
-                <ul style="margin-left:16px; margin-top:6px; line-height:1.5;">
-                    <li>Selectie en vergelijking van geschikte auto's</li>
-                    <li>Voorverkenning + controle op locatie</li>
-                    <li>Advies tijdens proefrit</li>
-                    <li>Onderhandeling met verkoper</li>
-                    <li>Beoordeling van voorwaarden, garantie en rapportages</li>
-                </ul>
+                <p>Complete begeleiding tot en met de aankoop.</p>
                 <div class="prijs-tag">v.a. € 299,-</div>
-                <p class="small-info">Gemiddeld 2,5 – 5% van de aankoopwaarde. Minimaal € 299,-.</p>
+                <p class="small-info">2,5 – 5% van de aankoopwaarde, min. € 299,-</p>
             </div>
 
-            <!-- Verkoop- & inruiladvies -->
             <div class="prijs-card">
                 <h3>Verkoop- & inruiladvies</h3>
-                <p>Ik help je realistisch en eerlijk bepalen welke strategie het beste bij jouw auto past.</p>
-                <p>Maximaal resultaat, zonder gedoe.</p>
+                <p>Advies voor verkoop of inruil van je huidige auto.</p>
                 <div class="prijs-tag">Prijs op aanvraag</div>
             </div>
 
@@ -131,15 +95,22 @@
     </div>
 </section>
 
-<!-- CTA -->
-<section class="section" style="text-align:center;">
-    <div class="container">
-        <h2 class="section-title">Zeker op weg voor een eerlijk bedrag</h2>
-        <p style="max-width:720px;margin:0 auto;">
-            Bespreek jouw plannen en ontdek welke begeleiding het beste past. 
-            Het eerste adviesgesprek is altijd gratis.
-        </p>
-        <a href="contact.html" class="btn-primary" style="margin-top:20px;">Plan een kennismaking</a>
+<!-- REVIEW -->
+<section class="review-band">
+    <div class="container review-inner">
+        <div class="review-text">
+            <h2 class="section-title" style="text-align:left; margin-bottom: 10px;">Klantervaring</h2>
+
+            <p><strong>Peter:</strong></p>
+            <p>"Ik kwam bij Pepijn met een offerte van een dealer voor een occasion en de inruil van mijn huidige auto.  
+            Pepijn nam contact op met de verkoper en wist een betere prijs zonder inruil te onderhandelen.  
+            Mijn inruilauto heeft hij elders laten taxeren voor een hogere waarde.  
+            Uiteindelijk creëerde hij een voordeel van €1250,-.  
+            Zelfs na de kosten van zijn begeleiding was ik bijna €1000,- voordeliger uit.  
+            Een aanrader voor iedereen die zekerheid wil."</p>
+        </div>
+
+        <img src="assets/images/review.webp" alt="Klantreview" class="review-image">
     </div>
 </section>
 
@@ -149,10 +120,13 @@
 
         <div>
             <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="footer-logo-img">
-            <p style="margin-top:10px;max-width:260px;">Eerlijk en onafhankelijk advies bij de aankoop van jouw occasion.</p>
+            <p style="margin-top:10px; max-width:260px;">
+                Onafhankelijk advies en begeleiding bij de aankoop van jouw volgende occasion.
+            </p>
         </div>
 
         <div class="footer-columns">
+
             <div class="footer-column">
                 <h4>Navigatie</h4>
                 <a href="index.html">Home</a><br>
@@ -161,16 +135,18 @@
                 <a href="over.html">Over</a><br>
                 <a href="contact.html">Contact</a>
             </div>
+
             <div class="footer-column">
                 <h4>Contact</h4>
                 <span>Regio Zuid-Holland</span><br>
                 <span>E-mail: advies@zekeropweg.nu</span><br>
                 <span>WhatsApp: 06-2345 2349</span>
             </div>
+
         </div>
     </div>
 
-    <p class="footer-copy">© 2025 ZekerOpWeg</p>
+    <p class="footer-copy">© 2025 ZekerOpWeg – Advies en begeleiding bij occasionaankoop.</p>
 </footer>
 
 <script>
@@ -181,3 +157,4 @@ function toggleMenu() {
 
 </body>
 </html>
+
