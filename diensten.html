@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diensten | ZekerOpWeg</title>
+    <title>Diensten – ZekerOpWeg</title>
+    <link rel="stylesheet" href="assets/styles.css">
 
-    <meta name="description" content="Bekijk alle diensten van ZekerOpWeg: adviesgesprek, zoekopdracht, voorverkenning, extra bezichtiging en volledige aankoopbegeleiding. Eerlijk, onafhankelijk en met 16+ jaar ervaring.">
-
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon-32.png">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
 </head>
 
 <body>
 
-<!-- HEADER ---------------------------------------------------------- -->
 <header class="header">
     <div class="container header-container">
-
         <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
         </a>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -32,117 +30,126 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
     </div>
 </header>
 
-<!-- HERO ------------------------------------------------------------ -->
-<section class="hero-sub" style="background-image:url('assets/images/diensten.webp');">
-    <div class="hero-overlay"></div>
 
-    <div class="hero-content fade-in">
+<!-- =====================================
+     HERO
+===================================== -->
+<section class="hero-sub" style="background-image:url('assets/images/diensten.webp');">
+    <div class="overlay"></div>
+    <div class="hero-content">
         <h1>Diensten</h1>
-        <p>Van eerste oriëntatie tot volledig aankooptraject.</p>
     </div>
 </section>
 
-<!-- DIENSTEN-SECTIE -------------------------------------------------- -->
-<section class="section fade-in">
+
+<!-- =====================================
+     DIENSTEN GRID
+===================================== -->
+<section class="section">
     <div class="container">
 
-        <h2 class="section-title">Wat ik voor je kan betekenen</h2>
+        <h2 class="section-title">Waar ik je bij help</h2>
 
-        <div class="diensten-grid">
+        <div class="diensten-grid fade-in">
 
+            <!-- 1 Adviesgesprek -->
             <div class="dienst-card">
                 <h3>1. Adviesgesprek</h3>
-                <p>
-                    We bespreken jouw wensen, budget en situatie. Je krijgt direct inzicht in 
-                    de beste opties en aandachtspunten — zonder verplichtingen.
-                </p>
+                <p>Ideaal als je net begint met oriënteren. We bespreken jouw wensen, gebruik, budget en mogelijke valkuilen zodat je direct goed voorbereid bent.</p>
             </div>
 
+            <!-- 2 Zoekopdracht -->
             <div class="dienst-card">
                 <h3>2. Zoekopdracht</h3>
-                <p>
-                    Ik zoek geschikte en betrouwbare auto’s die passen bij jouw gebruik, 
-                    gezinssituatie en budget. Inclusief eerlijke toelichting per auto.
-                </p>
+                <p>Als je geen tijd of ervaring hebt om zelf auto's te filteren. Ik selecteer betrouwbare auto's die écht bij je passen en licht iedere optie helder toe.</p>
             </div>
 
+            <!-- 3 Voorverkenning -->
             <div class="dienst-card">
                 <h3>3. Voorverkenning</h3>
-                <p>
-                    Inspectie op locatie: onderhoud, historie, bekende issues, kilometerstand, 
-                    proefritadvies en een check van de verkoper & garantievoorwaarden.
-                </p>
+                <p>Kritische inspectie op locatie bij de verkoper: onderhoudshistorie, boekjes, kilometerstand, carrosserie en technische punten.</p>
             </div>
 
+            <!-- 4 Extra bezichtiging -->
             <div class="dienst-card">
                 <h3>4. Extra bezichtiging</h3>
-                <p>
-                    Perfect wanneer je twijfelt tussen meerdere auto’s. Ik vergelijk ze op 
-                    betrouwbaarheid, prijs en technische staat.
-                </p>
+                <p>Ideaal wanneer je twijfelt tussen meerdere auto's. Helder en eerlijk vergelijk tussen de opties zodat je de beste keuze maakt.</p>
             </div>
 
+            <!-- 5 Volledig aankooptraject -->
             <div class="dienst-card">
                 <h3>5. Volledig aankooptraject</h3>
-                <p>
-                    Je staat er nooit alleen voor: selectie, vergelijking, proefritbegeleiding, 
-                    onderhandeling en advies tot het moment van aankoop.
-                </p>
+                <p>Complete begeleiding van begin tot eind. Ik onderhandel namens jou, controleer alle details en zorg dat je veilig en zeker koopt.</p>
             </div>
 
+            <!-- 6 Verkoop- & inruiladvies -->
             <div class="dienst-card">
                 <h3>6. Verkoop- & inruiladvies</h3>
-                <p>
-                    Duidelijk en eerlijk advies over verkoopwaarde, realistische vraagprijzen 
-                    en slimme strategie voor de beste deal.
-                </p>
+                <p>Maximale waarde halen uit je huidige auto. Ik adviseer over verkoopkanalen, marktprijzen en realistische inruilwaardes.</p>
             </div>
 
         </div>
-
     </div>
 </section>
 
-<!-- REVIEWS -------------------------------------------------------- -->
-<section class="section review-section fade-in">
-    <div class="container">
 
-        <h2 class="section-title">Ervaringen van klanten</h2>
 
-        <div class="review-card">
-            <p class="review-text">
-                “Ik had al een offerte liggen voor de aankoop van een occasion en de inruil van mijn huidige auto. Met die offerte ben ik naar Pepijn gegaan om te controleren of het echt een goede deal was. 
-                Pepijn nam direct contact op met de verkoper en wist daar een betere prijs zónder inruil te onderhandelen. Daarna heeft hij mijn auto elders voor een hogere prijs laten inruilen. In totaal leverde dat €1250,- extra op.
-                Zelfs na de kosten voor zijn bemiddeling kwam ik nog steeds bijna €1000,- voordeliger uit. Dat had ik zonder Pepijn nooit voor elkaar gekregen.”
+<!-- =====================================
+     KLANTREVIEW – PETER
+===================================== -->
+<section class="review-band">
+    <div class="container review-inner fade-in">
+
+        <img src="assets/images/review.webp" alt="Review foto" style="width:110px; border-radius:8px;">
+
+        <div>
+            <h3 style="margin-bottom:8px; color:var(--olive-dark);">⭐ Klantreview – Peter</h3>
+            <p>
+                Peter had al een offerte liggen voor de aankoop van een occasion en de inruil van zijn huidige auto. 
+                Met die offerte kwam hij bij mij. Ik heb namens hem contact opgenomen met de verkoper en een scherpere prijs 
+                zónder inruil bedongen.
             </p>
-            <p class="review-author">— Peter</p>
+
+            <p>
+                Zijn eigen auto heb ik elders laten taxeren en ingeruild voor een hogere prijs dan in de oorspronkelijke deal.
+            </p>
+
+            <p>
+                Resultaat: <strong>€ 1.250,- extra voordeel</strong>.  
+                Zelfs mét mijn bemiddelingskosten was Peter nog bijna <strong>€ 1.000,- goedkoper uit</strong>.
+            </p>
         </div>
 
     </div>
 </section>
-    
-    
-<!-- CTA -------------------------------------------------------------- -->
-<section class="section fade-in" style="text-align:center;">
-    <div class="container">
-        <h2 class="section-title">Klaar om zekerheid te krijgen bij jouw volgende auto?</h2>
-        <p style="max-width:720px; margin:0 auto;">
-            Plan een gratis en vrijblijvend adviesmoment. Ik help je graag verder en geef je direct duidelijkheid.
-        </p>
-        <a href="contact.html" class="btn-primary" style="margin-top:20px;">Plan kennismaking</a>
-    </div>
+
+
+
+<!-- =====================================
+     CTA
+===================================== -->
+<section class="section" style="text-align:center;">
+    <h2 class="section-title">Samen zeker op weg?</h2>
+    <p>Wil je weten wat ik voor je kan betekenen? Neem gerust vrijblijvend contact op.</p>
+
+    <a href="contact.html" class="btn-primary" style="margin-top:14px;">
+        Plan een kennismaking
+    </a>
 </section>
 
+
+<!-- =====================================
+     FOOTER
+===================================== -->
 <footer class="site-footer">
     <div class="container footer-container">
 
-        <div class="footer-brand">
-            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
-            <p class="footer-text">
+        <div>
+            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg">
+            <p style="margin-top:10px; max-width:260px;">
                 Onafhankelijk advies en professionele begeleiding bij de aankoop van jouw occasion.
             </p>
         </div>
@@ -160,20 +167,22 @@
 
             <div class="footer-column">
                 <h4>Contact</h4>
-                <span>Regio Zuid-Holland</span><br>
-                <span>E-mail: advies@zekeropweg.nu</span><br>
-                <span>WhatsApp: 06-2345 2349</span><br>
+                Regio Zuid-Holland<br>
+                E-mail: advies@zekeropweg.nu<br>
+                WhatsApp: 06-2345 2349
             </div>
 
         </div>
 
     </div>
 
-    <p class="footer-copy">© 2025 ZekerOpWeg — Alle rechten voorbehouden</p>
+    <div class="footer-copy">
+        © 2025 ZekerOpWeg – Alle rechten voorbehouden
+    </div>
 </footer>
 
 
-<!-- MENU SCRIPT -->
+
 <script>
 function toggleMenu() {
     document.getElementById("mainNav").classList.toggle("open");
@@ -182,7 +191,4 @@ function toggleMenu() {
 
 </body>
 </html>
-
-
-
 
