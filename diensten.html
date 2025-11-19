@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diensten | ZekerOpWeg</title>
-    <meta name="description" content="Bekijk de diensten van ZekerOpWeg: onafhankelijk aankoopadvies, begeleiding en selectie van betrouwbare occasions.">
+    <title>Diensten | ZekerOpWeg – Onafhankelijke aankoopbegeleiding</title>
+    <meta name="description" content="Ontdek de diensten van ZekerOpWeg: onafhankelijk aankoopadvies, professionele voorselectie, bezichtigingen en volledige begeleiding bij de aankoop van een betrouwbare occasion.">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <link rel="stylesheet" href="styles.css?v=1.0.2">
 </head>
 
 <body class="fade-in">
 
 <header class="header">
     <div class="container header-container">
-        <a href="index.html"><img src="assets/images/logo.png" class="site-logo"></a>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <a href="index.html" aria-label="Ga naar home">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+        </a>
+
+        <button class="menu-toggle" aria-label="Menu openen" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
             <ul>
@@ -38,38 +41,43 @@
 
 <section class="section diensten-section">
     <div class="container">
+
         <h2 class="section-title">Wat ik voor je kan betekenen</h2>
+        <p class="section-subtext" style="text-align:center; max-width:650px; margin:0 auto 40px;">
+            Of je zelf al een auto hebt gevonden of nog volledig blanco begint: ik help je met een eerlijk, 
+            onafhankelijk advies zodat je zorgeloos de juiste keuze maakt.
+        </p>
 
         <div class="diensten-grid">
 
             <div class="dienst-card">
                 <h3>1. Adviesgesprek</h3>
-                <p>We bespreken jouw situatie, wensen en budget. Helder, vrijblijvend en zonder kosten.</p>
+                <p>We bespreken jouw situatie, wensen, budget en het juiste type auto. Duidelijk, eerlijk en geheel vrijblijvend.</p>
             </div>
 
             <div class="dienst-card">
                 <h3>2. Zoekopdracht</h3>
-                <p>Ik selecteer betrouwbare occasions die écht passen bij jouw gebruik en wensen.</p>
+                <p>Ik maak een selectie van betrouwbare occasions die écht passen bij jouw gebruik, wensen en rijgedrag.</p>
             </div>
 
             <div class="dienst-card">
                 <h3>3. Voorverkenning</h3>
-                <p>Controle op locatie van onderhoud, historie, verkoper en technische staat.</p>
+                <p>Ik controleer op locatie de technische staat, onderhoudshistorie, verkoper, kilometerstand en eventuele aandachtspunten.</p>
             </div>
 
             <div class="dienst-card">
                 <h3>4. Extra bezichtiging</h3>
-                <p>Heb je meerdere auto’s op het oog? Ik vergelijk ze eerlijk en helder voor je.</p>
+                <p>Twijfel je tussen meerdere auto's? Ik vergelijk ze objectief, zodat jij precies weet welke het beste is.</p>
             </div>
 
             <div class="dienst-card">
                 <h3>5. Volledig aankooptraject</h3>
-                <p>Van selectie tot proefrit, onderhandeling en advies — volledige ontzorging.</p>
+                <p>Van selectie tot proefrit, onderhandeling en advies. Je wordt volledig ontzorgd: ik regel alles voor je.</p>
             </div>
 
             <div class="dienst-card">
                 <h3>6. Verkoop- & inruiladvies</h3>
-                <p>Advies bij verkoop of inruil van je huidige auto, voor de beste prijs.</p>
+                <p>Wil je je huidige auto verkopen of inruilen? Ik help je de beste opbrengst te behalen, zonder gedoe.</p>
             </div>
 
         </div>
@@ -87,7 +95,7 @@
         </div>
 
         <div>
-            <img src="assets/images/review.webp" alt="Review" class="review-image">
+            <img src="assets/images/review.webp" alt="Tevreden klant Peter" class="review-image">
         </div>
     </div>
 </section>
@@ -96,7 +104,7 @@
     <div class="container footer-container">
 
         <div>
-            <img src="assets/images/logo.png" class="footer-logo-img">
+            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
             <p style="margin-top:10px; max-width:260px;">Onafhankelijk advies en begeleiding bij de aankoop van jouw occasion.</p>
         </div>
 
@@ -122,10 +130,13 @@
 </footer>
 
 <script>
-function toggleMenu(){ document.getElementById("mainNav").classList.toggle("open"); }
+function toggleMenu(){ 
+    document.getElementById("mainNav").classList.toggle("open"); 
+}
 </script>
 
 </body>
 </html>
+
 
 
