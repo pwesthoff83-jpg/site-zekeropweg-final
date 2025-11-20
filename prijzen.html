@@ -13,9 +13,9 @@
 
 <header class="header">
     <div class="container header-container">
-        <a href="index.html"><img src="assets/images/logo.png" class="site-logo"></a>
+        <a href="index.html"><img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo"></a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" aria-label="Menu openen" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
             <ul>
@@ -29,6 +29,7 @@
     </div>
 </header>
 
+<!-- HERO -->
 <section class="hero-sub" style="background-image:url('assets/images/prijzen.webp');">
     <div class="overlay"></div>
     <div class="hero-content">
@@ -39,6 +40,7 @@
 
 <section class="section prijzen-section">
     <div class="container">
+        
         <h2 class="section-title">Onze tarieven</h2>
 
         <p style="max-width:720px;margin:0 auto 32px;">
@@ -47,45 +49,50 @@
 
         <div class="prijzen-grid">
 
+            <!-- Adviesgesprek -->
             <div class="prijs-card">
                 <h3>Adviesgesprek</h3>
                 <p>Vrijblijvend kennismaken en je wensen en budget in kaart brengen.</p>
                 <div class="prijs-tag">Gratis</div>
             </div>
 
+            <!-- Zoekopdracht -->
             <div class="prijs-card">
                 <h3>Zoekopdracht</h3>
                 <p>Ik selecteer betrouwbare occasions die écht aansluiten op jouw situatie.</p>
                 <div class="prijs-tag">€ 79,-</div>
             </div>
 
+            <!-- Voorverkenning -->
             <div class="prijs-card">
                 <h3>Voorverkenning</h3>
                 <p>Controle op locatie van onderhoud, historie, verkoper en technische staat.</p>
                 <div class="prijs-tag">€ 189,-</div>
             </div>
 
+            <!-- Extra bezichtiging -->
             <div class="prijs-card">
                 <h3>Extra bezichtiging</h3>
                 <p>Ideaal als je meerdere auto’s met elkaar wilt vergelijken.</p>
                 <div class="prijs-tag">€ 99,-</div>
             </div>
 
-         <div class="prijs-card">
-    <h3>Volledig aankooptraject</h3>
-    <p>
-        Compleet traject inclusief selectie, advies, controle en onderhandeling.
-    </p>
+            <!-- Volledig aankooptraject -->
+            <div class="prijs-card">
+                <h3>Volledig aankooptraject</h3>
+                <p>
+                    Compleet traject inclusief selectie, advies, controle en onderhandeling.
+                </p>
 
-    <ul style="margin: 10px 0 0 18px; line-height: 1.5;">
-        <li>Zoekopdracht inbegrepen</li>
-        <li>Voorverkenning inbegrepen</li>
-    </ul>
+                <ul style="margin: 10px 0 0 18px; line-height: 1.5;">
+                    <li>Zoekopdracht inbegrepen</li>
+                    <li>Voorverkenning inbegrepen</li>
+                </ul>
 
-    <p class="prijs-tag">v.a. € 299,- *</p>
-</div>
- 
+                <p class="prijs-tag">v.a. € 299,- *</p>
+            </div>
 
+            <!-- Verkoop & inruil -->
             <div class="prijs-card">
                 <h3>Verkoop- & inruiladvies</h3>
                 <p>Onafhankelijk advies voor verkoop of inruil van je huidige auto.</p>
@@ -93,19 +100,21 @@
             </div>
 
         </div>
+
+        <!-- Voetnoot -->
+        <p style="font-size:0.9rem;margin-top:25px;opacity:0.75;">
+            * Het volledige traject is maatwerk, waardoor de exacte kosten vooraf kunnen variëren.
+            Met een richttarief van 2,5 tot 5% van de aankoopwaarde zijn mijn werkzaamheden gedekt — inclusief reistijd en reiskosten.
+        </p>
+
     </div>
-  <p style="font-size: 0.9rem; margin-top: 25px; opacity: 0.75;">
-    * Het volledige traject is maatwerk, waardoor de exacte kosten vooraf kunnen variëren. Met een richttarief van 2,5 tot 5% van de aankoopwaarde zijn mijn werkzaamheden gedekt — inclusief reistijd en reiskosten.
-   
-</p>
-  
 </section>
 
 <footer class="site-footer">
     <div class="container footer-container">
 
         <div>
-            <img src="assets/images/logo.png" class="footer-logo-img">
+            <img src="assets/images/logo.png" class="footer-logo-img" alt="ZekerOpWeg logo">
             <p style="margin-top:10px;max-width:260px;">
                 Onafhankelijk advies en begeleiding bij de aankoop van jouw occasion.
             </p>
@@ -136,11 +145,14 @@
 </footer>
 
 <script>
-function toggleMenu(){ document.getElementById("mainNav").classList.toggle("open"); }
+function toggleMenu(){
+    document.getElementById("mainNav").classList.toggle("open");
+}
 </script>
 
 </body>
 </html>
+
 
 
 
