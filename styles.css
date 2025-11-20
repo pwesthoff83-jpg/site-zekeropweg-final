@@ -353,6 +353,46 @@ body {
     max-width: 800px;
     z-index: 2;
 }
+.review-band {
+    padding: 60px 0;
+    background: #f7f6f3;
+}
+
+.review-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.review-text {
+    flex: 1;
+}
+
+.review-image-wrap {
+    flex: 0 0 320px;
+    display: flex;
+    justify-content: center;
+}
+
+.review-image {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    display: block;
+}
+
+/* Mobiel */
+@media (max-width: 768px) {
+    .review-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .review-image-wrap {
+        order: 2;
+    }
+}
+
 
 
 
