@@ -39,7 +39,7 @@ body {
 }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ----------------------------------------------------
@@ -121,7 +121,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   HERO
+   HERO (UNIFORM LINKS UITGELIJND)
 ---------------------------------------------------- */
 .hero-main,
 .hero-sub {
@@ -134,27 +134,28 @@ body {
     align-items: center;
 }
 
-.overlay {
+.hero-sub .overlay,
+.hero-main .overlay {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.45);
 }
 
-.hero-main-content,
 .hero-content {
     position: relative;
+    text-align: left;
     color: #fff;
-    max-width: 540px;
+    max-width: 600px;
+    margin-left: 5%;
+    padding-top: 150px;
 }
 
-.hero-main-content h1,
-.hero-content h1 {
-    font-size: 2.3rem;
-}
-@media (max-width: 600px) {
-    .hero-main-content h1,
-    .hero-content h1 {
-        font-size: 1.9rem;
+/* Mobiel */
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;
+        margin-left: 0;
+        padding-top: 100px;
     }
 }
 
@@ -267,23 +268,46 @@ body {
 }
 
 /* ----------------------------------------------------
-   REVIEW-BAND (NU ZONDER FOTO)
+   REVIEW-BAND
 ---------------------------------------------------- */
 .review-band {
     background: #fff;
-    padding: 40px 0;
+    padding: 60px 0;
     border-top: 1px solid #ddd;
 }
 
 .review-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.review-text { flex: 1; }
+
+.review-image-wrap {
+    flex: 0 0 320px;
+    display: flex;
+    justify-content: center;
+}
+
+.review-image {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     display: block;
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .review-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .review-image-wrap { order: 2; }
 }
 
 /* ----------------------------------------------------
-   CONTACT
+   CONTACT GRID
 ---------------------------------------------------- */
 .contact-grid {
     display: grid;
@@ -332,118 +356,5 @@ body {
     font-size: 0.85rem;
     margin-top: 30px;
 }
-
-/* ----------------------------------------------------
-   HERO BACKGROUND
----------------------------------------------------- */
-.hero-home {
-    background-image: url("assets/images/hero2.webp");
-    background-size: cover;
-    background-position: center 35%;
-}
-
-.hero-sub .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-    width: 90%;
-    max-width: 800px;
-    z-index: 2;
-}
-.review-band {
-    padding: 60px 0;
-    background: #f7f6f3;
-}
-
-.review-inner {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.review-text {
-    flex: 1;
-}
-
-.review-image-wrap {
-    flex: 0 0 320px;
-    display: flex;
-    justify-content: center;
-}
-
-.review-image {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 18px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-    display: block;
-}
-
-/* Mobiel */
-@media (max-width: 768px) {
-    .review-inner {
-        flex-direction: column;
-        text-align: center;
-    }
-    .review-image-wrap {
-        order: 2;
-    }
-}
-/* Contact hero tekst premium uitlijning */
-.hero-content.contact-align {
-    text-align: left;
-    max-width: 600px;
-    margin-left: 5%;
-    padding-top: 140px; /* Zorgt dat de titel lager valt */
-}
-
-/* Sterkere overlay voor betere leesbaarheid */
-.hero-sub.contact-hero .overlay {
-    background: rgba(0,0,0,0.45);
-}
-
-/* Mobiel netjes centreren */
-@media (max-width: 768px) {
-    .hero-content.contact-align {
-        text-align: center;
-        margin-left: 0;
-        padding-top: 80px;
-    }
-}
-/* =========================================
-   UNIFORME HERO-STYLE VOOR ALLE PAGINA'S
-   ========================================= */
-
-.hero-content {
-    text-align: left;
-    max-width: 600px;
-    margin-left: 5%;
-    padding-top: 180px; /* komt overeen met index.html */
-}
-
-.hero-sub .overlay {
-    background: rgba(0,0,0,0.45); /* premium overlay stijl */
-}
-
-/* Mobiele weergave */
-@media (max-width: 768px) {
-    .hero-content {
-        text-align: center;
-        margin-left: 0;
-        padding-top: 100px;
-    }
-}
-
-
-
-
-
-
-
-
-
 
 
