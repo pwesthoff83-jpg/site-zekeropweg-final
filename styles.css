@@ -712,4 +712,124 @@ section.container {
     }
 }
 
+/* ----------------------------------------------------
+   PREMIUM UPGRADE – ZEKER OP WEG (NAVY + GOLD EDITION)
+---------------------------------------------------- */
+
+/* ----------------------------------------------------
+   CERTIFICAAT BADGE (EV-AccuCheck)
+---------------------------------------------------- */
+.badge-row {
+    text-align: center;
+    margin: 1rem 0 2rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.badge.gold {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+
+/* ----------------------------------------------------
+   PREMIUM ICONEN (zonder afbeeldingen)
+---------------------------------------------------- */
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.icon-item .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--olive);
+    margin-bottom: 0.6rem;
+    position: relative;
+}
+
+.icon-item .icon::after {
+    content: "✓";
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    position: absolute;
+    top: 3px;
+    left: 9px;
+}
+
+
+/* ----------------------------------------------------
+   PREMIUM DIVIDER (GOLD / AUTOMOTIVE STYLE)
+---------------------------------------------------- */
+.divider {
+    border: 0;
+    height: 1px;
+    width: 120px;
+    margin: 2rem auto;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.7;
+}
+
+
+/* ----------------------------------------------------
+   PREMIUM HOVER EFFECTS (diensten + proces)
+---------------------------------------------------- */
+.dienst,
+.proces-item {
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.dienst:hover,
+.proces-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+
+/* ----------------------------------------------------
+   WHATSAPP CTA – PREMIUM
+---------------------------------------------------- */
+.btn-primary.whatsapp {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(37, 211, 102, 0.35);
+}
+
+.btn-primary.whatsapp:hover {
+    background: #1db855;
+    box-shadow: 0 10px 22px rgba(37, 211, 102, 0.42);
+}
+
+
+/* ----------------------------------------------------
+   EV-SoH METER (ACCU DIAGNOSE VISUAL)
+---------------------------------------------------- */
+.soh-meter {
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: #dcd7c8;
+    overflow: hidden;
+    margin: 1rem 0 1.5rem;
+}
+
+.soh-bar {
+    height: 100%;
+    background: var(--olive);
+    border-radius: 999px;
+    transition: width .4s ease;
+}
+
 
