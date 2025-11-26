@@ -1,797 +1,107 @@
 <section class="hero-small">
     <h1>EV-AccuCheck (incl. certificaat)</h1>
-    <p class="subtitle">Professionele TÜV-gebaseerde accudiagnose op locatie – binnen 15 minuten afgerond.</p>
+    <p class="subtitle">Professionele TÜV-gebaseerde accudiagnose op locatie – binnen 15 minuten.</p>
 </section>
-/* ----------------------------------------------------
-   BASIS & KLEUREN
----------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --olive: #6b7753;
-    --olive-dark: #575e44;
-    --gold: #c9b27c;
-    --cream: #f1ede4;
-    --navy: #0e1a2a;
-
-    --radius: 10px;
-    --shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background: #f7f6f3;
-    color: #222;
-    line-height: 1.6;
-}
-
-/* Containers */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Fade-in animatie */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn .7s ease forwards;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-
-/* ----------------------------------------------------
-   HEADER & NAVIGATIE
----------------------------------------------------- */
-.header {
-    background: #fff;
-    border-bottom: 1px solid #e1e1e1;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 10000;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.site-logo {
-    height: 88px;
-    width: auto;
-}
-@media (max-width: 768px) {
-    .site-logo { height: 60px; }
-}
-
-/* Navigation */
-.main-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 26px;
-}
-.main-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-}
-.main-nav a.active,
-.main-nav a:hover {
-    color: var(--olive);
-}
-
-/* Hamburger */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 32px;
-    cursor: pointer;
-}
-
-/* Mobiel menu */
-@media (max-width: 820px) {
-    .main-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        display: none;
-        background: #fff;
-        padding: 20px 0;
-        border-top: 1px solid #ddd;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        z-index: 9999;
-    }
-    .main-nav.open { display: block; }
-
-    .main-nav ul {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-    }
-
-    .menu-toggle { display: block; }
-}
-
-
-/* ----------------------------------------------------
-   OUDE HERO-STIJLEN (hero-main / hero-sub)
-   - nog voor bestaande pagina's
----------------------------------------------------- */
-.hero-main,
-.hero-sub {
-    position: relative;
-    height: 50vh;
-    min-height: 300px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-}
-
-.hero-sub .overlay,
-.hero-main .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-}
-
-/* Zorg dat oude hero's hun eigen hero-content styling gebruiken */
-.hero-main .hero-content,
-.hero-sub .hero-content {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    text-align: left;
-    color: #fff;
-    max-width: 600px;
-}
-
-/* Mobiel voor oude hero's */
-@media (max-width: 768px) {
-    .hero-main .hero-content,
-    .hero-sub .hero-content {
-        text-align: center;
-        margin-left: 0;
-        padding-top: 100px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
-
-
-/* ----------------------------------------------------
-   NIEUWE HERO (HOMEPAGE & SUBPAGINA'S)
----------------------------------------------------- */
-.hero {
-    position: relative;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    background: linear-gradient(
-        135deg,
-        rgba(14, 26, 42, 0.9),
-        rgba(14, 26, 42, 0.7)
-    ), url("assets/images/hero.webp") center/cover no-repeat;
-}
-
-.hero-content {
-    width: 90%;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.hero h1 {
-    font-size: clamp(2.4rem, 3.2vw, 3.2rem);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-.hero .subtitle {
-    font-size: 1.05rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-}
-
-.hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-}
-
-.trust-badge {
-    font-size: 0.95rem;
-    opacity: 0.85;
-}
-
-/* Kleine hero voor subpagina's zoals AccuCheck / Gratis Bezwaar */
-.hero-small {
-    padding: 3.5rem 0 2.5rem;
-    background: var(--navy);
-    color: #fff;
-    text-align: center;
-}
-
-.hero-small h1 {
-    font-size: clamp(2rem, 2.6vw, 2.4rem);
-    margin-bottom: 0.5rem;
-}
-
-.hero-small .subtitle {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-
-/* ----------------------------------------------------
-   BUTTONS
----------------------------------------------------- */
-.btn-primary,
-.btn-secondary,
-.btn-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        background 0.15s ease,
-        color 0.15s ease;
-}
-
-.btn-primary {
-    padding: 0.7rem 1.6rem;
-    background: var(--gold);
-    color: #0e1a2a;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
-    background: #d4c289;
-}
-
-.btn-secondary {
-    padding: 0.7rem 1.6rem;
-    background: rgba(241, 237, 228, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.35);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.btn-secondary:hover {
-    background: rgba(241, 237, 228, 0.25);
-    transform: translateY(-1px);
-}
-
-.btn-link {
-    padding: 0;
-    background: none;
-    color: var(--olive-dark);
-    box-shadow: none;
-    border-radius: 0;
-    font-weight: 600;
-}
-
-.btn-link:hover {
-    color: var(--navy);
-    text-decoration: underline;
-    transform: none;
-}
-
-/* Oude outline-knop (nog bruikbaar waar nodig) */
-.btn-outline {
-    display: inline-block;
-    padding: 10px 20px;
-    font-weight: 600;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 1rem;
-    border: 1px solid #fff;
-    color: #fff;
-}
-.btn-outline:hover {
-    background: #fff;
-    color: #333;
-}
-
-.btn-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-
-/* ----------------------------------------------------
-   GENERIEKE SECTIES & TITELS
----------------------------------------------------- */
-section {
-    padding: 3rem 0;
-}
-
-section.container {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-}
-
-/* Oude .section class voor legacy-secties */
-.section {
-    padding: 60px 0;
-}
-
-.section-title {
-    font-size: 2rem;
-    color: var(--olive-dark);
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.intro p {
-    font-size: 1rem;
-    max-width: 850px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-
-/* ----------------------------------------------------
-   DIENSTEN BLOK (nieuwe homepage-stijl)
----------------------------------------------------- */
-.diensten {
-    display: grid;
-    gap: 1.8rem;
-    margin-top: 1.5rem;
-}
-
-.dienst {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 1.6rem 1.8rem;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.04);
-}
-
-.dienst h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--navy);
-}
-
-.dienst p {
-    font-size: 0.98rem;
-    margin-bottom: 0.8rem;
-}
-
-
-/* ----------------------------------------------------
-   USP / OVER MIJ / TARIEVEN
----------------------------------------------------- */
-.hoe-het-werkt h2,
-.usp h2,
-.over-mij h2,
-.tarieven h2,
-.contact h2,
-.upload h2,
-.faq h2 {
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-    color: var(--navy);
-    text-align: left;
-}
-
-.usp ul,
-.tarieven ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.usp li,
-.tarieven li {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.98rem;
-}
-
-.usp li::before,
-.tarieven li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--gold);
-    font-size: 1.1rem;
-}
-
-.over-mij p {
-    max-width: 800px;
-}
-
-/* Kleine opmerking onder tarieven */
-.tarieven .note {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-top: 0.5rem;
-}
-
-
-/* ----------------------------------------------------
-   PROCESSEN (HOE HET WERKT)
----------------------------------------------------- */
-.proces-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.proces-item {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 1.4rem 1.5rem;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.04);
-}
-
-.proces-item h3 {
-    font-size: 1.05rem;
-    margin-bottom: 0.6rem;
-    color: var(--olive-dark);
-}
-
-.proces-item ol {
-    padding-left: 1.1rem;
-    margin: 0;
-    font-size: 0.96rem;
-}
-
-
-/* ----------------------------------------------------
-   KAARTEN & GRIDS (legacy kaarten en grids)
----------------------------------------------------- */
-.dienst-card,
-.prijs-card,
-.contact-card {
-    background: #fff;
-    padding: 24px;
-    border-radius: var(--radius);
-    border: 1px solid #e4e4e4;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-}
-
-.dienst-card h3,
-.prijs-card h3 {
-    color: var(--olive-dark);
-}
-
-.prijs-tag {
-    margin-top: auto;
-    font-size: 1.35rem;
-    color: var(--olive);
-    font-weight: 700;
-}
-
-.small-info {
-    font-size: 0.9rem;
-    opacity: 0.75;
-}
-
-.diensten-grid,
-.prijzen-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 26px;
-}
-
-
-/* ----------------------------------------------------
-   REVIEW-BAND
----------------------------------------------------- */
-.review-band {
-    background: #fff;
-    padding: 60px 0;
-    border-top: 1px solid #ddd;
-}
-
-.review-inner {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.review-text { flex: 1; }
-
-.review-image-wrap {
-    flex: 0 0 320px;
-    display: flex;
-    justify-content: center;
-}
-
-.review-image {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 18px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .review-inner {
-        flex-direction: column;
-        text-align: center;
-    }
-    .review-image-wrap { order: 2; }
-}
-
-
-/* ----------------------------------------------------
-   CONTACT GRID (legacy)
----------------------------------------------------- */
-.contact-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: 30px;
-}
-@media (max-width: 900px) {
-    .contact-grid { grid-template-columns: 1fr; }
-}
-
-
-/* ----------------------------------------------------
-   FOOTER
----------------------------------------------------- */
-.site-footer {
-    background: var(--navy);
-    color: #ffffffd9;
-    padding: 45px 0;
-    margin-top: 40px;
-}
-
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.footer-logo-img {
-    height: 46px;
-    opacity: 0.95;
-}
-
-.footer-columns {
-    display: flex;
-    gap: 40px;
-}
-
-.footer-column h4 {
-    color: var(--gold);
-    margin-bottom: 10px;
-}
-
-.footer-copy {
-    text-align: center;
-    opacity: 0.8;
-    font-size: 0.85rem;
-    margin-top: 30px;
-}
-
-
-/* ----------------------------------------------------
-   GRATIS BEZWAAR – SPECIFIEK
----------------------------------------------------- */
-.ncnp ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.ncnp li {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.96rem;
-}
-
-.ncnp li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    top: -1px;
-    font-size: 0.95rem;
-    color: var(--olive);
-}
-
-.upload-form {
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 1.6rem 1.8rem;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.upload-form label {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.upload-form input[type="file"],
-.upload-form textarea {
-    width: 100%;
-    font-family: inherit;
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-}
-
-.upload-form input[type="file"] {
-    padding: 0.2rem 0;
-}
-
-.upload-form textarea {
-    min-height: 120px;
-    padding: 0.6rem 0.7rem;
-    border-radius: 6px;
-    border: 1px solid rgba(0,0,0,0.12);
-    resize: vertical;
-}
-
-.upload-form button {
-    margin-top: 0.5rem;
-}
-
-.of {
-    text-align: center;
-    font-size: 0.95rem;
-    margin: 0.5rem 0 0.8rem;
-    opacity: 0.8;
-}
-
-/* FAQ */
-.faq h3 {
-    font-size: 1.02rem;
-    margin-top: 1rem;
-    margin-bottom: 0.3rem;
-    color: var(--olive-dark);
-}
-
-
-/* ----------------------------------------------------
-   RESPONSIVE
----------------------------------------------------- */
-@media (min-width: 768px) {
-    .diensten {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .proces-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .hero {
-        min-height: 78vh;
-    }
-}
-
-@media (max-width: 767px) {
-    .hero {
-        text-align: left;
-        padding: 4.5rem 0 3rem;
-    }
-
-    .hero-cta {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .dienst,
-    .proces-item,
-    .upload-form {
-        padding: 1.3rem 1.4rem;
-    }
-}
 
 <section class="intro container">
     <p>
-        Met de ZekerOpWeg EV-AccuCheck krijgt u een snelle, nauwkeurige en onafhankelijke beoordeling van de werkelijke
-        accugezondheid (State of Health) van uw elektrische of plug-in hybride auto. Ideaal bij aankoop, verkoop of als u
-        zekerheid wilt over uw huidige EV.
+        De ZekerOpWeg EV-AccuCheck geeft u een nauwkeurige, onafhankelijke meting van de échte
+        accugezondheid (State of Health) van uw elektrische of plug-in hybride auto.
+        Ideaal bij aankoop, verkoop of voor eigen zekerheid.
     </p>
+
+    <hr class="divider">
+
+    <!-- Badge -->
+    <div class="badge-row">
+        <span class="badge gold">Inclusief TÜV-gebaseerd certificaat</span>
+    </div>
 </section>
 
 <section class="diensten container">
-    <div class="dienst">
-        <h2>Waarom een EV-AccuCheck?</h2>
+    <div class="dienst icon-item">
+        <div class="icon"></div>
+        <h2>Waarom deze test?</h2>
         <p>
-            De accu is het duurste onderdeel van een EV. Fabrieksdata zijn vaak niet volledig betrouwbaar, en dealers
-            baseren zich meestal op BMS-uitlezing in plaats van een echte test. Met de TÜV-gebaseerde Flash-meting krijgt u
-            een objectieve, onafhankelijke en gecertificeerde diagnose.
+            De accu is het duurste onderdeel van een EV. Dealers lezen vaak alleen BMS-data uit,
+            maar dat is geen onafhankelijke meting. Met de TÜV-gebaseerde Flash-meting ontvangt u
+            een objectief, gevalideerd SoH-rapport.
         </p>
     </div>
 
-    <div class="dienst">
+    <div class="dienst icon-item">
+        <div class="icon"></div>
         <h2>Wat krijgt u?</h2>
         <ul>
-            <li>Professionele accutest via OBD (3 minuten testtijd)</li>
-            <li>Volledig SoH-rapport (State of Health)</li>
+            <li>Professionele accutest via OBD (3 minuten)</li>
+            <li>SoH-rapport met nauwkeurige accugezondheid</li>
             <li>TÜV-gebaseerd certificaat</li>
-            <li>Persoonlijk advies over technische staat en marktwaarde</li>
+            <li>Advies over marktwaarde & staat</li>
             <li>Uitgevoerd op uw locatie (thuis of werk)</li>
         </ul>
     </div>
 
-    <div class="dienst">
-        <h2>Voor wie is dit?</h2>
+    <div class="dienst icon-item">
+        <div class="icon"></div>
+        <h2>Voor wie?</h2>
         <ul>
-            <li>Kopers van een gebruikte EV/PHEV</li>
-            <li>Verkopers die een officieel certificaat willen meesturen</li>
-            <li>Leaserijders die zekerheid willen</li>
-            <li>Zakelijke rijders met EV-vloot (B2B)</li>
+            <li>Kopers van een gebruikte EV of PHEV</li>
+            <li>Verkopers die hun auto met certificaat willen aanbieden</li>
+            <li>Zakelijke rijders / vlootbeheer (B2B)</li>
+            <li>EV-eigenaren die zekerheid willen</li>
         </ul>
     </div>
 </section>
 
 <section class="hoe-het-werkt container">
-    <h2>Hoe werkt de EV-AccuCheck?</h2>
+    <h2>Hoe werkt de AccuCheck?</h2>
 
     <div class="proces-grid">
-        <div class="proces-item">
+
+        <div class="proces-item icon-item">
+            <div class="icon"></div>
             <h3>1. Inplannen</h3>
-            <p>Kies een datum via WhatsApp of het contactformulier.</p>
+            <p>Afspraak maken via WhatsApp of e-mail.</p>
         </div>
 
-        <div class="proces-item">
-            <h3>2. Accutest (3 min)</h3>
-            <p>De OBD-testmodule leest binnen 3 minuten onafhankelijk de accugegevens uit.</p>
+        <div class="proces-item icon-item">
+            <div class="icon"></div>
+            <h3>2. Test (3 min)</h3>
+            <p>De OBD-module voert een onafhankelijke Flash-test uit.</p>
         </div>
 
-        <div class="proces-item">
+        <div class="proces-item icon-item">
+            <div class="icon"></div>
             <h3>3. Analyse</h3>
-            <p>De resultaten worden direct verwerkt en beoordeeld.</p>
+            <p>De data wordt verwerkt tot een nauwkeurige SoH-waarde.</p>
+
+            <!-- PREMIUM SOH METER -->
+            <div class="soh-meter">
+                <div class="soh-bar" style="width: 82%"></div>
+            </div>
         </div>
 
-        <div class="proces-item">
+        <div class="proces-item icon-item">
+            <div class="icon"></div>
             <h3>4. Certificaat + advies</h3>
-            <p>U ontvangt het volledige SoH-rapport inclusief advies over de technische staat.</p>
+            <p>U ontvangt het TÜV-gebaseerde rapport + persoonlijk advies.</p>
         </div>
+
     </div>
 </section>
 
 <section class="usp container">
-    <h2>Waarom kiezen voor ZekerOpWeg?</h2>
+    <h2>Waarom ZekerOpWeg?</h2>
     <ul>
         <li>TÜV-gebaseerde accudiagnose</li>
         <li>100% onafhankelijke meting</li>
-        <li>Snelle test en rapportage</li>
-        <li>Uitstekend te combineren met aankoopadvies</li>
-        <li>Persoonlijke service en direct advies</li>
-        <li>B2B-mogelijkheden voor vlootbeheer</li>
+        <li>Snelle test & rapportage</li>
+        <li>Persoonlijke service</li>
+        <li>Perfect te combineren met aankoopadvies</li>
+        <li>B2B mogelijk voor EV-vloten</li>
     </ul>
+
+    <hr class="divider">
 </section>
 
 <section class="tarieven container">
@@ -810,18 +120,17 @@ section.container {
         <li>Pakket 10 auto’s: €990 ex. btw (€99 p/st)</li>
     </ul>
 
-    <p class="note">B2B-facturen met standaard betaaltermijn 14 dagen.</p>
+    <p class="note">Facturatie: standaard 14 dagen betalingstermijn.</p>
 </section>
 
 <section class="contact container">
     <h2>EV-AccuCheck inplannen</h2>
-    <p>Kies voor WhatsApp of e-mail om direct een afspraak te maken.</p>
+    <p>Stuur mij een WhatsApp-bericht om direct een afspraak te plannen.</p>
 
-    <a href="https://wa.me/31623452349" class="btn-primary">WhatsApp mij</a>
+    <a href="https://wa.me/31623452349" class="btn-primary whatsapp">WhatsApp mij</a>
 
     <p class="contact-info">
         Telefoon: 06 23 45 23 49<br>
         E-mail: ev@zekeropweg.nu
     </p>
 </section>
-
