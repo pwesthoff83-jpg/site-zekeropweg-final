@@ -358,5 +358,383 @@ body {
     margin-top: 30px;
 }
 
+/* ----------------------------------------------------
+   HERO SECTIE
+---------------------------------------------------- */
+.hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        rgba(14, 26, 42, 0.9),
+        rgba(14, 26, 42, 0.7)
+    ), url("assets/images/hero.webp") center/cover no-repeat;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 3.2vw, 3.2rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.trust-badge {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* Kleine hero voor subpagina's zoals Gratis Bezwaar */
+.hero-small {
+    padding: 3.5rem 0 2.5rem;
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+}
+
+.hero-small h1 {
+    font-size: clamp(2rem, 2.6vw, 2.4rem);
+    margin-bottom: 0.5rem;
+}
+
+.hero-small .subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ----------------------------------------------------
+   BUTTONS
+---------------------------------------------------- */
+.btn-primary,
+.btn-secondary,
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+    padding: 0.7rem 1.6rem;
+    background: var(--gold);
+    color: #0e1a2a;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    background: #d4c289;
+}
+
+.btn-secondary {
+    padding: 0.7rem 1.6rem;
+    background: rgba(241, 237, 228, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-secondary:hover {
+    background: rgba(241, 237, 228, 0.25);
+    transform: translateY(-1px);
+}
+
+.btn-link {
+    padding: 0;
+    background: none;
+    color: var(--olive-dark);
+    box-shadow: none;
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.btn-link:hover {
+    color: var(--navy);
+    text-decoration: underline;
+    transform: none;
+}
+
+/* ----------------------------------------------------
+   GENERIEKE SECTIES
+---------------------------------------------------- */
+section {
+    padding: 3rem 0;
+}
+
+section.container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.intro p {
+    font-size: 1rem;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ----------------------------------------------------
+   DIENSTEN BLOK
+---------------------------------------------------- */
+.diensten {
+    display: grid;
+    gap: 1.8rem;
+    margin-top: 1.5rem;
+}
+
+.dienst {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.6rem 1.8rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.dienst h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--navy);
+}
+
+.dienst p {
+    font-size: 0.98rem;
+    margin-bottom: 0.8rem;
+}
+
+/* ----------------------------------------------------
+   HOE HET WERKT / PROCESSEN
+---------------------------------------------------- */
+.hoe-het-werkt h2,
+.usp h2,
+.over-mij h2,
+.tarieven h2,
+.contact h2,
+.upload h2,
+.faq h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--navy);
+    text-align: left;
+}
+
+.proces-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.proces-item {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.proces-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+    color: var(--olive-dark);
+}
+
+.proces-item ol {
+    padding-left: 1.1rem;
+    margin: 0;
+    font-size: 0.96rem;
+}
+
+/* ----------------------------------------------------
+   USP / OVER MIJ / TARIEVEN
+---------------------------------------------------- */
+.usp ul,
+.tarieven ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.usp li,
+.tarieven li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.98rem;
+}
+
+.usp li::before,
+.tarieven li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+.over-mij p {
+    max-width: 800px;
+}
+
+/* Kleine opmerking onder tarieven */
+.tarieven .note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+/* ----------------------------------------------------
+   CONTACT
+---------------------------------------------------- */
+.contact {
+    text-align: left;
+}
+
+.contact .contact-info {
+    margin-top: 1rem;
+    font-size: 0.98rem;
+}
+
+/* ----------------------------------------------------
+   GRATIS BEZWAAR – SPECIFIEKE STIJLEN
+---------------------------------------------------- */
+.ncnp ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.ncnp li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.96rem;
+}
+
+.ncnp li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    font-size: 0.95rem;
+    color: var(--olive);
+}
+
+.upload-form {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.6rem 1.8rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.upload-form label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.upload-form input[type="file"],
+.upload-form textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.upload-form input[type="file"] {
+    padding: 0.2rem 0;
+}
+
+.upload-form textarea {
+    min-height: 120px;
+    padding: 0.6rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.12);
+    resize: vertical;
+}
+
+.upload-form button {
+    margin-top: 0.5rem;
+}
+
+.of {
+    text-align: center;
+    font-size: 0.95rem;
+    margin: 0.5rem 0 0.8rem;
+    opacity: 0.8;
+}
+
+/* FAQ */
+.faq h3 {
+    font-size: 1.02rem;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    color: var(--olive-dark);
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------- */
+@media (min-width: 768px) {
+    .diensten {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .proces-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero {
+        min-height: 78vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        text-align: left;
+        padding: 4.5rem 0 3rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dienst,
+    .proces-item,
+    .upload-form {
+        padding: 1.3rem 1.4rem;
+    }
+}
+
 
 
