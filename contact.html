@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | ZekerOpWeg</title>
-    <meta name="description" content="Neem contact op voor advies, bezichtigingsbegeleiding of een volledig aankooptraject. Persoonlijk, duidelijk en onafhankelijk.">
+    <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV-accudiagnose of hulp bij parkeer- en verkeersboetes.">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
     <link rel="stylesheet" href="styles.css?v=1.0.1">
 </head>
 
 <body class="fade-in">
-
 <header class="header">
     <div class="container header-container">
         <a href="index.html">
-            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="site-logo">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -22,8 +21,9 @@
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="diensten.html">Diensten</a></li>
-                <li><a href="prijzen.html">Prijzen</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
+                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
@@ -31,83 +31,100 @@
     </div>
 </header>
 
-<!-- HERO -->
-<section class="hero-sub contact-hero" style="background-image:url('assets/images/contact.webp');">
-    <div class="overlay"></div>
-    <div class="hero-content contact-align">
+<section class="hero-sub" style="background-image: url('assets/images/contact-hero.webp');">
+    <div class="overlay-dark"></div>
+    <div class="container hero-content-small">
         <h1>Contact</h1>
-        <p>Persoonlijk en laagdrempelig. Stel gerust je vragen.</p>
+        <p>Stel uw vraag of plan direct een kennismaking.</p>
     </div>
 </section>
 
-
-<!-- CONTACT INFO -->
-<section class="section contact-section">
-    <div class="container">
-        <h2 class="section-title">Plan jouw adviesmoment</h2>
-
-        <div class="contact-grid">
-            
-            <div class="contact-card">
-                <p class="contact-detail"><span>Naam:</span> ZekerOpWeg</p>
-                <p class="contact-detail"><span>Regio:</span> Zuid-Holland</p>
-                <p class="contact-detail"><span>E-mail:</span> advies@zekeropweg.nu</p>
-                <p class="contact-detail"><span>WhatsApp:</span> 06-2345 2349</p>
-
-                <a href="https://wa.me/31623452349" target="_blank" class="whatsapp-btn">
-                    Stuur een WhatsApp-bericht
-                </a>
-            </div>
-
-            <div class="contact-card">
-                <p>Wil je weten of ik je kan helpen? Stuur me gerust een bericht met wat je zoekt, je budget of auto’s die je op het oog hebt.</p>
-                <p style="margin-top:10px;">Ik reageer meestal dezelfde dag, of de volgende ochtend wanneer je ’s avonds laat een bericht stuurt.</p>
-                <p style="margin-top:10px;">Liever bellen? Stuur een WhatsApp-berichtje en ik plan een rustig moment met je in.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container footer-container">
-
+<section class="section">
+    <div class="container contact-grid">
         <div>
-            <img src="assets/images/logo.png" alt="ZekerOpWeg logo" class="footer-logo-img">
-            <p style="margin-top:10px; max-width:260px;">
-                Onafhankelijk advies en begeleiding bij de aankoop van jouw volgende occasion.
+            <h2>Neem gerust contact op</h2>
+            <p>
+                Wilt u een auto laten beoordelen, twijfelt u over een EV-accu of heeft u een vraag over een
+                parkeer- of verkeersboete? Stuur mij een bericht en ik denk graag met u mee.
+            </p>
+
+            <ul class="contact-list">
+                <li><strong>E-mail:</strong> advies@zekeropweg.nu</li>
+                <li><strong>Telefoon / WhatsApp:</strong> 06-23452349</li>
+                <li><strong>Website:</strong> www.zekeropweg.nu</li>
+            </ul>
+
+            <p>
+                Liever via WhatsApp? Stuur een bericht met een korte uitleg en eventueel een link naar de advertentie
+                of een foto van uw boete. Dan reageer ik zo snel mogelijk.
             </p>
         </div>
 
-        <div class="footer-columns">
-            <div class="footer-column">
-                <h4>Navigatie</h4>
-                <a href="index.html">Home</a><br>
-                <a href="diensten.html">Diensten</a><br>
-                <a href="prijzen.html">Prijzen</a><br>
-                <a href="over.html">Over</a><br>
-                <a href="contact.html">Contact</a>
-            </div>
+        <div>
+            <h2>Contactformulier</h2>
+            <form class="contact-form" action="#" method="post">
+                <label for="name">Naam</label>
+                <input type="text" id="name" name="name" required>
 
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <span>Regio Zuid-Holland</span><br>
-                <span>E-mail: advies@zekeropweg.nu</span><br>
-                <span>WhatsApp: 06-2345 2349</span>
-            </div>
+                <label for="email">E-mailadres</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Telefoonnummer (optioneel)</label>
+                <input type="tel" id="phone" name="phone">
+
+                <label for="subject">Onderwerp</label>
+                <select id="subject" name="subject">
+                    <option value="aankoopadvies">Aankoopadvies</option>
+                    <option value="ev-accucheck">EV-AccuCheck</option>
+                    <option value="gratis-bezwaar">Gratis Bezwaar (boete)</option>
+                    <option value="overig">Overige vraag</option>
+                </select>
+
+                <label for="message">Bericht</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+
+                <button type="submit" class="button button-primary">Verstuur bericht</button>
+            </form>
+            <p class="small">
+                Dit formulier verstuurt nog niet automatisch e-mail. Uw webbouwer kan hier later eenvoudig een mail-
+                of formulierdienst aan koppelen.
+            </p>
         </div>
     </div>
+</section>
 
-    <p class="footer-copy">© 2025 ZekerOpWeg – Advies en begeleiding bij occasionaankoop.</p>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <img src="assets/images/logo.png" class="footer-logo" alt="ZekerOpWeg footer logo">
+                <p>Onafhankelijk aankoopadvies & EV-accudiagnose.</p>
+            </div>
+            <div>
+                <h4>Navigatie</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                    <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
+                    <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
+                    <li><a href="over.html">Over</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>advies@zekeropweg.nu</li>
+                    <li>06-23452349</li>
+                    <li>www.zekeropweg.nu</li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© ZekerOpWeg – onafhankelijke begeleiding & EV-diagnose</p>
+    </div>
 </footer>
 
-<script>
-function toggleMenu(){
-    document.getElementById("mainNav").classList.toggle("open");
-}
-</script>
-
+<script src="script.js?v=1.0.1"></script>
 </body>
 </html>
 
