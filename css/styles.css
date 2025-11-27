@@ -1,5 +1,5 @@
 /* ----------------------------------------------------
-   RESET & BASIS
+   BASIS
 ---------------------------------------------------- */
 * {
     margin: 0;
@@ -8,23 +8,30 @@
 }
 
 :root {
-    --olive: #6b7753;
-    --olive-dark: #575e44;
-    --gold: #c9b27c;
-    --cream: #f1ede4;
     --navy: #0e1a2a;
-
-    --radius: 10px;
-    --shadow: 0 4px 14px rgba(0,0,0,0.08);
+    --navy-light: #162537;
+    --olive: #6b7753;
+    --olive-light: #87946d;
+    --gold: #c9b27c;
+    --cream: #f7f6f3;
+    --radius: 12px;
+    --shadow: 0 4px 14px rgba(0,0,0,0.1);
+    --transition: .25s ease;
+    --text-dark: #1d1d1d;
+    --text-light: #fff;
+    --text-muted: #555;
 }
 
 body {
     font-family: "Segoe UI", system-ui, sans-serif;
-    background: #f7f6f3;
-    color: #222;
-    line-height: 1.6;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.65;
 }
 
+/* ----------------------------------------------------
+   CONTAINERS
+---------------------------------------------------- */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -32,275 +39,103 @@ body {
 }
 
 /* ----------------------------------------------------
-   ANIMATIE
----------------------------------------------------- */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn .7s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ----------------------------------------------------
    HEADER
 ---------------------------------------------------- */
 .header {
-    background: #fff;
-    padding: 16px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: white;
+    padding: 12px 0;
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 20;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .site-logo {
-    height: 56px;
+    width: 180px;
+    height: auto;
 }
 
-.menu-toggle {
-    font-size: 28px;
-    background: none;
-    border: none;
-    display: none;
-}
-
+/* NAV */
 .main-nav ul {
     display: flex;
-    gap: 28px;
+    gap: 22px;
+    list-style: none;
 }
 
 .main-nav a {
+    color: var(--text-dark);
+    font-weight: 600;
     text-decoration: none;
-    color: #222;
-    font-size: 16px;
-    font-weight: 500;
+    padding: 8px 0;
+    transition: var(--transition);
 }
 
-.main-nav a.active {
-    color: var(--olive-dark);
-    font-weight: 600;
+.main-nav a:hover,
+.main-nav .active {
+    color: var(--olive);
 }
 
 /* ----------------------------------------------------
-   HERO SUBPAGES
+   HERO
 ---------------------------------------------------- */
 .hero-sub {
     position: relative;
-    height: 42vh;
-    min-height: 320px;
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 40px;
+    padding: 160px 0 180px;
+    color: white;
 }
 
 .overlay-dark {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: brightness(0.8);
+    background: rgba(0,0,0,0.30); /* PREMIUM lichter */
 }
 
 .hero-content-small {
     position: relative;
-    color: #fff;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .hero-content-small h1 {
-    font-size: 44px;
-    margin-bottom: 8px;
-    line-height: 1.2;
-}
-
-.hero-content-small p {
-    font-size: 18px;
-}
-
-/* ----------------------------------------------------
-   SECTION & ALTERNATE SECTIONS
----------------------------------------------------- */
-.section {
-    padding: 70px 0;
-}
-
-.section.alt {
-    background: #f0eee9;
-}
-
-/* ----------------------------------------------------
-   USP CARDS
----------------------------------------------------- */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-}
-
-.usp-card {
-    background: #fff;
-    padding: 24px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform .2s ease;
-}
-
-.usp-card:hover {
-    transform: translateY(-4px);
-}
-
-/* ----------------------------------------------------
-   STEPS LIST
----------------------------------------------------- */
-.steps-list {
-    margin-top: 20px;
-    padding-left: 20px;
-}
-
-.steps-list li {
-    margin-bottom: 14px;
-    line-height: 1.6;
-}
-
-/* ----------------------------------------------------
-   CTA BLOCK
----------------------------------------------------- */
-.cta-section {
-    padding: 70px 0;
-    background: var(--olive-dark);
-    color: #fff;
-    text-align: center;
-}
-
-.cta-section h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.button-primary {
-    background: var(--gold);
-    color: #000;
-    padding: 14px 32px;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: var(--radius);
-    display: inline-block;
-}
-
-/* ----------------------------------------------------
-   CONTACT PAGINA
----------------------------------------------------- */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-.contact-list li {
-    margin-bottom: 8px;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 18px;
-    border: 1px solid #ccc;
-    border-radius: var(--radius);
-    font-size: 15px;
-}
-
-.contact-form button {
-    width: 100%;
-}
-
-/* ----------------------------------------------------
-   ABOUT-PAGINA
----------------------------------------------------- */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-}
-
-.check-list li {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.15;
     margin-bottom: 10px;
 }
 
+.hero-content-small p {
+    font-size: 1.3rem;
+    opacity: .95;
+}
+
 /* ----------------------------------------------------
-   FOOTER
+   BUTTONS (PREMIUM)
 ---------------------------------------------------- */
-.footer {
-    background: #0e1a2a;
-    color: #fff;
-    padding: 60px 0;
-    margin-top: 40px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 40px;
-}
-
-.footer-logo {
-    height: 56px;
-    margin-bottom: 12px;
-}
-
-.footer a {
-    color: #fff;
+.button {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
     text-decoration: none;
+    transition: var(--transition);
 }
 
-.footer-bottom {
-    margin-top: 40px;
-    text-align: center;
-    opacity: 0.7;
+.button-primary {
+    background: var(--olive);
+    color: white;
 }
 
-/* ----------------------------------------------------
-   MOBIEL
----------------------------------------------------- */
-@media (max-width: 768px) {
-
-    .main-nav ul {
-        position: absolute;
-        top: 78px;
-        right: 0;
-        background: #fff;
-        width: 200px;
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: var(--shadow);
-        display: none;
-    }
-
-    .main-nav.open ul {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .grid-3,
-    .contact-grid,
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content-small h1 {
-        font-size: 32px;
-    }
+.button-primary:hover {
+    background: var(--olive-light);
 }
 
-.overlay-dark {
-    background: rgba(0,0,0,0.30);
-}
+.button-secondary {
+    back
 
