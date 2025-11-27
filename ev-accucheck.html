@@ -1,30 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV-AccuCheck (incl. certificaat) | ZekerOpWeg</title>
+    <meta name="description" content="Professionele, onafhankelijke EV-accudiagnose op locatie. Binnen 15 minuten volledig inzicht inclusief officieel accucertificaat.">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
+</head>
+
+<body class="fade-in">
+
+<!-- ----------------------------------------------------
+   HEADER
+---------------------------------------------------- -->
+<header class="header">
+    <div class="container header-container">
+        <a href="index.html"><img src="assets/images/logo.png" class="site-logo"></a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a class="active" href="ev-accucheck.html">EV-AccuCheck</a></li>
+                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ----------------------------------------------------
+   HERO SMALL
+---------------------------------------------------- -->
 <section class="hero-small">
     <h1>EV-AccuCheck (incl. certificaat)</h1>
-    <p class="subtitle">Professionele, onafhankelijke accudiagnose op locatie – binnen circa 15 minuten.</p>
+    <p class="subtitle">Professionele, onafhankelijke accudiagnose op locatie — volledig inzicht binnen ca. 15 minuten.</p>
 </section>
 
+
+<!-- ----------------------------------------------------
+   INTRO + BADGE
+---------------------------------------------------- -->
 <section class="intro container">
     <p>
-        De ZekerOpWeg EV-AccuCheck geeft u een onafhankelijke en nauwkeurige meting van de werkelijke
+        De ZekerOpWeg EV-AccuCheck geeft u een betrouwbare, onafhankelijke meting van de échte
         accugezondheid (State of Health) van uw elektrische of plug-in hybride auto.
-        Ideaal bij aankoop, verkoop of wanneer u zekerheid wilt over de conditie van uw EV-batterij.
+        Ideaal bij aankoop, verkoop of gewoon voor gemoedsrust.
     </p>
 
     <hr class="divider">
 
     <div class="badge-row">
-        <span class="badge gold">Inclusief officieel accucertificaat (TÜV-gevalideerde methode)</span>
+        <span class="badge gold">Incl. officieel TÜV-gecertificeerd accucertificaat</span>
     </div>
 </section>
 
+
+<!-- ----------------------------------------------------
+   DIENSTEN (3 kaarten)
+---------------------------------------------------- -->
 <section class="diensten container">
+
     <div class="dienst icon-item">
         <div class="icon"></div>
         <h2>Waarom deze test?</h2>
         <p>
-            De tractiebatterij is het duurste onderdeel van een EV. BMS-waarden of fabrieksdata geven vaak geen volledig
-            beeld van de werkelijke accugezondheid. Met een onafhankelijke meting krijgt u een objectief SoH-rapport waarop u
-            écht kunt vertrouwen.
+            De tractiebatterij is het duurste onderdeel van een EV. BMS-data of boordcomputerwaarden
+            geven vaak geen volledig of betrouwbaar beeld. De EV-AccuCheck geeft wél een objectieve,
+            onafhankelijke en nauwkeurige meting die u kunt gebruiken bij aankoop of verkoop.
         </p>
     </div>
 
@@ -32,11 +79,11 @@
         <div class="icon"></div>
         <h2>Wat krijgt u?</h2>
         <ul>
-            <li>Professionele accutest via de OBD-aansluiting (ca. 3 minuten meettijd)</li>
-            <li>Duidelijke State of Health (SoH) waarde in procenten</li>
-            <li>Officieel accucertificaat gebaseerd op de meetresultaten</li>
+            <li>Professionele accutest via de OBD-aansluiting (ca. 3 min. meten)</li>
+            <li>State of Health (SoH) duidelijk uitgelegd</li>
+            <li>Officieel accucertificaat op basis van de testresultaten</li>
             <li>Persoonlijk advies over technische staat en marktwaarde</li>
-            <li>Uitvoering op locatie: bij u thuis of bij de aanbieder</li>
+            <li>Uitvoering op locatie: thuis of bij de aanbieder</li>
         </ul>
     </div>
 
@@ -44,14 +91,19 @@
         <div class="icon"></div>
         <h2>Voor wie?</h2>
         <ul>
-            <li>Kopers van een gebruikte EV of PHEV</li>
-            <li>Verkopers die zekerheid en een certificaat willen bieden</li>
-            <li>B2B, MKB en leasemaatschappijen</li>
-            <li>EV-eigenaren die inzicht willen in de batterijconditie</li>
+            <li>Kopers van EV’s & PHEV’s</li>
+            <li>Verkopers die vertrouwen willen uitstralen met certificaat</li>
+            <li>MKB & leasemaatschappijen</li>
+            <li>EV-rijders die zekerheid willen over de batterijconditie</li>
         </ul>
     </div>
+
 </section>
 
+
+<!-- ----------------------------------------------------
+   HOE HET WERKT
+---------------------------------------------------- -->
 <section class="hoe-het-werkt container">
     <h2>Hoe werkt de EV-AccuCheck?</h2>
 
@@ -60,40 +112,45 @@
         <div class="proces-item icon-item">
             <div class="icon"></div>
             <h3>1. Inplannen</h3>
-            <p>We plannen een afspraak via WhatsApp of e-mail op een locatie en tijdstip dat u uitkomt.</p>
+            <p>Afspraak maken via WhatsApp of e-mail. U kiest locatie en tijd.</p>
         </div>
 
         <div class="proces-item icon-item">
             <div class="icon"></div>
-            <h3>2. Test (ca. 3 minuten)</h3>
-            <p>De testmodule wordt aangesloten op de OBD-poort en voert een onafhankelijke meting uit.</p>
+            <h3>2. Test (3 minuten)</h3>
+            <p>De testmodule wordt aangesloten op de OBD-poort en voert de onafhankelijke meting uit.</p>
         </div>
 
         <div class="proces-item icon-item">
             <div class="icon"></div>
             <h3>3. Analyse</h3>
-            <p>De meetgegevens worden omgezet naar een nauwkeurige SoH-waarde en rapportage.</p>
+            <p>De ruwe data wordt verwerkt tot een nauwkeurige SoH-waarde.</p>
 
+            <!-- SoH-bar (visueel voorbeeld) -->
             <div class="soh-meter">
-                <div class="soh-bar" style="width: 82%"></div>
+                <div class="soh-bar" style="width: 82%;"></div>
             </div>
         </div>
 
         <div class="proces-item icon-item">
             <div class="icon"></div>
             <h3>4. Certificaat + advies</h3>
-            <p>U ontvangt het accucertificaat en aanvullende toelichting in begrijpelijke taal.</p>
+            <p>U ontvangt het officiële accucertificaat plus een duidelijke toelichting in begrijpelijke taal.</p>
         </div>
 
     </div>
 </section>
 
+
+<!-- ----------------------------------------------------
+   USP
+---------------------------------------------------- -->
 <section class="usp container">
     <h2>Waarom ZekerOpWeg?</h2>
     <ul>
         <li>Gebruik van een professionele, TÜV-gevalideerde testmethode</li>
-        <li>Volledig onafhankelijke beoordeling van de accugezondheid</li>
-        <li>Heldere uitleg zonder technisch jargon</li>
+        <li>Volledig onafhankelijke beoordeling</li>
+        <li>Persoonlijke uitleg – geen technisch jargon</li>
         <li>Perfect te combineren met aankoopadvies</li>
         <li>Ook beschikbaar voor bedrijven en leasemaatschappijen</li>
     </ul>
@@ -101,20 +158,24 @@
     <hr class="divider">
 </section>
 
+
+<!-- ----------------------------------------------------
+   TARIEVEN
+---------------------------------------------------- -->
 <section class="tarieven container">
     <h2>Particuliere tarieven</h2>
     <ul>
         <li>EV-AccuCheck (jan–feb): €149</li>
         <li>Vanaf maart: €179</li>
         <li>Inclusief SoH-rapport en certificaat</li>
-        <li>Uitvoering op locatie inbegrepen (regio in overleg)</li>
+        <li>Uitvoering op locatie (regio in overleg)</li>
     </ul>
 
     <h2 style="margin-top:2rem;">B2B tarieven</h2>
     <ul>
         <li>Losse test: €129 ex. btw</li>
-        <li>Pakket 5 auto's: €545 ex. btw (€109 p/st)</li>
-        <li>Pakket 10 auto's: €990 ex. btw (€99 p/st)</li>
+        <li>Pakket 5 auto's: €595 ex. btw (€119 p/st)</li>
+        <li>Pakket 10 auto's: €1090 ex. btw (€109 p/st)</li>
     </ul>
 
     <p class="note">Facturatie: standaard 14 dagen betalingstermijn.</p>
@@ -124,6 +185,10 @@
     </p>
 </section>
 
+
+<!-- ----------------------------------------------------
+   CONTACT
+---------------------------------------------------- -->
 <section class="contact container">
     <h2>EV-AccuCheck inplannen</h2>
     <p>Stuur een WhatsApp-bericht of e-mail om direct een afspraak te maken.</p>
@@ -136,4 +201,40 @@
     </p>
 </section>
 
+
+<!-- ----------------------------------------------------
+   FOOTER
+---------------------------------------------------- -->
+<footer class="site-footer">
+    <div class="container footer-container">
+
+        <img src="assets/images/logo.png" class="footer-logo-img">
+
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h4>Diensten</h4>
+                <p>Aankoopadvies</p>
+                <p>EV-AccuCheck</p>
+                <p>Gratis Bezwaar</p>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <p>06 23 45 23 49</p>
+                <p>ev@zekeropweg.nu</p>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="footer-copy">© 2026 ZekerOpWeg – Onafhankelijk advies</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById('mainNav').classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
 
