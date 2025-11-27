@@ -137,5 +137,117 @@ body {
 }
 
 .button-secondary {
-    back
+    background: white;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+}
 
+.button-secondary:hover {
+    background: var(--navy);
+    color: white;
+}
+
+/* ----------------------------------------------------
+   SECTIONS
+---------------------------------------------------- */
+.section {
+    padding: 80px 0;
+}
+
+.section.alt {
+    background: #f1efe7;
+}
+
+.section h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+/* ----------------------------------------------------
+   USP CARDS
+---------------------------------------------------- */
+.usp-grid .usp-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.usp-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--olive);
+}
+
+/* ----------------------------------------------------
+   GRID SYSTEM
+---------------------------------------------------- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* ----------------------------------------------------
+   SERVICE CARDS
+---------------------------------------------------- */
+.service-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+}
+
+/* ----------------------------------------------------
+   CTA SECTION
+---------------------------------------------------- */
+.cta-section {
+    background: var(--navy);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+}
+
+/* ----------------------------------------------------
+   FOOTER
+---------------------------------------------------- */
+.footer {
+    background: var(--navy);
+    color: white;
+    padding: 70px 0 40px;
+    margin-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    width: 200px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    opacity: .7;
+}
