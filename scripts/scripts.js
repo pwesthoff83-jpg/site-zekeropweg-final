@@ -4,3 +4,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     el.addEventListener('click', ()=> console.log('WhatsApp clicked'));
   });
 });
+function toggleMenu() {
+    document.getElementById("mainNav").classList.toggle("open");
+}
+
