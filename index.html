@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZekerOpWeg | Onafhankelijk aankoopadvies, EV-AccuCheck & Gratis bezwaar</title>
-    <meta name="description" content="Onafhankelijk aankoopadvies, EV-AccuCheck en gratis bezwaar bij verkeers- en parkeerboetes. Deskundig, eerlijk en 100% onafhankelijk.">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-    <link rel="stylesheet" href="styles.css?v=1.0.1">
+
+    <meta name="description" content="Onafhankelijk aankoopadvies, professionele EV-AccuCheck inclusief certificaat en gratis bezwaar bij verkeers- en parkeerboetes. Deskundig, eerlijk en 100% onafhankelijk.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logos/favicon/favicon-32.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=1.0.1">
 </head>
 
 <body class="fade-in">
 
+<!-- ----------------------------------------------------
+   HEADER
+---------------------------------------------------- -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html"><img src="assets/images/logo.png" class="site-logo"></a>
+        <a href="index.html">
+            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" loading="lazy">
+        </a>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
@@ -33,10 +43,13 @@
 <!-- ----------------------------------------------------
    HERO
 ---------------------------------------------------- -->
-<section class="hero">
+<section class="hero" style="background-image: url('assets/images/hero/home-hero.webp');">
     <div class="hero-content">
         <h1>Zeker naar uw volgende auto. Onafhankelijk advies, accudiagnose en gratis bezwaar.</h1>
-        <p class="subtitle">Aankoopadvies • EV-AccuCheck • Gratis bezwaar bij verkeers- en parkeerboetes</p>
+
+        <p class="subtitle">
+            Aankoopadvies • EV-AccuCheck • Gratis bezwaar
+        </p>
 
         <div class="hero-cta">
             <a href="aankoopadvies.html" class="btn-primary">Plan aankoopadvies</a>
@@ -68,12 +81,14 @@
 ---------------------------------------------------- -->
 <section class="diensten container">
 
+    <!-- AANKOOPADVIES -->
     <div class="dienst">
         <h2>Onafhankelijk Aankoopadvies</h2>
         <p>Volledige begeleiding bij de aankoop van een betrouwbare auto. Van voorselectie en inspectie tot proefrit en prijsonderhandeling.</p>
         <a href="aankoopadvies.html" class="btn-link">Plan aankoopadvies →</a>
     </div>
 
+    <!-- ACCUCHECK -->
     <div class="dienst">
         <h2>EV-AccuCheck (incl. certificaat)</h2>
         <p>Professionele, onafhankelijke accudiagnose via OBD. Binnen 3 minuten meten, binnen 15 minuten volledig inzicht.</p>
@@ -89,6 +104,7 @@
         </p>
     </div>
 
+    <!-- GRATIS BEZWAAR -->
     <div class="dienst">
         <h2>Gratis Bezwaar (NCNP)</h2>
         <p>Onterechte verkeers- of parkeerboete? Ik dien gratis bezwaar voor u in – No Cure No Pay. U betaalt niets, óók niet bij verlies.</p>
@@ -107,7 +123,6 @@
     <div class="proces-grid">
 
         <div class="proces-item icon-item">
-            <div class="icon"></div>
             <h3>Aankoopadvies</h3>
             <ol>
                 <li>Intake & wensen</li>
@@ -118,7 +133,6 @@
         </div>
 
         <div class="proces-item icon-item">
-            <div class="icon"></div>
             <h3>EV-AccuCheck</h3>
             <ol>
                 <li>Online inplannen</li>
@@ -129,7 +143,6 @@
         </div>
 
         <div class="proces-item icon-item">
-            <div class="icon"></div>
             <h3>Gratis Bezwaar</h3>
             <ol>
                 <li>Upload uw boete / WhatsApp</li>
@@ -167,7 +180,7 @@
 <section class="over-mij container">
     <h2>Over mij</h2>
     <p>
-        Mijn naam is Pepijn. Na meer dan 16 jaar in de autobranche heb ik duizenden auto’s beoordeeld en klanten geholpen de juiste keuze te maken.
+        Mijn naam is Pepijn. Na meer dan 16 jaar in de autobranche heb ik duizenden auto's beoordeeld en klanten geholpen de juiste keuze te maken.
         Met ZekerOpWeg bied ik eerlijk advies, betrouwbare diagnostiek en ondersteuning bij alles rondom de aankoop van een auto.
         Geen verkooppraatjes, geen gedoe – gewoon deskundig en onafhankelijk advies.
     </p>
@@ -212,7 +225,7 @@
 <footer class="site-footer">
     <div class="container footer-container">
 
-        <img src="assets/images/logo.png" class="footer-logo-img">
+        <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="footer-logo-img" loading="lazy">
 
         <div class="footer-columns">
             <div class="footer-column">
@@ -233,6 +246,8 @@
     <p class="footer-copy">© 2026 ZekerOpWeg – Onafhankelijk advies</p>
 </footer>
 
+<script src="assets/scripts/scripts.js"></script>
+
 <script>
 function toggleMenu() {
     document.getElementById('mainNav').classList.toggle('open');
@@ -241,3 +256,4 @@ function toggleMenu() {
 
 </body>
 </html>
+
