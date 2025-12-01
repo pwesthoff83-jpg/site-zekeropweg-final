@@ -1460,4 +1460,54 @@ body {
     transform: scale(0.9);
 }
 
+/* ----------------------------------------------------
+   PREMIUM HAMBURGER ANIMATIE
+---------------------------------------------------- */
+
+.menu-toggle {
+    width: 32px;
+    height: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background: var(--navy);
+    border-radius: 3px;
+    transition: 0.35s ease;
+}
+
+/* MENU OPEN ANIMATIE */
+.menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* donker menu achtergrond → bars worden wit voor contrast */
+.main-nav.open + .menu-toggle .bar {
+    background: var(--navy);
+}
+
+/* Mobiele styling */
+@media (max-width: 768px) {
+    .menu-toggle {
+        margin-right: 6px;
+    }
+}
+
 
