@@ -392,3 +392,65 @@ body {
         min-height: 250px;
     }
 }
+
+/* ----------------------------------------------------
+   DIENSTEN PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+/* luxe gold-bar onder titel */
+.services-premium h2 {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.services-premium h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 70px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    opacity: 0.35;
+}
+
+/* premium cards */
+.service-box {
+    padding: 28px 24px;
+    border-radius: 14px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+    transition: 0.28s ease;
+}
+
+/* hover mag diepere luxe shadow geven */
+.service-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+}
+
+/* titels iets meer premium spacing */
+.service-box h3 {
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+/* tekst luchtiger */
+.service-box p {
+    margin-bottom: 24px;
+    line-height: 1.65;
+}
+
+/* gelijke hoogte voor alle dienstencards op desktop */
+@media (min-width: 992px) {
+    .grid-3 .service-box {
+        min-height: 420px;
+    }
+}
+
+/* knoppen nét wat premium */
+.service-card a {
+    margin-top: auto;
+    display: inline-block;
+    padding: 12px 28px;
+}
