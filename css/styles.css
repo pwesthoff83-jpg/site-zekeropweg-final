@@ -1356,4 +1356,42 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   FIX: HEADER OVERSCROLL OP MOBIEL
+---------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    /* voorkom overscroll door breedtes */
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .header-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* menu ul mag niet te breed worden */
+    .main-nav ul {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* logo iets kleiner zodat hij nooit buiten beeld valt */
+    .site-logo {
+        max-width: 150px;
+        height: auto;
+    }
+
+    /* menu openklappen: altijd onder de header, niet ernaast */
+    #mainNav {
+        width: 100%;
+    }
+}
+
 
