@@ -1281,4 +1281,79 @@ body {
 .cta-section .button-secondary:hover {
     background: var(--cream);
 }
+/* ----------------------------------------------------
+   AANKOOPADVIES – FOOTER ALIGN MET HOMEPAGE
+---------------------------------------------------- */
+
+.footer.footer-premium {
+    padding-top: 90px;
+    padding-bottom: 50px;
+    background: var(--navy);
+    color: white;
+}
+
+/* Kolommen exact zoals homepage */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+/* Footer titels */
+.footer-column h4 {
+    font-weight: 700;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+}
+
+/* List items spacing */
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+/* Footer logo formaat */
+.footer-logo {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+/* “Wit maar premium” links */
+.footer a,
+.footer a:visited {
+    color: white;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.footer a:hover {
+    opacity: 0.75;
+    padding-left: 3px;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    margin-top: 40px;
+    text-align: center;
+    opacity: 0.7;
+    font-size: 0.95rem;
+}
+
+/* Mobiel weergave – exact als homepage */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-logo {
+        width: 140px;
+        margin-bottom: 16px;
+    }
+
+    .footer.footer-premium {
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+}
+
 
