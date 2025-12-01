@@ -5,19 +5,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
   });
 });
 function toggleMenu() {
-    document.getElementById("mainNav").classList.toggle("open");
-}
-function toggleMenu() {
     const nav = document.getElementById("mainNav");
-    nav.classList.toggle("open");
+    const overlay = document.getElementById("menuOverlay");
+
+    const isOpen = nav.classList.contains("open");
+
+    if (isOpen) {
+        nav.classList.remove("open");
+        overlay.classList.remove("active");
+    } else {
+        nav.classList.add("open");
+        overlay.classList.add("active");
+    }
 }
 
-function toggleMenu() {
-    const nav = document.getElementById("mainNav");
-    const toggle = document.querySelector(".menu-toggle");
-
-    nav.classList.toggle("open");
-    toggle.classList.toggle("open");
+function closeMenu() {
+    document.getElementById("mainNav").classList.remove("open");
+    document.getElementById("menuOverlay").classList.remove("active");
 }
-
-
