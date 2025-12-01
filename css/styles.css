@@ -1394,4 +1394,59 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   MOBIEL MENU – PREMIUM DROPDOWN
+---------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    /* verberg menu standaard */
+    .main-nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        border-top: 1px solid rgba(0,0,0,0.05);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height .35s ease, opacity .25s ease;
+        z-index: 50;
+    }
+
+    /* actief menu */
+    .main-nav.open {
+        max-height: 380px;        /* genoeg ruimte voor 6 items */
+        opacity: 1;
+    }
+
+    /* menu-items onder elkaar */
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 0;
+    }
+
+    .main-nav li {
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    .main-nav a {
+        display: block;
+        width: 100%;
+        padding: 14px 0;
+        border-radius: 6px;
+    }
+
+    /* active kleur */
+    .main-nav a.active {
+        color: var(--olive);
+        font-weight: 700;
+    }
+}
+
 
