@@ -1166,3 +1166,43 @@ body {
     margin: 0 auto;      /* centreren */
     text-align: left;    /* zelfde uitlijning als homepage */
 }
+
+/* ----------------------------------------------------
+   PAKKETTEN SECTIE — ALIGN MET HOMEPAGE
+---------------------------------------------------- */
+
+/* Zelfde container breedte als homepage */
+.brand-package-grid {
+    width: 100%;
+    max-width: 1200px;      /* exact zelfde max-width */
+    margin: 0 auto;         /* centreren */
+    gap: 40px;              /* gelijk aan homepage grids */
+}
+
+/* Zelfde top- en bottom spacing als index-secties */
+.section {
+    padding: 80px 0;
+}
+
+/* Cards strakker gecentreerd zoals services op homepage */
+.brand-package {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Uitlijning verhogen naar homepage aesthetic */
+.brand-package h3 {
+    margin-top: 0;
+}
+
+/* prijs badge iets dichter naar boven net als service-cards */
+.price-tag {
+    margin-top: 4px;
+}
+
+/* Meest gekozen badge exact centreren boven card */
+.featured .featured-badge {
+    left: 50%;
+    transform: translateX(-50%);
+}
