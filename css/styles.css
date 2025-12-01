@@ -963,3 +963,199 @@ body {
 
 </body>
 </html>
+
+/* ----------------------------------------------------
+   BRANDBOOSTERS PREMIUM STYLING AANKOOPADVIES
+---------------------------------------------------- */
+
+/* HERO TITLE (luxer & filmisch) */
+.hero-title-brand {
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle-brand {
+    font-size: 1.35rem;
+    opacity: 0.95;
+    margin-top: 6px;
+}
+
+/* Intro sectie */
+.brand-intro {
+    text-align: left;
+    max-width: 900px;
+}
+
+.brand-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.brand-text {
+    font-size: 1.18rem;
+    line-height: 1.75;
+    color: var(--text-dark);
+    max-width: 750px;
+    opacity: 0.95;
+}
+
+/* ----------------------------------------------------
+   PACKAGE GRID
+---------------------------------------------------- */
+.brand-package-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+    .brand-package-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* ----------------------------------------------------
+   PACKAGE CARD
+---------------------------------------------------- */
+.brand-package {
+    background: white;
+    padding: 36px 32px;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.brand-package:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+}
+
+/* Card headers */
+.brand-package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.brand-package-header h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+/* Price tag */
+.price-tag {
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: var(--olive);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+/* Description */
+.package-description {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: var(--text-muted);
+}
+
+/* Bullet list */
+.brand-list {
+    list-style: none;
+    margin: 0 0 22px 0;
+    padding: 0;
+}
+
+.brand-list li {
+    margin-bottom: 10px;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.55;
+    color: var(--text-dark);
+}
+
+.brand-list li::before {
+    content: "•";
+    font-size: 1.3rem;
+    color: var(--olive);
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+/* Extra info block */
+.brand-extra {
+    background: #f7f6f3;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    border-left: 4px solid var(--gold);
+}
+
+.brand-extra strong {
+    color: var(--navy);
+    font-weight: 700;
+}
+
+.brand-extra ul {
+    margin-top: 8px;
+    padding-left: 18px;
+}
+
+.brand-extra ul li {
+    margin-bottom: 6px;
+    font-size: 0.98rem;
+}
+
+/* Buttons */
+.brand-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 1.05rem;
+    margin-top: 10px;
+}
+
+/* ----------------------------------------------------
+   FEATURED CARD ("Meest gekozen")
+---------------------------------------------------- */
+.featured {
+    border: 2px solid var(--gold);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.12);
+}
+
+.featured:hover {
+    box-shadow: 0 18px 44px rgba(0,0,0,0.18);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 18px;
+    background: var(--gold);
+    color: white;
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ----------------------------------------------------
+   CTA alignment fix
+---------------------------------------------------- */
+.cta-section p {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    font-size: 1.1rem;
+}
