@@ -1206,3 +1206,43 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+/* ----------------------------------------------------
+   AANKOOPADVIES – MOBIEL PAKKETTEN
+---------------------------------------------------- */
+@media (max-width: 768px) {
+
+    /* Pakketten onder elkaar zoals op de homepage-cards */
+    .brand-package-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    /* Cards full-width en mooi gecentreerd */
+    .brand-package,
+    .brand-package.featured {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* Binnenkant iets compacter op mobiel */
+    .brand-package-header {
+        align-items: flex-start;
+    }
+
+    .brand-package .price-tag {
+        margin-top: 6px;
+    }
+
+    .brand-extra ul {
+        padding-left: 18px;
+    }
+
+    .brand-btn {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+    }
+}
+
