@@ -523,3 +523,50 @@ body {
         min-height: 220px;
     }
 }
+
+/* ----------------------------------------------------
+   WAAROM ZEKEROPWEG — PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+.why-premium {
+    padding-top: 100px;
+    padding-bottom: 110px;
+    position: relative;
+}
+
+/* Gold accent onder de titel */
+.why-premium h2 {
+    margin-bottom: 35px;
+    position: relative;
+    font-weight: 800;
+}
+
+.why-premium h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--gold);
+    opacity: 0.35;
+    border-radius: 2px;
+}
+
+/* Luxe tekstcontainer smaller maken voor premium readability */
+.why-text {
+    max-width: 780px;
+    line-height: 1.75;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+}
+
+/* Zacht premium block-effect */
+.why-premium.alt {
+    background: #f4f2ec; /* subtieler premium tint */
+}
+
+/* Mooie spacing boven/onder paragrafen */
+.why-text p {
+    margin-top: 10px;
+}
