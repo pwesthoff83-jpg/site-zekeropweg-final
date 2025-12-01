@@ -343,3 +343,52 @@ body {
     }
 }
 
+
+/* ----------------------------------------------------
+   USP PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+/* Meer luxe lucht boven/onder de hele USP-sectie */
+.usp-premium {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+/* Subtiele gold line boven sectie (premium touch) */
+.usp-premium::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    opacity: 0.35;
+}
+
+/* USP-box premium spacing */
+.usp-box {
+    padding: 38px 32px;      /* meer rust */
+    border-radius: 14px;      /* iets luxer */
+    box-shadow: 0 6px 22px rgba(0,0,0,0.08); /* subtieler & high-end */
+}
+
+/* Headings meer ruimte */
+.usp-box h3 {
+    margin-bottom: 14px;
+}
+
+/* USP tekst meer lucht */
+.usp-box p {
+    line-height: 1.65;
+}
+
+/* Gelijktrekken hoogte van de kaarten */
+@media (min-width: 992px) {
+    .grid-3 .usp-box {
+        min-height: 250px;
+    }
+}
