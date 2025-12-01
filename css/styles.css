@@ -1510,4 +1510,52 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   PREMIUM MOBILE MENU OVERLAY (Optie B)
+---------------------------------------------------- */
+
+#menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 26, 42, 0.55); /* Navy tint + luxe transparantie */
+    backdrop-filter: blur(3px); /* heel subtiel, premium */
+    display: none;
+    z-index: 15;
+}
+
+/* overlay actief */
+#menuOverlay.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: white;
+        padding: 90px 30px 40px;
+        box-shadow: -4px 0 18px rgba(0,0,0,0.12);
+        transition: right 0.35s ease;
+        z-index: 20;
+    }
+
+    .main-nav.open {
+        right: 0;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .main-nav a {
+        font-size: 1.15rem;
+        font-weight: 600;
+        padding: 10px 0;
+    }
+}
+
 
