@@ -570,3 +570,100 @@ body {
 .why-text p {
     margin-top: 10px;
 }
+
+/* ----------------------------------------------------
+   REVIEW SECTIE — PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+/* Meer luxe lucht boven de titel */
+.reviews-premium-title {
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
+/* Premium titel met gold accent */
+.reviews-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    border-left: 6px solid var(--gold);
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+/* Luxe algemene review section */
+.reviews-premium {
+    margin-top: 60px;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* Review box styling */
+.review-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* Tekstkolom */
+.review-text {
+    flex: 1;
+    max-width: 700px;
+}
+
+.review-text h2 {
+    margin-bottom: 15px;
+}
+
+.review-text p {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+/* Quote styling */
+.review-quote {
+    font-style: italic;
+    margin-top: 18px;
+    opacity: 0.9;
+}
+
+/* Foto subtiel kleiner + luxe radius */
+.review-photo {
+    flex: 0 0 22%;
+}
+
+.review-photo img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+    transition: 0.3s ease;
+}
+
+/* Premium hover */
+.review-photo img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.15);
+}
+
+/* Verticale balans gelijktrekken */
+@media (min-width: 992px) {
+    .review-box {
+        min-height: 320px;
+    }
+}
+
+/* Mobile optimalisatie */
+@media (max-width: 768px) {
+    .review-box {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .review-photo {
+        flex: unset;
+        max-width: 70%;
+        margin: 0 auto;
+    }
+}
