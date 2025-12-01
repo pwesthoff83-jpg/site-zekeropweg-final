@@ -454,3 +454,72 @@ body {
     display: inline-block;
     padding: 12px 28px;
 }
+
+/* ----------------------------------------------------
+   HOE IK WERK — PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+/* Extra premium spacing + gold line */
+.how-premium {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.how-premium h2 {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.how-premium h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 90px;
+    height: 3px;
+    background: var(--gold);
+    opacity: 0.35;
+    border-radius: 2px;
+}
+
+/* Grid balans */
+.how-grid {
+    margin-top: 40px;
+    gap: 35px;
+}
+
+/* Luxe cards */
+.how-box {
+    padding: 34px 28px;
+    border-radius: 14px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    transition: 0.28s ease;
+    background: white;
+}
+
+/* hover premium */
+.how-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.12);
+}
+
+/* step titles */
+.how-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.35rem;
+    color: var(--olive);
+    font-weight: 700;
+}
+
+/* consistent text */
+.how-box p {
+    line-height: 1.65;
+}
+
+/* gelijke hoogte op desktop */
+@media (min-width: 992px) {
+    .how-box {
+        min-height: 220px;
+    }
+}
