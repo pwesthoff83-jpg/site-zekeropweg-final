@@ -667,3 +667,66 @@ body {
         margin: 0 auto;
     }
 }
+
+/* ----------------------------------------------------
+   FOOTER — PREMIUM IMPROVEMENTS
+---------------------------------------------------- */
+
+.footer-premium {
+    padding-top: 90px;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+/* subtiele gold accent line boven footer */
+.footer-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: var(--gold);
+    opacity: 0.35;
+    border-radius: 2px;
+}
+
+/* footer columns spacing */
+.footer-column h4 {
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+/* Consistente marges tussen list-items */
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+/* footer logo kleiner voor premium look */
+.footer-logo {
+    width: 160px;
+    margin-bottom: 18px;
+}
+
+/* premium link styling */
+.footer a {
+    transition: 0.25s ease;
+}
+
+.footer a:hover {
+    opacity: 0.75;
+    padding-left: 4px;
+}
+
+/* subtiele premium spacing op mobile */
+@media (max-width: 768px) {
+    .footer-premium {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+
+    .footer-logo {
+        width: 150px;
+    }
+}
