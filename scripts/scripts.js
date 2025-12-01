@@ -12,4 +12,12 @@ function toggleMenu() {
     nav.classList.toggle("open");
 }
 
+function toggleMenu() {
+    const nav = document.getElementById("mainNav");
+    const toggle = document.querySelector(".menu-toggle");
+
+    nav.classList.toggle("open");
+    toggle.classList.toggle("open");
+}
+
 
