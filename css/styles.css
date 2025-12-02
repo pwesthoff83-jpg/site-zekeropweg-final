@@ -1,849 +1,133 @@
-/* ----------------------------------------------------
-   BASIS – RESET & ROOT
----------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* =========================================
+   KLEUREN & BASIS STYLING
+========================================= */
 
 :root {
-    --navy: #0e1a2a;
-    --navy-light: #162537;
-    --olive: #6b7753;
-    --olive-light: #87946d;
-    --gold: #c9b27c;
-    --cream: #f7f6f3;
-    --radius: 12px;
-    --shadow: 0 4px 14px rgba(0,0,0,0.1);
-    --transition: .25s ease;
-    --text-dark: #1d1d1d;
-    --text-light: #fff;
-    --text-muted: #555;
+    --navy: #071325;
+    --gold: #d8c59a;
+    --cream: #f6f6f2;
+    --white: #ffffff;
+    --text-dark: #0a0a0a;
+    --text-light: #ffffff;
 }
 
 body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background: var(--cream);
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
     color: var(--text-dark);
-    line-height: 1.65;
+    background-color: var(--cream);
+    overflow-x: hidden;
 }
 
-/* optionele subtiele fade-in */
+/* Fade-in */
 .fade-in {
-    animation: fadeIn .6s ease-in forwards;
-    opacity: 0;
+    animation: fadeIn 0.7s ease-out;
 }
-
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* ----------------------------------------------------
-   CONTAINERS
----------------------------------------------------- */
+/* Containers */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* ----------------------------------------------------
-   HEADER & NAVIGATIE
----------------------------------------------------- */
+/* =========================================
+   HEADER
+========================================= */
+
 .header {
-    background: #ffffff;
-    padding: 12px 0;
-    box-shadow: var(--shadow);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(201, 178, 124, 0.35);
+    width: 100%;
+    background: var(--white);
+    padding: 18px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    z-index: 50;
 }
 
 .header-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .site-logo {
-    width: 180px;
-    height: auto;
+    height: 55px;
 }
 
-/* Desktop navigatie */
-.main-nav {
-    display: flex;
-}
-
+/* Menu */
 .main-nav ul {
-    display: flex;
-    gap: 22px;
     list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
 }
 
 .main-nav a {
-    color: var(--text-dark);
-    font-weight: 600;
     text-decoration: none;
-    padding: 8px 0;
-    transition: var(--transition);
-}
-
-.main-nav a:hover {
-    color: var(--olive);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 1.05rem;
 }
 
 .main-nav a.active {
     color: var(--gold);
 }
 
-/* Hamburger (desktop: verborgen) */
+/* MOBILE MENU */
 .menu-toggle {
     display: none;
+    flex-direction: column;
+    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 30;
 }
 
-/* Overlay voor mobiel menu */
+.menu-toggle .bar {
+    width: 24px;
+    height: 3px;
+    background: var(--navy);
+    border-radius: 2px;
+}
+
 #menuOverlay {
     position: fixed;
     inset: 0;
-    background: rgba(14, 26, 42, 0.60);
-    backdrop-filter: blur(6px);
     display: none;
-    z-index: 90;
+    background: rgba(7, 19, 37, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 15;
 }
 
 #menuOverlay.active {
     display: block;
 }
 
-/* ----------------------------------------------------
-   HERO
----------------------------------------------------- */
-.hero-sub {
-    position: relative;
-    background-size: cover;
-    background-position: 50% 78%; /* meer auto, minder plafond */
-    padding: 160px 0 180px;
-    color: white;
-}
-
-
-.overlay-dark {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-}
-
-.hero-content-small {
-    position: relative;
-    max-width: 700px;
-}
-
-.hero-premium h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 10px;
-}
-
-.hero-premium p {
-    font-size: 1.3rem;
-    opacity: .95;
-}
-
-.hero-button {
-    margin-top: 20px;
-}
-
-/* ----------------------------------------------------
-   BUTTONS
----------------------------------------------------- */
-.button {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.button-primary {
-    background: var(--olive);
-    color: #ffffff;
-}
-
-.button-primary:hover {
-    background: var(--olive-light);
-}
-
-.button-secondary {
-    background: #ffffff;
-    color: var(--navy);
-    border: 2px solid var(--navy);
-}
-
-.button-secondary:hover {
-    background: var(--navy);
-    color: #ffffff;
-}
-
-/* ----------------------------------------------------
-   SECTIONS
----------------------------------------------------- */
-.section {
-    padding: 80px 0;
-}
-
-.section.alt {
-    background: #f1efe7;
-}
-
-.section h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 18px;
-}
-
-/* ----------------------------------------------------
-   GRID SYSTEM
----------------------------------------------------- */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-/* ----------------------------------------------------
-   USP CARDS
----------------------------------------------------- */
-.usp-grid .usp-card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-.usp-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: var(--olive);
-}
-
-/* Premium styling */
-.usp-premium {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    position: relative;
-}
-
-.usp-premium::before {
-    content: "";
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-    opacity: 0.35;
-}
-
-.usp-box {
-    padding: 38px 32px;
-    border-radius: 14px;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
-}
-
-.usp-box p {
-    line-height: 1.65;
-}
-
-/* ----------------------------------------------------
-   DIENSTEN / SERVICE CARDS
----------------------------------------------------- */
-.services-premium h2 {
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.services-premium h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 70px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-    opacity: 0.35;
-}
-
-.service-card {
-    background: #ffffff;
-    border-radius: var(--radius);
-    padding: 20px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-}
-
-.service-card:hover {
-    transform: translateY(-4px);
-}
-
-.service-img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 12px;
-    filter: brightness(0.82) sepia(0.45) hue-rotate(-10deg) saturate(1.1);
-    transition: 0.3s ease;
-}
-
-.service-card:hover .service-img {
-    filter: brightness(0.95) sepia(0.3);
-}
-
-.service-card p {
-    margin: 16px 0 20px;
-}
-
-/* ----------------------------------------------------
-   HOE IK WERK
----------------------------------------------------- */
-.how-premium {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    position: relative;
-}
-
-.how-premium h2 {
-    margin-bottom: 40px;
-    position: relative;
-}
-
-.how-premium h2::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 90px;
-    height: 3px;
-    background: var(--gold);
-    opacity: 0.35;
-    border-radius: 2px;
-}
-
-.how-grid {
-    margin-top: 40px;
-    gap: 35px;
-}
-
-.how-box {
-    padding: 34px 28px;
-    border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
-    transition: 0.28s ease;
-    background: #ffffff;
-}
-
-.how-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
-}
-
-.how-box h3 {
-    margin-bottom: 15px;
-    font-size: 1.35rem;
-    color: var(--olive);
-    font-weight: 700;
-}
-
-/* ----------------------------------------------------
-   WAAROM ZEKEROPWEG
----------------------------------------------------- */
-.why-premium {
-    padding-top: 100px;
-    padding-bottom: 110px;
-    position: relative;
-}
-
-.why-premium h2 {
-    margin-bottom: 35px;
-    position: relative;
-    font-weight: 800;
-}
-
-.why-premium h2::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 80px;
-    height: 3px;
-    background: var(--gold);
-    opacity: 0.35;
-    border-radius: 2px;
-}
-
-.why-text {
-    max-width: 780px;
-    line-height: 1.75;
-    font-size: 1.15rem;
-    color: var(--text-dark);
-}
-
-.why-text p {
-    margin-top: 10px;
-}
-
-/* ----------------------------------------------------
-   REVIEWS
----------------------------------------------------- */
-.reviews-premium-title {
-    margin-top: 90px;
-    margin-bottom: 20px;
-}
-
-.reviews-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--navy);
-    border-left: 6px solid var(--gold);
-    padding-left: 15px;
-    margin-bottom: 10px;
-}
-
-.reviews-premium {
-    margin-top: 60px;
-    margin-bottom: 120px;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-}
-
-.review-box {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-.review-text {
-    flex: 1;
-    max-width: 700px;
-}
-
-.review-text h2 {
-    margin-bottom: 15px;
-}
-
-.review-text p {
-    margin-bottom: 12px;
-    line-height: 1.7;
-}
-
-.review-quote {
-    font-style: italic;
-    margin-top: 18px;
-    opacity: 0.9;
-}
-
-.review-photo {
-    flex: 0 0 22%;
-}
-
-.review-photo img {
-    width: 100%;
-    border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.10);
-    transition: 0.3s ease;
-}
-
-.review-photo img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
-}
-
-/* ----------------------------------------------------
-   CTA-GEDEELTE ALGEMEEN
----------------------------------------------------- */
-.cta-section {
-    background: var(--navy);
-    color: #ffffff;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.cta-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-}
-
-.cta-section p {
-    max-width: 600px;
-    margin: 0 auto 25px auto;
-    font-size: 1.1rem;
-}
-
-/* ----------------------------------------------------
-   FOOTER
----------------------------------------------------- */
-.footer.footer-premium {
-    padding-top: 90px;
-    padding-bottom: 50px;
-    background: var(--navy);
-    color: #ffffff;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: flex-start;
-}
-
-.footer-column h4 {
-    margin-bottom: 18px;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-logo {
-    width: 160px;
-    margin-bottom: 18px;
-}
-
-.footer a,
-.footer a:visited {
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.25s ease;
-}
-
-.footer a:hover {
-    opacity: 0.75;
-    padding-left: 3px;
-}
-
-.footer-bottom {
-    margin-top: 40px;
-    text-align: center;
-    opacity: 0.7;
-    font-size: 0.95rem;
-}
-
-/* ----------------------------------------------------
-   AANKOOPADVIES – PREMIUM PAKKETTEN
----------------------------------------------------- */
-.aankoop-premium h2 {
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.aankoop-premium h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 90px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-    opacity: 0.35;
-}
-
-.aankoop-intro {
-    max-width: 720px;
-    margin-top: 6px;
-    margin-bottom: 30px;
-    font-size: 1.08rem;
-}
-
-/* Grid met brandbooster-pakketten */
-.brand-package-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 20px;
-}
-
-/* Card */
-.brand-package {
-    background: #ffffff;
-    padding: 32px 28px;
-    border-radius: 16px;
-    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
-    transition: 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.brand-package:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
-}
-
-/* Header bovenaan de card */
-.brand-package-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 12px;
-}
-
-.brand-package-header h3 {
-    font-size: 1.45rem;
-    font-weight: 800;
-    color: var(--navy);
-}
-
-/* Prijsbadge */
-.price-tag {
-    font-size: 1.25rem;
-    font-weight: 700;
-    background: var(--olive);
-    color: #ffffff;
-    padding: 6px 16px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-}
-
-/* Subkoppen in kaart */
-.brand-package h4 {
-    margin-top: 16px;
-    margin-bottom: 6px;
-    font-size: 1.02rem;
-}
-
-/* Bulletlijsten */
-.brand-list {
-    list-style: none;
-    margin: 0 0 10px 0;
-    padding: 0;
-}
-
-.brand-list li {
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-    line-height: 1.55;
-}
-
-.brand-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    top: -2px;
-    font-size: 1.2rem;
-    color: var(--olive);
-}
-
-/* Resultaat-paragraaf */
-.brand-package p {
-    margin-bottom: 8px;
-}
-
-/* Meest gekozen */
-.featured {
-    border: 2px solid var(--gold);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
-}
-
-.featured-badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: #ffffff;
-    padding: 4px 14px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border-radius: 999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-/* Pakket-button */
-.pakket-button {
-    margin-top: 14px;
-    text-align: center;
-    width: 100%;
-}
-
-/* ----------------------------------------------------
-   RESPONSIVE – TABLET & MOBIEL (CONTENT)
----------------------------------------------------- */
-@media (max-width: 992px) {
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
-
-    .brand-package-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-sub {
-        padding: 130px 0 140px;
-    }
-
-    .hero-premium h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-premium p {
-        font-size: 1.15rem;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .container {
-        width: 92%;
-    }
-
-    .header {
-        padding: 8px 0;
-    }
-
-    .site-logo {
-        width: 150px;
-    }
-
-    .section {
-        padding: 60px 0;
-    }
-
-    .usp-box {
-        padding: 26px 22px;
-        margin-bottom: 22px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    .how-box {
-        padding: 26px 22px;
-        margin-bottom: 18px;
-    }
-
-    .why-text {
-        max-width: 100%;
-        font-size: 1.05rem;
-        line-height: 1.7;
-    }
-
-    .reviews-premium {
-        margin-bottom: 80px;
-    }
-
-    .review-box {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .review-photo img {
-        max-width: 80%;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .cta-section {
-        padding: 70px 0;
-    }
-
-    /* Footer stacked */
-    .footer-grid {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 32px;
-    }
-
-    .footer-logo {
-        width: 140px;
-        margin: 0 auto 16px auto;
-    }
-
-    .footer-column:last-child {
-        text-align: center;
-    }
-}
-
-/* ----------------------------------------------------
-   RESPONSIVE – MOBIEL MENU (<= 900px)
----------------------------------------------------- */
 @media (max-width: 900px) {
 
-    /* Hamburger tonen */
     .menu-toggle {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 32px;
-        height: 22px;
-        padding: 0;
-        margin: 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 200;
     }
 
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: var(--gold);
-        border-radius: 3px;
-        transition: 0.35s ease;
-    }
-
-    /* Hamburger → kruis */
-    .menu-toggle.open .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    .menu-toggle.open .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.open .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Desktop nav als slide-in menu */
     .main-nav {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 72%;
+        width: 70%;
         height: 100vh;
-        background: #ffffff;
-        padding: 100px 32px 40px;
-        display: flex;
-        flex-direction: column;
-        transition: right 0.35s ease;
-        z-index: 150;
-        box-shadow: -6px 0 22px rgba(0, 0, 0, 0.18);
+        background: var(--white);
+        padding: 90px 30px;
+        box-shadow: -6px 0 18px rgba(0,0,0,0.15);
+        transition: right .35s ease;
+        z-index: 20;
     }
 
     .main-nav.open {
@@ -852,153 +136,226 @@ body {
 
     .main-nav ul {
         flex-direction: column;
-        gap: 24px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .main-nav li {
-        width: 100%;
-    }
-
-    .main-nav a {
-        font-size: 1.18rem;
-        font-weight: 600;
-        padding: 4px 0;
-        display: block;
+        gap: 20px;
     }
 }
 
-/* =========================================================
-   AANKOOPADVIES – PREMIUM PAKKET STYLING
-   ========================================================= */
+/* =========================================
+   HERO SECTIONS
+========================================= */
 
-.aankoop-premium {
-    background: #faf9f6;
-    padding: 80px 0;
+.hero-sub {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-position: center 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px; /* ruimte onder header */
 }
 
-.aankoop-premium h2 {
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 19, 37, 0.45);
+}
+
+.hero-content-small {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    max-width: 650px;
+}
+
+.hero-content-small h1 {
     font-size: 2.6rem;
+    font-weight: 700;
     margin-bottom: 10px;
-    color: #0E1A2A;
+}
+
+.hero-content-small p {
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   TITLES + SECTION LAYOUT
+========================================= */
+
+.section {
+    padding: 90px 0;
+}
+
+.section h2 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .aankoop-intro {
-    max-width: 800px;
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin-bottom: 50px;
-    color: #333;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #444;
 }
 
-/* ===== GRID ===== */
+/* =========================================
+   AANKOOPADVIES – PAKKETTEN GRID
+========================================= */
+
 .aankoop-grid {
+    margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
 }
 
-/* ===== PAKKETKAART ===== */
+@media (max-width: 900px) {
+    .aankoop-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .pakket-card {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 35px 30px;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: var(--white);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 18px rgba(0,0,0,0.08);
+    position: relative;
 }
 
-.pakket-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
-}
-
-/* ===== HEADERS ===== */
 .pakket-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.pakket-header h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #0E1A2A;
+    margin-bottom: 16px;
 }
 
 .pakket-prijs {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: #6d7f00;
+    color: var(--gold);
 }
 
-/* ===== LIJSTEN ===== */
+.pakket-card h4 {
+    font-size: 1.15rem;
+    margin-top: 25px;
+}
+
 .pakket-list {
-    margin-bottom: 25px;
-    padding-left: 18px;
+    padding-left: 20px;
+    margin-top: 5px;
 }
 
 .pakket-list li {
     margin-bottom: 8px;
-    font-size: 1.05rem;
-    line-height: 1.6;
 }
 
-/* ===== H4 TITELS ===== */
-.pakket-card h4 {
-    font-size: 1.15rem;
-    margin-top: 20px;
-    margin-bottom: 6px;
-    font-weight: 700;
-    color: #0E1A2A;
-}
-
-/* ===== BUTTON ===== */
-.pakket-button {
-    display: inline-block;
-    margin-top: 22px;
-    font-size: 1.1rem;
-    padding: 14px 22px;
-    border-radius: 10px;
-}
-
-/* ===== MEEST GEKOZEN BADGE ===== */
+/* Highlight pakket */
 .pakket-featured {
-    border: 2px solid #6d7f00;
-    position: relative;
+    border: 2px solid var(--gold);
+    transform: scale(1.03);
 }
 
 .pakket-badge {
     position: absolute;
     top: -12px;
-    right: 20px;
-    background: #6d7f00;
-    color: white;
+    left: 20px;
+    background: var(--gold);
+    color: var(--navy);
     padding: 6px 14px;
-    font-size: 0.9rem;
     border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* CTA KNOPPEN */
+.button {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-size: 1.05rem;
     font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .pakket-card {
-        padding: 28px 22px;
-    }
-    
-    .pakket-header h3 {
-        font-size: 1.35rem;
-    }
-
-    .pakket-prijs {
-        font-size: 1.3rem;
-    }
+.button-primary {
+    background: var(--navy);
+    color: var(--white);
 }
 
-/* Hero zoom-out for Aankoopadvies */
-.hero-sub.aankoopadvies-hero {
-    background-size: 115% auto;    /* lager percentage = meer uitzoomen */
-    background-position: center 60%; /* iets naar beneden verschuiven */
+.button-secondary {
+    background: var(--gold);
+    color: var(--navy);
 }
 
+/* =========================================
+   CTA SECTION
+========================================= */
+
+.cta-section {
+    background: var(--navy);
+    text-align: center;
+    padding: 80px 0;
+    color: var(--white);
+}
+
+.cta-section h2 {
+    color: var(--white);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 70px 0 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    height: 55px;
+    margin-bottom: 12px;
+}
+
+.footer-column h4 {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+    color: #d8e0ea;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    color: #b8c2cf;
+}
+
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
