@@ -13,7 +13,6 @@
 
 <!-- ================= HEADER ================= -->
 <header class="header">
-
     <div class="container header-container">
 
         <!-- LOGO -->
@@ -21,14 +20,14 @@
             <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
-        <!-- PREMIUM HAMBURGER -->
+        <!-- MOBILE MENU BUTTON -->
         <button class="menu-toggle" onclick="toggleMenu()">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
 
-        <!-- NAV -->
+        <!-- NAVIGATIE -->
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -40,17 +39,16 @@
             </ul>
         </nav>
 
+        <div id="menuOverlay" onclick="closeMenu()"></div>
+
     </div>
-
-    <!-- OVERLAY -->
-    <div id="menuOverlay" onclick="closeMenu()"></div>
-
 </header>
 
-
 <!-- ================= HERO ================= -->
-<section class="hero-sub aankoopadvies-hero" style="background-image: url('assets/images/hero/hero-aankoopadvies.webp');">
+<section class="hero-sub aankoopadvies-hero"
+         style="background-image: url('assets/images/hero/hero-aankoopadvies.webp');">
     <div class="overlay-dark"></div>
+
     <div class="container hero-content-small">
         <h1>Onafhankelijk aankoopadvies</h1>
         <p>Zeker naar uw volgende auto, zorgeloos geregeld.</p>
@@ -58,19 +56,19 @@
 </section>
 
 
-<!-- ================= AANKOOPADVIES – PREMIUM PAKKETTEN ================= -->
+<!-- ================= AANKOOPADVIES – PAKKETTEN ================= -->
 <section class="section aankoop-premium">
     <div class="container">
 
         <h2>Kies het aankoopadvies dat bij u past</h2>
         <p class="aankoop-intro">
             Elk pakket biedt u maximale zekerheid bij de aankoop van uw volgende auto —
-            van een eerste selectie tot volledige begeleiding en onderhandeling.
+            van eerste selectie tot volledige begeleiding en onderhandeling.
         </p>
 
         <div class="aankoop-grid">
 
-            <!-- Essentieel -->
+            <!-- Pakket Essentieel -->
             <div class="pakket-card">
                 <div class="pakket-header">
                     <h3>Pakket Essentieel</h3>
@@ -92,18 +90,15 @@
 
                 <h4>Extra voordelen</h4>
                 <ul class="pakket-list">
-                    <li>10% korting op een EV of hybride accucheck (incl. certificaat)</li>
+                    <li>10% korting op een EV of hybride accucheck</li>
                     <li>Youngtimers: externe aankoopkeuring aanbevolen</li>
                 </ul>
-
-                <h4>Resultaat</h4>
-                <p>U voorkomt miskopen en verspilt geen tijd aan auto's die het niet waard zijn.</p>
 
                 <a href="contact.html" class="button button-primary pakket-button">Kies Essentieel</a>
             </div>
 
 
-            <!-- Premium -->
+            <!-- Pakket Premium -->
             <div class="pakket-card pakket-featured">
                 <div class="pakket-badge">Meest gekozen</div>
 
@@ -122,24 +117,21 @@
                     <li>Vergelijking op techniek, onderhoud en prijs</li>
                     <li>Inzicht in onderhandelingsruimte</li>
                     <li>1 uitgebreide inspectie op locatie incl. proefrit</li>
-                    <li>Volledige technische checklist</li>
+                    <li>Cosmetische en technische controle</li>
                     <li>Conclusie: onderbouwd advies op maat</li>
                 </ul>
 
                 <h4>Extra voordelen</h4>
                 <ul class="pakket-list">
-                    <li>10% korting op EV of hybride accucheck (incl. certificaat)</li>
+                    <li>10% korting op EV of hybride accucheck</li>
                     <li>Youngtimers: externe keuring mogelijk via betrouwbare partij</li>
                 </ul>
-
-                <h4>Resultaat</h4>
-                <p>U maakt een volledig onderbouwde keuze en koopt met vertrouwen.</p>
 
                 <a href="contact.html" class="button button-primary pakket-button">Kies Premium</a>
             </div>
 
 
-            <!-- Full-service -->
+            <!-- Pakket Full-service -->
             <div class="pakket-card">
                 <div class="pakket-header">
                     <h3>Pakket Full-service</h3>
@@ -147,16 +139,15 @@
                 </div>
 
                 <h4>Voor wie</h4>
-                <p>Voor wie zonder moeite de beste auto, beste deal én volledige zekerheid wil.</p>
+                <p>Voor wie zonder moeite de beste auto, beste deal én maximale zekerheid wil.</p>
 
                 <h4>Wat ik voor u doe</h4>
                 <ul class="pakket-list">
                     <li>Alles uit Premium</li>
                     <li>Intake op locatie (tot 50 km inbegrepen)</li>
                     <li>Onderhandeling door Pepijn</li>
-                    <li>Controle van koopovereenkomst en garantievoorwaarden</li>
+                    <li>Controle van koopovereenkomst & garantievoorwaarden</li>
                     <li>Afstemmen afleverpunten (APK, onderhoud, banden, updates)</li>
-                    <li>Extra inspecties mogelijk tegen meerprijs</li>
                     <li>Aflevercheck bij ophalen</li>
                 </ul>
 
@@ -169,14 +160,10 @@
                     <li>Youngtimers: aanvullende keuring op verzoek</li>
                 </ul>
 
-                <h4>Resultaat</h4>
-                <p>U wordt volledig ontzorgd — van selectie tot aflevering.</p>
-
                 <a href="contact.html" class="button button-primary pakket-button">Kies Full-service</a>
             </div>
 
         </div>
-
     </div>
 </section>
 
@@ -185,8 +172,8 @@
 <section class="cta-section">
     <div class="container">
         <h2>Zeker naar uw volgende auto?</h2>
-        <p style="margin-bottom:25px;">Plan een gratis kennismaking en ontdek welk pakket het beste bij u past.</p>
-        <a href="contact.html" class="button button-secondary" style="font-size:1.1rem;">Plan een gratis kennismaking</a>
+        <p>Plan een gratis kennismaking en ontdek welk pakket het beste bij u past.</p>
+        <a href="contact.html" class="button button-secondary">Plan een gratis kennismaking</a>
     </div>
 </section>
 
@@ -227,6 +214,7 @@
         <p class="footer-bottom">© ZekerOpWeg – onafhankelijke begeleiding & EV-diagnose</p>
     </div>
 </footer>
+
 
 <script src="scripts/scripts.js?v=1.0.1"></script>
 
