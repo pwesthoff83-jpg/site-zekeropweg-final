@@ -21,11 +21,13 @@ body {
 .fade-in {
     animation: fadeIn .7s ease-out;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Containers */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -35,6 +37,7 @@ body {
 /* =========================================
    HEADER
 ========================================= */
+
 .header {
     position: fixed;
     top: 0;
@@ -55,7 +58,8 @@ body {
     height: 55px;
 }
 
-/* NAV */
+/* NAVIGAITE DESKTOP */
+
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -75,6 +79,7 @@ body {
 }
 
 /* MOBILE MENU */
+
 .menu-toggle {
     display: none;
     background: none;
@@ -91,7 +96,9 @@ body {
     border-radius: 2px;
 }
 
+/* MOBILE NAV BEL */
 @media (max-width: 900px) {
+
     .menu-toggle {
         display: flex;
     }
@@ -153,7 +160,7 @@ body {
 }
 
 /* =========================================
-   TITLES + SECTION LAYOUT
+   TITLES + SECTIONS
 ========================================= */
 
 .section {
@@ -229,12 +236,12 @@ body {
 }
 
 /* =========================================
-   CTA BLOCK (MET FOTO)
+   CTA BLOK MET FOTO
 ========================================= */
 
 .cta-section {
     position: relative;
-    background-image: url('../assets/cta/cta-premium.webp');
+    background-image: url('assets/images/cta-premium.webp');
     background-size: cover;
     background-position: center 60%;
     background-repeat: no-repeat;
@@ -245,7 +252,7 @@ body {
 .cta-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(7, 19, 37, 0.55);
+    background: rgba(7,19,37,0.55);
 }
 
 .cta-section .container {
@@ -263,7 +270,6 @@ body {
     font-size: 1.2rem;
     margin-bottom: 25px;
 }
-
 /* =========================================
    BUTTONS
 ========================================= */
@@ -275,6 +281,7 @@ body {
     font-weight: 600;
     transition: 0.25s;
     display: inline-block;
+    border: none;
 }
 
 .button-primary {
@@ -287,7 +294,8 @@ body {
     color: var(--navy);
 }
 
-.button-secondary:hover {
+.button:hover,
+.button:focus {
     opacity: 0.9;
 }
 
@@ -326,10 +334,17 @@ body {
     margin-bottom: 10px;
 }
 
+/* Alle footer-links goud, nooit paars */
+.footer a,
 .footer-column a {
     color: var(--gold) !important;
     text-decoration: none;
     font-weight: 500;
+}
+
+.footer a:hover,
+.footer-column a:hover {
+    text-decoration: underline;
 }
 
 .footer-bottom {
@@ -338,16 +353,18 @@ body {
     color: #d8dfe8;
 }
 
+/* =========================================
+   RESPONSIVE FOOTER
+========================================= */
+
 @media (max-width: 900px) {
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
+    .footer-column {
+        margin-top: 20px;
+    }
 }
 
-.footer a,
-.footer-column a {
-    color: var(--gold) !important;
-    text-decoration: none;
-    font-weight: 500;
-}
