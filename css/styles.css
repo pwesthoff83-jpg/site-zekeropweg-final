@@ -1,6 +1,6 @@
-/* =========================================
-   BASIS KLEUREN & TYPOGRAFIE
-========================================= */
+/* ======================================================
+   BASIS INSTELLINGEN & KLEUREN
+====================================================== */
 
 :root {
     --navy: #071325;
@@ -9,11 +9,12 @@
     --white: #ffffff;
     --text-dark: #0a0a0a;
 
-    --transition: .3s ease;
+    --transition: 0.3s ease;
 }
 
 body {
     margin: 0;
+    padding: 0;
     font-family: "Segoe UI", sans-serif;
     background: var(--cream);
     color: var(--text-dark);
@@ -21,9 +22,8 @@ body {
 }
 
 .fade-in {
-    animation: fadeIn .7s ease-out;
+    animation: fadeIn 0.7s ease-out;
 }
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -35,17 +35,16 @@ body {
     margin: 0 auto;
 }
 
-
-/* =========================================
+/* ======================================================
    HEADER
-========================================= */
+====================================================== */
 
 .header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 18px 0;
     background: var(--white);
+    padding: 18px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     z-index: 1000;
 }
@@ -61,6 +60,7 @@ body {
     display: block;
 }
 
+/* NAV */
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -76,12 +76,15 @@ body {
     transition: var(--transition);
 }
 
-.main-nav a.active,
 .main-nav a:hover {
     color: var(--gold);
 }
 
-/* Hamburger */
+.main-nav a.active {
+    color: var(--gold);
+}
+
+/* MOBILE MENU */
 .menu-toggle {
     display: none;
     background: none;
@@ -126,19 +129,22 @@ body {
     }
 }
 
+/* ======================================================
+   HERO (HOME & SUBPAGINA’S)
+====================================================== */
 
-/* =========================================
-   HERO — HOMEPAGE
-========================================= */
-
-.hero {
+.hero,
+.hero-sub {
     position: relative;
     width: 100%;
-    height: 640px;
+    height: 520px;
     background-size: cover;
-    background-position: center;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+    margin-top: 88px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .overlay-dark {
@@ -147,52 +153,56 @@ body {
     background: rgba(0,0,0,0.45);
 }
 
-.hero-content {
-    position: relative;
-    color: var(--white);
-    max-width: 650px;
-}
-
-.hero-content h1 {
-    font-size: 3.2rem;
-    margin-bottom: 12px;
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-}
-
-
-/* =========================================
-   HERO — SUBPAGINA’S
-========================================= */
-
-.hero-sub {
-    position: relative;
-    width: 100%;
-    height: 420px;
-    background-size: cover;
-    background-position: center;
-    margin-top: 88px;
-    display: flex;
-    align-items: center;
-}
-
+.hero-content,
 .hero-content-small {
-    color: var(--white);
+    position: relative;
     text-align: center;
+    color: var(--white);
 }
 
+.hero-content h1,
 .hero-content-small h1 {
-    font-size: 2.6rem;
-    margin-bottom: 12px;
+    font-size: 3rem;
+    margin-bottom: 16px;
 }
 
+.hero-content p,
+.hero-content-small p {
+    font-size: 1.2rem;
+    margin-bottom: 22px;
+}
 
-/* =========================================
-   SECTION TITLES
-========================================= */
+/* ======================================================
+   KNOPPEN
+====================================================== */
+
+.button {
+    padding: 14px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.button-primary {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.button-secondary {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+.button-secondary:hover,
+.button-primary:hover {
+    opacity: 0.88;
+}
+
+/* ======================================================
+   SECTIES EN TITELS
+====================================================== */
 
 .section {
     padding: 95px 0;
@@ -201,25 +211,22 @@ body {
 .section h2 {
     text-align: center;
     font-size: 2.6rem;
-    color: var(--navy);
     margin-bottom: 15px;
+    color: var(--navy);
 }
 
-.aankoop-intro {
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto 50px;
-    color: #444;
+.section p {
     font-size: 1.15rem;
+    color: #444;
+    text-align: center;
 }
 
-
-/* =========================================
-   AANKOOPADVIES — PAKKETTEN GRID
-========================================= */
+/* ======================================================
+   AANKOOPADVIES – PAKKETTEN GRID
+====================================================== */
 
 .aankoop-grid {
-    margin-top: 40px;
+    margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
@@ -236,7 +243,7 @@ body {
     padding: 35px;
     border-radius: 14px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e8e8e8;
     position: relative;
 }
 
@@ -266,16 +273,19 @@ body {
     padding: 6px 14px;
     border-radius: 6px;
     font-weight: 700;
+    font-size: 0.9rem;
 }
 
 .pakket-card h4 {
-    margin-top: 20px;
+    margin-top: 22px;
     font-size: 1.2rem;
     color: var(--navy);
+    margin-bottom: 5px;
 }
 
 .pakket-list {
     padding-left: 20px;
+    margin: 10px 0;
 }
 
 .pakket-list li {
@@ -283,15 +293,15 @@ body {
     line-height: 1.45;
 }
 
-
-/* =========================================
-   CTA BLOK (universeel)
-========================================= */
+/* ======================================================
+   CTA BLOK
+====================================================== */
 
 .cta-section {
     position: relative;
     background-size: cover;
-    background-position: center;
+    background-position: center 60%;
+    background-repeat: no-repeat;
     padding: 120px 0;
     color: var(--white);
     text-align: center;
@@ -309,46 +319,17 @@ body {
 
 .cta-section h2 {
     font-size: 2.4rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .cta-section p {
     font-size: 1.2rem;
-    margin-bottom: 25px;
+    margin-bottom: 26px;
 }
 
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-.button {
-    padding: 14px 26px;
-    border-radius: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: var(--transition);
-}
-
-.button-primary {
-    background: var(--navy);
-    color: var(--white);
-}
-
-.button-secondary {
-    background: var(--gold);
-    color: var(--navy);
-}
-
-.button-secondary:hover {
-    opacity: 0.88;
-}
-
-
-/* =========================================
+/* ======================================================
    FOOTER
-========================================= */
+====================================================== */
 
 .footer {
     background: var(--navy);
@@ -369,8 +350,8 @@ body {
 
 .footer-column h4 {
     font-size: 1.3rem;
-    color: var(--gold);
     margin-bottom: 12px;
+    color: var(--gold);
 }
 
 .footer-column ul {
@@ -389,8 +370,8 @@ body {
 }
 
 .footer-bottom {
-    margin-top: 60px;
     text-align: center;
+    margin-top: 60px;
     color: #d8dfe8;
 }
 
@@ -399,36 +380,6 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
     }
-}
-
-/* ============================================================
-   FIX: Aankoopadvies pakketten altijd zichtbaar
-   (overrulet elk conflict in oudere CSS)
-============================================================ */
-
-.aankoop-grid {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: grid !important;
-    transform: none !important;
-}
-
-.pakket-card {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    display: block !important;
-}
-
-.pakket-featured {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-}
-
-.pakket-list li {
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
 
