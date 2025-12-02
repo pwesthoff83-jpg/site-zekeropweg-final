@@ -1716,4 +1716,119 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   BRAND BOOSTER – HAMBURGER & MOBILE OVERLAY FIX
+---------------------------------------------------- */
+
+/* Laat hamburger-knop zien op mobiel */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 32px;
+        height: 26px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    /* De drie streepjes van het hamburger-icoon */
+    .menu-toggle .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #c4a962 !important; /* premium goud */
+        border-radius: 3px;
+    }
+
+    /* Desktop navigatie verbergen op mobiel */
+    .main-nav {
+        display: none !important;
+    }
+}
+
+/* ----------------------------------------------------
+   SLUITKNOP – PREMIUM GOUD + ZICHTBAAR
+---------------------------------------------------- */
+
+.close-menu {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 2rem;
+    color: #c4a962 !important;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    z-index: 99999;
+}
+
+/* Alleen tonen op mobiel */
+@media (max-width: 900px) {
+    .close-menu {
+        display: block;
+    }
+}
+
+/* ----------------------------------------------------
+   OVERLAY MENU – PREMIUM NAVY + GOUD
+---------------------------------------------------- */
+
+#menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 26, 42, 0.60);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 9980;
+}
+
+#menuOverlay.active {
+    display: block;
+}
+
+/* Slide-in menu */
+@media (max-width: 900px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 72%;
+        height: 100vh;
+        background: #ffffff;
+        padding: 100px 32px 40px;
+        box-shadow: -6px 0 22px rgba(0,0,0,0.18);
+        transition: right 0.35s ease;
+        z-index: 9990;
+    }
+
+    .main-nav.open {
+        right: 0;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .main-nav a {
+        font-size: 1.22rem;
+        font-weight: 600;
+        padding: 12px 0;
+        color: #0c1524; /* navy */
+    }
+
+    .main-nav a.active {
+        color: #c4a962 !important; /* goud */
+    }
+
+    .main-nav a:hover {
+        color: #d5c393;
+    }
+}
+
 
