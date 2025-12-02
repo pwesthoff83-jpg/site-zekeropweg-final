@@ -356,4 +356,45 @@ body {
 }
 
 
+/* ========= AANKOOPADVIES HARDFIX ========= */
+
+/* Forceer dat de grid zichtbaar is */
+.aankoop-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 35px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-top: 50px !important;
+}
+
+/* Zorg dat elke pakket-card zichtbaar en klikbaar is */
+.pakket-card {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+}
+
+/* Featured kaart moet ook zichtbaar blijven */
+.pakket-featured {
+    display: block !important;
+    opacity: 1 !important;
+    border: 2px solid var(--gold) !important;
+}
+
+/* Badge altijd zichtbaar */
+.pakket-badge {
+    display: inline-block !important;
+    opacity: 1 !important;
+    position: absolute;
+}
+
+/* MOBILE FIX */
+@media(max-width:900px) {
+    .aankoop-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
 
