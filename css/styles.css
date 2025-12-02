@@ -869,3 +869,130 @@ body {
     }
 }
 
+/* =========================================================
+   AANKOOPADVIES – PREMIUM PAKKET STYLING
+   ========================================================= */
+
+.aankoop-premium {
+    background: #faf9f6;
+    padding: 80px 0;
+}
+
+.aankoop-premium h2 {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    color: #0E1A2A;
+}
+
+.aankoop-intro {
+    max-width: 800px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+/* ===== GRID ===== */
+.aankoop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+/* ===== PAKKETKAART ===== */
+.pakket-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pakket-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
+}
+
+/* ===== HEADERS ===== */
+.pakket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pakket-header h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0E1A2A;
+}
+
+.pakket-prijs {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6d7f00;
+}
+
+/* ===== LIJSTEN ===== */
+.pakket-list {
+    margin-bottom: 25px;
+    padding-left: 18px;
+}
+
+.pakket-list li {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* ===== H4 TITELS ===== */
+.pakket-card h4 {
+    font-size: 1.15rem;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: #0E1A2A;
+}
+
+/* ===== BUTTON ===== */
+.pakket-button {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 1.1rem;
+    padding: 14px 22px;
+    border-radius: 10px;
+}
+
+/* ===== MEEST GEKOZEN BADGE ===== */
+.pakket-featured {
+    border: 2px solid #6d7f00;
+    position: relative;
+}
+
+.pakket-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #6d7f00;
+    color: white;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .pakket-card {
+        padding: 28px 22px;
+    }
+    
+    .pakket-header h3 {
+        font-size: 1.35rem;
+    }
+
+    .pakket-prijs {
+        font-size: 1.3rem;
+    }
+}
+
