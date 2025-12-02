@@ -29,6 +29,18 @@ body {
     line-height: 1.65;
 }
 
+/* optionele subtiele fade-in */
+.fade-in {
+    animation: fadeIn .6s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
 /* ----------------------------------------------------
    CONTAINERS
 ---------------------------------------------------- */
@@ -39,15 +51,15 @@ body {
 }
 
 /* ----------------------------------------------------
-   HEADER
+   HEADER & NAVIGATIE
 ---------------------------------------------------- */
 .header {
-    background: white;
+    background: #ffffff;
     padding: 12px 0;
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 100;
     border-bottom: 1px solid rgba(201, 178, 124, 0.35);
 }
 
@@ -62,7 +74,11 @@ body {
     height: auto;
 }
 
-/* NAVIGATION */
+/* Desktop navigatie */
+.main-nav {
+    display: flex;
+}
+
 .main-nav ul {
     display: flex;
     gap: 22px;
@@ -77,19 +93,34 @@ body {
     transition: var(--transition);
 }
 
-.main-nav a:hover,
-.main-nav .active {
+.main-nav a:hover {
     color: var(--olive);
 }
 
-/* MOBILE MENU BUTTON */
+.main-nav a.active {
+    color: var(--gold);
+}
+
+/* Hamburger (desktop: verborgen) */
 .menu-toggle {
     display: none;
-    font-size: 1.8rem;
     background: none;
     border: none;
-    color: var(--navy);
     cursor: pointer;
+}
+
+/* Overlay voor mobiel menu */
+#menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 26, 42, 0.60);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 90;
+}
+
+#menuOverlay.active {
+    display: block;
 }
 
 /* ----------------------------------------------------
@@ -100,13 +131,13 @@ body {
     background-size: cover;
     background-position: center;
     padding: 160px 0 180px;
-    color: white;
+    color: #ffffff;
 }
 
 .overlay-dark {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.22);
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .hero-content-small {
@@ -114,16 +145,20 @@ body {
     max-width: 700px;
 }
 
-.hero-content-small h1 {
+.hero-premium h1 {
     font-size: 3rem;
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 10px;
 }
 
-.hero-content-small p {
+.hero-premium p {
     font-size: 1.3rem;
     opacity: .95;
+}
+
+.hero-button {
+    margin-top: 20px;
 }
 
 /* ----------------------------------------------------
@@ -140,7 +175,7 @@ body {
 
 .button-primary {
     background: var(--olive);
-    color: white;
+    color: #ffffff;
 }
 
 .button-primary:hover {
@@ -148,14 +183,14 @@ body {
 }
 
 .button-secondary {
-    background: white;
+    background: #ffffff;
     color: var(--navy);
     border: 2px solid var(--navy);
 }
 
 .button-secondary:hover {
     background: var(--navy);
-    color: white;
+    color: #ffffff;
 }
 
 /* ----------------------------------------------------
@@ -176,10 +211,19 @@ body {
 }
 
 /* ----------------------------------------------------
+   GRID SYSTEM
+---------------------------------------------------- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* ----------------------------------------------------
    USP CARDS
 ---------------------------------------------------- */
 .usp-grid .usp-card {
-    background: white;
+    background: #ffffff;
     padding: 30px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -191,66 +235,7 @@ body {
     color: var(--olive);
 }
 
-/* ----------------------------------------------------
-   GRID SYSTEM
----------------------------------------------------- */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-/* ----------------------------------------------------
-   SERVICE CARDS
----------------------------------------------------- */
-.service-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 20px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.service-card:hover {
-    transform: translateY(-4px);
-}
-
-.service-img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 12px;
-    filter: brightness(0.82) sepia(0.45) hue-rotate(-10deg) saturate(1.1);
-    transition: 0.3s ease;
-}
-
-.service-card:hover .service-img {
-    filter: brightness(0.95) sepia(0.3);
-}
-
-.service-card p {
-    margin-bottom: 20px;
-}
-
-/* ----------------------------------------------------
-   CTA SECTION
----------------------------------------------------- */
-.cta-section {
-    background: var(--navy);
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-}
-
-.cta-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-}
-
-/* ----------------------------------------------------
-   USP PREMIUM IMPROVEMENTS
----------------------------------------------------- */
+/* Premium styling */
 .usp-premium {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -273,25 +258,15 @@ body {
 .usp-box {
     padding: 38px 32px;
     border-radius: 14px;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.08);
-}
-
-.usp-box h3 {
-    margin-bottom: 14px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
 }
 
 .usp-box p {
     line-height: 1.65;
 }
 
-@media (min-width: 992px) {
-    .grid-3 .usp-box {
-        min-height: 250px;
-    }
-}
-
 /* ----------------------------------------------------
-   DIENSTEN PREMIUM
+   DIENSTEN / SERVICE CARDS
 ---------------------------------------------------- */
 .services-premium h2 {
     position: relative;
@@ -310,41 +285,40 @@ body {
     opacity: 0.35;
 }
 
-.service-box {
-    padding: 28px 24px;
-    border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.10);
-    transition: 0.28s ease;
+.service-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
-.service-box:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+.service-card:hover {
+    transform: translateY(-4px);
 }
 
-.service-box h3 {
-    margin-bottom: 12px;
-    font-weight: 700;
+.service-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: brightness(0.82) sepia(0.45) hue-rotate(-10deg) saturate(1.1);
+    transition: 0.3s ease;
 }
 
-.service-box p {
-    margin-bottom: 24px;
-    line-height: 1.65;
+.service-card:hover .service-img {
+    filter: brightness(0.95) sepia(0.3);
 }
 
-@media (min-width: 992px) {
-    .grid-3 .service-box {
-        min-height: 420px;
-    }
+.service-card p {
+    margin: 16px 0 20px;
 }
 
-.service-card a {
-    margin-top: auto;
-    display: inline-block;
-    padding: 12px 28px;
-}
 /* ----------------------------------------------------
-   HOE IK WERK — PREMIUM IMPROVEMENTS
+   HOE IK WERK
 ---------------------------------------------------- */
 .how-premium {
     padding-top: 100px;
@@ -377,14 +351,14 @@ body {
 .how-box {
     padding: 34px 28px;
     border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
     transition: 0.28s ease;
-    background: white;
+    background: #ffffff;
 }
 
 .how-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 34px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
 }
 
 .how-box h3 {
@@ -394,18 +368,8 @@ body {
     font-weight: 700;
 }
 
-.how-box p {
-    line-height: 1.65;
-}
-
-@media (min-width: 992px) {
-    .how-box {
-        min-height: 220px;
-    }
-}
-
 /* ----------------------------------------------------
-   WAAROM ZEKEROPWEG — PREMIUM IMPROVEMENTS
+   WAAROM ZEKEROPWEG
 ---------------------------------------------------- */
 .why-premium {
     padding-top: 100px;
@@ -443,7 +407,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   REVIEW SECTIE — PREMIUM IMPROVEMENTS
+   REVIEWS
 ---------------------------------------------------- */
 .reviews-premium-title {
     margin-top: 90px;
@@ -500,770 +464,79 @@ body {
 .review-photo img {
     width: 100%;
     border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.10);
     transition: 0.3s ease;
 }
 
 .review-photo img:hover {
     transform: scale(1.02);
-    box-shadow: 0 14px 34px rgba(0,0,0,0.15);
-}
-
-@media (min-width: 992px) {
-    .review-box {
-        min-height: 320px;
-    }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .review-box {
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 50px;
-    }
-
-    .review-photo img {
-        max-width: 80%;
-        margin: 0 auto;
-        display: block;
-        border-radius: 12px;
-    }
-
-    .review-text {
-        max-width: 100%;
-    }
-
-    .review-text h2 {
-        margin-top: 12px;
-    }
-
-    .review-quote {
-        margin-bottom: 26px;
-        font-size: 1.05rem;
-        line-height: 1.6;
-    }
-}
-
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
 }
 
 /* ----------------------------------------------------
-   MOBILE / TABLET OPTIMALISATIE (SAMENGEBRACHT)
----------------------------------------------------- */
-@media (max-width: 768px) {
-
-    /* Containers */
-    .container {
-        width: 92%;
-    }
-
-    /* Header */
-    .header {
-        padding: 8px 0;
-    }
-
-    .site-logo {
-        width: 150px;
-    }
-
-    .menu-toggle {
-        margin-right: 4px;
-    }
-
-    /* Hero */
-    .hero-sub {
-        padding: 110px 0 125px !important;
-    }
-
-    .hero-content-small h1 {
-        font-size: 2.3rem;
-        line-height: 1.2;
-    }
-
-    .hero-content-small p {
-        font-size: 1.1rem;
-    }
-
-    .hero-button {
-        padding: 14px 26px !important;
-    }
-
-    /* Section spacing */
-    .section {
-        padding: 60px 0 !important;
-    }
-
-    /* USP */
-    .usp-box {
-        padding: 26px 22px;
-        margin-bottom: 22px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
-
-    .usp-box h3 {
-        font-size: 1.2rem;
-    }
-
-    /* GRID — 3 kolommen naar 1 */
-    .grid-3 {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* Services */
-    .service-box {
-        padding: 24px 20px;
-        margin-bottom: 20px;
-        border-radius: 12px;
-    }
-
-    .service-img {
-        height: 210px !important;
-    }
-
-    .service-card a {
-        margin-top: 10px !important;
-    }
-
-    /* Hoe ik werk */
-    .how-box {
-        padding: 26px 22px;
-        margin-bottom: 18px;
-    }
-
-    .how-box h3 {
-        font-size: 1.25rem;
-    }
-
-    /* Waarom ZekerOpWeg */
-    .why-text {
-        max-width: 100%;
-        font-size: 1.05rem;
-        line-height: 1.7;
-    }
-
-    /* Reviews */
-    .review-box {
-        flex-direction: column;
-        gap: 18px;
-        margin-bottom: 50px;
-    }
-
-    .review-photo img {
-        max-width: 80%;
-        margin: 0 auto;
-        display: block;
-        border-radius: 12px;
-    }
-
-    .review-text h2 {
-        margin-top: 12px;
-    }
-
-    .review-quote {
-        margin-bottom: 26px;
-        font-size: 1.05rem;
-        line-height: 1.6;
-    }
-
-    /* Footer */
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: left;
-    }
-
-    .footer-logo {
-        width: 130px !important;
-    }
-
-    .footer-premium {
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
-
-    .footer-column ul li {
-        margin-bottom: 8px;
-    }
-}
-
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aankoopadvies | ZekerOpWeg</title>
-    <meta name="description" content="Onafhankelijk aankoopadvies met drie premium pakketten. Zeker naar uw volgende auto, zorgeloos geregeld.">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/favicon/favicon-32.png">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
-</head>
-
-<body class="fade-in">
-
-<!-- HEADER -->
-<header class="header">
-    <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
-        </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-
-<!-- HERO -->
-<section class="hero-sub" style="background-image: url('assets/images/diensten/aankoopadvies.webp');">
-    <div class="overlay-dark"></div>
-    <div class="container hero-content-small">
-        <h1>Onafhankelijk aankoopadvies</h1>
-        <p>Zeker naar uw volgende auto, zorgeloos geregeld.</p>
-    </div>
-</section>
-
-
-<!-- AANKOOPADVIES – PREMIUM PAKKETTEN -->
-<section class="section aankoop-premium">
-    <div class="container">
-
-        <h2>Kies het aankoopadvies dat bij u past</h2>
-        <p class="aankoop-intro">
-            Elk pakket biedt u maximale zekerheid bij de aankoop van uw volgende auto — 
-            van een eerste selectie tot volledige begeleiding en onderhandeling.
-        </p>
-
-        <div class="aankoop-grid">
-
-            <!-- Essentieel -->
-            <div class="pakket-card">
-                <div class="pakket-header">
-                    <h3>Pakket Essentieel</h3>
-                    <span class="pakket-prijs">€149</span>
-                </div>
-
-                <h4>Voor wie</h4>
-                <p>Voor wie zelf wil zoeken, maar zeker wil weten of een auto de moeite waard is om te bekijken.</p>
-
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Persoonlijke intake (telefonisch of videocall)</li>
-                    <li>Selectie van maximaal 2 passende auto's</li>
-                    <li>Marktwaardecontrole</li>
-                    <li>Check op bekende risico's en typekwalen</li>
-                    <li>Screening van de aanbieder</li>
-                    <li>Eindoordeel: wel of niet gaan kijken</li>
-                </ul>
-
-                <h4>Extra voordelen</h4>
-                <ul class="pakket-list">
-                    <li>10% korting op een EV of hybride accucheck (incl. certificaat)</li>
-                    <li>Youngtimers: externe aankoopkeuring aanbevolen</li>
-                </ul>
-
-                <h4>Resultaat</h4>
-                <p>U voorkomt miskopen en verspilt geen tijd aan auto's die het niet waard zijn.</p>
-
-                <a href="contact.html" class="button button-primary pakket-button">Kies Essentieel</a>
-            </div>
-
-
-            <!-- Premium -->
-            <div class="pakket-card pakket-featured">
-                <div class="pakket-badge">Meest gekozen</div>
-
-                <div class="pakket-header">
-                    <h3>Pakket Premium</h3>
-                    <span class="pakket-prijs">€299</span>
-                </div>
-
-                <h4>Voor wie</h4>
-                <p>Voor wie met zekerheid én professionele begeleiding wil kopen.</p>
-
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Alles uit Essentieel</li>
-                    <li>Selectie van 3 tot 5 geschikte auto's</li>
-                    <li>Vergelijking op techniek, onderhoud en prijs</li>
-                    <li>Inzicht in onderhandelingsruimte</li>
-                    <li>1 uitgebreide inspectie op locatie incl. proefrit</li>
-                    <li>Volledige technische checklist</li>
-                    <li>Conclusie: onderbouwd advies op maat</li>
-                </ul>
-
-                <h4>Extra voordelen</h4>
-                <ul class="pakket-list">
-                    <li>10% korting op EV of hybride accucheck (incl. certificaat)</li>
-                    <li>Youngtimers: externe keuring mogelijk via betrouwbare partij</li>
-                </ul>
-
-                <h4>Resultaat</h4>
-                <p>U maakt een volledig onderbouwde keuze en koopt met vertrouwen.</p>
-
-                <a href="contact.html" class="button button-primary pakket-button">Kies Premium</a>
-            </div>
-
-
-            <!-- Full-service -->
-            <div class="pakket-card">
-                <div class="pakket-header">
-                    <h3>Pakket Full-service</h3>
-                    <span class="pakket-prijs">€449</span>
-                </div>
-
-                <h4>Voor wie</h4>
-                <p>Voor wie zonder moeite de beste auto, beste deal én volledige zekerheid wil.</p>
-
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Alles uit Premium</li>
-                    <li>Intake op locatie (tot 50 km inbegrepen)</li>
-                    <li>Onderhandeling door Pepijn</li>
-                    <li>Controle van koopovereenkomst en garantievoorwaarden</li>
-                    <li>Afstemmen afleverpunten (APK, onderhoud, banden, updates)</li>
-                    <li>Extra inspecties mogelijk tegen meerprijs</li>
-                    <li>Aflevercheck bij ophalen</li>
-                </ul>
-
-                <h4>Reistarief</h4>
-                <p>Tot 50 km inbegrepen. Daarboven €0,45 per km (heen én terug).</p>
-
-                <h4>Extra voordelen</h4>
-                <ul class="pakket-list">
-                    <li>10% korting op EV of hybride accucheck</li>
-                    <li>Youngtimers: aanvullende keuring op verzoek</li>
-                </ul>
-
-                <h4>Resultaat</h4>
-                <p>U wordt volledig ontzorgd — van selectie tot aflevering.</p>
-
-                <a href="contact.html" class="button button-primary pakket-button">Kies Full-service</a>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- CTA-SECTIE -->
-<section class="cta-section">
-    <div class="container">
-        <h2>Zeker naar uw volgende auto?</h2>
-        <p style="margin-bottom:25px;">Plan een gratis kennismaking en ontdek welk pakket het beste bij u past.</p>
-        <a href="contact.html" class="button button-secondary" style="font-size:1.1rem;">Plan een gratis kennismaking</a>
-    </div>
-</section>
-
-
-<!-- FOOTER -->
-<footer class="footer footer-premium">
-    <div class="container">
-        <div class="footer-grid">
-
-            <div class="footer-column">
-                <img src="assets/images/logos/zekeropweg-logo.png" class="footer-logo" alt="ZekerOpWeg logo">
-                <p>Onafhankelijk aankoopadvies, EV-accudiagnose & ondersteuning bij boetes.</p>
-            </div>
-
-            <div class="footer-column">
-                <h4>Navigatie</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                    <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <ul>
-                    <li>advies@zekeropweg.nu</li>
-                    <li>06-23452349</li>
-                    <li>www.zekeropweg.nu</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <p class="footer-bottom">© ZekerOpWeg – onafhankelijke begeleiding & EV-diagnose</p>
-    </div>
-</footer>
-
-<script src="scripts/scripts.js?v=1.0.1"></script>
-
-</body>
-</html>
-
-/* ----------------------------------------------------
-   BRANDBOOSTERS PREMIUM STYLING AANKOOPADVIES
----------------------------------------------------- */
-
-/* HERO TITLE (luxer & filmisch) */
-.hero-title-brand {
-    font-size: 3.1rem;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-}
-
-.hero-subtitle-brand {
-    font-size: 1.35rem;
-    opacity: 0.95;
-    margin-top: 6px;
-}
-
-/* Intro sectie */
-.brand-intro {
-    text-align: left;
-    max-width: 900px;
-}
-
-.brand-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 16px;
-}
-
-.brand-text {
-    font-size: 1.18rem;
-    line-height: 1.75;
-    color: var(--text-dark);
-    max-width: 750px;
-    opacity: 0.95;
-}
-
-/* ----------------------------------------------------
-   PACKAGE GRID
----------------------------------------------------- */
-.brand-package-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 40px;
-    margin-top: 40px;
-}
-
-@media (max-width: 992px) {
-    .brand-package-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
-
-/* ----------------------------------------------------
-   PACKAGE CARD
----------------------------------------------------- */
-.brand-package {
-    background: white;
-    padding: 36px 32px;
-    border-radius: 16px;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    position: relative;
-}
-
-.brand-package:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
-}
-
-/* Card headers */
-.brand-package-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.brand-package-header h3 {
-    font-size: 1.45rem;
-    font-weight: 800;
-    color: var(--navy);
-}
-
-/* Price tag */
-.price-tag {
-    font-size: 1.3rem;
-    font-weight: 700;
-    background: var(--olive);
-    color: white;
-    padding: 6px 16px;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-}
-
-/* Description */
-.package-description {
-    font-size: 1.1rem;
-    margin-bottom: 18px;
-    color: var(--text-muted);
-}
-
-/* Bullet list */
-.brand-list {
-    list-style: none;
-    margin: 0 0 22px 0;
-    padding: 0;
-}
-
-.brand-list li {
-    margin-bottom: 10px;
-    padding-left: 22px;
-    position: relative;
-    line-height: 1.55;
-    color: var(--text-dark);
-}
-
-.brand-list li::before {
-    content: "•";
-    font-size: 1.3rem;
-    color: var(--olive);
-    position: absolute;
-    left: 0;
-    top: -3px;
-}
-
-/* Extra info block */
-.brand-extra {
-    background: #f7f6f3;
-    padding: 18px 22px;
-    border-radius: 12px;
-    margin-bottom: 22px;
-    border-left: 4px solid var(--gold);
-}
-
-.brand-extra strong {
-    color: var(--navy);
-    font-weight: 700;
-}
-
-.brand-extra ul {
-    margin-top: 8px;
-    padding-left: 18px;
-}
-
-.brand-extra ul li {
-    margin-bottom: 6px;
-    font-size: 0.98rem;
-}
-
-/* Buttons */
-.brand-btn {
-    display: block;
-    text-align: center;
-    padding: 14px 0;
-    font-size: 1.05rem;
-    margin-top: 10px;
-}
-
-/* ----------------------------------------------------
-   FEATURED CARD ("Meest gekozen")
----------------------------------------------------- */
-.featured {
-    border: 2px solid var(--gold);
-    box-shadow: 0 12px 34px rgba(0,0,0,0.12);
-}
-
-.featured:hover {
-    box-shadow: 0 18px 44px rgba(0,0,0,0.18);
-}
-
-.featured-badge {
-    position: absolute;
-    top: -12px;
-    right: 18px;
-    background: var(--gold);
-    color: white;
-    padding: 5px 14px;
-    font-size: 0.85rem;
-    border-radius: 6px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* ----------------------------------------------------
-   CTA alignment fix
----------------------------------------------------- */
-.cta-section p {
-    max-width: 600px;
-    margin: 0 auto 20px auto;
-    font-size: 1.1rem;
-}
-
-.brand-intro .container {
-    width: 90%;
-    max-width: 1200px;   /* zelfde als homepage */
-    margin: 0 auto;      /* centreren */
-    text-align: left;    /* zelfde uitlijning als homepage */
-}
-
-/* ----------------------------------------------------
-   PAKKETTEN SECTIE — ALIGN MET HOMEPAGE
----------------------------------------------------- */
-
-/* Zelfde container breedte als homepage */
-.brand-package-grid {
-    width: 100%;
-    max-width: 1200px;      /* exact zelfde max-width */
-    margin: 0 auto;         /* centreren */
-    gap: 40px;              /* gelijk aan homepage grids */
-}
-
-/* Zelfde top- en bottom spacing als index-secties */
-.section {
-    padding: 80px 0;
-}
-
-/* Cards strakker gecentreerd zoals services op homepage */
-.brand-package {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Uitlijning verhogen naar homepage aesthetic */
-.brand-package h3 {
-    margin-top: 0;
-}
-
-/* prijs badge iets dichter naar boven net als service-cards */
-.price-tag {
-    margin-top: 4px;
-}
-
-/* Meest gekozen badge exact centreren boven card */
-.featured .featured-badge {
-    left: 50%;
-    transform: translateX(-50%);
-}
-/* ----------------------------------------------------
-   AANKOOPADVIES – MOBIEL PAKKETTEN
----------------------------------------------------- */
-@media (max-width: 768px) {
-
-    /* Pakketten onder elkaar zoals op de homepage-cards */
-    .brand-package-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    /* Cards full-width en mooi gecentreerd */
-    .brand-package,
-    .brand-package.featured {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-    }
-
-    /* Binnenkant iets compacter op mobiel */
-    .brand-package-header {
-        align-items: flex-start;
-    }
-
-    .brand-package .price-tag {
-        margin-top: 6px;
-    }
-
-    .brand-extra ul {
-        padding-left: 18px;
-    }
-
-    .brand-btn {
-        width: 100%;
-        text-align: center;
-        margin-top: 15px;
-    }
-}
-
-/* ----------------------------------------------------
-   AANKOOPADVIES – CTA MATCHT HOMEPAGE
+   CTA-GEDEELTE ALGEMEEN
 ---------------------------------------------------- */
 .cta-section {
     background: var(--navy);
-    color: white;
+    color: #ffffff;
+    padding: 80px 0;
     text-align: center;
-    padding: 90px 0; /* zelfde als homepage */
 }
 
 .cta-section h2 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 18px;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
 }
 
 .cta-section p {
-    font-size: 1.15rem;
-    opacity: 0.9;
-    margin-bottom: 32px;
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+    font-size: 1.1rem;
 }
 
-.cta-section .button-secondary {
-    background: white;
-    color: var(--navy);
-    padding: 16px 34px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    border: none;
-    transition: var(--transition);
-}
-
-.cta-section .button-secondary:hover {
-    background: var(--cream);
-}
 /* ----------------------------------------------------
-   AANKOOPADVIES – FOOTER ALIGN MET HOMEPAGE
+   FOOTER
 ---------------------------------------------------- */
-
 .footer.footer-premium {
     padding-top: 90px;
     padding-bottom: 50px;
     background: var(--navy);
-    color: white;
+    color: #ffffff;
 }
 
-/* Kolommen exact zoals homepage */
 .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
 }
 
-/* Footer titels */
 .footer-column h4 {
-    font-weight: 700;
     margin-bottom: 18px;
+    font-weight: 700;
     font-size: 1.1rem;
 }
 
-/* List items spacing */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .footer-column ul li {
     margin-bottom: 10px;
 }
 
-/* Footer logo formaat */
 .footer-logo {
     width: 160px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
-/* “Wit maar premium” links */
 .footer a,
 .footer a:visited {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     transition: 0.25s ease;
 }
@@ -1273,7 +546,6 @@ body {
     padding-left: 3px;
 }
 
-/* Footer bottom */
 .footer-bottom {
     margin-top: 40px;
     text-align: center;
@@ -1281,653 +553,257 @@ body {
     font-size: 0.95rem;
 }
 
-/* Mobiel weergave – exact als homepage */
-@media (max-width: 768px) {
-    .footer-grid {
+/* ----------------------------------------------------
+   AANKOOPADVIES – PREMIUM PAKKETTEN
+---------------------------------------------------- */
+.aankoop-premium h2 {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.aankoop-premium h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 90px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    opacity: 0.35;
+}
+
+.aankoop-intro {
+    max-width: 720px;
+    margin-top: 6px;
+    margin-bottom: 30px;
+    font-size: 1.08rem;
+}
+
+/* Grid met brandbooster-pakketten */
+.brand-package-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Card */
+.brand-package {
+    background: #ffffff;
+    padding: 32px 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.brand-package:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Header bovenaan de card */
+.brand-package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
+
+.brand-package-header h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+/* Prijsbadge */
+.price-tag {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: var(--olive);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Subkoppen in kaart */
+.brand-package h4 {
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-size: 1.02rem;
+}
+
+/* Bulletlijsten */
+.brand-list {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.brand-list li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+}
+
+.brand-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    font-size: 1.2rem;
+    color: var(--olive);
+}
+
+/* Resultaat-paragraaf */
+.brand-package p {
+    margin-bottom: 8px;
+}
+
+/* Meest gekozen */
+.featured {
+    border: 2px solid var(--gold);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #ffffff;
+    padding: 4px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Pakket-button */
+.pakket-button {
+    margin-top: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE – TABLET & MOBIEL (CONTENT)
+---------------------------------------------------- */
+@media (max-width: 992px) {
+    .grid-3 {
         grid-template-columns: 1fr;
+    }
+
+    .brand-package-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-sub {
+        padding: 130px 0 140px;
+    }
+
+    .hero-premium h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-premium p {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .header {
+        padding: 8px 0;
+    }
+
+    .site-logo {
+        width: 150px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .usp-box {
+        padding: 26px 22px;
+        margin-bottom: 22px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .how-box {
+        padding: 26px 22px;
+        margin-bottom: 18px;
+    }
+
+    .why-text {
+        max-width: 100%;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .reviews-premium {
+        margin-bottom: 80px;
+    }
+
+    .review-box {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .review-photo img {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .cta-section {
+        padding: 70px 0;
+    }
+
+    /* Footer stacked */
+    .footer-grid {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
         gap: 32px;
     }
 
     .footer-logo {
         width: 140px;
-        margin-bottom: 16px;
+        margin: 0 auto 16px auto;
     }
 
-    .footer.footer-premium {
-        padding-top: 70px;
-        padding-bottom: 40px;
-    }
-}
-
-/* ----------------------------------------------------
-   FIX: HEADER OVERSCROLL OP MOBIEL
----------------------------------------------------- */
-
-@media (max-width: 768px) {
-
-    /* voorkom overscroll door breedtes */
-    body, html {
-        overflow-x: hidden;
-    }
-
-    .header-container {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* menu ul mag niet te breed worden */
-    .main-nav ul {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    /* logo iets kleiner zodat hij nooit buiten beeld valt */
-    .site-logo {
-        max-width: 150px;
-        height: auto;
-    }
-
-    /* menu openklappen: altijd onder de header, niet ernaast */
-    #mainNav {
-        width: 100%;
-    }
-}
-
-/* ----------------------------------------------------
-   MOBIEL MENU – PREMIUM DROPDOWN
----------------------------------------------------- */
-
-@media (max-width: 768px) {
-
-    /* verberg menu standaard */
-    .main-nav {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        border-top: 1px solid rgba(0,0,0,0.05);
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height .35s ease, opacity .25s ease;
-        z-index: 50;
-    }
-
-    /* actief menu */
-    .main-nav.open {
-        max-height: 380px;        /* genoeg ruimte voor 6 items */
-        opacity: 1;
-    }
-
-    /* menu-items onder elkaar */
-    .main-nav ul {
-        flex-direction: column;
-        gap: 0;
-        padding: 15px 0;
-    }
-
-    .main-nav li {
-        width: 100%;
-        padding: 10px 20px;
-    }
-
-    .main-nav a {
-        display: block;
-        width: 100%;
-        padding: 14px 0;
-        border-radius: 6px;
-    }
-
-    /* active kleur */
-    .main-nav a.active {
-        color: var(--olive);
-        font-weight: 700;
-    }
-}
-
-/* hamburger button premium stijl */
-.menu-toggle {
-    font-size: 1.9rem;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.menu-toggle:active {
-    transform: scale(0.9);
-}
-
-/* ----------------------------------------------------
-   PREMIUM HAMBURGER ANIMATIE
----------------------------------------------------- */
-
-.menu-toggle {
-    width: 32px;
-    height: 26px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    z-index: 200;
-}
-
-.menu-toggle .bar {
-    width: 100%;
-    height: 3px;
-    background: var(--navy);
-    border-radius: 3px;
-    transition: 0.35s ease;
-}
-
-/* MENU OPEN ANIMATIE */
-.menu-toggle.open .bar:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-}
-
-.menu-toggle.open .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.open .bar:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-}
-
-/* donker menu achtergrond → bars worden wit voor contrast */
-.main-nav.open + .menu-toggle .bar {
-    background: var(--navy);
-}
-
-/* Mobiele styling */
-@media (max-width: 768px) {
-    .menu-toggle {
-        margin-right: 6px;
-    }
-}
-
-/* ----------------------------------------------------
-   PREMIUM MOBILE MENU OVERLAY (Optie B)
----------------------------------------------------- */
-
-#menuOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(14, 26, 42, 0.55); /* Navy tint + luxe transparantie */
-    backdrop-filter: blur(3px); /* heel subtiel, premium */
-    display: none;
-    z-index: 15;
-}
-
-/* overlay actief */
-#menuOverlay.active {
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: white;
-        padding: 90px 30px 40px;
-        box-shadow: -4px 0 18px rgba(0,0,0,0.12);
-        transition: right 0.35s ease;
-        z-index: 20;
-    }
-
-    .main-nav.open {
-        right: 0;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 18px;
-    }
-
-    .main-nav a {
-        font-size: 1.15rem;
-        font-weight: 600;
-        padding: 10px 0;
-    }
-}
-
-/* Verberg het hamburgermenu op desktop */
-.menu-toggle {
-    display: none;
-}
-
-/* Toon het hamburgermenu alleen op mobiel */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-}
-
-/* --- FOOTER NAVIGATIE FIX --- */
-
-.footer-column ul {
-    list-style: none;        /* verwijdert de bolletjes */
-    padding-left: 0;         /* geen inspringing */
-    margin: 0;               /* netjes uitlijnen */
-    text-align: center;      /* centreert de tekst */
-}
-
-.footer-column ul li {
-    margin: 0.35rem 0;       /* ruimte tussen links */
-}
-
-.footer {
-    padding-bottom: 40px;    /* voorkomt dat tekst bijna uit beeld valt op mobiel */
-}
-
-/* extra optimalisatie voor heel kleine schermen */
-@media (max-width: 480px) {
-    .footer {
-        padding-bottom: 55px;  /* extra ruimte zodat alles perfect zichtbaar blijft */
-    }
-}
-
-/* --- FOOTER MOBILE OPTIMALISATIE BRANDBOOSTER LEVEL --- */
-
-/* Zorg dat alle footer-kolommen gecentreerd en netjes gestapeld worden */
-@media (max-width: 768px) {
-    .footer-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .footer-column:last-child {
         text-align: center;
-        gap: 35px;
-    }
-
-    .footer-column {
-        width: 100%;
-        max-width: 260px; /* mooie premium breedte */
-        margin: 0 auto;
-    }
-
-    .footer-column ul li {
-        margin: 8px 0;     /* meer ruimte tussen elke link */
-    }
-
-    .footer {
-        padding-bottom: 70px; /* voorkomt dat tekst raakt aan onderzijde */
-    }
-
-    .footer p,
-    .footer li,
-    .footer a {
-        font-size: 15px;
-        line-height: 1.45;
-    }
-}
-
-/* Extra fix voor heel kleine schermen (zoals iPhone SE / mini) */
-@media (max-width: 390px) {
-    .footer {
-        padding-bottom: 85px;
-    }
-}
-
-/* --- PREMIUM BRANDBOOSTER HEADER FIX --- */
-
-/* Hamburger streepjes goud */
-.menu-toggle .bar {
-    background-color: #c4a962 !important;
-}
-
-/* Active nav link goud */
-.main-nav a.active {
-    color: #c4a962 !important;
-}
-
-/* Hover state (premium zacht goud) */
-.main-nav a:hover {
-    color: #d7c48e;
-}
-
-/* Hamburger streepjes goud */
-.menu-toggle .bar {
-    background-color: #c4a962 !important;
-}
-/* Achtergrond van het mobiele overlay menu */
-#menuOverlay {
-    background: rgba(12, 21, 36, 0.94); /* premium navy transparant */
-    backdrop-filter: blur(6px);         /* luxe, zacht vervaagd effect */
-}
-
-/* Links binnen het mobiele overlay-menu */
-#menuOverlay .overlay-nav a {
-    display: block;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.25rem;
-    padding: 16px 0;
-    text-align: center;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
-
-/* Hover → luxe goud */
-#menuOverlay .overlay-nav a:hover {
-    color: #c4a962;
-}
-#menuOverlay .overlay-nav a.active {
-    color: #c4a962 !important;
-}
-/* Dunne lijnen tussen de links voor luxe structuur */
-#menuOverlay .overlay-nav a:not(:last-child) {
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-/* ----------------------------------------------------
-   MOBILE MENU FIX (HAMBURGER + SLUITKNOP)
----------------------------------------------------- */
-
-/* Toon hamburger op mobiele schermen */
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 32px;
-        height: 28px;
-        padding: 0;
-        z-index: 9999;
-    }
-
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: #c4a962 !important; /* jouw premium goud */
-        border-radius: 3px;
-        display: block;
-    }
-
-    /* Verberg de desktop navigatie op mobiel */
-    .main-nav {
-        display: none !important;
     }
 }
 
 /* ----------------------------------------------------
-   BRAND BOOSTER – HAMBURGER & MOBILE OVERLAY FIX
+   RESPONSIVE – MOBIEL MENU (<= 900px)
 ---------------------------------------------------- */
-
-/* Laat hamburger-knop zien op mobiel */
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 32px;
-        height: 26px;
-        padding: 0;
-        border: none;
-        background: none;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    /* De drie streepjes van het hamburger-icoon */
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: #c4a962 !important; /* premium goud */
-        border-radius: 3px;
-    }
-
-    /* Desktop navigatie verbergen op mobiel */
-    .main-nav {
-        display: none !important;
-    }
-}
-
-/* ----------------------------------------------------
-   SLUITKNOP – PREMIUM GOUD + ZICHTBAAR
----------------------------------------------------- */
-
-.close-menu {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    font-size: 2rem;
-    color: #c4a962 !important;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: none;
-    z-index: 99999;
-}
-
-/* Alleen tonen op mobiel */
-@media (max-width: 900px) {
-    .close-menu {
-        display: block;
-    }
-}
-
-/* ----------------------------------------------------
-   OVERLAY MENU – PREMIUM NAVY + GOUD
----------------------------------------------------- */
-
-#menuOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(14, 26, 42, 0.60);
-    backdrop-filter: blur(6px);
-    display: none;
-    z-index: 9980;
-}
-
-#menuOverlay.active {
-    display: block;
-}
-
-/* Slide-in menu */
-@media (max-width: 900px) {
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 72%;
-        height: 100vh;
-        background: #ffffff;
-        padding: 100px 32px 40px;
-        box-shadow: -6px 0 22px rgba(0,0,0,0.18);
-        transition: right 0.35s ease;
-        z-index: 9990;
-    }
-
-    .main-nav.open {
-        right: 0;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .main-nav a {
-        font-size: 1.22rem;
-        font-weight: 600;
-        padding: 12px 0;
-        color: #0c1524; /* navy */
-    }
-
-    .main-nav a.active {
-        color: #c4a962 !important; /* goud */
-    }
-
-    .main-nav a:hover {
-        color: #d5c393;
-    }
-}
-/* ----------------------------------------------------
-   BRAND BOOSTER – MOBILE MENU FIX
----------------------------------------------------- */
-
-/* Toon hamburger op mobiel */
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 30px;
-        height: 24px;
-        padding: 0;
-        margin: 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    /* De drie streepjes */
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: #c4a962 !important; /* premium goud */
-        border-radius: 3px;
-        display: block;
-    }
-
-    /* Desktop menu verbergen op mobiel */
-    .main-nav {
-        display: none !important;
-    }
-}
-/* Toon hamburger op mobiel */
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 32px;
-        height: 26px;
-        padding: 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: #c4a962 !important; /* premium goud */
-        border-radius: 3px;
-    }
-
-    /* Desktop menu verbergen op mobiel */
-    .main-nav {
-        display: none !important;
-    }
-}
-
-/* Sluitknop (kruisje) standaard verbergen */
-.close-menu {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    font-size: 2rem;
-    color: #c4a962;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: none;
-    z-index: 10000;
-}
-
-/* Sluitknop tonen als menu open is */
-.main-nav.open ~ .close-menu,
-#menuOverlay.active ~ .close-menu {
-    display: block !important;
-}
-/* ----------------------------------------------------
-   BRAND BOOSTER – FORCEER SLIDE-IN MENU ALWAYS WORKING
----------------------------------------------------- */
-
 @media (max-width: 900px) {
 
-    /* Verstopt menu standaard rechts */
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: -100% !important;
-        width: 72%;
-        height: 100vh;
-        background: #ffffff;
-        padding: 100px 32px 40px;
-        box-shadow: -6px 0 22px rgba(0,0,0,0.18);
-        transition: right 0.35s ease;
-        z-index: 9990;
-        display: flex !important;          /* <-- BELANGRIJK! */
-        flex-direction: column !important; /* <-- BELANGRIJK! */
-    }
-
-    /* Wanneer open → schuift naar binnen */
-    .main-nav.open {
-        right: 0 !important;
-    }
-
-    .main-nav ul {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-}
-
-/* ----------------------------------------------------
-   PREMIUM MOBILE MENU – SLIDE-IN (Brandbooster)
----------------------------------------------------- */
-
-/* Desktop menu zichtbaar */
-.main-nav {
-    display: flex;
-}
-
-.menu-toggle {
-    display: none;
-}
-
-/* Overlay */
-#menuOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(14, 26, 42, 0.60);
-    backdrop-filter: blur(6px);
-    display: none;
-    z-index: 90;
-}
-
-#menuOverlay.active {
-    display: block;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-
-    /* Hamburger zichtbaar */
+    /* Hamburger tonen */
     .menu-toggle {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 32px;
-        height: 24px;
+        height: 22px;
+        padding: 0;
+        margin: 0;
         background: none;
         border: none;
         cursor: pointer;
@@ -1937,23 +813,23 @@ body {
     .menu-toggle .bar {
         width: 100%;
         height: 3px;
-        background: #c4a962; /* premium goud */
+        background-color: var(--gold);
         border-radius: 3px;
         transition: 0.35s ease;
     }
 
     /* Hamburger → kruis */
     .menu-toggle.open .bar:nth-child(1) {
-        transform: translateY(10px) rotate(45deg);
+        transform: translateY(9px) rotate(45deg);
     }
     .menu-toggle.open .bar:nth-child(2) {
         opacity: 0;
     }
     .menu-toggle.open .bar:nth-child(3) {
-        transform: translateY(-10px) rotate(-45deg);
+        transform: translateY(-9px) rotate(-45deg);
     }
 
-    /* Desktop nav verbergen */
+    /* Desktop nav als slide-in menu */
     .main-nav {
         position: fixed;
         top: 0;
@@ -1966,176 +842,28 @@ body {
         flex-direction: column;
         transition: right 0.35s ease;
         z-index: 150;
-        box-shadow: -6px 0 22px rgba(0,0,0,0.18);
+        box-shadow: -6px 0 22px rgba(0, 0, 0, 0.18);
     }
 
-    /* Slide-in actief */
     .main-nav.open {
         right: 0;
     }
 
-    /* Nav items */
     .main-nav ul {
-        display: flex;
         flex-direction: column;
         gap: 24px;
         padding: 0;
         margin: 0;
     }
 
+    .main-nav li {
+        width: 100%;
+    }
+
     .main-nav a {
-        font-size: 1.22rem;
+        font-size: 1.18rem;
         font-weight: 600;
-        color: #0c1524;
-    }
-
-    .main-nav a.active {
-        color: #c4a962 !important;
-    }
-
-    .main-nav a:hover {
-        color: #d5c393;
+        padding: 4px 0;
+        display: block;
     }
 }
-
-/* ----------------------------------------------------
-   PREMIUM FOOTER DESKTOP ALIGNMENT FIX
----------------------------------------------------- */
-
-@media (min-width: 769px) {
-
-    /* Footer breder gecentreerd */
-    .footer-grid {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; 
-        gap: 60px; /* minder ruimte tussen kolommen */
-        align-items: flex-start;
-        text-align: left; /* premium uitstraling */
-    }
-
-    /* Kolommen netjes uitgelijnd */
-    .footer-column {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    /* Navigatie kolom rechterlijn */
-    .footer-column ul {
-        margin-top: 6px;
-    }
-
-    /* Zorgt dat logo + tekst niet te breed uitrekken */
-    .footer-column:first-child {
-        max-width: 340px;
-    }
-
-    /* Contact kolom compact */
-    .footer-column:last-child {
-        text-align: right;
-        max-width: 260px;
-    }
-
-    /* Footer tekstspacing */
-    .footer-bottom {
-        margin-top: 50px;
-    }
-}
-
-/* ----------------------------------------------------
-   PREMIUM DESKTOP FOOTER FIX (3 kolommen perfect centreren)
----------------------------------------------------- */
-@media (min-width: 769px) {
-
-    .footer-grid {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 40% 30% 30%;
-        gap: 60px;
-        align-items: flex-start;
-    }
-
-    /* Linkerkolom breder → past bij logo + tekst */
-    .footer-column:first-child {
-        text-align: left;
-    }
-
-    /* Navigatie perfect in het midden */
-    .footer-column:nth-child(2) {
-        text-align: center;
-    }
-
-    /* Contact rechts uitlijnen */
-    .footer-column:last-child {
-        text-align: right;
-    }
-
-    .footer-column ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .footer-column ul li {
-        margin: 8px 0;
-    }
-}
-
-/* ----------------------------------------------------
-   PREMIUM FOOTER – FINAL CLEAN VERSION
----------------------------------------------------- */
-
-/* Desktop layout */
-@media (min-width: 769px) {
-
-    .footer-grid {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.2fr 1fr 1fr;  /* perfecte balans */
-        gap: 80px;
-        align-items: flex-start;
-    }
-
-    /* Links: logo + tekst */
-    .footer-column:first-child {
-        text-align: left;
-    }
-
-    /* Midden: Navigatie */
-    .footer-column:nth-child(2) {
-        text-align: center;
-    }
-
-    /* Rechts: Contact */
-    .footer-column:last-child {
-        text-align: right;
-    }
-
-    .footer-column ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-column ul li {
-        margin: 8px 0;
-    }
-}
-
-/* Mobiel blijft zoals hij was */
-@media (max-width: 768px) {
-    .footer-grid {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 32px;
-    }
-}
-
-
-
-
