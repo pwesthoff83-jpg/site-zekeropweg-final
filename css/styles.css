@@ -807,6 +807,86 @@ a:visited {
     }
 }
 
+/* =========================
+   HERO -- BRANDBOOSTER FIX
+   ========================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* hero zichtbaar en juiste hoogte */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.overlay-dark {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.55); /* perfecte brandbooster overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   VERWIJDER FOUTE RUIMTE 
+   ========================= */
+
+section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.intro,
+.diensten,
+.cta-section {
+    margin-top: 0 !important;
+    padding-top: 80px; /* consistent */
+}
+
+/* =========================
+   BUTTON FIX
+   ========================= */
+
+.button-primary {
+    background: #d3c29c;
+    color: #111;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+
+.button-primary:hover {
+    background: #c7b891;
+}
+
 
 
 
