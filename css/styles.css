@@ -887,6 +887,137 @@ section {
     background: #c7b891;
 }
 
+/* =========================
+   HERO AANKOOPADVIES FIX
+   ========================= */
+
+.hero-aankoopadvies {
+    position: relative;
+    width: 100%;
+    height: 55vh; /* iets lager dan home hero */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-aankoopadvies .overlay-dark {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.55); /* premium overlay */
+    z-index: 1;
+}
+
+.hero-aankoopadvies .hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.hero-aankoopadvies h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero-aankoopadvies p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+/* =========================
+   SECTION SPACING FIX
+   ========================= */
+.intro, section {
+    margin-top: 0 !important;
+    padding-top: 60px;
+}
+/* =============================
+   AANKOOPADVIES – PAKKET CARDS
+   ============================= */
+
+.pakketten-section {
+    padding: 80px 0;
+    background: #f8f6ef; /* zachte premium achtergrond */
+}
+
+.pakketten-container {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.pakket-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px;
+    flex: 1;
+    max-width: 420px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.pakket-card h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.pakket-card .prijs {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d8c7a0; /* goudkleur */
+    margin-bottom: 20px;
+}
+
+/* Lijststijl */
+.pakket-card ul {
+    margin-top: 10px;
+    padding-left: 22px;
+}
+
+.pakket-card ul li {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+/* ================
+   MEEST GEKOZEN
+   ================ */
+
+.pakket-highlight {
+    border-color: #d8c7a0; /* gouden rand */
+    transform: scale(1.03);
+}
+
+.pakket-highlight .badge {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d8c7a0;
+    color: #000;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
 
 
 
