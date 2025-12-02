@@ -544,64 +544,7 @@ body {
         line-height: 1.6;
     }
 }
-/* ----------------------------------------------------
-   FOOTER — PREMIUM IMPROVEMENTS
----------------------------------------------------- */
-.footer-premium {
-    padding-top: 90px;
-    padding-bottom: 60px;
-    position: relative;
-}
 
-.footer-premium::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 3px;
-    background: var(--gold);
-    opacity: 0.35;
-    border-radius: 2px;
-}
-
-.footer-column h4 {
-    margin-bottom: 18px;
-    font-weight: 700;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-logo {
-    width: 160px;
-    margin-bottom: 18px;
-}
-
-.footer a {
-    transition: 0.25s ease;
-}
-
-.footer a:hover {
-    opacity: 0.75;
-    padding-left: 4px;
-}
-
-/* Default footer resets */
-.footer a,
-.footer a:visited,
-.footer a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/* Footer desktop layout */
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
 }
 
 /* ----------------------------------------------------
@@ -2138,6 +2081,58 @@ body {
 
     .footer-column ul li {
         margin: 8px 0;
+    }
+}
+
+/* ----------------------------------------------------
+   PREMIUM FOOTER – FINAL CLEAN VERSION
+---------------------------------------------------- */
+
+/* Desktop layout */
+@media (min-width: 769px) {
+
+    .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;  /* perfecte balans */
+        gap: 80px;
+        align-items: flex-start;
+    }
+
+    /* Links: logo + tekst */
+    .footer-column:first-child {
+        text-align: left;
+    }
+
+    /* Midden: Navigatie */
+    .footer-column:nth-child(2) {
+        text-align: center;
+    }
+
+    /* Rechts: Contact */
+    .footer-column:last-child {
+        text-align: right;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-column ul li {
+        margin: 8px 0;
+    }
+}
+
+/* Mobiel blijft zoals hij was */
+@media (max-width: 768px) {
+    .footer-grid {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
     }
 }
 
