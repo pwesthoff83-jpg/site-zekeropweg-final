@@ -1652,4 +1652,37 @@ body {
     color: #d7c48e;
 }
 
+/* Hamburger streepjes goud */
+.menu-toggle .bar {
+    background-color: #c4a962 !important;
+}
+/* Achtergrond van het mobiele overlay menu */
+#menuOverlay {
+    background: rgba(12, 21, 36, 0.94); /* premium navy transparant */
+    backdrop-filter: blur(6px);         /* luxe, zacht vervaagd effect */
+}
+
+/* Links binnen het mobiele overlay-menu */
+#menuOverlay .overlay-nav a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 16px 0;
+    text-align: center;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* Hover → luxe goud */
+#menuOverlay .overlay-nav a:hover {
+    color: #c4a962;
+}
+#menuOverlay .overlay-nav a.active {
+    color: #c4a962 !important;
+}
+/* Dunne lijnen tussen de links voor luxe structuur */
+#menuOverlay .overlay-nav a:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
