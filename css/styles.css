@@ -1,5 +1,5 @@
 /* =========================================
-   KLEUREN & BASIS STYLING
+   KLEUREN & BASIS
 ========================================= */
 
 :root {
@@ -8,28 +8,24 @@
     --cream: #f6f6f2;
     --white: #ffffff;
     --text-dark: #0a0a0a;
-    --text-light: #ffffff;
 }
 
 body {
     margin: 0;
-    padding: 0;
     font-family: "Segoe UI", sans-serif;
+    background: var(--cream);
     color: var(--text-dark);
-    background-color: var(--cream);
     overflow-x: hidden;
 }
 
-/* Fade-in */
 .fade-in {
-    animation: fadeIn 0.7s ease-out;
+    animation: fadeIn .7s ease-out;
 }
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Containers */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -39,15 +35,14 @@ body {
 /* =========================================
    HEADER
 ========================================= */
-
 .header {
     position: fixed;
     top: 0;
     width: 100%;
     background: var(--white);
-    padding: 18px 0;
+    padding: 20px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    z-index: 50;
+    z-index: 100;
 }
 
 .header-container {
@@ -60,7 +55,7 @@ body {
     height: 55px;
 }
 
-/* Menu */
+/* NAV */
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -70,10 +65,9 @@ body {
 }
 
 .main-nav a {
-    text-decoration: none;
     color: var(--navy);
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1.05rem;
 }
 
 .main-nav a.active {
@@ -83,36 +77,21 @@ body {
 /* MOBILE MENU */
 .menu-toggle {
     display: none;
-    flex-direction: column;
-    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 30;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.menu-toggle .bar {
+.bar {
     width: 24px;
     height: 3px;
     background: var(--navy);
     border-radius: 2px;
 }
 
-#menuOverlay {
-    position: fixed;
-    inset: 0;
-    display: none;
-    background: rgba(7, 19, 37, 0.45);
-    backdrop-filter: blur(3px);
-    z-index: 15;
-}
-
-#menuOverlay.active {
-    display: block;
-}
-
 @media (max-width: 900px) {
-
     .menu-toggle {
         display: flex;
     }
@@ -124,10 +103,10 @@ body {
         width: 70%;
         height: 100vh;
         background: var(--white);
-        padding: 90px 30px;
-        box-shadow: -6px 0 18px rgba(0,0,0,0.15);
-        transition: right .35s ease;
-        z-index: 20;
+        padding: 100px 30px;
+        box-shadow: -4px 0 16px rgba(0,0,0,0.2);
+        transition: right .3s ease;
+        z-index: 200;
     }
 
     .main-nav.open {
@@ -136,12 +115,12 @@ body {
 
     .main-nav ul {
         flex-direction: column;
-        gap: 20px;
+        gap: 22px;
     }
 }
 
 /* =========================================
-   HERO SECTIONS
+   HERO SUB
 ========================================= */
 
 .hero-sub {
@@ -149,11 +128,11 @@ body {
     width: 100%;
     height: 450px;
     background-size: cover;
-    background-position: center 65%;
+    background-position: center;
+    margin-top: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 90px; /* ruimte onder header */
 }
 
 .overlay-dark {
@@ -163,20 +142,14 @@ body {
 }
 
 .hero-content-small {
-    position: relative;
-    text-align: center;
     color: var(--white);
-    max-width: 650px;
+    text-align: center;
+    position: relative;
 }
 
 .hero-content-small h1 {
     font-size: 2.6rem;
-    font-weight: 700;
     margin-bottom: 10px;
-}
-
-.hero-content-small p {
-    font-size: 1.2rem;
 }
 
 /* =========================================
@@ -184,28 +157,26 @@ body {
 ========================================= */
 
 .section {
-    padding: 90px 0;
+    padding: 95px 0;
 }
 
 .section h2 {
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: var(--navy);
     text-align: center;
-    margin-bottom: 10px;
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+    color: var(--navy);
 }
 
 .aankoop-intro {
-    max-width: 760px;
-    margin: 0 auto;
     text-align: center;
-    font-size: 1.15rem;
-    line-height: 1.6;
+    max-width: 750px;
+    margin: 0 auto;
     color: #444;
+    font-size: 1.15rem;
 }
 
 /* =========================================
-   AANKOOPADVIES – PAKKETTEN GRID
+   PAKKETTEN GRID
 ========================================= */
 
 .aankoop-grid {
@@ -225,41 +196,25 @@ body {
     background: var(--white);
     padding: 35px;
     border-radius: 16px;
-    box-shadow: 0px 4px 18px rgba(0,0,0,0.08);
-    position: relative;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
 }
 
 .pakket-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
 }
 
 .pakket-prijs {
+    color: var(--gold);
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--gold);
 }
 
-.pakket-card h4 {
-    font-size: 1.15rem;
-    margin-top: 25px;
-}
-
-.pakket-list {
-    padding-left: 20px;
-    margin-top: 5px;
-}
-
-.pakket-list li {
-    margin-bottom: 8px;
-}
-
-/* Highlight pakket */
 .pakket-featured {
     border: 2px solid var(--gold);
     transform: scale(1.03);
+    position: relative;
 }
 
 .pakket-badge {
@@ -270,20 +225,56 @@ body {
     color: var(--navy);
     padding: 6px 14px;
     border-radius: 6px;
-    font-size: 0.85rem;
     font-weight: 700;
 }
 
-/* CTA KNOPPEN */
+/* =========================================
+   CTA BLOCK (MET FOTO)
+========================================= */
+
+.cta-section {
+    position: relative;
+    background-image: url('../assets/cta/cta-premium.webp');
+    background-size: cover;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+    padding: 110px 0;
+    color: var(--white);
+}
+
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 19, 37, 0.55);
+}
+
+.cta-section .container {
+    position: relative;
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: var(--white);
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
 .button {
-    display: inline-block;
     padding: 14px 26px;
     border-radius: 10px;
-    font-size: 1.05rem;
-    font-weight: 600;
     text-decoration: none;
-    text-align: center;
-    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+    display: inline-block;
 }
 
 .button-primary {
@@ -296,81 +287,8 @@ body {
     color: var(--navy);
 }
 
-/* =========================================
-   CTA SECTION – PREMIUM BRAND BOOSTER STYLE
-========================================= */
-
-.cta-section {
-    position: relative;
-    padding: 110px 0;
-    text-align: center;
-    color: var(--white);
-    background-size: cover;
-    background-position: center 60%;
-    background-repeat: no-repeat;
-    border-top: 6px solid rgba(216, 197, 154, 0.35); /* subtiel goud randje */
-}
-
-/* Donkere premium overlay */
-.cta-section .cta-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(7, 19, 37, 0.55); /* zelfde tint als jouw overlay-dark */
-    backdrop-filter: blur(1px);
-    z-index: 1;
-}
-
-/* Tekstblokken boven overlay */
-.cta-section .container {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-}
-
-.cta-section h2 {
-    color: var(--white);
-    font-size: 2.4rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.cta-section p {
-    color: #e8e8e8;
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-}
-
-/* Knop */
-.cta-section .button-secondary {
-    background: var(--gold);
-    color: var(--navy);
-    padding: 16px 34px;
-    font-size: 1.15rem;
-    border-radius: 12px;
-    font-weight: 700;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-    transition: 0.25s ease;
-}
-
-.cta-section .button-secondary:hover {
-    background: #e7d7ab;
-    transform: translateY(-3px);
-}
-
-/* Responsiveness */
-@media (max-width: 900px) {
-    .cta-section {
-        padding: 90px 0;
-        background-position: center 70%;
-    }
-
-    .cta-section h2 {
-        font-size: 2rem;
-    }
-
-    .cta-section p {
-        font-size: 1.1rem;
-    }
+.button-secondary:hover {
+    opacity: 0.9;
 }
 
 /* =========================================
@@ -380,7 +298,7 @@ body {
 .footer {
     background: var(--navy);
     color: var(--white);
-    padding: 70px 0 40px;
+    padding: 70px 0 45px;
 }
 
 .footer-grid {
@@ -391,28 +309,33 @@ body {
 
 .footer-logo {
     height: 55px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .footer-column h4 {
     font-size: 1.3rem;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .footer-column ul {
-    list-style: none;
     padding: 0;
+    list-style: none;
 }
 
 .footer-column li {
     margin-bottom: 10px;
-    color: #d8e0ea;
+}
+
+.footer-column a {
+    color: var(--gold) !important;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .footer-bottom {
-    text-align: center;
     margin-top: 60px;
-    color: #b8c2cf;
+    text-align: center;
+    color: #d8dfe8;
 }
 
 @media (max-width: 900px) {
@@ -421,4 +344,3 @@ body {
         text-align: center;
     }
 }
-
