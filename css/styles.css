@@ -2055,6 +2055,52 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   PREMIUM FOOTER DESKTOP ALIGNMENT FIX
+---------------------------------------------------- */
+
+@media (min-width: 769px) {
+
+    /* Footer breder gecentreerd */
+    .footer-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; 
+        gap: 60px; /* minder ruimte tussen kolommen */
+        align-items: flex-start;
+        text-align: left; /* premium uitstraling */
+    }
+
+    /* Kolommen netjes uitgelijnd */
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Navigatie kolom rechterlijn */
+    .footer-column ul {
+        margin-top: 6px;
+    }
+
+    /* Zorgt dat logo + tekst niet te breed uitrekken */
+    .footer-column:first-child {
+        max-width: 340px;
+    }
+
+    /* Contact kolom compact */
+    .footer-column:last-child {
+        text-align: right;
+        max-width: 260px;
+    }
+
+    /* Footer tekstspacing */
+    .footer-bottom {
+        margin-top: 50px;
+    }
+}
+
 
 
 
