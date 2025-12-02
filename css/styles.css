@@ -297,18 +297,80 @@ body {
 }
 
 /* =========================================
-   CTA SECTION
+   CTA SECTION – PREMIUM BRAND BOOSTER STYLE
 ========================================= */
 
 .cta-section {
-    background: var(--navy);
+    position: relative;
+    padding: 110px 0;
     text-align: center;
-    padding: 80px 0;
     color: var(--white);
+    background-size: cover;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+    border-top: 6px solid rgba(216, 197, 154, 0.35); /* subtiel goud randje */
+}
+
+/* Donkere premium overlay */
+.cta-section .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 19, 37, 0.55); /* zelfde tint als jouw overlay-dark */
+    backdrop-filter: blur(1px);
+    z-index: 1;
+}
+
+/* Tekstblokken boven overlay */
+.cta-section .container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
 }
 
 .cta-section h2 {
     color: var(--white);
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    color: #e8e8e8;
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+/* Knop */
+.cta-section .button-secondary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 34px;
+    font-size: 1.15rem;
+    border-radius: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    transition: 0.25s ease;
+}
+
+.cta-section .button-secondary:hover {
+    background: #e7d7ab;
+    transform: translateY(-3px);
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+    .cta-section {
+        padding: 90px 0;
+        background-position: center 70%;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+    }
 }
 
 /* =========================================
@@ -359,3 +421,4 @@ body {
         text-align: center;
     }
 }
+
