@@ -1,52 +1,44 @@
-/* ======================================================
-   BASIS INSTELLINGEN & KLEUREN
-====================================================== */
+/* =========================================
+   KLEUREN & BASIS
+========================================= */
 
 :root {
-    --navy: #071325;
-    --gold: #d8c59a;
-    --cream: #f6f6f2;
+    --navy: #0D1B2A;
+    --gold: #C8A95A; /* premium goud */
     --white: #ffffff;
-    --text-dark: #0a0a0a;
-
-    --transition: 0.3s ease;
+    --light: #f7f7f7;
+    --transition: 0.25s ease;
 }
 
+/* -----------------------------------------
+   BODY
+----------------------------------------- */
 body {
     margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--navy);
 }
 
-.fade-in {
-    animation: fadeIn 0.7s ease-out;
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
+/* -----------------------------------------
+   CONTAINERS
+----------------------------------------- */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: min(1200px, 90%);
+    margin: auto;
 }
 
-/* ======================================================
+/* =========================================
    HEADER
-====================================================== */
+========================================= */
 
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
     background: var(--white);
     padding: 18px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    z-index: 1000;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
 .header-container {
@@ -57,94 +49,35 @@ body {
 
 .site-logo {
     height: 55px;
-    display: block;
 }
 
-/* NAV */
 .main-nav ul {
-    list-style: none;
     display: flex;
-    gap: 32px;
-    margin: 0;
-    padding: 0;
+    list-style: none;
+    gap: 28px;
 }
 
 .main-nav a {
-    color: var(--navy);
     text-decoration: none;
+    color: var(--navy);
     font-weight: 600;
-    transition: var(--transition);
-}
-
-.main-nav a:hover {
-    color: var(--gold);
 }
 
 .main-nav a.active {
     color: var(--gold);
 }
 
-/* MOBILE MENU */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.bar {
-    width: 24px;
-    height: 3px;
-    background: var(--navy);
-    border-radius: 2px;
-}
-
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: var(--white);
-        padding: 100px 30px;
-        box-shadow: -4px 0 16px rgba(0,0,0,0.2);
-        transition: right .3s ease;
-        z-index: 2000;
-    }
-
-    .main-nav.open {
-        right: 0;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 22px;
-    }
-}
-
-/* ======================================================
-   HERO (HOME & SUBPAGINA’S)
-====================================================== */
+/* =========================================
+   HERO (HOME & SUBPAGES)
+========================================= */
 
 .hero,
 .hero-sub {
     position: relative;
-    width: 100%;
-    height: 520px;
     background-size: cover;
-    background-position: center 45%;
-    background-repeat: no-repeat;
-    margin-top: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-position: center;
+    color: var(--white);
+    padding: 140px 0;
 }
 
 .overlay-dark {
@@ -157,31 +90,30 @@ body {
 .hero-content-small {
     position: relative;
     text-align: center;
-    color: var(--white);
 }
 
 .hero-content h1,
 .hero-content-small h1 {
-    font-size: 3rem;
-    margin-bottom: 16px;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
 }
 
 .hero-content p,
 .hero-content-small p {
-    font-size: 1.2rem;
-    margin-bottom: 22px;
+    font-size: 1.25rem;
+    opacity: 0.95;
 }
 
-/* ======================================================
-   KNOPPEN
-====================================================== */
+/* =========================================
+   BUTTONS
+========================================= */
 
 .button {
-    padding: 14px 26px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
     display: inline-block;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
     transition: var(--transition);
 }
 
@@ -190,43 +122,42 @@ body {
     color: var(--white);
 }
 
+.button-primary:hover {
+    opacity: 0.85;
+}
+
 .button-secondary {
     background: var(--gold);
     color: var(--navy);
 }
 
-.button-secondary:hover,
-.button-primary:hover {
-    opacity: 0.88;
+.button-secondary:hover {
+    filter: brightness(1.08);
 }
 
-/* ======================================================
-   SECTIES EN TITELS
-====================================================== */
+/* =========================================
+   AANKOOPADVIES PAKKETTEN
+========================================= */
 
 .section {
-    padding: 95px 0;
+    padding: 90px 0;
 }
 
 .section h2 {
     text-align: center;
     font-size: 2.6rem;
-    margin-bottom: 15px;
-    color: var(--navy);
+    margin-bottom: 18px;
 }
 
-.section p {
-    font-size: 1.15rem;
-    color: #444;
+.aankoop-intro {
     text-align: center;
+    max-width: 750px;
+    margin: 0 auto 50px;
+    color: #555;
 }
 
-/* ======================================================
-   AANKOOPADVIES – PAKKETTEN GRID
-====================================================== */
-
+/* GRID */
 .aankoop-grid {
-    margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
@@ -238,12 +169,13 @@ body {
     }
 }
 
+/* PACKAGE CARD */
 .pakket-card {
     background: var(--white);
-    padding: 35px;
+    border: 1px solid #e7e7e7;
     border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    border: 1px solid #e8e8e8;
+    padding: 35px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     position: relative;
 }
 
@@ -254,9 +186,9 @@ body {
 }
 
 .pakket-prijs {
-    color: var(--gold);
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 700;
+    color: var(--gold);
 }
 
 .pakket-featured {
@@ -270,22 +202,21 @@ body {
     left: 20px;
     background: var(--gold);
     color: var(--navy);
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 6px;
     font-weight: 700;
     font-size: 0.9rem;
 }
 
+/* LISTS */
 .pakket-card h4 {
     margin-top: 22px;
     font-size: 1.2rem;
-    color: var(--navy);
-    margin-bottom: 5px;
 }
 
 .pakket-list {
     padding-left: 20px;
-    margin: 10px 0;
+    margin-top: 8px;
 }
 
 .pakket-list li {
@@ -293,43 +224,32 @@ body {
     line-height: 1.45;
 }
 
-/* ======================================================
+/* =========================================
    CTA BLOK
-====================================================== */
+========================================= */
 
 .cta-section {
     position: relative;
     background-size: cover;
-    background-position: center 60%;
-    background-repeat: no-repeat;
-    padding: 120px 0;
+    background-position: center;
     color: var(--white);
+    padding: 120px 0;
     text-align: center;
 }
 
 .cta-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.42);
 }
 
 .cta-section .container {
     position: relative;
 }
 
-.cta-section h2 {
-    font-size: 2.4rem;
-    margin-bottom: 12px;
-}
-
-.cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 26px;
-}
-
-/* ======================================================
+/* =========================================
    FOOTER
-====================================================== */
+========================================= */
 
 .footer {
     background: var(--navy);
@@ -349,63 +269,19 @@ body {
 }
 
 .footer-column h4 {
+    color: var(--gold);
     font-size: 1.3rem;
     margin-bottom: 12px;
-    color: var(--gold);
-}
-
-.footer-column ul {
-    padding: 0;
-    list-style: none;
-}
-
-.footer-column li {
-    margin-bottom: 10px;
-    color: #dfe5ec;
 }
 
 .footer-column a {
-    color: var(--gold) !important;
+    color: var(--gold);
     text-decoration: none;
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 60px;
-    color: #d8dfe8;
+    opacity: 0.8;
 }
-
-@media (max-width: 900px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
-/* -- HARD FIX: Zorg dat pakketten ALTIJD zichtbaar zijn -- */
-
-.aankoop-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 35px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-}
-
-.pakket-card {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.pakket-featured {
-    border: 2px solid var(--gold) !important;
-}
-
-.pakket-badge {
-    display: inline-block !important;
-    opacity: 1 !important;
-}
-
 
