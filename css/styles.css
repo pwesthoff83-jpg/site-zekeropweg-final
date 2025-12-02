@@ -2101,6 +2101,46 @@ body {
     }
 }
 
+/* ----------------------------------------------------
+   PREMIUM DESKTOP FOOTER FIX (3 kolommen perfect centreren)
+---------------------------------------------------- */
+@media (min-width: 769px) {
+
+    .footer-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 40% 30% 30%;
+        gap: 60px;
+        align-items: flex-start;
+    }
+
+    /* Linkerkolom breder → past bij logo + tekst */
+    .footer-column:first-child {
+        text-align: left;
+    }
+
+    /* Navigatie perfect in het midden */
+    .footer-column:nth-child(2) {
+        text-align: center;
+    }
+
+    /* Contact rechts uitlijnen */
+    .footer-column:last-child {
+        text-align: right;
+    }
+
+    .footer-column ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .footer-column ul li {
+        margin: 8px 0;
+    }
+}
+
 
 
 
