@@ -1894,5 +1894,25 @@ body {
     }
 }
 
+/* Sluitknop (kruisje) standaard verbergen */
+.close-menu {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 2rem;
+    color: #c4a962;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    z-index: 10000;
+}
+
+/* Sluitknop tonen als menu open is */
+.main-nav.open ~ .close-menu,
+#menuOverlay.active ~ .close-menu {
+    display: block !important;
+}
+
 
 
