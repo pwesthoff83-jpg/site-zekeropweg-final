@@ -12,24 +12,25 @@
 <body class="fade-in">
 <div id="menuOverlay" onclick="closeMenu()"></div>
 
-<!-- HEADER -->
 <header class="header">
+
     <div class="container header-container">
+
         <a href="index.html">
             <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
-       <button class="menu-toggle" onclick="toggleMenu()">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-</button>
+        <!-- HAMBURGER -->
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
 
-<button class="close-menu" onclick="closeMenu()">×</button>
-
+        <!-- NAV -->
         <nav class="main-nav" id="mainNav">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
                 <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
@@ -37,7 +38,12 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+
     </div>
+
+    <!-- OVERLAY -->
+    <div id="menuOverlay" onclick="closeMenu()"></div>
+
 </header>
 
 <!-- HERO -->
@@ -233,6 +239,7 @@
 <script src="scripts/scripts.js?v=1.0.1"></script>
 </body>
 </html>
+
 
 
 
