@@ -1913,6 +1913,41 @@ body {
 #menuOverlay.active ~ .close-menu {
     display: block !important;
 }
+/* ----------------------------------------------------
+   BRAND BOOSTER – FORCEER SLIDE-IN MENU ALWAYS WORKING
+---------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    /* Verstopt menu standaard rechts */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100% !important;
+        width: 72%;
+        height: 100vh;
+        background: #ffffff;
+        padding: 100px 32px 40px;
+        box-shadow: -6px 0 22px rgba(0,0,0,0.18);
+        transition: right 0.35s ease;
+        z-index: 9990;
+        display: flex !important;          /* <-- BELANGRIJK! */
+        flex-direction: column !important; /* <-- BELANGRIJK! */
+    }
+
+    /* Wanneer open → schuift naar binnen */
+    .main-nav.open {
+        right: 0 !important;
+    }
+
+    .main-nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+}
+
 
 
 
