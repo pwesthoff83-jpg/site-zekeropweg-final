@@ -1,189 +1,404 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aankoopadvies | ZekerOpWeg</title>
-    <meta name="description" content="Onafhankelijk aankoopadvies met drie premium pakketten. Zeker naar uw volgende auto, zorgeloos geregeld.">
-    <link rel="stylesheet" href="css/styles.css?v=4.0.0">
-</head>
+/* =========================================
+   BASIS KLEUREN & TYPOGRAFIE
+========================================= */
 
-<body class="fade-in">
+:root {
+    --navy: #071325;
+    --gold: #d8c59a;
+    --cream: #f6f6f2;
+    --white: #ffffff;
+    --text-dark: #0a0a0a;
 
-<header class="header">
-    <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg">
-        </a>
+    --transition: .3s ease;
+}
 
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
 
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+.fade-in {
+    animation: fadeIn .7s ease-out;
+}
 
-<!-- ========================= HERO ========================= -->
-<section class="hero-sub aankoopadvies-hero" 
-         style="background-image: url('assets/images/hero/showroom-premium.webp');">
-    <div class="overlay-dark"></div>
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-    <div class="container hero-content-small">
-        <h1>Zeker naar uw volgende auto?</h1>
-        <p>Ontvang onafhankelijk advies en maak met vertrouwen de juiste keuze.</p>
-        <a href="contact.html" class="button button-secondary">Plan een gratis kennismaking</a>
-    </div>
-</section>
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-<!-- ========================= AANKOOPADVIES PAKKETTEN ========================= -->
-<section class="section aankoop-premium">
-    <div class="container">
 
-        <h2>Kies het aankoopadvies dat bij u past</h2>
-        <p class="aankoop-intro">
-            Elk pakket biedt u maximale zekerheid bij de aankoop van uw volgende auto.
-            Van eerste selectie tot volledige begeleiding en onderhandeling.
-        </p>
+/* =========================================
+   HEADER
+========================================= */
 
-        <div class="aankoop-grid">
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 0;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    z-index: 1000;
+}
 
-            <!-- Essentieel -->
-            <div class="pakket-card">
-                <div class="pakket-header">
-                    <h3>Pakket Essentieel</h3>
-                    <div class="pakket-prijs">€149</div>
-                </div>
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-                <h4>Voor wie</h4>
-                <ul class="pakket-list">
-                    <li>Voor wie zelf wil zoeken, maar zeker wil weten of een auto de moeite waard is.</li>
-                </ul>
+.site-logo {
+    height: 55px;
+    display: block;
+}
 
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Persoonlijke intake</li>
-                    <li>Selectie van maximaal 2 passende auto's</li>
-                    <li>Marktwaardebepaling</li>
-                    <li>Controle op risico’s en bekende problemen</li>
-                </ul>
-            </div>
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
 
-            <!-- Premium -->
-            <div class="pakket-card pakket-featured">
-                <div class="pakket-badge">Meest gekozen</div>
+.main-nav a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
 
-                <div class="pakket-header">
-                    <h3>Pakket Premium</h3>
-                    <div class="pakket-prijs">€299</div>
-                </div>
+.main-nav a.active,
+.main-nav a:hover {
+    color: var(--gold);
+}
 
-                <h4>Voor wie</h4>
-                <ul class="pakket-list">
-                    <li>Voor wie met zekerheid én professionele begeleiding wil kopen.</li>
-                </ul>
+/* Hamburger */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+}
 
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Alles uit Pakket Essentieel</li>
-                    <li>Begeleiding tijdens bezichtiging</li>
-                    <li>Volledige prijsonderhandeling</li>
-                    <li>Check op onderhoudshistorie</li>
-                </ul>
-            </div>
+.bar {
+    width: 24px;
+    height: 3px;
+    background: var(--navy);
+    border-radius: 2px;
+}
 
-            <!-- Full-service -->
-            <div class="pakket-card">
-                <div class="pakket-header">
-                    <h3>Pakket Full-service</h3>
-                    <div class="pakket-prijs">€449</div>
-                </div>
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+    }
 
-                <h4>Voor wie</h4>
-                <ul class="pakket-list">
-                    <li>Voor wie zonder moeite de beste auto en deal wil vinden.</li>
-                </ul>
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--white);
+        padding: 100px 30px;
+        box-shadow: -4px 0 16px rgba(0,0,0,0.2);
+        transition: right .3s ease;
+        z-index: 2000;
+    }
 
-                <h4>Wat ik voor u doe</h4>
-                <ul class="pakket-list">
-                    <li>Volledige zoekopdracht</li>
-                    <li>Selectie van 3 tot 5 auto's</li>
-                    <li>Begeleiding bij alle bezichtigingen</li>
-                    <li>Onderhandeling en afronding van de aankoop</li>
-                </ul>
-            </div>
+    .main-nav.open {
+        right: 0;
+    }
 
-        </div>
+    .main-nav ul {
+        flex-direction: column;
+        gap: 22px;
+    }
+}
 
-        <p style="text-align:center; margin-top:25px; font-size:0.95rem; color:#555;">
-            Alle prijzen zijn inclusief btw.
-        </p>
 
-    </div>
-</section>
+/* =========================================
+   HERO — HOMEPAGE
+========================================= */
 
-<!-- ========================= CTA ========================= -->
-<section class="cta-section"
-         style="background-image: url('assets/images/cta/aankoopadvies.webp');">
-    <div class="cta-overlay"></div>
+.hero {
+    position: relative;
+    width: 100%;
+    height: 640px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
 
-    <div class="container">
-        <h2>Zeker naar uw volgende auto?</h2>
-        <p>Plan een gratis kennismaking en ontdek welk pakket het beste bij u past.</p>
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
 
-        <a href="contact.html" class="button button-secondary">
-            Plan een gratis kennismaking
-        </a>
-    </div>
-</section>
+.hero-content {
+    position: relative;
+    color: var(--white);
+    max-width: 650px;
+}
 
-<!-- ========================= FOOTER ========================= -->
-<footer class="footer">
-    <div class="container footer-grid">
+.hero-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 12px;
+}
 
-        <div>
-            <img class="footer-logo" src="assets/images/logo.png" alt="ZekerOpWeg">
-            <p>Onafhankelijk aankoopadvies, EV-accudiagnose en ondersteuning bij boetes.</p>
-        </div>
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
 
-        <div class="footer-column">
-            <h4>Navigatie</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
 
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <p>advies@zekeropweg.nu</p>
-            <p>06-23452349</p>
-            <p>www.zekeropweg.nu</p>
-        </div>
+/* =========================================
+   HERO — SUBPAGINA’S
+========================================= */
 
-    </div>
+.hero-sub {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 88px;
+    display: flex;
+    align-items: center;
+}
 
-    <div class="footer-bottom">
-        © ZekerOpWeg — Alle rechten voorbehouden
-    </div>
-</footer>
+.hero-content-small {
+    color: var(--white);
+    text-align: center;
+}
 
-<script src="scripts/menu.js"></script>
-</body>
-</html>
+.hero-content-small h1 {
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.section {
+    padding: 95px 0;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    color: var(--navy);
+    margin-bottom: 15px;
+}
+
+.aankoop-intro {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 50px;
+    color: #444;
+    font-size: 1.15rem;
+}
+
+
+/* =========================================
+   AANKOOPADVIES — PAKKETTEN GRID
+========================================= */
+
+.aankoop-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+@media (max-width: 900px) {
+    .aankoop-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pakket-card {
+    background: var(--white);
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.pakket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pakket-prijs {
+    color: var(--gold);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.pakket-featured {
+    border: 2px solid var(--gold);
+    transform: scale(1.03);
+}
+
+.pakket-badge {
+    position: absolute;
+    top: -14px;
+    left: 20px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.pakket-card h4 {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--navy);
+}
+
+.pakket-list {
+    padding-left: 20px;
+}
+
+.pakket-list li {
+    margin-bottom: 8px;
+    line-height: 1.45;
+}
+
+
+/* =========================================
+   CTA BLOK (universeel)
+========================================= */
+
+.cta-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.cta-section .container {
+    position: relative;
+}
+
+.cta-section h2 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button {
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.button-primary {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.button-secondary {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+.button-secondary:hover {
+    opacity: 0.88;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 70px 0 45px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    height: 55px;
+    margin-bottom: 10px;
+}
+
+.footer-column h4 {
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.footer-column ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+    color: #dfe5ec;
+}
+
+.footer-column a {
+    color: var(--gold) !important;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    text-align: center;
+    color: #d8dfe8;
+}
+
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
 
