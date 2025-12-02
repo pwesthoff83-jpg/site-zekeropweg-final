@@ -236,23 +236,24 @@ body {
 }
 
 /* =========================================
-   CTA BLOK MET FOTO
+   CTA BLOCK (Aankoopadvies achtergrond)
 ========================================= */
 
 .cta-section {
     position: relative;
-    background-image: url('assets/images/cta-premium.webp');
+    background-image: url('../assets/images/diensten/aankoopadvies.webp');
     background-size: cover;
-    background-position: center 60%;
+    background-position: center 55%; /* mooie focus op auto met strik */
     background-repeat: no-repeat;
     padding: 110px 0;
     color: var(--white);
 }
 
-.cta-overlay {
+.cta-section::before {
+    content: "";
     position: absolute;
     inset: 0;
-    background: rgba(7,19,37,0.55);
+    background: rgba(7, 19, 37, 0.55); /* zelfde premium overlay als jouw hero */
 }
 
 .cta-section .container {
@@ -270,6 +271,9 @@ body {
     font-size: 1.2rem;
     margin-bottom: 25px;
 }
+
+
+
 /* =========================================
    BUTTONS
 ========================================= */
@@ -367,4 +371,5 @@ body {
         margin-top: 20px;
     }
 }
+
 
