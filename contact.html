@@ -4,72 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | ZekerOpWeg</title>
-    <meta name="description" content="Neem contact op met ZekerOpWeg voor aankoopadvies, EV-accudiagnose of gratis hulp bij boetes.">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32.png">
+    <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV-AccuCheck of ondersteuning bij uw volgende auto.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1">
 </head>
 
 <body class="fade-in">
 
+<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
         <a href="index.html">
-            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
+
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="diensten.html">Diensten</a></li>
                 <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
                 <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<!-- JOUW CONTACTPAGINA CONTENT HIER -->
 
-<footer class="footer">
+<!-- HERO SUB -->
+<section class="hero-sub" style="background-image: url('assets/images/hero/showroom-premium.webp');">
+    <div class="overlay-dark"></div>
+    <div class="container hero-content-small">
+        <h1>Contact</h1>
+        <p>Persoonlijke, onafhankelijke begeleiding begint hier.</p>
+    </div>
+</section>
+
+
+<!-- CONTACT INFO -->
+<section class="section">
     <div class="container">
-        <div class="footer-grid">
-            <div>
-                <img src="assets/images/logos/zekeropweg-logo.png" class="footer-logo">
-                <p>Onafhankelijk aankoopadvies, EV-accudiagnose & ondersteuning bij boetes.</p>
+
+        <h2>Neem contact op</h2>
+        <p>Heeft u een vraag of wilt u een EV-AccuCheck of aankoopadvies inplannen?  
+           Stuur gerust een bericht – ik denk graag met u mee.</p>
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+                <h3>E-mail</h3>
+                <p>advies@zekeropweg.nu</p>
             </div>
 
-            <div>
-                <h4>Navigatie</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                    <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
-                </ul>
+            <div class="contact-card">
+                <h3>Telefoon</h3>
+                <p>06-23452349</p>
             </div>
 
-            <div>
-                <h4>Contact</h4>
-                <ul>
-                    <li>advies@zekeropweg.nu</li>
-                    <li>06-23452349</li>
-                    <li>www.zekeropweg.nu</li>
-                </ul>
+            <div class="contact-card">
+                <h3>Website</h3>
+                <p>www.zekeropweg.nu</p>
             </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CONTACT FORM -->
+<section class="section cream-bg">
+    <div class="container">
+        <h2>Stuur een bericht</h2>
+        <p>Laat uw gegevens achter en ik neem zo snel mogelijk persoonlijk contact met u op.</p>
+
+        <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+                <input type="text" name="name" placeholder="Uw naam" required>
+                <input type="email" name="email" placeholder="Uw e-mailadres" required>
+            </div>
+
+            <div class="form-row">
+                <input type="text" name="phone" placeholder="Uw telefoonnummer (optioneel)">
+            </div>
+
+            <textarea name="message" rows="5" placeholder="Uw bericht" required></textarea>
+
+            <button type="submit" class="button-primary">Bericht versturen</button>
+        </form>
+    </div>
+</section>
+
+
+<!-- CTA AFSLUITING -->
+<section class="cta-section" style="background-image:url('assets/images/cta/aankoopadvies.webp');">
+    <div class="cta-overlay"></div>
+
+    <div class="container">
+        <h2>Voordat u beslist, eerst even kennismaken?</h2>
+        <p>Dat kan altijd – vrijblijvend en persoonlijk.</p>
+        <a href="contact.html" class="button-primary">Plan een kennismaking</a>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-grid container">
+        <div class="footer-column">
+            <img src="assets/images/logo.png" class="footer-logo" alt="ZekerOpWeg footer logo">
+            <p>Onafhankelijk aankoopadvies, EV-accudiagnose & ondersteuning bij boetes.</p>
         </div>
 
-        <p class="footer-bottom">© ZekerOpWeg – onafhankelijke begeleiding & EV-diagnose</p>
+        <div class="footer-column">
+            <h4>Diensten</h4>
+            <p>Aankoopadvies<br>EV-AccuCheck<br>Gratis Bezwaar</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <p>advies@zekeropweg.nu<br>www.zekeropweg.nu</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 ZekerOpWeg – Onafhankelijke premium begeleiding
     </div>
 </footer>
 
-<script src="scripts/scripts.js?v=1.0.1"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
+
+
 
 
 
