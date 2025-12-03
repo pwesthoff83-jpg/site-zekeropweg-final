@@ -3,139 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg | Onafhankelijk aankoopadvies & EV-AccuCheck</title>
-    <meta name="description" content="Premium warm aankoopadvies, EV-AccuCheck en onafhankelijke begeleiding. Zeker naar uw volgende auto, volledig in uw belang.">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>ZekerOpWeg – Binnenkort beschikbaar</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .wrapper {
+            max-width: 600px;
+            padding: 20px;
+        }
+        img {
+            max-width: 90%;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            opacity: .8;
+        }
+    </style>
 </head>
-
-<body class="fade-in">
-
-<!-- HEADER -->
-<header class="header">
-    <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo">
-        </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="diensten.html">Diensten</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV-AccuCheck</a></li>
-                <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+<body>
+    <div class="wrapper">
+        <img src="images/zekeropweg-offline-desktop.webp" alt="ZekerOpWeg">
+        <h1>ZekerOpWeg wordt vernieuwd</h1>
+        <p>Wij werken achter de schermen aan een premium online ervaring.<br>
+        Binnenkort terug online.</p>
     </div>
-</header>
-
-
-<!-- HERO -->
-<section class="hero" style="background-image:url('assets/images/hero/showroom-premium.webp');">
-    <div class="overlay-dark"></div>
-
-    <div class="hero-content">
-        <h1>Zeker naar uw volgende auto,<br>zorgeloos geregeld</h1>
-        <p>Warm, persoonlijk en volledig onafhankelijk advies.</p>
-
-        <a href="aankoopadvies.html" class="button-primary">Ontvang aankoopadvies</a>
-    </div>
-</section>
-
-
-<!-- USP SECTION -->
-<section class="section">
-    <h2>Waarom ZekerOpWeg?</h2>
-
-    <div class="usp-grid container">
-        <div class="usp-item">
-            <h4>100% onafhankelijk</h4>
-            <p>Geen belangen bij dealers of verkopers. Altijd volledig aan uw kant.</p>
-        </div>
-
-        <div class="usp-item">
-            <h4>Warm premium advies</h4>
-            <p>Persoonlijk, helder en met oog voor uw situatie en wensen.</p>
-        </div>
-
-        <div class="usp-item">
-            <h4>16+ jaar ervaring</h4>
-            <p>Duizenden auto's beoordeeld, honderden klanten geholpen.</p>
-        </div>
-    </div>
-</section>
-
-
-<!-- DIENSTEN GRID -->
-<section class="section cream-bg">
-    <h2>Onze belangrijkste diensten</h2>
-
-    <div class="diensten-grid container">
-
-        <div class="dienst-card">
-            <h3>Aankoopadvies</h3>
-            <p>Rust, zekerheid en persoonlijke begeleiding bij uw volgende auto.</p>
-            <a href="aankoopadvies.html" class="button-secondary">Meer informatie</a>
-        </div>
-
-        <div class="dienst-card">
-            <h3>EV-AccuCheck (incl. certificaat)</h3>
-            <p>Professionele, onafhankelijke accutest op locatie met officieel rapport.</p>
-            <a href="ev-accucheck.html" class="button-secondary">AccuCheck bekijken</a>
-        </div>
-
-        <div class="dienst-card">
-            <h3>Gratis bezwaar</h3>
-            <p>Professioneel verweer tegen parkeer- en verkeersboetes, volledig gratis.</p>
-            <a href="gratis-bezwaar.html" class="button-secondary">Start gratis bezwaar</a>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- CTA -->
-<section class="cta-section" style="background-image:url('assets/images/cta/aankoopadvies.webp');">
-    <div class="cta-overlay"></div>
-
-    <div class="container">
-        <h2>Klaar voor zekerheid bij uw volgende auto?</h2>
-        <p>Ik begeleid u persoonlijk, warm en volledig onafhankelijk.</p>
-        <a href="contact.html" class="button-primary">Neem contact op</a>
-    </div>
-</section>
-
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-grid container">
-        <div class="footer-column">
-            <img src="assets/images/logo.png" class="footer-logo">
-        </div>
-
-        <div class="footer-column">
-            <h4>Diensten</h4>
-            <p>Aankoopadvies<br>EV-AccuCheck<br>Gratis Bezwaar</p>
-        </div>
-
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <p>advies@zekeropweg.nu<br>www.zekeropweg.nu</p>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        © 2025 ZekerOpWeg – Onafhankelijke premium begeleiding
-    </div>
-</footer>
-
-<script src="scripts/main.js"></script>
 </body>
 </html>
-
-
 
