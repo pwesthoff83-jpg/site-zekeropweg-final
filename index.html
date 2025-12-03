@@ -4,72 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZekerOpWeg</title>
+
+    <!-- PREMIUM FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
+        /* GENERAL */
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            font-family: 'Georgia', serif;
+            font-family: 'Libre Baskerville', serif;
             color: #d8b878;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .container {
+        .wrapper {
             width: 100%;
             height: 100vh;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding-bottom: 80px;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            animation: fadeIn 2.2s ease-in-out;
+        }
+
+        /* Dark cinematic overlay */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(1.5px);
+        }
+
+        /* CONTENT */
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 90%;
+            color: #d8b878;
         }
 
         h1 {
-            margin: 0;
-            font-size: 42px;
-            font-weight: 500;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
         p {
-            margin: 12px 0;
-            font-size: 20px;
-            line-height: 1.5;
+            font-size: 22px;
+            line-height: 1.55;
+            margin: 10px 0;
+            opacity: 0.92;
         }
 
-        /* DESKTOP IMAGE */
+        /* MOBILE STYLING */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 34px;
+            }
+            p {
+                font-size: 18px;
+            }
+        }
+
+        /* BACKGROUND SWITCHING */
         @media (min-width: 769px) {
-            .container {
+            .wrapper {
                 background-image: url('images/hero/zekeropweg-offline-desktop.webp');
             }
         }
 
-        /* MOBILE IMAGE */
         @media (max-width: 768px) {
-            .container {
+            .wrapper {
                 background-image: url('images/hero/zekeropweg-offline-mobile.webp');
             }
+        }
 
-            h1 {
-                font-size: 34px;
-            }
-
-            p {
-                font-size: 18px;
-            }
+        /* ANIMATION */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>ZekerOpWeg</h1>
-        <p>Onze nieuwe website wordt<br>momenteel zorgvuldig voorbereid.</p>
-        <p>De officiële lancering staat<br>gepland voor begin januari 2026.</p>
+    <div class="wrapper">
+        <div class="overlay"></div>
+
+        <div class="content">
+            <h1>ZekerOpWeg</h1>
+
+            <p>Onze nieuwe website wordt zorgvuldig voorbereid.</p>
+            <p>De officiële lancering staat gepland voor begin januari 2026.</p>
+        </div>
     </div>
 </body>
 </html>
+
 
 
 
