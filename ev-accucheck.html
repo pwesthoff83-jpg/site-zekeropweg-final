@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV-AccuCheck (incl. certificaat) | ZekerOpWeg</title>
     <meta name="description" content="Professionele, onafhankelijke EV-accudiagnose op locatie. Binnen 15 minuten volledig inzicht inclusief officieel accucertificaat.">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/favicon/favicon-32.png">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1">
 </head>
 
@@ -15,8 +14,9 @@
 <header class="header">
     <div class="container header-container">
         <a href="index.html">
-            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
+
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
@@ -32,64 +32,104 @@
     </div>
 </header>
 
-<!-- HERO -->
-<section class="hero-sub" style="background-image: url('assets/images/hero/ev-hero.png');">
+
+<!-- HERO (premium) -->
+<section class="hero hero-sm" style="background-image:url('assets/images/hero/ev-hero.webp');">
     <div class="overlay-dark"></div>
-    <div class="container hero-content-small">
-        <h1>EV-AccuCheck</h1>
-        <p>Zeker naar uw volgende auto, zorgeloos geregeld.</p>
+
+    <div class="hero-content-small">
+        <h1 class="hero-title">EV-AccuCheck</h1>
+        <p class="hero-sub">Binnen 15 minuten inzicht in de werkelijke accugezondheid</p>
+        <a href="contact.html" class="button-primary">Plan een AccuCheck</a>
     </div>
 </section>
 
-<!-- CONTENT -->
+
+<!-- WAAROM EV-ACCUTEST -->
 <section class="section">
-    <div class="container">
+    <div class="container content-narrow">
         <h2>Waarom een EV-AccuCheck?</h2>
+
         <p>
-            De gezondheid van het accupakket bepaalt bij een elektrische auto tot wel 40% van de totale waarde.
-            Met de onafhankelijke FLASH Test krijgt u binnen enkele minuten een erkend, TÜV-gecertificeerd
-            accucertificaat dat de werkelijke State of Health (SoH) toont.
+            De gezondheid van het accupakket bepaalt bij een elektrische auto tot wel <strong>40% van de totale waarde</strong>.
+            Met de onafhankelijke <strong>FLASH Test</strong> ontvangt u binnen enkele minuten een
+            <strong>TÜV-gecertificeerd accucertificaat</strong> met de werkelijke State of Health (SoH).
+        </p>
+
+        <p>
+            Zo weet u exact wat u koopt, voorkomt u verrassingen en beschikt u over een professioneel rapport dat
+            door heel Europa wordt erkend.
         </p>
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <img src="assets/images/logos/zekeropweg-logo.png" class="footer-logo" alt="ZekerOpWeg footer logo">
-                <p>Onafhankelijk aankoopadvies, EV-accudiagnose & ondersteuning bij boetes.</p>
-            </div>
 
-            <div>
-                <h4>Navigatie</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html" class="active">EV-AccuCheck</a></li>
-                    <li><a href="gratis-bezwaar.html">Gratis Bezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4>Contact</h4>
-                <ul>
-                    <li>advies@zekeropweg.nu</li>
-                    <li>06-23452349</li>
-                    <li>www.zekeropweg.nu</li>
-                </ul>
-            </div>
+<!-- USP’S -->
+<section class="section cream-bg">
+    <div class="container usp-grid">
+        <div class="usp-item">
+            <h4>Officieel certificaat</h4>
+            <p>TÜV-gecertificeerd rapport met exacte accugezondheid.</p>
         </div>
 
-        <p class="footer-bottom">© ZekerOpWeg – onafhankelijke begeleiding & EV-diagnose</p>
+        <div class="usp-item">
+            <h4>Onafhankelijke diagnose</h4>
+            <p>Geen dealerbelangen. Altijd volledig in uw voordeel.</p>
+        </div>
+
+        <div class="usp-item">
+            <h4>Snel & betrouwbaar</h4>
+            <p>Binnen 10–15 minuten volledig inzicht ter plaatse.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section" style="background-image:url('assets/images/cta/aankoopadvies.webp');">
+    <div class="cta-overlay"></div>
+
+    <div class="container">
+        <h2>Ook zekerheid over uw EV-accu?</h2>
+        <p>Plan een onafhankelijke EV-AccuCheck op locatie.</p>
+        <a href="contact.html" class="button-primary">Neem contact op</a>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-grid container">
+
+        <div class="footer-column">
+            <img src="assets/images/logo.png" class="footer-logo" alt="ZekerOpWeg footer logo">
+            <p>Onafhankelijk aankoopadvies, EV-accudiagnose & premium begeleiding.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Diensten</h4>
+            <p>
+                Aankoopadvies<br>
+                EV-AccuCheck<br>
+                Gratis Bezwaar
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <p>
+                advies@zekeropweg.nu<br>
+                www.zekeropweg.nu
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 ZekerOpWeg – Onafhankelijke premium begeleiding
     </div>
 </footer>
 
-<script src="scripts/scripts.js?v=1.0.1"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
-
 
