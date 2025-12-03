@@ -3,79 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg</title>
+    <title>ZekerOpWeg – Lancering januari 2026</title>
 
     <!-- PREMIUM FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* GENERAL */
+        /* GENERAL PAGE STYLE */
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
+            background: #000;
             font-family: 'Libre Baskerville', serif;
             color: #d8b878;
             overflow: hidden;
         }
 
+        /* BACKGROUND WRAPPER */
         .wrapper {
             width: 100%;
             height: 100vh;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 40px;
-            animation: fadeIn 2.2s ease-in-out;
+            padding-top: 120px;
+            animation: fadeIn 1.8s ease-out;
         }
 
-        /* Dark cinematic overlay */
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(1.5px);
-        }
-
-        /* CONTENT */
-        .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 90%;
-            color: #d8b878;
-        }
-
-        h1 {
-            font-size: 48px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 22px;
-            line-height: 1.55;
-            margin: 10px 0;
-            opacity: 0.92;
-        }
-
-        /* MOBILE STYLING */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 34px;
-            }
-            p {
-                font-size: 18px;
-            }
-        }
-
-        /* BACKGROUND SWITCHING */
+        /* BACKGROUND IMAGES */
         @media (min-width: 769px) {
             .wrapper {
                 background-image: url('images/hero/zekeropweg-offline-desktop.webp');
@@ -88,8 +47,67 @@
             }
         }
 
-        /* ANIMATION */
+        /* CINEMATIC OVERLAY */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.75) 0%,
+                rgba(0, 0, 0, 0.6) 40%,
+                rgba(0, 0, 0, 0.55) 100%
+            );
+            backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        /* LOGO */
+        .logo {
+            width: 220px;
+            margin-bottom: 40px;
+            z-index: 2;
+            animation: fadeUp 2.2s ease-out;
+        }
+
+        /* CONTENT */
+        .content {
+            text-align: center;
+            z-index: 2;
+            color: #d8b878;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 46px;
+            font-weight: 400;
+            margin-bottom: 18px;
+            letter-spacing: 0.6px;
+            animation: fadeUp 2.4s ease-out;
+        }
+
+        p {
+            font-size: 22px;
+            margin: 12px 0;
+            opacity: 0.92;
+            animation: fadeUp 2.8s ease-out;
+        }
+
+        /* MOBILE STYLES */
+        @media (max-width: 768px) {
+            .logo { width: 160px; }
+            h1 { font-size: 32px; }
+            p { font-size: 18px; }
+            .wrapper { padding-top: 90px; }
+        }
+
+        /* FADE ANIMATIONS */
         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
@@ -97,19 +115,21 @@
 </head>
 
 <body>
+
     <div class="wrapper">
         <div class="overlay"></div>
 
+        <!-- LOGO -->
+        <img src="assets/images/logo.png" alt="ZekerOpWeg Logo" class="logo">
+
+        <!-- CONTENT -->
         <div class="content">
             <h1>ZekerOpWeg</h1>
-
-            <p>Onze nieuwe website wordt zorgvuldig voorbereid.</p>
-            <p>De officiële lancering staat gepland voor begin januari 2026.</p>
+            <p>Onze nieuwe premium website wordt zorgvuldig voorbereid.</p>
+            <p>De officiële lancering staat gepland voor januari 2026.</p>
         </div>
     </div>
+
 </body>
 </html>
-
-
-
 
