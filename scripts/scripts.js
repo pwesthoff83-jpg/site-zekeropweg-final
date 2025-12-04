@@ -1,23 +1,19 @@
 function toggleMenu() {
-    const nav = document.getElementById("mainNav");
     const overlay = document.getElementById("menuOverlay");
     const toggle = document.querySelector(".menu-toggle");
 
-    toggle.classList.toggle("open");
+    if (!overlay || !toggle) return;
 
-    if (overlay) {
-        overlay.classList.toggle("active");
-    }
+    toggle.classList.toggle("open");
+    overlay.classList.toggle("active");
 }
 
 function closeMenu() {
     const overlay = document.getElementById("menuOverlay");
     const toggle = document.querySelector(".menu-toggle");
 
+    if (!overlay || !toggle) return;
+
     toggle.classList.remove("open");
-
-    if (overlay) {
-        overlay.classList.remove("active");
-    }
+    overlay.classList.remove("active");
 }
-
