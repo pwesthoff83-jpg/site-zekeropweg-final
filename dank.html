@@ -1,45 +1,90 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dank voor uw aanvraag | ZekerOpWeg</title>
+    <title>Bedankt | ZekerOpWeg</title>
 
+    <meta name="description"
+        content="Bedankt voor uw intake. Uw aanvraag voor aankoopadvies is ontvangen.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1">
-    <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body class="fade-in">
 
-<header class="header">
-    <div class="container header-container">
-        <a href="index.html">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
-        </a>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-container">
+
+            <a href="index.html">
+                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+            </a>
+
+            <!-- Premium hamburger -->
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                    <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                    <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+                    <li><a href="over.html">Over</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- FULLSCREEN OVERLAY -->
+    <div id="menuOverlay" class="menu-overlay">
+        <nav class="overlay-nav">
+            <a href="index.html" onclick="closeMenu()">Home</a>
+            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
+            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
+            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
+            <a href="over.html" onclick="closeMenu()">Over</a>
+            <a href="contact.html" onclick="closeMenu()">Contact</a>
+        </nav>
     </div>
-</header>
 
-<section class="thankyou-section">
-    <div class="container">
+    <!-- BEDANKTPAGINA -->
+    <section class="thankyou-section">
+        <div class="container thankyou-container">
 
-        <h2 class="section-title">Dank voor uw aanvraag</h2>
+            <h2 class="section-title">Bedankt voor uw intake</h2>
 
-        <p class="section-subtitle">
-            Uw aanvraag is ontvangen en wordt persoonlijk door mij in behandeling genomen.  
-            U ontvangt spoedig een bericht met de vervolgstappen.
-        </p>
+            <p class="thankyou-text">
+                Uw aanvraag voor aankoopadvies is succesvol ontvangen.  
+                Ik bekijk uw informatie zorgvuldig en neem contact met u op zodra dit mogelijk is.  
+                Voor nu hoeft u niets meer te doen.
+            </p>
 
-        <a href="index.html" class="cta-button">Terug naar de homepagina</a>
+            <p class="thankyou-text">
+                Binnen uw gekozen pakket zorg ik voor rust, duidelijkheid en deskundige begeleiding in het traject naar uw volgende auto.
+            </p>
 
-    </div>
-</section>
+            <a href="index.html" class="primary-button">Terug naar de homepage</a>
+        </div>
+    </section>
 
-<footer class="footer">
-    <div class="container footer-container">
-        <p>© 2026 ZekerOpWeg</p>
-    </div>
-</footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 ZekerOpWeg</p>
+        </div>
+    </footer>
+
+    <script src="scripts/scripts.js"></script>
 
 </body>
+
 </html>
+
 
