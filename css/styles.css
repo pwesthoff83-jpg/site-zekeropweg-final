@@ -1,140 +1,200 @@
-/* -----------------------------------------
-   ZEKEROPWEG PREMIUM STYLE B – SERVICE CARDS
---------------------------------------------*/
+/* ----------------------------------------------------
+   BASIS STYLING
+---------------------------------------------------- */
 
-.services-section {
-    padding: 80px 20px;
-    background: #F8F7F3;
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #ffffff;
+    color: #0A1A2F;
 }
 
-.section-title {
-    font-size: 2.4rem;
-    color: #0A1A2F;
-    text-align: center;
+h1, h2, h3, h4 {
     font-weight: 700;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* ----------------------------------------------------
+   CONTAINERS
+---------------------------------------------------- */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ----------------------------------------------------
+   HEADER
+---------------------------------------------------- */
+
+.header {
+    background-color: #0A1A2F;
+    padding: 16px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo {
+    height: 60px;
+    width: auto;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.main-nav a {
+    color: #D4A857;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.main-nav a.active {
+    border-bottom: 2px solid #D4A857;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* ----------------------------------------------------
+   SECTION TITLES
+---------------------------------------------------- */
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
     margin-bottom: 10px;
 }
 
 .section-subtitle {
     text-align: center;
-    font-size: 1.1rem;
-    color: #3A3A3A;
-    margin-bottom: 50px;
+    color: #4A5568;
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+/* ----------------------------------------------------
+   SERVICE GRID
+---------------------------------------------------- */
+
+.services-section {
+    padding: 60px 0;
 }
 
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .service-card {
-    background: #FFFFFF;
-    border-radius: 18px;
+    background: #ffffff;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    border: 1px solid #e5e5e5;
 }
 
-.service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 28px rgba(0,0,0,0.12);
+.premium-highlight {
+    border: 2px solid #D4A857;
+    transform: scale(1.02);
 }
 
-.service-title {
-    color: #0A1A2F;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+/* ----------------------------------------------------
+   MEEST GEKOZEN BADGE
+---------------------------------------------------- */
+
+.most-chosen-badge {
+    background-color: #0A1A2F;
+    color: #D4A857;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 40px;
+    display: inline-block;
+    margin-bottom: 12px;
 }
 
-.service-text {
-    color: #3A3A3A;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 18px;
-}
+/* ----------------------------------------------------
+   SERVICE LIST
+---------------------------------------------------- */
 
 .service-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.service-list li {
-    margin-bottom: 10px;
-    color: #3A3A3A;
     padding-left: 20px;
-    position: relative;
-}
-
-.service-list li::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: #C6A667;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 7px;
+    margin: 20px 0;
 }
 
 .service-quote {
-    margin-top: 18px;
+    margin-top: 10px;
     font-style: italic;
-    color: #0A1A2F;
+    color: #4A5568;
+}
+
+/* ----------------------------------------------------
+   CTA BUTTONS (NIEUW)
+---------------------------------------------------- */
+
+.cta-button {
+    display: inline-block;
+    margin-top: 18px;
+    background: #0A1A2F;
+    color: #D4A857;
+    padding: 14px 24px;
+    font-size: 1.05rem;
     font-weight: 600;
-    border-left: 3px solid #C6A667;
-    padding-left: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.25s ease;
 }
 
-/* Highlight card (PREMIUM) */
-.premium-highlight {
-    border: 2px solid #C6A667;
-    background: #FFFDF8;
-    box-shadow: 0 12px 30px rgba(198,166,103,0.15);
+.cta-button:hover {
+    background: #142842;
+    color: #E7C87A;
 }
 
-.premium-highlight:hover {
-    box-shadow: 0 18px 35px rgba(198,166,103,0.25);
-}
+/* ----------------------------------------------------
+   LINKS IN SERVICE KAARTEN
+---------------------------------------------------- */
 
-/* Divider */
-.divider {
-    margin: 60px auto;
-    width: 120px;
-    height: 3px;
-    background: #C6A667;
-    border-radius: 3px;
-    border: none;
-}
-
-/* CTA link */
 .service-link {
     display: inline-block;
-    margin-top: 15px;
-    color: #C6A667;
+    margin-top: 10px;
     font-weight: 600;
-    font-size: 1.05rem;
+    color: #0A1A2F;
     text-decoration: none;
-    transition: 0.3s;
 }
 
 .service-link:hover {
-    color: #0A1A2F;
-    text-decoration: underline;
+    color: #D4A857;
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-    .section-title {
-        font-size: 2rem;
-    }
-    .service-card {
-        padding: 25px;
-    }
+/* ----------------------------------------------------
+   DIVIDER
+---------------------------------------------------- */
+
+.divider {
+    margin: 50px auto;
+    width: 200px;
+    height: 2px;
+    background: #e5e5e5;
+    border: none;
 }
+
+/* ----------------------------------------------------
+   INTAKE PAGINA
+---------------------------------------------------- */
 
 .intake-section {
     padding: 60px 0;
@@ -185,6 +245,10 @@
     color: #E7C87A;
 }
 
+/* ----------------------------------------------------
+   GEKOZEN PAKKET BADGE (NIEUW)
+---------------------------------------------------- */
+
 .chosen-package {
     background: #0A1A2F;
     color: #D4A857;
@@ -196,4 +260,27 @@
     font-size: 1rem;
 }
 
+/* ----------------------------------------------------
+   DANK PAGINA
+---------------------------------------------------- */
+
+.thankyou-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* ----------------------------------------------------
+   FOOTER
+---------------------------------------------------- */
+
+.footer {
+    background: #0A1A2F;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    text-align: center;
+    color: #D4A857;
+}
 
