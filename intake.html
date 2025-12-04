@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aanvraagformulier | ZekerOpWeg</title>
+    <title>Aankoopadvies Aanvraag | ZekerOpWeg</title>
+
+    <!-- Zelfde CSS als jouw andere pagina's -->
     <link rel="stylesheet" href="css/styles.css?v=1.0.1">
     <link rel="stylesheet" href="css/global.css">
 </head>
@@ -22,7 +24,7 @@
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
                 <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
@@ -32,18 +34,25 @@
     </div>
 </header>
 
-
-<!-- FORM SECTION -->
+<!-- INTAKE SECTION -->
 <section class="intake-section">
     <div class="container">
 
-        <h2 class="section-title">Aanvraagformulier</h2>
+        <h2 class="section-title">Aanvraag Aankoopadvies</h2>
+
         <p class="section-subtitle">
-            Vul hieronder uw gegevens in en ik neem uw aanvraag persoonlijk in behandeling.
+            U staat op het punt om gebruik te maken van mijn deskundige begeleiding bij de aankoop van uw auto. 
+            Vul hieronder uw gegevens in. Ik neem uw traject persoonlijk in behandeling.
         </p>
 
+        <!-- Gekozen pakket weergave -->
+        <div id="pakketBadge" class="chosen-package" style="display:none;">
+            Gekozen pakket: <span id="pakketTitel"></span>
+        </div>
+
+        <!-- FORMULIER -->
         <form class="intake-form" method="POST" action="https://formspree.io/f/your-endpoint">
-            
+
             <label>Naam</label>
             <input type="text" name="naam" required>
 
@@ -54,7 +63,7 @@
             <input type="text" name="telefoon" required>
 
             <label>Gekozen pakket</label>
-            <select name="pakket" required>
+            <select name="pakket" id="pakketSelect" required>
                 <option value="">Maak een keuze</option>
                 <option value="Basis">Basis</option>
                 <option value="Premium">Premium</option>
@@ -65,7 +74,7 @@
             <input type="url" name="advertentie" placeholder="Plak hier de link van de auto">
 
             <label>Kenteken van de auto</label>
-            <input type="text" name="kenteken" placeholder="Indien van toepassing">
+            <input type="text" name="kenteken">
 
             <label>Voorkeursdatum voor inspectie of gesprek</label>
             <input type="date" name="datum">
@@ -75,10 +84,8 @@
 
             <button type="submit" class="submit-button">Verstuur aanvraag</button>
         </form>
-
     </div>
 </section>
-
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -88,6 +95,18 @@
 </footer>
 
 <script src="js/menu.js"></script>
+
+<!-- SCRIPT voor automatisch gekozen pakket -->
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const pakket = params.get("p");
+
+    if (pakket) {
+        document.getElementById("pakketBadge").style.display = "inline-block";
+        document.getElementById("pakketTitel").textContent = pakket;
+        document.getElementById("pakketSelect").value = pakket;
+    }
+</script>
 
 </body>
 </html>
