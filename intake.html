@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanvraagformulier | ZekerOpWeg</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body class="fade-in">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container header-container">
+        <a href="index.html">
+            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+        </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<!-- FORM SECTION -->
+<section class="intake-section">
+    <div class="container">
+
+        <h2 class="section-title">Aanvraagformulier</h2>
+        <p class="section-subtitle">
+            Vul hieronder uw gegevens in en ik neem uw aanvraag persoonlijk in behandeling.
+        </p>
+
+        <form class="intake-form" method="POST" action="https://formspree.io/f/your-endpoint">
+            
+            <label>Naam</label>
+            <input type="text" name="naam" required>
+
+            <label>E mail</label>
+            <input type="email" name="email" required>
+
+            <label>Telefoonnummer</label>
+            <input type="text" name="telefoon" required>
+
+            <label>Gekozen pakket</label>
+            <select name="pakket" required>
+                <option value="">Maak een keuze</option>
+                <option value="Basis">Basis</option>
+                <option value="Premium">Premium</option>
+                <option value="Full">Full</option>
+            </select>
+
+            <label>Link naar advertentie</label>
+            <input type="url" name="advertentie" placeholder="Plak hier de link van de auto">
+
+            <label>Kenteken van de auto</label>
+            <input type="text" name="kenteken" placeholder="Indien van toepassing">
+
+            <label>Voorkeursdatum voor inspectie of gesprek</label>
+            <input type="date" name="datum">
+
+            <label>Opmerkingen of aanvullende informatie</label>
+            <textarea name="opmerkingen" rows="5"></textarea>
+
+            <button type="submit" class="submit-button">Verstuur aanvraag</button>
+        </form>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-container">
+        <p>© 2026 ZekerOpWeg</p>
+    </div>
+</footer>
+
+<script src="js/menu.js"></script>
+
+</body>
+</html>
 
