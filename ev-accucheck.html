@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV AccuCheck | ZekerOpWeg</title>
-
-    <meta name="description"
-        content="Professionele accugezondheidstest op locatie met officieel certificaat. Direct inzicht in de conditie van een elektrische auto. Introductiekorting in januari en februari.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <meta name="description" content="Professionele onafhankelijke accugezondheidstest voor elektrische auto's, inclusief certificaat. Ideaal voor koop en verkoop.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 </head>
 
 <body class="fade-in">
@@ -17,162 +14,108 @@
     <header class="header">
         <div class="container header-container">
 
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+            <a href="index.html" class="logo-wrap">
+                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
             </a>
 
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
             <nav class="main-nav" id="mainNav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html" class="active">EV AccuCheck</a></li>
+                    <li><a class="active" href="ev-accucheck.html">EV AccuCheck</a></li>
                     <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
                     <li><a href="over.html">Over</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
 
+            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
         </div>
     </header>
 
-    <!-- FULLSCREEN OVERLAY -->
-    <div id="menuOverlay" class="menu-overlay">
-        <nav class="overlay-nav">
-            <a href="index.html" onclick="closeMenu()">Home</a>
-            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
-            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
-            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
-            <a href="over.html" onclick="closeMenu()">Over</a>
-            <a href="contact.html" onclick="closeMenu()">Contact</a>
-        </nav>
-    </div>
 
     <!-- HERO -->
-    <section class="services-section">
-        <div class="container">
+    <section class="hero hero-ev">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>EV AccuCheck</h1>
+            <p>Direct inzicht in de werkelijke conditie van de batterij met een onafhankelijk certificaat dat geschikt is voor koop en verkoop.</p>
+        </div>
+    </section>
 
-            <h2 class="section-title">EV AccuCheck</h2>
-            <p class="section-subtitle">
-                Onafhankelijke accugezondheidstest op locatie. De meting duurt ongeveer vijftien minuten. U ontvangt een
-                officieel certificaat en duidelijke uitleg zodat u precies weet waar u aan toe bent.
-            </p>
 
-            <a href="intake.html?p=EV" class="cta-button" style="margin-top:25px;">
-                Plan EV AccuCheck
-            </a>
+    <!-- PARTICULIER BLOK -->
+    <section class="services-section container">
+        <h2 class="section-title">Voor particulieren</h2>
+        <p class="section-subtitle">
+            Zekerheid bij aankoop of verkoop van een elektrische auto. De accustaat bepaalt een groot deel van de waarde en levensduur.
+        </p>
+
+        <div class="service-grid">
+
+            <!-- Particulier kaart -->
+            <div class="service-card premium-highlight">
+                <h3 class="service-title">EV AccuCheck op locatie €179</h3>
+
+                <p class="service-text">
+                    Onafhankelijke accugezondheidstest op locatie met een officieel certificaat. Ideaal voor aankoop en verkoop.
+                </p>
+
+                <ul class="service-list">
+                    <li>Professionele accutest op locatie</li>
+                    <li>Officieel certificaat direct digitaal geleverd</li>
+                    <li>Duidelijke uitleg over de staat van de batterij</li>
+                    <li>Perfect te gebruiken in de verkoopadvertentie</li>
+                </ul>
+
+                <a href="intake-accucheck.html" class="btn-primary">Plan AccuCheck</a>
+            </div>
 
         </div>
     </section>
 
-    <!-- PRIJSBLOKKEN PARTICULIER -->
-    <section class="services-section">
-        <div class="container price-grid">
 
-            <div class="service-card premium-emphasis">
-                <h3 class="service-title">Introductietarief januari en februari</h3>
-                <p class="service-price" style="font-size:1.8rem; font-weight:700; color:#0A1A2F;">
-                    €149
-                </p>
-                <p class="service-text">
-                    Normaal €179. Tijdelijk introductietarief voor nieuwe klanten in de eerste maanden.
-                </p>
-                <a href="intake.html?p=EV" class="cta-button cta-premium">Plan accutest</a>
-            </div>
+    <!-- ZAKELIJK BLOK -->
+    <section class="services-section container">
+        <h2 class="section-title">Voor bedrijven en leasemaatschappijen</h2>
+        <p class="section-subtitle">
+            Geschikt voor vlootbeheer, taxaties en kwaliteitscontrole. Certificaat direct digitaal beschikbaar voor gebruik in advertenties.
+        </p>
 
+        <div class="service-grid">
+
+            <!-- 5 tests -->
             <div class="service-card">
-                <h3 class="service-title">Normaal tarief</h3>
-                <p class="service-price" style="font-size:1.8rem; font-weight:700;">
-                    €179
-                </p>
-                <p class="service-text">
-                    Tarief voor een professionele accugezondheidstest op locatie inclusief certificaat.
-                </p>
+                <h3 class="service-title">Pakket vijf testen €109 per test</h3>
+                <p class="service-text">Ideaal voor autodealers en kleinere vlooteigenaren.</p>
+
+                <ul class="service-list">
+                    <li>AccuCheck op locatie</li>
+                    <li>Direct digitaal certificaat</li>
+                    <li>Te gebruiken bij verkoop en inruil</li>
+                </ul>
             </div>
 
-        </div>
-    </section>
+            <!-- 10 tests -->
+            <div class="service-card">
+                <h3 class="service-title">Pakket tien testen €99 per test</h3>
+                <p class="service-text">Beste keuze voor leasemaatschappijen en grotere dealers.</p>
 
-    <!-- WAAROM EV ACCUCHECK -->
-    <section class="services-section">
-        <div class="container">
-
-            <h2 class="section-title">Waarom kiezen voor de EV AccuCheck</h2>
-
-            <div class="service-grid">
-                <div class="service-card">
-                    <ul class="service-list">
-                        <li>Direct inzicht in de werkelijke gezondheid van de batterij</li>
-                        <li>Meting op locatie binnen ongeveer vijftien minuten</li>
-                        <li>Officieel certificaat geschikt voor koop en verkoop</li>
-                        <li>Onafhankelijk en deskundig uitgevoerd</li>
-                        <li>Extra zekerheid bij elektrische auto’s met onbekende of twijfelachtige historie</li>
-                        <li>Meer rust bij het nemen van een beslissing over koop of verkoop</li>
-                    </ul>
-                </div>
+                <ul class="service-list">
+                    <li>AccuCheck op locatie</li>
+                    <li>Direct digitaal certificaat</li>
+                    <li>Geschikt voor vlootbeheer</li>
+                </ul>
             </div>
 
-        </div>
-    </section>
-
-    <!-- CERTIFICAAT -->
-    <section class="services-section">
-        <div class="container">
-
-            <h2 class="section-title">Officieel accucertificaat</h2>
-            <p class="section-subtitle">
-                Na de meting ontvangt u een officieel certificaat met de gemeten accugezondheid.  
-                Dit document is geschikt voor kopers, verkopers en verzekeraars en kan worden gebruikt als onderbouwing bij een advertentie of taxatie.
-            </p>
-
-        </div>
-    </section>
-
-    <!-- ZAKELIJKE TEASER -->
-    <section class="services-section">
-        <div class="container">
-
-            <h2 class="section-title">EV AccuCheck voor bedrijven</h2>
-            <p class="section-subtitle">
-                Voor handelaren, dealers en leasemaatschappijen bied ik zakelijke pakketten met voordeel per test.  
-                Certificaten worden digitaal geleverd en zijn direct geschikt voor gebruik in uw advertenties en presentaties.
-            </p>
-
-            <div class="service-grid">
-                <div class="service-card">
-                    <ul class="service-list">
-                        <li>Losse test op locatie voor zakelijke klanten</li>
-                        <li>Pakketten met meerdere testen per maand of per voorraad</li>
-                        <li>Digitale certificaten direct inzetbaar in online advertenties</li>
-                        <li>Meer vertrouwen bij uw klanten door aantoonbare accugezondheid</li>
-                    </ul>
-
-                    <a href="ev-accucheck-zakelijk.html" class="cta-button">
-                        Zakelijke EV AccuCheck
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CTA SLOT -->
-    <section class="services-section">
-        <div class="container" style="text-align:center;">
-            <a href="intake.html?p=EV" class="cta-button cta-premium" style="padding:16px 28px; font-size:1.2rem;">
-                Plan uw EV AccuCheck
-            </a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-inner">
             <p>© 2026 ZekerOpWeg</p>
         </div>
     </footer>
@@ -180,6 +123,4 @@
     <script src="scripts/scripts.js"></script>
 
 </body>
-
 </html>
-
