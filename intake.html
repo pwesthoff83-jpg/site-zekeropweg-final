@@ -102,20 +102,21 @@
 
     <script src="scripts/scripts.js"></script>
 
-    <script>
-        // Lees pakket uit URL en toon boven formulier
-        const urlParams = new URLSearchParams(window.location.search);
-        const pkg = urlParams.get("p");
-        const badge = document.getElementById("chosenPackage");
+   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const pkg = urlParams.get("p");
+    const badge = document.getElementById("chosenPackage");
 
-        if (pkg) {
-            badge.style.display = "inline-block";
+    if (pkg) {
+        badge.style.display = "inline-block";
 
-            if (pkg === "Basis") badge.textContent = "Gekozen pakket Basis";
-            if (pkg === "Premium") badge.textContent = "Gekozen pakket Premium";
-            if (pkg === "Full") badge.textContent = "Gekozen pakket Full";
-        }
-    </script>
+        if (pkg === "Basis") badge.textContent = "Gekozen pakket Basis";
+        if (pkg === "Premium") badge.textContent = "Gekozen pakket Premium";
+        if (pkg === "Full") badge.textContent = "Gekozen pakket Full";
+        if (pkg === "EVzakelijk") badge.textContent = "Zakelijke EV AccuCheck";
+    }
+</script>
+
 
 </body>
 
