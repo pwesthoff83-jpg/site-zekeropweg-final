@@ -326,4 +326,141 @@ img {
     color: var(--zw-gold);
 }
 
+/* ============================
+   HERO AANKOOPADVIES
+============================ */
+.hero-aankoopadvies {
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    min-height: 320px;
+    background-image: url("../assets/images/hero/showroom-premium.webp");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-aankoopadvies .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.hero-aankoopadvies .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.hero-aankoopadvies h1 {
+    font-size: 2.7rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.hero-aankoopadvies p {
+    font-size: 1.15rem;
+    color: #f3f3f3;
+    opacity: 0.95;
+}
+
+
+/* ============================
+   SERVICE CARDS / PREMIUM LOOK
+============================ */
+.services-section {
+    padding: 4rem 0;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 1px solid #efefef;
+    position: relative;
+}
+
+.premium-highlight {
+    border: 2px solid #b59d5b;
+    box-shadow: 0 10px 25px rgba(181,157,91,0.25);
+}
+
+.badge-popular {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #b59d5b;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.service-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0d1a2d;
+}
+
+.service-list {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+}
+
+.service-list li {
+    margin-bottom: 0.45rem;
+}
+
+.service-quote {
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.8rem 1.6rem;
+    background: #0d1a2d;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #b59d5b;
+    color: #0d1a2d;
+}
+
+
+/* ============================
+   FOOTER
+============================ */
+.footer {
+    background: #0d1a2d;
+    padding: 2.4rem 0;
+    text-align: center;
+}
+
+.footer p {
+    color: #fff;
+    opacity: 0.85;
+}
+
 
