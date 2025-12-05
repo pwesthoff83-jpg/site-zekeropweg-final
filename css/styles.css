@@ -1,211 +1,329 @@
-/* -----------------------------------------
-   ZEKEROPWEG PREMIUM STYLE B – SERVICE CARDS
---------------------------------------------*/
+/* =======================================================
+   ZEKER OP WEG — PREMIUM BASE STYLE
+   ======================================================= */
 
-.services-section {
-    padding: 80px 20px;
-    background: #F8F7F3;
+:root {
+    --zw-navy: #0A1A2F;
+    --zw-gold: #C9A86A;
+    --zw-light: #F8F8F8;
+    --zw-dark: #1B1B1B;
+
+    --font-title: "Lato", sans-serif;
+    --font-body: "Inter", sans-serif;
+
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 6px;
+
+    --shadow-card: 0px 10px 25px rgba(0,0,0,0.08);
 }
 
-.section-title {
-    font-size: 2.4rem;
-    color: #0A1A2F;
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #3A3A3A;
-    margin-bottom: 50px;
-}
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 35px;
-}
-
-.service-card {
-    background: #FFFFFF;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 28px rgba(0,0,0,0.12);
-}
-
-.service-title {
-    color: #0A1A2F;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.service-text {
-    color: #3A3A3A;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 18px;
-}
-
-.service-list {
-    list-style: none;
+/* RESET */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.service-list li {
-    margin-bottom: 10px;
-    color: #3A3A3A;
-    padding-left: 20px;
-    position: relative;
+body {
+    font-family: var(--font-body);
+    background: #ffffff;
+    color: #1b1b1b;
+    line-height: 1.6;
 }
 
-.service-list li::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: #C6A667;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 7px;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-.service-quote {
-    margin-top: 18px;
-    font-style: italic;
-    color: #0A1A2F;
-    font-weight: 600;
-    border-left: 3px solid #C6A667;
-    padding-left: 12px;
+/* =======================================================
+   HEADER
+   ======================================================= */
+
+.zw-header {
+    width: 100%;
+    background: var(--zw-navy);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* Highlight card (PREMIUM) */
-.premium-highlight {
-    border: 2px solid #C6A667;
-    background: #FFFDF8;
-    box-shadow: 0 12px 30px rgba(198,166,103,0.15);
+.zw-header__container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.premium-highlight:hover {
-    box-shadow: 0 18px 35px rgba(198,166,103,0.25);
+.zw-header__logo img {
+    height: 42px;
 }
 
-/* Divider */
-.divider {
-    margin: 60px auto;
-    width: 120px;
-    height: 3px;
-    background: #C6A667;
-    border-radius: 3px;
+.zw-header__toggle {
+    background: none;
     border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
 }
 
-/* CTA link */
-.service-link {
-    display: inline-block;
-    margin-top: 15px;
-    color: #C6A667;
-    font-weight: 600;
-    font-size: 1.05rem;
+/* -------- NAVIGATION -------- */
+
+.zw-nav {
+    display: flex;
+}
+
+.zw-nav__list {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.zw-nav__list a {
     text-decoration: none;
-    transition: 0.3s;
+    color: white;
+    font-weight: 500;
+    transition: 0.2s;
 }
 
-.service-link:hover {
-    color: #0A1A2F;
-    text-decoration: underline;
+.zw-nav__list a:hover,
+.zw-nav__list a.active {
+    color: var(--zw-gold);
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-    .section-title {
-        font-size: 2rem;
+/* -------- MOBILE NAV -------- */
+
+@media (max-width: 900px) {
+
+    .zw-header__toggle {
+        display: block;
     }
-    .service-card {
-        padding: 25px;
+
+    .zw-nav {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        height: 100vh;
+        width: 70%;
+        background: var(--zw-navy);
+        padding-top: 120px;
+        transition: 0.3s;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .zw-nav.open {
+        right: 0;
+    }
+
+    .zw-nav__list {
+        flex-direction: column;
+        gap: 22px;
+        padding-left: 32px;
+    }
+
+    .zw-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+    }
+
+    .zw-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
     }
 }
 
-/* ===========================================
-   BRAND BOOSTERS OPTIMALISATIE
-   Premium Style B (Navy-Gold)
-=========================================== */
+/* =======================================================
+   HERO SMALL
+   ======================================================= */
 
-/* BASIS – visueel lichter */
-.service-basic {
-    background: #FAFAFA;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+.zw-hero-small {
+    background: var(--zw-light);
+    padding: 80px 0 60px;
+    text-align: center;
 }
 
-/* FULL – subtiele navy border */
-.service-full {
-    border: 2px solid rgba(10, 26, 47, 0.25); /* navy tint */
+.zw-hero-small__title {
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--zw-navy);
 }
 
-/* CTA Buttons */
-.cta-button {
-    display: inline-block;
-    margin-top: 18px;
-    background: #0A1A2F;
-    color: #FFFFFF;
-    padding: 12px 20px;
-    border-radius: 40px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s ease;
+.zw-hero-small__subtitle {
+    margin-top: 12px;
+    font-size: 1.15rem;
+    color: #444;
 }
 
-.cta-button:hover {
-    background: #C6A667;
-    color: #0A1A2F;
+/* =======================================================
+   PAKKETTEN (CARDS)
+   ======================================================= */
+
+.zw-packages__container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
 }
 
-/* PREMIUM CTA extra luxe */
-.cta-premium {
-    background: #C6A667;
-    color: #0A1A2F;
-}
-
-.cta-premium:hover {
-    background: #0A1A2F;
-    color: #FFFFFF;
-}
-
-/* PREMIUM HERO – goud, schaal, hoogte */
-.premium-emphasis {
-    border: 2px solid #C6A667;
-    transform: scale(1.03);
-    box-shadow: 0 20px 35px rgba(198,166,103,0.25);
-    z-index: 3;
+.zw-card {
+    background: #fff;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
     position: relative;
-    top: -8px;
 }
 
-.premium-emphasis:hover {
-    transform: scale(1.05);
+.zw-card--highlight {
+    border: 2px solid var(--zw-gold);
 }
 
-/* Meest gekozen badge */
-.most-chosen-badge {
-    background-color: #0A1A2F;
-    color: #D4A857;
+.zw-card__badge {
+    position: absolute;
+    top: -16px;
+    left: 32px;
+    background: var(--zw-navy);
+    color: white;
     padding: 6px 14px;
-    border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 12px;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.zw-card__title {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    font-weight: 700;
+    color: var(--zw-navy);
+}
+
+.zw-card__text {
+    margin-bottom: 18px;
+    color: #333;
+}
+
+.zw-card__list {
+    margin-bottom: 20px;
+    padding-left: 18px;
+}
+
+.zw-card__list li {
+    margin-bottom: 8px;
+}
+
+.zw-card__note {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 22px;
+}
+
+/* =======================================================
+   BUTTONS
+   ======================================================= */
+
+.zw-btn {
     display: inline-block;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.zw-btn--primary {
+    background: var(--zw-navy);
+    color: white;
+}
+
+.zw-btn--primary:hover {
+    background: var(--zw-gold);
+}
+
+/* =======================================================
+   AANVULLENDE DIENSTEN
+   ======================================================= */
+
+.zw-services__container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 40px auto 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.zw-services__item {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+}
+
+.zw-services__item h3 {
+    font-size: 1.25rem;
+    color: var(--zw-navy);
+    margin-bottom: 12px;
+}
+
+.zw-services__item ul {
+    padding-left: 18px;
+}
+
+.zw-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--zw-navy);
+    font-weight: 600;
+}
+
+.zw-link:hover {
+    color: var(--zw-gold);
+}
+
+/* =======================================================
+   FOOTER
+   ======================================================= */
+
+.zw-footer {
+    background: var(--zw-navy);
+    padding: 40px 0;
+    color: white;
+}
+
+.zw-footer__container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.zw-footer__nav {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.zw-footer__nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.zw-footer__nav a:hover {
+    color: var(--zw-gold);
 }
 
 
