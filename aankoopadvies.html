@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aankoopadvies | ZekerOpWeg</title>
-
-    <meta name="description" content="Premium aankoopadvies met drie hoogwaardige pakketten. Zeker naar uw volgende auto met persoonlijke en deskundige begeleiding.">
-
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <meta name="description" content="Premium aankoopadvies met onafhankelijke begeleiding en duidelijke pakketten. Zeker naar uw volgende auto.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 </head>
 
 <body class="fade-in">
@@ -16,19 +14,14 @@
     <header class="header">
         <div class="container header-container">
 
-            <!-- LOGO -->
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+            <a href="index.html" class="logo-wrap">
+                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
             </a>
 
-            <!-- HAMBURGER MENU -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
+                ☰
             </button>
 
-            <!-- DESKTOP NAV -->
             <nav class="main-nav" id="mainNav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -40,161 +33,149 @@
                 </ul>
             </nav>
 
+            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
         </div>
     </header>
 
-    <!-- FULLSCREEN MENU OVERLAY -->
-    <div id="menuOverlay" class="menu-overlay">
-        <nav class="overlay-nav">
-            <a href="index.html" onclick="closeMenu()">Home</a>
-            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
-            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
-            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
-            <a href="over.html" onclick="closeMenu()">Over</a>
-            <a href="contact.html" onclick="closeMenu()">Contact</a>
-        </nav>
-    </div>
+    <!-- HERO -->
+    <section class="hero hero-aankoopadvies">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Aankoopadvies pakketten</h1>
+            <p>Uw volgende auto met deskundige begeleiding die past bij uw wensen en het gewenste niveau van zekerheid.</p>
+        </div>
+    </section>
 
-    <!-- SERVICES SECTION -->
-    <section class="services-section">
-        <div class="container">
+    <!-- PAKKETTEN -->
+    <section class="services-section container">
+        <h2 class="section-title">Kies het aankoopadvies dat bij u past</h2>
+        <p class="section-subtitle">
+            Elke situatie vraagt om een andere mate van begeleiding. De pakketten hieronder geven u duidelijkheid, rust en richting in het aankooptraject.
+        </p>
 
-            <h2 class="section-title">Aankoopadvies pakketten</h2>
-            <p class="section-subtitle">
-                Uw volgende auto met deskundige begeleiding die past bij uw wensen en het gewenste niveau van zekerheid.
-            </p>
+        <div class="service-grid">
 
-            <div class="service-grid">
+            <!-- BASIS -->
+            <div class="service-card">
+                <h3 class="service-title">Basis pakket remote voorselectie €149</h3>
+                <p class="service-text">
+                    Voor wie zorgvuldig wil beginnen. U ontvangt duidelijke informatie voordat u gaat kijken zodat u met rust en richting uw zoektocht start.
+                </p>
 
-                <!-- BASIS -->
-                <div class="service-card service-basic">
-                    <h3 class="service-title">Basis pakket remote voorselectie (€149)</h3>
+                <ul class="service-list">
+                    <li>Analyse van de advertentie</li>
+                    <li>Controle op onderhoud en prijsverwachting</li>
+                    <li>Inzicht in aandachtspunten van dit model</li>
+                    <li>Advies om wel of niet verder te gaan</li>
+                    <li>Telefonisch advies van ongeveer vijftien minuten</li>
+                </ul>
 
-                    <p class="service-text">
-                        Voor wie zorgvuldig wil beginnen. U ontvangt duidelijke informatie voordat u gaat kijken, zodat u met rust en richting aan uw zoektocht begint.
-                    </p>
+                <p class="service-quote">
+                    De ideale eerste controle voor wie zekerheid wil zonder te reizen.
+                </p>
 
-                    <ul class="service-list">
-                        <li>Analyse van de advertentie</li>
-                        <li>Controle op onderhoud en prijsverwachting</li>
-                        <li>Inzicht in aandachtspunten van dit model</li>
-                        <li>Advies om wel of niet verder te gaan</li>
-                        <li>Telefonisch advies van ongeveer vijftien minuten</li>
-                    </ul>
-
-                    <p class="service-quote">
-                        De ideale eerste controle voor wie zekerheid wil zonder te reizen.
-                    </p>
-
-                    <a href="intake.html?p=Basis" class="cta-button">Start voorselectie</a>
-                </div>
-
-                <!-- PREMIUM (MEEST GEKOZEN) -->
-                <div class="service-card premium-highlight premium-emphasis">
-
-                    <div class="most-chosen-badge">Meest gekozen</div>
-
-                    <h3 class="service-title">Premium pakket inspectie op locatie (€299)</h3>
-
-                    <p class="service-text">
-                        Voor wie zekerheid wil zien, voelen en begrijpen. Onafhankelijke inspectie op locatie met heldere uitleg en persoonlijk advies.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>Alles uit Basis pakket</li>
-                        <li>Inspectie van interieur en exterieur</li>
-                        <li>Lakdiktemeting</li>
-                        <li>Controle van banden, remmen en verlichting</li>
-                        <li>Proefrit wanneer mogelijk</li>
-                        <li>Elektronica controle op hoofdlijnen</li>
-                        <li>Analyse van onderhoud en kilometerlogica</li>
-                        <li>Advies bij onderhandelen</li>
-                        <li>Professioneel rapport in PDF</li>
-                        <li>Vaste korting op EV accutest</li>
-                    </ul>
-
-                    <p class="service-quote">
-                        De zekerheid die u zoekt, gezien door de ogen van een ervaren vakspecialist.
-                    </p>
-
-                    <a href="intake.html?p=Premium" class="cta-button cta-premium">Plan inspectie</a>
-                </div>
-
-                <!-- FULL -->
-                <div class="service-card service-full">
-                    <h3 class="service-title">Full pakket complete aankoopbegeleiding (€449)</h3>
-
-                    <p class="service-text">
-                        Voor wie rust en volledige ontzorging wil. Ik neem het traject van begin tot eind over en bewaak de kwaliteit en het resultaat.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>Alles uit Premium pakket</li>
-                        <li>Contact en afstemming met de verkoper</li>
-                        <li>Inplannen van afspraken</li>
-                        <li>Controle van documenten voordat u tekent</li>
-                        <li>Onderhandelen namens u</li>
-                        <li>Nazorg na de aankoop</li>
-                        <li>Alternatieve voorstellen wanneer de auto niet passend is</li>
-                        <li>Vaste korting op EV accutest</li>
-                    </ul>
-
-                    <p class="service-quote">
-                        De meest ontspannen en zorgvuldige manier om een auto te kopen.
-                    </p>
-
-                    <a href="intake.html?p=Full" class="cta-button">Start complete begeleiding</a>
-                </div>
-
+                <a href="intake.html?pakket=basis" class="btn-primary">Start voorselectie</a>
             </div>
 
-            <hr class="divider">
+            <!-- PREMIUM -->
+            <div class="service-card premium-highlight">
+                <span class="badge-popular">Meest gekozen</span>
 
-            <h2 class="section-title">Aanvullende diensten</h2>
+                <h3 class="service-title">Premium pakket inspectie op locatie €299</h3>
+                <p class="service-text">
+                    Voor wie zekerheid wil zien, voelen en begrijpen. Onafhankelijke inspectie op locatie met heldere uitleg en persoonlijk advies.
+                </p>
 
-            <div class="service-grid">
+                <ul class="service-list">
+                    <li>Alles uit Basis pakket</li>
+                    <li>Inspectie van interieur en exterieur</li>
+                    <li>Lakdiktemeting</li>
+                    <li>Controle van banden, remmen en verlichting</li>
+                    <li>Proefrit wanneer mogelijk</li>
+                    <li>Elektronica controle op hoofdlijnen</li>
+                    <li>Analyse van onderhoud en kilometerlogica</li>
+                    <li>Advies bij onderhandelen</li>
+                    <li>Professioneel rapport in PDF</li>
+                    <li>Vaste korting op EV AccuCheck</li>
+                </ul>
 
-                <!-- EV CHECK -->
-                <div class="service-card">
-                    <h3 class="service-title">EV accutest</h3>
-                    <p class="service-text">
-                        Onafhankelijke controle van de gezondheid van de batterij, uitgevoerd op locatie, inclusief officieel certificaat.
-                    </p>
-                    <ul class="service-list">
-                        <li>Professionele meting van accugezondheid</li>
-                        <li>Certificaat geschikt voor koop of verkoop</li>
-                        <li>Uitgevoerd op locatie</li>
-                    </ul>
-                    <a href="ev-accucheck.html" class="service-link">Lees meer</a>
-                </div>
+                <p class="service-quote">
+                    De zekerheid die u zoekt gezien door de ogen van een ervaren vakspecialist.
+                </p>
 
-                <!-- GRATISBEZWAAR -->
-                <div class="service-card">
-                    <h3 class="service-title">GratisBezwaar</h3>
-                    <p class="service-text">
-                        Ontzorging bij parkeerboetes en verkeersboetes, met ondersteuning van kunstmatige intelligentie gecombineerd met persoonlijke controle.
-                    </p>
-                    <ul class="service-list">
-                        <li>Onbeperkt bezwaar</li>
-                        <li>Abonnement per kenteken</li>
-                        <li>Volledige administratieve afhandeling</li>
-                    </ul>
-                    <a href="gratisbezwaar.html" class="service-link">Lees meer</a>
-                </div>
+                <a href="intake.html?pakket=premium" class="btn-primary">Plan inspectie</a>
+            </div>
 
-                <!-- IN VERKOOP -->
-                <div class="service-card">
-                    <h3 class="service-title">Inruil en verkoopadvies</h3>
-                    <p class="service-text">
-                        Voor wie het maximale uit zijn auto wil halen. Eerlijke waardebepaling en begeleiding bij onderhandelen en verkopen.
-                    </p>
-                    <ul class="service-list">
-                        <li>Indicatie van reële verkoopwaarde</li>
-                        <li>Strategie voor onderhandelen</li>
-                        <li>Begeleiding wanneer gewenst</li>
-                    </ul>
-                </div>
+            <!-- FULL -->
+            <div class="service-card">
+                <h3 class="service-title">Full pakket complete aankoopbegeleiding €449</h3>
+                <p class="service-text">
+                    Voor wie rust en volledige ontzorging wil. Ik neem het traject van begin tot eind over en bewaak kwaliteit en resultaat.
+                </p>
 
+                <ul class="service-list">
+                    <li>Alles uit Premium pakket</li>
+                    <li>Contact en afstemming met de verkoper</li>
+                    <li>Inplannen van afspraken</li>
+                    <li>Controle van documenten voordat u tekent</li>
+                    <li>Onderhandelen namens u</li>
+                    <li>Nazorg na de aankoop</li>
+                    <li>Alternatieve voorstellen wanneer de auto niet passend is</li>
+                    <li>Vaste korting op EV AccuCheck</li>
+                </ul>
+
+                <p class="service-quote">
+                    De meest ontspannen en zorgvuldige manier om een auto te kopen.
+                </p>
+
+                <a href="intake.html?pakket=full" class="btn-primary">Start complete begeleiding</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AANVULLENDE DIENSTEN -->
+    <section class="services-section container">
+        <h2 class="section-title">Aanvullende ZekerOpWeg diensten</h2>
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <h3 class="service-title">EV AccuCheck</h3>
+                <p class="service-text">
+                    Onafhankelijke accugezondheidstest op locatie met een certificaat dat geschikt is voor koop en verkoop.
+                </p>
+                <ul class="service-list">
+                    <li>Professionele accutest op locatie</li>
+                    <li>Certificaat geschikt voor advertentie en overdracht</li>
+                    <li>Extra zekerheid bij elektrische auto’s</li>
+                </ul>
+                <a href="ev-accucheck.html" class="text-link">Lees meer</a>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">GratisBezwaar</h3>
+                <p class="service-text">
+                    Ontzorging bij parkeer en verkeersboetes met AI ondersteuning en menselijke controle.
+                </p>
+                <ul class="service-list">
+                    <li>Onbeperkt bezwaar binnen uw abonnement</li>
+                    <li>Abonnement per kenteken</li>
+                    <li>Volledige administratieve afhandeling</li>
+                </ul>
+                <a href="gratisbezwaar.html" class="text-link">Lees meer</a>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">Inruil en verkoopadvies</h3>
+                <p class="service-text">
+                    Voor wie het maximale resultaat uit inruil of verkoop wil halen met deskundige ondersteuning.
+                </p>
+                <ul class="service-list">
+                    <li>Indicatie van reële verkoopwaarde</li>
+                    <li>Strategie voor onderhandelen</li>
+                    <li>Begeleiding mogelijk in overleg</li>
+                </ul>
             </div>
 
         </div>
@@ -202,12 +183,12 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-inner">
             <p>© 2026 ZekerOpWeg</p>
         </div>
     </footer>
 
-    <script src="js/menu.js"></script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
 
