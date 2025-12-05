@@ -4,32 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aankoopadvies | ZekerOpWeg</title>
-    <meta name="description" content="Premium aankoopadvies met drie high-end pakketten. Zeker naar uw volgende auto, zorgeloos geregeld.">
-
-    <!-- Juiste CSS-koppeling -->
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <meta name="description" content="Premium aankoopadvies pakketten met onafhankelijke begeleiding en volledige ontzorging bij de aankoop van uw volgende auto.">
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="scripts/scripts.js"></script>
 </head>
 
-<body class="fade-in">
+<body>
 
-<!-- ============================================
-   HEADER
-=============================================== -->
-<!-- HEADER -->
-<header class="header">
-    <div class="container header-container">
+<!-- ========================================= -->
+<!-- HEADER                                   -->
+<!-- ========================================= -->
+<header class="zw-header">
+    <div class="zw-header__container">
 
-        <a href="index.html">
-            <img src="assets/images/logo.png" alt="ZekerOpWeg Logo" class="site-logo">
+        <a href="index.html" class="zw-header__logo">
+            <img src="assets/images/logo.png" alt="ZekerOpWeg Logo">
         </a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="zw-header__toggle" onclick="toggleMenu()">☰</button>
 
-        <nav class="main-nav" id="mainNav">
-            <ul>
+        <nav class="zw-nav" id="mainNav">
+            <ul class="zw-nav__list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
@@ -40,168 +35,177 @@
         </nav>
 
     </div>
+
+    <!-- Overlay -->
+    <div id="menuOverlay" class="zw-overlay" onclick="closeMenu()"></div>
 </header>
 
 
+<!-- ========================================= -->
+<!-- HERO TITEL                                -->
+<!-- ========================================= -->
 
-<!-- ============================================
-   PREMIUM SERVICE CARDS – AANKOOPADVIES
-=============================================== -->
-
-<section class="services-section">
-    <div class="container">
-
-        <h2 class="section-title">Aankoopadvies Pakketten</h2>
-        <p class="section-subtitle">
-            Zeker naar uw volgende auto met een advies dat past bij uw wensen, behoefte aan zekerheid en niveau van ontzorging.
+<section class="zw-hero-small">
+    <div class="zw-hero-small__inner">
+        <h1 class="zw-hero-small__title">Aankoopadvies pakketten</h1>
+        <p class="zw-hero-small__subtitle">
+            Uw volgende auto met deskundige begeleiding die past bij uw wensen en het gewenste niveau van zekerheid.
         </p>
-
-       <div class="service-grid">
-
-    <!-- BASIS -->
-    <div class="service-card service-basic">
-        <h3 class="service-title">BASIS – Remote Voorselectie (€149)</h3>
-        <p class="service-text">
-            Voor wie slim begint. U ontvangt direct duidelijkheid voordat u überhaupt gaat kijken. Rust en richting in de eerste fase van uw zoektocht.
-        </p>
-
-        <ul class="service-list">
-            <li>Analyse van de advertentie</li>
-            <li>Controle op onderhoud, prijslogica en verwachtingen</li>
-            <li>Inzicht in aandachtspunten voor dit model</li>
-            <li>Advies of het zinvol is om verder te gaan</li>
-            <li>Telefoongesprek van 10 tot 15 minuten</li>
-        </ul>
-
-        <p class="service-quote">
-            De perfecte eerste check voor wie zekerheid wil zonder direct op pad te hoeven.
-        </p>
-
-        <a href="contact.html" class="cta-button">Plan mijn advies</a>
     </div>
-
-    <!-- PREMIUM (HERO PAKKET) -->
-    <div class="service-card premium-highlight premium-emphasis">
-
-        <div class="most-chosen-badge">MEEST GEKOZEN</div>
-
-        <h3 class="service-title">PREMIUM – Inspectie op Locatie (€299)</h3>
-        <p class="service-text">
-            Voor wie zekerheid wil voelen, zien en begrijpen. Onafhankelijk, deskundig en volledig gericht op rust in uw aankoopbeslissing.
-        </p>
-
-        <ul class="service-list">
-            <li>Alles uit BASIS</li>
-            <li>Inspectie interieur en exterieur</li>
-            <li>Lakdiktemeting</li>
-            <li>Controle banden, remmen, verlichting en vloeistoffen</li>
-            <li>Proefritanalyse indien mogelijk</li>
-            <li>Basischeck elektronica</li>
-            <li>Onderhoudslogica en kilometerbeoordeling</li>
-            <li>Onderhandelingsadvies</li>
-            <li>Professioneel rapport in PDF</li>
-            <li><strong>10% korting op de EV AccuCheck bij afname van dit pakket</strong></li>
-        </ul>
-
-        <p class="service-quote">
-            De zekerheid die u nodig heeft door de ogen van een ervaren vakspecialist.
-        </p>
-
-        <a href="contact.html" class="cta-button cta-premium">Plan mijn inspectie</a>
-    </div>
-
-    <!-- FULL -->
-    <div class="service-card service-full">
-        <h3 class="service-title">FULL – Complete Aankoopbegeleiding (€449)</h3>
-        <p class="service-text">
-            Voor wie rust wil. Voor wie niets aan het toeval wil overlaten. Volledige premium ontzorging van begin tot eind.
-        </p>
-
-        <ul class="service-list">
-            <li>Alles uit PREMIUM</li>
-            <li>Contact met verkoper</li>
-            <li>Inplannen van afspraken</li>
-            <li>Controle documentatie vooraf</li>
-            <li>Onderhandeling namens u</li>
-            <li>Nazorg en begeleiding na de inspectie</li>
-            <li>Alternatieve suggesties wanneer nodig</li>
-            <li><strong>10% korting op de EV AccuCheck bij afname van dit pakket</strong></li>
-        </ul>
-
-        <p class="service-quote">
-            De meest ontspannen en betrouwbare manier om uw volgende auto te kopen.
-        </p>
-
-        <a href="contact.html" class="cta-button">Start volledige begeleiding</a>
-    </div>
-
-</div>
+</section>
 
 
-        <hr class="divider">
 
-        <h2 class="section-title">Aanvullende ZekerOpWeg Diensten</h2>
+<!-- ========================================= -->
+<!-- PAKKETTEN                                 -->
+<!-- ========================================= -->
 
-        <div class="service-grid">
+<section class="zw-packages">
+    <div class="zw-packages__container">
 
-            <!-- EV CHECK -->
-            <div class="service-card">
-                <h3 class="service-title">EV AccuCheck</h3>
-                <p class="service-text">
-                    Voor kopers en verkopers die zekerheid willen over de staat van de batterij. Onafhankelijk uitgevoerd op locatie.
-                </p>
-                <ul class="service-list">
-                    <li>Onafhankelijke accugezondheidstest</li>
-                    <li>Officieel certificaat</li>
-                    <li>Perfect voor aankoop of verkoop</li>
-                </ul>
-                <a href="ev-accucheck.html" class="service-link">Lees meer</a>
-            </div>
+        <!-- BASIS -->
+        <div class="zw-card">
+            <h3 class="zw-card__title">Basis pakket remote voorselectie (€149)</h3>
+            <p class="zw-card__text">
+                Voor wie zorgvuldig wil beginnen. Direct duidelijkheid voordat u gaat kijken, met rust en richting in de eerste fase van uw zoektocht.
+            </p>
 
-            <!-- GRATIS BEZWAAR -->
-            <div class="service-card">
-                <h3 class="service-title">GratisBezwaar AI</h3>
-                <p class="service-text">
-                    Nooit meer stress over boetes. Administratieve ontzorging met AI-ondersteuning en menselijke controle.
-                </p>
-                <ul class="service-list">
-                    <li>Onbeperkt bezwaar</li>
-                    <li>Kentekengebonden abonnement</li>
-                    <li>Volledige administratieve afhandeling</li>
-                </ul>
-                <a href="gratisbezwaar.html" class="service-link">Lees meer</a>
-            </div>
+            <ul class="zw-card__list">
+                <li>Analyse van de advertentie</li>
+                <li>Controle op onderhoud en prijsverwachting</li>
+                <li>Inzicht in aandachtspunten voor dit model</li>
+                <li>Advies om wel of niet verder te gaan</li>
+                <li>Telefonisch advies van ongeveer vijftien minuten</li>
+            </ul>
 
-            <!-- IN/VERKOOP -->
-            <div class="service-card">
-                <h3 class="service-title">Inruil & Verkoopbegeleiding</h3>
-                <p class="service-text">
-                    Voor wie maximale waarde uit zijn auto wil halen. Transparant, deskundig en gericht op het beste resultaat.
-                </p>
-                <ul class="service-list">
-                    <li>Eerlijke waardebepaling</li>
-                    <li>Onderhandelingsstrategie</li>
-                    <li>Volledige begeleiding mogelijk</li>
-                </ul>
-            </div>
+            <p class="zw-card__note">
+                De ideale eerste controle voor wie zekerheid wil zonder te reizen.
+            </p>
 
+            <a href="intake.html?pakket=basis" class="zw-btn zw-btn--primary">Start voorselectie</a>
+        </div>
+
+
+        <!-- PREMIUM (MEEST GEKOZEN) -->
+        <div class="zw-card zw-card--highlight">
+            <div class="zw-card__badge">Meest gekozen</div>
+
+            <h3 class="zw-card__title">Premium pakket inspectie op locatie (€299)</h3>
+            <p class="zw-card__text">
+                Zekerheid door te zien, voelen en begrijpen. Onafhankelijke inspectie met heldere uitleg en persoonlijk advies.
+            </p>
+
+            <ul class="zw-card__list">
+                <li>Alles uit Basis pakket</li>
+                <li>Inspectie van interieur en exterieur</li>
+                <li>Lakdiktemeting</li>
+                <li>Controle van banden, remmen en verlichting</li>
+                <li>Proefrit wanneer mogelijk</li>
+                <li>Elektronica controle op hoofdlijnen</li>
+                <li>Analyse onderhoud en kilometerlogica</li>
+                <li>Advies bij onderhandelen</li>
+                <li>Professioneel rapport in PDF</li>
+                <li>Vaste korting op EV Accutest</li>
+            </ul>
+
+            <p class="zw-card__note">
+                De zekerheid die u zoekt, gezien door de ogen van een ervaren vakspecialist.
+            </p>
+
+            <a href="intake.html?pakket=premium" class="zw-btn zw-btn--primary">Plan inspectie</a>
+        </div>
+
+
+        <!-- FULL -->
+        <div class="zw-card">
+            <h3 class="zw-card__title">Full pakket complete aankoopbegeleiding (€449)</h3>
+            <p class="zw-card__text">
+                Voor wie rust en volledige ontzorging wil. Ik neem het traject van begin tot eind over en bewaak de kwaliteit en het resultaat.
+            </p>
+
+            <ul class="zw-card__list">
+                <li>Alles uit Premium pakket</li>
+                <li>Contact en afstemming met de verkoper</li>
+                <li>Inplannen van afspraken</li>
+                <li>Controle van documenten voordat u tekent</li>
+                <li>Onderhandelen namens u</li>
+                <li>Nazorg na de aankoop</li>
+                <li>Alternatieve voorstellen wanneer de auto niet passend is</li>
+                <li>Vaste korting op EV Accutest</li>
+            </ul>
+
+            <p class="zw-card__note">
+                De meest ontspannen en zorgvuldige manier om een auto te kopen.
+            </p>
+
+            <a href="intake.html?pakket=full" class="zw-btn zw-btn--primary">Start complete begeleiding</a>
         </div>
 
     </div>
 </section>
 
 
-<!-- ============================================
-   FOOTER
-=============================================== -->
 
-<footer class="footer">
-    <div class="container">
-        <p>© 2025 ZekerOpWeg — Onafhankelijk aankoopadvies & EV-expertise</p>
+<!-- ========================================= -->
+<!-- AANVULLENDE DIENSTEN                      -->
+<!-- ========================================= -->
+
+<section class="zw-services">
+    <div class="zw-services__container">
+
+        <div class="zw-services__item">
+            <h3>EV Accutest</h3>
+            <p>Controle van de gezondheid van de batterij op locatie, inclusief certificaat.</p>
+            <ul>
+                <li>Professionele meting</li>
+                <li>Certificaat geschikt voor koop of verkoop</li>
+                <li>Uitgevoerd op locatie</li>
+            </ul>
+            <a href="ev-accucheck.html" class="zw-link">Lees meer</a>
+        </div>
+
+        <div class="zw-services__item">
+            <h3>GratisBezwaar</h3>
+            <p>Ontzorging bij parkeerboetes en verkeersboetes met AI ondersteuning.</p>
+            <ul>
+                <li>Onbeperkt bezwaar</li>
+                <li>Abonnement per kenteken</li>
+                <li>Volledige administratieve afhandeling</li>
+            </ul>
+            <a href="gratis-bezwaar.html" class="zw-link">Lees meer</a>
+        </div>
+
+        <div class="zw-services__item">
+            <h3>Inruil en verkoopadvies</h3>
+            <p>Voor het maximale resultaat met deskundige begeleiding.</p>
+            <ul>
+                <li>Indicatie van reële verkoopwaarde</li>
+                <li>Strategie voor onderhandelen</li>
+                <li>Begeleiding wanneer gewenst</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ========================================= -->
+<!-- FOOTER                                    -->
+<!-- ========================================= -->
+<footer class="zw-footer">
+    <div class="zw-footer__container">
+        <p>© 2026 ZekerOpWeg</p>
+        <nav class="zw-footer__nav">
+            <a href="index.html">Home</a>
+            <a href="aankoopadvies.html">Aankoopadvies</a>
+            <a href="ev-accucheck.html">EV AccuCheck</a>
+            <a href="gratis-bezwaar.html">GratisBezwaar</a>
+            <a href="over.html">Over</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </div>
 </footer>
-
-<script src="scripts/scripts.js"></script>
 
 </body>
 </html>
