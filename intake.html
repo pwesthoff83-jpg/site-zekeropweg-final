@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intake aankoopadvies | ZekerOpWeg</title>
-
-    <meta name="description"
-        content="Intake voor uw aankoopadvies pakket bij ZekerOpWeg. Vul uw gegevens en voorkeuren in zodat ik u gericht kan helpen.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <title>Intake | ZekerOpWeg</title>
+    <meta name="description" content="Intakeformulier voor aankoopadvies, EV AccuCheck en andere diensten van ZekerOpWeg.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 </head>
 
 <body class="fade-in">
@@ -17,15 +14,12 @@
     <header class="header">
         <div class="container header-container">
 
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+            <a href="index.html" class="logo-wrap">
+                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
             </a>
 
-            <!-- Premium hamburger -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
+                ☰
             </button>
 
             <nav class="main-nav" id="mainNav">
@@ -39,85 +33,245 @@
                 </ul>
             </nav>
 
+            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
         </div>
     </header>
 
-    <!-- FULLSCREEN OVERLAY -->
-    <div id="menuOverlay" class="menu-overlay">
-        <nav class="overlay-nav">
-            <a href="index.html" onclick="closeMenu()">Home</a>
-            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
-            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
-            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
-            <a href="over.html" onclick="closeMenu()">Over</a>
-            <a href="contact.html" onclick="closeMenu()">Contact</a>
-        </nav>
-    </div>
-
-    <!-- INTAKE SECTION -->
-    <section class="intake-section">
-        <div class="container">
-
-            <h2 class="section-title">Intake aankoopadvies</h2>
-            <p class="section-subtitle">
-                Vul hieronder uw gegevens en wensen in. Ik neem persoonlijk contact met u op om uw aanvraag te bevestigen
-                en het vervolg af te stemmen.
-            </p>
-
-            <!-- GEKOZEN PAKKET BADGE -->
-            <div id="chosenPackage" class="chosen-package" style="display:none;"></div>
-
-            <form action="dank.html" method="GET" class="intake-form">
-
-                <label for="name">Uw naam</label>
-                <input type="text" id="name" name="name" required placeholder="Naam">
-
-                <label for="email">Uw mailadres</label>
-                <input type="email" id="email" name="email" required placeholder="Mailadres">
-
-                <label for="phone">Uw telefoonnummer</label>
-                <input type="tel" id="phone" name="phone" required placeholder="Telefoonnummer">
-
-                <label for="car">Welke auto heeft uw voorkeur?</label>
-                <input type="text" id="car" name="car" placeholder="Merk en model">
-
-                <label for="budget">Wat is uw richtprijs?</label>
-                <input type="text" id="budget" name="budget" placeholder="Bijvoorbeeld 15000 euro">
-
-                <label for="notes">Opmerkingen of bijzonderheden</label>
-                <textarea id="notes" name="notes" rows="5" placeholder="Uw bericht"></textarea>
-
-                <button type="submit" class="submit-button">Verstuur intake</button>
-            </form>
-
+    <!-- HERO -->
+    <section class="hero hero-intake">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Intake ZekerOpWeg</h1>
+            <p>In één formulier geeft u door waarvoor u hulp zoekt. Ik neem uw situatie persoonlijk en zorgvuldig met u door.</p>
         </div>
+    </section>
+
+    <!-- INTAKE FORMULIER -->
+    <section class="services-section container intake-section">
+        <h2 class="section-title">Uw aanvraag</h2>
+        <p class="section-subtitle">
+            Vul hieronder rustig uw gegevens en wensen in. Op basis hiervan kan ik u gericht adviseren en een passend voorstel doen.
+        </p>
+
+        <form class="intake-form" action="dank.html" method="post">
+
+            <!-- STAP 1: DIENSTKEUZE -->
+            <div class="form-row">
+                <label for="dienstSelect">Waarvoor wilt u ZekerOpWeg inschakelen?</label>
+                <select id="dienstSelect" name="dienst">
+                    <option value="aankoopadvies">Aankoopadvies</option>
+                    <option value="ev-particulier">EV AccuCheck particulier</option>
+                    <option value="ev-zakelijk">EV AccuCheck zakelijk</option>
+                    <option value="bezwaar">GratisBezwaar</option>
+                    <option value="inruil">Inruil en verkoopadvies</option>
+                </select>
+            </div>
+
+            <!-- STAP 2: GEGEVENS KLANT -->
+            <div class="form-row-grid">
+                <div>
+                    <label for="naam">Naam</label>
+                    <input type="text" id="naam" name="naam" required>
+                </div>
+                <div>
+                    <label for="email">E mailadres</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <div class="form-row-grid">
+                <div>
+                    <label for="telefoon">Telefoonnummer</label>
+                    <input type="tel" id="telefoon" name="telefoon" required>
+                </div>
+                <div>
+                    <label for="contactVoorkeur">Voorkeur contact</label>
+                    <select id="contactVoorkeur" name="contactVoorkeur">
+                        <option value="telefoon">Telefonisch</option>
+                        <option value="email">E mail</option>
+                        <option value="maakt-niet-uit">Maakt niet uit</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="bereikbaarheid">Wanneer bent u meestal goed bereikbaar?</label>
+                <input type="text" id="bereikbaarheid" name="bereikbaarheid" placeholder="Bijvoorbeeld doordeweeks overdag of na werktijd">
+            </div>
+
+            <!-- DIENST SPECIFIEKE BLOKKEN -->
+
+            <!-- AANKOOPADVIES -->
+            <div class="dienst-blok" data-dienst="aankoopadvies">
+                <h3 class="form-subtitle">Aankoopadvies</h3>
+
+                <div class="form-row">
+                    <label for="pakketAankoop">Gewenst pakket</label>
+                    <select id="pakketAankoop" name="pakketAankoop">
+                        <option value="basis">Basis pakket remote voorselectie €149</option>
+                        <option value="premium">Premium pakket inspectie op locatie €299</option>
+                        <option value="full">Full pakket complete begeleiding €449</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="autoInfo">Voertuig of wensen</label>
+                    <textarea id="autoInfo" name="autoInfo" rows="3" placeholder="Kenteken of merk en type, bouwjaar, kilometerstand of uw zoekprofiel"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <label for="linkAdvertentie">Link naar advertentie (indien beschikbaar)</label>
+                    <input type="url" id="linkAdvertentie" name="linkAdvertentie" placeholder="Plak hier de link naar de advertentie">
+                </div>
+            </div>
+
+            <!-- EV ACCUCHECK PARTICULIER -->
+            <div class="dienst-blok" data-dienst="ev-particulier">
+                <h3 class="form-subtitle">EV AccuCheck particulier</h3>
+
+                <div class="form-row-grid">
+                    <div>
+                        <label for="kentekenEvParticulier">Kenteken</label>
+                        <input type="text" id="kentekenEvParticulier" name="kentekenEvParticulier" placeholder="Bijvoorbeeld XX123X">
+                    </div>
+                    <div>
+                        <label for="postcodeEvParticulier">Postcode locatie voertuig</label>
+                        <input type="text" id="postcodeEvParticulier" name="postcodeEvParticulier" placeholder="Bijvoorbeeld 3011AB"
+                               oninput="this.value = this.value.toUpperCase().replace(/\s+/g, '')">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <button type="button" class="btn-primary" onclick="berekenZoneIntake('postcodeEvParticulier','zoneResultaatParticulier')">
+                        Bereken zone
+                    </button>
+                    <p id="zoneResultaatParticulier" class="zone-output"></p>
+                </div>
+
+                <p class="tarief-hint">
+                    Richttarief: EV AccuCheck particulier €179. Toeslag volgens zone bij grotere reisafstand.
+                </p>
+
+                <div class="form-row">
+                    <label for="datumEvParticulier">Voorkeursdatum of periode</label>
+                    <input type="text" id="datumEvParticulier" name="datumEvParticulier" placeholder="Bijvoorbeeld volgende week, of een voorkeursdag">
+                </div>
+            </div>
+
+            <!-- EV ACCUCHECK ZAKELIJK -->
+            <div class="dienst-blok" data-dienst="ev-zakelijk">
+                <h3 class="form-subtitle">EV AccuCheck zakelijk</h3>
+
+                <div class="form-row-grid">
+                    <div>
+                        <label for="bedrijfsnaam">Bedrijfsnaam</label>
+                        <input type="text" id="bedrijfsnaam" name="bedrijfsnaam">
+                    </div>
+                    <div>
+                        <label for="kvk">KvK nummer (optioneel)</label>
+                        <input type="text" id="kvk" name="kvk">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="pakketZakelijk">Gewenst zakelijk pakket</label>
+                    <select id="pakketZakelijk" name="pakketZakelijk">
+                        <option value="los">Losse test €125 per test</option>
+                        <option value="vijf">Vijf testen €109 per test</option>
+                        <option value="tien">Tien testen €99 per test</option>
+                    </select>
+                </div>
+
+                <div class="form-row-grid">
+                    <div>
+                        <label for="locatieZakelijkPostcode">Postcode locatie voertuigen</label>
+                        <input type="text" id="locatieZakelijkPostcode" name="locatieZakelijkPostcode" placeholder="Bijvoorbeeld 3011AB"
+                               oninput="this.value = this.value.toUpperCase().replace(/\s+/g, '')">
+                    </div>
+                    <div>
+                        <label for="aantalVoertuigen">Aantal voertuigen</label>
+                        <input type="number" id="aantalVoertuigen" name="aantalVoertuigen" min="1" step="1">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <button type="button" class="btn-primary" onclick="berekenZoneIntake('locatieZakelijkPostcode','zoneResultaatZakelijk')">
+                        Bereken zone
+                    </button>
+                    <p id="zoneResultaatZakelijk" class="zone-output"></p>
+                </div>
+
+                <p class="tarief-hint">
+                    Tarieven zijn exclusief btw. Zone bepaalt de eventuele reis toeslag per rit.
+                </p>
+            </div>
+
+            <!-- GRATISBEZWAAR -->
+            <div class="dienst-blok" data-dienst="bezwaar">
+                <h3 class="form-subtitle">GratisBezwaar</h3>
+
+                <div class="form-row-grid">
+                    <div>
+                        <label for="kentekenBezwaar">Kenteken</label>
+                        <input type="text" id="kentekenBezwaar" name="kentekenBezwaar">
+                    </div>
+                    <div>
+                        <label for="kenmerkBezwaar">CJIB kenmerk of nummer</label>
+                        <input type="text" id="kenmerkBezwaar" name="kenmerkBezwaar">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="situatieBezwaar">Korte toelichting op de situatie</label>
+                    <textarea id="situatieBezwaar" name="situatieBezwaar" rows="4" placeholder="Beschrijf kort wat er is gebeurd en waarom u het niet eens bent met de boete."></textarea>
+                </div>
+            </div>
+
+            <!-- INRUIL / VERKOOPADVIES -->
+            <div class="dienst-blok" data-dienst="inruil">
+                <h3 class="form-subtitle">Inruil en verkoopadvies</h3>
+
+                <div class="form-row-grid">
+                    <div>
+                        <label for="kentekenInruil">Kenteken huidige auto</label>
+                        <input type="text" id="kentekenInruil" name="kentekenInruil">
+                    </div>
+                    <div>
+                        <label for="kilometerstandInruil">Kilometerstand</label>
+                        <input type="number" id="kilometerstandInruil" name="kilometerstandInruil" min="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="verkoopDoel">Wat is uw doel?</label>
+                    <textarea id="verkoopDoel" name="verkoopDoel" rows="3" placeholder="Bijvoorbeeld maximale opbrengst, snelle verkoop of inruil bij een andere auto."></textarea>
+                </div>
+            </div>
+
+            <!-- ALGEMENE OPMERKINGEN -->
+            <div class="form-row">
+                <label for="opmerkingen">Aanvullende opmerkingen of vragen</label>
+                <textarea id="opmerkingen" name="opmerkingen" rows="3" placeholder="Hier kunt u nog extra informatie of wensen delen."></textarea>
+            </div>
+
+            <!-- VERSTUREN -->
+            <div class="form-row form-row-submit">
+                <button type="submit" class="btn-primary">Verstuur intake</button>
+                <p class="tarief-hint">
+                    Na ontvangst neem ik persoonlijk contact met u op om uw aanvraag door te nemen en de vervolgstappen af te stemmen.
+                </p>
+            </div>
+
+        </form>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-inner">
             <p>© 2026 ZekerOpWeg</p>
         </div>
     </footer>
 
     <script src="scripts/scripts.js"></script>
-
-   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const pkg = urlParams.get("p");
-    const badge = document.getElementById("chosenPackage");
-
-    if (pkg) {
-        badge.style.display = "inline-block";
-
-        if (pkg === "Basis") badge.textContent = "Gekozen pakket Basis";
-        if (pkg === "Premium") badge.textContent = "Gekozen pakket Premium";
-        if (pkg === "Full") badge.textContent = "Gekozen pakket Full";
-        if (pkg === "EVzakelijk") badge.textContent = "Zakelijke EV AccuCheck";
-    }
-</script>
-
-
 </body>
-
 </html>
