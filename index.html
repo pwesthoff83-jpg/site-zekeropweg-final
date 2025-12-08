@@ -3,133 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg – Lancering januari 2026</title>
-
-    <!-- PREMIUM FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* GENERAL PAGE STYLE */
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            font-family: 'Libre Baskerville', serif;
-            color: #d8b878;
-            overflow: hidden;
-        }
-
-        /* BACKGROUND WRAPPER */
-        .wrapper {
-            width: 100%;
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding-top: 120px;
-            animation: fadeIn 1.8s ease-out;
-        }
-
-        /* BACKGROUND IMAGES */
-        @media (min-width: 769px) {
-            .wrapper {
-                background-image: url('images/hero/zekeropweg-offline-desktop.webp');
-            }
-        }
-
-        @media (max-width: 768px) {
-            .wrapper {
-                background-image: url('images/hero/zekeropweg-offline-mobile.webp');
-            }
-        }
-
-        /* CINEMATIC OVERLAY */
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.75) 0%,
-                rgba(0, 0, 0, 0.6) 40%,
-                rgba(0, 0, 0, 0.55) 100%
-            );
-            backdrop-filter: blur(2px);
-            z-index: 0;
-        }
-
-        /* LOGO */
-        .logo {
-            width: 220px;
-            margin-bottom: 40px;
-            z-index: 2;
-            animation: fadeUp 2.2s ease-out;
-        }
-
-        /* CONTENT */
-        .content {
-            text-align: center;
-            z-index: 2;
-            color: #d8b878;
-            width: 90%;
-            max-width: 800px;
-        }
-
-        h1 {
-            font-size: 46px;
-            font-weight: 400;
-            margin-bottom: 18px;
-            letter-spacing: 0.6px;
-            animation: fadeUp 2.4s ease-out;
-        }
-
-        p {
-            font-size: 22px;
-            margin: 12px 0;
-            opacity: 0.92;
-            animation: fadeUp 2.8s ease-out;
-        }
-
-        /* MOBILE STYLES */
-        @media (max-width: 768px) {
-            .logo { width: 160px; }
-            h1 { font-size: 32px; }
-            p { font-size: 18px; }
-            .wrapper { padding-top: 90px; }
-        }
-
-        /* FADE ANIMATIONS */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <title>ZekerOpWeg | Onafhankelijk aankoopadvies en EV AccuCheck</title>
+    <meta name="description" content="Onafhankelijk aankoopadvies, EV AccuCheck en ondersteuning bij verkeers en parkeerboetes. Zeker naar uw volgende auto, zorgeloos geregeld.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 </head>
 
-<body>
+<body class="fade-in">
 
-    <div class="wrapper">
-        <div class="overlay"></div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-container">
 
-        <!-- LOGO -->
-        <img src="assets/images/logo.png" alt="ZekerOpWeg Logo" class="logo">
+            <a href="index.html" class="logo-wrap">
+                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
+            </a>
 
-        <!-- CONTENT -->
-        <div class="content">
-            <h1>ZekerOpWeg</h1>
-            <p>Onze nieuwe premium website wordt zorgvuldig voorbereid.</p>
-            <p>De officiële lancering staat gepland voor januari 2026.</p>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                    <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                    <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+                    <li><a href="over.html">Over</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
         </div>
-    </div>
+    </header>
 
+    <!-- HERO HOME -->
+    <section class="hero hero-home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Zeker naar uw volgende auto zorgeloos geregeld</h1>
+            <p>
+                Onafhankelijk advies, duidelijke rapporten en persoonlijke begeleiding bij aankoop, accutesten en boetes. 
+                Rust en zekerheid in elke stap.
+            </p>
+            <div style="margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;">
+                <a href="intake.html?dienst=aankoopadvies" class="btn-primary">Plan aankoopadvies</a>
+                <a href="intake.html?dienst=ev-particulier" class="btn-primary">Plan EV AccuCheck</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- KERNDIENSTEN -->
+    <section class="services-section container">
+        <h2 class="section-title">Waarmee kan ik u helpen</h2>
+        <p class="section-subtitle">
+            ZekerOpWeg brengt kennis, ervaring en rust in situaties waarin keuzes belangrijk zijn. U krijgt eerlijk advies zonder verkooppraat.
+        </p>
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <h3 class="service-title">Aankoopadvies</h3>
+                <p class="service-text">
+                    Begeleiding bij het kiezen en beoordelen van een auto. Van remote controle tot inspectie op locatie en volledige begeleiding.
+                </p>
+                <ul class="service-list">
+                    <li>Onafhankelijke beoordeling</li>
+                    <li>Heldere pakketten</li>
+                    <li>Rapport in begrijpelijke taal</li>
+                </ul>
+                <a href="aankoopadvies.html" class="text-link">Meer over aankoopadvies</a>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">EV AccuCheck</h3>
+                <p class="service-text">
+                    Professionele accutest op locatie met digitaal certificaat. Geschikt voor zowel aankoop als verkoop.
+                </p>
+                <ul class="service-list">
+                    <li>Particulier en zakelijk</li>
+                    <li>Certificaat direct digitaal</li>
+                    <li>Geschikt voor advertentie en overdracht</li>
+                </ul>
+                <a href="ev-accucheck.html" class="text-link">Meer over EV AccuCheck</a>
+            </div>
+
+            <div class="service-card">
+                <h3 class="service-title">GratisBezwaar</h3>
+                <p class="service-text">
+                    Ondersteuning bij verkeers en parkeerboetes met AI ondersteuning en menselijke controle.
+                </p>
+                <ul class="service-list">
+                    <li>Abonnement per kenteken</li>
+                    <li>Onbeperkt bezwaar binnen het abonnement</li>
+                    <li>Volledige administratieve afhandeling</li>
+                </ul>
+                <a href="gratisbezwaar.html" class="text-link">Meer over GratisBezwaar</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 ZekerOpWeg</p>
+        </div>
+    </footer>
+
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
+
 
