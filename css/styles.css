@@ -365,6 +365,96 @@ img {
     font-weight: 600;
     color: #071322;
 }
+/* ============================
+   INTAKE FORMULIER
+============================ */
+
+.intake-section {
+    max-width: 900px;
+}
+
+.intake-form {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row,
+.form-row-grid {
+    margin-bottom: 0.4rem;
+}
+
+.form-row-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.intake-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #071322;
+}
+
+.intake-form input,
+.intake-form select,
+.intake-form textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #d2d2d2;
+    font-size: 0.98rem;
+}
+
+.intake-form textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-subtitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    margin-top: 0.4rem;
+    color: #071322;
+}
+
+/* Dienstblokken */
+
+.dienst-blok {
+    display: none;
+    margin-top: 0.6rem;
+    padding: 1.3rem 1.5rem;
+    border-radius: 12px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+}
+
+.dienst-blok.actief {
+    display: block;
+}
+
+/* Zone output en tariefhint */
+
+.zone-output {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #071322;
+}
+
+.tarief-hint {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.form-row-submit {
+    margin-top: 0.8rem;
+}
+
 .hero-intake {
     height: 40vh;
     min-height: 260px;
@@ -376,6 +466,7 @@ img {
     align-items: center;
     justify-content: center;
 }
+
 
 
 
