@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedankt | ZekerOpWeg</title>
-
-    <meta name="description"
-        content="Bedankt voor uw intake. Uw aanvraag voor aankoopadvies is ontvangen.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <meta name="description" content="Bedankt voor uw aanvraag bij ZekerOpWeg. Ik neem persoonlijk contact met u op.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
 </head>
 
 <body class="fade-in">
@@ -17,15 +14,12 @@
     <header class="header">
         <div class="container header-container">
 
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+            <a href="index.html" class="logo-wrap">
+                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
             </a>
 
-            <!-- Premium hamburger -->
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
+                ☰
             </button>
 
             <nav class="main-nav" id="mainNav">
@@ -39,52 +33,46 @@
                 </ul>
             </nav>
 
+            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
         </div>
     </header>
 
-    <!-- FULLSCREEN OVERLAY -->
-    <div id="menuOverlay" class="menu-overlay">
-        <nav class="overlay-nav">
-            <a href="index.html" onclick="closeMenu()">Home</a>
-            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
-            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
-            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
-            <a href="over.html" onclick="closeMenu()">Over</a>
-            <a href="contact.html" onclick="closeMenu()">Contact</a>
-        </nav>
-    </div>
-
-    <!-- BEDANKTPAGINA -->
-    <section class="thankyou-section">
-        <div class="container thankyou-container">
-
-            <h2 class="section-title">Bedankt voor uw intake</h2>
-
-            <p class="thankyou-text">
-                Uw aanvraag voor aankoopadvies is succesvol ontvangen.  
-                Ik bekijk uw informatie zorgvuldig en neem contact met u op zodra dit mogelijk is.  
-                Voor nu hoeft u niets meer te doen.
-            </p>
-
-            <p class="thankyou-text">
-                Binnen uw gekozen pakket zorg ik voor rust, duidelijkheid en deskundige begeleiding in het traject naar uw volgende auto.
-            </p>
-
-            <a href="index.html" class="primary-button">Terug naar de homepage</a>
+    <!-- HERO -->
+    <section class="hero hero-dank">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Bedankt voor uw aanvraag</h1>
+            <p>Uw intake is goed ontvangen. Ik neem persoonlijk contact met u op.</p>
         </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="services-section container dank-tekst">
+        <h2 class="section-title">Wat kunt u verwachten?</h2>
+
+        <p class="section-subtitle">
+            Ik bekijk uw aanvraag zorgvuldig en neem telefonisch of per e mail contact met u op.
+            Samen bekijken we de vervolgstappen en de planning die het beste aansluit bij uw situatie.
+        </p>
+
+        <p class="dank-icoon">✔</p>
+
+        <p class="section-subtitle">
+            Heeft u in de tussentijd vragen, mail dan gerust naar 
+            <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>.
+        </p>
+
+        <a href="index.html" class="btn-primary terug-btn">Terug naar home</a>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container footer-container">
+        <div class="container footer-inner">
             <p>© 2026 ZekerOpWeg</p>
         </div>
     </footer>
 
     <script src="scripts/scripts.js"></script>
-
 </body>
-
 </html>
-
 
