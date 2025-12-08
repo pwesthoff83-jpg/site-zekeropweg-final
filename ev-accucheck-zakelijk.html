@@ -1,153 +1,150 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV AccuCheck Zakelijk | ZekerOpWeg</title>
-
-    <meta name="description"
-        content="Zakelijke EV accutest op locatie met digitale certificaten. Ideaal voor handelaren, dealers en leasemaatschappijen. Pakketten met voordeel per test.">
+    <meta name="description" content="Professionele EV-accutesten voor autobedrijven, dealers en importeurs. Officieel certificaat, schaalbare pakketten en scherpe zakelijke tarieven.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1">
 </head>
 
 <body class="fade-in">
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container header-container">
+<!-- =============================
+     HEADER
+============================= -->
+<header class="header">
+    <div class="container header-container">
 
-            <a href="index.html">
-                <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg Logo">
-            </a>
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg Logo" class="site-logo">
+        </a>
 
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                    <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </header>
-
-    <!-- FULLSCREEN OVERLAY -->
-    <div id="menuOverlay" class="menu-overlay">
-        <nav class="overlay-nav">
-            <a href="index.html" onclick="closeMenu()">Home</a>
-            <a href="aankoopadvies.html" onclick="closeMenu()">Aankoopadvies</a>
-            <a href="ev-accucheck.html" onclick="closeMenu()">EV AccuCheck</a>
-            <a href="gratisbezwaar.html" onclick="closeMenu()">GratisBezwaar</a>
-            <a href="over.html" onclick="closeMenu()">Over</a>
-            <a href="contact.html" onclick="closeMenu()">Contact</a>
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="ev-accucheck-zakelijk.html" class="active">Zakelijk</a></li>
+                <li><a href="gratis-bezwaar.html">GratisBezwaar</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </nav>
+
     </div>
+</header>
 
-    <!-- HERO ZAKELIJK -->
-    <section class="services-section">
-        <div class="container">
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-            <h2 class="section-title">EV AccuCheck Zakelijk</h2>
-            <p class="section-subtitle">
-                Zakelijke accugezondheidstesten op locatie, inclusief digitale certificaten die direct inzetbaar zijn
-                in uw advertentie en presentatie van de auto. Geschikt voor handelaren, dealers en leasemaatschappijen.
-            </p>
+<!-- =============================
+     HERO
+============================= -->
+<section class="hero hero-ev">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>EV AccuCheck voor bedrijven</h1>
+        <p>Officiële accutesten met certificaat — direct inzetbaar voor inkoop, verkoop en taxaties.</p>
+    </div>
+</section>
 
-            <a href="intake.html?p=EVzakelijk" class="cta-button cta-premium" style="margin-top:25px;">
-                Zakelijk EV testen aanvragen
-            </a>
+<!-- =============================
+     INTRODUCTIE
+============================= -->
+<section class="services-section container">
+    <h2 class="section-title">Waarom bedrijven kiezen voor ZekerOpWeg</h2>
+    <p class="section-subtitle">
+        Voor autobedrijven, dealers en importeurs die zekerheid willen bij elektrische voertuigen.
+        Snelle rapportages, vaste tarieven en schaalbare pakketten.
+    </p>
 
+    <div class="service-grid">
+
+        <div class="service-card">
+            <h3 class="service-title">Officieel accucertificaat</h3>
+            <p class="service-text">Geschikt voor verkoop, taxatie en garantieafhandeling.</p>
         </div>
-    </section>
 
-    <!-- ZAKELIJKE PAKKETTEN -->
-    <section class="services-section">
-        <div class="container price-grid">
-
-            <div class="service-card">
-                <h3 class="service-title">Losse zakelijke test</h3>
-                <p class="service-price" style="font-size:1.8rem; font-weight:700;">
-                    €125
-                </p>
-                <p class="service-text">
-                    Tarief per test op locatie voor zakelijke klanten, exclusief btw.
-                </p>
-            </div>
-
-            <div class="service-card premium-emphasis">
-                <h3 class="service-title">Pakket met vijf testen</h3>
-                <p class="service-price" style="font-size:1.8rem; font-weight:700; color:#0A1A2F;">
-                    €109 per test
-                </p>
-                <p class="service-text">
-                    Voordeel per test bij afname van een pakket met vijf accutesten, exclusief btw.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">Pakket met tien testen</h3>
-                <p class="service-price" style="font-size:1.8rem; font-weight:700;">
-                    €99 per test
-                </p>
-                <p class="service-text">
-                    Het beste tarief per test bij afname van een pakket met tien accutesten, exclusief btw.
-                </p>
-            </div>
-
+        <div class="service-card">
+            <h3 class="service-title">Uitgevoerd op locatie</h3>
+            <p class="service-text">Wij testen bij u op het terrein of bij uw klant.</p>
         </div>
-    </section>
 
-    <!-- VOORDELEN VOOR BEDRIJVEN -->
-    <section class="services-section">
-        <div class="container">
-
-            <h2 class="section-title">Voordelen voor zakelijke klanten</h2>
-
-            <div class="service-grid">
-                <div class="service-card">
-                    <ul class="service-list">
-                        <li>Digitale certificaten direct inzetbaar in online advertenties</li>
-                        <li>Meer vertrouwen bij kopers door aantoonbare accugezondheid</li>
-                        <li>Mogelijk om accutesten te koppelen aan uw vaste voorraadproces</li>
-                        <li>Onafhankelijke meting die past bij een transparante verkoop</li>
-                        <li>Professionele uitstraling richting particuliere en zakelijke klanten</li>
-                        <li>Rust en duidelijkheid bij auto’s met hogere kilometerstand of onbekende historie</li>
-                    </ul>
-                </div>
-            </div>
-
+        <div class="service-card">
+            <h3 class="service-title">Snelle doorlooptijden</h3>
+            <p class="service-text">Binnen 1 werkdag ingepland mogelijk voor vaste partners.</p>
         </div>
-    </section>
 
-    <!-- CTA ONDER -->
-    <section class="services-section">
-        <div class="container" style="text-align:center;">
-            <a href="intake.html?p=EVzakelijk" class="cta-button cta-premium" style="padding:16px 28px; font-size:1.2rem;">
-                Zakelijk EV testen aanvragen
-            </a>
+        <div class="service-card">
+            <h3 class="service-title">Schaalbare pakketten</h3>
+            <p class="service-text">Voordelige staffels voor structureel gebruik.</p>
         </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <p>© 2026 ZekerOpWeg</p>
+    </div>
+</section>
+
+<!-- =============================
+     TARIEVEN
+============================= -->
+<section class="services-section container">
+    <h2 class="section-title">Zakelijke tarieven</h2>
+    <p class="section-subtitle">
+        Heldere zakelijke tarieven, zonder verrassingen. Certificaat inbegrepen. Reiskosten binnen werkgebied.
+    </p>
+
+    <div class="service-grid">
+
+        <!-- Losse test -->
+        <div class="service-card">
+            <h3 class="service-title">Losse EV AccuCheck</h3>
+            <p class="service-text">Ideaal voor incidentele tests en enkele inruilers.</p>
+            <p class="service-title" style="color:#071322; font-size:1.55rem; margin-top:1rem;">€129 <span style="font-size:1rem; color:#444;">excl btw</span></p>
+            <a href="intake.html" class="btn-primary">Plan een test</a>
         </div>
-    </footer>
 
-    <script src="scripts/scripts.js"></script>
+        <!-- 5-pack -->
+        <div class="service-card premium-highlight">
+            <div class="badge-popular">Meest gekozen</div>
+            <h3 class="service-title">Pakket 5 testen</h3>
+            <p class="service-text">Voor kleinere dealers of handelaren met regelmatige EV-inkoop.</p>
+            <p class="service-title" style="color:#071322; font-size:1.55rem; margin-top:1rem;">€109 <span style="font-size:1rem; color:#444;">excl btw per test</span></p>
+            <a href="intake.html" class="btn-primary">Bestel pakket</a>
+        </div>
 
+        <!-- 10-pack -->
+        <div class="service-card">
+            <h3 class="service-title">Pakket 10 testen</h3>
+            <p class="service-text">Voor bedrijven met hoge doorloop of EV-specialisten.</p>
+            <p class="service-title" style="color:#071322; font-size:1.55rem; margin-top:1rem;">€99 <span style="font-size:1rem; color:#444;">excl btw per test</span></p>
+            <a href="intake.html" class="btn-primary">Bestel pakket</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- =============================
+     CTA BLOK
+============================= -->
+<section class="services-section container">
+    <div class="service-card" style="text-align:center;">
+        <h3 class="service-title">Direct samenwerken?</h3>
+        <p class="service-text">Wij bieden vaste tarieven, prioriteit bij planning en korte lijnen voor partners.</p>
+        <a href="contact.html" class="btn-primary">Neem contact op</a>
+    </div>
+</section>
+
+<!-- =============================
+     FOOTER
+============================= -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <p>© 2026 ZekerOpWeg</p>
+    </div>
+</footer>
+
+<script src="scripts/scripts.js"></script>
 </body>
-
 </html>
 
