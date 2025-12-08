@@ -1,6 +1,6 @@
-/* ============================
-   BASIS
-============================ */
+/* =========================================================
+   BASIS INSTELLINGEN
+========================================================= */
 
 *,
 *::before,
@@ -41,9 +41,9 @@ img {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================
+/* =========================================================
    HEADER
-============================ */
+========================================================= */
 
 .header {
     background: #071322;
@@ -70,7 +70,7 @@ img {
     width: auto;
 }
 
-/* NAV DESKTOP */
+/* Desktop nav */
 
 .main-nav ul {
     list-style: none;
@@ -92,7 +92,7 @@ img {
     color: #c8a565;
 }
 
-/* MENU TOGGLE (MOBILE) */
+/* Mobile nav toggle */
 
 .menu-toggle {
     display: none;
@@ -103,7 +103,7 @@ img {
     cursor: pointer;
 }
 
-/* OVERLAY VOOR MOBIEL MENU */
+/* Overlay */
 
 .menu-overlay {
     display: none;
@@ -117,7 +117,7 @@ img {
     display: block;
 }
 
-/* MOBIEL NAV GEDRAG */
+/* Mobile nav gedrag */
 
 @media (max-width: 900px) {
     .menu-toggle {
@@ -147,25 +147,20 @@ img {
     }
 }
 
-/* ============================
-   HERO
-============================ */
+/* =========================================================
+   HERO SYSTEM (geoptimaliseerd)
+========================================================= */
 
 .hero {
     position: relative;
     width: 100%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.hero-aankoopadvies {
     height: 45vh;
     min-height: 320px;
-    background-image: url("../assets/images/hero/showroom-premium.webp");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -180,6 +175,7 @@ img {
     position: relative;
     z-index: 2;
     max-width: 900px;
+    text-align: center;
 }
 
 .hero-content h1 {
@@ -196,18 +192,21 @@ img {
 }
 
 @media (max-width: 600px) {
-    .hero-content h1 {
-        font-size: 2.1rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
+    .hero-content h1 { font-size: 2.1rem; }
+    .hero-content p { font-size: 1rem; }
 }
 
-/* ============================
-   SECTIES
-============================ */
+/* HERO varianten */
+
+.hero-home { background-image: url("../assets/images/hero/home-hero.webp"); }
+.hero-aankoopadvies { background-image: url("../assets/images/hero/showroom-premium.webp"); }
+.hero-ev { background-image: url("../assets/images/hero/ev-hero.webp"); }
+.hero-intake { background-image: url("../assets/images/hero/contact-hero.webp"); }
+.hero-dank { background-image: url("../assets/images/hero/contact-hero.webp"); }
+
+/* =========================================================
+   SECTIES & LAYOUT
+========================================================= */
 
 .services-section {
     padding: 3.5rem 0;
@@ -218,7 +217,6 @@ img {
     font-weight: 700;
     color: #071322;
     margin-bottom: 0.6rem;
-    text-align: left;
 }
 
 .section-subtitle {
@@ -228,7 +226,7 @@ img {
     margin-bottom: 2rem;
 }
 
-/* GRID */
+/* Grid */
 
 .service-grid {
     display: grid;
@@ -236,7 +234,7 @@ img {
     gap: 2rem;
 }
 
-/* CARDS */
+/* Cards */
 
 .service-card {
     background: #ffffff;
@@ -294,7 +292,7 @@ img {
     margin-bottom: 1.1rem;
 }
 
-/* KNOPPEN EN LINKS */
+/* Knoppen & links */
 
 .btn-primary {
     display: inline-block;
@@ -314,60 +312,87 @@ img {
 }
 
 .text-link {
-    display: inline-block;
-    margin-top: 0.5rem;
     color: #071322;
     font-weight: 600;
-    text-decoration: none;
     font-size: 0.95rem;
+    text-decoration: none;
 }
 
 .text-link:hover {
     color: #c8a565;
 }
 
-/* ============================
-   FOOTER
-============================ */
+/* =========================================================
+   FOOTER (nieuwe premium)
+========================================================= */
 
 .footer {
     background: #071322;
-    padding: 2.2rem 0;
-    margin-top: 3rem;
+    padding: 3rem 0 2rem 0;
+    margin-top: 3.5rem;
+    color: #ffffff;
 }
 
-.footer-inner {
-    text-align: center;
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
 }
 
-.footer-inner p {
-    color: #f2f2f2;
-    font-size: 0.95rem;
-    opacity: 0.9;
-}
-
-/* HERO EV ACCUCHECK */
-.hero-ev {
-    height: 45vh;
-    min-height: 320px;
-    background-image: url("../assets/images/hero/ev-hero.webp");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.zone-output {
-    margin-top: 0.8rem;
+.footer-col h4 {
     font-size: 1.05rem;
-    font-weight: 600;
-    color: #071322;
+    margin-bottom: 0.9rem;
+    color: #c8a565;
+    font-weight: 700;
 }
-/* ============================
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.5;
+    max-width: 260px;
+}
+
+.footer-links,
+.footer-contact {
+    list-style: none;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 0.4rem;
+}
+
+.footer-links a,
+.footer-contact a {
+    color: #e6e6e6;
+    text-decoration: none;
+    font-size: 0.93rem;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #c8a565;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* =========================================================
    INTAKE FORMULIER
-============================ */
+========================================================= */
 
 .intake-section {
     max-width: 900px;
@@ -380,11 +405,6 @@ img {
     gap: 1.5rem;
 }
 
-.form-row,
-.form-row-grid {
-    margin-bottom: 0.4rem;
-}
-
 .form-row-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -392,7 +412,6 @@ img {
 }
 
 .intake-form label {
-    display: block;
     font-weight: 600;
     margin-bottom: 0.3rem;
     color: #071322;
@@ -413,16 +432,6 @@ img {
     min-height: 90px;
 }
 
-.form-subtitle {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-    margin-top: 0.4rem;
-    color: #071322;
-}
-
-/* Dienstblokken */
-
 .dienst-blok {
     display: none;
     margin-top: 0.6rem;
@@ -436,52 +445,22 @@ img {
     display: block;
 }
 
-/* Zone output en tariefhint */
-
 .zone-output {
-    margin-top: 0.6rem;
     font-size: 0.95rem;
     font-weight: 600;
     color: #071322;
+    margin-top: 0.6rem;
 }
 
 .tarief-hint {
-    margin-top: 0.4rem;
     font-size: 0.9rem;
     color: #555555;
+    margin-top: 0.4rem;
 }
 
-.form-row-submit {
-    margin-top: 0.8rem;
-}
-
-.hero-intake {
-    height: 40vh;
-    min-height: 260px;
-    background-image: url("../assets/images/hero/contact-hero.webp");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ============================
+/* =========================================================
    DANKPAGINA
-============================ */
-
-.hero-dank {
-    height: 45vh;
-    min-height: 260px;
-    background-image: url("../assets/images/hero/contact-hero.webp");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+========================================================= */
 
 .dank-tekst {
     text-align: center;
@@ -491,27 +470,12 @@ img {
 .dank-icoon {
     font-size: 4rem;
     color: #071322;
-    margin: 2rem 0 1rem 0;
+    margin: 2rem 0 1rem;
 }
 
 .terug-btn {
     margin-top: 1.5rem;
-    display: inline-block;
 }
-
-/* HERO HOME */
-.hero-home {
-    height: 55vh;
-    min-height: 320px;
-    background-image: url("../assets/images/hero/home-hero.webp");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 
 
