@@ -95,3 +95,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Eerste keer initialiseren
     updateDienstBlokken();
 });
+
+// Automatische selectie van dienst via URL
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const dienstParam = params.get("dienst");
+
+    if (dienstParam) {
+        const select = document.getElementById("dienstSelect");
+        if (select) {
+            select.value = dienstParam;
+            select.dispatchEvent(new Event("change"));
+        }
+    }
+});
