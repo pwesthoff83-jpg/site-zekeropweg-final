@@ -56,16 +56,18 @@
         <form class="intake-form" action="dank.html" method="post">
 
             <!-- STAP 1: DIENSTKEUZE -->
-            <div class="form-row">
-                <label for="dienstSelect">Waarvoor wilt u ZekerOpWeg inschakelen?</label>
-                <select id="dienstSelect" name="dienst">
-                    <option value="aankoopadvies">Aankoopadvies</option>
-                    <option value="ev-particulier">EV AccuCheck particulier</option>
-                    <option value="ev-zakelijk">EV AccuCheck zakelijk</option>
-                    <option value="bezwaar">GratisBezwaar</option>
-                    <option value="inruil">Inruil en verkoopadvies</option>
-                </select>
-            </div>
+           <div class="form-row">
+    <label for="dienst">Welke dienst wilt u afnemen?</label>
+    <select id="dienst" name="dienst" required onchange="toonDienstBlok()">
+        <option value="">Maak een keuze</option>
+        <option value="aankoopadvies">Aankoopadvies</option>
+        <option value="evaccu">EV AccuCheck (consument)</option>
+        <option value="evaccuzakelijk">EV AccuCheck Zakelijk</option>
+        <option value="inruil">Inruil en Verkoopbegeleiding</option>
+        <option value="bezwaar">GratisBezwaar</option>
+    </select>
+</div>
+
 
             <!-- STAP 2: GEGEVENS KLANT -->
             <div class="form-row-grid">
