@@ -1,111 +1,164 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EV AccuCheck – Onafhankelijke batterijmeting | ZekerOpWeg</title>
-    <meta name="description" content="Professionele onafhankelijke accudiagnose op locatie. Inclusief officieel certificaat en volledige uitleg.">
-    <link rel="stylesheet" href="/css/styles.css?v=1.0.1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EV AccuCheck – Onafhankelijke accudiagnose | ZekerOpWeg</title>
+    <meta name="description" content="Professionele onafhankelijke accudiagnose met officieel certificaat. Binnen enkele minuten inzicht in accugezondheid, benchmarking en batterijveiligheid.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
 <body class="fade-in">
 
-<!-- ============================
-     HEADER
-============================ -->
+<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-        <a href="/index.html" class="logo-wrap">
-            <img src="/assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg Logo">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
         </a>
 
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav class="main-nav" id="mainNav">
             <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a class="active" href="/ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="/gratis-bezwaar.html">GratisBezwaar</a></li>
-                <li><a href="/over.html">Over</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a class="active" href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="ev-accucheck-zakelijk.html">Zakelijk</a></li>
+                <li><a href="gratis-bezwaar.html">GratisBezwaar</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </div>
-
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
-<!-- ============================
-     HERO
-============================ -->
+<!-- HERO -->
 <section class="hero hero-ev">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1>Onafhankelijke EV AccuCheck</h1>
-        <p>Volledig inzicht in accugezondheid, op locatie uitgevoerd.</p>
+        <h1>EV AccuCheck</h1>
+        <p>Onafhankelijke accu inspectie met officieel certificaat. Direct inzicht bij aankoop of verkoop.</p>
     </div>
 </section>
 
-<!-- ============================
-     DIENST – Consumenten versie
-============================ -->
+<!-- PRIJS BLOK -->
 <section class="services-section container">
-
-    <h2 class="section-title">Waarom een AccuCheck?</h2>
+    <h2 class="section-title">Tijdelijke introductieprijs tijdens januari en februari 2026</h2>
     <p class="section-subtitle">
-        De staat van de batterij bepaalt de waarde, actieradius en levensduur van een elektrische auto.
-        U ontvangt een officieel certificaat en duidelijke uitleg, uitgevoerd door een onafhankelijk specialist.
+        Maak kennis met de snelste onafhankelijke accutest op de markt.
+    </p>
+
+    <div class="service-card premium-highlight">
+        <div class="badge-popular">Introductie actie</div>
+
+        <h3 class="service-title">EV AccuCheck (incl certificaat)</h3>
+
+        <p class="service-price" style="font-size:1.8rem; margin-bottom:0.5rem;">
+            €149 <span style="font-size:1rem; color:#444;">incl btw</span>
+        </p>
+
+        <p class="service-text" style="margin-bottom:1rem;">
+            Normale prijs €169. Actie geldig in januari en februari 2026.
+        </p>
+
+        <a class="btn-primary" href="intake.html?dienst=evaccu">Plan uw AccuCheck</a>
+    </div>
+
+    <p style="margin-top:2rem; font-size:1.05rem; color:#444;">
+        Na de introductiemaanden geldt het reguliere tarief van 
+        <strong>€169 incl btw</strong> voor elke EV AccuCheck.
+    </p>
+</section>
+
+<!-- OVER DE TEST -->
+<section class="services-section container">
+    <h2 class="section-title">Wat wordt er gemeten?</h2>
+    <p class="section-subtitle">
+        De EV AccuCheck is gebaseerd op een onafhankelijke flash test die binnen enkele minuten duidelijkheid geeft over de werkelijke conditie van de hoogvoltage batterij.
+        Ideaal bij aankoop of verkoop.
     </p>
 
     <div class="service-grid">
 
-        <!-- Standaard test -->
         <div class="service-card">
-            <h3 class="service-title">EV AccuCheck (incl. certificaat)</h3>
-            <p class="service-price">€149</p>
-
-            <ul class="service-list">
-                <liProfessionele accumeting (15–20 minuten)</li>
-                <li>Officieel accugezondheid certificaat</li>
-                <li>Uit te voeren bij aankoop of verkoop</li>
-                <li>Toelichting en advies op locatie</li>
-            </ul>
-
-            <a class="btn-primary" href="/intake.html?dienst=evaccu&variant=consument">
-                Plan een AccuCheck
-            </a>
+            <h3 class="service-title">Gezondheid van de batterij (SoH)</h3>
+            <p class="service-text">
+                De test bepaalt de State of Health van de batterij via analyse van voertuigdata.  
+                Dit geeft een betrouwbaar beeld van de resterende capaciteit en levensduur.
+            </p>
         </div>
 
-        <!-- 10% korting voor combinatie -->
-        <div class="service-card premium-highlight">
-            <div class="badge-popular">Aanrader</div>
-            <h3 class="service-title">Aankoopadvies + AccuCheck</h3>
-            <p class="service-price">Pakketprijs met 10% voordeel</p>
-
-            <ul class="service-list">
-                <li>Korting geldig op elke AccuCheck</li>
-                <li>Perfect bij aankoop van een EV</li>
-                <li>Technische beoordeling + accugezondheid</li>
-            </ul>
-
-            <a class="btn-primary" href="/aankoopadvies.html">
-                Bekijk aankoopadvies
-            </a>
+        <div class="service-card">
+            <h3 class="service-title">Controle op veiligheid en stabiliteit</h3>
+            <p class="service-text">
+                De analyse controleert celspanningen, accubeheersysteem, sensoren en communicatie.
+                Hiermee worden verborgen risico’s vroeg opgespoord.
+            </p>
         </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Benchmarking met vergelijkbare voertuigen</h3>
+            <p class="service-text">
+                U ziet direct of de batterij beter, gelijk of slechter presteert dan andere voertuigen van hetzelfde type.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Realistische range indicatie</h3>
+            <p class="service-text">
+                Naast WLTP waarden ontvangt u een berekend realistisch bereik op basis van vergelijkbare voertuigen
+                en het gemiddelde verbruik van de auto.
+            </p>
+        </div>
+
     </div>
 </section>
 
-<!-- ============================
-     FOOTER
-============================ -->
+<!-- CERTIFICAAT -->
+<section class="services-section container">
+    <h2 class="section-title">Het officiële accucertificaat</h2>
+    <p class="section-subtitle">
+        Na de test ontvangt u direct digitaal een onafhankelijk accucertificaat.
+        Dit is gebaseerd op TÜV gecertificeerde testtechniek en erkende diagnostische methodes.
+    </p>
+
+    <div class="service-card">
+        <h3 class="service-title">Waarom dit certificaat waardevol is</h3>
+
+        <ul class="service-list">
+            <li>Onafhankelijke verificatie van accustatus</li>
+            <li>Betrouwbaar SoH inzicht</li>
+            <li>Vergelijking binnen de voertuigklasse</li>
+            <li>Controle op afwijkingen en risico’s</li>
+            <li>Direct inzetbaar in verkoopadvertenties</li>
+            <li>Digitaal certificaat met QR verificatie</li>
+        </ul>
+
+        <a class="btn-primary" href="intake.html?dienst=evaccu">Vraag een AccuCheck aan</a>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="services-section container">
+    <div class="service-card" style="text-align:center;">
+        <h3 class="service-title">Direct een AccuCheck aanvragen?</h3>
+        <p class="service-text">
+            Binnen enkele minuten duidelijkheid over de batterijconditie. Ideaal bij aankoop of verkoop.
+        </p>
+        <a href="intake.html?dienst=evaccu" class="btn-primary">Plan uw AccuCheck</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-inner">
         <p>© 2026 ZekerOpWeg</p>
     </div>
 </footer>
 
-<script src="/scripts/scripts.js"></script>
+<script src="scripts/scripts.js"></script>
 
 </body>
 </html>
