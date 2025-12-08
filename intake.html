@@ -160,29 +160,24 @@
                 </div>
             </div>
 
-            <!-- EV ACCUCHECK ZAKELIJK -->
-            <div class="dienst-blok" data-dienst="ev-zakelijk">
-                <h3 class="form-subtitle">EV AccuCheck zakelijk</h3>
+           <!-- EV ACCUCHECK ZAKELIJK -->
+<div id="blok-evaccuzakelijk" class="dienst-blok">
+    <h3 class="form-subtitle">Zakelijke EV AccuCheck</h3>
 
-                <div class="form-row-grid">
-                    <div>
-                        <label for="bedrijfsnaam">Bedrijfsnaam</label>
-                        <input type="text" id="bedrijfsnaam" name="bedrijfsnaam">
-                    </div>
-                    <div>
-                        <label for="kvk">KvK nummer (optioneel)</label>
-                        <input type="text" id="kvk" name="kvk">
-                    </div>
-                </div>
+    <label for="accu_zakelijk_variant">Welke zakelijke optie?</label>
+    <select id="accu_zakelijk_variant" name="accu_zakelijk_variant" required>
+        <option value="">Maak een keuze</option>
+        <option value="losse_test">Losse test – €129 per test (excl btw)</option>
+        <option value="pakket5">Pakket 5 testen – €109 per test (excl btw)</option>
+        <option value="pakket10">Pakket 10 testen – €99 per test (excl btw)</option>
+        <option value="maatwerk">Zakelijk maatwerk / dealeraccount</option>
+    </select>
 
-                <div class="form-row">
-                    <label for="pakketZakelijk">Gewenst zakelijk pakket</label>
-                    <select id="pakketZakelijk" name="pakketZakelijk">
-                        <option value="los">Losse test €125 per test</option>
-                        <option value="vijf">Vijf testen €109 per test</option>
-                        <option value="tien">Tien testen €99 per test</option>
-                    </select>
-                </div>
+    <div class="tarief-hint">
+        Tarieven zijn exclusief btw. Reiskosten volgens zone-model worden vooraf afgestemd.
+    </div>
+</div>
+
 
                 <div class="form-row-grid">
                     <div>
