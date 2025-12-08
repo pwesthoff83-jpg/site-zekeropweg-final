@@ -108,21 +108,52 @@
             </p>
         </div>
 
-        <!-- EV ACCUCHECK ZAKELIJK -->
-        <div id="blokAccuZakelijk" class="dienst-blok">
-            <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
+       <!-- ZAKELIJK EV ACCUCHECK -->
+<div id="blokAccuZakelijk" class="dienst-blok">
+    <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
 
-            <div class="form-row-grid">
-                <div>
-                    <label>Bedrijfsnaam</label>
-                    <input type="text" name="bedrijfsnaam">
-                </div>
+    <p class="service-text" style="margin-bottom:1rem;">
+        Deze dienst is uitsluitend bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
+    </p>
 
-                <div>
-                    <label>Aantal voertuigen</label>
-                    <input type="number" name="aantal" min="1">
-                </div>
-            </div>
+    <div class="form-row-grid">
+        <div>
+            <label for="bedrijfsnaam">Bedrijfsnaam</label>
+            <input type="text" name="bedrijfsnaam" id="bedrijfsnaam" required>
+        </div>
+
+        <div>
+            <label for="kvk">KvK nummer</label>
+            <input type="text" name="kvk" id="kvk" required>
+        </div>
+    </div>
+
+    <div class="form-row-grid">
+        <div>
+            <label for="aantalVoertuigen">Aantal voertuigen voor test</label>
+            <input type="number" name="aantal" id="aantalVoertuigen" min="1" required>
+        </div>
+
+        <div>
+            <label for="zakelijkPakket">Gewenst pakket</label>
+            <select name="zakelijkPakket" id="zakelijkPakket" required>
+                <option value="">Maak een keuze...</option>
+                <option value="los">Losse test €129 excl</option>
+                <option value="pakket5">Pakket vijf testen €109 excl per test</option>
+                <option value="pakket10">Pakket tien testen €99 excl per test</option>
+            </select>
+        </div>
+    </div>
+
+    <p id="adviesPakket" class="tarief-hint" style="margin-top:0.6rem;"></p>
+    <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
+
+    <p class="tarief-hint">
+        Zakelijke tarieven gelden alleen voor bedrijven met KvK registratie. 
+        Particulieren kunnen gebruik maken van de standaard EV AccuCheck.
+    </p>
+</div>
+
 
             <p class="tarief-hint">
                 Losse test €129 excl. Pakket 5 stuks €109 excl. Pakket 10 stuks €99 excl.
