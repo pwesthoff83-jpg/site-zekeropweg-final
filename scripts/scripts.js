@@ -1,66 +1,75 @@
-/* =========================================================
-   PREMIUM MENU LOGICA - ZEKEROPWEG
-========================================================= */
-
-const nav = document.getElementById("mainNav");
-const overlay = document.getElementById("menuOverlay");
-const toggle = document.querySelector(".menu-toggle");
-
-/* OPENEN & SLUITEN VAN HET MENU */
+/* ============================
+   MOBIEL MENU
+============================ */
 function toggleMenu() {
+    const nav = document.getElementById("mainNav");
+    const overlay = document.getElementById("menuOverlay");
+    const toggle = document.querySelector(".menu-toggle");
+
     nav.classList.toggle("open");
     overlay.classList.toggle("active");
     toggle.classList.toggle("open");
 }
 
 function closeMenu() {
-    nav.classList.remove("open");
-    overlay.classList.remove("active");
-    toggle.classList.remove("open");
+    document.getElementById("mainNav").classList.remove("open");
+    document.getElementById("menuOverlay").classList.remove("active");
+    document.querySelector(".menu-toggle").classList.remove("open");
 }
 
-/* SLUITEN BIJ KLIK BUITEN HET MENU */
-overlay.addEventListener("click", () => {
-    closeMenu();
-});
+/* ============================
+   INTAKE FORMULIER LOGICA
+============================ */
+function toonDienstBlok() {
+    const dienst = document.getElementById("dienst").value;
 
-/* SLUITEN BIJ KLIK OP EEN NAV-LINK (MOBIEL) */
-document.querySelectorAll("#mainNav a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 900) {
-            closeMenu();
-        }
+    // Alle blokken verbergen
+    document.querySelectorAll(".dienst-blok").forEach(blok => {
+        blok.classList.remove("actief");
     });
-});
 
-/* ESC-TOETS OM HET MENU TE SLUITEN */
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        closeMenu();
+    // Bijbehorende blok tonen
+    switch (dienst) {
+        case "aankoopadvies":
+            document.getElementById("blok-aankoopadvies").classList.add("actief");
+            break;
+        case "evaccu":
+            document.getElementById("blok-evaccu").classList.add("actief");
+            break;
+        case "evaccuzakelijk":
+            document.getElementById("blok-evaccuzakelijk").classList.add("actief");
+            break;
+        case "inruil":
+            document.getElementById("blok-inruil").classList.add("actief");
+            break;
+        case "bezwaar":
+            document.getElementById("blok-bezwaar").classList.add("actief");
+            break;
+    }
+}
+
+/* ============================
+   URL PARAMETERS (AUTO SELECT)
+============================ */
+// Maakt intake direct ingevuld als CTA's parameters meegeven
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const dienstParam = params.get("dienst");
+    const variantParam = params.get("variant");
+
+    if (dienstParam) {
+        const dienstSelect = document.getElementById("dienst");
+        if (dienstSelect) {
+            dienstSelect.value = dienstParam;
+            toonDienstBlok();
+        }
+    }
+
+    // Zakelijke variant automatisch selecteren
+    if (variantParam && dienstParam === "evaccuzakelijk") {
+        const zakelijkSelect = document.getElementById("accu_zakelijk_variant");
+        if (zakelijkSelect) {
+            zakelijkSelect.value = variantParam;
+        }
     }
 });
-
-/* SLUITEN BIJ SWIPE (MOBIEL) */
-let startX = 0;
-
-document.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-});
-
-document.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-
-    // Swipe to the right closes menu only when mobile menu is open
-    if (nav.classList.contains("open") && endX - startX > 60) {
-        closeMenu();
-    }
-});
-
-/* VERBETERDE ACCESSIBILITY (A11Y) */
-toggle.setAttribute("aria-expanded", "false");
-
-toggle.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", !expanded);
-});
-
