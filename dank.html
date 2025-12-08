@@ -1,78 +1,116 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bedankt | ZekerOpWeg</title>
-    <meta name="description" content="Bedankt voor uw aanvraag bij ZekerOpWeg. Ik neem persoonlijk contact met u op.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dank voor uw aanvraag | ZekerOpWeg</title>
+    <meta name="description" content="Dank voor uw aanvraag bij ZekerOpWeg. U ontvangt persoonlijk bericht over de vervolgstappen.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
 <body class="fade-in">
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container header-container">
+<!-- HEADER -->
+<header class="header">
+    <div class="container header-container">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
+        </a>
+    </div>
+</header>
 
-            <a href="index.html" class="logo-wrap">
-                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
-            </a>
+<!-- HERO -->
+<section class="hero hero-dank">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Dank voor uw aanvraag</h1>
+        <p>Wij hebben uw gegevens goed ontvangen</p>
+    </div>
+</section>
 
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
-                ☰
-            </button>
+<!-- DYNAMIC CONTENT -->
+<section class="services-section container">
+    <div class="service-card dank-tekst">
 
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                    <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+        <div id="dankAankoop" style="display:none;">
+            <h2 class="section-title">Uw aanvraag voor aankoopadvies is ontvangen</h2>
+            <p>
+                Dank voor uw vertrouwen in ZekerOpWeg. Uw aanvraag is succesvol binnengekomen en wordt zorgvuldig doorgenomen.
+                Binnen korte tijd ontvangt u een persoonlijk bericht met een eerste inschatting en de vervolgstappen die passen bij uw pakketkeuze.
+            </p>
+            <p>
+                Heeft u aanvullende informatie die relevant is voor uw zoektocht naar een passende auto, dan kunt u die altijd nasturen.
+            </p>
         </div>
-    </header>
 
-    <!-- HERO -->
-    <section class="hero hero-dank">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <h1>Bedankt voor uw aanvraag</h1>
-            <p>Uw intake is goed ontvangen. Ik neem persoonlijk contact met u op.</p>
+        <div id="dankAccu" style="display:none;">
+            <h2 class="section-title">Uw EV AccuCheck is aangevraagd</h2>
+            <p>
+                Dank voor uw aanvraag. De gegevens zijn goed ontvangen en worden verwerkt. 
+                U ontvangt spoedig een bericht met beschikbare tijden en de praktische informatie voor de AccuCheck op locatie.
+            </p>
+            <p>
+                Het accucertificaat ontvangt u direct na afronding van de test digitaal.
+            </p>
         </div>
-    </section>
 
-    <!-- CONTENT -->
-    <section class="services-section container dank-tekst">
-        <h2 class="section-title">Wat kunt u verwachten?</h2>
-
-        <p class="section-subtitle">
-            Ik bekijk uw aanvraag zorgvuldig en neem telefonisch of per e mail contact met u op.
-            Samen bekijken we de vervolgstappen en de planning die het beste aansluit bij uw situatie.
-        </p>
-
-        <p class="dank-icoon">✔</p>
-
-        <p class="section-subtitle">
-            Heeft u in de tussentijd vragen, mail dan gerust naar 
-            <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>.
-        </p>
-
-        <a href="index.html" class="btn-primary terug-btn">Terug naar home</a>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <p>© 2026 ZekerOpWeg</p>
+        <div id="dankAccuZakelijk" style="display:none;">
+            <h2 class="section-title">Uw zakelijke aanvraag voor EV AccuChecks is ontvangen</h2>
+            <p>
+                Dank voor uw interesse in onze zakelijke oplossingen. 
+                Uw aanvraag wordt persoonlijk beoordeeld zodat wij een passend aanbod kunnen doen dat aansluit bij uw wagenpark of bedrijfsprocessen.
+            </p>
+            <p>
+                U ontvangt binnenkort een bericht met meer informatie en de mogelijkheden voor pakkettarieven of vaste samenwerking.
+            </p>
         </div>
-    </footer>
 
-    <script src="scripts/scripts.js"></script>
+        <div id="dankBezwaar" style="display:none;">
+            <h2 class="section-title">Uw GratisBezwaar intake is ontvangen</h2>
+            <p>
+                Dank voor uw aanvraag. Uw informatie is veilig verstuurd en wordt beoordeeld. 
+                U ontvangt een bericht waarin wij aangeven welke vervolgstappen nodig zijn en welke documenten wij van u verwachten.
+            </p>
+            <p>
+                Zodra uw dossier compleet is wordt het bezwaar opgesteld met slimme ondersteuning en vervolgens handmatig gecontroleerd voordat het wordt ingediend.
+            </p>
+        </div>
+
+        <div class="dank-icoon">✔</div>
+        <a href="index.html" class="btn-primary terug-btn">Terug naar de homepagina</a>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <p>© 2026 ZekerOpWeg</p>
+    </div>
+</footer>
+
+<script>
+    // Bepaalt welke danktekst zichtbaar moet zijn
+    const params = new URLSearchParams(window.location.search);
+    const dienst = params.get("dienst");
+
+    if (dienst === "aankoopadvies") {
+        document.getElementById("dankAankoop").style.display = "block";
+    } 
+    else if (dienst === "evaccu") {
+        document.getElementById("dankAccu").style.display = "block";
+    }
+    else if (dienst === "evaccu-zakelijk") {
+        document.getElementById("dankAccuZakelijk").style.display = "block";
+    }
+    else if (dienst === "bezwaar") {
+        document.getElementById("dankBezwaar").style.display = "block";
+    }
+    else {
+        // fallback
+        document.getElementById("dankAankoop").style.display = "block";
+    }
+</script>
+
 </body>
 </html>
-
