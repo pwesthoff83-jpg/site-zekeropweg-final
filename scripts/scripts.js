@@ -1,6 +1,6 @@
 /* ============================================================
    ZEKEROPWEG – Scripts
-   Navigatie, intake-logica en zakelijk prijsadvies
+   Navigatie, intake-logica, zakelijk advies en rayons
 ============================================================ */
 
 /* =========================
@@ -32,7 +32,7 @@ function closeMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    /* Sluit menu als je op een navigatielink klikt */
+    // Sluit menu bij klik op een link
     const nav = document.getElementById("mainNav");
     if (nav) {
         nav.querySelectorAll("a").forEach(link => {
@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!dienstSelect) return;
 
         const v = dienstSelect.value;
-
         const blokken = [blokAankoop, blokAccu, blokAccuZakelijk, blokBezwaar];
+
         blokken.forEach(blok => {
             if (blok) blok.classList.remove("actief");
         });
@@ -66,34 +66,79 @@ document.addEventListener("DOMContentLoaded", () => {
         if (v === "bezwaar" && blokBezwaar) blokBezwaar.classList.add("actief");
     }
 
-    if (dienstSelect) {
-        dienstSelect.addEventListener("change", updateDienstBlokken);
+    // URL parameters verwerken
+    const params = new URLSearchParams(window.location.search);
+    const dienstParam = params.get("dienst");
+    const pakketParam = params.get("pakket");
+    const rayonParam = params.get("rayon");
 
-        // Vooraf vullen via URL: intake.html?dienst=evaccu
-        const params = new URLSearchParams(window.location.search);
-        const dienstParam = params.get("dienst");
+    if (dienstSelect) {
         if (dienstParam) {
             dienstSelect.value = dienstParam;
         }
-
         updateDienstBlokken();
+    }
+
+    // Aankoopadvies pakket uit URL
+    if (dienstParam === "aankoopadvies" && pakketParam) {
+        const pakketSelect = document.getElementById("pakketAankoop");
+        if (pakketSelect) {
+            pakketSelect.value = pakketParam;
+        }
+    }
+
+    /* =========================
+       RAYON LOGICA EV PARTICULIER
+    ========================== */
+
+    const postcodeInput = document.getElementById("postcode");
+    const zoneOutput = document.getElementById("zoneOutput");
+
+    function bepaalRayonOpBasisVanPostcode(pc) {
+        // Verwacht een string zoals "2993RL" of "2993"
+        if (!pc || pc.length < 4) return "";
+
+        const eersteCijfer = parseInt(pc.charAt(0), 10);
+        if (isNaN(eersteCijfer)) return "";
+
+        if (eersteCijfer <= 3) {
+            return "Rayon A regio Randstad";
+        } else if (eersteCijfer <= 6) {
+            return "Rayon B midden Nederland";
+        } else {
+            return "Rayon C overige regio";
+        }
+    }
+
+    if (postcodeInput && zoneOutput) {
+        postcodeInput.addEventListener("input", () => {
+            const pc = postcodeInput.value.replace(/\s+/g, "");
+            const tekst = bepaalRayonOpBasisVanPostcode(pc);
+            zoneOutput.textContent = tekst;
+        });
+
+        // Als er een rayon in de URL staat bijvoorbeeld intake.html?dienst=evaccu&rayon=A
+        if (dienstParam === "evaccu" && rayonParam && !postcodeInput.value) {
+            if (rayonParam === "A") zoneOutput.textContent = "Rayon A regio Randstad";
+            else if (rayonParam === "B") zoneOutput.textContent = "Rayon B midden Nederland";
+            else if (rayonParam === "C") zoneOutput.textContent = "Rayon C overige regio";
+        }
     }
 
     /* =========================
        ZAKELIJK EV ACCUCHECK
-       – advies + prijsindicatie
     ========================== */
 
     const aantalInput = document.getElementById("aantalVoertuigen");
-    const pakketSelect = document.getElementById("zakelijkPakket");
+    const pakketSelectZakelijk = document.getElementById("zakelijkPakket");
     const adviesPakket = document.getElementById("adviesPakket");
     const prijsIndicatie = document.getElementById("prijsIndicatie");
 
     function berekenZakelijkePrijs() {
-        if (!aantalInput || !pakketSelect || !prijsIndicatie) return;
+        if (!aantalInput || !pakketSelectZakelijk || !prijsIndicatie) return;
 
         const n = parseInt(aantalInput.value, 10);
-        const p = pakketSelect.value;
+        const p = pakketSelectZakelijk.value;
 
         if (!n || n < 1 || !p) {
             prijsIndicatie.textContent = "";
@@ -109,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prijsIndicatie.textContent = `Indicatie totaalprijs €${totaal} excl btw (${prijsPerStuk} per test)`;
     }
 
-    if (aantalInput && pakketSelect && adviesPakket) {
+    if (aantalInput && pakketSelectZakelijk && adviesPakket) {
         aantalInput.addEventListener("input", () => {
             const n = parseInt(aantalInput.value, 10);
 
@@ -120,20 +165,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (n <= 3) {
-                adviesPakket.textContent = "Advies: losse test past bij kleinere aantallen.";
-                pakketSelect.value = "los";
+                adviesPakket.textContent = "Advies losse test past bij kleinere aantallen.";
+                pakketSelectZakelijk.value = "los";
             } else if (n <= 7) {
-                adviesPakket.textContent = "Advies: pakket vijf biedt een passend tarief voor uw wagenpark.";
-                pakketSelect.value = "pakket5";
+                adviesPakket.textContent = "Advies pakket vijf is passend voor uw wagenpark.";
+                pakketSelectZakelijk.value = "pakket5";
             } else {
-                adviesPakket.textContent = "Advies: pakket tien is het meest rendabel bij grotere aantallen.";
-                pakketSelect.value = "pakket10";
+                adviesPakket.textContent = "Advies pakket tien is het meest rendabel bij grotere aantallen.";
+                pakketSelectZakelijk.value = "pakket10";
             }
 
             berekenZakelijkePrijs();
         });
 
-        pakketSelect.addEventListener("change", berekenZakelijkePrijs);
+        pakketSelectZakelijk.addEventListener("change", berekenZakelijkePrijs);
     }
 
     /* =========================
@@ -147,13 +192,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             const dienst = dienstSelect.value;
-
             if (!dienst) {
                 alert("Kies eerst welke dienst u wilt aanvragen.");
                 return;
             }
 
-            // Extra controle voor zakelijke aanvragen
+            // Extra check voor zakelijke aanvragen
             if (dienst === "evaccu-zakelijk") {
                 const kvkInput = document.getElementById("kvk");
                 const bedrijfsnaamInput = document.getElementById("bedrijfsnaam");
@@ -164,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                const emailInput = document.querySelector("input[name='email']");
+                const emailInput = document.getElementById("email");
                 if (emailInput && emailInput.value.includes("@")) {
                     const domein = emailInput.value.split("@")[1].toLowerCase();
                     const consumentenDomeinen = [
@@ -177,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (consumentenDomeinen.includes(domein)) {
                         const doorgaan = confirm(
-                            "U gebruikt een particulier emailadres. Deze dienst is bedoeld voor bedrijven met KvK registratie. Wilt u toch doorgaan met deze aanvraag?"
+                            "U gebruikt een particulier emailadres. Deze dienst is bedoeld voor bedrijven met KvK registratie. Wilt u toch doorgaan met deze aanvraag."
                         );
                         if (!doorgaan) {
                             return;
@@ -186,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // Simpele redirect naar dankpagina
             window.location.href = `dank.html?dienst=${encodeURIComponent(dienst)}`;
         });
     }
