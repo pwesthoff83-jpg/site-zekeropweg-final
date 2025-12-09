@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intake | ZekerOpWeg</title>
-    <meta name="description" content="Intakeformulier voor aankoopadvies, EV AccuCheck en GratisBezwaar. Heldere en eenvoudige aanvraag in één overzichtelijk formulier.">
+    <meta name="description" content="Intakeformulier voor aankoopadvies, EV AccuCheck en GratisBezwaar. Heldere en duidelijke aanvraag.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
@@ -16,7 +16,9 @@
         <a href="index.html" class="logo-wrap">
             <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
         </a>
+
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
         <nav class="main-nav" id="mainNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -28,7 +30,8 @@
             </ul>
         </nav>
     </div>
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+    <div id="menuOverlay" class="menu-overlay"></div>
 </header>
 
 <!-- HERO -->
@@ -40,8 +43,9 @@
     </div>
 </section>
 
-<!-- INTAKE FORM -->
+<!-- FORM -->
 <section class="services-section container">
+
     <h2 class="section-title">Welke dienst wilt u aanvragen</h2>
 
     <form class="intake-form" id="intakeForm">
@@ -58,14 +62,16 @@
             </select>
         </div>
 
-        <!-- AANKOOPADVIES -->
+
+
+        <!-- 🟦 AANKOOPADVIES -->
         <div id="blokAankoopadvies" class="dienst-blok">
-            <h3 class="form-subtitle">Aankoopadvies informatie</h3>
+            <h3 class="form-subtitle">Aankoopadvies</h3>
 
             <div class="form-row-grid">
                 <div>
-                    <label>Voorkeurs pakket</label>
-                    <select name="pakket">
+                    <label>Pakket</label>
+                    <select name="pakket" id="pakketAankoop">
                         <option value="basis">Basis €149</option>
                         <option value="premium">Premium €299</option>
                         <option value="full">Full €449</option>
@@ -74,13 +80,13 @@
 
                 <div>
                     <label>Voorkeursdatum of periode</label>
-                    <input type="text" name="datum" placeholder="Bijvoorbeeld: aankomende week">
+                    <input type="text" name="datum" placeholder="Bijv: aankomende week">
                 </div>
             </div>
 
             <div class="form-row">
                 <label>Link naar de auto of omschrijving</label>
-                <textarea name="autoInfo" placeholder="Advertentie link of korte omschrijving"></textarea>
+                <textarea name="autoInfo" placeholder="Advertentielink of omschrijving"></textarea>
             </div>
 
             <p class="tarief-hint">
@@ -88,15 +94,18 @@
             </p>
         </div>
 
-        <!-- EV ACCUCHECK PARTICULIER -->
+
+
+        <!-- 🟦 EV ACCU PARTICULIER -->
         <div id="blokAccu" class="dienst-blok">
             <h3 class="form-subtitle">EV AccuCheck particulier</h3>
 
             <div class="form-row-grid">
                 <div>
-                    <label>Locatie voor de test</label>
+                    <label>Locatie</label>
                     <input type="text" name="locatie" placeholder="Straat en plaats">
                 </div>
+
                 <div>
                     <label>Kenteken</label>
                     <input type="text" name="kenteken">
@@ -108,66 +117,59 @@
             </p>
         </div>
 
-       <!-- ZAKELIJK EV ACCUCHECK -->
-<div id="blokAccuZakelijk" class="dienst-blok">
-    <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
-
-    <p class="service-text" style="margin-bottom:1rem;">
-        Deze dienst is uitsluitend bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
-    </p>
-
-    <div class="form-row-grid">
-        <div>
-            <label for="bedrijfsnaam">Bedrijfsnaam</label>
-            <input type="text" name="bedrijfsnaam" id="bedrijfsnaam" required>
-        </div>
-
-        <div>
-            <label for="kvk">KvK nummer</label>
-            <input type="text" name="kvk" id="kvk" required>
-        </div>
-    </div>
-
-    <div class="form-row-grid">
-        <div>
-            <label for="aantalVoertuigen">Aantal voertuigen voor test</label>
-            <input type="number" name="aantal" id="aantalVoertuigen" min="1" required>
-        </div>
-
-        <div>
-            <label for="zakelijkPakket">Gewenst pakket</label>
-            <select name="zakelijkPakket" id="zakelijkPakket" required>
-                <option value="">Maak een keuze...</option>
-                <option value="los">Losse test €129 excl</option>
-                <option value="pakket5">Pakket vijf testen €109 excl per test</option>
-                <option value="pakket10">Pakket tien testen €99 excl per test</option>
-            </select>
-        </div>
-    </div>
-
-    <p id="adviesPakket" class="tarief-hint" style="margin-top:0.6rem;"></p>
-    <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
-
-    <p class="tarief-hint">
-        Zakelijke tarieven gelden alleen voor bedrijven met KvK registratie. 
-        Particulieren kunnen gebruik maken van de standaard EV AccuCheck.
-    </p>
-</div>
 
 
-            <p class="tarief-hint">
-                Losse test €129 excl. Pakket 5 stuks €109 excl. Pakket 10 stuks €99 excl.
+        <!-- 🟦 EV ACCU ZAKELIJK -->
+        <div id="blokAccuZakelijk" class="dienst-blok">
+            <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
+
+            <p class="service-text">
+                Deze dienst is uitsluitend bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
             </p>
+
+            <div class="form-row-grid">
+                <div>
+                    <label for="bedrijfsnaam">Bedrijfsnaam</label>
+                    <input type="text" id="bedrijfsnaam" name="bedrijfsnaam">
+                </div>
+
+                <div>
+                    <label for="kvk">KvK nummer</label>
+                    <input type="text" id="kvk" name="kvk">
+                </div>
+            </div>
+
+            <div class="form-row-grid">
+                <div>
+                    <label for="aantalVoertuigen">Aantal voertuigen</label>
+                    <input type="number" id="aantalVoertuigen" min="1" name="aantal">
+                </div>
+
+                <div>
+                    <label for="zakelijkPakket">Gewenst pakket</label>
+                    <select id="zakelijkPakket" name="zakelijkPakket">
+                        <option value="">Maak een keuze...</option>
+                        <option value="los">Losse test €129 excl</option>
+                        <option value="pakket5">Pakket vijf testen €109 excl</option>
+                        <option value="pakket10">Pakket tien testen €99 excl</option>
+                    </select>
+                </div>
+            </div>
+
+            <p id="adviesPakket" class="tarief-hint"></p>
+            <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
         </div>
 
-        <!-- GRATISBEZWAAR -->
+
+
+        <!-- 🟦 GRATISBEZWAAR -->
         <div id="blokBezwaar" class="dienst-blok">
             <h3 class="form-subtitle">GratisBezwaar aanvraag</h3>
 
             <div class="form-row-grid">
                 <div>
                     <label>Kenteken</label>
-                    <input type="text" name="kentekenBezwaar" required>
+                    <input type="text" name="kentekenBezwaar">
                 </div>
 
                 <div>
@@ -177,16 +179,18 @@
             </div>
 
             <div class="form-row">
-                <label>Korte toelichting situatie</label>
+                <label>Korte toelichting</label>
                 <textarea name="toelichting"></textarea>
             </div>
 
             <p class="tarief-hint">
-                Abonnement is kentekengebonden. Zo blijft het eerlijk en overzichtelijk.
+                Abonnement is kentekengebonden.
             </p>
         </div>
 
-        <!-- PERSOONSGEGEVENS -->
+
+
+        <!-- 🟦 GEGEVENS -->
         <h3 class="form-subtitle">Uw gegevens</h3>
 
         <div class="form-row-grid">
