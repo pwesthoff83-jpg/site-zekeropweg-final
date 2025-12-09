@@ -62,9 +62,7 @@
             </select>
         </div>
 
-        <!-- ============================
-             AANKOOPADVIES
-        ============================ -->
+        <!-- AANKOOPADVIES -->
         <div id="blokAankoopadvies" class="dienst-blok">
             <h3 class="form-subtitle">Aankoopadvies</h3>
 
@@ -89,23 +87,25 @@
                 <textarea id="autoInfo" name="autoInfo" placeholder="Advertentie link of korte omschrijving"></textarea>
             </div>
 
-            <!-- EV ACCUCHECK MEEBESTELLEN -->
-            <div class="form-row">
-                <label for="accuMeebestellen">EV AccuCheck meebestellen (10% korting)</label>
-                <select id="accuMeebestellen" name="accuMeebestellen">
-                    <option value="nee">Nee</option>
-                    <option value="ja">Ja, inclusief EV AccuCheck</option>
+            <p class="tarief-hint">
+                Bij Premium en Full ontvangt u tien procent korting op de EV AccuCheck.
+            </p>
+
+            <!-- EV ACCUCHECK KORTING HYBRIDE BLOK -->
+            <div id="evKortingBlok" class="form-row" style="display:none;">
+                <label for="evKorting">EV AccuCheck toevoegen met tien procent korting</label>
+                <select id="evKorting" name="evKorting">
+                    <option value="">Maak een keuze...</option>
+                    <option value="ja">Ja, EV AccuCheck toevoegen met korting</option>
+                    <option value="nee">Nee, alleen aankoopadvies</option>
                 </select>
             </div>
 
-            <!-- PRIJS OUTPUT -->
             <p id="accuPrijsOutput" class="tarief-hint" style="display:none;"></p>
             <p id="totaalPrijsOutput" class="tarief-hint" style="font-weight:600; display:none;"></p>
         </div>
 
-        <!-- ============================
-             EV ACCUCHECK PARTICULIER
-        ============================ -->
+        <!-- EV ACCUCHECK PARTICULIER -->
         <div id="blokAccu" class="dienst-blok">
             <h3 class="form-subtitle">EV AccuCheck particulier</h3>
 
@@ -127,13 +127,11 @@
             </div>
 
             <p class="tarief-hint">
-                Actietarief jan/feb €149 inclusief. Normaal €169 inclusief.
+                Actietarief in januari en februari €149 inclusief. Normaal €169 inclusief.
             </p>
         </div>
 
-        <!-- ============================
-             ZAKELIJK EV ACCUCHECK
-        ============================ -->
+        <!-- ZAKELIJK EV ACCUCHECK -->
         <div id="blokAccuZakelijk" class="dienst-blok">
             <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
 
@@ -163,9 +161,9 @@
                     <label for="zakelijkPakket">Pakket</label>
                     <select id="zakelijkPakket" name="zakelijkPakket">
                         <option value="">Maak een keuze...</option>
-                        <option value="los">Losse test €129 excl</option>
-                        <option value="pakket5">Pakket vijf €109 excl</option>
-                        <option value="pakket10">Pakket tien €99 excl</option>
+                        <option value="los">Losse test €129 exclusief</option>
+                        <option value="pakket5">Pakket vijf testen €109 exclusief per test</option>
+                        <option value="pakket10">Pakket tien testen €99 exclusief per test</option>
                     </select>
                 </div>
             </div>
@@ -174,9 +172,7 @@
             <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
         </div>
 
-        <!-- ============================
-             GRATISBEZWAAR
-        ============================ -->
+        <!-- GRATISBEZWAAR -->
         <div id="blokBezwaar" class="dienst-blok">
             <h3 class="form-subtitle">GratisBezwaar aanvraag</h3>
 
@@ -188,7 +184,7 @@
 
                 <div>
                     <label for="boeteNummer">Boete nummer</label>
-                    <input type="text" id="boeteNummer" name="boeteNummer">
+                    <input type="text" id="boeteNummer" name="boeteNummer" placeholder="Indien bekend">
                 </div>
             </div>
 
@@ -196,11 +192,13 @@
                 <label for="toelichting">Korte toelichting</label>
                 <textarea id="toelichting" name="toelichting"></textarea>
             </div>
+
+            <p class="tarief-hint">
+                Abonnement is aan het kenteken gekoppeld.
+            </p>
         </div>
 
-        <!-- ============================
-             GEGEVENS
-        ============================ -->
+        <!-- GEGEVENS -->
         <h3 class="form-subtitle">Uw gegevens</h3>
 
         <div class="form-row-grid">
