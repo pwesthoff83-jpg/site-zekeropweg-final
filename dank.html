@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dank voor uw aanvraag | ZekerOpWeg</title>
-    <meta name="description" content="Dank voor uw aanvraag bij ZekerOpWeg. U ontvangt persoonlijk bericht over de vervolgstappen.">
+    <title>Bedankt voor uw aanvraag | ZekerOpWeg</title>
+    <meta name="description" content="Bedankt voor uw aanvraag bij ZekerOpWeg. Wij bekijken uw gegevens zorgvuldig en nemen rustig contact met u op.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
@@ -16,69 +16,51 @@
         <a href="index.html" class="logo-wrap">
             <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
         </a>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="ev-accucheck-zakelijk.html">Zakelijk</a></li>
+                <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </div>
+
+    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
 <!-- HERO -->
 <section class="hero hero-dank">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1>Dank voor uw aanvraag</h1>
-        <p>Wij hebben uw gegevens goed ontvangen</p>
+        <h1>Bedankt voor uw aanvraag</h1>
+        <p>Wij hebben uw gegevens ontvangen en gaan hiermee aan de slag.</p>
     </div>
 </section>
 
-<!-- DYNAMIC CONTENT -->
-<section class="services-section container">
-    <div class="service-card dank-tekst">
-
-        <div id="dankAankoop" style="display:none;">
-            <h2 class="section-title">Uw aanvraag voor aankoopadvies is ontvangen</h2>
-            <p>
-                Dank voor uw vertrouwen in ZekerOpWeg. Uw aanvraag is succesvol binnengekomen en wordt zorgvuldig doorgenomen.
-                Binnen korte tijd ontvangt u een persoonlijk bericht met een eerste inschatting en de vervolgstappen die passen bij uw pakketkeuze.
-            </p>
-            <p>
-                Heeft u aanvullende informatie die relevant is voor uw zoektocht naar een passende auto, dan kunt u die altijd nasturen.
-            </p>
-        </div>
-
-        <div id="dankAccu" style="display:none;">
-            <h2 class="section-title">Uw EV AccuCheck is aangevraagd</h2>
-            <p>
-                Dank voor uw aanvraag. De gegevens zijn goed ontvangen en worden verwerkt. 
-                U ontvangt spoedig een bericht met beschikbare tijden en de praktische informatie voor de AccuCheck op locatie.
-            </p>
-            <p>
-                Het accucertificaat ontvangt u direct na afronding van de test digitaal.
-            </p>
-        </div>
-
-        <div id="dankAccuZakelijk" style="display:none;">
-            <h2 class="section-title">Uw zakelijke aanvraag voor EV AccuChecks is ontvangen</h2>
-            <p>
-                Dank voor uw interesse in onze zakelijke oplossingen. 
-                Uw aanvraag wordt persoonlijk beoordeeld zodat wij een passend aanbod kunnen doen dat aansluit bij uw wagenpark of bedrijfsprocessen.
-            </p>
-            <p>
-                U ontvangt binnenkort een bericht met meer informatie en de mogelijkheden voor pakkettarieven of vaste samenwerking.
-            </p>
-        </div>
-
-        <div id="dankBezwaar" style="display:none;">
-            <h2 class="section-title">Uw GratisBezwaar intake is ontvangen</h2>
-            <p>
-                Dank voor uw aanvraag. Uw informatie is veilig verstuurd en wordt beoordeeld. 
-                U ontvangt een bericht waarin wij aangeven welke vervolgstappen nodig zijn en welke documenten wij van u verwachten.
-            </p>
-            <p>
-                Zodra uw dossier compleet is wordt het bezwaar opgesteld met slimme ondersteuning en vervolgens handmatig gecontroleerd voordat het wordt ingediend.
-            </p>
-        </div>
-
+<!-- DANKTEKST -->
+<section class="services-section">
+    <div class="container dank-tekst">
         <div class="dank-icoon">✔</div>
-        <a href="index.html" class="btn-primary terug-btn">Terug naar de homepagina</a>
 
+        <h2 id="dankDienstTitel">Uw aanvraag is goed ontvangen</h2>
+
+        <p id="dankDienstSub">
+            Wij bekijken uw aanvraag zorgvuldig en nemen rustig contact met u op om alles met u door te nemen.
+        </p>
+
+        <p class="service-text" style="margin-top:1rem;">
+            U ontvangt een bevestiging op het door u opgegeven emailadres. 
+            Bewaar deze gerust bij uw eigen administratie. Als er aanvullende vragen zijn, laten wij dat weten.
+        </p>
+
+        <a href="index.html" class="btn-primary terug-btn">Terug naar de homepage</a>
     </div>
 </section>
 
@@ -89,27 +71,34 @@
     </div>
 </footer>
 
+<!-- Bestaande scripts (menu enzovoort) -->
+<script src="scripts/scripts.js"></script>
+
+<!-- DANK SPECIFIEKE LOGICA -->
 <script>
-    // Bepaalt welke danktekst zichtbaar moet zijn
+document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const dienst = params.get("dienst");
 
+    const titel = document.getElementById("dankDienstTitel");
+    const sub = document.getElementById("dankDienstSub");
+
+    if (!titel || !sub) return;
+
     if (dienst === "aankoopadvies") {
-        document.getElementById("dankAankoop").style.display = "block";
-    } 
-    else if (dienst === "evaccu") {
-        document.getElementById("dankAccu").style.display = "block";
+        titel.textContent = "Uw aanvraag voor aankoopadvies is ontvangen";
+        sub.textContent = "Wij bekijken uw wensen en de door u aangeleverde informatie en nemen rustig contact met u op om de mogelijkheden en vervolgstappen te bespreken.";
+    } else if (dienst === "evaccu") {
+        titel.textContent = "Uw aanvraag voor EV AccuCheck is ontvangen";
+        sub.textContent = "Wij bekijken uw aanvraag en locatie en nemen contact met u op om de planning en praktische details door te nemen.";
+    } else if (dienst === "evaccu-zakelijk") {
+        titel.textContent = "Uw zakelijke aanvraag voor EV AccuCheck is ontvangen";
+        sub.textContent = "Wij beoordelen uw aanvraag en nemen contact met u op om tarieven, planning en werkwijze rustig met u af te stemmen.";
+    } else if (dienst === "bezwaar") {
+        titel.textContent = "Uw aanvraag voor GratisBezwaar is ontvangen";
+        sub.textContent = "Wij bekijken uw situatie en de boetegegevens zorgvuldig en laten u weten welke vervolgstappen er mogelijk zijn.";
     }
-    else if (dienst === "evaccu-zakelijk") {
-        document.getElementById("dankAccuZakelijk").style.display = "block";
-    }
-    else if (dienst === "bezwaar") {
-        document.getElementById("dankBezwaar").style.display = "block";
-    }
-    else {
-        // fallback
-        document.getElementById("dankAankoop").style.display = "block";
-    }
+});
 </script>
 
 </body>
