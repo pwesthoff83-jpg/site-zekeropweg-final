@@ -10,6 +10,7 @@
 
 <body class="fade-in">
 
+<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
         <a href="index.html" class="logo-wrap">
@@ -33,6 +34,7 @@
     <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
+<!-- HERO -->
 <section class="hero hero-intake">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -41,6 +43,7 @@
     </div>
 </section>
 
+<!-- FORM -->
 <section class="services-section container">
 
     <h2 class="section-title">Welke dienst wilt u aanvragen</h2>
@@ -75,26 +78,28 @@
 
                 <div>
                     <label for="datum">Voorkeursdatum of periode</label>
-                    <input type="text" id="datum" name="datum">
+                    <input type="text" id="datum" name="datum" placeholder="Bijvoorbeeld aankomende week">
                 </div>
             </div>
 
             <div class="form-row">
                 <label for="autoInfo">Link naar de auto of omschrijving</label>
-                <textarea id="autoInfo" name="autoInfo"></textarea>
+                <textarea id="autoInfo" name="autoInfo" placeholder="Advertentie link of korte omschrijving"></textarea>
             </div>
 
+            <!-- COMBINATIEVOORDEEL EV ACCUCHECK (alleen bij premium en full) -->
             <div class="form-row" id="comboVoordeelRow" style="display:none;">
-                <label>Combinatievoordeel EV AccuCheck</label>
+                <label for="comboVoordeel">Combinatievoordeel EV AccuCheck</label>
                 <select id="comboVoordeel" name="comboVoordeel">
                     <option value="">Maak een keuze...</option>
-                    <option value="ja">Ja, combinatie €159 incl.</option>
-                    <option value="nee">Nee, geen combinatie</option>
+                    <option value="ja">Ja, combinatievoordeel €149 inclusief</option>
+                    <option value="nee">Nee, geen combinatievoordeel</option>
                 </select>
             </div>
 
             <p class="tarief-hint" id="comboHint" style="display:none;">
-                Door dit pakket ontvangt u een speciale combinatieprijs voor de EV AccuCheck.
+                Bij Premium en Full kunt u gebruik maken van het combinatievoordeel voor de EV AccuCheck. 
+                Het tarief bedraagt €149 inclusief.
             </p>
         </div>
 
@@ -105,7 +110,7 @@
             <div class="form-row-grid">
                 <div>
                     <label for="locatie">Locatie</label>
-                    <input type="text" id="locatie" name="locatie">
+                    <input type="text" id="locatie" name="locatie" placeholder="Straat en plaats">
                 </div>
                 <div>
                     <label for="kenteken">Kenteken</label>
@@ -114,13 +119,13 @@
             </div>
 
             <div class="form-row">
-                <label for="postcode">Postcode</label>
-                <input type="text" id="postcode" name="postcode">
+                <label for="postcode">Postcode van de locatie</label>
+                <input type="text" id="postcode" name="postcode" placeholder="Bijvoorbeeld 2993RL">
                 <p id="zoneOutput" class="zone-output"></p>
             </div>
 
             <p class="tarief-hint">
-                Actietarief €149 in januari & februari. Normaal €169.
+                Actietarief in januari en februari €149 inclusief. Normaal €169 inclusief.
             </p>
         </div>
 
@@ -129,7 +134,7 @@
             <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
 
             <p class="service-text">
-                Bedrijven met KvK registratie, wagenpark of EV handel.
+                Deze dienst is bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
             </p>
 
             <div class="form-row-grid">
@@ -154,9 +159,9 @@
                     <label for="zakelijkPakket">Gewenst pakket</label>
                     <select id="zakelijkPakket" name="zakelijkPakket">
                         <option value="">Maak een keuze...</option>
-                        <option value="los">1–4 voertuigen €129 p/st</option>
-                        <option value="pakket5">5–9 voertuigen €109 p/st</option>
-                        <option value="pakket10">10+ voertuigen €99 p/st</option>
+                        <option value="los">1 tot en met 4 voertuigen €129 exclusief per test</option>
+                        <option value="pakket5">5 tot en met 9 voertuigen €109 exclusief per test</option>
+                        <option value="pakket10">10 of meer voertuigen €99 exclusief per test</option>
                     </select>
                 </div>
             </div>
@@ -167,7 +172,7 @@
 
         <!-- GRATISBEZWAAR -->
         <div id="blokBezwaar" class="dienst-blok">
-            <h3 class="form-subtitle">GratisBezwaar</h3>
+            <h3 class="form-subtitle">GratisBezwaar aanvraag</h3>
 
             <div class="form-row-grid">
                 <div>
@@ -177,7 +182,7 @@
 
                 <div>
                     <label for="boeteNummer">Boete nummer</label>
-                    <input type="text" id="boeteNummer" name="boeteNummer">
+                    <input type="text" id="boeteNummer" name="boeteNummer" placeholder="Indien bekend">
                 </div>
             </div>
 
@@ -185,6 +190,10 @@
                 <label for="toelichting">Korte toelichting</label>
                 <textarea id="toelichting" name="toelichting"></textarea>
             </div>
+
+            <p class="tarief-hint">
+                Abonnement is aan het kenteken gekoppeld.
+            </p>
         </div>
 
         <!-- GEGEVENS -->
@@ -216,6 +225,7 @@
     </form>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-inner">
         <p>© 2026 ZekerOpWeg</p>
@@ -226,3 +236,4 @@
 
 </body>
 </html>
+
