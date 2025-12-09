@@ -31,7 +31,7 @@
         </nav>
     </div>
 
-    <div id="menuOverlay" class="menu-overlay"></div>
+    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
 <!-- HERO -->
@@ -62,15 +62,13 @@
             </select>
         </div>
 
-
-
-        <!-- 🟦 AANKOOPADVIES -->
+        <!-- AANKOOPADVIES -->
         <div id="blokAankoopadvies" class="dienst-blok">
             <h3 class="form-subtitle">Aankoopadvies</h3>
 
             <div class="form-row-grid">
                 <div>
-                    <label>Pakket</label>
+                    <label for="pakketAankoop">Pakket</label>
                     <select name="pakket" id="pakketAankoop">
                         <option value="basis">Basis €149</option>
                         <option value="premium">Premium €299</option>
@@ -79,14 +77,14 @@
                 </div>
 
                 <div>
-                    <label>Voorkeursdatum of periode</label>
-                    <input type="text" name="datum" placeholder="Bijv: aankomende week">
+                    <label for="datum">Voorkeursdatum of periode</label>
+                    <input type="text" id="datum" name="datum" placeholder="Bijvoorbeeld aankomende week">
                 </div>
             </div>
 
             <div class="form-row">
-                <label>Link naar de auto of omschrijving</label>
-                <textarea name="autoInfo" placeholder="Advertentielink of omschrijving"></textarea>
+                <label for="autoInfo">Link naar de auto of omschrijving</label>
+                <textarea id="autoInfo" name="autoInfo" placeholder="Advertentie link of korte omschrijving"></textarea>
             </div>
 
             <p class="tarief-hint">
@@ -94,37 +92,38 @@
             </p>
         </div>
 
-
-
-        <!-- 🟦 EV ACCU PARTICULIER -->
+        <!-- EV ACCUCHECK PARTICULIER -->
         <div id="blokAccu" class="dienst-blok">
             <h3 class="form-subtitle">EV AccuCheck particulier</h3>
 
             <div class="form-row-grid">
                 <div>
-                    <label>Locatie</label>
-                    <input type="text" name="locatie" placeholder="Straat en plaats">
+                    <label for="locatie">Locatie</label>
+                    <input type="text" id="locatie" name="locatie" placeholder="Straat en plaats">
                 </div>
-
                 <div>
-                    <label>Kenteken</label>
-                    <input type="text" name="kenteken">
+                    <label for="kenteken">Kenteken</label>
+                    <input type="text" id="kenteken" name="kenteken">
                 </div>
             </div>
 
+            <div class="form-row">
+                <label for="postcode">Postcode van de locatie</label>
+                <input type="text" id="postcode" name="postcode" placeholder="Bijvoorbeeld 2993RL">
+                <p id="zoneOutput" class="zone-output"></p>
+            </div>
+
             <p class="tarief-hint">
-                Actietarief januari en februari: €149 incl. Normaal €169 incl.
+                Actietarief januari en februari €149 incl. Normaal €169 incl.
             </p>
         </div>
 
-
-
-        <!-- 🟦 EV ACCU ZAKELIJK -->
+        <!-- ZAKELIJK EV ACCUCHECK -->
         <div id="blokAccuZakelijk" class="dienst-blok">
             <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
 
             <p class="service-text">
-                Deze dienst is uitsluitend bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
+                Deze dienst is bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
             </p>
 
             <div class="form-row-grid">
@@ -160,27 +159,25 @@
             <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
         </div>
 
-
-
-        <!-- 🟦 GRATISBEZWAAR -->
+        <!-- GRATISBEZWAAR -->
         <div id="blokBezwaar" class="dienst-blok">
             <h3 class="form-subtitle">GratisBezwaar aanvraag</h3>
 
             <div class="form-row-grid">
                 <div>
-                    <label>Kenteken</label>
-                    <input type="text" name="kentekenBezwaar">
+                    <label for="kentekenBezwaar">Kenteken</label>
+                    <input type="text" id="kentekenBezwaar" name="kentekenBezwaar">
                 </div>
 
                 <div>
-                    <label>Boete nummer</label>
-                    <input type="text" name="boeteNummer" placeholder="Indien bekend">
+                    <label for="boeteNummer">Boete nummer</label>
+                    <input type="text" id="boeteNummer" name="boeteNummer" placeholder="Indien bekend">
                 </div>
             </div>
 
             <div class="form-row">
-                <label>Korte toelichting</label>
-                <textarea name="toelichting"></textarea>
+                <label for="toelichting">Korte toelichting</label>
+                <textarea id="toelichting" name="toelichting"></textarea>
             </div>
 
             <p class="tarief-hint">
@@ -188,27 +185,25 @@
             </p>
         </div>
 
-
-
-        <!-- 🟦 GEGEVENS -->
+        <!-- GEGEVENS -->
         <h3 class="form-subtitle">Uw gegevens</h3>
 
         <div class="form-row-grid">
             <div>
-                <label>Naam</label>
-                <input type="text" name="naam" required>
+                <label for="naam">Naam</label>
+                <input type="text" id="naam" name="naam" required>
             </div>
 
             <div>
-                <label>Emailadres</label>
-                <input type="email" name="email" required>
+                <label for="email">Emailadres</label>
+                <input type="email" id="email" name="email" required>
             </div>
         </div>
 
         <div class="form-row-grid">
             <div>
-                <label>Telefoonnummer</label>
-                <input type="text" name="telefoon" required>
+                <label for="telefoon">Telefoonnummer</label>
+                <input type="text" id="telefoon" name="telefoon" required>
             </div>
         </div>
 
@@ -230,3 +225,4 @@
 
 </body>
 </html>
+
