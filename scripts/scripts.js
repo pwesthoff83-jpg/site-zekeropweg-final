@@ -3,15 +3,13 @@
 ============================================================ */
 
 /* =========================
-   MOBIEL MENU MET OVERLAY
+   MOBIEL MENU
 ========================= */
 
 function toggleMenu() {
     const nav = document.getElementById("mainNav");
     const overlay = document.getElementById("menuOverlay");
     const toggle = document.querySelector(".menu-toggle");
-
-    if (!nav || !overlay || !toggle) return;
 
     nav.classList.toggle("open");
     overlay.classList.toggle("active");
@@ -23,16 +21,15 @@ function closeMenu() {
     const overlay = document.getElementById("menuOverlay");
     const toggle = document.querySelector(".menu-toggle");
 
-    if (!nav || !overlay || !toggle) return;
-
     nav.classList.remove("open");
     overlay.classList.remove("active");
     toggle.classList.remove("open");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
     /* =========================
-       MENU LINKS SLUITEN OP MOBIEL
+       MENU LINKS SLUITEN
     ========================== */
     const nav = document.getElementById("mainNav");
     if (nav) {
@@ -42,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
-       INTAKE FORMULIER LOGICA
+       INTAKE LOGICA
     ========================== */
 
     const dienstSelect = document.getElementById("dienst");
@@ -52,198 +49,183 @@ document.addEventListener("DOMContentLoaded", () => {
     const blokBezwaar = document.getElementById("blokBezwaar");
 
     function updateDienstBlokken() {
-        if (!dienstSelect) return;
-
         const v = dienstSelect.value;
-        const blokken = [blokAankoop, blokAccu, blokAccuZakelijk, blokBezwaar];
 
-        blokken.forEach(blok => {
-            if (blok) blok.classList.remove("actief");
+        [blokAankoop, blokAccu, blokAccuZakelijk, blokBezwaar].forEach(b => {
+            if (b) b.classList.remove("actief");
         });
 
-        if (v === "aankoopadvies" && blokAankoop) blokAankoop.classList.add("actief");
-        if (v === "evaccu" && blokAccu) blokAccu.classList.add("actief");
-        if (v === "evaccu-zakelijk" && blokAccuZakelijk) blokAccuZakelijk.classList.add("actief");
-        if (v === "bezwaar" && blokBezwaar) blokBezwaar.classList.add("actief");
+        if (v === "aankoopadvies") blokAankoop.classList.add("actief");
+        if (v === "evaccu") blokAccu.classList.add("actief");
+        if (v === "evaccu-zakelijk") blokAccuZakelijk.classList.add("actief");
+        if (v === "bezwaar") blokBezwaar.classList.add("actief");
     }
 
-    // alleen verder als dit echt de intakepagina is
     const intakeForm = document.getElementById("intakeForm");
-    if (!intakeForm || !dienstSelect) {
-        return;
-    }
+    if (!intakeForm) return;
 
-    // URL parameters verwerken
+    /* =========================
+       URL PARAMETERS
+    ========================== */
     const params = new URLSearchParams(window.location.search);
     const dienstParam = params.get("dienst");
     const pakketParam = params.get("pakket");
     const rayonParam = params.get("rayon");
 
-    if (dienstParam) {
-        dienstSelect.value = dienstParam;
-    }
+    if (dienstParam) dienstSelect.value = dienstParam;
     updateDienstBlokken();
 
-    // AANKOOPADVIES pakket uit URL
-    if (dienstParam === "aankoopadvies" && pakketParam) {
-        const pakketSelect = document.getElementById("pakketAankoop");
-        if (pakketSelect) {
-            pakketSelect.value = pakketParam;
-        }
-    }
-
     /* =========================
-       RAYON LOGICA EV PARTICULIER
+       EV PARTICULIER RAYON LOGICA
     ========================== */
 
     const postcodeInput = document.getElementById("postcode");
     const zoneOutput = document.getElementById("zoneOutput");
 
-    function bepaalRayonOpBasisVanPostcode(pc) {
+    function bepaalRayon(pc) {
         if (!pc || pc.length < 4) return "";
 
-        const eersteCijfer = parseInt(pc.charAt(0), 10);
-        if (isNaN(eersteCijfer)) return "";
+        const c = parseInt(pc.charAt(0), 10);
+        if (c <= 3) return "Rayon A regio Randstad";
+        if (c <= 6) return "Rayon B midden Nederland";
+        return "Rayon C overige regio";
+    }
 
-        if (eersteCijfer <= 3) {
-            return "Rayon A regio Randstad";
-        } else if (eersteCijfer <= 6) {
-            return "Rayon B midden Nederland";
-        } else {
-            return "Rayon C overige regio";
+    if (postcodeInput) {
+        postcodeInput.addEventListener("input", () => {
+            const pc = postcodeInput.value.replace(/\s+/g, "");
+            zoneOutput.textContent = bepaalRayon(pc);
+        });
+
+        if (dienstParam === "evaccu" && rayonParam && !postcodeInput.value) {
+            if (rayonParam === "A") zoneOutput.textContent = "Rayon A regio Randstad";
+            if (rayonParam === "B") zoneOutput.textContent = "Rayon B midden Nederland";
+            if (rayonParam === "C") zoneOutput.textContent = "Rayon C overige regio";
         }
     }
 
-    if (postcodeInput && zoneOutput) {
-        postcodeInput.addEventListener("input", () => {
-            const pc = postcodeInput.value.replace(/\s+/g, "");
-            const tekst = bepaalRayonOpBasisVanPostcode(pc);
-            zoneOutput.textContent = tekst;
-        });
+    /* ============================================================
+       NIEUW: ACCUCHECK OPTIONEEL MEEBESTELLEN (10% KORTING)
+    ============================================================ */
 
-        // Rayon uit URL wanneer er nog geen postcode is ingevuld
-        if (dienstParam === "evaccu" && rayonParam && !postcodeInput.value) {
-            if (rayonParam === "A") zoneOutput.textContent = "Rayon A regio Randstad";
-            else if (rayonParam === "B") zoneOutput.textContent = "Rayon B midden Nederland";
-            else if (rayonParam === "C") zoneOutput.textContent = "Rayon C overige regio";
+    const pakketAankoop = document.getElementById("pakketAankoop");
+    const accuMeebestellen = document.getElementById("accuMeebestellen");
+    const accuPrijsOutput = document.getElementById("accuPrijsOutput");
+    const totaalPrijsOutput = document.getElementById("totaalPrijsOutput");
+
+    function updateAccuPrijs() {
+        if (!pakketAankoop || !accuMeebestellen) return;
+
+        const pakket = pakketAankoop.value;
+        const wilAccu = accuMeebestellen.value === "ja";
+
+        const accuNormaal = 169;
+        const accuMetKorting = +(accuNormaal * 0.9).toFixed(2);
+
+        let pakketPrijs = 0;
+        if (pakket === "basis") pakketPrijs = 149;
+        if (pakket === "premium") pakketPrijs = 299;
+        if (pakket === "full") pakketPrijs = 449;
+
+        if (!wilAccu) {
+            accuPrijsOutput.style.display = "none";
+            totaalPrijsOutput.style.display = "none";
+            return;
         }
+
+        accuPrijsOutput.style.display = "block";
+        totaalPrijsOutput.style.display = "block";
+
+        accuPrijsOutput.textContent =
+            `EV AccuCheck met tien procent korting: €${accuMetKorting} inclusief.`;
+
+        const totaal = +(pakketPrijs + accuMetKorting).toFixed(2);
+        totaalPrijsOutput.textContent =
+            `Totaalprijs pakket inclusief AccuCheck: €${totaal}.`;
+    }
+
+    if (pakketAankoop && accuMeebestellen) {
+        pakketAankoop.addEventListener("change", updateAccuPrijs);
+        accuMeebestellen.addEventListener("change", updateAccuPrijs);
     }
 
     /* =========================
-       ZAKELIJK EV ACCUCHECK
+       EV ACCUCHECK ZAKELIJK
     ========================== */
 
     const aantalInput = document.getElementById("aantalVoertuigen");
-    const pakketSelectZakelijk = document.getElementById("zakelijkPakket");
+    const pakketZakelijk = document.getElementById("zakelijkPakket");
     const adviesPakket = document.getElementById("adviesPakket");
     const prijsIndicatie = document.getElementById("prijsIndicatie");
 
     function berekenZakelijkePrijs() {
-        if (!aantalInput || !pakketSelectZakelijk || !prijsIndicatie) return;
-
         const n = parseInt(aantalInput.value, 10);
-        const p = pakketSelectZakelijk.value;
+        const p = pakketZakelijk.value;
 
         if (!n || n < 1 || !p) {
             prijsIndicatie.textContent = "";
             return;
         }
 
-        let prijsPerStuk = 0;
-        if (p === "los") prijsPerStuk = 129;
-        else if (p === "pakket5") prijsPerStuk = 109;
-        else if (p === "pakket10") prijsPerStuk = 99;
+        let prijs = 0;
+        if (p === "los") prijs = 129;
+        if (p === "pakket5") prijs = 109;
+        if (p === "pakket10") prijs = 99;
 
-        const totaal = prijsPerStuk * n;
-        prijsIndicatie.textContent = `Indicatieve totaalprijs ${totaal} euro exclusief btw, ${prijsPerStuk} per test.`;
+        const totaal = prijs * n;
+
+        prijsIndicatie.textContent =
+            `Indicatieve totaalprijs €${totaal} exclusief btw (${prijs} per test).`;
     }
 
-    // pakket uit URL voor zakelijk
-    if (dienstParam === "evaccu-zakelijk" && pakketParam && pakketSelectZakelijk) {
-        pakketSelectZakelijk.value = pakketParam;
-    }
-
-    if (aantalInput && pakketSelectZakelijk && adviesPakket) {
+    if (aantalInput && pakketZakelijk) {
         aantalInput.addEventListener("input", () => {
             const n = parseInt(aantalInput.value, 10);
 
             if (!n || n < 1) {
                 adviesPakket.textContent = "";
-                if (prijsIndicatie) prijsIndicatie.textContent = "";
+                prijsIndicatie.textContent = "";
                 return;
             }
 
             if (n <= 3) {
                 adviesPakket.textContent = "Losse testen passen bij kleinere aantallen.";
-                pakketSelectZakelijk.value = "los";
+                pakketZakelijk.value = "los";
             } else if (n <= 7) {
-                adviesPakket.textContent = "Pakket vijf past bij dit aantal voertuigen.";
-                pakketSelectZakelijk.value = "pakket5";
+                adviesPakket.textContent = "Pakket vijf past bij dit aantal.";
+                pakketZakelijk.value = "pakket5";
             } else {
-                adviesPakket.textContent = "Pakket tien is het meest passend bij deze aantallen.";
-                pakketSelectZakelijk.value = "pakket10";
+                adviesPakket.textContent = "Pakket tien is het meest passend.";
+                pakketZakelijk.value = "pakket10";
             }
 
             berekenZakelijkePrijs();
         });
 
-        pakketSelectZakelijk.addEventListener("change", berekenZakelijkePrijs);
+        pakketZakelijk.addEventListener("change", berekenZakelijkePrijs);
     }
 
     /* =========================
-       WIJZIGING VAN DIENSTSELECTIE
-    ========================== */
-    dienstSelect.addEventListener("change", updateDienstBlokken);
-
-    /* =========================
-       FORM SUBMIT → DANKPAGINA
+       FORM SUBMIT
     ========================== */
 
-    intakeForm.addEventListener("submit", function (e) {
+    intakeForm.addEventListener("submit", e => {
         e.preventDefault();
 
         const dienst = dienstSelect.value;
-        if (!dienst) {
-            alert("Kies eerst welke dienst u wilt aanvragen.");
-            return;
-        }
 
-        // extra controle voor zakelijk
         if (dienst === "evaccu-zakelijk") {
-            const kvkInput = document.getElementById("kvk");
-            const bedrijfsnaamInput = document.getElementById("bedrijfsnaam");
-
-            if (!kvkInput || !bedrijfsnaamInput ||
-                !kvkInput.value.trim() || !bedrijfsnaamInput.value.trim()) {
-                alert("Voor zakelijke aanvragen zijn bedrijfsnaam en KvK nummer verplicht.");
+            const kvk = document.getElementById("kvk").value.trim();
+            const naam = document.getElementById("bedrijfsnaam").value.trim();
+            if (!kvk || !naam) {
+                alert("Voor zakelijke aanvragen zijn bedrijfsnaam en KvK verplicht.");
                 return;
             }
-
-            const emailInput = document.getElementById("email");
-            if (emailInput && emailInput.value.includes("@")) {
-                const domein = emailInput.value.split("@")[1].toLowerCase();
-                const consumentenDomeinen = [
-                    "gmail.com",
-                    "hotmail.com",
-                    "outlook.com",
-                    "live.nl",
-                    "yahoo.com"
-                ];
-
-                if (consumentenDomeinen.includes(domein)) {
-                    const doorgaan = confirm(
-                        "U gebruikt een particulier emailadres. Deze dienst is bedoeld voor bedrijven met KvK registratie. Wilt u toch doorgaan met deze aanvraag."
-                    );
-                    if (!doorgaan) {
-                        return;
-                    }
-                }
-            }
         }
 
-        // redirect naar dankpagina met dienst parameter
         window.location.href = `dank.html?dienst=${encodeURIComponent(dienst)}`;
     });
+
 });
 
 
