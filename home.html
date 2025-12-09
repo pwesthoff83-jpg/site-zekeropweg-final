@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZekerOpWeg – Nieuwe website komt eraan</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background: #000;
+            color: #d8c08a;
+            overflow-x: hidden;
+        }
+
+        .offline-wrapper {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Desktop background */
+        .offline-wrapper {
+            background-image: url("assets/images/zekeropweg-offline-desktop.webp");
+        }
+
+        /* Mobile background */
+        @media (max-width: 700px) {
+            .offline-wrapper {
+                background-image: url("assets/images/zekeropweg-offline-mobile.webp");
+            }
+        }
+
+        .logo-title {
+            margin-top: 50px;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #d8c08a;
+        }
+
+        .offline-text {
+            margin-top: 140px;
+            max-width: 900px;
+            text-align: center;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: #e9d7b0;
+        }
+
+        @media (max-width: 700px) {
+            .logo-title {
+                font-size: 2.2rem;
+                margin-top: 40px;
+            }
+
+            .offline-text {
+                font-size: 1.25rem;
+                margin-top: 80px;
+            }
+        }
+
+        /* Optional subtle fade-in */
+        .fade {
+            animation: fadein 1.3s ease forwards;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="offline-wrapper fade">
+        <div class="logo-title">ZekerOpWeg</div>
+
+        <div class="offline-text">
+            Onze nieuwe website wordt momenteel zorgvuldig voorbereid.<br><br>
+            De officiële lancering staat gepland voor begin januari 2026.
+        </div>
+    </section>
+
+</body>
+</html>
 
