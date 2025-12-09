@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const blokAccu = document.getElementById("blokAccu");
     const blokAccuZakelijk = document.getElementById("blokAccuZakelijk");
     const blokBezwaar = document.getElementById("blokBezwaar");
-
     const intakeForm = document.getElementById("intakeForm");
 
     // Als er geen intake formulier is, stoppen we na het menu deel
