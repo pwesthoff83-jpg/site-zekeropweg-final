@@ -1,10 +1,9 @@
 /* ============================================================
-   ZEKEROPWEG – Scripts
-   Navigatie, intake-logica, zakelijk advies en rayons
+   ZEKEROPWEG – Navigatie en intake logica
 ============================================================ */
 
 /* =========================
-   MOBIELE NAVIGATIE + OVERLAY
+   MOBIEL MENU MET OVERLAY
 ========================= */
 
 function toggleMenu() {
@@ -32,7 +31,9 @@ function closeMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Sluit menu bij klik op een link
+    /* =========================
+       MENU LINKS SLUITEN OP MOBIEL
+    ========================== */
     const nav = document.getElementById("mainNav");
     if (nav) {
         nav.querySelectorAll("a").forEach(link => {
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
-       INTAKE – DIENST BLOKKEN
+       INTAKE FORMULIER LOGICA
     ========================== */
 
     const dienstSelect = document.getElementById("dienst");
@@ -66,20 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (v === "bezwaar" && blokBezwaar) blokBezwaar.classList.add("actief");
     }
 
+    // alleen verder als dit echt de intakepagina is
+    const intakeForm = document.getElementById("intakeForm");
+    if (!intakeForm || !dienstSelect) {
+        return;
+    }
+
     // URL parameters verwerken
     const params = new URLSearchParams(window.location.search);
     const dienstParam = params.get("dienst");
     const pakketParam = params.get("pakket");
     const rayonParam = params.get("rayon");
 
-    if (dienstSelect) {
-        if (dienstParam) {
-            dienstSelect.value = dienstParam;
-        }
-        updateDienstBlokken();
+    if (dienstParam) {
+        dienstSelect.value = dienstParam;
     }
+    updateDienstBlokken();
 
-    // Aankoopadvies pakket uit URL
+    // AANKOOPADVIES pakket uit URL
     if (dienstParam === "aankoopadvies" && pakketParam) {
         const pakketSelect = document.getElementById("pakketAankoop");
         if (pakketSelect) {
@@ -95,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const zoneOutput = document.getElementById("zoneOutput");
 
     function bepaalRayonOpBasisVanPostcode(pc) {
-        // Verwacht een string zoals "2993RL" of "2993"
         if (!pc || pc.length < 4) return "";
 
         const eersteCijfer = parseInt(pc.charAt(0), 10);
@@ -117,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             zoneOutput.textContent = tekst;
         });
 
-        // Als er een rayon in de URL staat bijvoorbeeld intake.html?dienst=evaccu&rayon=A
+        // Rayon uit URL wanneer er nog geen postcode is ingevuld
         if (dienstParam === "evaccu" && rayonParam && !postcodeInput.value) {
             if (rayonParam === "A") zoneOutput.textContent = "Rayon A regio Randstad";
             else if (rayonParam === "B") zoneOutput.textContent = "Rayon B midden Nederland";
@@ -151,7 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (p === "pakket10") prijsPerStuk = 99;
 
         const totaal = prijsPerStuk * n;
-        prijsIndicatie.textContent = `Indicatie totaalprijs €${totaal} excl btw (${prijsPerStuk} per test)`;
+        prijsIndicatie.textContent = `Indicatieve totaalprijs ${totaal} euro exclusief btw, ${prijsPerStuk} per test.`;
+    }
+
+    // pakket uit URL voor zakelijk
+    if (dienstParam === "evaccu-zakelijk" && pakketParam && pakketSelectZakelijk) {
+        pakketSelectZakelijk.value = pakketParam;
     }
 
     if (aantalInput && pakketSelectZakelijk && adviesPakket) {
@@ -165,13 +174,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (n <= 3) {
-                adviesPakket.textContent = "Advies losse test past bij kleinere aantallen.";
+                adviesPakket.textContent = "Losse testen passen bij kleinere aantallen.";
                 pakketSelectZakelijk.value = "los";
             } else if (n <= 7) {
-                adviesPakket.textContent = "Advies pakket vijf is passend voor uw wagenpark.";
+                adviesPakket.textContent = "Pakket vijf past bij dit aantal voertuigen.";
                 pakketSelectZakelijk.value = "pakket5";
             } else {
-                adviesPakket.textContent = "Advies pakket tien is het meest rendabel bij grotere aantallen.";
+                adviesPakket.textContent = "Pakket tien is het meest passend bij deze aantallen.";
                 pakketSelectZakelijk.value = "pakket10";
             }
 
@@ -182,57 +191,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
+       WIJZIGING VAN DIENSTSELECTIE
+    ========================== */
+    dienstSelect.addEventListener("change", updateDienstBlokken);
+
+    /* =========================
        FORM SUBMIT → DANKPAGINA
     ========================== */
 
-    const intakeForm = document.getElementById("intakeForm");
+    intakeForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    if (intakeForm && dienstSelect) {
-        intakeForm.addEventListener("submit", function (e) {
-            e.preventDefault();
+        const dienst = dienstSelect.value;
+        if (!dienst) {
+            alert("Kies eerst welke dienst u wilt aanvragen.");
+            return;
+        }
 
-            const dienst = dienstSelect.value;
-            if (!dienst) {
-                alert("Kies eerst welke dienst u wilt aanvragen.");
+        // extra controle voor zakelijk
+        if (dienst === "evaccu-zakelijk") {
+            const kvkInput = document.getElementById("kvk");
+            const bedrijfsnaamInput = document.getElementById("bedrijfsnaam");
+
+            if (!kvkInput || !bedrijfsnaamInput ||
+                !kvkInput.value.trim() || !bedrijfsnaamInput.value.trim()) {
+                alert("Voor zakelijke aanvragen zijn bedrijfsnaam en KvK nummer verplicht.");
                 return;
             }
 
-            // Extra check voor zakelijke aanvragen
-            if (dienst === "evaccu-zakelijk") {
-                const kvkInput = document.getElementById("kvk");
-                const bedrijfsnaamInput = document.getElementById("bedrijfsnaam");
+            const emailInput = document.getElementById("email");
+            if (emailInput && emailInput.value.includes("@")) {
+                const domein = emailInput.value.split("@")[1].toLowerCase();
+                const consumentenDomeinen = [
+                    "gmail.com",
+                    "hotmail.com",
+                    "outlook.com",
+                    "live.nl",
+                    "yahoo.com"
+                ];
 
-                if (!kvkInput || !bedrijfsnaamInput ||
-                    !kvkInput.value.trim() || !bedrijfsnaamInput.value.trim()) {
-                    alert("Voor zakelijke aanvragen zijn bedrijfsnaam en KvK nummer verplicht.");
-                    return;
-                }
-
-                const emailInput = document.getElementById("email");
-                if (emailInput && emailInput.value.includes("@")) {
-                    const domein = emailInput.value.split("@")[1].toLowerCase();
-                    const consumentenDomeinen = [
-                        "gmail.com",
-                        "hotmail.com",
-                        "outlook.com",
-                        "live.nl",
-                        "yahoo.com"
-                    ];
-
-                    if (consumentenDomeinen.includes(domein)) {
-                        const doorgaan = confirm(
-                            "U gebruikt een particulier emailadres. Deze dienst is bedoeld voor bedrijven met KvK registratie. Wilt u toch doorgaan met deze aanvraag."
-                        );
-                        if (!doorgaan) {
-                            return;
-                        }
+                if (consumentenDomeinen.includes(domein)) {
+                    const doorgaan = confirm(
+                        "U gebruikt een particulier emailadres. Deze dienst is bedoeld voor bedrijven met KvK registratie. Wilt u toch doorgaan met deze aanvraag."
+                    );
+                    if (!doorgaan) {
+                        return;
                     }
                 }
             }
+        }
 
-            window.location.href = `dank.html?dienst=${encodeURIComponent(dienst)}`;
-        });
-    }
+        // redirect naar dankpagina met dienst parameter
+        window.location.href = `dank.html?dienst=${encodeURIComponent(dienst)}`;
+    });
 });
 
 
