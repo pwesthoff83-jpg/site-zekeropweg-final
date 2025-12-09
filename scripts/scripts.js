@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const blokBezwaar = document.getElementById("blokBezwaar");
     const intakeForm = document.getElementById("intakeForm");
 
-    // Als er geen intake formulier is, stoppen we na het menu deel
+    // Stop als dit niet de intakepagina is
     if (!intakeForm || !dienstSelect) return;
 
     function updateDienstBlokken() {
@@ -92,9 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const comboHint = document.getElementById("comboHint");
 
     if (pakketSelect) {
-        // Pakket uit URL
+        // Pakket uit URL (basis, premium, full)
         if (dienstParam === "aankoopadvies" && pakketParam) {
-            // verwacht waarden: basis, premium, full
             pakketSelect.value = pakketParam;
         }
 
@@ -268,5 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = `dank.html?dienst=${encodeURIComponent(dienst)}`;
     });
 });
+
 
 
