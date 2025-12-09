@@ -3,99 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg – Nieuwe website komt eraan</title>
-    <meta name="robots" content="noindex, nofollow">
+    <title>ZekerOpWeg — Website in voorbereiding</title>
 
     <style>
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Segoe UI", system-ui, sans-serif;
-            background: #000;
-            color: #d8c08a;
-            overflow-x: hidden;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #000;
+            color: #d9c39a;
         }
 
         .offline-wrapper {
-            height: 100vh;
+            position: relative;
             width: 100%;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 40px 20px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            justify-content: center;
         }
 
-        /* Desktop background */
-        .offline-wrapper {
-            background-image: url("assets/images/zekeropweg-offline-desktop.webp");
+        .offline-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.32;
         }
 
-        /* Mobile background */
-        @media (max-width: 700px) {
-            .offline-wrapper {
-                background-image: url("assets/images/zekeropweg-offline-mobile.webp");
-            }
-        }
-
-        .logo-title {
-            margin-top: 50px;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #d8c08a;
-        }
-
-        .offline-text {
-            margin-top: 140px;
-            max-width: 900px;
+        .offline-content {
+            position: relative;
             text-align: center;
-            font-size: 1.6rem;
-            line-height: 1.5;
-            color: #e9d7b0;
+            padding: 20px;
+            z-index: 2;
+            max-width: 900px;
         }
 
-        @media (max-width: 700px) {
-            .logo-title {
-                font-size: 2.2rem;
-                margin-top: 40px;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile optimalisatie */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.4rem;
             }
-
-            .offline-text {
-                font-size: 1.25rem;
-                margin-top: 80px;
+            p {
+                font-size: 1.15rem;
             }
-        }
-
-        /* Optional subtle fade-in */
-        .fade {
-            animation: fadein 1.3s ease forwards;
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
+
 <body>
 
-    <section class="offline-wrapper fade">
-        <div class="logo-title">ZekerOpWeg</div>
+<div class="offline-wrapper">
+    <!-- Gebruik desktop afbeelding (mag later vervangen worden met WebP in assets folder) -->
+    <picture>
+        <!-- Mobile eerst -->
+        <source srcset="assets/images/hero/zekeropweg-offline-mobile.webp" media="(max-width: 768px)">
+        <img src="assets/images/hero/zekeropweg-offline-desktop.webp" alt="ZekerOpWeg offline" class="offline-bg">
+    </picture>
 
-        <div class="offline-text">
-            Onze nieuwe website wordt momenteel zorgvuldig voorbereid.<br><br>
-            De officiële lancering staat gepland voor begin januari 2026.
-        </div>
-    </section>
+    <div class="offline-content">
+        <h1>ZekerOpWeg</h1>
+        <p>Onze website wordt op dit moment zorgvuldig voorbereid.</p>
+        <p>De officiële lancering staat gepland voor begin januari 2026.</p>
+    </div>
+</div>
+
+<!-- Automatische overgang op 5 januari 2026 -->
+<script>
+    const today = new Date();
+    const launchDate = new Date("2026-01-05T00:00:00");
+
+    if (today >= launchDate) {
+        window.location.href = "index.html";
+    }
+</script>
 
 </body>
 </html>
+
 
