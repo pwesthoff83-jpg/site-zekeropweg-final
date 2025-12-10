@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | ZekerOpWeg</title>
-    <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV-AccuCheck of ondersteuning bij uw volgende auto.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <meta name="description" content="Neem contact op met ZekerOpWeg voor aankoopadvies, EV-accucheck of hulp bij verkeers en parkeerboetes.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
 <body class="fade-in">
@@ -13,6 +13,7 @@
 <!-- HEADER -->
 <header class="header">
     <div class="container header-container">
+
         <a href="index.html" class="logo-wrap">
             <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
         </a>
@@ -26,122 +27,94 @@
                 <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
                 <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
             </ul>
         </nav>
+
     </div>
 
     <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
-
-<!-- HERO SUB -->
-<section class="hero-sub" style="background-image: url('assets/images/hero/showroom-premium.webp');">
-    <div class="overlay-dark"></div>
-    <div class="container hero-content-small">
-        <h1>Contact</h1>
-        <p>Persoonlijke, onafhankelijke begeleiding begint hier.</p>
+<!-- HERO -->
+<section class="hero hero-contact">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Neem gerust contact op</h1>
+        <p>Een vraag, advies nodig of direct een intake inplannen? Ik help u graag verder.</p>
     </div>
 </section>
 
+<!-- CONTACT PREMIUM BLOK -->
+<section class="container contact-premium-section">
 
-<!-- CONTACT INFO -->
-<section class="section">
-    <div class="container">
+    <div class="contact-premium-box">
+        
+        <div class="contact-info">
+            <h2 class="section-title">Contactgegevens</h2>
+            <p class="service-text">U krijgt altijd persoonlijk antwoord, zonder wachttijden of keuzemenu’s.</p>
 
-        <h2>Neem contact op</h2>
-        <p>Heeft u een vraag of wilt u een EV-AccuCheck of aankoopadvies inplannen?  
-           Stuur gerust een bericht – ik denk graag met u mee.</p>
-
-        <div class="contact-grid">
-
-            <div class="contact-card">
-                <h3>E-mail</h3>
-                <p>advies@zekeropweg.nu</p>
+            <div class="contact-line">
+                <strong>E-mail:</strong> <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>
+            </div>
+            <div class="contact-line">
+                <strong>Telefoon:</strong> 06 – 23 45 23 49
+            </div>
+            <div class="contact-line">
+                <strong>Website:</strong> www.zekeropweg.nu
             </div>
 
-            <div class="contact-card">
-                <h3>Telefoon</h3>
-                <p>06-23452349</p>
-            </div>
-
-            <div class="contact-card">
-                <h3>Website</h3>
-                <p>www.zekeropweg.nu</p>
-            </div>
+            <p class="service-text" style="margin-top:15px;">
+                Wilt u liever direct een intake starten? Dat kan via de intakepagina.  
+            </p>
 
         </div>
+
+        <div class="contact-form-wrapper">
+            <h3 class="service-title">Stuur een bericht</h3>
+
+            <form class="contact-form" action="dank.html" method="GET">
+
+                <div class="form-row-grid">
+                    <div>
+                        <label>Voornaam</label>
+                        <input type="text" name="voornaam" required>
+                    </div>
+                    <div>
+                        <label>Achternaam</label>
+                        <input type="text" name="achternaam" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <label>Bericht</label>
+                    <textarea name="bericht" required></textarea>
+                </div>
+
+                <button class="btn-primary" type="submit">Verstuur bericht</button>
+            </form>
+
+        </div>
+
     </div>
+
 </section>
-
-
-<!-- CONTACT FORM -->
-<section class="section cream-bg">
-    <div class="container">
-        <h2>Stuur een bericht</h2>
-        <p>Laat uw gegevens achter en ik neem zo snel mogelijk persoonlijk contact met u op.</p>
-
-        <form class="contact-form" action="#" method="post">
-            <div class="form-row">
-                <input type="text" name="name" placeholder="Uw naam" required>
-                <input type="email" name="email" placeholder="Uw e-mailadres" required>
-            </div>
-
-            <div class="form-row">
-                <input type="text" name="phone" placeholder="Uw telefoonnummer (optioneel)">
-            </div>
-
-            <textarea name="message" rows="5" placeholder="Uw bericht" required></textarea>
-
-            <button type="submit" class="button-primary">Bericht versturen</button>
-        </form>
-    </div>
-</section>
-
-
-<!-- CTA AFSLUITING -->
-<section class="cta-section" style="background-image:url('assets/images/cta/aankoopadvies.webp');">
-    <div class="cta-overlay"></div>
-
-    <div class="container">
-        <h2>Voordat u beslist, eerst even kennismaken?</h2>
-        <p>Dat kan altijd – vrijblijvend en persoonlijk.</p>
-        <a href="contact.html" class="button-primary">Plan een kennismaking</a>
-    </div>
-</section>
-
 
 <!-- FOOTER -->
 <footer class="footer">
-    <div class="footer-grid container">
-        <div class="footer-column">
-            <img src="assets/images/logo.png" class="footer-logo" alt="ZekerOpWeg footer logo">
-            <p>Onafhankelijk aankoopadvies, EV-accudiagnose & ondersteuning bij boetes.</p>
-        </div>
-
-        <div class="footer-column">
-            <h4>Diensten</h4>
-            <p>Aankoopadvies<br>EV-AccuCheck<br>Gratis Bezwaar</p>
-        </div>
-
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <p>advies@zekeropweg.nu<br>www.zekeropweg.nu</p>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        © 2025 ZekerOpWeg – Onafhankelijke premium begeleiding
+    <div class="footer-inner">
+        <p>© 2026 ZekerOpWeg</p>
     </div>
 </footer>
 
-<script src="scripts/main.js"></script>
+<script src="scripts/scripts.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 
