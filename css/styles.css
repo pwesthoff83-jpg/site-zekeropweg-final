@@ -797,4 +797,51 @@ img {
     background: linear-gradient(145deg, #fffaf3 0%, #f7f2ea 100%);
 }
 
+/* ================================================
+   OVER PAGINA — PIXEL PERFECT BRANDBOOSTER STYLE
+================================================ */
+
+.about-premium {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    background: linear-gradient(145deg, #fffaf3 0%, #f7f2ea 100%);
+    padding: 50px 60px;
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.06);
+    border-left: 4px solid #d4af37; /* subtiel goud accent */
+}
+
+.about-text {
+    flex: 1.3;
+}
+
+.about-photo-wrap-small {
+    flex: 0 0 280px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-photo-small {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+/* MOBILE OPTIMALISATIE */
+@media (max-width: 900px) {
+    .about-premium {
+        flex-direction: column;
+        padding: 35px 25px;
+        text-align: left;
+    }
+
+    .about-photo-wrap-small {
+        margin: 25px auto 0;
+    }
+}
+
 
