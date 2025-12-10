@@ -1143,4 +1143,44 @@ img {
     }
 }
 
+/* =========================================
+   CONTACT FORM — PERFECTE UITLIJNING
+========================================= */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Voornaam + Achternaam netjes op één lijn */
+.contact-form .form-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+/* Velden optisch gelijk maken */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    background: #ffffff;
+    font-size: 0.98rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* Tekstvak mooi in lijn met bovenste velden */
+.contact-form textarea {
+    min-height: 140px;
+}
+
+/* Button mooi uitgelijnd met het formulier */
+.contact-form button {
+    margin-top: 0.4rem;
+}
+
 
