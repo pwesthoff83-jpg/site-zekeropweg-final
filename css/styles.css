@@ -675,4 +675,53 @@ img {
     min-width: 260px;
 }
 
+/* Premium achtergrondblok */
+.about-premium {
+    background: linear-gradient(135deg, #fffdf8 0%, #f6f0e6 100%);
+    padding: 3rem;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* Tekst links */
+.about-text {
+    flex: 1;
+}
+
+/* Foto rechts, kleiner formaat */
+.about-photo-wrap-small {
+    flex: 0 0 220px;
+}
+
+.about-photo-small {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.about-photo-small:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.22);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .about-premium {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .about-photo-wrap-small {
+        flex: 0 0 auto;
+        width: 180px;
+    }
+}
+
 
