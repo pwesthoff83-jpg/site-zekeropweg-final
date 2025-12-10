@@ -1,117 +1,226 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg | Onafhankelijk aankoopadvies en EV AccuCheck</title>
-    <meta name="description" content="Onafhankelijk aankoopadvies, EV AccuCheck en ondersteuning bij verkeers en parkeerboetes. Zeker naar uw volgende auto, zorgeloos geregeld.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.3">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZekerOpWeg – onafhankelijk aankoopadvies, EV AccuCheck en GratisBezwaar</title>
+    <meta name="description" content="ZekerOpWeg biedt onafhankelijk aankoopadvies, EV AccuCheck en hulp bij verkeers en parkeerboetes. Premium begeleiding met rust en duidelijkheid bij elke stap.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
 <body class="fade-in">
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container header-container">
+<!-- HEADER -->
+<header class="header">
+    <div class="container header-container">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
+        </a>
 
-            <a href="index.html" class="logo-wrap">
-                <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
-            </a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu openen">
-                ☰
-            </button>
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="ev-accucheck-zakelijk.html">Zakelijk</a></li>
+                <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="intake.html">Intake</a></li>
+            </ul>
+        </nav>
+    </div>
 
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                    <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                    <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                    <li><a href="over.html">Over</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+</header>
 
-            <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
-        </div>
-    </header>
-
-    <!-- HERO HOME -->
-    <section class="hero hero-home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <h1>Zeker naar uw volgende auto zorgeloos geregeld</h1>
-            <p>
-                Onafhankelijk advies, duidelijke rapporten en persoonlijke begeleiding bij aankoop, accutesten en boetes. 
-                Rust en zekerheid in elke stap.
-            </p>
-            <div style="margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;">
-                <a href="intake.html?dienst=aankoopadvies" class="btn-primary">Plan aankoopadvies</a>
-                <a href="intake.html?dienst=ev-particulier" class="btn-primary">Plan EV AccuCheck</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- KERNDIENSTEN -->
-    <section class="services-section container">
-        <h2 class="section-title">Waarmee kan ik u helpen</h2>
-        <p class="section-subtitle">
-            ZekerOpWeg brengt kennis, ervaring en rust in situaties waarin keuzes belangrijk zijn. U krijgt eerlijk advies zonder verkooppraat.
+<!-- HERO HOME -->
+<section class="hero hero-home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Zeker naar uw volgende auto, zorgeloos geregeld</h1>
+        <p>
+            Onafhankelijk advies, duidelijke rapporten en rust bij aankoop, verkoop en accuzekerheid.
+            Met één aanspreekpunt voor uw auto en uw boetes.
         </p>
 
-        <div class="service-grid">
-
-            <div class="service-card">
-                <h3 class="service-title">Aankoopadvies</h3>
-                <p class="service-text">
-                    Begeleiding bij het kiezen en beoordelen van een auto. Van remote controle tot inspectie op locatie en volledige begeleiding.
-                </p>
-                <ul class="service-list">
-                    <li>Onafhankelijke beoordeling</li>
-                    <li>Heldere pakketten</li>
-                    <li>Rapport in begrijpelijke taal</li>
-                </ul>
-                <a href="aankoopadvies.html" class="text-link">Meer over aankoopadvies</a>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">EV AccuCheck</h3>
-                <p class="service-text">
-                    Professionele accutest op locatie met digitaal certificaat. Geschikt voor zowel aankoop als verkoop.
-                </p>
-                <ul class="service-list">
-                    <li>Particulier en zakelijk</li>
-                    <li>Certificaat direct digitaal</li>
-                    <li>Geschikt voor advertentie en overdracht</li>
-                </ul>
-                <a href="ev-accucheck.html" class="text-link">Meer over EV AccuCheck</a>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">GratisBezwaar</h3>
-                <p class="service-text">
-                    Ondersteuning bij verkeers en parkeerboetes met AI ondersteuning en menselijke controle.
-                </p>
-                <ul class="service-list">
-                    <li>Abonnement per kenteken</li>
-                    <li>Onbeperkt bezwaar binnen het abonnement</li>
-                    <li>Volledige administratieve afhandeling</li>
-                </ul>
-                <a href="gratisbezwaar.html" class="text-link">Meer over GratisBezwaar</a>
-            </div>
-
+        <div style="margin-top:1.5rem; display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap;">
+            <a href="aankoopadvies.html" class="btn-primary">Bekijk aankoopadvies</a>
+            <a href="intake.html" class="text-link">Direct een intake starten</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <p>© 2026 ZekerOpWeg</p>
+<!-- DIENSTEN OVERZICHT -->
+<section class="services-section container">
+    <h2 class="section-title">Waarmee kan ZekerOpWeg u helpen</h2>
+    <p class="section-subtitle">
+        ZekerOpWeg combineert onafhankelijk aankoopadvies, professionele accudiagnose en slimme ondersteuning bij verkeers en parkeerboetes.
+        Altijd gericht op rust, duidelijkheid en een resultaat dat bij u past.
+    </p>
+
+    <div class="service-grid">
+
+        <!-- AANKOOPADVIES -->
+        <div class="service-card">
+            <h3 class="service-title">Onafhankelijk aankoopadvies</h3>
+            <p class="service-text">
+                Van eerste selectie tot volledige begeleiding bij de koop van uw volgende auto. 
+                U kiest het pakket dat past bij uw behoefte aan zekerheid en ontzorging.
+            </p>
+            <ul class="service-list">
+                <li>Drie duidelijke pakketten</li>
+                <li>Inspectie op locatie mogelijk</li>
+                <li>Premium begeleiding en helder rapport</li>
+            </ul>
+            <a href="aankoopadvies.html" class="btn-primary">Meer over aankoopadvies</a>
         </div>
-    </footer>
 
-    <script src="scripts/scripts.js"></script>
+        <!-- EV ACCUCHECK -->
+        <div class="service-card">
+            <h3 class="service-title">EV AccuCheck</h3>
+            <p class="service-text">
+                Onafhankelijke accudiagnose voor elektrische voertuigen, plug in hybrides en hybride modellen. 
+                Ideaal bij aankoop, verkoop of als einde garantie controle van de aandrijfaccu.
+            </p>
+            <ul class="service-list">
+                <li>Digitale accudiagnose op basis van flashtest techniek</li>
+                <li>Geschikt voor EV, PHEV en hybride voertuigen</li>
+                <li>Digitaal certificaat met TÜV gecertificeerde meetmethodiek</li>
+            </ul>
+            <a href="ev-accucheck.html" class="btn-primary">Meer over EV AccuCheck</a>
+            <a href="ev-accucheck-zakelijk.html" class="text-link">Zakelijke mogelijkheden bekijken</a>
+        </div>
+
+        <!-- GRATISBEZWAAR -->
+        <div class="service-card">
+            <h3 class="service-title">GratisBezwaar</h3>
+            <p class="service-text">
+                Hulp bij verkeers en parkeerboetes met slimme ondersteuning en menselijke controle. 
+                U levert de boete aan, wij verzorgen het bezwaar en houden de termijnen in de gaten.
+            </p>
+            <ul class="service-list">
+                <li>Kentekengebonden abonnement</li>
+                <li>Slimme tekst analyse met menselijke controle</li>
+                <li>Volledige administratieve afhandeling</li>
+            </ul>
+            <a href="gratisbezwaar.html" class="btn-primary">Meer over GratisBezwaar</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- WAAROM ZEKEROPWEG -->
+<section class="services-section container">
+    <h2 class="section-title">Waarom kiezen voor ZekerOpWeg</h2>
+    <p class="section-subtitle">
+        U zoekt geen snelle verkoop maar een onafhankelijk klankbord. 
+        ZekerOpWeg combineert technische kennis, praktijk ervaring en rustige uitleg in begrijpelijke taal.
+    </p>
+
+    <div class="service-grid">
+        <div class="service-card">
+            <h3 class="service-title">Altijd onafhankelijk</h3>
+            <p class="service-text">
+                ZekerOpWeg verkoopt zelf geen voorraad auto’s. 
+                Het belang van de klant staat centraal, zonder verborgen belangen of provisies.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Rust en structuur in het proces</h3>
+            <p class="service-text">
+                U krijgt geen losse losse adviezen maar een duidelijk stappenplan. 
+                Van eerste vraag tot afronding is helder wat u kunt verwachten.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Slimme ondersteuning met techniek</h3>
+            <p class="service-text">
+                Bij accudiagnose en bezwaren wordt gebruik gemaakt van slimme ondersteuning en data analyse. 
+                Altijd met menselijke controle en uitleg zodat u begrijpt wat er gebeurt.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- HOE WERKT HET -->
+<section class="services-section container">
+    <h2 class="section-title">Hoe werkt het</h2>
+    <p class="section-subtitle">
+        De werkwijze is bewust eenvoudig gehouden. 
+        U heeft één vaste ingang en één aanspreekpunt, ongeacht of het gaat om aankoopadvies, accudiagnose of boetes.
+    </p>
+
+    <div class="service-grid">
+        <div class="service-card">
+            <h3 class="service-title">Stap een – intake</h3>
+            <p class="service-text">
+                U vult het intakeformulier in en kiest de dienst die u nodig heeft. 
+                Op basis van uw situatie neem ik persoonlijk contact met u op.
+            </p>
+            <a href="intake.html" class="text-link">Naar het intakeformulier</a>
+        </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Stap twee – afstemmen en bevestigen</h3>
+            <p class="service-text">
+                We stemmen telefonisch of via videocall uw wensen en verwachtingen af. 
+                Daarna ontvangt u een duidelijke bevestiging van de gemaakte afspraken.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <h3 class="service-title">Stap drie – uitvoering en terugkoppeling</h3>
+            <p class="service-text">
+                De dienst wordt uitgevoerd zoals afgesproken. 
+                U ontvangt een helder rapport, certificaat of dossier en altijd ruimte voor vragen.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- EV ACCUCHECK USP BLOK -->
+<section class="services-section container">
+    <div class="service-card">
+        <h3 class="service-title">Extra zekerheid met EV AccuCheck</h3>
+        <p class="service-text">
+            Twijfelt u over de accuzekerheid van een elektrische of hybride auto. 
+            Dan kan een AccuCheck worden gecombineerd met aankoopadvies of los worden aangevraagd.
+        </p>
+        <ul class="service-list">
+            <li>Geschikt voor EV, plug in hybrides en hybride modellen</li>
+            <li>Ideaal als extra controle vlak voor het einde van de accugarantie</li>
+            <li>Digitale accudiagnose op basis van onafhankelijke flashtest techniek met TÜV gecertificeerde meetmethodiek</li>
+        </ul>
+        <a href="ev-accucheck.html" class="btn-primary">Meer over AccuCheck</a>
+    </div>
+</section>
+
+<!-- CTA SLOT -->
+<section class="services-section container">
+    <div class="service-card" style="text-align:center;">
+        <h3 class="service-title">Start met een rustige intake</h3>
+        <p class="service-text">
+            Of het nu gaat om uw volgende auto, de staat van uw accu of een boete waar u van baalt. 
+            Met een rustige intake brengen we eerst uw situatie in kaart en bepalen we samen de volgende stap.
+        </p>
+        <a href="intake.html" class="btn-primary">Start intake</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <p>© 2026 ZekerOpWeg</p>
+    </div>
+</footer>
+
+<script src="scripts/scripts.js"></script>
+
 </body>
 </html>
 
