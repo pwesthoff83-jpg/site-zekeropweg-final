@@ -723,5 +723,56 @@ img {
         width: 180px;
     }
 }
+/* ============================================
+   PREMIUM OVER-BLOK STYLING – ZEKEROPWEG
+   ============================================ */
+
+.about-premium {
+    position: relative;
+    background: rgba(255, 248, 238, 0.55); /* Warm premium crème */
+    padding: 50px;
+    border-radius: 22px;
+
+    /* Luxe ambient shadow */
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.04),
+        0 8px 20px rgba(0, 0, 0, 0.03);
+
+    /* Fade-in */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInPremium 0.7s ease forwards;
+}
+
+/* Gouden accentline (subtiel, premium) */
+.about-premium::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: 32px;
+    width: 60px;
+    height: 3px;
+    background: #d4a345; /* jouw warme goud */
+    border-radius: 3px;
+    opacity: 0.65;
+}
+
+/* Foto premium styling */
+.about-photo-small {
+    width: 230px; /* mooi formaat */
+    border-radius: 18px; /* Apple-style afronding */
+    border: 2px solid rgba(255, 255, 255, 0.7); /* subtiel wit kader */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    object-fit: cover;
+}
+
+/* Fade-in animatie */
+@keyframes fadeInPremium {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
