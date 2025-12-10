@@ -3,51 +3,100 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZekerOpWeg</title>
+    <title>ZekerOpWeg — Website in voorbereiding</title>
 
     <style>
-        html, body {
+        :root {
+            --gold: #d7b56d;
+            --navy: #060d17;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: #000;
+            overflow-x: hidden;
         }
 
-        .offline-image {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
+        /* HERO BLOK */
+        .hero-offline {
+            position: relative;
+            height: 100vh;
+            min-height: 620px;
+            background-image: url("assets/images/zekeropweg-offline-desktop.webp");
+            background-size: contain;          /* FOTO UITGEZOOMD */
             background-repeat: no-repeat;
-            opacity: 0;
-            animation: fadeIn 2.2s ease-out forwards;
+            background-position: center top;   /* PERFECT UITGELIJND */
+            background-color: #000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 70px;
+            text-align: center;
         }
 
-        /* Desktop versie */
-        @media (min-width: 769px) {
-            .offline-image {
-                background-image: url("assets/images/zekeropweg-offline-desktop.webp");
-            }
+        /* Donkere overlay boven de foto voor luxe premium look */
+        .hero-offline::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.25) 0%,
+                rgba(0,0,0,0.55) 40%,
+                rgba(0,0,0,0.85) 100%
+            );
         }
 
-        /* Mobiele versie */
-        @media (max-width: 768px) {
-            .offline-image {
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.7rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.92);
+            text-shadow: 0 4px 16px rgba(0,0,0,0.75);
+        }
+
+        @media (max-width: 780px) {
+            .hero-offline {
                 background-image: url("assets/images/zekeropweg-offline-mobile.webp");
+                background-size: cover;
+                background-position: center;
             }
-        }
 
-        /* Fade-in animatie */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.02); }
-            to { opacity: 1; transform: scale(1.0); }
+            .hero-content h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-content p {
+                font-size: 1.05rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="offline-image"></div>
+
+    <section class="hero-offline">
+        <div class="hero-content">
+            <h1>Onze nieuwe website wordt voorbereid</h1>
+            <p>Tot de officiële lancering in 2026 is deze pagina offline beschikbaar.</p>
+        </div>
+    </section>
+
 </body>
 </html>
 
