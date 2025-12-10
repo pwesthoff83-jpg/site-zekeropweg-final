@@ -1318,4 +1318,25 @@ img {
     color: var(--color-navy);
 }
 
+/* HERO OFFLINE FIX */
+.hero-offline {
+    height: 100vh;
+    min-height: 620px;
+    background-image: url("assets/images/zekeropweg-offline-desktop.webp");
+    background-size: contain;      /* Was: cover  → nu uitzoomen */
+    background-repeat: no-repeat;
+    background-position: center top;  /* Beter uitgelijnd zodat de grille zichtbaar is */
+    background-color: #000;        /* Mooie zwarte fallback */
+}
+
+.hero-offline .overlay {
+    background: rgba(0,0,0,0.55);  /* Warme donkere overlay zodat tekst altijd leesbaar is */
+}
+
+.hero-offline h1,
+.hero-offline p {
+    color: #d9b574; /* luxe goudkleur */
+    text-shadow: 0 4px 16px rgba(0,0,0,0.7);
+}
+
 
