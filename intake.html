@@ -27,13 +27,13 @@
                 <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="intake.html">Intake</a></li>
             </ul>
         </nav>
     </div>
 
     <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
-
 
 <!-- HERO -->
 <section class="hero hero-intake">
@@ -88,20 +88,15 @@
                 <textarea id="autoInfo" name="autoInfo" placeholder="Advertentie link of korte omschrijving"></textarea>
             </div>
 
-            <!-- COMBINATIEVOORDEEL EV ACCUCHECK (alleen bij premium en full) -->
-            <div class="form-row" id="comboVoordeelRow" style="display:none;">
-                <label for="comboVoordeel">Combinatievoordeel EV AccuCheck</label>
-                <select id="comboVoordeel" name="comboVoordeel">
-                    <option value="">Maak een keuze...</option>
-                    <option value="ja">Ja, combinatievoordeel €149 inclusief</option>
-                    <option value="nee">Nee, geen combinatievoordeel</option>
+            <p class="tarief-hint">Bij Premium en Full profiteert u van <strong>combinatievoordeel EV AccuCheck €149</strong>.</p>
+
+            <div id="comboOptie" class="form-row" style="display:none;">
+                <label>Combinatievoordeel toevoegen</label>
+                <select id="accuCombo" name="accuCombo">
+                    <option value="nee">Geen EV AccuCheck</option>
+                    <option value="ja">EV AccuCheck toevoegen voor €149</option>
                 </select>
             </div>
-
-            <p class="tarief-hint" id="comboHint" style="display:none;">
-                Bij Premium en Full kunt u gebruik maken van combinatievoordeel voor de EV AccuCheck. 
-                Het tarief bedraagt €149 inclusief wanneer u de AccuCheck combineert met het gekozen pakket.
-            </p>
         </div>
 
         <!-- EV ACCUCHECK PARTICULIER -->
@@ -125,23 +120,14 @@
                 <p id="zoneOutput" class="zone-output"></p>
             </div>
 
-            <p class="tarief-hint">
-                Actietarief in januari en februari €149 inclusief. Normaal €169 inclusief.
-            </p>
-            <p class="tarief-hint">
-                De EV AccuCheck is geschikt voor elektrische voertuigen, plug in hybrides en hybride modellen. 
-                De accudiagnose maakt gebruik van onafhankelijke flashtest techniek met TÜV gecertificeerde meetmethodiek en levert een digitaal certificaat. 
-                Vaak ingezet bij aankoop, verkoop of als einde garantie controle.
-            </p>
+            <p class="tarief-hint">Actietarief januari en februari €149 inclusief. Normaal €169 inclusief.</p>
         </div>
 
         <!-- ZAKELIJK EV ACCUCHECK -->
         <div id="blokAccuZakelijk" class="dienst-blok">
             <h3 class="form-subtitle">Zakelijke aanvraag EV AccuCheck</h3>
 
-            <p class="service-text">
-                Deze dienst is bedoeld voor bedrijven met KvK registratie, wagenpark, EV handel of import.
-            </p>
+            <p class="service-text">Voor bedrijven met KvK registratie, wagenpark, EV handel of import.</p>
 
             <div class="form-row-grid">
                 <div>
@@ -165,21 +151,15 @@
                     <label for="zakelijkPakket">Gewenst pakket</label>
                     <select id="zakelijkPakket" name="zakelijkPakket">
                         <option value="">Maak een keuze...</option>
-                        <option value="los">Een tot en met vier voertuigen €129 exclusief per test</option>
-                        <option value="pakket5">Vijf tot en met negen voertuigen €109 exclusief per test</option>
-                        <option value="pakket10">Tien of meer voertuigen €99 exclusief per test</option>
+                        <option value="los">Losse test (1–4) €129 excl</option>
+                        <option value="pakket5">Pakket 5–9 testen €109 excl</option>
+                        <option value="pakket10">Pakket 10+ testen €99 excl</option>
                     </select>
                 </div>
             </div>
 
             <p id="adviesPakket" class="tarief-hint"></p>
             <p id="prijsIndicatie" class="tarief-hint" style="font-weight:600;"></p>
-
-            <p class="tarief-hint">
-                De EV AccuCheck is geschikt voor elektrische voertuigen, plug in hybrides en hybride modellen. 
-                De accudiagnose maakt gebruik van onafhankelijke flashtest techniek met TÜV gecertificeerde meetmethodiek en levert per voertuig een digitaal certificaat. 
-                Geschikt voor gebruik in uw inkoop en verkoopproces en als einde garantie controle.
-            </p>
         </div>
 
         <!-- GRATISBEZWAAR -->
@@ -203,9 +183,7 @@
                 <textarea id="toelichting" name="toelichting"></textarea>
             </div>
 
-            <p class="tarief-hint">
-                Abonnement is aan het kenteken gekoppeld.
-            </p>
+            <p class="tarief-hint">Abonnement is aan het kenteken gekoppeld.</p>
         </div>
 
         <!-- GEGEVENS -->
@@ -248,4 +226,3 @@
 
 </body>
 </html>
-
