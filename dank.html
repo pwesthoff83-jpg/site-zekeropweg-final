@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bedankt voor uw aanvraag | ZekerOpWeg</title>
-    <meta name="description" content="Bedankt voor uw aanvraag bij ZekerOpWeg. Wij bekijken uw gegevens zorgvuldig en nemen rustig contact met u op.">
+    <title>Bedankt | ZekerOpWeg</title>
+    <meta name="description" content="Bedankt voor uw bericht. ZekerOpWeg neemt persoonlijk contact met u op. Rust, duidelijkheid en onafhankelijk autoadvies.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
 </head>
 
@@ -35,35 +35,42 @@
 </header>
 
 
-  
 <!-- HERO -->
 <section class="hero hero-dank">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1>Bedankt voor uw aanvraag</h1>
-        <p>Wij hebben uw gegevens ontvangen en gaan hiermee aan de slag.</p>
+        <h1>Dank u wel</h1>
+        <p>Uw bericht is goed ontvangen. U krijgt snel persoonlijk antwoord.</p>
     </div>
 </section>
 
-<!-- DANKTEKST -->
-<section class="services-section">
-    <div class="container dank-tekst">
-        <div class="dank-icoon">✔</div>
 
-        <h2 id="dankDienstTitel">Uw aanvraag is goed ontvangen</h2>
+<!-- PREMIUM DANK BLOK -->
+<section class="services-section container">
+    <div class="dank-premium">
+        
+        <div class="dank-icon-wrap">
+            <div class="dank-icon">✔</div>
+        </div>
 
-        <p id="dankDienstSub">
-            Wij bekijken uw aanvraag zorgvuldig en nemen rustig contact met u op om alles met u door te nemen.
-        </p>
+        <div class="dank-text">
+            <h2 class="section-title">We staan voor u klaar</h2>
+            <p>
+                Bedankt voor uw bericht. ZekerOpWeg neemt persoonlijk contact met u op — zonder wachttijden of keuzemenu’s.
+                Meestal krijgt u dezelfde dag nog een reactie.
+            </p>
 
-        <p class="service-text" style="margin-top:1rem;">
-            U ontvangt een bevestiging op het door u opgegeven emailadres. 
-            Bewaar deze gerust bij uw eigen administratie. Als er aanvullende vragen zijn, laten wij dat weten.
-        </p>
+            <p>
+                Wilt u alvast een intake starten of aanvullende informatie doorgeven?
+                Dat kan direct via de intakepagina.
+            </p>
 
-        <a href="index.html" class="btn-primary terug-btn">Terug naar de homepage</a>
+            <a href="intake.html" class="btn-primary">Start intake</a>
+        </div>
+
     </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -72,35 +79,7 @@
     </div>
 </footer>
 
-<!-- Bestaande scripts (menu enzovoort) -->
 <script src="scripts/scripts.js"></script>
-
-<!-- DANK SPECIFIEKE LOGICA -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    const dienst = params.get("dienst");
-
-    const titel = document.getElementById("dankDienstTitel");
-    const sub = document.getElementById("dankDienstSub");
-
-    if (!titel || !sub) return;
-
-    if (dienst === "aankoopadvies") {
-        titel.textContent = "Uw aanvraag voor aankoopadvies is ontvangen";
-        sub.textContent = "Wij bekijken uw wensen en de door u aangeleverde informatie en nemen rustig contact met u op om de mogelijkheden en vervolgstappen te bespreken.";
-    } else if (dienst === "evaccu") {
-        titel.textContent = "Uw aanvraag voor EV AccuCheck is ontvangen";
-        sub.textContent = "Wij bekijken uw aanvraag en locatie en nemen contact met u op om de planning en praktische details door te nemen.";
-    } else if (dienst === "evaccu-zakelijk") {
-        titel.textContent = "Uw zakelijke aanvraag voor EV AccuCheck is ontvangen";
-        sub.textContent = "Wij beoordelen uw aanvraag en nemen contact met u op om tarieven, planning en werkwijze rustig met u af te stemmen.";
-    } else if (dienst === "bezwaar") {
-        titel.textContent = "Uw aanvraag voor GratisBezwaar is ontvangen";
-        sub.textContent = "Wij bekijken uw situatie en de boetegegevens zorgvuldig en laten u weten welke vervolgstappen er mogelijk zijn.";
-    }
-});
-</script>
 
 </body>
 </html>
