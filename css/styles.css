@@ -618,4 +618,31 @@ img {
     justify-content: center;
 }
 
+.ev-subnav {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 1rem;
+}
+
+.ev-subnav-item {
+    font-weight: 600;
+    color: #d7b56d; /* jouw goudkleur */
+    text-decoration: none;
+    padding-bottom: .4rem;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s ease;
+}
+
+.ev-subnav-item:hover {
+    opacity: 0.8;
+}
+
+.ev-subnav-item.active,
+.ev-subnav-item[href$="ev-accucheck.html"].active,
+.ev-subnav-item[href$="ev-accucheck-zakelijk.html"].active {
+    border-bottom: 2px solid #d7b56d;
+}
+
 
