@@ -1,133 +1,43 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZekerOpWeg | Onafhankelijk aankoopadvies & EV AccuCheck</title>
-    <meta name="description" content="Premium onafhankelijk aankoopadvies, EV AccuCheck met certificaat en ondersteuning bij verkeers- en parkeerboetes. Zeker naar uw volgende auto, zorgeloos geregeld.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZekerOpWeg</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .offline-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Desktop afbeelding */
+        @media (min-width: 769px) {
+            .offline-image {
+                background-image: url("assets/images/zekeropweg-offline-desktop.webp");
+            }
+        }
+
+        /* Mobiel afbeelding */
+        @media (max-width: 768px) {
+            .offline-image {
+                background-image: url("assets/images/zekeropweg-offline-mobile.webp");
+            }
+        }
+    </style>
 </head>
 
-<body class="fade-in">
-
-<!-- HEADER -->
-<header class="header">
-    <div class="container header-container">
-        <a href="index.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
-        </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
-</header>
-
-<!-- HERO -->
-<section class="hero hero-home">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>Zeker naar uw volgende auto, zorgeloos geregeld</h1>
-        <p>Premium aankoopadvies, EV accudiagnose en juridische ondersteuning, onafhankelijk en volledig aan uw zijde.</p>
-        <a href="aankoopadvies.html" class="btn-primary" style="margin-top:1.4rem;">Start hier</a>
-    </div>
-</section>
-
-<!-- USP BLOCK -->
-<section class="usp-premium container">
-    <div class="usp-item">
-        <h3>✔ Onafhankelijk</h3>
-        <p>Geen verkoopbelang, geen provisies. Altijd eerlijk advies.</p>
-    </div>
-    <div class="usp-item">
-        <h3>✔ Premium EV AccuCheck</h3>
-        <p>Inclusief TÜV-gecertificeerd Aviloo certificaat.</p>
-    </div>
-    <div class="usp-item">
-        <h3>✔ Rust & Duidelijkheid</h3>
-        <p>Eén specialist die met u meedenkt — geen keuzestress.</p>
-    </div>
-</section>
-
-<!-- DRIE DIENSTEN -->
-<section class="services-section container">
-    <h2 class="section-title">Diensten</h2>
-
-    <div class="service-grid">
-        <div class="service-card premium-highlight">
-            <span class="badge-popular">Meest gekozen</span>
-            <h3 class="service-title">Aankoopadvies</h3>
-            <p class="service-text">Van een snelle remote check tot volledige begeleiding. U voorkomt verrassingen en koopt met zekerheid.</p>
-            <a href="aankoopadvies.html" class="text-link">Bekijk pakketten</a>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">EV AccuCheck</h3>
-            <p class="service-text">
-                Onafhankelijke accudiagnose voor EV en hybride voertuigen.
-                Inclusief TÜV-gecertificeerd Aviloo certificate. Perfect voor aankoop of verkoop.
-            </p>
-            <a href="ev-accucheck.html" class="text-link">Meer over AccuCheck</a>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">GratisBezwaar</h3>
-            <p class="service-text">Automatische analyse en professionele ondersteuning bij verkeers en parkeerboetes. Eerlijk, snel en zonder gedoe.</p>
-            <a href="gratisbezwaar.html" class="text-link">Hoe werkt het?</a>
-        </div>
-    </div>
-</section>
-
-<!-- OVER JOU -->
-<section class="services-section container">
-    <div class="about-premium">
-        <div class="about-text">
-            <h3 class="service-title">Waarom ZekerOpWeg?</h3>
-            <p class="service-text">
-                Met jaren ervaring in de autowereld, technische kennis en een scherp oog voor detail
-                helpt ZekerOpWeg klanten om weloverwogen keuzes te maken zonder verkoopdruk.
-            </p>
-            <p class="service-text">
-                Of het nu gaat om aankoopadvies, accugezondheid of juridische ondersteuning — u staat nooit alleen.
-            </p>
-            <a href="over.html" class="btn-primary" style="margin-top:1rem;">Lees meer</a>
-        </div>
-
-        <div class="about-photo-wrap-small">
-            <img src="assets/images/foto-pepijn.jpeg" class="about-photo-small" alt="Pepijn Westhoff - ZekerOpWeg">
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="services-section container">
-    <div class="service-card" style="text-align:center;">
-        <h3 class="service-title">Klaar voor de volgende stap?</h3>
-        <p class="service-text">Neem vrijblijvend contact op — u krijgt altijd persoonlijk antwoord.</p>
-        <a href="contact.html" class="btn-primary">Contact opnemen</a>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 ZekerOpWeg</p>
-    </div>
-</footer>
-
-<script src="scripts/scripts.js"></script>
-
+<body>
+    <div class="offline-image"></div>
 </body>
 </html>
-
 
