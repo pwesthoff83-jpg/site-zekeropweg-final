@@ -6,6 +6,41 @@
     <title>Over ZekerOpWeg | Onafhankelijk autoadvies</title>
     <meta name="description" content="Over ZekerOpWeg. Onafhankelijk autoadvies, EV accudiagnose en hulp bij verkeers en parkeerboetes. Rust, duidelijkheid en een specialist aan uw zijde.">
     <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
+
+    <style>
+        /* Premium foto styling */
+        .portrait-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .portrait {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            object-fit: cover;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .portrait {
+                max-width: 260px;
+                margin-top: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="fade-in">
@@ -25,7 +60,7 @@
                 <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
                 <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
+                <li><a class="active" href="over.html">Over</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -33,6 +68,7 @@
 
     <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
+
 
 
 <!-- HERO -->
@@ -43,6 +79,7 @@
         <p>Onafhankelijk advies, rust in uw keuze en iemand naast u die het spel van de auto wereld kent.</p>
     </div>
 </section>
+
 
 <!-- MISSIE -->
 <section class="services-section container">
@@ -70,6 +107,8 @@
     </div>
 </section>
 
+
+
 <!-- OVER DE OPRICHTER -->
 <section class="services-section container">
     <h2 class="section-title">Over de persoon achter ZekerOpWeg</h2>
@@ -89,21 +128,13 @@
             </p>
         </div>
 
-        <div class="service-card">
-            <h3 class="service-title">Werkwijze</h3>
-            <p class="service-text">
-                De werkwijze van ZekerOpWeg is rustig, gestructureerd en transparant. Eerst luisteren,
-                dan analyseren en pas daarna adviseren. U weet vooraf welke stappen er worden gezet en
-                welk tarief daarbij hoort.
-            </p>
-            <p class="service-text">
-                Geen druk, geen targets en geen verborgen belang bij een bepaalde uitkomst. Als een auto
-                of zaak niet goed voelt, wordt dat eerlijk benoemd, ook als dat betekent dat het verstandiger
-                is om nog even te wachten.
-            </p>
+        <div class="service-card portrait-wrapper">
+            <img src="assets/images/foto-pepijn.jpg" alt="Pepijn Westhoff – ZekerOpWeg" class="portrait" />
         </div>
     </div>
 </section>
+
+
 
 <!-- ONAFHANKELIJKHEID -->
 <section class="services-section container">
@@ -140,6 +171,8 @@
     </div>
 </section>
 
+
+
 <!-- DIENSTEN IN VOGELVLUCHT -->
 <section class="services-section container">
     <h2 class="section-title">Drie pijlers van ZekerOpWeg</h2>
@@ -174,6 +207,8 @@
     </div>
 </section>
 
+
+
 <!-- HOE IK MET KLANTEN WERK -->
 <section class="services-section container">
     <h2 class="section-title">Hoe een samenwerking meestal verloopt</h2>
@@ -205,6 +240,8 @@
     </div>
 </section>
 
+
+
 <!-- CTA -->
 <section class="services-section container">
     <div class="service-card" style="text-align:center;">
@@ -217,6 +254,7 @@
     </div>
 </section>
 
+
 <!-- FOOTER -->
 <footer class="footer">
     <div class="footer-inner">
@@ -228,5 +266,6 @@
 
 </body>
 </html>
+
 
 
