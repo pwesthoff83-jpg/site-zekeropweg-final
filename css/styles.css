@@ -974,4 +974,95 @@ img {
 }
 
 
+/* ==========================================
+   PREMIUM OVER-BLOK — GOLD MOTION (OPTIE C)
+========================================== */
+
+.about-premium-motion {
+    position: relative;
+    background: linear-gradient(145deg, #fffaf3 0%, #f5eee4 100%);
+    padding: 55px 60px;
+    border-radius: 24px;
+
+    /* zachte luxe schaduw */
+    box-shadow: 0 28px 65px rgba(0,0,0,0.06);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 55px;
+
+    overflow: hidden;
+}
+
+/* subtiele gouden edge die in fade */
+.about-premium-motion::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 6px;
+    background: linear-gradient(180deg, #d4af37 0%, #e3c87a 100%);
+    opacity: 0.85;
+
+    transform: translateX(12px);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* motion effect on hover (premium, niet te veel) */
+.about-premium-motion:hover::after {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* TEKST */
+.about-text-motion {
+    flex: 1.25;
+}
+
+/* FOTO BLOK */
+.about-photo-wrap-motion {
+    flex: 0 0 260px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Foto styling */
+.about-photo-motion {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 18px;
+    object-fit: cover;
+
+    /* lichte gold glow + depth */
+    border: 2px solid rgba(255,255,255,0.7);
+    box-shadow:
+        0 10px 24px rgba(0,0,0,0.12),
+        0 0 18px rgba(212,175,55,0.18);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Subtiele foto-hover lift */
+.about-photo-motion:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 16px 30px rgba(0,0,0,0.16),
+        0 0 22px rgba(212,175,55,0.22);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .about-premium-motion {
+        flex-direction: column;
+        padding: 40px 30px;
+        gap: 35px;
+    }
+
+    .about-photo-wrap-motion {
+        margin: 0 auto;
+    }
+}
+
 
