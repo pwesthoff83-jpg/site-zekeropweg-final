@@ -645,4 +645,34 @@ img {
     border-bottom: 2px solid #d7b56d;
 }
 
+.about-wrapper {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.about-photo-wrap {
+    flex: 0 0 320px;
+}
+
+.about-photo {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 260px;
+}
+
 
