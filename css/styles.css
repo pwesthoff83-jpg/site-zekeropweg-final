@@ -1065,4 +1065,82 @@ img {
     }
 }
 
+/* ===========================
+   CONTACTPAGINA – PREMIUM
+=========================== */
+
+.hero-contact {
+    height: 45vh;
+    min-height: 300px;
+    background-image: url("../assets/images/hero/contact-hero.webp");
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Premium contact section */
+
+.contact-premium-section {
+    padding: 3.8rem 0;
+}
+
+.contact-premium-box {
+    background: linear-gradient(145deg, #fffaf3 0%, #f3eee6 100%);
+    border-radius: 22px;
+    padding: 50px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    box-shadow: 0 28px 60px rgba(0,0,0,0.06);
+
+    border-left: 4px solid #d4af37;
+}
+
+.contact-info {
+    flex: 0.9;
+}
+
+.contact-form-wrapper {
+    flex: 1.1;
+}
+
+.contact-line {
+    font-size: 1rem;
+    margin: 0.4rem 0;
+}
+
+.contact-line a {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-line a:hover {
+    color: var(--color-gold);
+}
+
+.contact-form input,
+.contact-form textarea {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.contact-form textarea {
+    min-height: 120px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .contact-premium-box {
+        flex-direction: column;
+        padding: 35px 25px;
+        gap: 35px;
+    }
+}
+
 
