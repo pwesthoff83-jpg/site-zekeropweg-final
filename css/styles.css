@@ -526,4 +526,226 @@ img {
         font-size: 1.55rem;
     }
 }
+/* =========================================
+   AANKOOPADVIES – PAKKETTEN SECTIE
+========================================= */
+
+.packages-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Package Cards */
+.package-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #ececec;
+    transition: transform .22s ease, box-shadow .22s ease;
+    position: relative;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(200,165,101,0.65);
+}
+
+/* Titel & prijs */
+.package-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: .4rem;
+}
+
+.package-card .price {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+}
+
+/* Pakketomschrijving */
+.package-card .description {
+    margin-bottom: 1.2rem;
+    color: var(--color-text-main);
+    line-height: 1.55;
+}
+
+/* Bulletlist */
+.package-card ul {
+    margin-bottom: 1.4rem;
+    padding-left: 1.2rem;
+}
+
+.package-card ul li {
+    margin-bottom: .45rem;
+    color: var(--color-text-main);
+}
+
+/* Meest Gekozen badge */
+.featured {
+    border: 2px solid var(--color-gold);
+    box-shadow: var(--shadow-strong);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    right: 18px;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    padding: 5px 12px 6px;
+    font-size: .8rem;
+    font-weight: 600;
+    border-radius: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Premium travel note */
+.travel-note {
+    font-size: .87rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+    margin-top: 1.2rem;
+    opacity: .9;
+}
+
+/* =========================================
+   HOE WERKT HET – PREMIUM FLOW
+========================================= */
+
+.how-it-works {
+    margin-top: 4rem;
+}
+
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.how-step {
+    background: var(--color-bg-card);
+    padding: 2rem;
+    border-radius: var(--radius-card);
+    border: 1px solid #ececec;
+    box-shadow: var(--shadow-soft);
+    transition: .22s ease;
+}
+
+.how-step:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(200,165,101,0.6);
+}
+
+.how-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.how-step h3 {
+    font-size: 1.25rem;
+    margin-bottom: .6rem;
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.how-step p {
+    color: var(--color-text-main);
+    line-height: 1.55;
+}
+
+/* =========================================
+   CTA – INTAKE (PREMIUM, NIET PUSHERIG)
+========================================= */
+
+.cta-intake {
+    background: #fffaf3;
+    padding: 3.5rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.cta-inner {
+    text-align: center;
+    max-width: 760px;
+}
+
+.cta-intake h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+}
+
+.cta-intake p {
+    color: var(--color-text-main);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* CTA Button */
+.btn-intake {
+    display: inline-block;
+    padding: 0.9rem 2.1rem;
+    background: var(--color-navy);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: var(--radius-button);
+    letter-spacing: .01em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    transition: .25s ease;
+}
+
+.btn-intake:hover {
+    background: var(--color-gold);
+    color: var(--color-navy);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 780px) {
+    .package-card,
+    .how-step {
+        padding: 1.6rem;
+    }
+
+    .package-card h3,
+    .how-step h3 {
+        font-size: 1.3rem;
+    }
+
+    .package-card .price {
+        font-size: 1.55rem;
+    }
+
+    .cta-intake h2 {
+        font-size: 1.55rem;
+    }
+}
+
 
