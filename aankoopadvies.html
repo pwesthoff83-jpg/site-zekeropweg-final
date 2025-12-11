@@ -4,43 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aankoopadvies | ZekerOpWeg</title>
-
-    <meta name="description" content="Premium aankoopadvies voor consumenten en bedrijven. Onafhankelijke begeleiding, deskundige selectie en volledige zekerheid voor uw volgende auto.">
-
-    <link rel="stylesheet" href="css/styles.css?v=1.0.7">
+    <meta name="description" content="Onafhankelijk aankoopadvies met volledige zekerheid. Premium begeleiding bij het kiezen en controleren van uw volgende auto.">
+    <link rel="stylesheet" href="css/styles.css?v=1.0.8">
 </head>
 
 <body class="fade-in">
 
-<!-- =======================================================
-   HEADER – PREMIUM NAVIGATION
-======================================================= -->
+<!-- ======================================
+     HEADER
+======================================= -->
 <header class="header">
     <div class="container header-container">
-        <a href="index.html" class="logo-wrap">
-            <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
+
+        <a href="index.html">
+            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
-        <button class="menu-toggle" type="button" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="diensten.html">Diensten</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="aankoopadvies.html" class="active">Aankoopadvies</a>
+            <a href="ev-accucheck.html">EV AccuCheck</a>
+            <a href="diensten.html">Diensten</a>
+            <a href="over.html">Over</a>
+            <a href="contact.html">Contact</a>
         </nav>
+
     </div>
 </header>
 
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<!-- MOBIEL MENU -->
+<div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="closeMenu()">×</button>
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html" class="active">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="diensten.html">Diensten</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+</div>
 
-<!-- =======================================================
-   HERO – PREMIUM WARM BANNER
-======================================================= -->
+<!-- ======================================
+     HERO
+======================================= -->
 <section class="hero-advice">
     <div class="hero-advice-overlay"></div>
 
@@ -48,36 +55,35 @@
 
         <span class="hero-subtitle">Aankoopadvies</span>
 
-        <h1>Onafhankelijk aankoopadvies met volledige zekerheid</h1>
+        <h1>Onafhankelijk advies voor uw volgende auto</h1>
 
-        <p>
-            Met ruim zestien jaar ervaring in personenauto’s begeleid ik u bij elke stap.  
-            Onafhankelijk, deskundig en volledig gericht op uw belang.
-        </p>
+        <p>Transparant, deskundig en volledig gericht op uw belang.</p>
 
     </div>
 </section>
 
-<!-- =======================================================
-   PAKKETTEN – PREMIUM POLISHED
-======================================================= -->
-<section class="container" style="margin-top: 4rem;">
+
+<!-- ======================================
+     PAKKETTEN
+======================================= -->
+<section class="container" style="margin-top: 3rem;">
 
     <h2 class="section-title">Onze aankoopadvies pakketten</h2>
-    <p class="section-subtitle">
-        Kies het pakket dat past bij uw situatie. Van deskundig advies op afstand tot volledige aankoopbegeleiding.  
-        Elk pakket is onafhankelijk, eerlijk en volledig gericht op uw belang.
+    <p class="section-intro">
+        Kies het pakket dat past bij uw situatie. Elk pakket is onafhankelijk, eerlijk en volledig gericht op uw belang.
     </p>
 
     <div class="packages-section">
 
-        <!-- Essentieel -->
+        <!-- ESSENTIEEL -->
         <div class="package-card">
             <h3>Pakket Essentieel</h3>
             <p class="price">€149</p>
+
             <p class="description">
-                Voor wie zelf zoekt maar behoefte heeft aan een deskundige second opinion voordat er verdere stappen worden gezet.
+                Voor wie zelf zoekt maar behoefte heeft aan een deskundige second opinion.
             </p>
+
             <ul>
                 <li>Analyse van één concrete auto</li>
                 <li>Controle op prijs, uitvoering en historie</li>
@@ -85,147 +91,84 @@
             </ul>
         </div>
 
-        <!-- Premium -->
+        <!-- PREMIUM -->
         <div class="package-card featured">
             <span class="badge">Meest gekozen</span>
+
             <h3>Pakket Premium</h3>
             <p class="price">€299</p>
+
             <p class="description">
-                Voor wie begeleiding wil van eerste selectie tot en met de definitieve keuze. Ideaal wanneer u weinig tijd heeft of zekerheid wenst.
+                Begeleiding van eerste selectie tot definitieve keuze. Voor maximale zekerheid.
             </p>
+
             <ul>
-                <li>Selectie en vergelijking van meerdere auto’s</li>
-                <li>Optische en basiscontrole op locatie bij één auto</li>
-                <li>Advies over inruil, financiering en garantie</li>
-                <li>Vriendelijk combinatietarief met een EV AccuCheck</li>
+                <li>Selectie en vergelijking van meerdere auto's</li>
+                <li>Optische en technische controle op locatie bij één auto</li>
+                <li>Advies over inruil, garantie en financiële opties</li>
+                <li>Vriendelijk combinatietarief bij EV AccuCheck</li>
             </ul>
-            <p class="travel-note">
-                Eventuele reiskosten bij langere afstanden worden vooraf afgestemd.
-            </p>
         </div>
 
-        <!-- Full Service -->
+        <!-- FULL SERVICE -->
         <div class="package-card">
             <h3>Pakket Full service</h3>
             <p class="price">€449</p>
+
             <p class="description">
-                Voor wie de complete aankoop wil uitbesteden. U bepaalt de wensen en het budget, ZekerOpWeg regelt de rest.
+                Voor wie de volledige aankoop wil uitbesteden.
             </p>
+
             <ul>
-                <li>Zoekopdracht en selectie in binnen en buitenland</li>
+                <li>Zoekopdracht en selectie in binnen- en buitenland</li>
                 <li>Controle op locatie met proefrit</li>
-                <li>Onderhandeling en afstemming met verkoper</li>
+                <li>Onderhandeling en volledige afstemming met verkoper</li>
             </ul>
-            <p class="travel-note">
-                Eventuele reiskosten bij langere afstanden worden vooraf afgestemd.
-            </p>
         </div>
 
     </div>
 </section>
 
-<!-- =======================================================
-   HOE WERKT HET
-======================================================= -->
-<section class="how-it-works container">
-    <h2 class="section-title">Hoe werkt het</h2>
-    <p class="section-subtitle">
-        Een helder en zorgvuldig proces zodat u precies weet waar u aan toe bent.
-    </p>
 
-    <div class="how-grid">
+<!-- ======================================
+     HOE WERKT HET
+======================================= -->
+<section class="how-it-works section-bg-soft">
 
-        <div class="how-step">
-            <div class="how-number">1</div>
-            <h3>Intake en wensen</h3>
-            <p>
-                Tijdens een korte intake bespreken we uw wensen, uw rijprofiel en het beschikbare budget.
-            </p>
-        </div>
+    <div class="container">
 
-        <div class="how-step">
-            <div class="how-number">2</div>
-            <h3>Selectie en vergelijking</h3>
-            <p>
-                Op basis van uw wensen selecteer en vergelijk ik geschikte auto’s, inclusief alternatieven.
-            </p>
-        </div>
+        <h2 class="section-title">Hoe werkt het?</h2>
 
-        <div class="how-step">
-            <div class="how-number">3</div>
-            <h3>Beoordeling op locatie (Premium)</h3>
-            <p>
-                Bij het Premium pakket beoordeel ik op locatie één auto inclusief een proefritindruk wanneer mogelijk.
-            </p>
-        </div>
+        <div class="how-grid">
 
-        <div class="how-step">
-            <div class="how-number">4</div>
-            <h3>Advies en afronding</h3>
-            <p>
-                U ontvangt een helder advies. Bij Full Service verzorg ik ook de onderhandelingen en afstemming met verkoper.
-            </p>
+            <div class="how-step">
+                <span class="step-number">1</span>
+                <h3>Intake & wensen</h3>
+                <p>We bespreken uw situatie, wensen en budget. U krijgt direct advies over welk pakket het best past.</p>
+            </div>
+
+            <div class="how-step">
+                <span class="step-number">2</span>
+                <h3>Selectie & vergelijking</h3>
+                <p>Ik selecteer geschikte auto's, vergelijk alternatieven en zet duidelijk de risico’s en voordelen op een rij.</p>
+            </div>
+
+            <div class="how-step">
+                <span class="step-number">3</span>
+                <h3>Controle op locatie (Premium & Full service)</h3>
+                <p>We controleren de auto optisch en technisch op locatie om verrassingen te voorkomen.</p>
+            </div>
+
         </div>
 
     </div>
+
 </section>
 
-<!-- =======================================================
-   BONUS – WAAROM ZEKEROPWEG
-======================================================= -->
-<section class="bonus-block container">
-    <h2 class="section-title">Waarom kiezen voor ZekerOpWeg</h2>
 
-    <div class="bonus-grid">
-
-        <div class="bonus-item">
-            <h3>Onafhankelijk en eerlijk</h3>
-            <p>
-                Ik vertegenwoordig uitsluitend uw belang. Geen commerciële sturing — helder en transparant advies.
-            </p>
-        </div>
-
-        <div class="bonus-item">
-            <h3>16 jaar ervaring in personenauto’s</h3>
-            <p>
-                Ik weet welke uitvoeringen sterk zijn, waar de valkuilen zitten en hoe u met vertrouwen de juiste keuze maakt.
-            </p>
-        </div>
-
-        <div class="bonus-item">
-            <h3>Tijdwinst en inzicht</h3>
-            <p>
-                U krijgt directe marktkennis en inzicht in realistische prijzen, uitvoeringen en alternatieven.
-            </p>
-        </div>
-
-        <div class="bonus-item">
-            <h3>Transparant en duidelijk</h3>
-            <p>
-                Geen verrassingen — een helder proces en duidelijke communicatie in elke stap.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<!-- =======================================================
-   CTA – INTAKE
-======================================================= -->
-<section class="cta-intake">
-    <div class="container cta-inner">
-        <h2>Wilt u vrijblijvend kennismaken?</h2>
-        <p>
-            Ik help u graag verder met een intake gesprek waarin we rustig uw wensen en mogelijkheden doornemen.
-        </p>
-
-        <a href="contact.html" class="btn-intake">Plan intake gesprek</a>
-    </div>
-</section>
-
-<!-- =======================================================
-   FOOTER
-======================================================= -->
+<!-- ======================================
+     FOOTER
+======================================= -->
 <footer class="footer">
     <div class="container">
         <p>© 2025 ZekerOpWeg. Onafhankelijk aankoopadvies en EV accudiagnose.</p>
@@ -233,6 +176,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+
 </body>
 </html>
-
