@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | ZekerOpWeg</title>
-    <meta name="description" content="Neem contact op met ZekerOpWeg voor aankoopadvies, EV-accucheck of hulp bij verkeers en parkeerboetes.">
-    <link rel="stylesheet" href="css/styles.css?v=1.0.1" />
+    <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV accudiagnose of hulp bij verkeers en parkeerboetes.">
+    <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
 </head>
 
 <body class="fade-in">
 
-<!-- HEADER -->
 <header class="header">
     <div class="container header-container">
-
-        <a href="index.html" class="logo-wrap">
+        <a href="home.html" class="logo-wrap">
             <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
         </a>
 
@@ -22,90 +20,71 @@
 
         <nav class="main-nav" id="mainNav">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
                 <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
                 <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
                 <li><a href="over.html">Over</a></li>
-                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
-
     </div>
 
     <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
 
-<!-- HERO -->
 <section class="hero hero-contact">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1>Neem gerust contact op</h1>
-        <p>Een vraag, advies nodig of direct een intake inplannen? Ik help u graag verder.</p>
+        <h1>Contactgegevens</h1>
+        <p>U krijgt altijd persoonlijk antwoord, zonder wachttijden of keuzemenu’s.</p>
     </div>
 </section>
 
-<!-- CONTACT PREMIUM BLOK -->
-<section class="container contact-premium-section">
-
+<section class="services-section container contact-premium-section">
     <div class="contact-premium-box">
-        
         <div class="contact-info">
-            <h2 class="section-title">Contactgegevens</h2>
-            <p class="service-text">U krijgt altijd persoonlijk antwoord, zonder wachttijden of keuzemenu’s.</p>
+            <h2 class="service-title">Bereikbaarheid</h2>
+            <p class="contact-line"><strong>E mail:</strong> <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a></p>
+            <p class="contact-line"><strong>Telefoon:</strong> 06 – 23 45 23 49</p>
+            <p class="contact-line"><strong>Website:</strong> <a href="https://zekeropweg.nu" target="_blank" rel="noopener">www.zekeropweg.nu</a></p>
 
-            <div class="contact-line">
-                <strong>E-mail:</strong> <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>
-            </div>
-            <div class="contact-line">
-                <strong>Telefoon:</strong> 06 – 23 45 23 49
-            </div>
-            <div class="contact-line">
-                <strong>Website:</strong> www.zekeropweg.nu
-            </div>
-
-            <p class="service-text" style="margin-top:15px;">
-                Wilt u liever direct een intake starten? Dat kan via de intakepagina.  
+            <p class="service-text" style="margin-top:1.2rem;">
+                Wilt u liever direct een intake starten voor aankoopadvies of een EV AccuCheck, dan kan dat via de intakepagina.
             </p>
-
+            <a href="intake.html" class="text-link">Ga naar het intakeformulier</a>
         </div>
 
         <div class="contact-form-wrapper">
-            <h3 class="service-title">Stuur een bericht</h3>
-
-            <form class="contact-form" action="dank.html" method="GET">
-
+            <h2 class="service-title">Stuur een bericht</h2>
+            <form class="contact-form" action="dank.html" method="get">
                 <div class="form-row-grid">
                     <div>
-                        <label>Voornaam</label>
-                        <input type="text" name="voornaam" required>
+                        <label for="voornaam">Voornaam</label>
+                        <input type="text" id="voornaam" name="voornaam" required />
                     </div>
                     <div>
-                        <label>Achternaam</label>
-                        <input type="text" name="achternaam" required>
+                        <label for="achternaam">Achternaam</label>
+                        <input type="text" id="achternaam" name="achternaam" />
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <label>E-mail</label>
-                    <input type="email" name="email" required>
+                    <label for="email">E mail</label>
+                    <input type="email" id="email" name="email" required />
                 </div>
 
                 <div class="form-row">
-                    <label>Bericht</label>
-                    <textarea name="bericht" required></textarea>
+                    <label for="bericht">Bericht</label>
+                    <textarea id="bericht" name="bericht" required></textarea>
                 </div>
 
-                <button class="btn-primary" type="submit">Verstuur bericht</button>
+                <button type="submit" class="btn-primary">Verstuur bericht</button>
             </form>
-
         </div>
-
     </div>
-
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-inner">
         <p>© 2026 ZekerOpWeg</p>
