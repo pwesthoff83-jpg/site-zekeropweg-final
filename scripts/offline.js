@@ -1,48 +1,59 @@
-/* ===============================
-   COUNTDOWN SCRIPT
-=============================== */
-function updateCountdown() {
-    const target = new Date("January 1, 2026 00:00:00").getTime();
-    const now = Date.now();
-    const diff = target - now;
+// COUNTDOWN TOT 1 JANUARI 2026
+(function initCountdown() {
+    const target = new Date("2026-01-01T00:00:00");
 
-    const countdown = document.getElementById("countdown");
-    if (!countdown) return;
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
 
-    if (diff <= 0) {
-        countdown.innerText = "Welkom in 2026 🎉";
-        return;
+    function update() {
+        const now = new Date();
+        let diff = target - now;
+
+        if (diff <= 0) return;
+
+        const sec = Math.floor(diff / 1000);
+        const days = Math.floor(sec / 86400);
+        const hours = Math.floor((sec % 86400) / 3600);
+        const minutes = Math.floor((sec % 3600) / 60);
+        const seconds = sec % 60;
+
+        elDays.textContent = String(days).padStart(2, "0");
+        elHours.textContent = String(hours).padStart(2, "0");
+        elMinutes.textContent = String(minutes).padStart(2, "0");
+        elSeconds.textContent = String(seconds).padStart(2, "0");
     }
 
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    update();
+    setInterval(update, 1000);
+})();
 
-    countdown.innerText = `${d} dagen • ${h} uur • ${m} min`;
-}
+// GOUDEN PARTICLE SNOW
+(function initParticles() {
+    const hero = document.querySelector(".hero-offline");
+    if (!hero) return;
 
-updateCountdown();
-setInterval(updateCountdown, 60000);
+    const particleCount = 42;
 
-
-/* ===============================
-   GOLD PARTICLE SNOW
-=============================== */
-const particleContainer = document.getElementById("particles");
-if (particleContainer) {
-    const total = 55;
-
-    for (let i = 0; i < total; i++) {
+    for (let i = 0; i < particleCount; i++) {
         const p = document.createElement("div");
-        p.classList.add("particle");
+        p.className = "particle";
 
-        p.style.left = Math.random() * 100 + "vw";
-        p.style.animationDuration = 4 + Math.random() * 5 + "s";
-        p.style.animationDelay = Math.random() * 4 + "s";
-        p.style.opacity = 0.5 + Math.random() * 0.5;
-        p.style.transform = `scale(${0.4 + Math.random() * 1.3})`;
+        const left = Math.random() * 100;
+        const size = 4 + Math.random() * 5;
+        const duration = 10 + Math.random() * 12;
+        const delay = Math.random() * 8;
+        const drift = (Math.random() - 0.5) * 80;
 
-        particleContainer.appendChild(p);
+        p.style.left = left + "vw";
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.animationDuration = duration + "s";
+        p.style.animationDelay = delay + "s";
+        p.style.setProperty("--driftX", drift + "px");
+
+        hero.appendChild(p);
     }
-}
+})();
 
