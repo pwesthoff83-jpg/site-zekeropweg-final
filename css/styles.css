@@ -366,3 +366,105 @@ img {
     font-size: .95rem;
 }
 
+/* =========================================
+   AANKOOPADVIES – PAKKETTEN SECTIE
+========================================= */
+
+.packages-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Package Cards */
+.package-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #ececec;
+    transition: transform .22s ease, box-shadow .22s ease;
+    position: relative;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(200,165,101,0.65);
+}
+
+/* Titel & prijs */
+.package-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: .4rem;
+}
+
+.package-card .price {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+}
+
+/* Pakketomschrijving */
+.package-card .description {
+    margin-bottom: 1.2rem;
+    color: var(--color-text-main);
+    line-height: 1.55;
+}
+
+/* Bulletlist */
+.package-card ul {
+    margin-bottom: 1.4rem;
+    padding-left: 1.2rem;
+}
+
+.package-card ul li {
+    margin-bottom: .45rem;
+    color: var(--color-text-main);
+}
+
+/* Meest Gekozen badge */
+.featured {
+    border: 2px solid var(--color-gold);
+    box-shadow: var(--shadow-strong);
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    right: 18px;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    padding: 5px 12px 6px;
+    font-size: .8rem;
+    font-weight: 600;
+    border-radius: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Premium reiskostenregel */
+.travel-note {
+    font-size: .87rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+    margin-top: 1.2rem;
+    opacity: .9;
+}
+
+/* Responsiviteit */
+@media (max-width: 780px) {
+    .package-card {
+        padding: 1.7rem;
+    }
+    .package-card h3 {
+        font-size: 1.3rem;
+    }
+    .package-card .price {
+        font-size: 1.55rem;
+    }
+}
+
