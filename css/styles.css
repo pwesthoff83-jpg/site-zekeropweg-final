@@ -1028,5 +1028,95 @@ img {
     }
 }
 
+/* =========================================
+   HERO – AANKOOPADVIES PREMIUM + MOBILE FIX
+========================================= */
+
+.hero-advice {
+    position: relative;
+    height: 58vh;
+    min-height: 460px;
+    background-image: url("../assets/images/hero/hero-advice.webp");
+    background-size: cover;
+    background-position: center 55%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-hero);
+}
+
+.hero-advice-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        150deg,
+        rgba(7, 19, 34, 0.28),
+        rgba(7, 19, 34, 0.55)
+    );
+    backdrop-filter: blur(1.5px);
+}
+
+.hero-advice-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    max-width: 880px;
+    padding: 0 1.5rem;
+    animation: fadeIn .7s ease-out;
+}
+
+.hero-subtitle {
+    display: block;
+    font-size: .82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    opacity: .95;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.hero-advice-content h1 {
+    font-size: 2.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
+}
+
+.hero-advice-content p {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    opacity: .95;
+}
+
+/* MOBILE CROPPING FIX */
+@media (max-width: 900px) {
+    .hero-advice {
+        height: 52vh;
+        background-position: center 45%;
+    }
+    .hero-advice-content h1 {
+        font-size: 2.1rem;
+    }
+    .hero-advice-content p {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-advice {
+        height: 48vh;
+        background-position: center 38%;
+    }
+    .hero-advice-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-advice-content p {
+        font-size: .95rem;
+    }
+}
+
 
 
