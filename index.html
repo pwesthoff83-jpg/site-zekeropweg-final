@@ -5,260 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZekerOpWeg — Website in voorbereiding</title>
 
-    <style>
-        :root {
-            --gold: #d7b56d;
-            --navy: #060d17;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #000;
-            overflow-x: hidden;
-        }
-
-        /* HERO BLOK */
-        .hero-offline {
-            position: relative;
-            height: 100vh;
-            min-height: 620px;
-            background-image: url("assets/images/zekeropweg-offline-desktop.webp");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-color: #000;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 90px;
-            text-align: center;
-        }
-
-        /* Luxe donkere overlay */
-        .hero-offline::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.25) 0%,
-                rgba(0,0,0,0.55) 40%,
-                rgba(0,0,0,0.92) 100%
-            );
-        }
-
-        /* GOLDEN CINEMATIC RAYS */
-        .hero-offline::after {
-            content: "";
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(
-                circle,
-                rgba(215,181,109,0.22) 0%,
-                rgba(215,181,109,0.09) 30%,
-                rgba(0,0,0,0) 70%
-            );
-            transform: translate(-50%, -50%);
-            filter: blur(55px);
-            opacity: 0.55;
-            pointer-events: none;
-        }
-
-        /* CONTENT */
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 2.7rem;
-            color: var(--gold);
-            margin-bottom: 1.2rem;
-            letter-spacing: 1px;
-            text-shadow: 0 4px 18px rgba(0,0,0,0.9);
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.9);
-            text-shadow: 0 4px 16px rgba(0,0,0,0.75);
-        }
-
-        /* -----------------------------------------------------
-           PREMIUM FEESTDAGEN + COUNTDOWN BLOK
-        ------------------------------------------------------ */
-
-        .feestdagen-block {
-            margin-top: 40px;
-            animation: fadeIn 1.1s ease-out forwards;
-        }
-
-        .feestdagen-title {
-            position: relative;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 18px;
-            text-shadow:
-                0 4px 18px rgba(0,0,0,0.85),
-                0 0 14px rgba(215,181,109,0.40);
-            line-height: 1.35;
-        }
-
-        /* GOUDEN LIJNEN LINKS/RECHTS */
-        .feestdagen-title::before,
-        .feestdagen-title::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 85px;
-            height: 3px;
-            background: linear-gradient(to right, rgba(215,181,109,0), rgba(215,181,109,0.8));
-        }
-        .feestdagen-title::before {
-            left: calc(50% - 270px);
-        }
-        .feestdagen-title::after {
-            right: calc(50% - 270px);
-            transform: scaleX(-1);
-        }
-
-        .countdown-card {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 14px 28px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            border: 1px solid rgba(215,181,109,0.5);
-            border-radius: 16px;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(5px);
-            text-shadow: 0 4px 14px rgba(0,0,0,0.7);
-            animation: pulse 2.6s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.85; transform: scale(1.05); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* -----------------------------------------------------
-           GOLD PARTICLE SNOWFALL
-        ------------------------------------------------------ */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, var(--gold) 0%, rgba(215,181,109,0.05) 70%);
-            border-radius: 50%;
-            opacity: 0.9;
-            animation: fall linear infinite;
-            filter: blur(0.4px);
-        }
-
-        @keyframes fall {
-            from { transform: translateY(-10vh) scale(0.5); }
-            to { transform: translateY(110vh) scale(1); }
-        }
-
-        /* MOBILE */
-        @media (max-width: 780px) {
-            .feestdagen-title::before,
-            .feestdagen-title::after {
-                display: none;
-            }
-
-            .hero-offline {
-                background-image: url("assets/images/zekeropweg-offline-mobile.webp");
-                background-size: cover;
-                background-position: center;
-            }
-
-            .hero-content h1 { font-size: 2rem; }
-            .hero-content p { font-size: 1.05rem; }
-        }
-    </style>
+    <!-- Koppeling naar CSS -->
+    <link rel="stylesheet" href="css/offline-style.css" />
 </head>
 
 <body>
 
-    <!-- GOLDEN SNOW PARTICLES -->
-    <div class="particles" id="particles"></div>
+    <section class="hero-offline" aria-label="ZekerOpWeg website in voorbereiding">
+        <div class="hero-rays"></div>
 
-    <section class="hero-offline">
         <div class="hero-content">
-            <h1>Onze nieuwe website wordt voorbereid</h1>
-            <p>Tot de officiële lancering in 2026 is deze pagina offline beschikbaar.</p>
+            <h1 class="hero-title">ZekerOpWeg wenst u warme feestdagen</h1>
+            <p class="hero-subtitle">en een voorspoedig ZekerOpWeg 2026</p>
 
-            <!-- PREMIUM FEESTDAGEN BLOK -->
-            <div class="feestdagen-block">
-                <div class="feestdagen-title">
-                    ZekerOpWeg wenst u warme feestdagen<br>en een voorspoedig ZekerOpWeg 2026
+            <p class="hero-text">
+                De nieuwe website wordt zorgvuldig voorbereid en gaat in 2026 volledig open. 
+                Tot die tijd blijft deze pagina rustig offline beschikbaar.
+            </p>
+
+            <div class="countdown-wrap">
+                <div class="countdown-label">Aftel tot 2026</div>
+
+                <div class="countdown-row">
+                    <div class="count-unit">
+                        <span class="count-value" id="days">00</span>
+                        <span class="count-label">Dagen</span>
+                    </div>
+
+                    <div class="count-unit">
+                        <span class="count-value" id="hours">00</span>
+                        <span class="count-label">Uren</span>
+                    </div>
+
+                    <div class="count-unit">
+                        <span class="count-value" id="minutes">00</span>
+                        <span class="count-label">Minuten</span>
+                    </div>
+
+                    <div class="count-unit">
+                        <span class="count-value" id="seconds">00</span>
+                        <span class="count-label">Seconden</span>
+                    </div>
                 </div>
-
-                <div class="countdown-card" id="countdown"></div>
             </div>
         </div>
     </section>
 
-<script>
-    /* COUNTDOWN */
-    function updateCountdown() {
-        const target = new Date("January 1, 2026 00:00:00").getTime();
-        const now = Date.now();
-        const diff = target - now;
-
-        if (diff <= 0) {
-            document.getElementById("countdown").innerText = "Welkom in 2026 🎉";
-            return;
-        }
-
-        const d = Math.floor(diff / (1000*60*60*24));
-        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-
-        document.getElementById("countdown").innerText =
-            `${d} dagen • ${h} uur • ${m} min`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
-
-    /* GOLD PARTICLE SNOW */
-    const particleContainer = document.getElementById("particles");
-    const total = 55;
-
-    for (let i = 0; i < total; i++) {
-        const p = document.createElement("div");
-        p.classList.add("particle");
-        p.style.left = Math.random() * 100 + "vw";
-        p.style.animationDuration = 4 + Math.random()*5 + "s";
-        p.style.animationDelay = Math.random()*4 + "s";
-        p.style.opacity = 0.5 + Math.random()*0.5;
-        p.style.transform = `scale(${0.4 + Math.random()*1.3})`;
-        particleContainer.appendChild(p);
-    }
-</script>
+    <!-- JS -->
+    <script src="js/offline-script.js"></script>
 
 </body>
 </html>
