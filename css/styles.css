@@ -915,4 +915,86 @@ img {
     }
 }
 
+/* ============================
+   PREMIUM HERO — CLEAN VARIANT 5
+============================ */
+
+.hero-home {
+    position: relative;
+    height: 65vh;
+    min-height: 420px;
+    background-image: url("assets/images/hero/home-hero.webp");
+    background-size: cover;
+    background-position: center 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-home .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        140deg,
+        rgba(6, 13, 23, 0.45),
+        rgba(6, 13, 23, 0.82)
+    );
+    backdrop-filter: blur(3px);
+}
+
+.hero-home .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 0 1.5rem;
+    animation: heroFade 0.7s ease-out forwards;
+}
+
+.hero-home h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+    margin-bottom: 1rem;
+    text-shadow: 0 3px 14px rgba(0,0,0,0.6);
+}
+
+.hero-home .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 2rem;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CTA buttons */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Button hover fix for dark hero */
+.btn-secondary {
+    border-color: rgba(255,255,255,0.85);
+}
+
+.btn-secondary:hover {
+    color: #0a1525;
+}
+
+/* Mobile */
+@media (max-width: 780px) {
+    .hero-home h1 {
+        font-size: 2.3rem;
+    }
+    .hero-home .hero-subtitle {
+        font-size: 1.05rem;
+    }
+}
+
 
