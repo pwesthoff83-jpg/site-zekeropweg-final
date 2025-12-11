@@ -944,4 +944,88 @@ img {
 .package-card ul {
     margin-top: .6rem;
 }
+/* =========================================
+   HERO – AANKOOPADVIES PREMIUM + MOBILE FIX
+========================================= */
+
+.hero-advice {
+    position: relative;
+    height: 58vh;
+    min-height: 460px;
+    background-image: url("../assets/images/hero/advice-hero.webp");
+    background-size: cover;
+    background-position: center 55%; /* focus iets hoger */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-hero);
+}
+
+.hero-advice-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        140deg,
+        rgba(7, 19, 34, 0.35),
+        rgba(7, 19, 34, 0.80)
+    );
+    backdrop-filter: blur(2px);
+}
+
+.hero-advice-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    max-width: 880px;
+    padding: 0 1.5rem;
+    animation: fadeIn .7s ease-out;
+}
+
+.hero-advice-content h1 {
+    font-size: 2.85rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
+}
+
+.hero-advice-content p {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    opacity: .95;
+}
+
+/* ===== MOBILE OPTIMALISATIE ===== */
+@media (max-width: 900px) {
+    .hero-advice {
+        height: 52vh;
+        background-position: center 45%; /* iets meer focus bovenin */
+    }
+
+    .hero-advice-content h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero-advice-content p {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-advice {
+        height: 48vh;
+        background-position: center 38%; /* perfect voor phones */
+    }
+
+    .hero-advice-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-advice-content p {
+        font-size: .95rem;
+    }
+}
+
 
