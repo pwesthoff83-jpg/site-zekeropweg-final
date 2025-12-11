@@ -13,7 +13,7 @@
 <body class="fade-in">
 
 <!-- =======================================================
-   HEADER
+   HEADER (premium, zelfde structuur als homepage)
 ======================================================= -->
 <header class="header">
     <div class="container header-container">
@@ -21,29 +21,23 @@
             <img src="assets/images/logo.png" class="site-logo" alt="ZekerOpWeg logo">
         </a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">☰</button>
 
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="aankoopadvies.html" class="active">Aankoopadvies</a>
-            <a href="ev-accucheck.html">EV AccuCheck</a>
-            <a href="diensten.html">Diensten</a>
-            <a href="over.html">Over</a>
-            <a href="contact.html">Contact</a>
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
+                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+                <li><a href="diensten.html">Diensten</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </nav>
     </div>
 </header>
 
-<!-- MOBILE MENU OVERLAY -->
-<div id="mobileMenu" class="mobile-menu">
-    <button class="close-menu" onclick="closeMenu()">×</button>
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html" class="active">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="diensten.html">Diensten</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-</div>
+<!-- Overlay voor mobiel menu -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <!-- =======================================================
    HERO
@@ -172,7 +166,7 @@
 
         <div class="how-step">
             <div class="how-number">4</div>
-            <h3>Advies en afronding (Full service) </h3>
+            <h3>Advies en afronding</h3>
             <p>
                 U ontvangt een helder advies. Bij Full Service regel ik tevens het contact, onderhandelingen,
                 afspraken en afstemming met de verkoper.
@@ -201,7 +195,7 @@
         <div class="bonus-item">
             <h3>16 jaar ervaring in personenauto’s</h3>
             <p>
-                Met ruim zestien jaar ervaring als verkoopadviseur personenauto’s weet ik precies wat een goede keuze maakt,
+                Met ruim zestien jaar ervaring als verkoopadviseur personenauto’s weet ik wat een goede keuze maakt,
                 welke uitvoeringen interessant zijn en waar u beter van kunt weglopen.
             </p>
         </div>
@@ -251,3 +245,4 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
