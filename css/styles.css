@@ -76,10 +76,18 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.2rem;
+}
+
+.logo-wrap {
+    display: inline-flex;
+    align-items: center;
 }
 
 .site-logo {
-    height: 46px;
+    height: 48px;
+    width: auto;
+    object-fit: contain;
 }
 
 .main-nav ul {
@@ -137,6 +145,7 @@ img {
         padding: 80px 24px;
         box-shadow: -12px 0 30px rgba(0,0,0,0.45);
         transition: right .3s ease;
+        z-index: 950;
     }
 
     .main-nav.open {
@@ -150,7 +159,7 @@ img {
 }
 
 /* =========================================
-   HERO — GLOBAL
+   HERO – GLOBAL
 ========================================= */
 
 .hero {
@@ -176,8 +185,16 @@ img {
     to { opacity: 1; transform: translateY(0); }
 }
 
+.hero-subtitle {
+    font-size: .8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
 /* =========================================
-   HERO HOME — FINAL CLEAN VERSION
+   HERO HOME (basis voor alle hero's)
 ========================================= */
 
 .hero-home {
@@ -194,8 +211,7 @@ img {
     text-align: center;
 }
 
-
-.hero-home .hero-overlay {
+.hero-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -206,7 +222,7 @@ img {
     backdrop-filter: blur(3px);
 }
 
-.hero-home h1 {
+.hero-home .hero-content h1 {
     font-size: 3rem;
     font-weight: 700;
     color: #ffffff;
@@ -215,32 +231,44 @@ img {
     text-shadow: 0 3px 14px rgba(0,0,0,0.6);
 }
 
-.hero-home p {
+.hero-home .hero-content p {
     font-size: 1.25rem;
     line-height: 1.55;
     color: rgba(255,255,255,0.92);
     margin-bottom: 2rem;
 }
 
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 @media (max-width: 780px) {
-    .hero-home h1 { font-size: 2.3rem; }
-    .hero-home p  { font-size: 1.1rem; }
+    .hero-home .hero-content h1 { font-size: 2.3rem; }
+    .hero-home .hero-content p  { font-size: 1.1rem; }
 }
 
 /* =========================================
    BUTTONS
 ========================================= */
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
     display: inline-block;
     padding: 0.8rem 1.7rem;
     border-radius: var(--radius-button);
-    background: var(--color-navy);
-    color: #fff;
     text-decoration: none;
     font-weight: 600;
     letter-spacing: .02em;
     border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--color-navy);
+    color: #fff;
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
@@ -250,11 +278,8 @@ img {
 }
 
 .btn-secondary {
-    display: inline-block;
-    padding: 0.8rem 1.7rem;
-    border-radius: var(--radius-button);
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.85);
     color: #ffffff;
 }
 
@@ -264,7 +289,7 @@ img {
 }
 
 /* =========================================
-   SECTIONS, CARDS, USP, TESTIMONIALS
+   SECTIONS & TITLES
 ========================================= */
 
 .services-section {
@@ -300,13 +325,20 @@ img {
     margin-bottom: 2rem;
 }
 
-.service-grid {
+/* =========================================
+   GENERIC CARDS / GRIDS
+========================================= */
+
+.service-grid,
+.packages-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     gap: 2rem;
 }
 
-.service-card {
+.service-card,
+.package-card {
+    position: relative;
     background: var(--color-bg-card);
     padding: 1.9rem;
     border-radius: var(--radius-card);
@@ -315,11 +347,23 @@ img {
     transition: .22s ease;
 }
 
-.service-card:hover {
-    transform: translateY(-6px);
+.service-card:hover,
+.package-card:hover {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-strong);
     border-color: rgba(200,165,101,0.7);
 }
+
+/* subtiel dominante premium kaart (optie A) */
+.package-card.featured {
+    border-color: rgba(215,181,109,0.9);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    transform: translateY(-6px);
+}
+
+/* =========================================
+   USP + TESTIMONIALS
+========================================= */
 
 .usp-premium {
     display: grid;
@@ -351,6 +395,116 @@ img {
 }
 
 /* =========================================
+   PAKKETTEN – SPECIFIEKE STYLING
+========================================= */
+
+.packages-section {
+    margin-top: 2rem;
+}
+
+.package-card h3,
+.service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+}
+
+.price-tag {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: 0.3rem 0 1.0rem;
+    letter-spacing: -0.3px;
+}
+
+.package-card p.description {
+    margin-bottom: 1.2rem;
+    line-height: 1.55;
+}
+
+.service-list,
+.package-card ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.service-list li,
+.package-card ul li {
+    margin-bottom: 0.75rem;
+    line-height: 1.55;
+}
+
+/* kleine reiskosten-notitie */
+.note-small {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.8rem;
+    line-height: 1.45;
+}
+
+/* Meest gekozen badge */
+.badge {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    background: var(--color-gold);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 30px;
+    color: var(--color-navy);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    opacity: 1;
+}
+
+/* =========================================
+   HOE WERKT HET – STAPPEN
+========================================= */
+
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 2rem;
+}
+
+.how-step {
+    background: #ffffff;
+    padding: 1.8rem;
+    border-radius: 16px;
+    border: 1px solid #ececec;
+    box-shadow: var(--shadow-soft);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+/* =========================================
+   CTA
+========================================= */
+
+.text-link {
+    color: var(--color-navy);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.text-link:hover {
+    color: var(--color-gold);
+}
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -360,6 +514,12 @@ img {
     margin-top: 3rem;
 }
 
+.footer-inner {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .footer-inner p {
     color: #f2f2f2;
     opacity: .9;
@@ -367,976 +527,42 @@ img {
 }
 
 /* =========================================
-   AANKOOPADVIES – PAKKETTEN SECTIE
+   RESPONSIVE – CARDS / PAKKETTEN
 ========================================= */
 
-.packages-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-/* Package Cards */
-.package-card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-card);
-    padding: 2rem;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid #ececec;
-    transition: transform .22s ease, box-shadow .22s ease;
-    position: relative;
-}
-
-.package-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-strong);
-    border-color: rgba(200,165,101,0.65);
-}
-
-/* Titel & prijs */
-.package-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: .4rem;
-}
-
-.package-card .price {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: 1rem;
-}
-
-/* Pakketomschrijving */
-.package-card .description {
-    margin-bottom: 1.2rem;
-    color: var(--color-text-main);
-    line-height: 1.55;
-}
-
-/* Bulletlist */
-.package-card ul {
-    margin-bottom: 1.4rem;
-    padding-left: 1.2rem;
-}
-
-.package-card ul li {
-    margin-bottom: .45rem;
-    color: var(--color-text-main);
-}
-
-/* Meest Gekozen badge */
-.featured {
-    border: 2px solid var(--color-gold);
-    box-shadow: var(--shadow-strong);
-}
-
-.badge {
-    position: absolute;
-    top: -12px;
-    right: 18px;
-    background: var(--color-gold);
-    color: var(--color-navy);
-    padding: 5px 12px 6px;
-    font-size: .8rem;
-    font-weight: 600;
-    border-radius: 14px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-/* Premium reiskostenregel */
-.travel-note {
-    font-size: .87rem;
-    color: var(--color-text-muted);
-    line-height: 1.45;
-    margin-top: 1.2rem;
-    opacity: .9;
-}
-
-/* Responsiviteit */
 @media (max-width: 780px) {
+
+    .services-section {
+        padding: 3rem 0;
+    }
+
+    .service-grid,
+    .packages-section,
+    .usp-premium,
+    .testimonial-grid,
+    .how-grid {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+    }
+
+    .service-card,
     .package-card {
-        padding: 1.7rem;
-    }
-    .package-card h3 {
-        font-size: 1.3rem;
-    }
-    .package-card .price {
-        font-size: 1.55rem;
-    }
-}
-
-/* =========================================
-   CTA – INTAKE (RUSTIG EN PREMIUM)
-========================================= */
-
-.cta-intake {
-    background: #fffaf3;
-    padding: 3.5rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.cta-inner {
-    text-align: center;
-    max-width: 760px;
-}
-
-.cta-intake h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: 1rem;
-}
-
-.cta-intake p {
-    color: var(--color-text-main);
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-/* CTA Button */
-.btn-intake {
-    display: inline-block;
-    padding: 0.9rem 2.1rem;
-    background: var(--color-navy);
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: var(--radius-button);
-    letter-spacing: .01em;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-    transition: .25s ease;
-}
-
-.btn-intake:hover {
-    background: var(--color-gold);
-    color: var(--color-navy);
-    box-shadow: 0 12px 26px rgba(0,0,0,0.22);
-}
-
-/* Responsief */
-@media (max-width: 760px) {
-    .cta-intake h2 {
-        font-size: 1.55rem;
-    }
-}
-/* =========================================
-   AANKOOPADVIES – PAKKETTEN SECTIE
-========================================= */
-
-.packages-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-/* Package Cards */
-.package-card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-card);
-    padding: 2rem;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid #ececec;
-    transition: transform .22s ease, box-shadow .22s ease;
-    position: relative;
-}
-
-.package-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-strong);
-    border-color: rgba(200,165,101,0.65);
-}
-
-/* Titel & prijs */
-.package-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: .4rem;
-}
-
-.package-card .price {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: 1rem;
-}
-
-/* Pakketomschrijving */
-.package-card .description {
-    margin-bottom: 1.2rem;
-    color: var(--color-text-main);
-    line-height: 1.55;
-}
-
-/* Bulletlist */
-.package-card ul {
-    margin-bottom: 1.4rem;
-    padding-left: 1.2rem;
-}
-
-.package-card ul li {
-    margin-bottom: .45rem;
-    color: var(--color-text-main);
-}
-
-/* Meest Gekozen badge */
-.featured {
-    border: 2px solid var(--color-gold);
-    box-shadow: var(--shadow-strong);
-}
-
-.badge {
-    position: absolute;
-    top: -12px;
-    right: 18px;
-    background: var(--color-gold);
-    color: var(--color-navy);
-    padding: 5px 12px 6px;
-    font-size: .8rem;
-    font-weight: 600;
-    border-radius: 14px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-/* Premium travel note */
-.travel-note {
-    font-size: .87rem;
-    color: var(--color-text-muted);
-    line-height: 1.45;
-    margin-top: 1.2rem;
-    opacity: .9;
-}
-
-/* =========================================
-   HOE WERKT HET – PREMIUM FLOW
-========================================= */
-
-.how-it-works {
-    margin-top: 4rem;
-}
-
-.how-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 2rem;
-    margin-top: 2.5rem;
-}
-
-.how-step {
-    background: var(--color-bg-card);
-    padding: 2rem;
-    border-radius: var(--radius-card);
-    border: 1px solid #ececec;
-    box-shadow: var(--shadow-soft);
-    transition: .22s ease;
-}
-
-.how-step:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-strong);
-    border-color: rgba(200,165,101,0.6);
-}
-
-.how-number {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--color-gold);
-    color: var(--color-navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.how-step h3 {
-    font-size: 1.25rem;
-    margin-bottom: .6rem;
-    font-weight: 700;
-    color: var(--color-navy);
-}
-
-.how-step p {
-    color: var(--color-text-main);
-    line-height: 1.55;
-}
-
-/* =========================================
-   CTA – INTAKE (PREMIUM, NIET PUSHERIG)
-========================================= */
-
-.cta-intake {
-    background: #fffaf3;
-    padding: 3.5rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.cta-inner {
-    text-align: center;
-    max-width: 760px;
-}
-
-.cta-intake h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: 1rem;
-}
-
-.cta-intake p {
-    color: var(--color-text-main);
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-/* CTA Button */
-.btn-intake {
-    display: inline-block;
-    padding: 0.9rem 2.1rem;
-    background: var(--color-navy);
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: var(--radius-button);
-    letter-spacing: .01em;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-    transition: .25s ease;
-}
-
-.btn-intake:hover {
-    background: var(--color-gold);
-    color: var(--color-navy);
-    box-shadow: 0 12px 26px rgba(0,0,0,0.22);
-}
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 780px) {
-    .package-card,
-    .how-step {
         padding: 1.6rem;
     }
 
-    .package-card h3,
-    .how-step h3 {
-        font-size: 1.3rem;
+    .badge {
+        top: -10px;
+        right: 16px;
+        font-size: 0.75rem;
     }
 
-    .package-card .price {
-        font-size: 1.55rem;
+    .service-list li,
+    .package-card ul li {
+        margin-bottom: 0.6rem;
     }
 
-    .cta-intake h2 {
-        font-size: 1.55rem;
+    .price-tag {
+        font-size: 1.25rem;
+        margin-bottom: 0.9rem;
     }
 }
-
-/* =========================================
-   PREMIUM HEADER REFINEMENT
-========================================= */
-
-.header {
-    background: var(--color-navy);
-    padding: 16px 0;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.28);
-}
-
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.site-logo {
-    height: 44px;
-    display: block;
-}
-
-/* NAVIGATION */
-.main-nav ul {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-
-.main-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: .01em;
-    font-size: .97rem; /* subtiel kleiner, premium uitstraling */
-    transition: color .25s ease;
-}
-
-.main-nav a:hover {
-    color: var(--color-gold);
-}
-
-.main-nav .active {
-    color: var(--color-gold);
-    font-weight: 600;
-}
-
-/* =========================================
-   HERO – AANKOOPADVIES PREMIUM
-========================================= */
-
-.hero-advice {
-    position: relative;
-    height: 58vh;
-    min-height: 460px;
-    background-image: url("../assets/images/hero/hero-advice.webp");
-    background-size: cover;
-    background-position: center 45%;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-hero);
-}
-
-.hero-advice-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        140deg,
-        rgba(7, 19, 34, 0.40),
-        rgba(7, 19, 34, 0.78)
-    );
-    backdrop-filter: blur(3px);
-}
-
-.hero-advice-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #ffffff;
-    max-width: 900px;
-    animation: fadeIn .7s ease-out;
-}
-
-.hero-advice-content h1 {
-    font-size: 2.9rem;
-    font-weight: 700;
-    letter-spacing: .01em;
-    margin-bottom: 1rem;
-    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
-}
-
-.hero-advice-content p {
-    font-size: 1.25rem;
-    line-height: 1.55;
-    opacity: .95;
-}
-    
-@media (max-width: 780px) {
-    .hero-advice {
-        height: 50vh;
-    }
-    .hero-advice-content h1 {
-        font-size: 2.25rem;
-    }
-    .hero-advice-content p {
-        font-size: 1.05rem;
-    }
-}
-
-/* =========================================
-   EXTRA HEADER POLISH – QUIET LUXURY
-========================================= */
-
-.header {
-    background: var(--color-navy);
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.main-nav ul {
-    gap: 34px;
-}
-
-.main-nav a {
-    font-size: .94rem;
-    opacity: .92;
-    transition: opacity .25s ease, color .25s ease;
-}
-
-.main-nav a:hover {
-    opacity: 1;
-    color: var(--color-gold);
-}
-
-.main-nav .active {
-    opacity: 1;
-    color: var(--color-gold);
-    font-weight: 600;
-}
-
-.site-logo {
-    height: 44px;
-    transition: opacity .25s ease;
-}
-.site-logo:hover {
-    opacity: .85;
-}
-
-/* =========================================
-   PAKKETTEN – PREMIUM POLISH
-========================================= */
-
-.package-card {
-    border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.08);
-    padding: 2.2rem;
-    background: #ffffff;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
-}
-
-.package-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 36px rgba(0,0,0,0.12);
-}
-
-.package-card h3 {
-    font-size: 1.35rem;
-    margin-bottom: .4rem;
-}
-
-.price {
-    font-size: 1.9rem;
-    margin-bottom: 1rem;
-}
-
-.featured {
-    border: 2px solid var(--color-gold);
-}
-
-.badge {
-    top: -16px;
-    right: 22px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: .78rem;
-}
-
-.packages-section {
-    gap: 2.4rem;
-}
-
-/* subtle visual balance */
-.package-card ul {
-    margin-top: .6rem;
-}
-/* =========================================
-   HERO – AANKOOPADVIES PREMIUM + MOBILE FIX
-========================================= */
-
-.hero-advice {
-    position: relative;
-    height: 58vh;
-    min-height: 460px;
-    background-image: url("../assets/images/hero/advice-hero.webp");
-    background-size: cover;
-    background-position: center 55%; /* focus iets hoger */
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-hero);
-}
-
-.hero-advice-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        140deg,
-        rgba(7, 19, 34, 0.35),
-        rgba(7, 19, 34, 0.80)
-    );
-    backdrop-filter: blur(2px);
-}
-
-.hero-advice-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #ffffff;
-    max-width: 880px;
-    padding: 0 1.5rem;
-    animation: fadeIn .7s ease-out;
-}
-
-.hero-advice-content h1 {
-    font-size: 2.85rem;
-    font-weight: 700;
-    letter-spacing: .01em;
-    margin-bottom: 1rem;
-    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
-}
-
-.hero-advice-content p {
-    font-size: 1.25rem;
-    line-height: 1.55;
-    opacity: .95;
-}
-
-/* ===== MOBILE OPTIMALISATIE ===== */
-@media (max-width: 900px) {
-    .hero-advice {
-        height: 52vh;
-        background-position: center 45%; /* iets meer focus bovenin */
-    }
-
-    .hero-advice-content h1 {
-        font-size: 2.1rem;
-    }
-
-    .hero-advice-content p {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero-advice {
-        height: 48vh;
-        background-position: center 38%; /* perfect voor phones */
-    }
-
-    .hero-advice-content h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-advice-content p {
-        font-size: .95rem;
-    }
-}
-
-/* =========================================
-   HERO – AANKOOPADVIES PREMIUM + MOBILE FIX
-========================================= */
-
-.hero-advice {
-    position: relative;
-    height: 58vh;
-    min-height: 460px;
-    background-image: url("../assets/images/hero/hero-advice.webp");
-    background-size: cover;
-    background-position: center 55%;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-hero);
-}
-
-.hero-advice-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        150deg,
-        rgba(7, 19, 34, 0.28),
-        rgba(7, 19, 34, 0.55)
-    );
-    backdrop-filter: blur(1.5px);
-}
-
-.hero-advice-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #ffffff;
-    max-width: 880px;
-    padding: 0 1.5rem;
-    animation: fadeIn .7s ease-out;
-}
-
-.hero-subtitle {
-    display: block;
-    font-size: .82rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    opacity: .95;
-    margin-bottom: 1rem;
-    font-weight: 500;
-}
-
-.hero-advice-content h1 {
-    font-size: 2.85rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 4px 14px rgba(0,0,0,0.55);
-}
-
-.hero-advice-content p {
-    font-size: 1.25rem;
-    line-height: 1.55;
-    opacity: .95;
-}
-
-/* MOBILE CROPPING FIX */
-@media (max-width: 900px) {
-    .hero-advice {
-        height: 52vh;
-        background-position: center 45%;
-    }
-    .hero-advice-content h1 {
-        font-size: 2.1rem;
-    }
-    .hero-advice-content p {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero-advice {
-        height: 48vh;
-        background-position: center 38%;
-    }
-    .hero-advice-content h1 {
-        font-size: 1.8rem;
-    }
-    .hero-advice-content p {
-        font-size: .95rem;
-    }
-}
-
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aankoopadvies | ZekerOpWeg</title>
-    <meta name="description" content="Onafhankelijk aankoopadvies met volledige zekerheid. Premium begeleiding bij het kiezen en controleren van uw volgende auto.">
-    <link rel="stylesheet" href="css/styles.css?v=1.1.0">
-</head>
-
-<body class="fade-in">
-
-<!-- ======================================
-     HEADER (PREMIUM)
-======================================= -->
-<header class="header">
-    <div class="container header-container">
-
-        <!-- LOGO -->
-        <a href="index.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" class="site-logo" alt="ZekerOpWeg logo">
-        </a>
-
-        <!-- MOBILE MENU BUTTON -->
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-        <!-- DESKTOP NAVIGATION -->
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aankoopadvies.html" class="active">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="diensten.html">Diensten</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-
-    </div>
-</header>
-
-<!-- MOBILE OVERLAY MENU -->
-<div id="mobileMenuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
-
-<nav id="mobileMenu" class="mobile-nav">
-    <button class="close-menu" onclick="closeMenu()">×</button>
-
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html" class="active">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="diensten.html">Diensten</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-</nav>
-
-
-<!-- ======================================
-     HERO
-======================================= -->
-<section class="hero-advice">
-    <div class="hero-advice-overlay"></div>
-
-    <div class="container hero-advice-content">
-
-        <span class="hero-subtitle">Aankoopadvies</span>
-
-        <h1>Onafhankelijk advies voor uw volgende auto</h1>
-
-        <p>Transparant, deskundig en volledig gericht op uw belang.</p>
-
-    </div>
-</section>
-
-
-<!-- ======================================
-     PAKKETTEN
-======================================= -->
-<section class="container section-spaced">
-
-    <h2 class="section-title">Onze aankoopadvies pakketten</h2>
-    <p class="section-intro">
-        Kies het pakket dat past bij uw situatie. Elk pakket is onafhankelijk, eerlijk en volledig gericht op uw belang.
-    </p>
-
-    <div class="packages-section">
-
-        <!-- ESSENTIEEL -->
-        <div class="package-card">
-            <h3>Pakket Essentieel</h3>
-            <p class="price">€149</p>
-
-            <p class="description">
-                Voor wie zelf zoekt maar behoefte heeft aan een deskundige second opinion.
-            </p>
-
-            <ul>
-                <li>Analyse van één concrete auto</li>
-                <li>Controle op prijs, uitvoering en historie</li>
-                <li>Telefonische of online toelichting</li>
-            </ul>
-        </div>
-
-        <!-- PREMIUM -->
-        <div class="package-card featured">
-            <span class="badge">Meest gekozen</span>
-
-            <h3>Pakket Premium</h3>
-            <p class="price">€299</p>
-
-            <p class="description">
-                Begeleiding van eerste selectie tot definitieve keuze. Voor maximale zekerheid.
-            </p>
-
-            <ul>
-                <li>Selectie en vergelijking van meerdere auto's</li>
-                <li>Optische en technische controle op locatie bij één auto</li>
-                <li>Advies over inruil, garantie en financiële opties</li>
-                <li>Vriendelijk combinatietarief bij EV AccuCheck</li>
-            </ul>
-        </div>
-
-        <!-- FULL SERVICE -->
-        <div class="package-card">
-            <h3>Pakket Full service</h3>
-            <p class="price">€449</p>
-
-            <p class="description">
-                Voor wie de volledige aankoop wil uitbesteden.
-            </p>
-
-            <ul>
-                <li>Zoekopdracht en selectie in binnen- en buitenland</li>
-                <li>Controle op locatie met proefrit</li>
-                <li>Onderhandeling en volledige afstemming met verkoper</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ======================================
-     HOE WERKT HET
-======================================= -->
-<section class="how-it-works section-bg-soft section-spaced">
-
-    <div class="container">
-
-        <h2 class="section-title">Hoe werkt het?</h2>
-
-        <div class="how-grid">
-
-            <div class="how-step">
-                <span class="step-number">1</span>
-                <h3>Intake & wensen</h3>
-                <p>We bespreken uw situatie, wensen en budget. U krijgt direct advies over welk pakket het best past.</p>
-            </div>
-
-            <div class="how-step">
-                <span class="step-number">2</span>
-                <h3>Selectie & vergelijking</h3>
-                <p>Ik selecteer geschikte auto's, vergelijk alternatieven en zet duidelijk de risico’s en voordelen op een rij.</p>
-            </div>
-
-            <div class="how-step">
-                <span class="step-number">3</span>
-                <h3>Controle op locatie (Premium & Full service)</h3>
-                <p>We controleren de auto optisch en technisch op locatie om verrassingen te voorkomen.</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================
-     FOOTER
-======================================= -->
-<footer class="footer">
-    <div class="container">
-        <p>© 2025 ZekerOpWeg. Onafhankelijk aankoopadvies en EV accudiagnose.</p>
-    </div>
-</footer>
-
-<script src="scripts/main.js"></script>
-
-</body>
-</html>
-
-/* ------------------------------------
-   PREMIUM UPDATES PAKKET KAARTEN
---------------------------------------*/
-
-/* Bulletlist spacing */
-.service-card ul.service-list {
-    margin-top: 1rem;
-    margin-bottom: 1.2rem;
-    padding-left: 1.2rem;
-}
-
-.service-card ul.service-list li {
-    margin-bottom: 0.6rem;   /* extra ruimte tussen bullets */
-    line-height: 1.55;       /* rustiger leesbaar */
-}
-
-/* Kleine grijze notitie onderaan kaart */
-.note-small {
-    font-size: 0.85rem;
-    color: #777;
-    margin-top: 0.8rem;
-    line-height: 1.45;
-}
-
-/* Optioneel: meer lucht onder de prijs */
-.price-tag {
-    margin-bottom: 0.8rem;
-}
-
-
-
