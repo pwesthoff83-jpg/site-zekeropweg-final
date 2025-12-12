@@ -745,3 +745,46 @@ img {
     }
 }
 
+/* =========================================
+   NAVIGATIE – MOBIEL KLIKBAARHEID FIX
+========================================= */
+
+.nav-parent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-main-link,
+.nav-sub-link {
+    pointer-events: auto;
+    display: inline-block;
+}
+
+/* subtiele zakelijke aanduiding */
+.nav-sub-link {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+    text-decoration: none;
+}
+
+.nav-sub-link:hover,
+.nav-sub-link.active-sub {
+    color: var(--color-gold);
+}
+
+/* extra zekerheid voor mobiel (iOS fix) */
+@media (max-width: 900px) {
+    .nav-parent {
+        margin-bottom: 0.6rem;
+    }
+
+    .nav-main-link,
+    .nav-sub-link {
+        z-index: 2;
+        position: relative;
+    }
+}
+
