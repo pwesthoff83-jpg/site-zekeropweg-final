@@ -1,1 +1,364 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>ZekerOpWeg AccuCheck Adviesrapport</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background: #f7f6f2;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #071322;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 24px 20px 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: .2rem;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1.6rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin: 1.8rem 0 .6rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-top: 1.1rem;
+            font-size: 0.9rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 10px;
+            border: 1px solid #d4d4d4;
+            background: #fafafa;
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 1.6rem;
+            padding: 12px;
+            background: #071322;
+            color: #ffffff;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        .btn.secondary {
+            background: #d7b56d;
+            color: #071322;
+            margin-top: .7rem;
+        }
+
+        .rapport {
+            margin-top: 2.2rem;
+            border-top: 1px solid #ececec;
+            padding-top: 1.8rem;
+        }
+
+        .rapport h2 {
+            margin-top: 0;
+        }
+
+        .field-line {
+            margin: .15rem 0;
+            font-size: 0.95rem;
+        }
+
+        .field-label {
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-top: 1.3rem;
+            margin-bottom: .3rem;
+        }
+
+        .legal {
+            font-size: 0.75rem;
+            color: #777;
+            margin-top: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .small {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: .6rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 14px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AccuCheck Adviesrapport</h1>
+    <p class="subtitle">ZekerOpWeg • Onafhankelijk advies bij aankoop, verkoop en garantie</p>
+
+    <!-- FORMULIER -->
+    <section>
+        <h2>Gegevens invullen</h2>
+
+        <label for="klantnaam">Klantnaam</label>
+        <input id="klantnaam" type="text" placeholder="Naam klant">
+
+        <label for="email">E-mail klant</label>
+        <input id="email" type="email" placeholder="E-mailadres">
+
+        <label for="voertuig">Voertuig</label>
+        <input id="voertuig" type="text" placeholder="Merk + model">
+
+        <label for="kenteken">Kenteken</label>
+        <input id="kenteken" type="text" placeholder="Bijv. XX-123-X">
+
+        <label for="score">Aviloo score (%)</label>
+        <input id="score" type="number" min="0" max="100" placeholder="Bijv. 87">
+
+        <label for="doel">Doel van de test</label>
+        <input id="doel" type="text" placeholder="Bijv. aankoop, verkoop of einde garantie">
+
+        <label for="notities">Eigen notities (optioneel)</label>
+        <textarea id="notities" placeholder="Aanvullende bevindingen of aandachtspunten"></textarea>
+
+        <button class="btn" onclick="genereerRapport()">Genereer adviesrapport</button>
+        <p class="small">Na het genereren kunt u het rapport downloaden als PDF of direct mailen naar de klant.</p>
+    </section>
+
+    <!-- RAPPORT -->
+    <section id="rapportOutput" class="rapport" style="display:none;">
+        <h2>Adviesrapport</h2>
+
+        <p class="field-line">
+            <span class="field-label">Klant:</span> <span id="rKlant"></span>
+        </p>
+        <p class="field-line">
+            <span class="field-label">Voertuig:</span> <span id="rVoertuig"></span>
+        </p>
+        <p class="field-line">
+            <span class="field-label">Kenteken:</span> <span id="rKenteken"></span>
+        </p>
+        <p class="field-line">
+            <span class="field-label">Doel:</span> <span id="rDoel"></span>
+        </p>
+        <p class="field-line">
+            <span class="field-label">Aviloo score:</span> <span id="rScore"></span>%
+        </p>
+
+        <p class="section-title">Interpretatie van de uitslag</p>
+        <p id="interpretatie"></p>
+
+        <p class="section-title">Advies voor uw situatie</p>
+        <p id="advies"></p>
+
+        <p class="section-title">Notities</p>
+        <p id="rNotities"></p>
+
+        <p class="legal">
+            Dit adviesrapport is gebaseerd op de uitslag van de officiële Aviloo Flash Test.
+            Het rapport doet geen uitspraken over garantie, restlevensduur of juridische aanspraken.
+            Voor garantievragen adviseren wij contact op te nemen met de fabrikant of dealer.
+        </p>
+
+        <button class="btn" onclick="downloadPDF()">Download als PDF</button>
+        <button class="btn secondary" onclick="mailRapport()">Mail naar klant</button>
+    </section>
+</div>
+
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    function val(id) {
+        return document.getElementById(id).value.trim();
+    }
+
+    function setText(id, value) {
+        document.getElementById(id).textContent = value;
+    }
+
+    function genereerRapport() {
+        const klant = val("klantnaam");
+        const voertuig = val("voertuig");
+        const kenteken = val("kenteken");
+        const score = Number(val("score"));
+        const doel = val("doel");
+        const notities = val("notities");
+
+        if (!klant || !voertuig || !kenteken || !score) {
+            alert("Vul minimaal klantnaam, voertuig, kenteken en score in.");
+            return;
+        }
+
+        setText("rKlant", klant);
+        setText("rVoertuig", voertuig);
+        setText("rKenteken", kenteken);
+        setText("rDoel", doel || "—");
+        setText("rScore", score);
+        setText("rNotities", notities || "—");
+
+        // Interpretatie op basis van score (simpel model)
+        let interpretatie;
+        if (score >= 85) {
+            interpretatie = "De accugezondheid is passend voor leeftijd en kilometerstand. Er zijn geen directe aandachtspunten zichtbaar in de Aviloo uitslag.";
+        } else if (score >= 70) {
+            interpretatie = "De accugezondheid is gemiddeld. Niet direct zorgwekkend, maar het is verstandig om rekening te houden met mogelijk hogere veroudering op termijn.";
+        } else {
+            interpretatie = "De accugezondheid wijkt af van wat gemiddeld verwacht wordt. Dit betekent niet direct dat de auto ongeschikt is, maar extra aandacht en zorgvuldige afweging zijn verstandig.";
+        }
+        setText("interpretatie", interpretatie);
+
+        // Advies op basis van doel + score
+        let advies;
+        if (score >= 85) {
+            if (doel.toLowerCase().includes("aankoop")) {
+                advies = "Advies: de uitslag ondersteunt een aankoop, mits de rest van de auto en prijs ook aansluiten bij uw verwachtingen.";
+            } else if (doel.toLowerCase().includes("verkoop")) {
+                advies = "Advies: gebruik deze uitslag en het Aviloo certificaat als onderbouwing van de vraagprijs en om vertrouwen bij kopers te vergroten.";
+            } else {
+                advies = "Advies: de huidige conditie is goed. Er zijn geen opvallingen die directe zorgen geven voor het huidige gebruik.";
+            }
+        } else if (score >= 70) {
+            if (doel.toLowerCase().includes("aankoop")) {
+                advies = "Advies: bespreek de uitslag met de verkoper en neem de score mee in uw prijsafweging en verwachtingen voor de toekomst.";
+            } else if (doel.toLowerCase().includes("verkoop")) {
+                advies = "Advies: wees transparant over de uitslag richting potentiële kopers en stel de vraagprijs hier realistisch op af.";
+            } else {
+                advies = "Advies: houd rekening met een wat hogere veroudering van de accu. Een rustiger laad- en gebruikspatroon kan helpen.";
+            }
+        } else {
+            if (doel.toLowerCase().includes("aankoop")) {
+                advies = "Advies: wees terughoudend met aankoop tenzij prijs, historie en uw gebruik goed passen bij deze uitslag. Overweeg alternatieven of aanvullende gesprekken met de verkoper.";
+            } else if (doel.toLowerCase().includes("verkoop")) {
+                advies = "Advies: communiceer open over de uitslag en stel uw prijs en verwachtingen hierop af. Een eerlijke toelichting voorkomt teleurstelling.";
+            } else {
+                advies = "Advies: het is verstandig om deze uitslag mee te nemen in gesprekken met dealer of fabrikant en te kijken naar de impact op toekomstig gebruik en eventuele garantie.";
+            }
+        }
+        setText("advies", advies);
+
+        document.getElementById("rapportOutput").style.display = "block";
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+
+    async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+            unit: "pt",
+            format: "a4"
+        });
+
+        const marge = 40;
+        let y = 50;
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("AccuCheck Adviesrapport - ZekerOpWeg", marge, y);
+        y += 20;
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text("Klant: " + document.getElementById("rKlant").textContent, marge, y);
+        y += 14;
+        doc.text("Voertuig: " + document.getElementById("rVoertuig").textContent, marge, y);
+        y += 14;
+        doc.text("Kenteken: " + document.getElementById("rKenteken").textContent, marge, y);
+        y += 14;
+        doc.text("Doel: " + document.getElementById("rDoel").textContent, marge, y);
+        y += 14;
+        doc.text("Aviloo score: " + document.getElementById("rScore").textContent + "%", marge, y);
+        y += 24;
+
+        doc.setFont("helvetica", "bold");
+        doc.text("Interpretatie van de uitslag", marge, y);
+        y += 16;
+        doc.setFont("helvetica", "normal");
+        const interp = doc.splitTextToSize(document.getElementById("interpretatie").textContent, 515);
+        doc.text(interp, marge, y);
+        y += interp.length * 14 + 18;
+
+        doc.setFont("helvetica", "bold");
+        doc.text("Advies voor uw situatie", marge, y);
+        y += 16;
+        doc.setFont("helvetica", "normal");
+        const adv = doc.splitTextToSize(document.getElementById("advies").textContent, 515);
+        doc.text(adv, marge, y);
+        y += adv.length * 14 + 18;
+
+        doc.setFont("helvetica", "bold");
+        doc.text("Notities", marge, y);
+        y += 16;
+        doc.setFont("helvetica", "normal");
+        const not = doc.splitTextToSize(document.getElementById("rNotities").textContent, 515);
+        doc.text(not, marge, y);
+        y += not.length * 14 + 20;
+
+        doc.setFontSize(8);
+        doc.setTextColor(120);
+        const legal = "Dit adviesrapport is gebaseerd op de uitslag van de officiële Aviloo Flash Test. Het rapport doet geen uitspraken over garantie, restlevensduur of juridische aanspraken. Voor garantievragen adviseren wij contact op te nemen met de fabrikant of dealer.";
+        const legalLines = doc.splitTextToSize(legal, 515);
+        doc.text(legalLines, marge, 800);
+
+        doc.save("AccuCheck-Adviesrapport.pdf");
+    }
+
+    function mailRapport() {
+        const email = val("email");
+        if (!email) {
+            alert("Vul eerst het e-mailadres van de klant in.");
+            return;
+        }
+        const klant = val("klantnaam") || "klant";
+        const onderwerp = encodeURIComponent("Uw AccuCheck adviesrapport - ZekerOpWeg");
+        const body = encodeURIComponent(
+            "Beste " + klant + ",\n\n" +
+            "Zoals besproken ontvangt u hierbij het AccuCheck adviesrapport.\n" +
+            "Het officiële Aviloo certificaat wordt afzonderlijk digitaal aangeleverd.\n\n" +
+            "Met vriendelijke groet,\n" +
+            "ZekerOpWeg"
+        );
+
+        // Op deze manier opent hij de mailapp met een voorgemaakte mail.
+        window.location.href = `mailto:${email}?subject=${onderwerp}&body=${body}`;
+    }
+</script>
+
+</body>
+</html>
 
