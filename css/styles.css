@@ -887,4 +887,68 @@ img {
         font-size: 1.9rem;
     }
 }
+/* =========================================
+   HERO PAGE BASIS – voor alle subpagina’s
+========================================= */
+
+.hero-page {
+    position: relative;
+    height: 65vh;
+    min-height: 420px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Zelfde typografie als home, maar dan generiek */
+.hero-page .hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: .01em;
+    margin-bottom: 1rem;
+    text-shadow: 0 3px 14px rgba(0,0,0,0.6);
+}
+
+.hero-page .hero-content p {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* EV achtergrond (jouw juiste pad) */
+.hero-ev {
+    background-image: url("../assets/images/hero/ev-hero.webp");
+    background-position: center 40%;
+}
+
+/* Mobile cropping en rust */
+@media (max-width: 780px) {
+    .hero-page {
+        height: 72vh;
+        min-height: 520px;
+    }
+
+    .hero-ev {
+        background-position: center 25%;
+    }
+
+    .hero-page .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-page .hero-content p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        padding: 0 0.25rem;
+    }
+}
+
 
