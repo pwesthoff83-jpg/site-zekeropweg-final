@@ -838,3 +838,53 @@ img {
     }
 }
 
+/* =========================================
+   PREMIUM PRIJSKAART – EV ACCUCHECK
+========================================= */
+
+.price-card {
+    border: 1px solid rgba(215,181,109,0.45);
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fbf9f4 100%
+    );
+}
+
+.price-main {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.price-amount {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    letter-spacing: -0.02em;
+}
+
+.price-label {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.price-card .description {
+    margin-top: 0.6rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.55;
+}
+
+.price-card .note-small {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Mobiel */
+@media (max-width: 780px) {
+    .price-amount {
+        font-size: 1.9rem;
+    }
+}
+
