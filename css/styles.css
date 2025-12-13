@@ -366,10 +366,53 @@ img {
   }
 }
 
+.service-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-list {
+  margin-bottom: 2rem;
+}
+
+.service-card-footer {
+  margin-top: auto; /* DUWT CTA NAAR BENEDEN */
+  padding-top: 1.8rem;
+  border-top: 1px solid #eee;
+}
+
+.service-card-footer a {
+  color: var(--navy);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(7,19,34,.25);
+}
+
+.service-card-footer a:hover {
+  border-bottom-color: var(--gold);
+  color: var(--gold);
+}
+
+.service-helper {
+  font-size: .85rem;
+  color: #8a8a8a;
+  margin-top: .6rem;
+  line-height: 1.5;
+}
+
+.service-card.featured {
+  transform: none; /* geen optische chaos */
+  border-color: var(--gold);
+}
+
+.service-card.featured .btn-primary {
+  margin-top: .4rem;
+}
 
 
-
-
+.services-section + .services-section {
+  padding-top: 6rem;
+}
 
 
 
