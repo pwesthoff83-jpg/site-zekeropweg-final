@@ -519,6 +519,127 @@ img {
   box-shadow: 0 16px 38px rgba(0,0,0,.32);
 }
 
+/* =========================================================
+   AANKOOPADVIES — BRANDBOOSTER SCOPE (SAFE)
+   Doel:
+   - rust
+   - uitlijning
+   - premium spacing
+   - GEEN impact op andere pagina’s
+========================================================= */
+
+.aankoopadvies-page .service-grid {
+  gap: 3.2rem;
+}
+
+/* ---------------------------------------------------------
+   SERVICE CARD — BASIS
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.6rem 2.6rem 2.8rem;
+}
+
+/* Titel + prijs rustig groeperen */
+.aankoopadvies-page .service-card h3 {
+  margin-bottom: .4rem;
+}
+
+.aankoopadvies-page .price-tag {
+  margin-bottom: 1.6rem;
+}
+
+/* ---------------------------------------------------------
+   LISTS — VISUELE RUST
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-list {
+  margin-top: 1.2rem;
+  margin-bottom: 2.2rem;
+}
+
+.aankoopadvies-page .service-list li {
+  margin-bottom: .75rem;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------
+   KLEINE TOELICHTING (afstand / reis)
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-note {
+  font-size: .85rem;
+  color: #8a8a8a;
+  line-height: 1.45;
+  margin-top: 1.6rem;
+}
+
+/* ---------------------------------------------------------
+   CTA ZONE — OPGERUIMD & CONSISTENT
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-cta {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+
+/* Primaire CTA (alleen Premium heeft button) */
+.aankoopadvies-page .service-cta .btn-primary {
+  width: 100%;
+  text-align: center;
+}
+
+/* Subtiele tekst-CTA (Essentieel / Full) */
+.aankoopadvies-page .service-cta a {
+  font-size: .9rem;
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+/* Extra afstand specifiek bij Full Service */
+.aankoopadvies-page .service-card.full .service-cta {
+  margin-top: 3rem;
+}
+
+/* ---------------------------------------------------------
+   FEATURED (PREMIUM) — FOCUS ZONDER DRUK
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-card.featured {
+  transform: translateY(-6px);
+}
+
+.aankoopadvies-page .service-card.featured:hover {
+  transform: translateY(-10px);
+}
+
+/* ---------------------------------------------------------
+   HOVER — SUBTIEL, GEEN GEWELD
+--------------------------------------------------------- */
+
+.aankoopadvies-page .service-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------------------------------------------------------
+   MOBIEL — BEHOUD RUST
+--------------------------------------------------------- */
+
+@media (max-width: 780px) {
+  .aankoopadvies-page .service-grid {
+    gap: 2.2rem;
+  }
+
+  .aankoopadvies-page .service-card {
+    padding: 2.2rem;
+  }
+}
+
 
 
 
