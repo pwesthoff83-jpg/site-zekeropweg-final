@@ -123,7 +123,8 @@ img { max-width: 100%; display: block; }
 
 .hero {
   position: relative;
-  min-height: 65vh;
+  height: 78vh;              /* vaste hero-hoogte voor ALLE pagina’s */
+  min-height: 620px;         /* voorkomt te lage hero op desktop */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +133,7 @@ img { max-width: 100%; display: block; }
   background-position: center;
   box-shadow: var(--shadow-hero);
 }
+
 
 .hero::before {
   content: "";
@@ -424,6 +426,7 @@ img { max-width: 100%; display: block; }
 .hero + .services-section {
     padding-top: 5.5rem;
 }
+
 
 
 
