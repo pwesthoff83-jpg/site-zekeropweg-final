@@ -321,4 +321,86 @@ img { max-width: 100%; display: block; }
     }
 }
 
+/* =========================================================
+   AANKOOPADVIES – PAKKETTEN BLOKKEN (DEFINITIEF)
+========================================================= */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.2rem;
+  margin-top: 2.5rem;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #ececec;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: .4rem;
+}
+
+.price-tag {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: .4rem 0 1.2rem;
+}
+
+.service-text {
+  margin-bottom: 1.2rem;
+  color: var(--text-muted);
+}
+
+.service-list {
+  padding-left: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.service-list li {
+  margin-bottom: .6rem;
+}
+
+/* Featured (Premium) */
+.service-card.featured {
+  border-color: rgba(215,181,109,.9);
+  box-shadow: 0 22px 46px rgba(0,0,0,.22);
+  transform: translateY(-6px);
+}
+
+.service-card.featured:hover {
+  transform: translateY(-8px);
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 6px 14px;
+  font-size: .85rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+/* Mobiel */
+@media (max-width: 780px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}
+
 
