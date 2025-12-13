@@ -1,27 +1,29 @@
-/* =========================================
-   ZEKEROPWEG – GLOBAL VARIABLES
-========================================= */
+/* =====================================================
+   ZEKEROPWEG – PREMIUM CORE STYLES (STABLE RELEASE)
+===================================================== */
 
+/* =========================
+   VARIABLES
+========================= */
 :root {
-    --color-navy: #071322;
-    --color-gold: #d7b56d;
-    --color-bg-soft: #f7f6f2;
-    --color-bg-card: #ffffff;
-    --color-text-main: #151515;
-    --color-text-muted: #555555;
+    --navy: #071322;
+    --gold: #d7b56d;
+    --bg-soft: #f7f6f2;
+    --bg-card: #ffffff;
+    --text-main: #151515;
+    --text-muted: #555555;
 
     --radius-card: 18px;
-    --radius-button: 10px;
+    --radius-btn: 10px;
 
-    --shadow-soft: 0 8px 22px rgba(0,0,0,0.07);
-    --shadow-strong: 0 14px 34px rgba(0,0,0,0.18);
-    --shadow-hero: 0 24px 60px rgba(0,0,0,0.45);
+    --shadow-soft: 0 8px 22px rgba(0,0,0,.07);
+    --shadow-strong: 0 16px 36px rgba(0,0,0,.18);
+    --shadow-hero: 0 24px 60px rgba(0,0,0,.45);
 }
 
-/* =========================================
-   RESET & BASE
-========================================= */
-
+/* =========================
+   RESET
+========================= */
 *,
 *::before,
 *::after {
@@ -32,64 +34,45 @@
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text-main);
     background: #ffffff;
-    color: var(--color-text-main);
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
 }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
+/* =========================
+   LAYOUT
+========================= */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.fade-in {
-    animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================
+/* =========================
    HEADER
-========================================= */
-
+========================= */
 .header {
-    background: var(--color-navy);
-    color: #ffffff;
-    padding: 14px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.38);
+    background: var(--navy);
+    box-shadow: 0 10px 26px rgba(0,0,0,.35);
 }
 
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.2rem;
-}
-
-.logo-wrap {
-    display: inline-flex;
-    align-items: center;
+    padding: 14px 0;
 }
 
 .site-logo {
-    height: 48px;
-    width: auto;
-    object-fit: contain;
+    height: 46px;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 .main-nav ul {
     list-style: none;
     display: flex;
@@ -99,957 +82,176 @@ img {
 .main-nav a {
     color: #ffffff;
     text-decoration: none;
+    font-size: .95rem;
     font-weight: 500;
-    font-size: 0.98rem;
-    letter-spacing: 0.02em;
 }
 
-.main-nav a:hover,
-.main-nav a.active {
-    color: var(--color-gold);
+.main-nav a.active,
+.main-nav a:hover {
+    color: var(--gold);
 }
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.9rem;
-    cursor: pointer;
-}
-
-.menu-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    z-index: 900;
-}
-
-.menu-overlay.active {
-    display: block;
-}
-
-@media (max-width: 900px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .main-nav {
-        position: fixed;
-        right: -260px;
-        top: 0;
-        width: 260px;
-        height: 100vh;
-        background: var(--color-navy);
-        padding: 80px 24px;
-        box-shadow: -12px 0 30px rgba(0,0,0,0.45);
-        transition: right .3s ease;
-        z-index: 950;
-    }
-
-    .main-nav.open {
-        right: 0;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 18px;
-    }
-}
-
-/* =========================================
-   HERO – GLOBAL
-========================================= */
-
+/* =========================
+   HERO (UNIFIED SYSTEM)
+========================= */
 .hero {
     position: relative;
-    width: 100%;
+    min-height: 65vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    overflow: hidden;
+    background-size: cover;
+    background-position: center 40%;
     box-shadow: var(--shadow-hero);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        140deg,
+        rgba(6,13,23,.55),
+        rgba(6,13,23,.85)
+    );
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 900px;
-    padding: 0 1.5rem;
-    animation: heroFade 0.6s ease-out .1s both;
-}
-
-@keyframes heroFade {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+    max-width: 760px;
+    padding: 0 1.25rem;
 }
 
 .hero-subtitle {
-    font-size: .8rem;
-    letter-spacing: 0.22em;
+    font-size: .75rem;
+    letter-spacing: .22em;
+    color: var(--gold);
+    margin-bottom: .9rem;
     text-transform: uppercase;
-    color: var(--color-gold);
-    margin-bottom: 1rem;
 }
 
-/* =========================================
-   HERO HOME (basis voor alle hero's)
-========================================= */
-
-.hero-home {
-    position: relative;
-    height: 65vh;
-    min-height: 420px;
-    background-image: url("../assets/images/hero/home-hero.webp");
-    background-size: cover;
-    background-position: center 40%;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        140deg,
-        rgba(6,13,23,0.45),
-        rgba(6,13,23,0.82)
-    );
-    backdrop-filter: blur(3px);
-}
-
-.hero-home .hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
+.hero h1 {
+    font-size: 2.8rem;
     color: #ffffff;
-    letter-spacing: .01em;
     margin-bottom: 1rem;
-    text-shadow: 0 3px 14px rgba(0,0,0,0.6);
+    line-height: 1.2;
 }
 
-.hero-home .hero-content p {
-    font-size: 1.25rem;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.92);
-    margin-bottom: 2rem;
+.hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,.92);
 }
 
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+/* =========================
+   SECTIONS
+========================= */
+.section {
+    padding: 4rem 0;
 }
 
-@media (max-width: 780px) {
-    .hero-home .hero-content h1 { font-size: 2.3rem; }
-    .hero-home .hero-content p  { font-size: 1.1rem; }
-}
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-.btn-primary,
-.btn-secondary {
-    display: inline-block;
-    padding: 0.8rem 1.7rem;
-    border-radius: var(--radius-button);
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: .02em;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: var(--color-navy);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
-
-.btn-primary:hover {
-    background: var(--color-gold);
-    color: var(--color-navy);
-}
-
-.btn-secondary {
-    background: transparent;
-    border-color: rgba(255,255,255,0.85);
-    color: #ffffff;
-}
-
-.btn-secondary:hover {
-    background: #fff;
-    color: #071322;
-}
-
-/* =========================================
-   SECTIONS & TITLES
-========================================= */
-
-.services-section {
-    padding: 3.8rem 0;
-    background: #ffffff;
-}
-
-.section-bg-soft {
-    background: var(--color-bg-soft);
+.section.soft {
+    background: var(--bg-soft);
 }
 
 .section-title {
     font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin-bottom: .9rem;
+    color: var(--navy);
+    margin-bottom: .8rem;
 }
 
 .section-title::after {
     content: "";
-    display: block;
-    width: 64px;
+    width: 60px;
     height: 2px;
-    background: var(--color-gold);
-    border-radius: 999px;
-    margin-top: 8px;
+    background: var(--gold);
+    display: block;
+    margin-top: .5rem;
 }
 
-.section-subtitle {
-    font-size: 1rem;
-    color: var(--color-text-muted);
-    max-width: 750px;
-    margin-bottom: 2rem;
-}
-
-/* =========================================
-   GENERIC CARDS / GRIDS
-========================================= */
-
-.service-grid,
-.packages-section {
+/* =========================
+   CARDS
+========================= */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
     gap: 2rem;
 }
 
-.service-card,
-.package-card {
-    position: relative;
-    background: var(--color-bg-card);
+.card {
+    background: var(--bg-card);
     padding: 1.9rem;
     border-radius: var(--radius-card);
     border: 1px solid #ececec;
     box-shadow: var(--shadow-soft);
-    transition: .22s ease;
 }
 
-.service-card:hover,
-.package-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-strong);
-    border-color: rgba(200,165,101,0.7);
-}
-
-/* subtiel dominante premium kaart (optie A) */
-.package-card.featured {
-    border-color: rgba(215,181,109,0.9);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-    transform: translateY(-6px);
-}
-
-/* =========================================
-   USP + TESTIMONIALS
-========================================= */
-
-.usp-premium {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 2rem;
-    margin: 3rem 0 4rem;
-}
-
-.usp-item {
-    background: #fffaf3;
-    padding: 1.8rem;
-    border-radius: 16px;
-    border-left: 4px solid var(--color-gold);
-    box-shadow: var(--shadow-soft);
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 2rem;
-}
-
-.testimonial-card {
-    background: #fffdf7;
-    padding: 1.8rem;
-    border-radius: 16px;
-    border-left: 4px solid var(--color-gold);
-    box-shadow: var(--shadow-soft);
-}
-
-/* =========================================
-   PAKKETTEN – SPECIFIEKE STYLING
-========================================= */
-
-.packages-section {
-    margin-top: 2rem;
-}
-
-.package-card h3,
-.service-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.4rem;
-}
-
-.price-tag {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin: 0.3rem 0 1.0rem;
-    letter-spacing: -0.3px;
-}
-
-.package-card p.description {
-    margin-bottom: 1.2rem;
-    line-height: 1.55;
-}
-
-.service-list,
-.package-card ul {
-    list-style: disc;
-    padding-left: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: 1.2rem;
-}
-
-.service-list li,
-.package-card ul li {
-    margin-bottom: 0.75rem;
-    line-height: 1.55;
-}
-
-/* kleine reiskosten-notitie */
-.note-small {
-    font-size: 0.85rem;
-    color: #777;
-    margin-top: 0.8rem;
-    line-height: 1.45;
-}
-
-/* Meest gekozen badge */
-.badge {
-    position: absolute;
-    top: -14px;
-    right: 20px;
-    background: var(--color-gold);
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 30px;
-    color: var(--color-navy);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    opacity: 1;
-}
-
-/* =========================================
-   HOE WERKT HET – STAPPEN
-========================================= */
-
-.how-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap: 2rem;
-}
-
-.how-step {
-    background: #ffffff;
-    padding: 1.8rem;
-    border-radius: 16px;
-    border: 1px solid #ececec;
-    box-shadow: var(--shadow-soft);
-}
-
-.step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    background: var(--color-gold);
-    color: var(--color-navy);
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-}
-
-/* =========================================
-   CTA
-========================================= */
-
-.text-link {
-    color: var(--color-navy);
-    font-weight: 500;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.text-link:hover {
-    color: var(--color-gold);
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-.footer {
-    background: var(--color-navy);
-    padding: 2.2rem 0;
-    margin-top: 3rem;
-}
-
-.footer-inner {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-inner p {
-    color: #f2f2f2;
-    opacity: .9;
-    font-size: .95rem;
-}
-
-/* =========================================
-   RESPONSIVE – CARDS / PAKKETTEN
-========================================= */
-
-@media (max-width: 780px) {
-
-    .services-section {
-        padding: 3rem 0;
-    }
-
-    .service-grid,
-    .packages-section,
-    .usp-premium,
-    .testimonial-grid,
-    .how-grid {
-        grid-template-columns: 1fr;
-        gap: 1.4rem;
-    }
-
-    .service-card,
-    .package-card {
-        padding: 1.6rem;
-    }
-
-    .badge {
-        top: -10px;
-        right: 16px;
-        font-size: 0.75rem;
-    }
-
-    .service-list li,
-    .package-card ul li {
-        margin-bottom: 0.6rem;
-    }
-
-    .price-tag {
-        font-size: 1.25rem;
-        margin-bottom: 0.9rem;
-    }
-}
-.nav-parent {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-}
-
-.nav-parent .nav-sub {
-    font-size: 0.7rem;
-    color: var(--color-gold);
-    letter-spacing: 0.08em;
-    margin-top: 2px;
-}
-
-.nav-parent {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.05;
-}
-
-.nav-sub-link {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.72);
-    letter-spacing: 0.08em;
-    margin-top: 3px;
-    text-decoration: none;
-}
-
-.nav-sub-link:hover,
-.nav-sub-link.active-sub {
-    color: var(--color-gold);
-}
-
-.nav-parent a {
-    pointer-events: auto;
-    position: relative;
-    z-index: 2;
-}
-
-.nav-sub-link {
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-.service-card-center {
-    text-align: center;
-}
-
-.service-card-center .card-action {
-    margin-top: 1.6rem;
-}
-
-.service-card-center .btn-secondary {
-    display: inline-block;
-    background: transparent;
-    border: 1px solid var(--color-navy);
-    color: var(--color-navy);
-}
-
-.service-card-center .btn-secondary:hover {
-    background: var(--color-navy);
-    color: #ffffff;
-}
-
-/* Extra rust tussen informatieve en actieblokken */
-.section-divider {
-    margin-top: 3.5rem;
-    margin-bottom: 4.5rem;
-}
-
-/* Meer ademruimte in center cards */
-.service-card-center {
-    padding-top: 2.6rem;
-    padding-bottom: 2.8rem;
-}
-
-/* Iets meer ruimte onder tekst vóór knop */
-.service-card-center .service-text {
-    margin-bottom: 1.6rem;
-}
-
-/* =========================================
-   NAVIGATIE – SUBLABEL (OPGESCHOOND)
-========================================= */
-
-.nav-parent {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.05;
-}
-
-.nav-sub-link {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.72);
-    letter-spacing: 0.08em;
-    margin-top: 3px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.nav-sub-link:hover,
-.nav-sub-link.active-sub {
-    color: var(--color-gold);
-}
-
-/* =========================================
-   BUTTONS – SECONDARY VARIANT (VERHARD)
-========================================= */
-
-.btn-secondary--dark {
-    display: inline-block;
-    background: transparent;
-    border: 1px solid var(--color-navy);
-    color: var(--color-navy);
-    padding: 0.8rem 1.7rem;
-    border-radius: var(--radius-button);
-    font-weight: 600;
-    letter-spacing: .02em;
-    text-decoration: none;
-}
-
-.btn-secondary--dark:hover {
-    background: var(--color-navy);
-    color: #ffffff;
-}
-
-@media (max-width: 780px) {
-    .hero-home .hero-content p {
-        font-size: 1.05rem;
-        margin-bottom: 1.4rem;
-    }
-
-    .hero-note {
-        font-size: 0.8rem;
-        line-height: 1.4;
-    }
-}
-@media (max-width: 780px) {
-    .service-card {
-        padding: 1.8rem;
-    }
-
-    .service-card h3 {
-        margin-bottom: 0.6rem;
-    }
-}
-.price,
-.price-tag {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--color-navy);
-    margin: 0.4rem 0 1rem;
-}
-@media (max-width: 780px) {
-    .services-section .btn-primary {
-        margin-top: 1.2rem;
-    }
-}
-
-@media (max-width: 780px) {
-    .hero-home .hero-content p {
-        font-size: 1rem;
-        line-height: 1.45;
-        margin-bottom: 1.2rem;
-    }
-
-    .hero-home .hero-content h1 {
-        font-size: 2rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .hero-home .hero-note {
-        font-size: 0.78rem;
-        opacity: 0.85;
-        margin-top: 0.6rem;
-    }
-}
-
-/* =========================================
-   NAVIGATIE – MOBIEL KLIKBAARHEID FIX
-========================================= */
-
-.nav-parent {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.nav-main-link,
-.nav-sub-link {
-    pointer-events: auto;
-    display: inline-block;
-}
-
-/* subtiele zakelijke aanduiding */
-.nav-sub-link {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.75);
-    letter-spacing: 0.08em;
-    margin-top: 3px;
-    text-decoration: none;
-}
-
-.nav-sub-link:hover,
-.nav-sub-link.active-sub {
-    color: var(--color-gold);
-}
-
-/* extra zekerheid voor mobiel (iOS fix) */
-@media (max-width: 900px) {
-    .nav-parent {
-        margin-bottom: 0.6rem;
-    }
-
-    .nav-main-link,
-    .nav-sub-link {
-        z-index: 2;
-        position: relative;
-    }
-}
-
-/* =========================================
-   HERO EV – MOBILE OPTIMALISATIE
-========================================= */
-
-.hero-ev {
-    min-height: 60vh;
-    background-image: url("../assets/images/hero/ev-accucheck.webp");
-    background-position: center 35%;
-}
-
-.hero-ev .hero-content {
-    max-width: 760px;
-}
-
-.hero-ev h1 {
-    font-size: 2.6rem;
-}
-
-.hero-ev .hero-intro {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.9);
-    max-width: 620px;
-    margin: 0 auto;
-}
-
-/* MOBIEL */
-@media (max-width: 780px) {
-
-    .hero-ev {
-        min-height: 72vh;
-    }
-
-    .hero-ev h1 {
-        font-size: 2rem;
-        line-height: 1.25;
-    }
-
-    .hero-ev .hero-intro {
-        font-size: 1rem;
-        line-height: 1.55;
-        margin-top: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.7rem;
-        margin-bottom: 0.8rem;
-    }
-}
-
-/* =========================================
-   PREMIUM PRIJSKAART – EV ACCUCHECK
-========================================= */
-
+/* =========================
+   PRICE CARD
+========================= */
 .price-card {
-    border: 1px solid rgba(215,181,109,0.45);
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #fbf9f4 100%
-    );
+    border: 1px solid rgba(215,181,109,.45);
+    background: linear-gradient(#fff,#fbf9f4);
 }
 
-.price-main {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
-}
-
-.price-amount {
+.price {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--color-navy);
-    letter-spacing: -0.02em;
+    color: var(--navy);
 }
 
-.price-label {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+    display: inline-block;
+    padding: .8rem 1.7rem;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.price-card .description {
-    margin-top: 0.6rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.55;
+.btn-primary {
+    background: var(--navy);
+    color: #ffffff;
 }
 
-.price-card .note-small {
-    font-size: 0.8rem;
-    color: #777;
+.btn-primary:hover {
+    background: var(--gold);
+    color: var(--navy);
 }
 
-/* Mobiel */
-@media (max-width: 780px) {
-    .price-amount {
-        font-size: 1.9rem;
-    }
-}
-/* =========================================
-   HERO PAGE BASIS – voor alle subpagina’s
-========================================= */
-
-.hero-page {
-    position: relative;
-    height: 65vh;
-    min-height: 420px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 2.2rem 0;
     text-align: center;
 }
 
-/* Zelfde typografie als home, maar dan generiek */
-.hero-page .hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: .01em;
-    margin-bottom: 1rem;
-    text-shadow: 0 3px 14px rgba(0,0,0,0.6);
-}
-
-.hero-page .hero-content p {
-    font-size: 1.25rem;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.92);
-    margin-bottom: 0;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* EV achtergrond (jouw juiste pad) */
-.hero-ev {
-    background-image: url("../assets/images/hero/ev-hero.webp");
-    background-position: center 40%;
-}
-
-/* Mobile cropping en rust */
-@media (max-width: 780px) {
-    .hero-page {
-        height: 72vh;
-        min-height: 520px;
-    }
-
-    .hero-ev {
-        background-position: center 25%;
-    }
-
-    .hero-page .hero-content h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero-page .hero-content p {
-        font-size: 1.05rem;
-        line-height: 1.6;
-        padding: 0 0.25rem;
-    }
-}
-
-/* =========================================
-   HERO – DEFINITIEVE BASIS (SUBPAGINA'S)
-========================================= */
-
-.hero-page {
-    position: relative;
-    height: 65vh;
-    min-height: 440px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center 40%;
-    overflow: hidden;
-}
-
-.hero-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        140deg,
-        rgba(6,13,23,0.55),
-        rgba(6,13,23,0.85)
-    );
-    z-index: 1;
-}
-
-.hero-page .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 760px;
-    padding: 0 1.25rem;
-    margin: 0 auto;
-}
-
-.hero-page .hero-subtitle {
-    font-size: 0.75rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    margin-bottom: 0.9rem;
-}
-
-.hero-page h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.18;
-    margin-bottom: 1rem;
-    text-shadow: 0 3px 14px rgba(0,0,0,0.6);
-}
-
-.hero-page p {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.92);
-    max-width: 620px;
-    margin: 0 auto;
-}
-
-/* =========================================
-   EV ACCUCHECK HERO
-========================================= */
-
-.hero-ev {
-    background-image: url("../assets/images/hero/ev-hero.webp");
-}
-
-/* =========================================
-   MOBIEL – HERO RUST
-========================================= */
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 780px) {
 
-    .hero-page {
-        height: 72vh;
-        min-height: 520px;
+    .hero {
+        min-height: 72vh;
         background-position: center 30%;
     }
 
-    .hero-page .hero-subtitle {
-        font-size: 0.68rem;
-        margin-bottom: 0.7rem;
-    }
-
-    .hero-page h1 {
+    .hero h1 {
         font-size: 2.05rem;
-        line-height: 1.25;
-        margin-bottom: 0.8rem;
     }
 
-    .hero-page p {
+    .hero p {
         font-size: 1rem;
-        line-height: 1.55;
-        max-width: 100%;
-        opacity: 0.92;
+    }
+
+    .main-nav ul {
+        display: none;
     }
 }
 
