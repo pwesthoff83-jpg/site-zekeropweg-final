@@ -1,9 +1,6 @@
 /* =========================================================
-   ZEKEROPWEG – PREMIUM CORE CSS (FINAL)
-   Stable base for:
-   - index.main.html
-   - aankoopadvies.html
-   - ev-accucheck.html
+   ZEKEROPWEG – PREMIUM CORE CSS (V2 FINAL)
+   Stable, high-end, BrandBooster approved
 ========================================================= */
 
 /* =========================
@@ -16,7 +13,7 @@
   --bg-soft: #f7f6f2;
   --bg-card: #ffffff;
   --text-main: #151515;
-  --text-muted: #5a5a5a;
+  --text-muted: #6a6a6a;
 
   --radius-card: 18px;
   --radius-btn: 10px;
@@ -39,7 +36,7 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--text-main);
   background: #fff;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 img {
@@ -131,13 +128,13 @@ img {
 }
 
 /* =========================
-   HERO SYSTEM – PREMIUM
+   HERO SYSTEM
 ========================= */
 
 .hero {
   position: relative;
-  height: 48vh;
-  min-height: 420px;
+  height: 52vh;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +158,7 @@ img {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  max-width: 820px;
   padding: 0 1.2rem;
 }
 
@@ -174,7 +171,7 @@ img {
 
 .hero h1 {
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -185,29 +182,19 @@ img {
   line-height: 1.6;
 }
 
-/* Page specific hero images */
-.hero-home {
-  background-image: url("../assets/images/hero/home-hero.webp");
-}
-
-.hero-ev {
-  background-image: url("../assets/images/hero/ev-hero.webp");
-}
-
-.hero-aankoopadvies {
-  background-position: center 92%;
-}
-
-/* Mobile hero */
+/* Page-specific heroes */
+.hero-home { background-image: url("../assets/images/hero/home-hero.webp"); }
+.hero-ev   { background-image: url("../assets/images/hero/ev-hero.webp"); }
+.hero-aankoopadvies { background-position: center 88%; }
 
 @media (max-width: 780px) {
   .hero {
-    height: 44vh;
-    min-height: 360px;
+    height: 48vh;
+    min-height: 400px;
   }
 
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.05rem;
   }
 
   .hero p {
@@ -215,28 +202,16 @@ img {
   }
 
   .hero-aankoopadvies {
-    background-position: center 55%;
+    background-position: center 68%;
   }
-}
-
-/* =========================
-   LAYOUT POLISH – HERO SPACING
-========================= */
-
-.hero + section {
-  margin-top: 5.5rem;
 }
 
 /* =========================
    SECTIONS
 ========================= */
 
-.section {
-  padding: 4.5rem 0;
-}
-
-.section.soft {
-  background: var(--bg-soft);
+.services-section {
+  padding: 5.5rem 0;
 }
 
 .section-title {
@@ -255,116 +230,103 @@ img {
   margin-top: 8px;
 }
 
-.section-text {
+.section-subtitle {
   max-width: 760px;
   color: var(--text-muted);
   margin-bottom: 2.6rem;
 }
 
 /* =========================
-   CARDS / GRIDS
-========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 2.2rem;
-}
-
-.card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.4rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.card h3 {
-  margin-bottom: .6rem;
-}
-
-/* =========================
-   SERVICE / PAKKETTEN
+   SERVICE GRID
 ========================= */
 
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.2rem;
-  margin-top: 2.5rem;
+  gap: 2.4rem;
 }
+
+/* =========================
+   SERVICE CARD (ALIGNED)
+========================= */
 
 .service-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
-  padding: 2.4rem;
+  padding: 2.6rem 2.4rem 2.2rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid #ececec;
-  transition: transform .25s ease, box-shadow .25s ease;
-  position: relative;
-}
 
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card h3 {
   font-size: 1.25rem;
-  margin-bottom: .4rem;
+  margin-bottom: .6rem;
 }
 
 .price-tag {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--navy);
-  margin: .4rem 0 1.2rem;
+  margin: .4rem 0 1.4rem;
 }
 
 .service-text {
-  margin-bottom: 1.2rem;
   color: var(--text-muted);
+  margin-bottom: 1.4rem;
 }
 
 .service-list {
   padding-left: 1.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.6rem;
 }
 
 .service-list li {
   margin-bottom: .6rem;
 }
 
-/* Featured */
+/* =========================
+   CARD FOOTER (KEY FIX)
+========================= */
+
+.service-card-footer {
+  margin-top: auto;
+  padding-top: 1.6rem;
+}
+
+.service-card-footer a {
+  font-size: .95rem;
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.service-card-footer a:hover {
+  text-decoration: none;
+}
+
+.service-helper {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-top: .6rem;
+}
+
+/* =========================
+   FEATURED (PREMIUM)
+========================= */
 
 .service-card.featured {
   border-color: rgba(215,181,109,.9);
   box-shadow: 0 22px 46px rgba(0,0,0,.22);
-  transform: translateY(-6px);
 }
 
-.badge {
-  position: absolute;
-  top: -14px;
-  right: 20px;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 6px 14px;
-  font-size: .85rem;
-  font-weight: 600;
-  border-radius: 999px;
-}
-
-/* Mobile services */
-
-@media (max-width: 780px) {
-  .service-grid {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
-  }
+.service-card.featured .btn-primary {
+  margin-top: .2rem;
 }
 
 /* =========================
-   CTA BUTTON
+   BUTTON
 ========================= */
 
 .btn-primary {
@@ -389,177 +351,19 @@ img {
 .footer {
   background: var(--navy);
   color: #fff;
-  padding: 2.2rem 0;
+  padding: 2.4rem 0;
   text-align: center;
 }
 
-/* =========================================================
-   TYPOGRAPHY FINETUNE – PREMIUM / HIGH END
-========================================================= */
+/* =========================
+   MOBILE POLISH
+========================= */
 
-/* Base body text refinement */
-body {
-  font-size: 1.02rem;
-  line-height: 1.7;
-  color: #1b1b1b;
-}
-
-/* Hero title refinement */
-.hero h1 {
-  font-size: 2.35rem;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-  line-height: 1.18;
-}
-
-/* Hero paragraph */
-.hero p {
-  font-size: 1.02rem;
-  line-height: 1.65;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-/* Hero subtitle (AANKOOPADVIES / EV ACCUCHECK) */
-.hero-subtitle {
-  font-size: .72rem;
-  letter-spacing: .28em;
-  opacity: .9;
-}
-
-/* Section titles */
-.section-title {
-  font-size: 1.75rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-
-/* Section intro text */
-.section-text {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-/* Card titles */
-.card h3,
-.service-card h3 {
-  font-size: 1.18rem;
-  line-height: 1.35;
-}
-
-/* Lists refinement */
-.service-list li,
-.card li {
-  line-height: 1.65;
-}
-
-/* Buttons – iets rustiger */
-.btn-primary {
-  font-size: .95rem;
-  letter-spacing: .02em;
-}
-
-/* =========================================
-   SUBTLE FOOTNOTE TEXT (SERVICE CARDS)
-========================================= */
-
-.note-small {
-  font-size: 0.85rem;
-  color: #8a8a8a;
-  line-height: 1.5;
-  margin-top: 1.2rem;
-}
-
-/* =========================================
-   SPACING TUNE – VOOR "HOE WERKT HET"
-========================================= */
-
-.services-section + .services-section {
-  padding-top: 6.5rem;
-}
-
-/* =========================================================
-   SERVICE CARDS – VISUAL CLEANUP (NO CONTENT CHANGES)
-========================================================= */
-
-/* Algemene rust in kaart */
-.service-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem; /* consistent ritme */
-}
-
-/* Prijs duidelijk los van tekst */
-.service-card .price-tag,
-.service-card .price-amount {
-  margin-bottom: .4rem;
-}
-
-/* Intro-tekst compacter en rustiger */
-.service-card .service-text {
-  margin-bottom: .6rem;
-  line-height: 1.55;
-}
-
-/* Bullet list meer ademruimte */
-.service-list {
-  margin-top: .6rem;
-  margin-bottom: 1.4rem;
-}
-
-.service-list li {
-  margin-bottom: .5rem;
-}
-
-/* Kleine toelichtingen visueel ondergeschikt */
-.note-small {
-  font-size: .8rem;
-  color: #8a8a8a;
-  margin-top: .4rem;
-}
-
-/* CTA altijd duidelijk “einde van kaart” */
-.service-card a.btn-primary,
-.service-card a.btn-secondary--dark {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-/* Premium kaart extra rust (belangrijk) */
-.service-card.featured {
-  padding-top: 2.6rem;
-  padding-bottom: 2.6rem;
-}
-
-/* Badge iets meer los van content */
-.service-card .badge {
-  top: -16px;
-}
-
-/* =========================================================
-   SECONDARY CTA LINKS – PREMIUM REFINEMENT
-========================================================= */
-
-.service-card a:not(.btn-primary) {
-  display: inline-block;
-  margin-top: 1.2rem;
-  font-size: .95rem;
-  font-weight: 500;
-  color: var(--navy);
-  opacity: .7;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: opacity .2s ease;
-}
-
-.service-card a:not(.btn-primary):hover {
-  opacity: 1;
-}
-
-/* Extra rust onder CTA-links */
-.service-card a + .note-small,
-.service-card a + p {
-  margin-top: .6rem;
+@media (max-width: 780px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
 }
 
 
