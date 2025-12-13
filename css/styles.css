@@ -414,5 +414,61 @@ img {
   padding-top: 6rem;
 }
 
+/* =========================================================
+   BRANDBOOSTER FINAL FIX
+   Doel: rust, hiërarchie, beweging
+========================================================= */
+
+/* 1. SERVICE CARDS – subtiele high-end hover */
+.service-card {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 60px rgba(0,0,0,.18);
+}
+
+/* Premium kaart iets sterker, maar niet schreeuwerig */
+.service-card.featured:hover {
+  transform: translateY(-8px);
+}
+
+/* 2. CTA ZONE – opschonen */
+.service-card-footer {
+  margin-top: auto;
+  padding-top: 1.6rem;
+  border-top: none;              /* weg met visuele ruis */
+}
+
+/* Primaire knop alleen bij Premium */
+.service-card .btn-primary {
+  margin-top: .8rem;
+}
+
+/* 3. Secundaire CTA’s (Essentieel & Full) */
+.service-card-footer a {
+  display: inline-block;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(7,19,34,.25);
+}
+
+.service-card-footer a:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* 4. Helpertekst veel rustiger */
+.service-helper {
+  font-size: .82rem;
+  color: #9a9a9a;
+  margin-top: .4rem;
+  line-height: 1.4;
+}
+
 
 
