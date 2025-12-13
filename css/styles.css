@@ -123,8 +123,8 @@ img { max-width: 100%; display: block; }
 
 .hero {
   position: relative;
-  height: 78vh;              /* vaste hero-hoogte voor ALLE pagina’s */
-  min-height: 620px;         /* voorkomt te lage hero op desktop */
+  height: 64vh;          /* premium, niet dominant */
+  min-height: 560px;     /* voorkomt te klein op grote schermen */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,6 +133,7 @@ img { max-width: 100%; display: block; }
   background-position: center;
   box-shadow: var(--shadow-hero);
 }
+
 
 
 .hero::before {
@@ -179,7 +180,19 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 780px) {
   .hero {
-    min-height: 72vh;
+    height: 60vh;
+    min-height: 460px;
+  }
+
+  .hero h1 {
+    font-size: 2.05rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
   }
 
   .hero h1 {
@@ -202,22 +215,6 @@ img { max-width: 100%; display: block; }
 /* Mobiel iets minder diep zodat het niet te laag wordt */
 @media (max-width: 780px) {
     .hero-aankoopadvies {
-        background-position: center 68%;
-    }
-}
-/* =========================================
-   HERO – AANKOOPADVIES DESKTOP HEIGHT FIX
-========================================= */
-
-.hero-aankoopadvies {
-    min-height: 82vh;              /* meer verticale ruimte */
-    background-position: center 85%;
-}
-
-/* Mobiel blijft exact zoals goedgekeurd */
-@media (max-width: 780px) {
-    .hero-aankoopadvies {
-        min-height: 72vh;
         background-position: center 68%;
     }
 }
@@ -427,6 +424,7 @@ img { max-width: 100%; display: block; }
 .hero + .services-section {
     padding-top: 5.5rem;
 }
+
 
 
 
