@@ -640,6 +640,96 @@ img {
   }
 }
 
+/* =========================================================
+   AANKOOPADVIES — SAFE BRAND BOOSTER SCOPE
+   Raakt GEEN andere pagina
+========================================================= */
+
+.aankoopadvies-page .service-grid {
+  gap: 3.2rem;
+}
+
+/* Cards structureren, niet laten zweven */
+.aankoopadvies-page .service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2.6rem 2.6rem 2.8rem;
+}
+
+/* Titel + prijs = rust */
+.aankoopadvies-page .service-card h3 {
+  margin-bottom: .4rem;
+}
+
+.aankoopadvies-page .price-tag {
+  margin-bottom: 1.6rem;
+}
+
+/* Lijsten leesbaar en strak */
+.aankoopadvies-page .service-list {
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
+}
+
+.aankoopadvies-page .service-list li {
+  margin-bottom: .75rem;
+  line-height: 1.55;
+}
+
+/* Kleine grijze toelichting (afstand / reis) */
+.aankoopadvies-page .service-note {
+  font-size: .85rem;
+  color: #9a9a9a;
+  line-height: 1.45;
+  margin-top: 1.6rem;
+}
+
+/* CTA-zone strak en opgeruimd */
+.aankoopadvies-page .service-cta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+/* Alleen Premium heeft knop */
+.aankoopadvies-page .service-card.featured .btn-primary {
+  width: 100%;
+  text-align: center;
+}
+
+/* Essentieel & Full = subtiele tekst CTA */
+.aankoopadvies-page .service-cta a {
+  font-size: .9rem;
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+.aankoopadvies-page .service-cta a:hover {
+  color: var(--gold);
+}
+
+/* Extra adem bij Full Service */
+.aankoopadvies-page .service-card.full .service-cta {
+  margin-top: 3rem;
+}
+
+/* Hover: voelbaar, niet schreeuwerig */
+.aankoopadvies-page .service-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Mobiel behoud rust */
+@media (max-width: 780px) {
+  .aankoopadvies-page .service-grid {
+    gap: 2.2rem;
+  }
+
+  .aankoopadvies-page .service-card {
+    padding: 2.2rem;
+  }
+}
+
 
 
 
