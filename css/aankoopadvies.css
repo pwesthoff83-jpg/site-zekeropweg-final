@@ -1,16 +1,11 @@
-/* ================================
-   AANKOOPADVIES – PREMIUM PAGE
-   Scoped & safe
-================================ */
-
-/* HERO */
+/* ==============================
+   HERO – AANKOOPADVIES
+============================== */
 .hero-advice {
     position: relative;
-    height: 56vh;
-    min-height: 460px;
-    background-image: url("../assets/images/hero/hero-advice.webp");
-    background-size: cover;
-    background-position: center 55%;
+    height: 68vh;
+    min-height: 520px;
+    background: url("../assets/images/hero/hero-aankoopadvies.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
 }
@@ -20,116 +15,140 @@
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(7,19,34,.18),
-        rgba(7,19,34,.45),
-        rgba(7,19,34,.65)
+        rgba(7, 19, 34, 0.25),
+        rgba(7, 19, 34, 0.55)
     );
 }
 
 .hero-advice-content {
     position: relative;
-    z-index: 2;
+    color: #fff;
     max-width: 720px;
 }
 
-.hero-advice h1 {
-    font-size: 2.8rem;
+.hero-subtitle {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.hero-advice-content h1 {
+    font-size: 3rem;
     line-height: 1.15;
-    color: #fff;
+    margin-bottom: 1rem;
 }
 
-.hero-advice p {
+.hero-advice-content p {
     font-size: 1.05rem;
-    color: rgba(255,255,255,.9);
+    opacity: 0.95;
 }
 
-/* PACKAGES */
+/* ==============================
+   PAKKETTEN
+============================== */
 .packages-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.8rem;
+    gap: 2.2rem;
     margin-top: 3rem;
 }
 
 .package-card {
     background: #fff;
-    border-radius: 18px;
-    padding: 2.6rem;
-    box-shadow: 0 10px 28px rgba(0,0,0,.08);
-    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 2.4rem 2.2rem;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 60px rgba(0,0,0,0.12);
 }
 
 .package-card h3 {
-    margin-bottom: .4rem;
+    margin-bottom: .5rem;
 }
 
 .package-card .price {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+.package-card .description {
     margin-bottom: 1.4rem;
 }
 
 .package-card ul {
-    margin-top: 1.4rem;
     padding-left: 1.2rem;
 }
 
 .package-card ul li {
-    margin-bottom: .7rem;
+    margin-bottom: .6rem;
 }
 
-/* FEATURED */
+/* Featured */
 .package-card.featured {
-    border-color: #d7b56d;
-    box-shadow: 0 22px 48px rgba(0,0,0,.22);
+    border: 1.5px solid var(--color-gold);
     position: relative;
 }
 
 .package-card .badge {
     position: absolute;
-    top: -12px;
+    top: -14px;
     left: 50%;
     transform: translateX(-50%);
-    background: #071322;
+    background: var(--color-dark);
     color: #fff;
+    padding: .35rem 1rem;
     font-size: .7rem;
-    padding: .35rem .7rem;
     border-radius: 999px;
-    letter-spacing: .08em;
 }
 
-/* HOW IT WORKS */
+/* ==============================
+   HOE WERKT HET
+============================== */
 .how-it-works {
     padding: 5rem 0;
+    margin-top: 5rem;
 }
 
 .how-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.4rem;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
 }
 
 .how-step {
     background: #fff;
     padding: 2.2rem;
     border-radius: 16px;
-    box-shadow: 0 8px 22px rgba(0,0,0,.06);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.06);
 }
 
-/* MOBILE */
+.step-number {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+    display: block;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
 @media (max-width: 900px) {
     .packages-section,
     .how-grid {
         grid-template-columns: 1fr;
     }
 
-    .hero-advice {
-        height: 52vh;
-        background-position: center 45%;
-    }
-
-    .hero-advice h1 {
-        font-size: 2.1rem;
+    .hero-advice-content h1 {
+        font-size: 2.2rem;
     }
 }
 
