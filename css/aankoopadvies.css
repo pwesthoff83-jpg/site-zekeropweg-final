@@ -62,3 +62,33 @@
   padding: 2.2rem;
   box-shadow: var(--shadow-soft);
 }
+/* =========================================
+   AANKOOPADVIES – STRUCTURE & FLOW
+========================================= */
+
+/* Hero inhoud iets lager in beeld (zonder hoogte te wijzigen) */
+.hero-aankoopadvies {
+  background-position: center 92%;
+}
+
+/* Overgang hero → pakketten (dit was gisteren goed) */
+.aankoopadvies-hero + section {
+  margin-top: 3.5rem;
+}
+
+/* Pakketten duidelijk gegroepeerd */
+.aankoopadvies-packages {
+  padding-top: 3.5rem;
+  padding-bottom: 4.5rem;
+}
+
+/* Extra rust vóór “Hoe werkt het?” */
+.aankoopadvies-how {
+  padding-top: 5rem;
+}
+
+/* Cards visueel bij elkaar houden */
+.aankoopadvies-packages .service-grid,
+.aankoopadvies-how .service-grid {
+  gap: 2.2rem;
+}
