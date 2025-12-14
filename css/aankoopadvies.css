@@ -2,27 +2,22 @@
    AANKOOPADVIES – PAGINA SPECIFIEK
 ========================================================= */
 
-/* Hero beeld uitsnede */
-.hero-aankoopadvies {
+/* Hero afbeelding & uitsnede */
+.hero-advice {
+  background-image: url("../assets/images/hero/aankoopadvies.webp");
   background-position: center 88%;
 }
 
-@media (max-width: 780px) {
-  .hero-aankoopadvies {
-    background-position: center 68%;
-  }
+/* Ruimte onder hero */
+.aankoopadvies-packages {
+  margin-top: 3rem;
 }
 
-/* Pakketten */
-
+/* Pakketten layout */
 .packages-section {
-  margin-top: 3.5rem;
-}
-
-.packages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-  gap: 2.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
   margin-top: 2.5rem;
 }
 
@@ -38,57 +33,62 @@
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: .8rem;
+}
+
+.description {
+  margin-bottom: 1.2rem;
+  color: var(--text-muted);
+}
+
+.package-card ul {
+  padding-left: 1.2rem;
+}
+
+.package-card li {
+  margin-bottom: .6rem;
+}
+
+/* Featured */
+.package-card.featured {
+  border: 1px solid rgba(215,181,109,.8);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  font-size: .75rem;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  margin-bottom: .8rem;
 }
 
 /* Hoe werkt het */
-
 .how-it-works {
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .how-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 2.2rem;
-  margin-top: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
 
 .how-step {
   background: var(--bg-card);
-  border-radius: var(--radius-card);
   padding: 2.2rem;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-soft);
 }
-/* =========================================
-   AANKOOPADVIES – STRUCTURE & FLOW
-========================================= */
 
-/* Hero inhoud iets lager in beeld (zonder hoogte te wijzigen) */
-.hero-aankoopadvies {
-  background-position: center 92%;
+.step-number {
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: .6rem;
+  display: block;
 }
 
-/* Overgang hero → pakketten (dit was gisteren goed) */
-.aankoopadvies-hero + section {
-  margin-top: 3.5rem;
-}
-
-/* Pakketten duidelijk gegroepeerd */
-.aankoopadvies-packages {
-  padding-top: 3.5rem;
-  padding-bottom: 4.5rem;
-}
-
-/* Extra rust vóór “Hoe werkt het?” */
-.aankoopadvies-how {
-  padding-top: 5rem;
-}
-
-/* Cards visueel bij elkaar houden */
-.aankoopadvies-packages .service-grid,
-.aankoopadvies-how .service-grid {
-  gap: 2.2rem;
-}
