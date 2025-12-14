@@ -2,29 +2,29 @@
    AANKOOPADVIES – PAGINA SPECIFIEK
 ========================================================= */
 
-/* Hero afbeelding & uitsnede */
-.hero-advice {
-  background-image: url("../assets/images/hero/aankoopadvies.webp");
+/* Hero afbeelding + uitlijning */
+.hero-aankoopadvies {
+  background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
   background-position: center 88%;
 }
 
-/* Ruimte onder hero */
-.aankoopadvies-packages {
-  margin-top: 3rem;
+/* ================= PAKKETTEN ================= */
+
+.aankoop-section {
+  padding: 5.5rem 0;
 }
 
-/* Pakketten layout */
-.packages-section {
+.packages-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-top: 2.5rem;
+  gap: 2.6rem;
+  margin-top: 3rem;
 }
 
 .package-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
-  padding: 2.4rem;
+  padding: 2.6rem;
   box-shadow: var(--shadow-soft);
 }
 
@@ -32,63 +32,61 @@
   margin-bottom: .4rem;
 }
 
-.price {
-  font-size: 1.6rem;
+.package-card .price {
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: .8rem;
 }
 
-.description {
-  margin-bottom: 1.2rem;
-  color: var(--text-muted);
-}
-
 .package-card ul {
+  margin-top: 1.2rem;
   padding-left: 1.2rem;
 }
 
 .package-card li {
-  margin-bottom: .6rem;
+  margin-bottom: .5rem;
 }
 
-/* Featured */
+/* Premium highlight */
 .package-card.featured {
-  border: 1px solid rgba(215,181,109,.8);
+  border: 1px solid rgba(215,181,109,.6);
+  transform: translateY(-6px);
 }
 
 .badge {
   display: inline-block;
+  margin-bottom: .8rem;
   background: var(--gold);
-  color: #000;
+  color: #111;
   font-size: .75rem;
   padding: .35rem .8rem;
   border-radius: 999px;
-  margin-bottom: .8rem;
 }
 
-/* Hoe werkt het */
-.how-it-works {
-  margin-top: 4rem;
+/* ================= HOE WERKT HET ================= */
+
+.how-section {
+  padding: 6rem 0 6.5rem;
 }
 
 .how-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.5rem;
-  margin-top: 2rem;
+  gap: 2.4rem;
+  margin-top: 3rem;
 }
 
-.how-step {
+.how-card {
   background: var(--bg-card);
-  padding: 2.2rem;
   border-radius: var(--radius-card);
+  padding: 2.4rem;
   box-shadow: var(--shadow-soft);
 }
 
-.step-number {
+.step {
+  display: inline-block;
   font-weight: 700;
   color: var(--gold);
   margin-bottom: .6rem;
-  display: block;
 }
 
