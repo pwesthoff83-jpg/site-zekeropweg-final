@@ -1,21 +1,23 @@
-/* ======================================================
-   ZEKEROPWEG – AANKOOPADVIES
-   Premium High-End Page
-====================================================== */
+/* =========================================================
+   ZEKEROPWEG – CORE STYLES (STABLE)
+   Basis voor alle pagina’s
+========================================================= */
+
+/* ========== DESIGN TOKENS ========== */
 
 :root {
   --navy: #071322;
   --gold: #d7b56d;
-  --bg-soft: #f7f6f2;
   --text-main: #151515;
-  --text-muted: #6a6a6a;
+  --text-muted: #5a5a5a;
+  --bg-soft: #f7f6f2;
+  --bg-card: #ffffff;
 
-  --radius: 18px;
-  --shadow-soft: 0 10px 28px rgba(0,0,0,.08);
-  --shadow-strong: 0 26px 60px rgba(0,0,0,.18);
+  --radius-card: 18px;
+  --shadow-soft: 0 8px 22px rgba(0,0,0,.08);
 }
 
-/* ===== BASE ===== */
+/* ========== RESET ========== */
 
 * {
   box-sizing: border-box;
@@ -23,239 +25,108 @@
   padding: 0;
 }
 
-body.page-aankoopadvies {
+body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--text-main);
-  line-height: 1.65;
   background: #fff;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 .container {
-  max-width: 1200px;
   width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ===== HERO ===== */
+/* ========== HEADER ========== */
+
+.header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.site-logo {
+  height: 48px;
+}
+
+.nav a {
+  margin-left: 22px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.nav a.active {
+  color: var(--gold);
+}
+
+/* ========== HERO (GISTER GOED) ========== */
 
 .hero {
   position: relative;
-  min-height: 55vh;
+  height: 56vh;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url("../assets/images/hero/hero-advice.webp") center / cover no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.hero-overlay {
+.hero::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(7,19,34,.55),
-    rgba(7,19,34,.85)
-  );
+  background: rgba(0,0,0,.45);
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 760px;
-  padding: 2rem;
-  color: #fff;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 1.5rem;
 }
 
-.hero-label {
-  display: inline-block;
-  margin-bottom: 1rem;
-  letter-spacing: .25em;
+.hero-subtitle {
   font-size: .75rem;
+  letter-spacing: .22em;
   color: var(--gold);
+  margin-bottom: .8rem;
 }
 
 .hero h1 {
+  color: #fff;
   font-size: 2.6rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .hero p {
+  color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-  opacity: .95;
 }
 
-/* ===== SECTIONS ===== */
+/* ========== MOBILE HERO ========== */
 
-.section {
-  padding: 6rem 0;
-}
-
-.section-soft {
-  background: var(--bg-soft);
-}
-
-.section-header {
-  max-width: 720px;
-  margin-bottom: 3.5rem;
-}
-
-.section-header h2 {
-  font-size: 1.9rem;
-  margin-bottom: .6rem;
-}
-
-.section-header p {
-  color: var(--text-muted);
-}
-
-/* ===== PACKAGES ===== */
-
-.packages {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-}
-
-.package {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 3rem 2.6rem;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-}
-
-.package h3 {
-  font-size: 1.35rem;
-  margin-bottom: .3rem;
-}
-
-.price {
-  font-size: 1.55rem;
-  font-weight: 700;
-  margin-bottom: 1.4rem;
-}
-
-.intro {
-  color: var(--text-muted);
-  margin-bottom: 1.6rem;
-}
-
-.package ul {
-  padding-left: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.package li {
-  margin-bottom: .7rem;
-}
-
-.note {
-  font-size: .82rem;
-  color: #8a8a8a;
-  margin-top: .6rem;
-}
-
-.link-cta {
-  margin-top: auto;
-  color: var(--navy);
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-/* ===== FEATURED ===== */
-
-.package.featured {
-  border: 1px solid var(--gold);
-  box-shadow: var(--shadow-strong);
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  color: #fff;
-  font-size: .7rem;
-  padding: .4rem .8rem;
-  border-radius: 999px;
-  letter-spacing: .08em;
-}
-
-.btn-primary {
-  align-self: center;
-  margin-top: auto;
-  padding: .9rem 2.2rem;
-  background: var(--navy);
-  color: #fff;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.btn-primary:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* ===== STEPS ===== */
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.6rem;
-}
-
-.step {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 2.6rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.step h3 {
-  margin-bottom: .8rem;
-}
-
-/* ===== CTA ===== */
-
-.cta-box {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 4rem 3.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
-}
-
-.cta-box h2 {
-  font-size: 1.8rem;
-  margin-bottom: .8rem;
-}
-
-.cta-box p {
-  color: var(--text-muted);
-  margin-bottom: 2.4rem;
-}
-
-/* ===== FOOTER ===== */
-
-.footer {
-  background: var(--navy);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 0;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 900px) {
-  .packages,
-  .steps {
-    grid-template-columns: 1fr;
+@media (max-width: 780px) {
+  .hero {
+    height: 50vh;
+    min-height: 420px;
   }
 
   .hero h1 {
@@ -263,21 +134,29 @@ body.page-aankoopadvies {
   }
 }
 
-/* =========================
-   HEADER LOGO – VISIBILITY FIX
-   (SAFE, NO LAYOUT IMPACT)
-========================= */
+/* ========== SECTIONS ========== */
 
-.header {
-    position: relative;
-    z-index: 50;
+section {
+  padding: 4rem 0;
 }
 
-.site-logo {
-    height: 48px;
-    width: auto;
-    display: block;
-    position: relative;
-    z-index: 60;
+.section-title {
+  font-size: 1.9rem;
+  margin-bottom: .6rem;
 }
+
+.section-intro {
+  max-width: 720px;
+  color: var(--text-muted);
+}
+
+/* ========== FOOTER ========== */
+
+.footer {
+  background: var(--navy);
+  color: #fff;
+  padding: 2.2rem 0;
+  text-align: center;
+}
+
 
