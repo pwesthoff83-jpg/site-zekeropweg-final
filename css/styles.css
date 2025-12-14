@@ -1,30 +1,21 @@
-/* =========================================================
-   ZEKEROPWEG – PREMIUM CORE CSS (V2 FINAL)
-   Stable, high-end, BrandBooster approved
-========================================================= */
-
-/* =========================
-   DESIGN TOKENS
-========================= */
+/* ======================================================
+   ZEKEROPWEG – AANKOOPADVIES
+   Premium High-End Page
+====================================================== */
 
 :root {
   --navy: #071322;
   --gold: #d7b56d;
   --bg-soft: #f7f6f2;
-  --bg-card: #ffffff;
   --text-main: #151515;
   --text-muted: #6a6a6a;
 
-  --radius-card: 18px;
-  --radius-btn: 10px;
-
-  --shadow-soft: 0 8px 22px rgba(0,0,0,.08);
-  --shadow-hero: 0 24px 60px rgba(0,0,0,.45);
+  --radius: 18px;
+  --shadow-soft: 0 10px 28px rgba(0,0,0,.08);
+  --shadow-strong: 0 26px 60px rgba(0,0,0,.18);
 }
 
-/* =========================
-   RESET & BASE
-========================= */
+/* ===== BASE ===== */
 
 * {
   box-sizing: border-box;
@@ -32,309 +23,174 @@
   padding: 0;
 }
 
-body {
+body.page-aankoopadvies {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--text-main);
-  background: #fff;
   line-height: 1.65;
-}
-
-img {
-  max-width: 100%;
-  display: block;
+  background: #fff;
 }
 
 .container {
-  width: 90%;
   max-width: 1200px;
+  width: 90%;
   margin: 0 auto;
 }
 
-/* =========================
-   HEADER / NAVIGATION
-========================= */
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--navy);
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
-}
-
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-}
-
-.site-logo {
-  height: 46px;
-}
-
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 28px;
-}
-
-.main-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: .95rem;
-  font-weight: 500;
-}
-
-.main-nav a.active,
-.main-nav a:hover {
-  color: var(--gold);
-}
-
-/* Mobile nav */
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #fff;
-}
-
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .main-nav {
-    position: fixed;
-    top: 0;
-    right: -260px;
-    width: 260px;
-    height: 100vh;
-    background: var(--navy);
-    padding: 90px 24px;
-    transition: right .3s ease;
-  }
-
-  .main-nav.open {
-    right: 0;
-  }
-
-  .main-nav ul {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-/* =========================
-   HERO SYSTEM
-========================= */
+/* ===== HERO ===== */
 
 .hero {
   position: relative;
-  height: 52vh;
-  min-height: 480px;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  box-shadow: var(--shadow-hero);
+  background: url("../assets/images/hero/hero-advice.webp") center / cover no-repeat;
 }
 
-.hero::before {
-  content: "";
+.hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    140deg,
-    rgba(6,13,23,.45),
-    rgba(6,13,23,.82)
+    135deg,
+    rgba(7,19,34,.55),
+    rgba(7,19,34,.85)
   );
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
-  max-width: 820px;
-  padding: 0 1.2rem;
+  z-index: 1;
+  max-width: 760px;
+  padding: 2rem;
+  color: #fff;
 }
 
-.hero-subtitle {
+.hero-label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  letter-spacing: .25em;
   font-size: .75rem;
-  letter-spacing: .22em;
   color: var(--gold);
-  margin-bottom: .9rem;
 }
 
 .hero h1 {
-  color: #fff;
   font-size: 2.6rem;
-  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .hero p {
-  color: rgba(255,255,255,.92);
   font-size: 1.05rem;
-  line-height: 1.6;
+  opacity: .95;
 }
 
-/* Page-specific heroes */
-.hero-home { background-image: url("../assets/images/hero/home-hero.webp"); }
-.hero-ev   { background-image: url("../assets/images/hero/ev-hero.webp"); }
-.hero-aankoopadvies { background-position: center 88%; }
+/* ===== SECTIONS ===== */
 
-@media (max-width: 780px) {
-  .hero {
-    height: 48vh;
-    min-height: 400px;
-  }
-
-  .hero h1 {
-    font-size: 2.05rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .hero-aankoopadvies {
-    background-position: center 68%;
-  }
+.section {
+  padding: 6rem 0;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.services-section {
-  padding: 5.5rem 0;
+.section-soft {
+  background: var(--bg-soft);
 }
 
-.section-title {
+.section-header {
+  max-width: 720px;
+  margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
   font-size: 1.9rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: .8rem;
+  margin-bottom: .6rem;
 }
 
-.section-title::after {
-  content: "";
-  width: 60px;
-  height: 2px;
-  background: var(--gold);
-  display: block;
-  margin-top: 8px;
-}
-
-.section-subtitle {
-  max-width: 760px;
+.section-header p {
   color: var(--text-muted);
-  margin-bottom: 2.6rem;
 }
 
-/* =========================
-   SERVICE GRID
-========================= */
+/* ===== PACKAGES ===== */
 
-.service-grid {
+.packages {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.4rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
 }
 
-/* =========================
-   SERVICE CARD (ALIGNED)
-========================= */
-
-.service-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.6rem 2.4rem 2.2rem;
+.package {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 3rem 2.6rem;
   box-shadow: var(--shadow-soft);
-  border: 1px solid #ececec;
-
   display: flex;
   flex-direction: column;
 }
 
-.service-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: .6rem;
+.package h3 {
+  font-size: 1.35rem;
+  margin-bottom: .3rem;
 }
 
-.price-tag {
-  font-size: 1.45rem;
+.price {
+  font-size: 1.55rem;
   font-weight: 700;
-  color: var(--navy);
-  margin: .4rem 0 1.4rem;
-}
-
-.service-text {
-  color: var(--text-muted);
   margin-bottom: 1.4rem;
 }
 
-.service-list {
-  padding-left: 1.2rem;
+.intro {
+  color: var(--text-muted);
   margin-bottom: 1.6rem;
 }
 
-.service-list li {
-  margin-bottom: .6rem;
+.package ul {
+  padding-left: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-/* =========================
-   CARD FOOTER (KEY FIX)
-========================= */
-
-.service-card-footer {
-  margin-top: auto;
-  padding-top: 1.6rem;
+.package li {
+  margin-bottom: .7rem;
 }
 
-.service-card-footer a {
-  font-size: .95rem;
-  color: var(--gold);
-  text-decoration: underline;
-}
-
-.service-card-footer a:hover {
-  text-decoration: none;
-}
-
-.service-helper {
-  font-size: .85rem;
-  color: var(--text-muted);
+.note {
+  font-size: .82rem;
+  color: #8a8a8a;
   margin-top: .6rem;
 }
 
-/* =========================
-   FEATURED (PREMIUM)
-========================= */
-
-.service-card.featured {
-  border-color: rgba(215,181,109,.9);
-  box-shadow: 0 22px 46px rgba(0,0,0,.22);
+.link-cta {
+  margin-top: auto;
+  color: var(--navy);
+  text-decoration: underline;
+  font-weight: 500;
 }
 
-.service-card.featured .btn-primary {
-  margin-top: .2rem;
+/* ===== FEATURED ===== */
+
+.package.featured {
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow-strong);
+  position: relative;
 }
 
-/* =========================
-   BUTTON
-========================= */
-
-.btn-primary {
-  display: inline-block;
-  padding: .9rem 1.8rem;
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--navy);
   color: #fff;
-  border-radius: var(--radius-btn);
+  font-size: .7rem;
+  padding: .4rem .8rem;
+  border-radius: 999px;
+  letter-spacing: .08em;
+}
+
+.btn-primary {
+  align-self: center;
+  margin-top: auto;
+  padding: .9rem 2.2rem;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
 }
@@ -344,600 +200,66 @@ img {
   color: var(--navy);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* ===== STEPS ===== */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.6rem;
+}
+
+.step {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2.6rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.step h3 {
+  margin-bottom: .8rem;
+}
+
+/* ===== CTA ===== */
+
+.cta-box {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 4rem 3.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.cta-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: .8rem;
+}
+
+.cta-box p {
+  color: var(--text-muted);
+  margin-bottom: 2.4rem;
+}
+
+/* ===== FOOTER ===== */
 
 .footer {
   background: var(--navy);
   color: #fff;
-  padding: 2.4rem 0;
   text-align: center;
+  padding: 2rem 0;
 }
 
-/* =========================
-   MOBILE POLISH
-========================= */
-
-@media (max-width: 780px) {
-  .service-grid {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-}
-
-.service-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.service-list {
-  margin-bottom: 2rem;
-}
-
-.service-card-footer {
-  margin-top: auto; /* DUWT CTA NAAR BENEDEN */
-  padding-top: 1.8rem;
-  border-top: 1px solid #eee;
-}
-
-.service-card-footer a {
-  color: var(--navy);
-  font-weight: 500;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(7,19,34,.25);
-}
-
-.service-card-footer a:hover {
-  border-bottom-color: var(--gold);
-  color: var(--gold);
-}
-
-.service-helper {
-  font-size: .85rem;
-  color: #8a8a8a;
-  margin-top: .6rem;
-  line-height: 1.5;
-}
-
-.service-card.featured {
-  transform: none; /* geen optische chaos */
-  border-color: var(--gold);
-}
-
-.service-card.featured .btn-primary {
-  margin-top: .4rem;
-}
-
-
-.services-section + .services-section {
-  padding-top: 6rem;
-}
-
-/* =========================================================
-   BRANDBOOSTER FINAL FIX
-   Doel: rust, hiërarchie, beweging
-========================================================= */
-
-/* 1. SERVICE CARDS – subtiele high-end hover */
-.service-card {
-  transition: transform .35s ease, box-shadow .35s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 60px rgba(0,0,0,.18);
-}
-
-/* Premium kaart iets sterker, maar niet schreeuwerig */
-.service-card.featured:hover {
-  transform: translateY(-8px);
-}
-
-/* 2. CTA ZONE – opschonen */
-.service-card-footer {
-  margin-top: auto;
-  padding-top: 1.6rem;
-  border-top: none;              /* weg met visuele ruis */
-}
-
-/* Primaire knop alleen bij Premium */
-.service-card .btn-primary {
-  margin-top: .8rem;
-}
-
-/* 3. Secundaire CTA’s (Essentieel & Full) */
-.service-card-footer a {
-  display: inline-block;
-  font-size: .95rem;
-  font-weight: 500;
-  color: var(--navy);
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px solid rgba(7,19,34,.25);
-}
-
-.service-card-footer a:hover {
-  color: var(--gold);
-  border-bottom-color: var(--gold);
-}
-
-/* 4. Helpertekst veel rustiger */
-.service-helper {
-  font-size: .82rem;
-  color: #9a9a9a;
-  margin-top: .4rem;
-  line-height: 1.4;
-}
-
-/* =========================================
-   SERVICE FOOTNOTE – SUBTIEL & LUXE
-========================================= */
-
-.service-card p:last-of-type {
-  font-size: 0.82rem;
-  color: #9a9a9a;
-  line-height: 1.45;
-  margin-top: 1.6rem;
-}
-/* =========================================
-   FULL SERVICE – EXTRA ADEM VOOR CTA
-========================================= */
-
-.service-card:last-child .service-card-footer {
-  margin-top: 2.4rem;
-}
-/* =========================================
-   CTA – PREMIUM FIX (DEFINITIEF)
-========================================= */
-
-.cta-section .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: auto;                /* GEEN volle breedte */
-  min-width: 260px;
-  padding: 0.85rem 1.9rem;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-
-  border-radius: 999px;       /* luxe pill-shape */
-  box-shadow: 0 10px 28px rgba(0,0,0,.22);
-
-  transition: 
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
-
-/* Hover = subtiel, geen circus */
-.cta-section .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 38px rgba(0,0,0,.32);
-}
-
-/* =========================================================
-   AANKOOPADVIES — BRANDBOOSTER SCOPE (SAFE)
-   Doel:
-   - rust
-   - uitlijning
-   - premium spacing
-   - GEEN impact op andere pagina’s
-========================================================= */
-
-.aankoopadvies-page .service-grid {
-  gap: 3.2rem;
-}
-
-/* ---------------------------------------------------------
-   SERVICE CARD — BASIS
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2.6rem 2.6rem 2.8rem;
-}
-
-/* Titel + prijs rustig groeperen */
-.aankoopadvies-page .service-card h3 {
-  margin-bottom: .4rem;
-}
-
-.aankoopadvies-page .price-tag {
-  margin-bottom: 1.6rem;
-}
-
-/* ---------------------------------------------------------
-   LISTS — VISUELE RUST
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-list {
-  margin-top: 1.2rem;
-  margin-bottom: 2.2rem;
-}
-
-.aankoopadvies-page .service-list li {
-  margin-bottom: .75rem;
-  line-height: 1.55;
-}
-
-/* ---------------------------------------------------------
-   KLEINE TOELICHTING (afstand / reis)
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-note {
-  font-size: .85rem;
-  color: #8a8a8a;
-  line-height: 1.45;
-  margin-top: 1.6rem;
-}
-
-/* ---------------------------------------------------------
-   CTA ZONE — OPGERUIMD & CONSISTENT
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-cta {
-  margin-top: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: .8rem;
-}
-
-/* Primaire CTA (alleen Premium heeft button) */
-.aankoopadvies-page .service-cta .btn-primary {
-  width: 100%;
-  text-align: center;
-}
-
-/* Subtiele tekst-CTA (Essentieel / Full) */
-.aankoopadvies-page .service-cta a {
-  font-size: .9rem;
-  color: var(--navy);
-  text-decoration: underline;
-}
-
-/* Extra afstand specifiek bij Full Service */
-.aankoopadvies-page .service-card.full .service-cta {
-  margin-top: 3rem;
-}
-
-/* ---------------------------------------------------------
-   FEATURED (PREMIUM) — FOCUS ZONDER DRUK
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-card.featured {
-  transform: translateY(-6px);
-}
-
-.aankoopadvies-page .service-card.featured:hover {
-  transform: translateY(-10px);
-}
-
-/* ---------------------------------------------------------
-   HOVER — SUBTIEL, GEEN GEWELD
---------------------------------------------------------- */
-
-.aankoopadvies-page .service-card:hover {
-  transform: translateY(-4px);
-}
-
-/* ---------------------------------------------------------
-   MOBIEL — BEHOUD RUST
---------------------------------------------------------- */
-
-@media (max-width: 780px) {
-  .aankoopadvies-page .service-grid {
-    gap: 2.2rem;
-  }
-
-  .aankoopadvies-page .service-card {
-    padding: 2.2rem;
-  }
-}
-
-/* =========================================================
-   AANKOOPADVIES — SAFE BRAND BOOSTER SCOPE
-   Raakt GEEN andere pagina
-========================================================= */
-
-.aankoopadvies-page .service-grid {
-  gap: 3.2rem;
-}
-
-/* Cards structureren, niet laten zweven */
-.aankoopadvies-page .service-card {
-  display: flex;
-  flex-direction: column;
-  padding: 2.6rem 2.6rem 2.8rem;
-}
-
-/* Titel + prijs = rust */
-.aankoopadvies-page .service-card h3 {
-  margin-bottom: .4rem;
-}
-
-.aankoopadvies-page .price-tag {
-  margin-bottom: 1.6rem;
-}
-
-/* Lijsten leesbaar en strak */
-.aankoopadvies-page .service-list {
-  margin-top: 1.2rem;
-  margin-bottom: 2.4rem;
-}
-
-.aankoopadvies-page .service-list li {
-  margin-bottom: .75rem;
-  line-height: 1.55;
-}
-
-/* Kleine grijze toelichting (afstand / reis) */
-.aankoopadvies-page .service-note {
-  font-size: .85rem;
-  color: #9a9a9a;
-  line-height: 1.45;
-  margin-top: 1.6rem;
-}
-
-/* CTA-zone strak en opgeruimd */
-.aankoopadvies-page .service-cta {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: .9rem;
-}
-
-/* Alleen Premium heeft knop */
-.aankoopadvies-page .service-card.featured .btn-primary {
-  width: 100%;
-  text-align: center;
-}
-
-/* Essentieel & Full = subtiele tekst CTA */
-.aankoopadvies-page .service-cta a {
-  font-size: .9rem;
-  color: var(--navy);
-  text-decoration: underline;
-}
-
-.aankoopadvies-page .service-cta a:hover {
-  color: var(--gold);
-}
-
-/* Extra adem bij Full Service */
-.aankoopadvies-page .service-card.full .service-cta {
-  margin-top: 3rem;
-}
-
-/* Hover: voelbaar, niet schreeuwerig */
-.aankoopadvies-page .service-card:hover {
-  transform: translateY(-4px);
-}
-
-/* Mobiel behoud rust */
-@media (max-width: 780px) {
-  .aankoopadvies-page .service-grid {
-    gap: 2.2rem;
-  }
-
-  .aankoopadvies-page .service-card {
-    padding: 2.2rem;
-  }
-}
-
-/* =========================================================
-   AANKOOPADVIES — BRANDBOOSTER HIGH END SCOPE
-   Doel:
-   - rust
-   - perfecte uitlijning
-   - premium hiërarchie
-   - ZERO impact op andere pagina’s
-========================================================= */
-
-.page-aankoopadvies .services-section {
-  padding: 5.5rem 0;
-}
-
-/* =========================
-   GRID
-========================= */
-
-.page-aankoopadvies .service-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  align-items: stretch;
-}
-
-/* =========================
-   CARD BASIS
-========================= */
-
-.page-aankoopadvies .service-card {
-  display: flex;
-  flex-direction: column;
-  padding: 2.8rem 2.6rem 3rem;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 10px 28px rgba(0,0,0,.08);
-  border: 1px solid #ececec;
-  position: relative;
-}
-
-/* =========================
-   TITEL & PRIJS
-========================= */
-
-.page-aankoopadvies .service-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: .4rem;
-}
-
-.page-aankoopadvies .price-tag {
-  font-size: 1.55rem;
-  font-weight: 700;
-  margin-bottom: 1.6rem;
-}
-
-/* =========================
-   TEKST & LIJST
-========================= */
-
-.page-aankoopadvies .service-text {
-  color: #6a6a6a;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-}
-
-.page-aankoopadvies .service-list {
-  margin: 1.4rem 0 2.4rem;
-  padding-left: 1.2rem;
-}
-
-.page-aankoopadvies .service-list li {
-  margin-bottom: .75rem;
-  line-height: 1.55;
-}
-
-/* =========================
-   KLEINE NOTITIES (LICHT & RUSTIG)
-========================= */
-
-.page-aankoopadvies .note-small {
-  font-size: .82rem;
-  color: #9a9a9a;
-  line-height: 1.45;
-  margin-top: .6rem;
-}
-
-/* =========================
-   CTA ZONE — OPGERUIMD
-========================= */
-
-.page-aankoopadvies .service-card > a {
-  margin-top: auto;
-}
-
-/* Secundaire CTA’s (Essentieel & Full) */
-.page-aankoopadvies .btn-secondary--dark {
-  font-size: .95rem;
-  font-weight: 500;
-  background: none;
-  padding: 0;
-  color: #071322;
-  text-decoration: underline;
-}
-
-/* =========================
-   PREMIUM KAART
-========================= */
-
-.page-aankoopadvies .service-card.featured {
-  border-color: #d7b56d;
-  box-shadow: 0 22px 48px rgba(0,0,0,.22);
-}
-
-.page-aankoopadvies .service-card.featured .btn-primary {
-  margin-top: 1.2rem;
-}
-
-/* Badge */
-.page-aankoopadvies .service-card.featured .badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #071322;
-  color: #fff;
-  font-size: .7rem;
-  letter-spacing: .08em;
-  padding: .35rem .7rem;
-  border-radius: 999px;
-}
-
-/* =========================
-   FULL SERVICE — EXTRA ADEM
-========================= */
-
-.page-aankoopadvies .service-card:last-child .note-small:first-of-type {
-  margin-bottom: 1.8rem;
-}
-
-/* =========================
-   HOVER — SUBTIEL & LUXE
-========================= */
-
-.page-aankoopadvies .service-card {
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.page-aankoopadvies .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 60px rgba(0,0,0,.18);
-}
-
-/* =========================
-   MOBIEL
-========================= */
+/* ===== RESPONSIVE ===== */
 
 @media (max-width: 900px) {
-  .page-aankoopadvies .service-grid {
+  .packages,
+  .steps {
     grid-template-columns: 1fr;
-    gap: 2.2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
   }
 }
-
-/* =========================================================
-   CTA ONDERAAN – TYPOGRAFIE & KNOP (SAFE FIX)
-   Doel: groter, rustiger, premium
-   Wijzigt NIKS elders
-========================================================= */
-
-.services-section > .service-card {
-  padding: 3.2rem 3.4rem;
-}
-
-/* Titel iets sterker */
-.services-section > .service-card .service-title,
-.services-section > .service-card h3 {
-  font-size: 1.55rem;
-  margin-bottom: 0.8rem;
-}
-
-/* Subtekst duidelijker leesbaar */
-.services-section > .service-card .service-text {
-  font-size: 1rem;              /* was te klein */
-  color: var(--text-muted);
-  max-width: 720px;
-  margin: 0 auto 2rem;
-  line-height: 1.6;
-}
-
-/* Knop: NIET volle breedte, wel premium */
-.services-section > .service-card .btn-primary {
-  width: auto;                  /* key fix */
-  min-width: 260px;
-  padding: 0.9rem 2rem;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  border-radius: 999px;         /* luxe pill */
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Hover subtiel, geen circus */
-.services-section > .service-card .btn-primary:hover {
-  transform: translateY(-2px);
-}
-
-
-
 
