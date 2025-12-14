@@ -892,6 +892,52 @@ img {
   }
 }
 
+/* =========================================================
+   CTA ONDERAAN – TYPOGRAFIE & KNOP (SAFE FIX)
+   Doel: groter, rustiger, premium
+   Wijzigt NIKS elders
+========================================================= */
+
+.services-section > .service-card {
+  padding: 3.2rem 3.4rem;
+}
+
+/* Titel iets sterker */
+.services-section > .service-card .service-title,
+.services-section > .service-card h3 {
+  font-size: 1.55rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Subtekst duidelijker leesbaar */
+.services-section > .service-card .service-text {
+  font-size: 1rem;              /* was te klein */
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* Knop: NIET volle breedte, wel premium */
+.services-section > .service-card .btn-primary {
+  width: auto;                  /* key fix */
+  min-width: 260px;
+  padding: 0.9rem 2rem;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  border-radius: 999px;         /* luxe pill */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover subtiel, geen circus */
+.services-section > .service-card .btn-primary:hover {
+  transform: translateY(-2px);
+}
+
 
 
 
