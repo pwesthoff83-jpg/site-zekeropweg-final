@@ -1,218 +1,135 @@
-/* =========================================================
-   AANKOOPADVIES — PREMIUM PAGE CSS
-   Scope: .page-aankoopadvies
-   Doel: rust, hiërarchie, high-end polish
-========================================================= */
+/* ================================
+   AANKOOPADVIES – PREMIUM PAGE
+   Scoped & safe
+================================ */
 
-.page-aankoopadvies {
-  background: #ffffff;
+/* HERO */
+.hero-advice {
+    position: relative;
+    height: 56vh;
+    min-height: 460px;
+    background-image: url("../assets/images/hero/hero-advice.webp");
+    background-size: cover;
+    background-position: center 55%;
+    display: flex;
+    align-items: center;
 }
 
-/* =========================
-   HERO / INTRO
-========================= */
-
-.page-aankoopadvies .page-hero {
-  padding: 5.5rem 0 4rem;
-  text-align: center;
+.hero-advice-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(7,19,34,.18),
+        rgba(7,19,34,.45),
+        rgba(7,19,34,.65)
+    );
 }
 
-.page-aankoopadvies .page-hero h1 {
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #071322;
+.hero-advice-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
 }
 
-.page-aankoopadvies .page-hero p {
-  font-size: 1.05rem;
-  color: #6a6a6a;
-  max-width: 720px;
-  margin: 0 auto;
-  line-height: 1.65;
+.hero-advice h1 {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    color: #fff;
 }
 
-/* =========================
-   SECTION HEADERS
-========================= */
-
-.page-aankoopadvies .section {
-  padding: 5.5rem 0;
+.hero-advice p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.9);
 }
 
-.page-aankoopadvies .section h2 {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #071322;
-  margin-bottom: 0.6rem;
+/* PACKAGES */
+.packages-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.8rem;
+    margin-top: 3rem;
 }
 
-.page-aankoopadvies .section h2::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: #d7b56d;
-  margin-top: 0.6rem;
+.package-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 2.6rem;
+    box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    border: 1px solid #ececec;
 }
 
-.page-aankoopadvies .section-intro {
-  max-width: 760px;
-  color: #6a6a6a;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+.package-card h3 {
+    margin-bottom: .4rem;
 }
 
-/* =========================
-   PAKKETTEN GRID
-========================= */
-
-.page-aankoopadvies .pakket-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  align-items: stretch;
+.package-card .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.4rem;
 }
 
-/* =========================
-   PAKKET CARD
-========================= */
-
-.page-aankoopadvies .pakket {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 2.8rem 2.6rem 3rem;
-  border: 1px solid #ececec;
-  box-shadow: 0 10px 28px rgba(0,0,0,.08);
-
-  display: flex;
-  flex-direction: column;
-
-  transition: transform .3s ease, box-shadow .3s ease;
+.package-card ul {
+    margin-top: 1.4rem;
+    padding-left: 1.2rem;
 }
 
-.page-aankoopadvies .pakket:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 60px rgba(0,0,0,.18);
+.package-card ul li {
+    margin-bottom: .7rem;
 }
 
-.page-aankoopadvies .pakket h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.4rem;
-  color: #071322;
+/* FEATURED */
+.package-card.featured {
+    border-color: #d7b56d;
+    box-shadow: 0 22px 48px rgba(0,0,0,.22);
+    position: relative;
 }
 
-.page-aankoopadvies .pakket .prijs {
-  font-size: 1.55rem;
-  font-weight: 700;
-  margin-bottom: 1.6rem;
-  color: #071322;
+.package-card .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #071322;
+    color: #fff;
+    font-size: .7rem;
+    padding: .35rem .7rem;
+    border-radius: 999px;
+    letter-spacing: .08em;
 }
 
-.page-aankoopadvies .pakket .omschrijving {
-  color: #6a6a6a;
-  line-height: 1.6;
-  margin-bottom: 1.4rem;
+/* HOW IT WORKS */
+.how-it-works {
+    padding: 5rem 0;
 }
 
-.page-aankoopadvies .pakket ul {
-  padding-left: 1.2rem;
-  margin-bottom: 2.4rem;
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
 }
 
-.page-aankoopadvies .pakket li {
-  margin-bottom: 0.7rem;
-  line-height: 1.55;
+.how-step {
+    background: #fff;
+    padding: 2.2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,.06);
 }
 
-/* =========================
-   KLEINE NOTITIES
-========================= */
-
-.page-aankoopadvies .pakket .note {
-  font-size: 0.82rem;
-  color: #9a9a9a;
-  line-height: 1.45;
-  margin-top: 1.4rem;
-}
-
-/* =========================
-   CTA ZONE
-========================= */
-
-.page-aankoopadvies .pakket .cta {
-  margin-top: auto;
-}
-
-/* Primaire knop alleen Premium */
-.page-aankoopadvies .pakket.premium .btn-primary {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  min-width: 240px;
-  padding: 0.9rem 2rem;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-
-  background: #071322;
-  color: #ffffff;
-  border-radius: 999px;
-
-  transition: background .25s ease, transform .25s ease;
-}
-
-.page-aankoopadvies .pakket.premium .btn-primary:hover {
-  background: #d7b56d;
-  color: #071322;
-  transform: translateY(-2px);
-}
-
-/* Secundaire CTA’s */
-.page-aankoopadvies .pakket .link-cta {
-  font-size: 0.95rem;
-  color: #071322;
-  text-decoration: underline;
-}
-
-/* =========================
-   PREMIUM VISUEEL ACCENT
-========================= */
-
-.page-aankoopadvies .pakket.premium {
-  border-color: #d7b56d;
-  box-shadow: 0 22px 48px rgba(0,0,0,.22);
-  position: relative;
-}
-
-.page-aankoopadvies .pakket.premium::before {
-  content: "Meest gekozen";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #071322;
-  color: #ffffff;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-}
-
-/* =========================
-   MOBIEL
-========================= */
-
+/* MOBILE */
 @media (max-width: 900px) {
-  .page-aankoopadvies .pakket-grid {
-    grid-template-columns: 1fr;
-    gap: 2.2rem;
-  }
+    .packages-section,
+    .how-grid {
+        grid-template-columns: 1fr;
+    }
 
-  .page-aankoopadvies .page-hero h1 {
-    font-size: 2.1rem;
-  }
+    .hero-advice {
+        height: 52vh;
+        background-position: center 45%;
+    }
+
+    .hero-advice h1 {
+        font-size: 2.1rem;
+    }
 }
 
