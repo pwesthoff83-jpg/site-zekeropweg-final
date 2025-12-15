@@ -261,3 +261,19 @@
   z-index: 2;
   color: #fff;
 }
+/* ======================================
+   PAKKETTEN GRID
+====================================== */
+
+.packages-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 960px) {
+  .packages-section {
+    grid-template-columns: 1fr;
+  }
+}
