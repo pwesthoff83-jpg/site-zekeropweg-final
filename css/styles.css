@@ -106,6 +106,64 @@ img {
 /* =========================================================
    HERO – BASIS (ALLE PAGINA’S)
 ========================================================= */
+/* ========== HERO – HOMEPAGE ========== */
+
+.hero-home {
+  position: relative;
+  height: 70vh;
+  min-height: 520px;
+  background-image: url("../assets/images/hero/home-hero-desktop.webp");
+  background-size: cover;
+  background-position: center 60%;
+  display: flex;
+  align-items: center;
+}
+
+/* Donkere overlay */
+.hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Hero content */
+.hero-home .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.hero-home h1 {
+  color: #fff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-home p {
+  color: rgba(255,255,255,.9);
+  font-size: 1.05rem;
+  margin-bottom: 1.8rem;
+}
+
+/* ========== HERO – MOBIEL ========== */
+
+@media (max-width: 768px) {
+  .hero-home {
+    height: 60vh;
+    min-height: 420px;
+    background-image: url("../assets/images/hero/home-hero-mobile.webp");
+    background-position: center 75%;
+  }
+
+  .hero-home h1 {
+    font-size: 2.1rem;
+  }
+}
 
 .hero {
   position: relative;
@@ -284,6 +342,7 @@ section {
   padding: 2.2rem 0;
   text-align: center;
 }
+
 
 
 
