@@ -73,6 +73,56 @@ img {
 .nav a.active {
   color: var(--gold);
 }
+/* ========== MOBILE MENU FIX (ESSENTIEEL) ========== */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 900px) {
+
+  .nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 2000;
+    padding: 2rem;
+    display: none;
+  }
+
+  .mobile-menu a {
+    display: block;
+    margin-bottom: 1.2rem;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1.1rem;
+  }
+
+  .close-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+}
 
 /* ========== HERO (GISTER GOED) ========== */
 
@@ -180,5 +230,6 @@ section {
 .section-bg-soft {
   background: var(--bg-soft);
 }
+
 
 
