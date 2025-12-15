@@ -63,17 +63,23 @@ img {
   height: 48px;
 }
 
-.nav a {
-  margin-left: 22px;
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+.main-nav a {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 500;
 }
 
-.nav a.active {
+.main-nav a.active {
   color: var(--gold);
 }
-/* ========== MOBILE MENU FIX (ESSENTIEEL) ========== */
+
+/* ========== MOBILE MENU ========== */
 
 .menu-toggle {
   display: none;
@@ -83,66 +89,23 @@ img {
   cursor: pointer;
 }
 
-.mobile-menu {
+.menu-overlay {
   display: none;
 }
 
-/* Mobile breakpoint */
 @media (max-width: 900px) {
-
-  .nav {
+  .main-nav {
     display: none;
   }
 
   .menu-toggle {
     display: block;
   }
-
-  .mobile-menu {
-    position: fixed;
-    inset: 0;
-    background: #fff;
-    z-index: 2000;
-    padding: 2rem;
-    display: none;
-  }
-
-  .mobile-menu a {
-    display: block;
-    margin-bottom: 1.2rem;
-    text-decoration: none;
-    color: var(--text-main);
-    font-size: 1.1rem;
-  }
-
-  .close-menu {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    cursor: pointer;
-  }
 }
 
-/* ========== HERO (GISTER GOED) ========== */
-.hero-home {
-  position: relative;
-  height: 70vh;
-  min-height: 520px;
-  background-image: url("../assets/images/hero/home-hero.webp");
-  background-size: cover;
-  background-position: center 60%;
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .hero-home {
-    height: 60vh;
-    min-height: 420px;
-    background-position: center 75%;
-  }
-}
+/* =========================================================
+   HERO – BASIS (ALLE PAGINA’S)
+========================================================= */
 
 .hero {
   position: relative;
@@ -170,13 +133,6 @@ img {
   padding: 0 1.5rem;
 }
 
-.hero-subtitle {
-  font-size: .75rem;
-  letter-spacing: .22em;
-  color: var(--gold);
-  margin-bottom: .8rem;
-}
-
 .hero h1 {
   color: #fff;
   font-size: 2.6rem;
@@ -189,59 +145,43 @@ img {
   font-size: 1.05rem;
 }
 
-/* ========== MOBILE HERO ========== */
+/* =========================================================
+   HERO – HOMEPAGE
+========================================================= */
 
-@media (max-width: 780px) {
-  .hero {
-    height: 50vh;
+.hero-home {
+  height: 70vh;
+  min-height: 520px;
+  background-image: url("../assets/images/hero/home-hero.webp");
+  background-position: center 60%;
+}
+
+@media (max-width: 768px) {
+  .hero-home {
+    height: 60vh;
     min-height: 420px;
+    background-position: center 75%;
   }
 
   .hero h1 {
     font-size: 2.1rem;
   }
 }
-/* ========== HERO – AANKOOPADVIES ========== */
+
+/* =========================================================
+   HERO – AANKOOPADVIES
+========================================================= */
 
 .hero-advice {
-  position: relative;
   height: 56vh;
   min-height: 480px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-image: url("../assets/images/hero/aankoopadvies-hero.jpg");
-  background-size: cover;
+  background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
   background-position: center;
 }
 
-.hero-advice-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.hero-advice-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 1.5rem;
-}
-
-.hero-advice-content h1 {
-  color: #fff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.hero-advice-content p {
-  color: rgba(255,255,255,.9);
-  font-size: 1.05rem;
-}
-
-/* ========== SECTIONS ========== */
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 section {
   padding: 4rem 0;
@@ -250,27 +190,6 @@ section {
 .section-title {
   font-size: 1.9rem;
   margin-bottom: .6rem;
-}
-
-.section-intro {
-  max-width: 720px;
-  color: var(--text-muted);
-}
-
-/* ========== FOOTER ========== */
-
-.footer {
-  background: var(--navy);
-  color: #fff;
-  padding: 2.2rem 0;
-  text-align: center;
-}
-
-/* =========================================
-   GOLD ACCENT LINE – SECTION TITLES
-========================================= */
-
-.section-title {
   position: relative;
   padding-bottom: 1.2rem;
 }
@@ -284,11 +203,87 @@ section {
   margin-top: 0.6rem;
 }
 
+.section-subtitle,
+.section-intro {
+  max-width: 720px;
+  color: var(--text-muted);
+}
+
+/* Zachte achtergrond */
 .section-bg-soft {
   background: var(--bg-soft);
 }
 
+/* =========================================================
+   CARDS / GRIDS
+========================================================= */
 
+.service-grid,
+.usp-premium,
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.service-card,
+.usp-item,
+.testimonial-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.service-title {
+  margin-bottom: .6rem;
+}
+
+.service-text {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   BUTTONS & LINKS
+========================================================= */
+
+.btn-primary {
+  display: inline-block;
+  padding: .75rem 1.8rem;
+  background: var(--navy);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  display: inline-block;
+  margin-left: 1rem;
+  font-size: .95rem;
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  background: var(--navy);
+  color: #fff;
+  padding: 2.2rem 0;
+  text-align: center;
+}
 
 
 
