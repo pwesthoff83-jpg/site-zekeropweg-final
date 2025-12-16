@@ -1,23 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* =========================================================
-   ZEKEROPWEG – CORE STYLES (STABLE)
+   ZEKEROPWEG – CORE STYLES (STABLE • PREMIUM)
 ========================================================= */
 
 /* ========== DESIGN TOKENS ========== */
 :root {
   --navy: #071322;
+  --navy-deep: #0a1b32;
   --gold: #d7b56d;
+
   --text-main: #151515;
   --text-muted: #5a5a5a;
+
   --bg-soft: #f7f6f2;
   --bg-card: #ffffff;
 
   --radius-card: 18px;
   --shadow-soft: 0 8px 22px rgba(0,0,0,.08);
-}
-body {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* ========== RESET ========== */
@@ -27,10 +27,11 @@ body {
   padding: 0;
 }
 
+/* ========== BASE ========== */
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   color: var(--text-main);
-  background: #fff;
+  background: #ffffff;
   line-height: 1.6;
 }
 
@@ -45,11 +46,13 @@ img {
   margin: 0 auto;
 }
 
-/* ========== HEADER ========== */
+/* =========================================================
+   HEADER (PREMIUM • STILLE AUTORITEIT)
+========================================================= */
 .header {
   position: sticky;
   top: 0;
-  background: #fff;
+  background: #ffffff;
   z-index: 1000;
 }
 
@@ -57,14 +60,22 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 0;
+  padding: 22px 0;
 }
 
-.site-logo {
-  height: 48px;
+/* === PREMIUM TEKSTLOGO === */
+.brand-logo {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #0f172a !important;
+  text-decoration: none !important;
+  line-height: 1;
+  display: inline-block;
 }
 
-/* === DESKTOP NAV (PRIMARY) === */
+/* === DESKTOP NAV === */
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -77,16 +88,17 @@ img {
   font-weight: 500;
 }
 
+/* actieve link */
 .main-nav a.active {
   color: var(--gold);
 }
 
-/* === VERBERG ALTERNATIEVE NAV === */
-.nav {
-  display: none;
+/* logo nooit als gewone link behandelen */
+a:not(.brand-logo) {
+  text-decoration: none;
 }
 
-/* === HAMBURGER: ALTIJD UIT OP DESKTOP === */
+/* === HAMBURGER (DESKTOP UIT) === */
 .menu-toggle {
   display: none;
   background: none;
@@ -95,7 +107,7 @@ img {
   cursor: pointer;
 }
 
-/* ========== MOBILE ONLY ========== */
+/* ========== MOBILE HEADER ========== */
 @media (max-width: 900px) {
   .main-nav {
     display: none;
@@ -103,6 +115,11 @@ img {
 
   .menu-toggle {
     display: block;
+  }
+
+  .brand-logo {
+    font-size: 1.25rem;
+    letter-spacing: 0.035em;
   }
 }
 
@@ -137,9 +154,10 @@ img {
 }
 
 .hero-home h1 {
-  color: #fff;
+  color: #ffffff;
   font-size: 2.6rem;
   font-weight: 700;
+  line-height: 1.25;
   margin-bottom: 1.4rem;
 }
 
@@ -149,11 +167,43 @@ img {
   margin-bottom: 2.2rem;
 }
 
+/* CTA buttons in hero */
 .hero-actions {
   display: flex;
   justify-content: center;
   gap: 1.2rem;
   flex-wrap: wrap;
+}
+
+/* =========================================================
+   BUTTONS (PRE brings)
+========================================================= */
+.btn-primary {
+  padding: 0.75rem 1.8rem;
+  background: var(--navy);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.18s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--navy-deep);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.6);
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.8);
 }
 
 /* =========================================================
@@ -165,187 +215,9 @@ section {
 
 .section-title {
   font-size: 1.9rem;
-  margin-bottom: .6rem;
+  margin-bottom: 1.4rem;
   padding-bottom: 1.2rem;
   position: relative;
-}
-
-/* ✅ GOUDEN LIJNTJE – HERSTELD */
-.section-title::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 2px;
-  background-color: var(--gold);
-  margin-top: .6rem;
-}
-
-.section-subtitle,
-.section-intro {
-  max-width: 720px;
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   CARDS / GRIDS
-========================================================= */
-.service-grid,
-.usp-premium,
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.usp-item,
-.testimonial-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.4rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.usp-trust {
-  max-width: 720px;
-  margin: 4rem auto 0;
-  padding-left: 1.5rem;
-  text-align: center;
-
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-
-  position: relative;
-}
-
-/* subtiele verticale gouden lijn */
-.usp-trust::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -2rem;
-  transform: translateX(-50%);
-
-  width: 1px;
-  height: 32px;
-  background-color: var(--gold);
-  opacity: 0.8;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-.btn-primary {
-  padding: .75rem 1.8rem;
-  background: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-.btn-secondary {
-  padding: .75rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.6);
-  color: #fff;
-  text-decoration: none;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.footer {
-  background: var(--navy);
-  color: #fff;
-  padding: 2.2rem 0;
-  text-align: center;
-}
-
-/* =========================================================
-   FIXES – DEFINITIEF (SPACING • GOUDEN LIJN • MENU)
-========================================================= */
-
-/* ----------- 1. TEKST SPACING (opgelost) ----------- */
-
-.section-subtitle,
-.section-intro,
-.usp-trust,
-.service-text,
-.testimonial-text,
-p {
-  line-height: 1.85;
-}
-
-h1 {
-  line-height: 1.25;
-}
-
-h2 {
-  line-height: 1.3;
-}
-
-h3 {
-  line-height: 1.35;
-  margin-bottom: 0.8rem;
-}
-
-.usp-item p,
-.service-card p,
-.testimonial-card p {
-  margin-top: 0.6rem;
-}
-
-/* ----------- 2. GOUDEN LIJNTJE (100% hersteld) ----------- */
-
-.section-title {
-  position: relative;
-  padding-bottom: 1.2rem;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 2px;
-  background-color: var(--gold);
-  margin-top: 0.6rem;
-}
-
-/* ----------- 3. HAMBURGER MENU – DESKTOP UIT ----------- */
-
-.menu-toggle {
-  display: none !important;
-}
-
-/* ----------- 4. DESKTOP NAV – ALLEEN MAIN-NAV ----------- */
-
-.nav,
-.mobile-menu {
-  display: none !important;
-}
-
-/* ----------- 5. MOBILE GEDRAG (ALLEEN < 900px) ----------- */
-
-@media (max-width: 900px) {
-  .main-nav {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block !important;
-  }
-}
-
-/* =========================================================
-   FIX 01 – GOUDEN LIJNTJE (ALTIJD ZICHTBAAR)
-========================================================= */
-
-.section-title {
-  display: block;
-  margin-bottom: 1.6rem;
 }
 
 .section-title::after {
@@ -357,78 +229,61 @@ h3 {
   margin-top: 0.75rem;
 }
 
-/* Forceer zichtbaarheid binnen alle secties */
-.services-section .section-title::after,
-.container .section-title::after {
-  opacity: 1;
-}
-
-
-/* =========================================================
-   FIX 02 – VERTICAAL RITME (TEKST STAAT TE DICHT OP ELKAAR)
-========================================================= */
-
-/* Algemene paragrafen */
-p {
-  margin-bottom: 1.2rem;
-}
-
-/* Subtitels onder titels */
 .section-subtitle,
 .section-intro {
-  margin-top: 0.5rem;
-  margin-bottom: 2.2rem;
-  line-height: 1.7;
+  max-width: 720px;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  margin-bottom: 2.4rem;
+  line-height: 1.65;
 }
 
-/* USP kaarten */
-.usp-item h3 {
+/* =========================================================
+   GRIDS & CARDS
+========================================================= */
+.service-grid,
+.usp-premium,
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.usp-item,
+.service-card,
+.testimonial-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.usp-item h3,
+.service-card h3 {
   margin-bottom: 0.8rem;
 }
 
-.usp-item p {
+.usp-item p,
+.service-card p,
+.testimonial-card p {
   line-height: 1.7;
+  margin-top: 0.6rem;
 }
 
-/* Trust tekst onder USP blok */
-.usp-trust {
-  margin-top: 2.8rem;
-  line-height: 1.7;
-}
-
-/* Testimonials */
-.testimonial-text {
-  line-height: 1.7;
-  margin-bottom: 1.4rem;
-}
-
-.testimonial-name {
-  margin-top: 0.8rem;
-}
-
-/* CTA sectie */
-.service-card h3 {
-  margin-bottom: 1rem;
-}
-
-.service-card p {
-  margin-bottom: 1.6rem;
-}
 /* =========================================================
-   USP TRUST – VERTICAAL GOUDEN LIJNTJE + SPACING
+   USP TRUST BLOK
 ========================================================= */
-
 .usp-trust {
   position: relative;
   max-width: 720px;
-  margin-top: 4rem;          /* afstand tot kaarten */
-  padding-left: 1.6rem;     /* ruimte voor lijntje */
+  margin: 3.5rem auto 0;
+  padding-left: 1.6rem;
   font-size: 0.95rem;
-  line-height: 1.75;        /* 👈 dit lost “tekst te dicht” op */
+  line-height: 1.75;
   color: var(--text-muted);
 }
 
-/* verticaal gouden lijntje */
 .usp-trust::before {
   content: "";
   position: absolute;
@@ -440,85 +295,13 @@ p {
 }
 
 /* =========================================================
-   MICRO-RITME & WIT-NUANCE – PREMIUM FINAL TUNING
-   (veilig: alleen spacing & achtergrondnuance)
+   FOOTER
 ========================================================= */
-
-/* ---------- TITELS → TEKST (meer ademruimte) ---------- */
-.section-title {
-  margin-bottom: 1.4rem;
+.footer {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 2.2rem 0;
+  text-align: center;
 }
-
-.section-subtitle,
-.section-intro {
-  margin-top: 0.4rem;
-  margin-bottom: 2.4rem;
-  line-height: 1.65;
-}
-
-/* ---------- USP TRUST ZIN (reflectiemoment) ---------- */
-.usp-trust {
-  margin-top: 3.5rem;
-  line-height: 1.75;
-}
-
-/* ---------- CTA SECTIE (bewuste eindstap) ---------- */
-.services-section:last-of-type {
-  padding-top: 5rem;
-}
-
-/* ---------- WIT-NUANCE (onzichtbare diepte) ---------- */
-/* Grote leesblokken net warmer dan puur wit */
-.services-section.container {
-  background-color: #faf9f6;
-}
-
-/* Cards blijven écht wit voor contrast */
-.usp-item,
-.service-card,
-.testimonial-card {
-  background-color: #ffffff;
-}
-/* ===== PREMIUM BUTTON MICRO-FADE ===== */
-
-.btn-primary,
-.btn-secondary {
-  transition: background-color 0.18s ease, 
-              color 0.18s ease, 
-              border-color 0.18s ease;
-}
-
-/* Primary */
-.btn-primary:hover {
-  background-color: #0a1b32; /* mini verdiept navy */
-}
-
-/* Secondary */
-.btn-secondary:hover {
-  background-color: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.8);
-}
-
-/* ===== TEXT LINKS – MICRO FEEDBACK ===== */
-
-.text-link {
-  transition: color 0.15s ease;
-}
-
-.text-link:hover {
-  color: #0a1b32; /* iets dieper navy */
-}
-
-/* ===== CTA BUTTON – BOTTOM ===== */
-
-.services-section .btn-primary:hover {
-  background-color: #0a1b32;
-}
-
-
-
-
-
-
 
 
