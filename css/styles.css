@@ -388,6 +388,31 @@ p {
 .service-card p {
   margin-bottom: 1.6rem;
 }
+/* =========================================================
+   USP TRUST – VERTICAAL GOUDEN LIJNTJE + SPACING
+========================================================= */
+
+.usp-trust {
+  position: relative;
+  max-width: 720px;
+  margin-top: 4rem;          /* afstand tot kaarten */
+  padding-left: 1.6rem;     /* ruimte voor lijntje */
+  font-size: 0.95rem;
+  line-height: 1.75;        /* 👈 dit lost “tekst te dicht” op */
+  color: var(--text-muted);
+}
+
+/* verticaal gouden lijntje */
+.usp-trust::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 2px;
+  height: calc(100% - 0.3em);
+  background-color: var(--gold);
+}
+
 
 
 
