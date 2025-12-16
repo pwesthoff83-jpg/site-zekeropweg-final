@@ -203,10 +203,31 @@ section {
 
 .usp-trust {
   max-width: 720px;
-  margin-top: 3rem;
-  font-size: .95rem;
+  margin: 4rem auto 0;
+  padding-left: 1.5rem;
+  text-align: center;
+
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--text-muted);
+
+  position: relative;
 }
+
+/* subtiele verticale gouden lijn */
+.usp-trust::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -2rem;
+  transform: translateX(-50%);
+
+  width: 1px;
+  height: 32px;
+  background-color: var(--gold);
+  opacity: 0.8;
+}
+
 
 /* =========================================================
    BUTTONS
@@ -412,6 +433,7 @@ p {
   height: calc(100% - 0.3em);
   background-color: var(--gold);
 }
+
 
 
 
