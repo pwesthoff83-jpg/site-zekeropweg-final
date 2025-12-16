@@ -1,6 +1,6 @@
 /* =========================================================
    ZEKEROPWEG – CORE STYLES (STABLE)
-   Basis voor alle pagina’s
+   Definitieve basis voor alle pagina’s
 ========================================================= */
 
 /* ========== DESIGN TOKENS ========== */
@@ -104,9 +104,8 @@ img {
 }
 
 /* =========================================================
-   HERO – BASIS (ALLE PAGINA’S)
+   HERO – HOMEPAGE
 ========================================================= */
-/* ========== HERO – HOMEPAGE ========== */
 
 .hero-home {
   position: relative;
@@ -119,15 +118,13 @@ img {
   align-items: center;
 }
 
-/* Donkere overlay */
 .hero-home::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0,0,0,.45);
 }
 
-/* Hero content */
 .hero-home .hero-content {
   position: relative;
   z-index: 2;
@@ -141,22 +138,30 @@ img {
   color: #fff;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
 }
 
 .hero-home p {
   color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2.2rem;
 }
-/* HERO CTA – secundaire knop zichtbaar maken */
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* Hero knoppen */
+
 .hero-home .btn-secondary {
   color: #fff;
   border: 1px solid rgba(255,255,255,.6);
   padding: .75rem 1.6rem;
   border-radius: 999px;
   text-decoration: none;
-  margin-left: 1rem;
   transition: all .25s ease;
 }
 
@@ -179,59 +184,6 @@ img {
   }
 }
 
-.hero {
-  position: relative;
-  height: 56vh;
-  min-height: 480px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.45);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 1.5rem;
-}
-/* HERO spacing fine-tuning */
-.hero-home h1 {
-  margin-bottom: 1.4rem;
-}
-
-.hero-home p {
-  margin-bottom: 2.2rem;
-}
-
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-}
-
-.hero h1 {
-  color: #fff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  color: rgba(255,255,255,.9);
-  font-size: 1.05rem;
-}
-
 /* =========================================================
    HERO – AANKOOPADVIES
 ========================================================= */
@@ -240,6 +192,7 @@ img {
   height: 56vh;
   min-height: 480px;
   background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
+  background-size: cover;
   background-position: center;
 }
 
@@ -256,7 +209,6 @@ section {
   margin-bottom: .6rem;
   position: relative;
   padding-bottom: 1.2rem;
-   .section-title {
   display: block;
 }
 
@@ -267,9 +219,7 @@ section {
   height: 2px;
   background-color: var(--gold);
   margin-top: 0.6rem;
-  margin-left: 0; /* force links */
 }
-
 
 .section-subtitle,
 .section-intro {
@@ -278,6 +228,7 @@ section {
 }
 
 /* Zachte achtergrond */
+
 .section-bg-soft {
   background: var(--bg-soft);
 }
@@ -295,11 +246,8 @@ section {
   margin-top: 2.5rem;
 }
 
-.service-card .btn-primary {
-  margin-top: 1.5rem;
-}
-
 .usp-item,
+.service-card,
 .testimonial-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
@@ -312,6 +260,14 @@ section {
 }
 
 .service-text {
+  color: var(--text-muted);
+}
+
+.usp-trust {
+  max-width: 720px;
+  margin: 3rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--text-muted);
 }
 
@@ -332,7 +288,6 @@ section {
 
 .btn-secondary {
   display: inline-block;
-  margin-left: 1rem;
   font-size: .95rem;
   color: var(--navy);
   text-decoration: underline;
@@ -355,30 +310,6 @@ section {
   padding: 2.2rem 0;
   text-align: center;
 }
-
-.hero-eyebrow {
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.context-proof {
-  margin-top: 2.5rem;
-  max-width: 720px;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-.usp-trust {
-  max-width: 720px;
-  margin: 3rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-
 
 
 
