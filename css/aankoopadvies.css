@@ -1,21 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* =========================================================
    AANKOOPADVIES – DEFINITIEVE PAGINA STYLES
-   Schoon, enkelvoudig en foutloos
+   Scroll veilig • normale document flow • premium
 ========================================================= */
 
-/* ======================================
+/* =========================================================
    HERO – AANKOOPADVIES
-====================================== */
+========================================================= */
 
 .hero-advice {
   position: relative;
-  height: 56vh;
-  min-height: 480px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: 100%;
+  min-height: 520px;
+
+  /* GEEN height of flex → voorkomt scroll blokkade */
+  display: block;
+
+  padding: 6rem 0 5rem;
 
   background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
   background-size: cover;
@@ -32,37 +34,41 @@
   position: relative;
   z-index: 2;
   max-width: 820px;
+  margin: 0 auto;
   padding: 0 1.5rem;
+  text-align: center;
 }
 
 .hero-advice-content h1 {
-  color: #fff;
+  color: #ffffff;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
+
+.hero-advice .hero-lead {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  color: rgba(255,255,255,0.95);
 }
 
 .hero-advice-content p {
   color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-}
-.hero-advice .hero-lead {
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-top: 0.6rem;
-  margin-bottom: 0.8rem;
-  color: rgba(255,255,255,0.95);
+  margin-bottom: 0;
 }
 
-/* ======================================
+/* =========================================================
    PAKKETTEN
-====================================== */
+========================================================= */
 
 .packages-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
-  margin-top: 2.8rem;
+  margin-top: 3rem;
 }
 
 @media (max-width: 960px) {
@@ -110,11 +116,11 @@
 
 .package-card.featured {
   border: 1px solid var(--gold);
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .package-card.featured:hover {
-  transform: scale(1.06) translateY(-6px);
+  transform: scale(1.05) translateY(-6px);
   box-shadow: 0 18px 40px rgba(0,0,0,.16);
 }
 
@@ -128,44 +134,23 @@
   border-radius: 999px;
 }
 
-/* ======================================
+/* =========================================================
    CTA KNOPPEN
-====================================== */
+========================================================= */
 
 .package-card a {
   margin-top: 1.8rem;
   display: inline-block;
 }
 
-/* Primair (Premium) */
-
-.btn-primary {
-  padding: 0.75rem 1.8rem;
-  background: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-/* Secundair (Essentieel & Full) */
-
-.btn-secondary {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--navy);
-  text-decoration: underline;
-}
-
-/* ======================================
-   REISKOSTEN & AFSTAND – MINI ADVIES
-====================================== */
+/* =========================================================
+   REISKOSTEN & AFSTAND
+========================================================= */
 
 .travel-info {
   background: var(--bg-soft);
   padding: 4.5rem 0;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .travel-info-inner {
@@ -189,9 +174,9 @@
   line-height: 1.7;
 }
 
-/* ======================================
+/* =========================================================
    HOE WERKT HET
-====================================== */
+========================================================= */
 
 .how-it-works {
   padding: 5.5rem 0;
@@ -216,19 +201,4 @@
   font-weight: 700;
   color: var(--gold);
   margin-bottom: 0.6rem;
-}
-/* =========================================================
-   FIX – SCROLL BLOKKADE AANKOOPADVIES
-   (veilig, pagina-specifiek)
-========================================================= */
-
-body.fade-in {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: auto;
-}
-
-.hero-advice {
-  min-height: 56vh;
-  height: auto;
 }
