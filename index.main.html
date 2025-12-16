@@ -10,51 +10,47 @@
 
 <body class="fade-in">
 
-<!-- HEADER -->
 <header class="header">
-    <div class="container header-container">
-        <a href="home.html" class="logo-wrap">
-         <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
-   
-        </a>
+  <div class="container header-container">
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- DESKTOP NAV -->
     <nav class="main-nav" id="mainNav">
-    <ul>
-        <li><a href="home.html">Home</a></li>
-
+      <ul>
+        <li><a href="index.main.html">Home</a></li>
         <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-
-        <li class="nav-parent">
-            <a href="ev-accucheck.html" class="nav-main-link">EV AccuCheck</a>
-            <a href="ev-accucheck-zakelijk.html" class="nav-sub-link">Zakelijk</a>
-        </li>
-
-        <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-
+        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+        <li><a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a></li>
+        <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
         <li><a href="over.html">Over</a></li>
-
         <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
-   
-<!-- MOBILE MENU OVERLAY -->
-<div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" onclick="closeMenu()">×</button>
+      </ul>
+    </nav>
 
-  <nav class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="diensten.html">Diensten</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</div>
+  </div>
 
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="closeMenu()">×</button>
+    <nav class="mobile-nav">
+      <a href="index.main.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html">EV AccuCheck</a>
+      <a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a>
+      <a href="bezwaarservice.html">Bezwaarservice</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <!-- OVERLAY (VERPLICHT) -->
+  <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
 </header>
+
 
 <section class="hero hero-home">
   
@@ -188,6 +184,7 @@
 <script src="scripts/scripts.js"></script>
 </body>
 </html>
+
 
 
 
