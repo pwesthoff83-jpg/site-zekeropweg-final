@@ -59,6 +59,7 @@ img {
   height: 48px;
 }
 
+/* === DESKTOP NAV (PRIMARY) === */
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -75,7 +76,34 @@ img {
   color: var(--gold);
 }
 
-/* ========== HERO – HOMEPAGE ========== */
+/* === VERBERG ALTERNATIEVE NAV === */
+.nav {
+  display: none;
+}
+
+/* === HAMBURGER: ALTIJD UIT OP DESKTOP === */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* ========== MOBILE ONLY ========== */
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* =========================================================
+   HERO – HOMEPAGE
+========================================================= */
 .hero-home {
   position: relative;
   height: 70vh;
@@ -107,133 +135,108 @@ img {
   color: #fff;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.4rem;
 }
 
 .hero-home p {
   color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.2rem;
 }
 
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 1.4rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
 
-.hero-home .btn-secondary {
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.6);
-  padding: .75rem 1.6rem;
-  border-radius: 999px;
-  text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .hero-home {
-    height: 60vh;
-    min-height: 420px;
-    background-image: url("../assets/images/hero/home-hero-mobile.webp");
-    background-position: center 75%;
-  }
-
-  .hero-home h1 {
-    font-size: 2.1rem;
-  }
-}
-
-/* ========== SECTIONS ========== */
+/* =========================================================
+   SECTIONS
+========================================================= */
 section {
-  padding: 4.5rem 0;
+  padding: 4rem 0;
 }
 
-/* ✅ SECTION TITLE MET GOUDEN LIJN */
 .section-title {
   font-size: 1.9rem;
-  position: relative;
+  margin-bottom: .6rem;
   padding-bottom: 1.2rem;
-  margin-bottom: 1.2rem;
+  position: relative;
 }
 
+/* ✅ GOUDEN LIJNTJE – HERSTELD */
 .section-title::after {
   content: "";
   display: block;
   width: 56px;
   height: 2px;
   background-color: var(--gold);
-  margin-top: 0.6rem;
+  margin-top: .6rem;
 }
 
-/* Extra ademruimte onder intro */
 .section-subtitle,
 .section-intro {
   max-width: 720px;
   color: var(--text-muted);
-  margin-bottom: 2.4rem;
 }
 
-/* ========== USP / CARDS ========== */
-.usp-premium,
+/* =========================================================
+   CARDS / GRIDS
+========================================================= */
 .service-grid,
+.usp-premium,
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.2rem;
+  gap: 2rem;
+  margin-top: 2.5rem;
 }
 
 .usp-item,
-.service-card,
 .testimonial-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
-  padding: 2.6rem;
+  padding: 2.4rem;
   box-shadow: var(--shadow-soft);
 }
 
-/* Vertrouwenstekst onder USP */
 .usp-trust {
   max-width: 720px;
-  margin: 3rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  margin-top: 3rem;
+  font-size: .95rem;
   color: var(--text-muted);
 }
 
-/* ========== BUTTONS ========== */
+/* =========================================================
+   BUTTONS
+========================================================= */
 .btn-primary {
-  display: inline-block;
-  padding: .85rem 2rem;
+  padding: .75rem 1.8rem;
   background: var(--navy);
   color: #fff;
   text-decoration: none;
   border-radius: 999px;
-  font-size: .95rem;
   font-weight: 600;
 }
 
 .btn-secondary {
-  font-size: .95rem;
-  color: var(--navy);
-  text-decoration: underline;
+  padding: .75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.6);
+  color: #fff;
+  text-decoration: none;
 }
 
-/* ========== CTA SECTIE SPACING ========== */
-.service-card p {
-  margin-bottom: 2.2rem;
-}
-
-/* ========== FOOTER ========== */
+/* =========================================================
+   FOOTER
+========================================================= */
 .footer {
   background: var(--navy);
   color: #fff;
-  padding: 2.4rem 0;
+  padding: 2.2rem 0;
   text-align: center;
 }
-
-
-
 
 
 
