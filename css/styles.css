@@ -1,10 +1,8 @@
 /* =========================================================
    ZEKEROPWEG – CORE STYLES (STABLE)
-   Definitieve basis voor alle pagina’s
 ========================================================= */
 
 /* ========== DESIGN TOKENS ========== */
-
 :root {
   --navy: #071322;
   --gold: #d7b56d;
@@ -18,7 +16,6 @@
 }
 
 /* ========== RESET ========== */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,7 +41,6 @@ img {
 }
 
 /* ========== HEADER ========== */
-
 .header {
   position: sticky;
   top: 0;
@@ -79,34 +75,7 @@ img {
   color: var(--gold);
 }
 
-/* ========== MOBILE MENU ========== */
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.menu-overlay {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .main-nav {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* =========================================================
-   HERO – HOMEPAGE
-========================================================= */
-
+/* ========== HERO – HOMEPAGE ========== */
 .hero-home {
   position: relative;
   height: 70vh;
@@ -138,23 +107,21 @@ img {
   color: #fff;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
 }
 
 .hero-home p {
   color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 2.4rem;
 }
 
 .hero-actions {
   display: flex;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1.4rem;
   flex-wrap: wrap;
 }
-
-/* Hero knoppen */
 
 .hero-home .btn-secondary {
   color: #fff;
@@ -162,14 +129,7 @@ img {
   padding: .75rem 1.6rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: all .25s ease;
 }
-
-.hero-home .btn-secondary:hover {
-  background: rgba(255,255,255,.15);
-}
-
-/* ========== HERO – MOBIEL ========== */
 
 @media (max-width: 768px) {
   .hero-home {
@@ -184,32 +144,17 @@ img {
   }
 }
 
-/* =========================================================
-   HERO – AANKOOPADVIES
-========================================================= */
-
-.hero-advice {
-  height: 56vh;
-  min-height: 480px;
-  background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
-  background-size: cover;
-  background-position: center;
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
+/* ========== SECTIONS ========== */
 section {
-  padding: 4rem 0;
+  padding: 4.5rem 0;
 }
 
+/* ✅ SECTION TITLE MET GOUDEN LIJN */
 .section-title {
   font-size: 1.9rem;
-  margin-bottom: .6rem;
   position: relative;
   padding-bottom: 1.2rem;
-  display: block;
+  margin-bottom: 1.2rem;
 }
 
 .section-title::after {
@@ -221,29 +166,21 @@ section {
   margin-top: 0.6rem;
 }
 
+/* Extra ademruimte onder intro */
 .section-subtitle,
 .section-intro {
   max-width: 720px;
   color: var(--text-muted);
+  margin-bottom: 2.4rem;
 }
 
-/* Zachte achtergrond */
-
-.section-bg-soft {
-  background: var(--bg-soft);
-}
-
-/* =========================================================
-   CARDS / GRIDS
-========================================================= */
-
-.service-grid,
+/* ========== USP / CARDS ========== */
 .usp-premium,
+.service-grid,
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
+  gap: 2.2rem;
 }
 
 .usp-item,
@@ -251,33 +188,23 @@ section {
 .testimonial-card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
-  padding: 2.4rem;
+  padding: 2.6rem;
   box-shadow: var(--shadow-soft);
 }
 
-.service-title {
-  margin-bottom: .6rem;
-}
-
-.service-text {
-  color: var(--text-muted);
-}
-
+/* Vertrouwenstekst onder USP */
 .usp-trust {
   max-width: 720px;
   margin: 3rem 0 0;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-muted);
 }
 
-/* =========================================================
-   BUTTONS & LINKS
-========================================================= */
-
+/* ========== BUTTONS ========== */
 .btn-primary {
   display: inline-block;
-  padding: .75rem 1.8rem;
+  padding: .85rem 2rem;
   background: var(--navy);
   color: #fff;
   text-decoration: none;
@@ -287,32 +214,23 @@ section {
 }
 
 .btn-secondary {
-  display: inline-block;
   font-size: .95rem;
   color: var(--navy);
   text-decoration: underline;
 }
 
-.text-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--navy);
-  text-decoration: underline;
+/* ========== CTA SECTIE SPACING ========== */
+.service-card p {
+  margin-bottom: 2.2rem;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
+/* ========== FOOTER ========== */
 .footer {
   background: var(--navy);
   color: #fff;
-  padding: 2.2rem 0;
+  padding: 2.4rem 0;
   text-align: center;
 }
-
-
-
 
 
 
