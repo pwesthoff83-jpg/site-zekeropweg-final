@@ -192,5 +192,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+/* =========================================================
+   MOBILE MENU – STABIEL (ZekerOpWeg)
+========================================================= */
+
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (!menu) return;
+
+  menu.classList.add("open");
+  document.body.classList.add("menu-open");
+}
+
+function closeMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (!menu) return;
+
+  menu.classList.remove("open");
+  document.body.classList.remove("menu-open");
+}
+/* =========================================================
+   MOBILE MENU – STABIEL (ZekerOpWeg)
+========================================================= */
+
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (!menu) return;
+
+  menu.classList.add("open");
+  document.body.classList.add("menu-open");
+}
+
+function closeMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (!menu) return;
+
+  menu.classList.remove("open");
+  document.body.classList.remove("menu-open");
+}
+
 
 
