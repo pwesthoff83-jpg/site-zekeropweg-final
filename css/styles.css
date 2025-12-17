@@ -284,6 +284,54 @@ section {
 }
 
 
+/* ===============================
+   FIX CLOSE BUTTON – AANKOOPADVIES
+   =============================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 2000;
+  transition: right 0.3s ease;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+/* Sluitknop ALTIJD zichtbaar */
+.close-menu {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 2.2rem;
+  background: none;
+  border: none;
+  color: #071322; /* navy */
+  cursor: pointer;
+  z-index: 2100;
+}
+
+/* Overlay */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1500;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 
 
