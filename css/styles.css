@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* =========================================================
-   ZEKEROPWEG – CORE STYLES (STABLE • PREMIUM)
-========================================================= */
-
-/* ========== DESIGN TOKENS ========== */
 :root {
   --navy: #071322;
   --navy-deep: #0a1b32;
@@ -20,14 +15,12 @@
   --shadow-soft: 0 8px 22px rgba(0,0,0,.08);
 }
 
-/* ========== RESET ========== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ========== BASE ========== */
 body {
   font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   color: var(--text-main);
@@ -50,26 +43,25 @@ img {
   margin: 0 auto;
 }
 
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 .header {
   position: sticky;
   top: 0;
   background: #ffffff;
-  z-index: 1000;
+  z-index: 1200;
   box-shadow: 0 1px 0 rgba(0,0,0,0.06);
 }
 
 .header-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔑 dit ontbrak */
+  justify-content: space-between;
+  gap: 1.2rem;
   padding: 22px 0;
 }
 
-
-/* Logo */
 .brand-logo {
   font-size: 1.4rem;
   font-weight: 600;
@@ -77,13 +69,18 @@ img {
   color: #0f172a;
   text-decoration: none;
   line-height: 1;
+  white-space: nowrap;
 }
 
-/* Desktop nav */
+.main-nav {
+  margin-left: auto;
+}
+
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
+  align-items: center;
 }
 
 .main-nav a {
@@ -97,7 +94,6 @@ img {
   color: var(--gold);
 }
 
-/* Hamburger */
 .menu-toggle {
   margin-left: auto;
   background: none;
@@ -106,15 +102,18 @@ img {
   color: var(--navy);
   cursor: pointer;
   display: none;
+  line-height: 1;
 }
 
-.menu-toggle:focus {
+.menu-toggle:focus,
+.menu-toggle:active {
   outline: none;
+  box-shadow: none;
 }
 
-/* =========================================================
-   HERO (homepage)
-========================================================= */
+/* =========================
+   HERO
+========================= */
 .hero-home {
   position: relative;
   height: 70vh;
@@ -147,6 +146,7 @@ img {
   font-size: 2.6rem;
   font-weight: 700;
   margin-bottom: 1.4rem;
+  line-height: 1.25;
 }
 
 .hero-home p {
@@ -159,11 +159,12 @@ img {
   display: flex;
   justify-content: center;
   gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
-/* =========================================================
+/* =========================
    BUTTONS
-========================================================= */
+========================= */
 .btn-primary {
   padding: 0.75rem 1.8rem;
   background: var(--navy);
@@ -171,6 +172,7 @@ img {
   text-decoration: none;
   border-radius: 999px;
   font-weight: 600;
+  transition: background-color 0.18s ease;
 }
 
 .btn-primary:hover {
@@ -183,13 +185,23 @@ img {
   border: 1px solid rgba(255,255,255,.6);
   color: #fff;
   text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
-/* =========================================================
+.btn-secondary:hover {
+  background-color: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.8);
+}
+
+/* =========================
    SECTIONS
-========================================================= */
+========================= */
 .services-section {
   padding: 4.5rem 0;
+}
+
+.section-bg-soft {
+  background: var(--bg-soft);
 }
 
 .section-title {
@@ -215,10 +227,79 @@ img {
   line-height: 1.65;
 }
 
+/* =========================
+   GRIDS & CARDS
+========================= */
+.usp-premium,
+.service-grid,
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
 
-/* =========================================================
+.usp-item,
+.service-card,
+.testimonial-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.usp-item h3,
+.service-card h3 {
+  margin-bottom: 0.8rem;
+}
+
+.usp-item p,
+.service-card p,
+.testimonial-card p {
+  line-height: 1.7;
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.text-link:hover {
+  color: var(--gold);
+}
+
+/* =========================
+   USP TRUST BLOK
+========================= */
+.usp-trust {
+  position: relative;
+  max-width: 720px;
+  margin: 3.2rem auto 0;
+  padding-left: 1.6rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.usp-trust::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 3px;
+  height: calc(100% - 0.3em);
+  background-color: var(--gold);
+  border-radius: 2px;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 .footer {
   background: var(--navy);
   color: #ffffff;
@@ -226,10 +307,9 @@ img {
   text-align: center;
 }
 
-/* =========================================================
-   MOBILE MENU – DEFINITIEF (SLIDE-IN)
-========================================================= */
-
+/* =========================
+   MOBILE MENU (SLIDE IN)
+========================= */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -251,27 +331,29 @@ img {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+  margin-top: 1.6rem;
 }
 
 .mobile-nav a {
   color: var(--text-main);
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.mobile-nav a:hover {
+.mobile-nav a:hover,
+.mobile-nav a.active {
   color: var(--gold);
 }
 
 .close-menu {
   position: absolute;
-  top: 22px;
-  right: 22px;
+  top: 18px;
+  right: 18px;
   background: none;
   border: none;
   font-size: 2.2rem;
-  color: var(--gold);   /* 🔑 zichtbaar op witte achtergrond */
+  color: var(--navy);
   cursor: pointer;
   z-index: 2100;
 }
@@ -280,10 +362,11 @@ img {
 .menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.42);
   opacity: 0;
   pointer-events: none;
   z-index: 1500;
+  transition: opacity 0.2s ease;
 }
 
 .menu-overlay.active {
@@ -291,9 +374,9 @@ img {
   pointer-events: auto;
 }
 
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 @media (max-width: 900px) {
   .main-nav {
     display: none;
@@ -305,64 +388,9 @@ img {
 
   .brand-logo {
     font-size: 1.25rem;
+    letter-spacing: 0.035em;
   }
 }
-
-
-/* ===============================
-   FIX CLOSE BUTTON – AANKOOPADVIES
-   =============================== */
-
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 320px;
-  height: 100vh;
-  background: #ffffff;
-  z-index: 2000;
-  transition: right 0.3s ease;
-}
-
-.mobile-menu.open {
-  right: 0;
-}
-
-/* Sluitknop ALTIJD zichtbaar */
-.close-menu {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  font-size: 2.2rem;
-  background: none;
-  border: none;
-  color: #071322; /* navy */
-  cursor: pointer;
-  z-index: 2100;
-}
-
-/* Overlay */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1500;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-
-
-
-
-
 
 
 
