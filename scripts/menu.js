@@ -6,7 +6,7 @@ function toggleMenu() {
 
   menu.classList.add("open");
   overlay.classList.add("active");
-  document.body.style.overflow = "hidden";
+  document.body.classList.add("menu-open");
 }
 
 function closeMenu() {
@@ -17,6 +17,5 @@ function closeMenu() {
 
   menu.classList.remove("open");
   overlay.classList.remove("active");
-  document.body.style.overflow = "";
+  document.body.classList.remove("menu-open");
 }
-
