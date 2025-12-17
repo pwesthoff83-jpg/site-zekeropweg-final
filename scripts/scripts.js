@@ -1,72 +1,38 @@
 /* ============================================================
-   ZEKEROPWEG – Intake logica
+   ZEKEROPWEG – Core interacties
+   Mobile menu • stabiel • gedeeld
 ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const dienstSelect = document.getElementById("dienst");
-  const blokAankoop = document.getElementById("blokAankoopadvies");
-  const blokAccu = document.getElementById("blokAccu");
-  const blokAccuZakelijk = document.getElementById("blokAccuZakelijk");
-  const blokBezwaar = document.getElementById("blokBezwaar");
-  const comboOptie = document.getElementById("comboOptie");
-  const pakketAankoop = document.getElementById("pakketAankoop");
+  /* =========================
+     MOBILE MENU
+  ========================= */
 
-  function updateDienstBlokken() {
-    if (!dienstSelect) return;
-    const v = dienstSelect.value;
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuOverlay = document.getElementById("menuOverlay");
+  const closeBtn = document.querySelector(".close-menu");
 
-    [blokAankoop, blokAccu, blokAccuZakelijk, blokBezwaar].forEach(b => {
-      if (b) b.classList.remove("actief");
-    });
-
-    if (v === "aankoopadvies") blokAankoop?.classList.add("actief");
-    if (v === "evaccu") blokAccu?.classList.add("actief");
-    if (v === "evaccu-zakelijk") blokAccuZakelijk?.classList.add("actief");
-    if (v === "bezwaar") blokBezwaar?.classList.add("actief");
+  function openMenu() {
+    if (!mobileMenu || !menuOverlay) return;
+    mobileMenu.classList.add("open");
+    menuOverlay.classList.add("active");
+    document.body.classList.add("menu-open");
   }
 
-  if (dienstSelect) {
-    dienstSelect.addEventListener("change", updateDienstBlokken);
-    updateDienstBlokken();
+  function closeMenu() {
+    if (!mobileMenu || !menuOverlay) return;
+    mobileMenu.classList.remove("open");
+    menuOverlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
   }
 
-  function updateComboOptie() {
-    if (!pakketAankoop || !comboOptie) return;
-    comboOptie.style.display =
-      (pakketAankoop.value === "premium" || pakketAankoop.value === "full")
-        ? "block"
-        : "none";
-  }
+  menuToggle?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  menuOverlay?.addEventListener("click", closeMenu);
 
-  pakketAankoop?.addEventListener("change", updateComboOptie);
 });
 
-
-/* =========================================================
-   MOBILE MENU – DEFINITIEF
-========================================================= */
-
-function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.add("open");
-  overlay.classList.add("active");
-  document.body.classList.add("menu-open");
-}
-
-function closeMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.remove("open");
-  overlay.classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
 
 
