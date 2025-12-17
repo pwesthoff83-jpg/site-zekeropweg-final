@@ -2,23 +2,16 @@
 
 /* =========================================================
    AANKOOPADVIES – DEFINITIEVE PAGINA STYLES
-   Scroll veilig • normale document flow • premium
 ========================================================= */
 
-/* =========================================================
-   HERO – AANKOOPADVIES
-========================================================= */
+/* HERO */
 .hero-advice {
   position: relative;
-}
-
-
   padding: 6rem 0 5rem;
   background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
   background-size: cover;
   background-position: center bottom;
 }
-
 
 .hero-advice-overlay {
   position: absolute;
@@ -35,17 +28,24 @@
   text-align: center;
 }
 
+.hero-eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
 .hero-advice-content h1 {
   color: #ffffff;
   font-size: 2.6rem;
   font-weight: 700;
   margin-bottom: 0.8rem;
-  line-height: 1.25;
 }
 
-.hero-advice .hero-lead {
+.hero-lead {
   font-size: 1.2rem;
-  font-weight: 400;
   margin-bottom: 0.8rem;
   color: rgba(255,255,255,0.95);
 }
@@ -53,13 +53,9 @@
 .hero-advice-content p {
   color: rgba(255,255,255,.9);
   font-size: 1.05rem;
-  margin-bottom: 0;
 }
 
-/* =========================================================
-   PAKKETTEN
-========================================================= */
-
+/* PAKKETTEN */
 .packages-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -86,30 +82,6 @@
   box-shadow: 0 14px 34px rgba(0,0,0,.12);
 }
 
-.package-card h3 {
-  margin-bottom: 0.4rem;
-}
-
-.package-card .price {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-.package-card .description {
-  margin-bottom: 1.2rem;
-}
-
-.package-card ul {
-  padding-left: 1.2rem;
-}
-
-.package-card li {
-  margin-bottom: 0.5rem;
-}
-
-/* Premium highlight */
-
 .package-card.featured {
   border: 1px solid var(--gold);
   transform: scale(1.03);
@@ -117,7 +89,6 @@
 
 .package-card.featured:hover {
   transform: scale(1.05) translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.16);
 }
 
 .badge {
@@ -130,94 +101,9 @@
   border-radius: 999px;
 }
 
-/* =========================================================
-   CTA KNOPPEN
-========================================================= */
-
 .package-card a {
   margin-top: 1.8rem;
   display: inline-block;
-}
-
-/* =========================================================
-   REISKOSTEN & AFSTAND
-========================================================= */
-
-.travel-info {
-  background: var(--bg-soft);
-  padding: 4.5rem 0;
-  margin-top: 4rem;
-}
-
-.travel-info-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding-left: 1.75rem;
-  border-left: 3px solid var(--gold);
-}
-
-.travel-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.travel-info p {
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-
-/* =========================================================
-   HOE WERKT HET
-========================================================= */
-
-.how-it-works {
-  padding: 5.5rem 0;
-}
-
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.4rem;
-  margin-top: 3rem;
-}
-
-.how-step {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.4rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.step-number {
-  display: inline-block;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 0.6rem;
-}
-/* =========================================================
-   FIX – HEADER KLIKBaar BOVEN HERO
-========================================================= */
-
-.header {
-  position: relative;
-  z-index: 10000;
-}
-
-.hero-advice-overlay {
-  pointer-events: none;
-}
-
-.hero-eyebrow {
-  color: var(--gold);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  display: block;
-  margin-bottom: 0.6rem;
 }
 
 .package-card .btn-secondary {
