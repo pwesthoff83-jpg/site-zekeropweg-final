@@ -1,218 +1,195 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EV AccuCheck | ZekerOpWeg</title>
-    <meta name="description" content="Onafhankelijke EV AccuCheck met objectieve accudiagnose en helder adviesrapport. Inzicht in accustatus bij aankoop, verkoop of einde garantie.">
-    <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV AccuCheck | ZekerOpWeg</title>
+  <meta name="description" content="Onafhankelijke EV AccuCheck met objectieve accudiagnose en helder adviesrapport. Inzicht in accustatus bij aankoop, verkoop of einde garantie.">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="fade-in">
+<body class="fade-in ev-context">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header class="header">
-    <div class="container header-container">
-        <a href="home.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
-        </a>
+  <div class="container header-container">
+    <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
-      <nav class="main-nav" id="mainNav">
-    <ul>
-        <li><a href="home.html">Home</a></li>
-
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.main.html">Home</a></li>
         <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-
-        <li class="nav-parent">
-            <a href="ev-accucheck.html" class="nav-main-link">EV AccuCheck</a>
-            <a href="ev-accucheck-zakelijk.html" class="nav-sub-link">Zakelijk</a>
+        <li><a href="ev-accucheck.html" class="active">EV AccuCheck</a></li>
+        <li class="nav-ev-zakelijk">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a>
         </li>
-
-        <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-
+        <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
         <li><a href="over.html">Over</a></li>
-
         <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
- 
+      </ul>
+    </nav>
+  </div>
 
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" aria-label="Menu sluiten">×</button>
+    <nav class="mobile-nav">
+      <a href="index.main.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html" class="active">EV AccuCheck</a>
+      <a href="ev-accucheck-zakelijk.html" class="nav-ev-zakelijk">EV AccuCheck Zakelijk</a>
+      <a href="bezwaarservice.html">Bezwaarservice</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
 </header>
 
-<!-- HERO -->
-<section class="hero hero-ev">
-    <div class="hero-overlay"></div>
+<!-- ================= HERO ================= -->
+<section class="hero-advice" style="
+  background-image:url('assets/images/hero/ev-accucheck-hero.webp');
+  background-size:cover;
+  background-position:center;
+">
+  <div class="hero-advice-overlay"></div>
 
-    <div class="hero-content">
-        <span class="hero-subtitle">EV AccuCheck</span>
-
-        <h1>Inzicht in de accustatus van uw elektrische auto</h1>
-
-        <p class="hero-intro">
-            Objectief inzicht in de actuele staat van de aandrijfaccu.
-            Geen keuring, maar deskundige duiding die rust en duidelijkheid geeft
-            bij aankoop, verkoop of het einde van de garantieperiode.
-        </p>
-    </div>
-</section>
-
-
-<!-- INTRO -->
-<section class="services-section container">
-    <h2 class="section-title">Wat is de EV AccuCheck</h2>
-    <p class="section-subtitle">
-        Elektrisch rijden vraagt om vertrouwen in techniek en transparantie.
-        De EV AccuCheck helpt u begrijpen wat de gemeten accustatus betekent in de praktijk,
-        zonder technische ruis of onnodige aannames.
+  <div class="container hero-advice-content">
+    <span class="hero-eyebrow">EV AccuCheck</span>
+    <h1>Inzicht in de accustatus van uw elektrische auto</h1>
+    <p class="hero-lead">
+      Objectief inzicht in de actuele staat van de aandrijfaccu.
     </p>
-
-    <div class="usp-premium">
-        <div class="usp-item">
-            <h3>Onafhankelijk advies</h3>
-            <p>
-                ZekerOpWeg heeft geen belang bij verkoop, reparatie of onderhoud.
-                U ontvangt een eerlijk en helder advies, volledig afgestemd op uw situatie.
-            </p>
-        </div>
-
-        <div class="usp-item">
-            <h3>Heldere uitleg</h3>
-            <p>
-                Geen technische rapporten zonder context.
-                U krijgt begrijpelijke toelichting op de meting en wat deze betekent voor dagelijks gebruik.
-            </p>
-        </div>
-
-        <div class="usp-item">
-            <h3>Rust in uw beslissing</h3>
-            <p>
-                Of het nu gaat om aankoop, verkoop of einde garantie,
-                de EV AccuCheck geeft overzicht en helpt weloverwogen keuzes te maken.
-            </p>
-        </div>
-    </div>
+    <p>
+      Geen keuring, maar deskundige duiding die rust en duidelijkheid geeft
+      bij aankoop, verkoop of het einde van de garantieperiode.
+    </p>
+  </div>
 </section>
 
-<!-- WAT ONTVANGT U -->
+<!-- ================= INTRO ================= -->
+<section class="services-section container">
+  <h2 class="section-title">Wat is de EV AccuCheck</h2>
+  <p class="section-subtitle">
+    Elektrisch rijden vraagt om vertrouwen in techniek en transparantie.
+    De EV AccuCheck helpt u begrijpen wat de gemeten accustatus betekent in de praktijk,
+    zonder technische ruis of onnodige aannames.
+  </p>
+
+  <div class="usp-premium">
+    <div class="usp-item">
+      <h3>Onafhankelijk advies</h3>
+      <p>
+        ZekerOpWeg heeft geen belang bij verkoop, reparatie of onderhoud.
+        U ontvangt een eerlijk en helder advies, volledig afgestemd op uw situatie.
+      </p>
+    </div>
+
+    <div class="usp-item">
+      <h3>Heldere uitleg</h3>
+      <p>
+        Geen technische rapporten zonder context.
+        U krijgt begrijpelijke toelichting op de meting en wat deze betekent voor dagelijks gebruik.
+      </p>
+    </div>
+
+    <div class="usp-item">
+      <h3>Rust in uw beslissing</h3>
+      <p>
+        Of het nu gaat om aankoop, verkoop of einde garantie,
+        de EV AccuCheck geeft overzicht en helpt weloverwogen keuzes te maken.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAT U ONTVANGT ================= -->
 <section class="services-section section-bg-soft">
-    <div class="container">
-        <h2 class="section-title">Wat u ontvangt</h2>
-
-        <div class="service-grid">
-            <div class="service-card">
-                <h3 class="service-title">Objectieve accudiagnose</h3>
-                <p class="service-text">
-                    De accustatus wordt gemeten met een internationaal erkende meetmethode.
-                    De meting geeft een betrouwbaar beeld van de conditie op het moment van testen.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">Digitaal accucertificaat</h3>
-                <p class="service-text">
-                    U ontvangt een digitaal accucertificaat van de uitgevoerde meting,
-                    geschikt voor uw eigen administratie of ter inzage bij aankoop of verkoop.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">ZekerOpWeg adviesrapport</h3>
-                <p class="service-text">
-                    De ZekerOpWeg EV AccuCheck wordt digitaal aangeleverd in een overzichtelijk adviesrapport.
-                    De rapportage is opgesteld voor heldere interpretatie door consumenten, bedrijven
-                    en professionele instanties, met focus op transparantie en zorgvuldige duiding.
-                </p>
-            </div>
-        </div>
-    </div>
-<div class="service-card price-card">
-    <div class="price-main">
-        <span class="price-amount">€169</span>
-        <span class="price-label">per EV AccuCheck</span>
-    </div>
-
-    <p class="description">
-        Onafhankelijke EV AccuCheck inclusief accudiagnose,
-        digitaal accucertificaat en ZekerOpWeg adviesrapport.
-    </p>
-
-    <p class="note-small">
-        Introductietarief januari en februari: €149.
-    </p>
-</div>
-
-<!-- HOE WERKT HET -->
-<section class="services-section container">
-    <h2 class="section-title">Hoe werkt de EV AccuCheck</h2>
+  <div class="container">
+    <h2 class="section-title">Wat u ontvangt</h2>
 
     <div class="service-grid">
-        <div class="service-card">
-            <h3 class="service-title">1. Afspraak en meting</h3>
-            <p class="service-text">
-                De meting wordt uitgevoerd op locatie of in overleg op een geschikte plek.
-                De test duurt slechts enkele minuten.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">2. Analyse en toelichting</h3>
-            <p class="service-text">
-                De meetresultaten worden bekeken en helder toegelicht.
-                U krijgt inzicht in wat normaal is en waar aandachtspunten kunnen liggen.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">3. Digitaal adviesrapport</h3>
-            <p class="service-text">
-                U ontvangt een digitaal EV AccuCheck adviesrapport met duidelijke conclusies
-                en praktische vervolgstappen.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- STAP 3: JURIDISCHE AFBakENING -->
-<section class="services-section container">
-    <p class="disclaimer">
-        Het ZekerOpWeg adviesrapport vormt geen technische keuring, garantieverklaring
-        of bindend technisch of juridisch oordeel. Voor garantievragen adviseren wij
-        contact op te nemen met de fabrikant of erkende dealer.
-    </p>
-</section>
-
-<!-- FOOTNOTE: overheid / handhaving -->
-<section class="services-section container">
-    <p class="footnote">
-        Ook inzetbaar binnen gemeentelijke of handhavende contexten,
-        uitsluitend op aanvraag en binnen vastgestelde kaders.
-    </p>
-</section>
-
-<!-- CTA -->
-<section class="services-section container">
-    <div class="service-card" style="text-align:center;">
-        <h3 class="service-title">Wilt u zekerheid over de accustatus</h3>
-        <p class="service-text">
-            Neem gerust contact op voor een EV AccuCheck of een eerste kennismaking.
+      <div class="service-card">
+        <h3>Objectieve accudiagnose</h3>
+        <p>
+          De accustatus wordt gemeten met een internationaal erkende meetmethode.
+          De meting geeft een betrouwbaar beeld van de conditie op het moment van testen.
         </p>
-        <a href="contact.html" class="btn-primary">Neem contact op</a>
+      </div>
+
+      <div class="service-card">
+        <h3>Digitaal accucertificaat</h3>
+        <p>
+          U ontvangt een digitaal accucertificaat van de uitgevoerde meting,
+          geschikt voor uw eigen administratie of ter inzage bij aankoop of verkoop.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>ZekerOpWeg adviesrapport</h3>
+        <p>
+          De ZekerOpWeg EV AccuCheck wordt digitaal aangeleverd in een overzichtelijk adviesrapport,
+          met focus op transparantie en zorgvuldige duiding.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 ZekerOpWeg</p>
+<!-- ================= HOE WERKT HET ================= -->
+<section class="services-section container">
+  <h2 class="section-title">Hoe werkt de EV AccuCheck</h2>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>1. Afspraak en meting</h3>
+      <p>
+        De meting wordt uitgevoerd op locatie of in overleg.
+        De test duurt slechts enkele minuten.
+      </p>
     </div>
+
+    <div class="service-card">
+      <h3>2. Analyse en toelichting</h3>
+      <p>
+        De meetresultaten worden bekeken en helder toegelicht.
+        U krijgt inzicht in wat normaal is en waar aandachtspunten kunnen liggen.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>3. Digitaal adviesrapport</h3>
+      <p>
+        U ontvangt een digitaal EV AccuCheck adviesrapport
+        met duidelijke conclusies en praktische vervolgstappen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="services-section container">
+  <div class="service-card" style="text-align:center;">
+    <h3>Wilt u zekerheid over de accustatus</h3>
+    <p>
+      Neem gerust contact op voor een EV AccuCheck of een eerste kennismaking.
+    </p>
+    <a href="contact.html" class="btn-primary">Neem contact op</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 ZekerOpWeg – Onafhankelijk EV Accuadvies</p>
+  </div>
 </footer>
 
-<script src="scripts/scripts.js"></script>
-<body class="fade-in ev-context">
+<script src="scripts/menu.js"></script>
+</body>
 </html>
 
-
-    
