@@ -46,30 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
     pakketAankoop?.addEventListener("change", updateComboOptie);
 });
 
-/* =========================================================
-   MOBILE MENU – DEFINITIEF (ZekerOpWeg)
-========================================================= */
-
-function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.add("open");
-  overlay.classList.add("active");
-  document.body.classList.add("menu-open");
-}
-
-function closeMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.remove("open");
-  overlay.classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
 
 
