@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
+  const close = document.querySelector(".close-menu");
   const menu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("menuOverlay");
-  const closeBtn = document.querySelector(".close-menu");
 
-  if (!toggle || !menu || !overlay || !closeBtn) return;
+  if (!toggle || !close || !menu || !overlay) return;
 
-  function openMenu() {
+  toggle.addEventListener("click", () => {
     menu.classList.add("open");
     overlay.classList.add("active");
     document.body.classList.add("menu-open");
-  }
+  });
 
   function closeMenu() {
     menu.classList.remove("open");
@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("menu-open");
   }
 
-  toggle.addEventListener("click", openMenu);
-  closeBtn.addEventListener("click", closeMenu);
+  close.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
 });
