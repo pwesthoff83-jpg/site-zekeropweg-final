@@ -15,12 +15,14 @@
 
     <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
-    <button class="menu-toggle" type="button" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" type="button" aria-label="Menu openen">
+      ☰
+    </button>
 
     <!-- DESKTOP NAV -->
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav">
       <ul>
-        <li><a href="index.main.html" class="active">Home</a></li>
+        <li><a href="index.main.html">Home</a></li>
         <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
         <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
         <li><a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a></li>
@@ -31,24 +33,25 @@
     </nav>
 
   </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-    <button class="close-menu" type="button" aria-label="Sluit menu" onclick="closeMenu()">×</button>
-    <nav class="mobile-nav">
-      <a href="index.main.html" class="active">Home</a>
-      <a href="aankoopadvies.html">Aankoopadvies</a>
-      <a href="ev-accucheck.html">EV AccuCheck</a>
-      <a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a>
-      <a href="bezwaarservice.html">Bezwaarservice</a>
-      <a href="over.html">Over</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <!-- OVERLAY -->
-  <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 </header>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" type="button" aria-label="Menu sluiten">×</button>
+
+  <nav class="mobile-nav">
+    <a href="index.main.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck Zakelijk</a>
+    <a href="bezwaarservice.html">Bezwaarservice</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div id="menuOverlay" class="menu-overlay"></div>
+
 
 <section class="hero hero-home">
   <div class="hero-content">
@@ -177,6 +180,7 @@
 <script src="scripts/scripts.js"></script>
 </body>
 </html>
+
 
 
 
