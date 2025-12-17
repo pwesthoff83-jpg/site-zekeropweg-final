@@ -188,9 +188,33 @@ img {
 /* =========================================================
    SECTIONS
 ========================================================= */
-section {
-  padding: 4rem 0;
+.services-section {
+  padding: 4.5rem 0;
 }
+
+.section-title {
+  font-size: 1.9rem;
+  margin-bottom: 1.4rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  background-color: var(--gold);
+  margin-top: 0.75rem;
+}
+
+.section-subtitle,
+.section-intro {
+  max-width: 720px;
+  color: var(--text-muted);
+  margin-bottom: 2.4rem;
+  line-height: 1.65;
+}
+
 
 /* =========================================================
    FOOTER
@@ -332,6 +356,7 @@ section {
   opacity: 1;
   pointer-events: auto;
 }
+
 
 
 
