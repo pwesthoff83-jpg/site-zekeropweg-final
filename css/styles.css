@@ -494,6 +494,38 @@ body.ev-context .nav-ev-zakelijk {
   font-size: 0.9rem;
   color: var(--text-muted);
 }
+/* =========================
+   PREMIUM ACCENT LINE
+========================= */
+
+.accentline {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.accentline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.95;
+}
+
+/* Compacte variant voor korte tekstblokken */
+.accentline--compact::before {
+  top: 0.45rem;
+  bottom: 0.45rem;
+}
+
+/* Nettere spacing wanneer je dit op een p gebruikt */
+p.accentline {
+  margin-top: 1.4rem;
+}
+
 
 
 
