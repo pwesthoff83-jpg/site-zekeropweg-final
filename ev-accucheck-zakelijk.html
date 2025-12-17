@@ -1,264 +1,260 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EV AccuCheck Zakelijk | ZekerOpWeg</title>
-    <meta name="description" content="Zakelijke EV AccuCheck met objectieve accudiagnose, digitaal certificaat en professioneel adviesrapport. Geschikt voor wagenparken, autobedrijven en professionele organisaties.">
-    <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV AccuCheck Zakelijk | ZekerOpWeg</title>
+  <meta name="description" content="Zakelijke EV AccuCheck met objectieve accudiagnose, digitaal certificaat en professioneel adviesrapport. Geschikt voor wagenparken, autobedrijven en professionele organisaties.">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ev-accucheck.css">
 </head>
 
-<body class="fade-in">
+<body class="fade-in ev-context">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header class="header">
-    <div class="container header-container">
-        <a href="home.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
-        </a>
+  <div class="container header-container">
+    <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
-     <nav class="main-nav" id="mainNav">
-    <ul>
-        <li><a href="home.html">Home</a></li>
-
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.main.html">Home</a></li>
         <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-
-        <li class="nav-parent">
-            <a href="ev-accucheck.html" class="nav-main-link">EV AccuCheck</a>
-            <a href="ev-accucheck-zakelijk.html" class="nav-sub-link">Zakelijk</a>
+        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+        <li class="nav-ev-zakelijk">
+          <a href="ev-accucheck-zakelijk.html" class="active">EV AccuCheck Zakelijk</a>
         </li>
-
-        <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-
+        <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
         <li><a href="over.html">Over</a></li>
-
         <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
-  
+      </ul>
+    </nav>
+  </div>
 
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" aria-label="Menu sluiten">×</button>
+    <nav class="mobile-nav">
+      <a href="index.main.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html">EV AccuCheck</a>
+      <a href="ev-accucheck-zakelijk.html" class="active nav-ev-zakelijk">EV AccuCheck Zakelijk</a>
+      <a href="bezwaarservice.html">Bezwaarservice</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
 </header>
 
-<!-- HERO -->
-<section class="hero hero-home">
-    <div class="hero-overlay"></div>
+<!-- ================= HERO ================= -->
+<section class="hero-ev">
+  <div class="hero-ev-overlay"></div>
 
-    <div class="hero-content">
-        <div class="hero-subtitle">EV AccuCheck Zakelijk</div>
-        <h1>Professioneel inzicht in accustatus en inzetbaarheid</h1>
-        <p>
-            De ZekerOpWeg EV AccuCheck biedt objectief inzicht in de accustatus van elektrische
-            en hybride voertuigen. Geschikt voor organisaties die werken met transparantie,
-            onderbouwde besluitvorming en professionele rapportage.
-        </p>
-        <p class="hero-note">
-            Inzetbaar voor zakelijke trajecten en selectieve toepassing binnen professionele en overheidsomgevingen.
-        </p>
-    </div>
-</section>
+  <div class="container hero-ev-content">
+    <span class="hero-eyebrow">EV AccuCheck Zakelijk</span>
 
-<!-- INTRO -->
-<section class="services-section container">
-    <h2 class="section-title">Waarom EV AccuCheck Zakelijk</h2>
-    <p class="section-subtitle">
-        Elektrische mobiliteit vraagt om voorspelbaarheid. De EV AccuCheck Zakelijk ondersteunt
-        organisaties bij beslissingen rondom inzet, aankoop, verkoop en vervanging van voertuigen,
-        zonder commerciële of technische ruis.
+    <h1>Professioneel inzicht in accustatus en inzetbaarheid</h1>
+
+    <p class="hero-lead">
+      Objectief inzicht in de accustatus van elektrische en hybride voertuigen.
     </p>
 
-    <div class="usp-premium">
-        <div class="usp-item">
-            <h3>Onderbouwde besluitvorming</h3>
-            <p>
-                Objectieve input voor beleidskeuzes en dossiers, gebaseerd op de actuele accustatus
-                op het moment van meting.
-            </p>
-        </div>
-
-        <div class="usp-item">
-            <h3>Professionele rapportage</h3>
-            <p>
-                Digitaal accucertificaat en ZekerOpWeg adviesrapport, geschikt voor interne vastlegging
-                en externe communicatie.
-            </p>
-        </div>
-
-        <div class="usp-item">
-            <h3>Onafhankelijke positie</h3>
-            <p>
-                ZekerOpWeg heeft geen belang bij verkoop, reparatie of onderhoud.
-                De rol is adviserend en aanvullend.
-            </p>
-        </div>
-    </div>
+    <p>
+      Geschikt voor organisaties die werken met transparantie,
+      onderbouwde besluitvorming en professionele rapportage.
+    </p>
+  </div>
 </section>
 
-<!-- WAT U ONTVANGT -->
+<!-- ================= INTRO ================= -->
+<section class="services-section container">
+  <h2 class="section-title">Waarom EV AccuCheck Zakelijk</h2>
+  <p class="section-subtitle">
+    Elektrische mobiliteit vraagt om voorspelbaarheid. De EV AccuCheck Zakelijk ondersteunt
+    organisaties bij beslissingen rondom inzet, aankoop, verkoop en vervanging van voertuigen,
+    zonder commerciële of technische ruis.
+  </p>
+
+  <div class="usp-premium">
+    <div class="usp-item">
+      <h3>Onderbouwde besluitvorming</h3>
+      <p>
+        Objectieve input voor beleidskeuzes en dossiers, gebaseerd op de actuele accustatus
+        op het moment van meting.
+      </p>
+    </div>
+
+    <div class="usp-item">
+      <h3>Professionele rapportage</h3>
+      <p>
+        Digitaal accucertificaat en ZekerOpWeg adviesrapport, geschikt voor interne vastlegging
+        en externe communicatie.
+      </p>
+    </div>
+
+    <div class="usp-item">
+      <h3>Onafhankelijke positie</h3>
+      <p>
+        ZekerOpWeg heeft geen belang bij verkoop, reparatie of onderhoud.
+        De rol is adviserend en aanvullend.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAT U ONTVANGT ================= -->
 <section class="services-section section-bg-soft">
-    <div class="container">
-        <h2 class="section-title">Wat u ontvangt</h2>
-
-        <div class="service-grid">
-            <div class="service-card">
-                <h3 class="service-title">Objectieve accudiagnose</h3>
-                <p class="service-text">
-                    De accustatus wordt gemeten met een internationaal erkende meetmethode
-                    en geeft een betrouwbaar beeld van de conditie op het moment van testen.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">Digitaal accucertificaat</h3>
-                <p class="service-text">
-                    Een digitaal certificaat voor dossieropbouw, administratie en
-                    transparante vastlegging.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">ZekerOpWeg adviesrapport</h3>
-                <p class="service-text">
-                    Een professioneel adviesrapport met interpretatie en duiding,
-                    opgesteld voor heldere interpretatie door bedrijven en professionele instanties.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- INZET BIJ VERKOOP -->
-<section class="services-section container">
-    <h2 class="section-title">AccuCheck – inzet bij verkoop</h2>
-    <p class="section-subtitle">
-        Deze variant is bedoeld voor een professionele presentatie van een voertuig richting de eindklant.
-        De toon is positief en feitelijk, met ruimte om aandachtspunten zorgvuldig toe te lichten.
-    </p>
+  <div class="container">
+    <h2 class="section-title">Wat u ontvangt</h2>
 
     <div class="service-grid">
-        <div class="service-card">
-            <h3 class="service-title">Rust in het verkoopgesprek</h3>
-            <p class="service-text">
-                Transparantie over de accustatus voorkomt verrassingen en ondersteunt
-                een gelijkwaardig gesprek met de eindklant.
-            </p>
-        </div>
+      <div class="service-card">
+        <h3>Objectieve accudiagnose</h3>
+        <p>
+          De accustatus wordt gemeten met een internationaal erkende meetmethode
+          en geeft een betrouwbaar beeld van de conditie op het moment van testen.
+        </p>
+      </div>
 
-        <div class="service-card">
-            <h3 class="service-title">Aandachtspunten als context</h3>
-            <p class="service-text">
-                Eventuele aandachtspunten worden benoemd als toelichting,
-                niet als oordeel of afkeuring.
-            </p>
-        </div>
+      <div class="service-card">
+        <h3>Digitaal accucertificaat</h3>
+        <p>
+          Een digitaal certificaat voor dossieropbouw, administratie en
+          transparante vastlegging.
+        </p>
+      </div>
 
-        <div class="service-card">
-            <h3 class="service-title">Professionele uitstraling</h3>
-            <p class="service-text">
-                Het rapport en certificaat versterken de kwaliteit en transparantie
-                van het verkoopdossier.
-            </p>
-        </div>
+      <div class="service-card">
+        <h3>ZekerOpWeg adviesrapport</h3>
+        <p>
+          Een professioneel adviesrapport met interpretatie en duiding,
+          opgesteld voor heldere interpretatie door bedrijven en professionele instanties.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- TARIEVEN -->
+<!-- ================= INZET BIJ VERKOOP ================= -->
+<section class="services-section container">
+  <h2 class="section-title">AccuCheck – inzet bij verkoop</h2>
+  <p class="section-subtitle">
+    Deze variant is bedoeld voor een professionele presentatie van een voertuig richting de eindklant.
+    De toon is positief en feitelijk, met ruimte om aandachtspunten zorgvuldig toe te lichten.
+  </p>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>Rust in het verkoopgesprek</h3>
+      <p>
+        Transparantie over de accustatus voorkomt verrassingen en ondersteunt
+        een gelijkwaardig gesprek met de eindklant.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>Aandachtspunten als context</h3>
+      <p>
+        Eventuele aandachtspunten worden benoemd als toelichting,
+        niet als oordeel of afkeuring.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>Professionele uitstraling</h3>
+      <p>
+        Het rapport en certificaat versterken de kwaliteit en transparantie
+        van het verkoopdossier.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TARIEVEN ================= -->
 <section class="services-section section-bg-soft">
-    <div class="container">
-        <h2 class="section-title">Zakelijke tarieven</h2>
-        <p class="section-subtitle">
-            Transparante tarieven met schaalvoordeel. Alle bedragen zijn exclusief btw.
-        </p>
-
-        <div class="packages-section">
-            <div class="package-card">
-                <h3>Losse testen</h3>
-                <p class="price">€129</p>
-                <p class="description">1 tot 4 voertuigen</p>
-                <ul>
-                    <li>Accudiagnose per voertuig</li>
-                    <li>Digitaal certificaat</li>
-                    <li>ZekerOpWeg adviesrapport</li>
-                </ul>
-            </div>
-
-            <div class="package-card featured">
-                <span class="badge">Meest gekozen</span>
-                <h3>Pakket 5 testen</h3>
-                <p class="price">€109 per test</p>
-                <p class="description">5 tot 9 voertuigen</p>
-                <ul>
-                    <li>Efficiënte planning</li>
-                    <li>Rapportage per voertuig</li>
-                    <li>Geschikt voor verkoopdossiers</li>
-                </ul>
-            </div>
-
-            <div class="package-card">
-                <h3>Pakket 10 testen</h3>
-                <p class="price">€99 per test</p>
-                <p class="description">10 of meer voertuigen</p>
-                <ul>
-                    <li>Optimale prijs per voertuig</li>
-                    <li>Overzichtelijke dossiervorming</li>
-                    <li>Geschikt voor wagenparken</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- DOORLINK AUTOBEDRIJVEN -->
-<section class="services-section container">
-    <div class="service-card service-card-center">
-        <p class="service-text">
-            Voor autobedrijven die waarde hechten aan transparantie en een zorgvuldig verkoopproces,
-            lichten wij graag toe hoe ZekerOpWeg aanvullend samenwerkt.
-        </p>
-        <div class="card-action">
-           <a href="voor-autobedrijven.html" class="btn-secondary btn-secondary--dark">
-                Toelichting voor autobedrijven
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- DISCLAIMER -->
-<section class="services-section container">
-    <p class="disclaimer">
-        Het ZekerOpWeg adviesrapport vormt geen technische keuring, garantieverklaring
-        of bindend technisch of juridisch oordeel. Voor garantievragen adviseren wij
-        contact op te nemen met de fabrikant of erkende dealer.
+  <div class="container">
+    <h2 class="section-title">Zakelijke tarieven</h2>
+    <p class="section-subtitle">
+      Transparante tarieven met schaalvoordeel. Alle bedragen zijn exclusief btw.
     </p>
-    <p class="footnote">
-        Ook inzetbaar binnen gemeentelijke of handhavende contexten,
-        uitsluitend op aanvraag en binnen vastgestelde kaders.
-    </p>
-</section>
 
-<!-- CTA -->
-<section class="services-section container">
-    <div class="service-card" style="text-align:center;">
-        <h3 class="service-title">Zakelijke EV AccuCheck aanvragen</h3>
-        <p class="service-text">
-            Neem contact op voor planning, aantallen en de juiste rapportagevorm voor uw organisatie.
-        </p>
-        <a href="contact.html?dienst=evaccu-zakelijk" class="btn-primary">
-            Zakelijke aanvraag
-        </a>
+    <div class="packages-section">
+      <div class="package-card">
+        <h3>Losse testen</h3>
+        <p class="price">€129</p>
+        <p class="description">1 tot 4 voertuigen</p>
+        <ul>
+          <li>Accudiagnose per voertuig</li>
+          <li>Digitaal certificaat</li>
+          <li>ZekerOpWeg adviesrapport</li>
+        </ul>
+      </div>
+
+      <div class="package-card featured">
+        <span class="badge">Meest gekozen</span>
+        <h3>Pakket 5 testen</h3>
+        <p class="price">€109 per test</p>
+        <p class="description">5 tot 9 voertuigen</p>
+        <ul>
+          <li>Efficiënte planning</li>
+          <li>Rapportage per voertuig</li>
+          <li>Geschikt voor verkoopdossiers</li>
+        </ul>
+      </div>
+
+      <div class="package-card">
+        <h3>Pakket 10 testen</h3>
+        <p class="price">€99 per test</p>
+        <p class="description">10 of meer voertuigen</p>
+        <ul>
+          <li>Optimale prijs per voertuig</li>
+          <li>Overzichtelijke dossiervorming</li>
+          <li>Geschikt voor wagenparken</li>
+        </ul>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= CTA ================= -->
+<section class="services-section container">
+  <div class="service-card" style="text-align:center;">
+    <h3>Zakelijke EV AccuCheck aanvragen</h3>
+    <p>
+      Neem contact op voor planning, aantallen en de juiste rapportagevorm voor uw organisatie.
+    </p>
+    <a href="contact.html?dienst=evaccu-zakelijk" class="btn-primary">
+      Zakelijke aanvraag
+    </a>
+  </div>
+</section>
+
+<!-- ================= DISCLAIMER ================= -->
+<section class="services-section container">
+  <p class="disclaimer">
+    Het ZekerOpWeg adviesrapport vormt geen technische keuring, garantieverklaring
+    of bindend technisch of juridisch oordeel. Voor garantievragen adviseren wij
+    contact op te nemen met de fabrikant of erkende dealer.
+  </p>
+  <p class="footnote">
+    Ook inzetbaar binnen gemeentelijke of handhavende contexten,
+    uitsluitend op aanvraag en binnen vastgestelde kaders.
+  </p>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 ZekerOpWeg</p>
-    </div>
+  <div class="container">
+    <p>© 2025 ZekerOpWeg – Zakelijke EV AccuCheck</p>
+  </div>
 </footer>
 
-<script src="scripts/scripts.js"></script>
-<body class="fade-in ev-context">
+<script src="scripts/menu.js"></script>
+</body>
 </html>
 
