@@ -21,3 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
   close.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
 });
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const closeMenu = document.querySelector('.close-menu');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.add('open');
+  menuOverlay.classList.add('active');
+});
+
+closeMenu.addEventListener('click', closeNav);
+menuOverlay.addEventListener('click', closeNav);
+
+function closeNav() {
+  mobileMenu.classList.remove('open');
+  menuOverlay.classList.remove('active');
+}
