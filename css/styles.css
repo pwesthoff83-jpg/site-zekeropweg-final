@@ -831,8 +831,8 @@ body {
 .travel-info {
   position: relative;
   max-width: 720px;
-  margin: 3.5rem auto 0;
-  padding-left: 2rem;
+  margin: 4rem auto 0;
+  padding-left: 2.2rem;
 }
 
 .travel-info::before {
@@ -840,12 +840,16 @@ body {
   position: absolute;
   left: 0;
   top: 0.35rem;
-  height: calc(100% - 0.7rem);
+  bottom: 0.35rem;
   width: 2px;
-  background-color: var(--gold);
+  background: linear-gradient(
+    to bottom,
+    rgba(215, 181, 109, 0),
+    rgba(215, 181, 109, 0.95),
+    rgba(215, 181, 109, 0)
+  );
   border-radius: 2px;
 }
-
 
 
 
