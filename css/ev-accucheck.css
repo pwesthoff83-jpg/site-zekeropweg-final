@@ -167,4 +167,38 @@
   font-size: 0.9rem;
   letter-spacing: 0.02em;
 }
+/* ===============================
+   HERO EYEBROW FIX – DEFINITIEF
+   Zorgt dat "EV AccuCheck" zichtbaar,
+   goudkleurig en boven overlay staat
+================================ */
+
+.hero-ev .hero-eyebrow {
+  position: relative;
+  z-index: 3; /* boven overlay */
+  display: inline-block;
+
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  margin-bottom: 1rem;
+
+  /* subtiele leesbaarheid op donkere hero */
+  text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+}
+
+/* Extra zekerheid: content altijd boven overlay */
+.hero-ev-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Overlay blijft eronder */
+.hero-ev-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 
