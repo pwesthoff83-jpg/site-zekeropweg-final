@@ -965,23 +965,20 @@ body {
     font-size: 2.1rem;
   }
 }
-
 /* =========================
    MOBILE MENU – DEFINITIEF
 ========================= */
 
 .mobile-menu {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 85%;
-  max-width: 340px;
-  height: 100vh;
+  inset: 0;
   background: #ffffff;
-  z-index: 2000;
-  padding: 2.5rem 2rem;
+  z-index: 3000;
+
   transform: translateX(100%);
   transition: transform 0.35s ease;
+
+  padding: 2.5rem 2rem;
 }
 
 .mobile-menu.open {
@@ -998,8 +995,8 @@ body {
 .mobile-nav a {
   font-size: 1.05rem;
   font-weight: 600;
-  text-decoration: none;
   color: var(--text-main);
+  text-decoration: none;
 }
 
 .mobile-nav a.active {
@@ -1008,8 +1005,8 @@ body {
 
 .close-menu {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 1.5rem;
+  right: 1.5rem;
   font-size: 2rem;
   background: none;
   border: none;
@@ -1024,7 +1021,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
-  z-index: 1500;
+  z-index: 2500;
 }
 
 .menu-overlay.active {
@@ -1036,9 +1033,6 @@ body {
 body.menu-open {
   overflow: hidden;
 }
-
-
-
 
 
 
