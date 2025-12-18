@@ -966,6 +966,77 @@ body {
   }
 }
 
+/* =========================
+   MOBILE MENU – DEFINITIEF
+========================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 340px;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 2000;
+  padding: 2.5rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.mobile-nav a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.mobile-nav a.active {
+  color: var(--gold);
+}
+
+.close-menu {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Overlay */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1500;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Body lock */
+body.menu-open {
+  overflow: hidden;
+}
+
 
 
 
