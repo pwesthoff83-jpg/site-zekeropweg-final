@@ -172,6 +172,63 @@ img {
   gap: 1.2rem;
   flex-wrap: wrap;
 }
+/* =========================
+   HERO – GRATISBEZWAAR
+========================= */
+.hero-gb {
+  position: relative;
+  height: 70vh;
+  min-height: 520px;
+  background-image: url("../assets/images/hero/gratisbezwaar-hero.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hero-gb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.55)
+  );
+}
+
+.hero-gb .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-gb h1 {
+  color: #ffffff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.hero-gb p {
+  color: rgba(255,255,255,0.92);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-gb .hero-eyebrow {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
 
 /* =========================
    BUTTONS
@@ -1068,6 +1125,7 @@ body.menu-open {
   appearance: none;
   -webkit-appearance: none;
 }
+
 
 
 
