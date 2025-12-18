@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.getElementById("mobileMenu");
-  const close = document.querySelector(".close-menu");
+  const closeBtn = document.querySelector(".close-menu");
   const overlay = document.getElementById("menuOverlay");
 
-  if (!toggle || !menu || !close || !overlay) return;
+  if (!toggle || !menu || !closeBtn || !overlay) return;
 
   const openMenu = () => {
     menu.classList.add("open");
@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   toggle.addEventListener("click", openMenu);
-  close.addEventListener("click", closeMenu);
+  closeBtn.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 });
