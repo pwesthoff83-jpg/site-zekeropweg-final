@@ -864,6 +864,137 @@ body {
   flex: 1;
 }
 
+/* =========================================================
+   HERO EV – STABIELE LAYERING (GEEN TEKSTVERLIES)
+========================================================= */
+
+.hero-ev {
+  position: relative;
+  min-height: 560px;
+  padding: 6.5rem 0 5.5rem;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center 55%;
+  overflow: hidden;
+}
+
+.hero-ev::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.68),
+    rgba(0,0,0,0.58)
+  );
+  z-index: 1;
+}
+
+.hero-ev-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  text-align: center;
+}
+
+.hero-ev h1,
+.hero-ev p,
+.hero-ev .hero-lead {
+  color: #ffffff;
+}
+
+/* Zakelijke hero afbeelding */
+.hero-ev-zakelijk {
+  background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
+}
+
+/* Responsive hero */
+@media (max-width: 960px) {
+  .hero-ev {
+    min-height: 520px;
+    padding: 6rem 0 5rem;
+  }
+
+  .hero-ev h1 {
+    font-size: 2.15rem;
+  }
+}
+
+/* =========================================================
+   MOBILE NAV – VOLLEDIG FUNCTIONEEL
+========================================================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+
+  .menu-toggle {
+    display: block;
+    color: var(--navy);
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 1000;
+    padding: 2.5rem 2rem;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-nav a {
+    display: block;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .mobile-nav a.active {
+    color: var(--gold);
+  }
+
+  .close-menu {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+  }
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 
 
 
