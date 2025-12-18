@@ -563,6 +563,123 @@ p.accentline {
   background-size: cover;
   background-position: center;
 }
+/* =========================
+   HERO – OVER
+========================= */
+.hero-over {
+  position: relative;
+  min-height: 70vh;
+  height: 70vh;
+  min-height: 520px;
+  background-image: url("../assets/images/hero/over-hero.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+.hero-over-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.62),
+    rgba(0,0,0,0.52)
+  );
+}
+
+.hero-over-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-over-content h1 {
+  color: #ffffff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+  line-height: 1.25;
+}
+
+.hero-over-content .hero-lead {
+  color: rgba(255,255,255,0.92);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-over .hero-eyebrow {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* =========================
+   OVER – LAYOUT (NETTER)
+========================= */
+.about-premium {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text {
+  max-width: 760px;
+  border-left: 2px solid var(--gold);
+  padding-left: 2rem;
+}
+
+.about-text p + p {
+  margin-top: 1.25rem;
+}
+
+.about-photo-wrap-small {
+  position: sticky;
+  top: 120px;
+}
+
+.about-photo-small {
+  max-width: 260px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero-over {
+    min-height: 62vh;
+    height: auto;
+    padding: 5.5rem 0 5rem;
+  }
+
+  .about-premium {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+
+  .about-text {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .about-photo-wrap-small {
+    position: relative;
+    top: auto;
+  }
+
+  .about-photo-small {
+    max-width: 320px;
+  }
+}
+
 
 
 
