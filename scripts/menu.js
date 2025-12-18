@@ -22,4 +22,3 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
 });
-
