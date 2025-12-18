@@ -1,115 +1,154 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GratisBezwaar | ZekerOpWeg</title>
-    <meta name="description" content="Ondersteuning bij verkeers en parkeerboetes met slimme analyse en persoonlijke begeleiding. Rust in plaats van ergernis en stapels brieven.">
-    <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bezwaarservice | ZekerOpWeg</title>
+  <meta name="description" content="Ondersteuning bij verkeers en parkeerboetes met zorgvuldige beoordeling en professionele begeleiding. Rust en duidelijkheid in plaats van frustratie.">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="fade-in">
 
+<!-- ================= HEADER ================= -->
 <header class="header">
-    <div class="container header-container">
-        <a href="home.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
-        </a>
+  <div class="container header-container">
+    <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="gratisbezwaar.html" class="active">GratisBezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.main.html">Home</a></li>
+        <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
+        <li><a href="bezwaarservice.html" class="active">Bezwaarservice</a></li>
+        <li><a href="over.html">Over</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" aria-label="Menu sluiten">×</button>
+    <nav class="mobile-nav">
+      <a href="index.main.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html">EV AccuCheck</a>
+      <a href="bezwaarservice.html" class="active">Bezwaarservice</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
 </header>
 
-<section class="hero hero-gb">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <div class="hero-eyebrow">Juridische ondersteuning</div>
-        <h1>GratisBezwaar bij verkeers en parkeerboetes</h1>
-        <p>Rust in plaats van ergernis en stapels brieven. Uw boete wordt zorgvuldig beoordeeld en het bezwaar wordt volledig uit handen genomen.</p>
-    </div>
-</section>
+<main class="page-content">
 
-<section class="services-section container">
-    <h2 class="section-title">Hoe het werkt</h2>
-    <p class="section-subtitle">
-        Niet elke boete is kansrijk, maar veel zaken verdienen meer aandacht dan een standaard bezwaar. ZekerOpWeg werkt samen met gespecialiseerde juridische partners en benut slimme analyse om te bepalen wat verstandig is.
+<!-- ================= HERO ================= -->
+<section class="hero-ev" style="background-image:url('assets/images/hero/bezwaar-hero.webp');">
+  <div class="hero-ev-overlay"></div>
+
+  <div class="container hero-ev-content">
+    <span class="hero-eyebrow">Juridische ondersteuning</span>
+
+    <h1>Bezwaar bij verkeers en parkeerboetes</h1>
+
+    <p class="hero-lead">
+      Rust in plaats van ergernis en stapels brieven.
     </p>
 
-    <div class="service-grid">
-        <div class="service-card">
-            <h3 class="service-title">Stap één: beoordeling</h3>
-            <p class="service-text">
-                U stuurt de boete digitaal door. De zaak wordt inhoudelijk beoordeeld op haalbaarheid. U hoort eerlijk of bezwaar zinvol is.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">Stap twee: bezwaar</h3>
-            <p class="service-text">
-                Als er goede argumenten zijn, wordt het bezwaar volledig opgesteld en ingediend. Termijnen en correspondentie worden bewaakt.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3 class="service-title">Stap drie: vervolg</h3>
-            <p class="service-text">
-                U wordt op de hoogte gehouden van belangrijke stappen. Waar nodig wordt samen met een juridisch specialist verder gekeken.
-            </p>
-        </div>
-    </div>
+    <p>
+      Uw boete wordt zorgvuldig beoordeeld en het bezwaar wordt volledig uit handen genomen,
+      met aandacht voor haalbaarheid en context.
+    </p>
+  </div>
 </section>
 
-<section class="services-section section-bg-soft">
-    <div class="container">
-        <h2 class="section-title">Voor wie is GratisBezwaar bedoeld</h2>
-
-        <div class="service-grid">
-            <div class="service-card">
-                <h3 class="service-title">Particulieren</h3>
-                <p class="service-text">
-                    Voor wie zich niet wil neerleggen bij een boete die vreemd aanvoelt of onduidelijk is en geen tijd of energie heeft om alles zelf uit te zoeken.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h3 class="service-title">Ondernemers</h3>
-                <p class="service-text">
-                    Voor ondernemers en kleine wagenparken waar boetes zich snel opstapelen en structuur en rust gewenst zijn in de afhandeling.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
+<!-- ================= HOE HET WERKT ================= -->
 <section class="services-section container">
-    <div class="service-card" style="text-align:center;">
-        <h3 class="service-title">Boete laten beoordelen</h3>
-        <p class="service-text">
-            Wilt u een boete laten beoordelen, stuur dan de gegevens en stukken door via het contactformulier of per mail. U ontvangt een heldere terugkoppeling.
-        </p>
-        <a href="contact.html" class="btn-primary">Neem contact op</a>
+  <h2 class="section-title">Hoe het werkt</h2>
+  <p class="section-subtitle">
+    Niet elke boete is kansrijk, maar veel zaken verdienen meer aandacht dan een standaard bezwaar.
+    ZekerOpWeg werkt samen met gespecialiseerde juridische partners en hanteert een zorgvuldige afweging.
+  </p>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>Stap één: beoordeling</h3>
+      <p>
+        U stuurt de boete digitaal door. De zaak wordt inhoudelijk beoordeeld op haalbaarheid.
+        U ontvangt een eerlijk en realistisch oordeel.
+      </p>
     </div>
+
+    <div class="service-card">
+      <h3>Stap twee: bezwaar</h3>
+      <p>
+        Indien zinvol wordt het bezwaar opgesteld en ingediend.
+        Termijnen en correspondentie worden bewaakt.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>Stap drie: vervolg</h3>
+      <p>
+        U blijft op de hoogte van relevante stappen.
+        Waar nodig wordt samen met een juridisch specialist verder gekeken.
+      </p>
+    </div>
+  </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 ZekerOpWeg</p>
+<!-- ================= VOOR WIE ================= -->
+<section class="services-section section-bg-soft">
+  <div class="container">
+    <h2 class="section-title">Voor wie bedoeld</h2>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Particulieren</h3>
+        <p>
+          Voor wie zich niet wil neerleggen bij een boete die onduidelijk aanvoelt
+          en geen tijd of energie heeft om alles zelf uit te zoeken.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Ondernemers</h3>
+        <p>
+          Voor ondernemers en kleine wagenparken waar boetes zich opstapelen
+          en structuur en rust gewenst zijn in de afhandeling.
+        </p>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="services-section container">
+  <div class="service-card" style="text-align:center;">
+    <h3>Boete laten beoordelen</h3>
+    <p>
+      Wilt u een boete laten beoordelen, stuur dan de gegevens door.
+      U ontvangt altijd een heldere en eerlijke terugkoppeling.
+    </p>
+    <a href="contact.html" class="btn-primary">Neem contact op</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 ZekerOpWeg</p>
+  </div>
 </footer>
 
-<script src="scripts/scripts.js"></script>
+<script src="scripts/menu.js"></script>
 </body>
 </html>
