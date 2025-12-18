@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================
+   LAYOUT BASIS
+========================= */
+
 html, body {
   height: 100%;
 }
@@ -5,9 +11,40 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  color: #151515;
+  background: #ffffff;
+  line-height: 1.6;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body.menu-open {
+  overflow: hidden;
+}
+
+main {
+  flex: 1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   KLEUREN & VARS
+========================= */
 
 :root {
   --navy: #071322;
@@ -24,37 +61,10 @@ body {
   --shadow-soft: 0 8px 22px rgba(0,0,0,.08);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-  color: var(--text-main);
-  background: #ffffff;
-  line-height: 1.6;
-}
-
-body.menu-open {
-  overflow: hidden;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 /* =========================
    HEADER
 ========================= */
+
 .header {
   position: sticky;
   top: 0;
@@ -67,7 +77,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.2rem;
   padding: 22px 0;
 }
 
@@ -77,19 +86,13 @@ img {
   letter-spacing: 0.045em;
   color: #0f172a;
   text-decoration: none;
-  line-height: 1;
   white-space: nowrap;
-}
-
-.main-nav {
-  margin-left: auto;
 }
 
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
-  align-items: center;
 }
 
 .main-nav a {
@@ -104,109 +107,94 @@ img {
 }
 
 .menu-toggle {
-  margin-left: auto;
+  display: none;
   background: none;
   border: none;
   font-size: 1.6rem;
-  color: var(--navy);
   cursor: pointer;
-  display: none;
-  line-height: 1;
-}
-
-.menu-toggle:focus,
-.menu-toggle:active {
-  outline: none;
-  box-shadow: none;
 }
 
 /* =========================
-   HERO
+   HERO (UNIFORM HOOGTE)
 ========================= */
-.hero-home {
+
+.hero-over,
+.hero-home,
+.hero-ev {
   position: relative;
   height: 70vh;
   min-height: 520px;
-  background-image: url("../assets/images/hero/home-hero-desktop.webp");
   background-size: cover;
-  background-position: center 60%;
+  background-position: center;
   display: flex;
   align-items: center;
 }
 
-.hero-home::before {
+.hero-over {
+  background-image: url("../assets/images/hero/over-hero.webp");
+}
+
+.hero-home {
+  background-image: url("../assets/images/hero/home-hero-desktop.webp");
+  background-position: center 60%;
+}
+
+.hero-ev {
+  background-image: url("../assets/images/hero/ev-hero.webp");
+}
+
+.hero-over::before,
+.hero-home::before,
+.hero-ev::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.45);
+  background: linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.65)
+  );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 780px;
   margin: 0 auto;
   text-align: center;
   padding: 0 1.5rem;
 }
 
-.hero-home h1 {
-  color: #fff;
+.hero-subtitle {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-content h1 {
+  color: #ffffff;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 1.4rem;
   line-height: 1.25;
+  margin-bottom: 1.2rem;
 }
 
-.hero-home p {
-  color: rgba(255,255,255,.9);
+.hero-content p {
+  color: rgba(255,255,255,0.92);
   font-size: 1.05rem;
-  margin-bottom: 2.2rem;
-}
-
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.btn-primary {
-  padding: 0.75rem 1.8rem;
-  background: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: background-color 0.18s ease;
-}
-
-.btn-primary:hover {
-  background: var(--navy-deep);
-}
-
-.btn-secondary {
-  padding: 0.75rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.6);
-  color: #fff;
-  text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
-}
-
-.btn-secondary:hover {
-  background-color: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.8);
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 /* =========================
    SECTIONS
 ========================= */
+
 .services-section {
-  padding: 4.5rem 0;
+  padding: 4.2rem 0;
 }
 
 .section-bg-soft {
@@ -215,8 +203,7 @@ img {
 
 .section-title {
   font-size: 1.9rem;
-  margin-bottom: 1.4rem;
-  position: relative;
+  margin-bottom: 1.2rem;
 }
 
 .section-title::after {
@@ -228,283 +215,15 @@ img {
   margin-top: 0.75rem;
 }
 
-.section-subtitle,
 .section-intro {
   max-width: 720px;
   color: var(--text-muted);
-  margin-bottom: 2.4rem;
   line-height: 1.65;
+  margin-bottom: 2.6rem;
 }
 
 /* =========================
-   GRIDS & CARDS
-========================= */
-.usp-premium,
-.service-grid,
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.usp-item,
-.service-card,
-.testimonial-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.4rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.usp-item h3,
-.service-card h3 {
-  margin-bottom: 0.8rem;
-}
-
-.usp-item p,
-.service-card p,
-.testimonial-card p {
-  line-height: 1.7;
-  margin-top: 0.6rem;
-  color: var(--text-muted);
-}
-
-.text-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--navy);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.text-link:hover {
-  color: var(--gold);
-}
-
-/* =========================
-   USP TRUST BLOK
-========================= */
-.usp-trust {
-  position: relative;
-  max-width: 720px;
-  margin: 3.2rem auto 0;
-  padding-left: 1.6rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--text-muted);
-}
-
-.usp-trust::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  width: 3px;
-  height: calc(100% - 0.3em);
-  background-color: var(--gold);
-  border-radius: 2px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-.footer {
-  background: var(--navy);
-  color: #ffffff;
-  padding: 2.2rem 0;
-  text-align: center;
-}
-
-/* =========================
-   MOBILE MENU (SLIDE IN)
-========================= */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 320px;
-  height: 100vh;
-  background: #ffffff;
-  z-index: 2000;
-  padding: 2.5rem 2rem;
-  transition: right 0.3s ease;
-}
-
-.mobile-menu.open {
-  right: 0;
-}
-
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  margin-top: 1.6rem;
-}
-
-.mobile-nav a {
-  color: var(--text-main);
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.mobile-nav a:hover,
-.mobile-nav a.active {
-  color: var(--gold);
-}
-
-.close-menu {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: none;
-  border: none;
-  font-size: 2.2rem;
-  color: var(--navy);
-  cursor: pointer;
-  z-index: 2100;
-}
-
-/* Overlay */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.42);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1500;
-  transition: opacity 0.2s ease;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-  .main-nav {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .brand-logo {
-    font-size: 1.25rem;
-    letter-spacing: 0.035em;
-  }
-}
-
-/* Verberg zakelijk standaard */
-.nav-ev-zakelijk {
-  display: none;
-}
-
-/* Alleen zichtbaar op EV AccuCheck pagina’s */
-body.ev-context .nav-ev-zakelijk {
-  display: list-item;
-}
-
-.services-section .service-card p {
-  margin-bottom: 1.6rem;
-}
-
-/* =========================
-   HERO – EV ACCUCHECK FIX
-========================= */
-
-.hero-ev {
-  position: relative;
-  min-height: 70vh;
-  background-image: url("../assets/images/hero/ev-hero.webp");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-}
-
-.hero-ev::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.65),
-    rgba(0,0,0,0.55)
-  );
-}
-
-.hero-ev .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.hero-ev h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1.2rem;
-}
-
-.hero-ev .hero-intro {
-  color: rgba(255,255,255,0.92);
-  font-size: 1.1rem;
-  line-height: 1.65;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.hero-ev .hero-subtitle {
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-/* =========================
-   EV ACCUCHECK PRIJSBLOK
-========================= */
-
-.price-card {
-  padding: 3rem 2.5rem;
-}
-
-.price-main {
-  margin-bottom: 1.4rem;
-}
-
-.price-amount {
-  display: block;
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-
-.price-label {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.note-small {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-/* =========================
-   PREMIUM ACCENT LINE
+   ACCENTLINE (SUBTIEL)
 ========================= */
 
 .accentline {
@@ -516,24 +235,16 @@ body.ev-context .nav-ev-zakelijk {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.2rem;
-  bottom: 0.2rem;
-  width: 3px;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 2px;
   background: var(--gold);
-  border-radius: 2px;
-  opacity: 0.95;
+  opacity: 0.85;
 }
 
-/* Compacte variant voor korte tekstblokken */
-.accentline--compact::before {
-  top: 0.45rem;
-  bottom: 0.45rem;
-}
-
-/* Nettere spacing wanneer je dit op een p gebruikt */
-p.accentline {
-  margin-top: 1.4rem;
-}
+/* =========================
+   OVER PAGINA LAYOUT
+========================= */
 
 .about-premium {
   display: grid;
@@ -542,112 +253,19 @@ p.accentline {
   align-items: start;
 }
 
-.about-text p + p {
-  margin-top: 1.25rem;
-}
-
-.about-photo-wrap-small {
-  position: sticky;
-  top: 120px;
-}
-
-.about-photo-small {
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
 .about-text {
   max-width: 720px;
-}
-.about-text {
-  border-left: 2px solid var(--gold);
-  padding-left: 2rem;
+  border-left: 1px solid rgba(215,181,109,0.7);
+  padding-left: 2.2rem;
 }
 
-.about-photo-small {
-  max-width: 260px;
-}
-
-.hero-over {
-  background-image: url("../assets/images/hero/over-hero.webp");
-  background-size: cover;
-  background-position: center;
-}
-/* =========================
-   HERO – OVER
-========================= */
-.hero-over {
-  position: relative;
-  min-height: 70vh;
-  height: 70vh;
-  min-height: 520px;
-  background-image: url("../assets/images/hero/over-hero.webp");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-}
-
-.hero-over-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.62),
-    rgba(0,0,0,0.52)
-  );
-}
-
-.hero-over-content {
-  position: relative;
-  z-index: 2;
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.hero-over-content h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 0.9rem;
-  line-height: 1.25;
-}
-
-.hero-over-content .hero-lead {
-  color: rgba(255,255,255,0.92);
-  font-size: 1.1rem;
+.about-text .service-text {
+  font-size: 0.95rem;
   line-height: 1.65;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.hero-over .hero-eyebrow {
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-/* =========================
-   OVER – LAYOUT (NETTER)
-========================= */
-.about-premium {
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.about-text {
-  max-width: 760px;
-  border-left: 2px solid var(--gold);
-  padding-left: 2rem;
 }
 
 .about-text p + p {
-  margin-top: 1.25rem;
+  margin-top: 1.1rem;
 }
 
 .about-photo-wrap-small {
@@ -661,14 +279,45 @@ p.accentline {
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
-/* Responsive */
-@media (max-width: 960px) {
-  .hero-over {
-    min-height: 62vh;
-    height: auto;
-    padding: 5.5rem 0 5rem;
-  }
+/* =========================
+   CARDS & CTA
+========================= */
 
+.service-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  background: var(--navy);
+i
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* =========================
+   FOOTER (NIET ZWEVEND)
+========================= */
+
+.footer {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 2.2rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 960px) {
   .about-premium {
     grid-template-columns: 1fr;
     gap: 2.2rem;
@@ -688,116 +337,16 @@ p.accentline {
     max-width: 320px;
   }
 }
-/* =========================
-   HERO – OVER
-========================= */
 
-.hero-over {
-  position: relative;
-  height: 70vh;
-  min-height: 520px;
-  background-image: url("../assets/images/hero/over-hero.webp");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
-
-.hero-over::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.65)
-  );
-}
-
-.hero-over .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 780px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-
-.hero-over h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1.2rem;
-}
-
-.hero-over p {
-  color: rgba(255,255,255,0.92);
-  font-size: 1.05rem;
-  line-height: 1.65;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.hero-over .hero-subtitle {
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.about-text {
-  border-left: 1px solid rgba(215,181,109,0.7);
-  padding-left: 2.2rem;
-  max-width: 720px;
-}
-
-.about-photo-wrap-small {
-  position: sticky;
-  top: 120px;
-}
-
-.about-photo-small {
-  max-width: 260px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
-
-/* =========================
-   OVER PAGINA – TYPO FIX
-========================= */
-
-.about-text .service-text {
-  font-size: 0.95rem;          /* iets compacter dan default */
-  line-height: 1.65;           /* rustiger leesritme */
-}
-
-.about-text .service-text:first-of-type {
-  font-size: 0.95rem;          /* expliciet gelijk trekken */
-}
-
-/* =========================
-   OVER PAGINA – SPACING
-========================= */
-
-.about-text p + p {
-  margin-top: 1.1rem;   /* was ±1.25–1.4rem → nu strakker */
-}
-
-.services-section {
-  padding: 4.2rem 0;    /* was 4.5rem */
-}
-
-.section-title {
-  margin-bottom: 1.2rem; /* iets compacter */
-}
-
-.section-intro.accentline {
-  margin-bottom: 2.2rem; /* was optisch ~1.5rem */
-}
-
-
 
 
 
