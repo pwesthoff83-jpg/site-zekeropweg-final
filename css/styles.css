@@ -318,72 +318,7 @@ img {
   text-align: center;
 }
 
-/* =========================
-   MOBILE MENU (SLIDE IN)
-========================= */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 320px;
-  height: 100vh;
-  background: #ffffff;
-  z-index: 2000;
-  padding: 2.5rem 2rem;
-  transition: right 0.3s ease;
-}
 
-.mobile-menu.open {
-  right: 0;
-}
-
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  margin-top: 1.6rem;
-}
-
-.mobile-nav a {
-  color: var(--text-main);
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.mobile-nav a:hover,
-.mobile-nav a.active {
-  color: var(--gold);
-}
-
-.close-menu {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background: none;
-  border: none;
-  font-size: 2.2rem;
-  color: var(--navy);
-  cursor: pointer;
-  z-index: 2100;
-}
-
-/* Overlay */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.42);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1500;
-  transition: opacity 0.2s ease;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* =========================
    RESPONSIVE
@@ -1126,6 +1061,7 @@ body.menu-open {
 body.menu-open {
   overflow: hidden;
 }
+
 
 
 
