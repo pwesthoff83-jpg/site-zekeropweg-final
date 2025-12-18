@@ -246,3 +246,97 @@
   color: #ffffff;
 }
 
+/* =========================================================
+   HERO EV – DEFINITIEF & STABIEL
+   Geldt voor EV AccuCheck + Zakelijk
+========================================================= */
+
+.hero-ev {
+  position: relative;
+  min-height: 560px;
+  padding: 6.5rem 0 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center 55%;
+  overflow: hidden;
+}
+
+/* Overlay */
+.hero-ev-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.68),
+    rgba(0,0,0,0.55)
+  );
+  z-index: 1;
+}
+
+/* Content */
+.hero-ev-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+/* Eyebrow – altijd zichtbaar */
+.hero-ev .hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  opacity: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+/* Titel */
+.hero-ev h1 {
+  color: #ffffff;
+  font-size: 2.6rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Lead */
+.hero-ev .hero-lead {
+  color: rgba(255,255,255,0.95);
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Paragraaf */
+.hero-ev p {
+  color: rgba(255,255,255,0.9);
+  max-width: 760px;
+  margin: 0.4rem auto 0;
+  line-height: 1.7;
+}
+
+/* Afbeeldingen */
+.hero-ev {
+  background-image: url("../assets/images/hero/ev-hero.webp");
+}
+
+.hero-ev-zakelijk {
+  background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero-ev {
+    min-height: 520px;
+    padding: 6rem 0 5rem;
+  }
+
+  .hero-ev h1 {
+    font-size: 2.15rem;
+  }
+}
