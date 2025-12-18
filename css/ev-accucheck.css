@@ -1,9 +1,6 @@
-/* =========================================================
-   EV ACCUCHECK – DEFINITIEVE PREMIUM CSS
-   Geldt voor EV AccuCheck + EV AccuCheck Zakelijk
-========================================================= */
-
-/* ================= HERO (SHARED) ================= */
+:root {
+  --ev-hero-image: url("../assets/images/hero/ev-hero.webp");
+}
 
 .hero-ev {
   position: relative;
@@ -12,16 +9,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-image: var(--ev-hero-image);
   background-size: cover;
   background-position: center 55%;
   overflow: hidden;
-
-  /* Standaard (particulier) hero */
-  background-image: url("../assets/images/hero/ev-hero.webp");
 }
 
-/* Overlay altijd echt overlay */
 .hero-ev-overlay {
   position: absolute;
   inset: 0;
@@ -32,7 +25,6 @@
   z-index: 1;
 }
 
-/* Content altijd boven overlay */
 .hero-ev-content {
   position: relative;
   z-index: 2;
@@ -41,21 +33,13 @@
   padding: 0 1.5rem;
 }
 
-/* Eyebrow altijd zichtbaar en goud */
 .hero-ev .hero-eyebrow {
-  position: relative;
-  z-index: 3;
   display: inline-block;
-
-  color: var(--gold) !important;
-  opacity: 1;
-
+  margin-bottom: 0.9rem;
+  color: var(--gold);
+  font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 500;
-
-  margin-bottom: 0.9rem;
   text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
 
@@ -64,14 +48,12 @@
   font-size: 2.6rem;
   line-height: 1.2;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 18px rgba(0,0,0,0.35);
 }
 
 .hero-ev .hero-lead {
   color: rgba(255,255,255,0.95);
   font-size: 1.1rem;
   margin-bottom: 0.8rem;
-  line-height: 1.7;
 }
 
 .hero-ev p {
@@ -81,112 +63,15 @@
   line-height: 1.7;
 }
 
-/* Zakelijk hero afbeelding (override) */
-.hero-ev.hero-ev-zakelijk {
+.hero-ev-zakelijk {
   background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
 }
-
-/* Responsive hero */
-@media (max-width: 960px) {
-  .hero-ev {
-    min-height: 520px;
-    padding: 6rem 0 5rem;
-  }
-
-  .hero-ev h1 {
-    font-size: 2.15rem;
-  }
-}
-
-/* ================= PRIJSKAART (PARTICULIER) ================= */
-
-.price-card {
-  max-width: 520px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2.8rem;
-}
-
-.price-main {
-  margin-bottom: 1.2rem;
-}
-
-.price-amount {
-  display: block;
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-
-.price-label {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
-}
-
-.price-card .description {
-  margin-top: 1.4rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-.note-small {
-  margin-top: 1.2rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* ================= REISBLOK (GOUDEN LIJN) ================= */
-
-.travel-info {
-  position: relative;
-  max-width: 720px;
-  margin: 4rem auto 0;
-  padding-left: 2.2rem;
-}
-
-.travel-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.travel-info p {
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-
-.travel-info::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.35rem;
-  bottom: 0.35rem;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    rgba(215, 181, 109, 0),
-    rgba(215, 181, 109, 0.95),
-    rgba(215, 181, 109, 0)
-  );
-  border-radius: 2px;
-}
-
-/* ================= PACKAGES (ZAKELIJK) ================= */
 
 .packages-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.4rem;
   margin-top: 3rem;
-}
-
-@media (max-width: 960px) {
-  .packages-section { grid-template-columns: 1fr; }
 }
 
 .package-card {
@@ -208,10 +93,19 @@
   margin: 0.6rem 0 0.8rem;
 }
 
-.package-card .description { color: var(--text-muted); }
+.package-card .description {
+  color: var(--text-muted);
+}
 
-.package-card ul { padding-left: 1.2rem; margin-top: 1.1rem; }
-.package-card li { margin-bottom: 0.55rem; color: var(--text-muted); }
+.package-card ul {
+  padding-left: 1.2rem;
+  margin-top: 1.1rem;
+}
+
+.package-card li {
+  margin-bottom: 0.55rem;
+  color: var(--text-muted);
+}
 
 .package-card.featured {
   border: 1px solid var(--gold);
@@ -233,104 +127,11 @@
   border-radius: 999px;
 }
 
-/* ================= BUTTON VARIANT ================= */
-
-.btn-secondary.btn-secondary--dark {
-  color: var(--navy);
-  border: 1px solid var(--navy);
-  background: transparent;
-}
-
-.btn-secondary.btn-secondary--dark:hover {
-  background: var(--navy);
-  color: #ffffff;
-}
-
-/* =========================================================
-   HERO EV – DEFINITIEF & STABIEL
-   Geldt voor EV AccuCheck + Zakelijk
-========================================================= */
-
-.hero-ev {
-  position: relative;
-  min-height: 560px;
-  padding: 6.5rem 0 5.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center 55%;
-  overflow: hidden;
-}
-
-/* Overlay */
-.hero-ev-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.68),
-    rgba(0,0,0,0.55)
-  );
-  z-index: 1;
-}
-
-/* Content */
-.hero-ev-content {
-  position: relative;
-  z-index: 2;
-  max-width: 860px;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-
-/* Eyebrow – altijd zichtbaar */
-.hero-ev .hero-eyebrow {
-  display: inline-block;
-  margin-bottom: 0.9rem;
-
-  color: var(--gold);
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-
-  opacity: 1;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
-}
-
-/* Titel */
-.hero-ev h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-/* Lead */
-.hero-ev .hero-lead {
-  color: rgba(255,255,255,0.95);
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-}
-
-/* Paragraaf */
-.hero-ev p {
-  color: rgba(255,255,255,0.9);
-  max-width: 760px;
-  margin: 0.4rem auto 0;
-  line-height: 1.7;
-}
-
-/* Afbeeldingen */
-.hero-ev {
-  background-image: url("../assets/images/hero/ev-hero.webp");
-}
-
-.hero-ev-zakelijk {
-  background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
-}
-
-/* Responsive */
 @media (max-width: 960px) {
+  .packages-section {
+    grid-template-columns: 1fr;
+  }
+
   .hero-ev {
     min-height: 520px;
     padding: 6rem 0 5rem;
