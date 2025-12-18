@@ -829,17 +829,22 @@ body {
 }
 
 .travel-info {
-  margin-top: 2.5rem;   /* was 4rem */
+  position: relative;
+  max-width: 720px;
+  margin: 3.5rem auto 0;
+  padding-left: 2rem;
 }
 
-.travel-info {
-  margin-top: 2.5rem;   /* was 4rem */
+.travel-info::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  height: calc(100% - 0.7rem);
+  width: 2px;
+  background-color: var(--gold);
+  border-radius: 2px;
 }
-.page-content {
-  flex: 1;
-}
-
-
 
 
 
