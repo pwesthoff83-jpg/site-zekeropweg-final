@@ -21,8 +21,5 @@ document.addEventListener("DOMContentLoaded", () => {
   toggle.addEventListener("click", openMenu);
   closeBtn.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
 });
+
