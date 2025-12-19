@@ -1192,23 +1192,27 @@ body.menu-open {
   border-radius: var(--radius-card);
   padding: 2.6rem;
   box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-.package-card .price {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0.6rem 0 1rem;
+/* ALGEMENE HOVER – ZEER SUBTIEL */
+.package-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
 }
 
-.package-card ul {
-  margin-top: 1.2rem;
-  padding-left: 1.2rem;
+/* PREMIUM (featured) – IETS MEER, MAAR BEHEERST */
+.package-card.featured {
+  border: 1px solid var(--gold);
 }
 
-.package-card li {
-  margin-bottom: 0.6rem;
-  color: var(--text-muted);
+.package-card.featured:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.14);
 }
+
 
 .package-card.featured {
   border: 1px solid var(--gold);
@@ -1516,6 +1520,7 @@ body.menu-open {
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(11, 28, 45, 0.25);
 }
+
 
 
 
