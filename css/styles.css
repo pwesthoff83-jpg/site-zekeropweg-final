@@ -1380,6 +1380,34 @@ body.menu-open {
   align-items: center;
   position: relative;
 }
+/* ===============================
+   PAKKETTEN – PREMIUM HOVER
+================================ */
+
+.package-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+/* Extra accent voor 'Meest gekozen' */
+.package-card.featured {
+  border: 1px solid rgba(210, 170, 90, 0.45);
+}
+
+.package-card.featured:hover {
+  box-shadow: 0 24px 55px rgba(210, 170, 90, 0.18);
+}
+
 
 
 
