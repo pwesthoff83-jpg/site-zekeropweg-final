@@ -1324,6 +1324,48 @@ body.menu-open {
   background: var(--navy-deep);
   box-shadow: 0 14px 32px rgba(0,0,0,0.18);
 }
+/* =========================
+   HERO – AANKOOPADVIES (COMPACT)
+========================= */
+
+.hero-aankoopadvies {
+  height: 55vh;              /* was ~70vh */
+  min-height: 420px;         /* compacter maar nog premium */
+  background-position: center 70%; 
+  /* iets lager zodat de auto volledig zichtbaar blijft */
+}
+
+/* Iets rustiger spacing in de hero-tekst */
+.hero-aankoopadvies .hero-content {
+  max-width: 760px;
+  padding-top: 1rem;
+}
+
+/* Titel iets compacter */
+.hero-aankoopadvies h1 {
+  font-size: 2.4rem;
+}
+
+/* Subtekst iets strakker */
+.hero-aankoopadvies p {
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0.9rem auto 0;
+}
+
+/* Mobiel */
+@media (max-width: 900px) {
+  .hero-aankoopadvies {
+    height: 48vh;
+    min-height: 360px;
+    background-position: center 65%;
+  }
+
+  .hero-aankoopadvies h1 {
+    font-size: 2rem;
+  }
+}
+
 
 
 
