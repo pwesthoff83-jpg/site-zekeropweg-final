@@ -1180,6 +1180,51 @@ body.menu-open {
   line-height: 1.65;
 }
 
+.packages-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  margin-top: 3rem;
+}
+
+.package-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 2.6rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.package-card .price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.6rem 0 1rem;
+}
+
+.package-card ul {
+  margin-top: 1.2rem;
+  padding-left: 1.2rem;
+}
+
+.package-card li {
+  margin-bottom: 0.6rem;
+  color: var(--text-muted);
+}
+
+.package-card.featured {
+  border: 1px solid var(--gold);
+  transform: scale(1.03);
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  background: var(--gold);
+  color: #111;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+}
+
 
 
 
