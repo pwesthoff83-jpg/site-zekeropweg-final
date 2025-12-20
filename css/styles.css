@@ -1206,54 +1206,6 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* =========================================================
-   PAKKETTEN GRID EN KAARTEN (SUBTIEL, PREMIUM)
-========================================================= */
-
-.packages-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-@media (max-width: 900px) {
-  .packages-section {
-    grid-template-columns: 1fr; /* fix: op mobiel onder elkaar */
-  }
-}
-
-.package-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.6rem;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.package-card:hover {
-  transform: translateY(-2px); /* subtiel */
-  box-shadow: 0 14px 34px rgba(0,0,0,0.10);
-}
-
-.package-card.featured {
-  border: 1px solid rgba(215,181,109,0.55);
-}
-
-.package-card.featured:hover {
-  transform: translateY(-3px); /* net iets meer, maar rustig */
-  box-shadow: 0 16px 38px rgba(0,0,0,0.12);
-}
-
-.badge {
-  display: inline-block;
-  margin-bottom: 0.8rem;
-  background: var(--gold);
-  color: #111;
-  font-size: 0.75rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-}
 
 /* =========================================================
    CTA KNOP IN PAKKETKAART (ZELFDE STIJL, RUSTIG)
@@ -1277,6 +1229,7 @@ body.menu-open {
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
   background: var(--navy-deep);
 }
+
 
 
 
