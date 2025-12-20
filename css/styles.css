@@ -1288,6 +1288,74 @@ body.menu-open {
   outline: none;
 }
 
+/* =========================
+   CONTACT – PREMIUM LAYOUT
+========================= */
+
+.contact-premium {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3.5rem;
+  margin-top: 2.5rem;
+}
+
+.contact-info p {
+  margin-top: 1rem;
+  line-height: 1.65;
+}
+
+.contact-line {
+  margin-top: 1.2rem;
+}
+
+.contact-note {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.contact-form-wrap {
+  background: var(--bg-card);
+  padding: 2.6rem;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-family: inherit;
+}
+
+.form-row {
+  margin-top: 1.2rem;
+}
+
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .contact-premium {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
 
