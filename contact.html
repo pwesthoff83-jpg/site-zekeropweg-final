@@ -4,53 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | ZekerOpWeg</title>
-  <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV AccuCheck of begeleiding. Rustig, duidelijk en persoonlijk." />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Neem contact op met ZekerOpWeg voor onafhankelijk aankoopadvies, EV AccuCheck of ondersteuning bij verkeersboetes. Rustig, transparant en persoonlijk." />
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="fade-in">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header class="header">
   <div class="container header-container">
-    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+    <a href="index.main.html" class="brand-logo">ZekerOpWeg</a>
 
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
     <nav class="main-nav">
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.main.html">Home</a></li>
         <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
         <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-        <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
+        <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
   </div>
 
-  <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" aria-label="Menu sluiten">×</button>
+    <nav class="mobile-nav">
+      <a href="index.main.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html">EV AccuCheck</a>
+      <a href="bezwaarservice.html">Bezwaarservice</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
 </header>
 
-<main>
+<main class="page-content">
 
-<!-- HERO -->
-<section class="hero hero-contact">
+<!-- ================= HERO ================= -->
+<section class="hero-home hero-contact">
   <div class="hero-overlay"></div>
+
   <div class="hero-content">
     <span class="hero-eyebrow">Persoonlijk contact</span>
-    <h1>Contact</h1>
-    <p>Rustig, duidelijk en onafhankelijk advies. Ik help u graag verder.</p>
+    <h1>Neem rustig contact op</h1>
+    <p>
+      Heeft u vragen over aankoopadvies, EV AccuCheck of bezwaarservice?
+      Ik denk graag met u mee, zonder verplichtingen.
+    </p>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact-section container">
+<!-- ================= CONTACT ================= -->
+<section class="services-section container">
 
-  <div class="contact-card">
+  <div class="contact-premium">
 
     <!-- INFO -->
     <div class="contact-info">
-      <h2>Direct contact</h2>
+      <h2 class="section-title">Direct contact</h2>
+
+      <p>
+        Voor vragen of een eerste afstemming kunt u rechtstreeks contact opnemen.
+      </p>
 
       <p class="contact-line">
         <strong>Telefoon</strong><br>
@@ -62,44 +82,48 @@
         <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a>
       </p>
 
-      <p class="contact-line">
-        ZekerOpWeg werkt volledig onafhankelijk en op afspraak.
-      </p>
-
-      <p class="contact-line">
-        <strong>Werkgebied</strong><br>
-        Nederland<br>
-        <span class="muted">Reiskosten worden transparant vooraf afgestemd.</span>
+      <p class="contact-note">
+        ZekerOpWeg werkt volledig onafhankelijk en uitsluitend op afspraak.
+        Werkzaam door heel Nederland.
       </p>
     </div>
 
     <!-- FORM -->
-    <div class="contact-form">
-      <h2>Stuur een bericht</h2>
+    <div class="contact-form-wrap">
+      <h2 class="section-title">Stuur een bericht</h2>
 
-      <form>
+      <form class="contact-form">
 
-        <div class="form-grid">
+        <div class="form-row-grid">
           <div>
             <label for="voornaam">Voornaam</label>
             <input type="text" id="voornaam" required>
           </div>
+
           <div>
             <label for="achternaam">Achternaam</label>
             <input type="text" id="achternaam" required>
           </div>
         </div>
 
-        <label for="email">E mail</label>
-        <input type="email" id="email" required>
+        <div class="form-row">
+          <label for="email">E mail</label>
+          <input type="email" id="email" required>
+        </div>
 
-        <label for="telefoon">Telefoonnummer</label>
-        <input type="tel" id="telefoon">
+        <div class="form-row">
+          <label for="telefoon">Telefoonnummer</label>
+          <input type="tel" id="telefoon">
+        </div>
 
-        <label for="bericht">Bericht</label>
-        <textarea id="bericht" rows="4" required></textarea>
+        <div class="form-row">
+          <label for="bericht">Bericht</label>
+          <textarea id="bericht" rows="4" required></textarea>
+        </div>
 
-        <button type="submit" class="btn-primary">Verstuur bericht</button>
+        <button type="submit" class="btn-primary">
+          Bericht versturen
+        </button>
 
       </form>
     </div>
@@ -110,15 +134,18 @@
 
 </main>
 
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="container">
     <p>© 2026 ZekerOpWeg</p>
   </div>
 </footer>
 
-<script src="scripts/scripts.js"></script>
+<script src="scripts/menu.js"></script>
 </body>
 </html>
+
+
 
 
 
