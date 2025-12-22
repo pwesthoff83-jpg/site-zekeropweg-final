@@ -1490,6 +1490,33 @@ textarea:focus {
     background-position: center 85%;
   }
 }
+.hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 15, 25, 0.55) 0%,
+    rgba(5, 15, 25, 0.35) 40%,
+    rgba(5, 15, 25, 0.15) 100%
+  );
+  z-index: 1;
+}
+
+.hero-home .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-home h1 {
+  font-size: 2.4rem;
+  line-height: 1.25;
+}
+.hero-home p {
+  max-width: 640px;
+  margin: 0.8rem auto 0;
+  font-size: 1.05rem;
+}
 
 
 
