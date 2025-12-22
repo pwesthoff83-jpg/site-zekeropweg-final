@@ -1514,9 +1514,38 @@ textarea:focus {
   }
 }
 
+.hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.35)
+  );
+  z-index: 1;
+}
 
+.hero-home h1 {
+  font-size: 2.4rem;      /* was ±2.8 */
+  line-height: 1.2;
+  max-width: 760px;
+}
 
+.hero-home h1 {
+  font-size: 2.4rem;      /* was ±2.8 */
+  line-height: 1.2;
+  max-width: 760px;
+}
 
+.hero-home {
+  background-position: 65% bottom;
+}
+
+@media (max-width: 900px) {
+  .hero-home {
+    background-position: 60% 85%;
+  }
+}
 
 
 
