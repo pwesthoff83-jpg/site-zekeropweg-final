@@ -1453,9 +1453,8 @@ textarea:focus {
     background-position: center 90%;
   }
 }
-
 /* =========================
-   HERO – HOME (FINETUNED)
+   HERO – HOME (DEFINITIEF)
 ========================= */
 
 .hero-home {
@@ -1465,88 +1464,51 @@ textarea:focus {
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
+/* ÉÉN premium overlay */
 .hero-home::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0.45)
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(7, 18, 30, 0.65) 0%,
+      rgba(7, 18, 30, 0.55) 45%,
+      rgba(7, 18, 30, 0.35) 100%
+    );
   z-index: 1;
 }
 
+/* Content altijd boven overlay */
 .hero-home .hero-content {
   position: relative;
   z-index: 2;
+  text-align: center;
 }
 
+.hero-home h1 {
+  font-size: 2.4rem;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.hero-home p {
+  max-width: 640px;
+  margin: 0.8rem auto 0;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Mobile */
 @media (max-width: 900px) {
   .hero-home {
     min-height: 48vh;
     background-position: center 85%;
   }
 }
-.hero-home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 15, 25, 0.55) 0%,
-    rgba(5, 15, 25, 0.35) 40%,
-    rgba(5, 15, 25, 0.15) 100%
-  );
-  z-index: 1;
-}
-
-.hero-home .hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-home h1 {
-  font-size: 2.4rem;
-  line-height: 1.25;
-}
-.hero-home p {
-  max-width: 640px;
-  margin: 0.8rem auto 0;
-  font-size: 1.05rem;
-}
-
-.hero-home .hero-overlay {
-  background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.45)
-  );
-}
-
-.hero-home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(11, 28, 45, 0.35); /* navy tint */
-  z-index: 1;
-}
-.hero-home > * {
-  position: relative;
-  z-index: 2;
-}
-.hero-home > * {
-  position: relative;
-  z-index: 2;
-}
-
-
-
-
-
-
-
 
 
 
