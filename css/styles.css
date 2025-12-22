@@ -1454,6 +1454,54 @@ textarea:focus {
   }
 }
 
+/* =========================
+   HERO – HOME (FINETUNED)
+========================= */
+
+.hero-home {
+  min-height: 62vh;                 /* iets lager dan standaard */
+  background-size: 110%;            /* subtiel uitzoomen */
+  background-position: center 75%;  /* focus op auto */
+  background-repeat: no-repeat;
+}
+
+/* Desktop groot scherm */
+@media (min-width: 1400px) {
+  .hero-home {
+    background-size: 115%;
+    background-position: center 78%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-home {
+    min-height: 55vh;
+    background-size: 120%;
+    background-position: center 80%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero-home {
+    min-height: 48vh;
+    background-size: 135%;
+    background-position: center 88%;
+  }
+}
+.hero-home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.15) 55%,
+    rgba(0,0,0,0.55) 100%
+  );
+}
+
 
 
 
