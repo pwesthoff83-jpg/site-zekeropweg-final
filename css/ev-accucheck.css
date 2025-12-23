@@ -1,86 +1,29 @@
-:root {
-  --ev-hero-image: url("../assets/images/hero/ev-hero.webp");
-}
-
 /* =========================================================
-   EV ACCUCHECK – HERO EXTENSIE
-   (hoogte komt uit styles.css: .hero-ev = 56vh)
+   EV ACCUCHECK – PAGINA EXTENSIES
+   Alleen aanvullingen bovenop styles.css
 ========================================================= */
 
+/* HERO backgrounds */
 .hero-ev {
-  background-image: var(--ev-hero-image);
-  background-position: center 70%; /* iets uitzoomen door minder boven crop */
+  background-image: url("../assets/images/hero/ev-hero.webp");
+  background-position: center 52%;
 }
 
-/* Zakelijk variant */
 .hero-ev-zakelijk {
   background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
-  background-position: center 55%;
+  background-position: center 50%;
 }
 
-/* Overlay (zelfde kwaliteit als je andere heroes) */
-.hero-ev-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.68),
-    rgba(0, 0, 0, 0.58)
-  );
-  z-index: 1;
+/* Extra leesbaarheid voor deze hero images */
+.hero-ev .hero-eyebrow,
+.hero-ev-zakelijk .hero-eyebrow,
+.hero-ev .hero-lead,
+.hero-ev-zakelijk .hero-lead {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
-/* Content */
-.hero-ev-content {
-  position: relative;
-  z-index: 2;
-  max-width: 860px;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-
-.hero-ev .hero-eyebrow {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
-}
-
-.hero-ev .hero-lead {
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-/* =========================================================
-   PAKKETTEN
-========================================================= */
-
-.packages-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.4rem;
-  margin-top: 3rem;
-}
-
-.package-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 2.6rem;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.package-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
-
-.package-card.featured {
-  border: 1px solid var(--gold);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 960px) {
-  .packages-section {
-    grid-template-columns: 1fr;
-  }
+/* Optioneel: als jouw EV paginas een eigen knop in hero hebben */
+.hero-ev .hero-actions .btn-secondary,
+.hero-ev-zakelijk .hero-actions .btn-secondary {
+  border-color: rgba(255, 255, 255, 0.42);
 }
