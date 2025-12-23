@@ -1,24 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* =========================================================
+   ZEKEROPWEG – CORE STYLES
+   Premium warm style B
+   Doel: stabiele basis voor alle paginas
+========================================================= */
 
-:root {
-  --navy: #071322;
-  --navy-deep: #0a1b32;
-  --gold: #d7b56d;
-
-  --text-main: #151515;
-  --text-muted: #5a5a5a;
-
-  --bg-soft: #f7f6f2;
-  --bg-card: #ffffff;
-
-  --radius-card: 18px;
-  --shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.08);
-}
-
-* {
+/* ============== RESET ============== */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html,
@@ -27,651 +17,488 @@ body {
 }
 
 body {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-  color: var(--text-main);
-  background: #ffffff;
-  line-height: 1.6;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main,
-.page-content {
-  flex: 1 0 auto;
-}
-
-body.menu-open {
-  overflow: hidden;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(190, 155, 90, 0.9);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ============== TOKENS ============== */
+:root {
+  /* Brand */
+  --navy: #071528;
+  --gold: #be9b5a;
+
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-soft: #f6f3ee;
+  --bg-card: #ffffff;
+
+  /* Text */
+  --text: #0f172a;
+  --text-muted: rgba(15, 23, 42, 0.70);
+
+  /* Layout */
+  --container: 1120px;
+
+  /* Radius and shadow */
+  --radius-card: 22px;
+  --radius-btn: 999px;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 28px 65px rgba(0, 0, 0, 0.10);
+
+  /* Spacing */
+  --section-pad: 5.5rem;
+}
+
+/* ============== LAYOUT ============== */
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: min(var(--container), calc(100% - 3rem));
   margin: 0 auto;
 }
 
-/* =========================
-   HEADER
-========================= */
+.section {
+  padding: var(--section-pad) 0;
+}
 
+.section.soft {
+  background: var(--bg-soft);
+}
+
+.section.narrow {
+  padding: 4.25rem 0;
+}
+
+/* ============== TYPOGRAPHY ============== */
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.9rem;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 2.4vw, 2.35rem);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1.05rem;
+  color: var(--text-muted);
+}
+
+/* Titel met gouden lijn eronder */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.35rem;
+  width: 58px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ============== HEADER / NAV ============== */
 .header {
   position: sticky;
   top: 0;
-  background: #ffffff;
-  z-index: 1200;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.2rem;
-  padding: 22px 0;
+  gap: 1.5rem;
+  padding: 1.05rem 0;
 }
 
-.brand-logo {
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.045em;
-  color: #0f172a;
-  text-decoration: none;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.main-nav {
-  margin-left: auto;
-}
-
-.main-nav ul {
-  list-style: none;
+.logo-wrap {
   display: flex;
-  gap: 22px;
   align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
 }
 
-.main-nav a {
+.logo-wrap img {
+  height: 28px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
   text-decoration: none;
-  color: var(--text-main);
   font-weight: 500;
-  font-size: 0.95rem;
+  color: rgba(15, 23, 42, 0.86);
+  padding: 0.4rem 0.2rem;
 }
 
-.main-nav a.active {
-  color: var(--gold);
-}
-
-/* Desktop: Zakelijk standaard verborgen */
-.nav-ev-zakelijk {
-  display: none;
-}
-
-/* Alleen zichtbaar op EV AccuCheck paginas */
-body.ev-context .nav-ev-zakelijk {
-  display: inline-block;
-}
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-.menu-toggle {
-  margin-left: auto;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  color: var(--navy);
-  cursor: pointer;
-  display: none;
-  line-height: 1;
-}
-
-.menu-toggle:focus,
-.menu-toggle:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: #ffffff;
-  z-index: 3000;
-  transform: translateX(100%);
-  transition: transform 0.35s ease;
-  padding: 2.5rem 2rem;
-}
-
-.mobile-menu.open {
-  transform: translateX(0);
-}
-
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-top: 2rem;
-}
-
-.mobile-nav a {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-main);
+.nav a:hover {
+  color: rgba(15, 23, 42, 1);
   text-decoration: none;
 }
 
-.mobile-nav a.active {
+.nav a.active,
+.nav a[aria-current="page"] {
   color: var(--gold);
 }
 
-/* Mobile: Zakelijk ook standaard verborgen */
-.mobile-nav .nav-ev-zakelijk {
-  display: none;
-}
-
-/* Alleen zichtbaar op EV AccuCheck paginas */
-body.ev-context .mobile-nav .nav-ev-zakelijk {
-  display: block;
-}
-
-.close-menu {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--navy);
-}
-
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  z-index: 2500;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-@media (max-width: 960px) {
-  .main-nav {
-    display: none;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .brand-logo {
-    font-size: 1.25rem;
-    letter-spacing: 0.035em;
-  }
-}
-
-/* =========================
-   HERO BASIS
-========================= */
-
-.hero-home,
-.hero-aankoopadvies,
-.hero-gb,
-.hero-over,
-.hero-ev,
-.hero-contact {
+/* ============== HERO (BASE) ============== */
+/* Gebruik op paginas: <section class="hero hero-home"> of hero-contact, etc. */
+.hero {
   position: relative;
-  min-height: 56vh;
-  background-size: cover;
-  background-repeat: no-repeat;
+  min-height: 62vh;
   display: flex;
   align-items: center;
+  padding: 6rem 0 5.5rem;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
-/* Contact lager */
-.hero-contact {
-  min-height: 36vh;
-}
-
-/* Standaard hero content */
-.hero-content,
-.hero-over-content,
-.hero-ev-content {
-  position: relative;
-  z-index: 2;
-  max-width: 860px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-
-/* Eyebrow basis */
-.hero-eyebrow {
-  display: inline-block;
-  margin-bottom: 0.9rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
- .hero-actions {
-  position: relative;
-  z-index: 3;
-}
- 
-}
-
-/* =========================
-   HERO HOME
-========================= */
-
-.hero-home {
-  background-image: url("../assets/images/hero/home-hero-desktop.webp");
-  background-position: right 55%;
-}
-
-.hero-home::before {
+.hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(7, 18, 30, 0.65) 0%,
-    rgba(7, 18, 30, 0.55) 45%,
-    rgba(7, 18, 30, 0.35) 100%
-  );
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.42);
 }
 
-.hero-home h1 {
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero-eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 {
   color: #ffffff;
-  font-size: 2.35rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.30);
 }
 
-.hero-home p {
+.hero-lead {
   color: rgba(255, 255, 255, 0.92);
-  font-size: 1.05rem;
-  max-width: 640px;
-  margin: 0.8rem auto 0;
+  font-size: 1.12rem;
+  line-height: 1.75;
+  margin: 0 auto 1.4rem;
+  max-width: 780px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
 .hero-actions {
   display: flex;
+  gap: 0.85rem;
   justify-content: center;
-  gap: 1.2rem;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 1.35rem;
 }
 
-/* =========================
-   HERO AANKOOPADVIES
-========================= */
-
-.hero-aankoopadvies {
-  background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
-  background-position: center;
-}
-
-.hero-aankoopadvies .hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55));
-  z-index: 1;
-}
-
-.hero-aankoopadvies h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1.1rem;
-}
-
-.hero-aankoopadvies p {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1.05rem;
-  line-height: 1.65;
-}
-
-/* =========================
-   HERO GRATISBEZWAAR
-========================= */
-
-.hero-gb {
-  background-image: url("../assets/images/hero/gratisbezwaar-hero.webp");
-  background-position: center;
-}
-
-.hero-gb::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55));
-  z-index: 1;
-}
-
-.hero-gb h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1rem;
-}
-
-.hero-gb p {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1.05rem;
-  line-height: 1.65;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-/* =========================
-   HERO OVER
-========================= */
-
-.hero-over {
-  background-image: url("../assets/images/hero/over-hero.webp");
-  background-position: center;
-}
-
-.hero-over::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65));
-  z-index: 1;
-}
-
-.hero-over h1 {
-  color: #ffffff;
-  font-size: 2.6rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 1.2rem;
-}
-
-.hero-over p {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1.05rem;
-  line-height: 1.65;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-/* =========================
-   HERO CONTACT
-========================= */
-
+/* Hero varianten die je al gebruikt */
 .hero-contact {
-  background-image: url("../assets/images/hero/contact-hero-final.webp");
+  min-height: 55vh;
   background-position: center bottom;
 }
 
-.hero-contact::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(7, 19, 34, 0.55);
-  z-index: 1;
+/* ============== BUTTONS ============== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+  white-space: nowrap;
 }
 
-.hero-contact h1 {
-  color: #ffffff;
-  font-size: 2.3rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
+.btn:active {
+  transform: translateY(1px);
 }
-
-.hero-contact p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-/* =========================
-   BUTTONS
-========================= */
 
 .btn-primary {
-  padding: 0.75rem 1.8rem;
   background: var(--navy);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: background-color 0.18s ease;
+  color: #ffffff;
+  box-shadow: 0 18px 45px rgba(7, 21, 40, 0.20);
 }
 
 .btn-primary:hover {
-  background: var(--navy-deep);
+  box-shadow: 0 28px 65px rgba(7, 21, 40, 0.26);
+  text-decoration: none;
 }
 
 .btn-secondary {
-  padding: 0.75rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: #fff;
-  text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-.btn-card {
-  display: inline-block;
-  margin-top: 1.8rem;
-  padding: 0.75rem 1.6rem;
-  border-radius: 999px;
-  background: var(--navy);
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.16);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.btn-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-  background: var(--navy-deep);
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: rgba(7, 21, 40, 0.25);
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-.services-section {
-  padding: 4.5rem 0;
+.btn-outline:hover {
+  border-color: rgba(7, 21, 40, 0.42);
+  text-decoration: none;
 }
 
-.section-bg-soft {
-  background: var(--bg-soft);
-}
-
-.section-title {
-  font-size: 1.9rem;
-  margin-bottom: 1.4rem;
-  position: relative;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 2px;
-  background-color: var(--gold);
-  margin-top: 0.75rem;
-}
-
-.section-subtitle,
-.section-intro {
-  max-width: 720px;
-  color: var(--text-muted);
-  margin-bottom: 2.4rem;
-  line-height: 1.65;
-}
-
-/* =========================
-   GRIDS & CARDS
-========================= */
-
-.usp-premium,
-.service-grid,
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.usp-item,
-.service-card,
-.testimonial-card {
+/* ============== CARDS / GRIDS (BLOKKEN) ============== */
+.card {
   background: var(--bg-card);
   border-radius: var(--radius-card);
-  padding: 2.4rem;
+  padding: 2.6rem;
   box-shadow: var(--shadow-soft);
 }
 
-.usp-item h3,
-.service-card h3 {
-  margin-bottom: 0.8rem;
+.card:hover {
+  box-shadow: var(--shadow-hover);
 }
 
-.usp-item p,
-.service-card p,
-.testimonial-card p {
-  line-height: 1.7;
-  margin-top: 0.6rem;
-  color: var(--text-muted);
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
 }
 
-.services-section .service-card p {
-  margin-bottom: 1.6rem;
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
 }
 
-/* =========================
-   LINKS
-========================= */
-
-.text-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: var(--navy);
-  text-decoration: none;
-  font-weight: 600;
+@media (max-width: 960px) {
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
-.text-link:hover {
-  color: var(--gold);
+/* Kleine feature cards die vaak op home staan */
+.feature-card h3 {
+  margin-bottom: 0.65rem;
 }
 
-/* =========================
-   ACCENTLINE (VERTICALE GOUDLIJN)
-========================= */
+.feature-card p {
+  margin: 0;
+}
 
-.accentline {
+/* Spacing fix zodat tekst niet tegen blokken plakt */
+.stack {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.stack-lg {
+  display: grid;
+  gap: 2.2rem;
+}
+
+/* ============== VERTICALE GOUDEN LIJN (linker accent) ============== */
+/* Gebruik in HTML: <div class="accent-left">Tekst</div> */
+.accent-left {
   position: relative;
-  padding-left: 1.6rem;
+  padding-left: 1.35rem;
 }
 
-.accentline::before {
+.accent-left::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.2rem;
-  bottom: 0.2rem;
-  width: 3px;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
   background: var(--gold);
   border-radius: 2px;
   opacity: 0.95;
 }
 
-.accentline--compact::before {
-  top: 0.45rem;
-  bottom: 0.45rem;
+/* ============== LISTS ============== */
+ul {
+  margin: 0.9rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
 }
 
-p.accentline {
-  margin-top: 1.4rem;
+li {
+  margin: 0.45rem 0;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-  background: var(--navy);
-  color: #ffffff;
-  padding: 2.2rem 0;
-  text-align: center;
+/* ============== FORMS (CONTACT) ============== */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+  color: rgba(15, 23, 42, 0.85);
 }
 
-/* =========================
-   FORMS
-========================= */
+input,
+textarea,
+select {
+  width: 100%;
+  font: inherit;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
-  border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(11, 28, 45, 0.08);
+  border-color: rgba(190, 155, 90, 0.55);
+  box-shadow: 0 0 0 4px rgba(190, 155, 90, 0.14);
 }
 
-/* =========================
-   RESPONSIVE HERO
-========================= */
+/* ============== FOOTER ============== */
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 2.4rem 0;
+}
 
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.footer small {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ============== ANIMATIONS ============== */
+.fade-in {
+  animation: fadeIn 0.45s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============== RESPONSIVE HERO ============== */
 @media (max-width: 900px) {
-  .hero-home {
-    min-height: 48vh;
-    background-position: center 85%;
+  .hero {
+    min-height: 56vh;
+    padding: 5.3rem 0 5rem;
   }
 
-  .hero-contact {
-    min-height: 34vh;
-  }
-
-  .hero-contact h1 {
-    font-size: 1.9rem;
+  .hero-lead {
+    font-size: 1.05rem;
   }
 }
 
-.accentline {
-  position: relative;
-  padding-left: 1.6rem;
-}
+@media (max-width: 520px) {
+  .container {
+    width: min(var(--container), calc(100% - 2rem));
+  }
 
-.accentline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.2rem;
-  bottom: 0.2rem;
-  width: 3px;
-  background: var(--gold);
-  border-radius: 2px;
-}
-.services-section {
-  padding-top: 4.5rem;
+  .hero {
+    min-height: 54vh;
+    padding: 5.1rem 0 4.6rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
 }
 
 
