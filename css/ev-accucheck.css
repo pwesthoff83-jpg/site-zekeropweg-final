@@ -1,23 +1,45 @@
+:root {
+  --ev-hero-image: url("../assets/images/hero/ev-hero.webp");
+}
+
 /* =========================================================
    EV ACCUCHECK – HERO EXTENSIE
+   (hoogte komt uit styles.css: .hero-ev = 56vh)
 ========================================================= */
 
 .hero-ev {
-  background-image: url("../assets/images/hero/ev-hero.webp");
-  background-position: center 60%;
+  background-image: var(--ev-hero-image);
+  background-position: center 60%; /* iets uitzoomen door minder boven crop */
 }
 
 /* Zakelijk variant */
 .hero-ev-zakelijk {
   background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
+  background-position: center 55%;
 }
 
-/* =========================================================
-   EV ACCUCHECK – CONTENT
-========================================================= */
+/* Overlay (zelfde kwaliteit als je andere heroes) */
+.hero-ev-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.68),
+    rgba(0, 0, 0, 0.58)
+  );
+  z-index: 1;
+}
+
+/* Content */
+.hero-ev-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  text-align: center;
+  padding: 0 1.5rem;
+}
 
 .hero-ev .hero-eyebrow {
-  text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .hero-ev .hero-lead {
@@ -46,7 +68,7 @@
 
 .package-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .package-card.featured {
