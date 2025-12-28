@@ -369,4 +369,50 @@ body.ev-context .nav-ev-zakelijk{ display:list-item; }
   text-align:center;
 }
 
+/* =========================================================
+   HOMEPAGE RITME – gelijk aan bezwaarservice
+========================================================= */
+
+/* 1. Algemene tekst-adem */
+.section-subtitle,
+.section-intro,
+.usp-trust {
+  margin-top: 1.6rem;
+  line-height: 1.7;
+}
+
+/* 2. USP-grid afstand */
+.usp-premium {
+  margin-top: 2.8rem;
+}
+
+/* 3. Tekst onder USP’s visueel verankeren */
+.usp-trust {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-top: 3rem;
+}
+
+/* dun verticaal goud accent */
+.usp-trust::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 2px;
+  height: calc(100% - 0.6rem);
+  background-color: var(--gold);
+  opacity: 0.9;
+}
+
+/* 4. CTA-secties meer lucht */
+.services-section .btn-primary {
+  margin-top: 2rem;
+}
+
+/* 5. Extra ruimte tussen titel en tekst */
+.section-title + p {
+  margin-top: 1.2rem;
+}
+
 
