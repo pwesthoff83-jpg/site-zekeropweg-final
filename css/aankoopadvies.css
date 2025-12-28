@@ -4,29 +4,76 @@
    AANKOOPADVIES – DEFINITIEVE PAGINA STYLES
 ========================================================= */
 
-/* HERO */
-.hero-advice {
+/* =========================
+   HERO – AANKOOPADVIES
+========================= */
+
+.hero-aankoopadvies{
   position: relative;
-  padding: 6rem 0 5rem;
+  min-height: 56vh;
   background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
   background-size: cover;
   background-position: center bottom;
+  display: flex;
+  align-items: center;
 }
 
-.hero-advice-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+.hero-aankoopadvies::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,18,30,0.65) 0%,
+    rgba(7,18,30,0.55) 45%,
+    rgba(7,18,30,0.35) 100%
+  );
+  z-index:1;
 }
 
-.hero-advice-content {
+.hero-aankoopadvies .hero-content{
   position: relative;
   z-index: 2;
   max-width: 820px;
   margin: 0 auto;
-  padding: 0 1.5rem;
   text-align: center;
+  padding: 0 1.5rem;
 }
+
+.hero-aankoopadvies .hero-eyebrow{
+  display: block;
+  margin-bottom: .8rem;
+  font-size: .75rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-aankoopadvies h1{
+  color:#fff;
+  font-size:2.6rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+
+.hero-aankoopadvies p{
+  color:rgba(255,255,255,.92);
+  max-width:720px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+@media (max-width: 900px){
+  .hero-aankoopadvies{
+    min-height: 48vh;
+    background-position: center 70%;
+  }
+
+  .hero-aankoopadvies h1{
+    font-size:2.1rem;
+  }
+}
+
 
 .hero-eyebrow {
   color: var(--gold);
@@ -45,11 +92,6 @@
   text-shadow: 0 6px 18px rgba(0,0,0,0.45); 
 }
 
-.hero-lead {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-  color: rgba(255,255,255,0.95);
-}
 
 .hero-advice-content p {
   color: rgba(255,255,255,.9);
