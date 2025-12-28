@@ -280,6 +280,50 @@ body.ev-context .nav-ev-zakelijk{ display:list-item; }
   display:flex;
   align-items:center;
 }
+.hero-home p,
+.hero-gb p,
+.hero-over p{
+  color:rgba(255,255,255,.92);
+  font-size:1.05rem;
+  line-height:1.65;
+  margin:0 auto;
+  max-width:720px;
+}
+
+/* Contact hero compacter */
+.hero-contact{
+  min-height:36vh;
+  background-position:center bottom;
+}
+.hero-contact::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(7,19,34,0.55);
+  z-index:1;
+}
+.hero-contact .hero-eyebrow{
+  color:var(--gold);
+  font-size:0.75rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  margin-bottom:0.6rem;
+}
+.hero-contact h1{ font-size:2.3rem; }
+.hero-contact p{ max-width:620px; }
+
+@media (max-width:900px){
+  .hero-home,
+  .hero-gb,
+  .hero-over{ min-height:48vh; }
+
+  .hero-home h1,
+  .hero-gb h1,
+  .hero-over h1{ font-size:2.1rem; }
+
+  .hero-contact{ min-height:34vh; }
+  .hero-contact h1{ font-size:1.9rem; }
+}
 
 .hero-content{
   position:relative;
@@ -413,6 +457,14 @@ body.ev-context .nav-ev-zakelijk{ display:list-item; }
 /* 5. Extra ruimte tussen titel en tekst */
 .section-title + p {
   margin-top: 1.2rem;
+}
+
+.hero-eyebrow {
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.8rem;
+  display: block;
 }
 
 
