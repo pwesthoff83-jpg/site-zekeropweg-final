@@ -760,3 +760,29 @@
   transform: translateX(-50%);
   margin: 0;
 }
+/* ===============================
+   PRIJS – HIGH END STYLING
+=============================== */
+
+.package-card .price {
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin: 1.6rem 0 1.8rem;
+  color: var(--navy);
+  position: relative;
+}
+
+/* subtiele underline = premium detail */
+.package-card .price::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: rgba(190,155,90,0.5);
+  margin: 0.8rem auto 0;
+}
+.package-card.featured .price {
+  color: var(--navy);
+  font-weight: 550;
+}
