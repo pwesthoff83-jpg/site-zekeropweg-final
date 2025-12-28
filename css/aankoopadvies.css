@@ -861,3 +861,36 @@
 .ev-addon-card .btn-card {
   margin-top: 0.2rem;
 }
+/* =========================
+   PREMIUM PRICE FINETUNE
+========================= */
+
+/* Prijs = waardig, niet dominant */
+.package-card .price,
+.ev-addon-price {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin: 0.6rem 0 1.4rem;
+  color: var(--navy);
+}
+
+/* Iets meer lucht rond prijs */
+.package-card .price {
+  font-size: 1.55rem;
+}
+
+/* EV AccuCheck prijs iets editorial */
+.ev-addon-price {
+  font-size: 1.75rem;
+}
+
+/* Subtiele scheiding: prijs ↔ inhoud */
+.package-card .price::after,
+.ev-addon-price::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: rgba(190,155,90,0.45);
+  margin: 0.8rem 0 0;
+}
