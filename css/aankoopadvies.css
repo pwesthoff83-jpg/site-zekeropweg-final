@@ -297,3 +297,54 @@
     padding-right: 0;
   }
 }
+/* =========================
+   HERO – AANKOOPADVIES (CORRECT)
+========================= */
+
+.hero-aankoopadvies{
+  position: relative;
+  min-height: 56vh;
+  background-image: url("../assets/images/hero/aankoopadvies-hero.webp");
+  background-size: cover;
+  background-position: center bottom;
+  display: flex;
+  align-items: center;
+}
+
+.hero-aankoopadvies::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,18,30,0.65) 0%,
+    rgba(7,18,30,0.55) 45%,
+    rgba(7,18,30,0.35) 100%
+  );
+  z-index:1;
+}
+
+.hero-aankoopadvies .hero-content{
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.hero-aankoopadvies .hero-eyebrow{
+  display: block;
+  margin-bottom: .8rem;
+  font-size: .75rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (max-width: 900px){
+  .hero-aankoopadvies{
+    min-height: 48vh;
+    background-position: center 70%;
+  }
+}
