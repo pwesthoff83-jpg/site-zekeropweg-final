@@ -122,11 +122,17 @@
 .services-section p {
   max-width: 720px;
 }
-
-.services-section .accentline {
-  border-left: 1px solid rgba(212,175,55,0.45);
-  padding-left: 1.4rem;
-  margin: 1.6rem 0 2.2rem;
+.hero-ev::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,18,30,0.70) 0%,
+    rgba(7,18,30,0.78) 45%,
+    rgba(7,18,30,0.85) 100%
+  );
+  z-index:1;
 }
 
 
