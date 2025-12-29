@@ -1,1 +1,97 @@
+/* =========================================================
+   BEZWAARSERVICE – PAGE ONLY (premium finetune)
+   Laad NA styles.css
+========================================================= */
+
+/* HERO: zorg dat overlay altijd werkt (zonder rare ::before in HTML) */
+.hero-home {
+  position: relative;
+}
+.hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,18,30,0.72) 0%,
+    rgba(7,18,30,0.58) 45%,
+    rgba(7,18,30,0.40) 100%
+  );
+  z-index: 1;
+}
+.hero-home .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* HERO tekst: iets rustiger en beter leesbaar */
+.hero-home h1 {
+  text-shadow: 0 10px 28px rgba(0,0,0,0.40);
+  letter-spacing: -0.01em;
+}
+.hero-home p {
+  text-shadow: 0 8px 22px rgba(0,0,0,0.28);
+}
+
+/* USP kaarten: net iets “stillere luxe” */
+.usp-premium .usp-item {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
+  border: 1px solid rgba(7,19,34,0.06);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.06);
+}
+
+/* ABONNEMENT kaart (prijsblok) iets meer high end */
+.services-section.section-bg-soft .service-card[style*="text-align:center"] {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
+  border: 1px solid rgba(7,19,34,0.07);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.06);
+}
+
+.services-section.section-bg-soft .price {
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.services-section.section-bg-soft .price::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0.9rem auto 0;
+  opacity: 0.9;
+}
+
+/* CTA knop spacing (zodat knop niet te dicht op tekst zit) */
+.services-section .btn-primary {
+  margin-top: 1.4rem;
+}
+
+/* Accentline: 1 dunne lijn, nooit dubbel */
+.services-section .accentline {
+  border-left: 2px solid rgba(215,181,109,0.45);
+  padding-left: 1.35rem;
+  margin: 1.6rem 0 0;
+}
+
+/* Kleine micro-ritme voor deze pagina: iets consistenter vertical spacing */
+.services-section .section-subtitle {
+  margin-top: 0.8rem;
+}
+.services-section .service-grid {
+  margin-top: 2.2rem;
+}
+
+/* Mobile: hero iets compacter en knoppen/tekst luchtiger */
+@media (max-width: 900px) {
+  .hero-home {
+    min-height: 52vh;
+  }
+  .hero-home .hero-content {
+    padding: 0 1.2rem;
+  }
+  .services-section .btn-primary {
+    display: inline-block;
+  }
+}
 
