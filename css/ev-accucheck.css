@@ -79,3 +79,33 @@
 .hero p {
   font-size: 1.05rem;
 }
+.hero-actions {
+  margin-top: 2.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.hero-actions .btn-primary,
+.hero-actions .btn-secondary {
+  padding: 0.9rem 1.9rem;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  min-width: 190px;
+  text-align: center;
+}
+.hero-actions .btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.55);
+  color: #fff;
+}
+
+.hero-actions .btn-secondary:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+@media (max-width: 600px) {
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
