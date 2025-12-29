@@ -1,91 +1,43 @@
-/* =========================================================
-   OVER PAGINA – PREMIUM FINETUNE
-========================================================= */
+/* =====================================================
+   OVER PAGINA – HERO
+===================================================== */
 
-/* HERO */
 .hero-over {
   position: relative;
-  min-height: 56vh;
+  min-height: 52vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-image: url("../assets/images/hero/over-hero.webp");
   background-size: cover;
-  background-position: center bottom;
+  background-position: center 55%;
+  overflow: hidden;
 }
 
-.hero-over::before {
-  content: "";
+/* Overlay voor premium leesbaarheid */
+.hero-over .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(7,18,30,0.65),
-    rgba(7,18,30,0.45)
+    rgba(7,18,30,0.55) 0%,
+    rgba(7,18,30,0.65) 45%,
+    rgba(7,18,30,0.78) 100%
   );
+  z-index: 1;
 }
 
+/* Content */
 .hero-over .hero-content {
   position: relative;
   z-index: 2;
-}
-
-/* ABOUT LAYOUT */
-.about-layout {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 3.5rem;
-  margin-top: 3rem;
-}
-
-.about-text h3 {
-  margin-bottom: 1rem;
-}
-
-.about-text p {
-  margin-bottom: 1.1rem;
-  line-height: 1.7;
-}
-
-.about-signature {
-  margin-top: 1.6rem;
-  font-weight: 500;
-  color: var(--navy);
-}
-
-/* PHOTO */
-.about-photo img {
-  width: 100%;
-  border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.08);
-}
-
-/* CTA CARD */
-.service-card--center {
   text-align: center;
-  padding: 3.2rem;
+  max-width: 760px;
+  padding: 0 1.2rem;
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-  .about-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================================================
-   MINI BRAND MANIFEST – ZEKEROPWEG
-========================================================= */
-
-.brand-manifest {
-  padding: 6rem 0;
-  background: linear-gradient(
-    180deg,
-    #fbfaf8 0%,
-    #ffffff 100%
-  );
-}
-
-.manifest-eyebrow {
-  display: block;
+.hero-over .hero-subtitle {
+  display: inline-block;
   margin-bottom: 0.8rem;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
@@ -93,39 +45,26 @@
   color: var(--gold);
 }
 
-.manifest-title {
-  font-size: 2.2rem;
+.hero-over h1 {
+  color: #fff;
+  font-size: 2.4rem;
   line-height: 1.25;
-  max-width: 720px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-.manifest-text {
-  max-width: 720px;
-}
-
-.manifest-text p {
+.hero-over p {
+  color: rgba(255,255,255,0.92);
   font-size: 1.05rem;
-  line-height: 1.75;
-  margin-bottom: 1.2rem;
-  color: #3f444a;
-}
-
-.manifest-quote {
-  margin-top: 2.4rem;
-  padding-left: 1.6rem;
-  border-left: 2px solid rgba(212,175,55,0.45);
-  font-style: italic;
-  color: #2f3338;
+  line-height: 1.7;
 }
 
 /* Mobile */
 @media (max-width: 900px) {
-  .manifest-title {
-    font-size: 1.9rem;
+  .hero-over {
+    min-height: 44vh;
   }
 
-  .brand-manifest {
-    padding: 4.5rem 0;
+  .hero-over h1 {
+    font-size: 2rem;
   }
 }
