@@ -73,6 +73,21 @@
     <p>© 2026 ZekerOpWeg</p>
   </div>
 </footer>
+<script>
+const params = new URLSearchParams(window.location.search);
+const pakket = params.get("pakket");
+
+if(pakket){
+  const select = document.querySelector('select[name="Pakket"]');
+  if(select){
+    [...select.options].forEach(o=>{
+      if(o.text.toLowerCase().includes(pakket.toLowerCase())){
+        o.selected = true;
+      }
+    });
+  }
+}
+</script>
 
 </body>
 </html>
