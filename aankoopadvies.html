@@ -59,6 +59,8 @@
   </div>
 </section>
 
+
+ 
 <!-- INTRO -->
 <section class="services-section container">
   <h2 class="section-title">Aankoopadvies zoals het bedoeld is</h2>
@@ -101,7 +103,7 @@
         </ul>
         <p class="note-small">Geen fysieke bezichtiging inbegrepen.</p>
         <div class="package-action">
-          <a href="#intake" onclick="openIntake('Basis aankoopadvies')" class="btn-package">Start met inzicht</a>
+          <a href="contact.html?pakket=basis" class="btn-package">Start met inzicht</a>
         </div>
       </div>
 
@@ -123,7 +125,7 @@
         <p class="note-small">
           Locatie van de auto wordt vooraf afgestemd.
         </p>
-        <a href="#intake" onclick="openIntake('Premium aankoopadvies')" class="btn-package btn-package--primary">
+        <a href="contact.html?pakket=premium" class="btn-package btn-package--primary">
           Plan onafhankelijke bezichtiging
         </a>
       </div>
@@ -145,7 +147,7 @@
         <p class="note-small">
           Ideaal wanneer u niets wilt laten liggen.
         </p>
-        <a href="#intake" onclick="openIntake('Full aankoopbegeleiding')" class="btn-package">
+        <a href="contact.html?pakket=full" class="btn-package">
           Start volledige aankoopbegeleiding
         </a>
       </div>
@@ -154,44 +156,75 @@
   </div>
 </section>
 
-<!-- INTAKE FORMULIER (verborgen tot klik) -->
-<section id="intake-section" class="services-section container" style="display:none;">
-  <form action="mailto:advies@zekeropweg.nu" method="post" enctype="text/plain" class="intake-form" id="intake">
-    <h2 class="section-title">Start uw aankoopadvies</h2>
+<!-- REISKOSTEN -->
+<section class="services-section container">
+  <h2 class="section-title">Reiskosten</h2>
 
-    <label>Welk pakket past het best bij uw situatie?</label><br>
-    <label><input type="radio" name="Pakket" value="Basis aankoopadvies" required> Basis aankoopadvies</label><br>
-    <label><input type="radio" name="Pakket" value="Premium aankoopadvies"> Premium aankoopadvies</label><br>
-    <label><input type="radio" name="Pakket" value="Full aankoopbegeleiding"> Full aankoopbegeleiding</label><br>
-    <label><input type="radio" name="Pakket" value="Ik twijfel nog"> Ik twijfel nog – graag advies</label><br><br>
+  <p class="section-subtitle">
+    Transparant, vooraf afgestemd en zonder verrassingen.
+  </p>
 
-    <label>Advertentielink van de auto</label>
-    <input type="url" name="Advertentielink" required>
-
-    <label>Uw naam</label>
-    <input type="text" name="Naam" required>
-
-    <label>E-mailadres</label>
-    <input type="email" name="Email" required>
-
-    <label>Uw vraag of twijfel</label>
-    <textarea name="Vraag" rows="4"></textarea><br>
-
-    <label>
-      <input type="checkbox" required>
-      Ik begrijp dat ZekerOpWeg onafhankelijk advies levert en dat hier kosten aan verbonden zijn.
-    </label><br><br>
-
-    <button type="submit" class="btn-primary">🔒 Ontvang mijn onafhankelijke aankoopadvies</button>
-  </form>
+  <p class="accentline accentline--compact">
+    Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen.
+    Buiten deze regio geldt €0,35 per kilometer, berekend vanaf de locatie van de auto.
+    Eventuele kosten worden altijd vooraf met u afgestemd.
+  </p>
 </section>
 
-<!-- (rest van je pagina blijft exact gelijk) -->
+<!-- EV ACCUCHECK -->
+<section class="services-section container">
+  <h2 class="section-title">EV AccuCheck als aanvulling</h2>
+
+  <p class="section-subtitle">
+    Bij Premium en Full Service kan aanvullend een EV AccuCheck worden uitgevoerd.
+  </p>
+
+  <div class="ev-addon-card">
+    <div class="ev-addon-price">€149</div>
+    <p>
+      Inclusief TÜV gecertificeerd accucertificaat en onafhankelijk ZekerOpWeg adviesrapport.
+      Digitaal geleverd en direct te gebruiken bij aankoop of advertentie.
+    </p>
+    <a href="#" class="btn-card">EV AccuCheck toevoegen</a>
+  </div>
+</section>
+
+<!-- WERKWIJZE -->
+<section class="services-section container">
+  <h2 class="section-title">Hoe het traject verloopt</h2>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>1. Aanvraag</h3>
+      <p>
+        U kiest een pakket en levert de beschikbare voertuiggegevens aan.
+        De exacte locatie kan later worden doorgegeven.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>2. Analyse en afstemming</h3>
+      <p>
+        De informatie wordt beoordeeld en besproken.
+        Waar nodig volgt aanvullende afstemming.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3>3. Begeleiding en afronding</h3>
+      <p>
+        Afhankelijk van het pakket volgt begeleiding bij bezichtiging,
+        onderhandeling en afronding van de aankoop.
+      </p>
+    </div>
+  </div>
+</section>
 
 </main>
 
 <footer class="footer">
   <div class="container footer-grid">
+
     <div class="footer-col">
       <p class="footer-title">ZekerOpWeg</p>
       <p>Onafhankelijk autoadvies met rust en overzicht.</p>
@@ -200,30 +233,37 @@
 
     <div class="footer-col">
       <p class="footer-title">Contact</p>
-      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
-      <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>Facturatie en administratie</p>
+      <p>
+        <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>
+        Algemene vragen en eerste contact
+      </p>
+      <p>
+        <a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>
+        Facturatie en administratie
+      </p>
     </div>
 
     <div class="footer-col">
       <p class="footer-title">Diensten</p>
-      <p><a href="mailto:advies@zekeropweg.nu" class="footer-accent">advies@zekeropweg.nu</a> Persoonlijk aankoopadvies</p>
-      <p><a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>EV AccuCheck</p>
-      <p><a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br>Bezwaarservice</p>
+      <p>
+       <a href="mailto:advies@zekeropweg.nu" class="footer-accent">advies@zekeropweg.nu</a>
+        Persoonlijk aankoopadvies
+      </p>
+      <p>
+        <a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>
+        EV AccuCheck
+      </p>
+      <p>
+        <a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br>
+        Bezwaarservice
+      </p>
     </div>
+
   </div>
 </footer>
 
+
 <script src="scripts/menu.js"></script>
-<script>
-function openIntake(pakket) {
-  const formSection = document.getElementById("intake-section");
-  formSection.style.display = "block";
-  const radios = document.querySelectorAll('input[name="Pakket"]');
-  radios.forEach(r => r.checked = (r.value === pakket));
-  formSection.scrollIntoView({ behavior: "smooth" });
-}
-</script>
 </body>
 </html>
-
 
