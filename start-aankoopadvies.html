@@ -83,7 +83,7 @@
     <form action="mailto:advies@zekeropweg.nu" method="post" enctype="text/plain">
 
       <label>Welke begeleiding past bij uw situatie?</label>
-      <select name="Pakket" required>
+      <select name="Pakket" id="pakketSelect" required>
         <option value="">Selecteer</option>
         <option>Basis aankoopadvies</option>
         <option>Premium aankoopadvies</option>
@@ -103,29 +103,22 @@
       <label>Wat wilt u zeker weten voordat u beslist?</label>
       <textarea name="Vraag" rows="4"></textarea>
 
+      <!-- ENIGE officiële AccuCheck addon -->
       <div class="advisor-addon" id="accuAddon" style="display:none;">
-  <label>
-    <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combi €149">
-    EV of hybride AccuCheck – combinatietarief €149 <span>(normaal €169)</span>
-  </label>
-</div>
-
-
+        <label>
+          <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combitarief €149">
+          <strong>EV of hybride AccuCheck toevoegen</strong><br>
+          <span>
+            Combitarief €149 (normaal €169)<br>
+            TÜV gecertificeerd accucertificaat + onafhankelijk ZekerOpWeg adviesrapport
+          </span>
+        </label>
+      </div>
 
       <label>
         <input type="checkbox" required>
         Ik begrijp dat ZekerOpWeg onafhankelijk advies levert en dat hier kosten aan verbonden zijn.
       </label>
-       <div id="accuAddon" class="addon-card" style="display:none;">
-  <label class="addon-option">
-    <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combitarief €149">
-    <strong>EV of hybride AccuCheck toevoegen</strong><br>
-    <span class="addon-note">
-      Combitarief €149 (normaal €169)  
-      TÜV gecertificeerd accucertificaat + onafhankelijk ZekerOpWeg adviesrapport
-    </span>
-  </label>
-</div>
 
       <button type="submit" class="advisor-submit">
         Start mijn persoonlijke beoordeling
@@ -160,16 +153,23 @@
 <script>
 const params = new URLSearchParams(window.location.search);
 const pakket = params.get("pakket");
-if(pakket){
-  const select = document.querySelector('select[name="Pakket"]');
-  if(select){
-    [...select.options].forEach(o=>{
-      if(o.text.toLowerCase().includes(pakket.toLowerCase())){
-        o.selected = true;
-      }
-    });
-  }
+const select = document.getElementById("pakketSelect");
+const accuAddon = document.getElementById("accuAddon");
+
+if(pakket && select){
+  [...select.options].forEach(o=>{
+    if(o.text.toLowerCase().includes(pakket.toLowerCase())){
+      o.selected = true;
+    }
+  });
 }
+
+function toggleAddon(){
+  const val = select.value.toLowerCase();
+  accuAddon.style.display = (val.includes("premium") || val.includes("full")) ? "block" : "none";
+}
+select.addEventListener("change", toggleAddon);
+toggleAddon();
 </script>
 
 </body>
