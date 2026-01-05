@@ -31,33 +31,38 @@ function closeMenu() {
 /* =========================
    INTAKE LOGICA (veilig)
 ========================= */
-<script>
-const select = document.querySelector('select[name="Pakket"]');
-const accuAddon = document.getElementById('accuAddon');
-const params = new URLSearchParams(window.location.search);
-const preset = params.get("pakket");
+document.addEventListener("DOMContentLoaded", () => {
 
-if(preset){
-  [...select.options].forEach(o=>{
-    if(o.text.toLowerCase().includes(preset.toLowerCase())){
-      o.selected = true;
+  const pakketSelect = document.querySelector('select[name="Pakket"]');
+  const accuAddon = document.getElementById("accuAddon");
+
+  if (!pakketSelect || !accuAddon) return;
+
+  function updateAddon() {
+    const val = pakketSelect.value.toLowerCase();
+
+    if (val.includes("premium") || val.includes("full")) {
+      accuAddon.style.display = "block";
+    } else {
+      accuAddon.style.display = "none";
     }
-  });
-}
-
-function toggleAccu(){
-  const val = select.value.toLowerCase();
-  if(val.includes("premium") || val.includes("full")){
-    accuAddon.style.display = "block";
-  } else {
-    accuAddon.style.display = "none";
   }
-}
 
-select.addEventListener("change", toggleAccu);
-toggleAccu();
-</script>
+  // preset vanuit ?pakket=
+  const params = new URLSearchParams(window.location.search);
+  const preset = params.get("pakket");
 
+  if (preset) {
+    [...pakketSelect.options].forEach(o => {
+      if (o.text.toLowerCase().includes(preset.toLowerCase())) {
+        o.selected = true;
+      }
+    });
+  }
+
+  pakketSelect.addEventListener("change", updateAddon);
+  updateAddon();
+});
 
 
 
