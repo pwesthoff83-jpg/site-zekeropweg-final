@@ -47,5 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
   pakketAankoop?.addEventListener("change", updateComboOptie);
 });
 
+<script>
+const pakketSelect = document.querySelector('select[name="Pakket"]');
+const accuAddon = document.getElementById('accuAddon');
+
+function toggleAccu(){
+  const val = pakketSelect.value.toLowerCase();
+  if(val.includes("premium") || val.includes("full")){
+    accuAddon.style.display = "block";
+  } else {
+    accuAddon.style.display = "none";
+  }
+}
+
+pakketSelect.addEventListener("change", toggleAccu);
+toggleAccu();
+</script>
+
 
 
