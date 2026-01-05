@@ -175,6 +175,29 @@ function toggleAddon(){
 select.addEventListener("change", toggleAddon);
 toggleAddon();
 </script>
+<script>
+const advertentie = document.querySelector('input[name="Advertentie"]');
+const accuCheck = document.querySelector('input[name="AccuCheck"]');
+const evNotice = document.getElementById("evNotice");
+
+function checkEV(){
+  if(!advertentie || !evNotice) return;
+
+  const val = advertentie.value.toLowerCase();
+
+  const isEV = /tesla|ev|electric|hybrid|phev|plugin|ioniq|niro|model|leaf|id\.|e-tron|polestar|xc40 recharge|c40 recharge/.test(val);
+  const hasAccu = accuCheck && accuCheck.checked;
+
+  if(isEV && !hasAccu){
+    evNotice.style.display = "block";
+  } else {
+    evNotice.style.display = "none";
+  }
+}
+
+advertentie.addEventListener("input", checkEV);
+accuCheck?.addEventListener("change", checkEV);
+</script>
 
 </body>
 </html>
