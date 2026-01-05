@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Zekerheid vóórdat u beslist | ZekerOpWeg</title>
-  <meta name="description" content="Start uw onafhankelijke aankoopadvies. Zekerheid vóórdat u beslist. Rust, overzicht en professionele begeleiding bij uw volgende auto.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Zekerheid vóórdat u beslist | ZekerOpWeg</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/styles.css">
 
-  <link rel="stylesheet" href="css/styles.css">
+<style>
+.intake-shell{
+  max-width:720px;
+  margin:0 auto;
+}
+.advisor-card{
+  background:#faf9f7;
+  border-radius:26px;
+  padding:3rem 3.4rem;
+  box-shadow:0 50px 120px rgba(0,0,0,.08);
+  border:1px solid #f0ece6;
+  margin-top:3rem;
+}
+.advisor-card label{
+  display:block;
+  margin-top:1.8rem;
+  font-weight:600;
+}
+.advisor-card input,
+.advisor-card select,
+.advisor-card textarea{
+  width:100%;
+  margin-top:.4rem;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+}
+.advisor-card input:focus,
+.advisor-card textarea:focus,
+.advisor-card select:focus{
+  outline:none;
+  border-color:#c6a86a;
+  box-shadow:0 0 0 3px rgba(198,168,106,.15);
+}
+.advisor-addon{
+  margin:2.4rem 0 1.6rem;
+  background:#f4f1ec;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:18px;
+  padding:1.4rem 1.6rem;
+}
+.advisor-addon span{opacity:.6;font-size:.9rem;}
+.advisor-submit{
+  margin-top:2.8rem;
+  padding:18px 34px;
+  border-radius:999px;
+  background:#c6a86a;
+  color:#1e2933;
+  font-weight:600;
+  border:none;
+  width:100%;
+}
+.advisor-submit:hover{background:#b9995a;}
+</style>
 </head>
 
 <body class="fade-in">
-
 <header class="header">
   <div class="container header-container">
     <a href="index.html" class="brand-logo">ZekerOpWeg</a>
@@ -19,76 +72,71 @@
 
 <main class="page-content">
 
-<section class="services-section container" style="max-width:720px;">
+<section class="services-section container intake-shell">
   <h1 class="section-title">Zekerheid vóórdat u beslist</h1>
-  <p class="section-subtitle">
-    U staat er niet alleen voor. Uw aanvraag wordt beoordeeld door een onafhankelijke professional.
-  </p>
-
+  <p class="section-subtitle">U staat er niet alleen voor. Uw aanvraag wordt persoonlijk beoordeeld.</p>
   <p class="accentline">
-    U start hier een persoonlijk traject waarin uw situatie zorgvuldig wordt bekeken voordat kosten worden gemaakt of beslissingen worden genomen.
+    U start hier een zorgvuldig begeleid traject waarin eerst uw situatie wordt beoordeeld — pas daarna volgen eventuele kosten of beslissingen.
   </p>
 
-  <form action="mailto:advies@zekeropweg.nu" method="post" enctype="text/plain" class="intake-form">
+  <div class="advisor-card">
+    <form action="mailto:advies@zekeropweg.nu" method="post" enctype="text/plain">
 
-    <label>Welk pakket heeft uw voorkeur?</label>
-    <select name="Pakket" required>
-      <option value="">Selecteer</option>
-      <option>Basis aankoopadvies</option>
-      <option>Premium aankoopadvies</option>
-      <option>Full aankoopbegeleiding</option>
-      <option>Ik twijfel nog</option>
-    </select>
+      <label>Welke begeleiding past bij uw situatie?</label>
+      <select name="Pakket" required>
+        <option value="">Selecteer</option>
+        <option>Basis aankoopadvies</option>
+        <option>Premium aankoopadvies</option>
+        <option>Full aankoopbegeleiding</option>
+        <option>Ik twijfel nog</option>
+      </select>
 
-    <label>Advertentielink van de auto</label>
-    <input type="url" name="Advertentie" required>
+      <label>Link naar de auto die u overweegt</label>
+      <input type="url" name="Advertentie" required>
 
-    <label>Uw naam</label>
-    <input type="text" name="Naam" required>
+      <label>Uw naam</label>
+      <input type="text" name="Naam" required>
 
-    <label>Uw e-mailadres</label>
-    <input type="email" name="Email" required>
+      <label>Uw e-mailadres</label>
+      <input type="email" name="Email" required>
 
-    <label>Uw situatie of vraag</label>
-    <textarea name="Vraag" rows="4"></textarea>
-    <div class="addon-box">
-  <label class="addon-option">
-    <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combi €149">
-    EV of hybride AccuCheck – combitarief €149 <span class="addon-note">(normaal €169)</span>
-  </label>
-    <label class="checkbox">
-      <input type="checkbox" required>
-      Ik begrijp dat ZekerOpWeg onafhankelijk advies levert en dat hier kosten aan verbonden zijn.
-    </label>
+      <label>Wat wilt u zeker weten voordat u beslist?</label>
+      <textarea name="Vraag" rows="4"></textarea>
 
-    <button type="submit" class="btn-primary">Start mijn traject</button>
-    <label style="margin-top:1.8rem;">EV of hybride AccuCheck toevoegen</label>
+      <div class="advisor-addon">
+        <label>
+          <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combi €149">
+          EV of hybride AccuCheck – combinatietarief €149 <span>(normaal €169)</span>
+        </label>
+      </div>
 
+      <label>
+        <input type="checkbox" required>
+        Ik begrijp dat ZekerOpWeg onafhankelijk advies levert en dat hier kosten aan verbonden zijn.
+      </label>
 
-</div>
- <div class="intake-card">
-  <form ...>
-    ...
-  </form>
-</div>
+      <button type="submit" class="advisor-submit">
+        Start mijn persoonlijke beoordeling
+      </button>
 
-
-  <p style="margin-top:2rem; font-size:0.9rem; opacity:0.7;">
-    Uw aanvraag wordt persoonlijk beoordeeld. U ontvangt eerst een inhoudelijke terugkoppeling voordat een betaalverzoek wordt verzonden.
-  </p>
+      <p style="margin-top:1.6rem;opacity:.7;font-size:.9rem;">
+        Uw aanvraag wordt eerst inhoudelijk beoordeeld voordat een betaalverzoek wordt verzonden.
+      </p>
+    </form>
+  </div>
 </section>
-  
+
 <section class="services-section container">
   <h3 class="section-title" style="font-size:1.4rem;">Reiskosten</h3>
   <p class="section-subtitle">
-    Reiskosten worden berekend op basis van de locatie van de auto, niet uw woonadres.
+    Reiskosten worden berekend op basis van de locatie van de auto — niet uw woonadres.
   </p>
   <p class="accentline accentline--compact">
     Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.<br>
-    Buiten deze regio geldt €0,35 per kilometer, berekend vanaf de locatie van de auto.<br>
-    Eventuele kosten worden altijd vooraf met u afgestemd.
+    Buiten deze regio geldt €0,35 per kilometer. Eventuele kosten worden vooraf afgestemd.
   </p>
 </section>
+
 </main>
 
 <footer class="footer">
@@ -96,10 +144,10 @@
     <p>© 2026 ZekerOpWeg</p>
   </div>
 </footer>
+
 <script>
 const params = new URLSearchParams(window.location.search);
 const pakket = params.get("pakket");
-
 if(pakket){
   const select = document.querySelector('select[name="Pakket"]');
   if(select){
@@ -114,4 +162,3 @@ if(pakket){
 
 </body>
 </html>
-
