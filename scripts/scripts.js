@@ -63,6 +63,27 @@ document.addEventListener("DOMContentLoaded", () => {
   pakketSelect.addEventListener("change", updateAddon);
   updateAddon();
 });
+const advertentieInput = document.querySelector('input[name="Advertentie"]');
+const evNotice = document.getElementById("evNotice");
+const evAnchor = document.getElementById("evAnchor");
+
+function checkEV() {
+  const link = advertentieInput.value.toLowerCase();
+  const isEV = link.includes("ev") || link.includes("hybride") || link.includes("electric") || link.includes("plug-in");
+  const hasAccu = document.querySelector('input[name="AccuCheck"]').checked;
+
+  if(isEV && !hasAccu){
+    evNotice.style.display = "block";
+    evAnchor.style.display = "block";
+  } else {
+    evNotice.style.display = "none";
+    evAnchor.style.display = "none";
+  }
+}
+
+advertentieInput.addEventListener("input", checkEV);
+document.querySelector('input[name="AccuCheck"]').addEventListener("change", checkEV);
+
 
 
 
