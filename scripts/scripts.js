@@ -31,28 +31,22 @@ function closeMenu() {
 /* =========================
    INTAKE LOGICA (veilig)
 ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const dienstSelect = document.getElementById("dienst");
-  const pakketAankoop = document.getElementById("pakketAankoop");
-  const comboOptie = document.getElementById("comboOptie");
-
-  function updateComboOptie() {
-    if (!pakketAankoop || !comboOptie) return;
-    comboOptie.style.display =
-      pakketAankoop.value === "premium" || pakketAankoop.value === "full"
-        ? "block"
-        : "none";
-  }
-
-  pakketAankoop?.addEventListener("change", updateComboOptie);
-});
-
 <script>
-const pakketSelect = document.querySelector('select[name="Pakket"]');
+const select = document.querySelector('select[name="Pakket"]');
 const accuAddon = document.getElementById('accuAddon');
+const params = new URLSearchParams(window.location.search);
+const preset = params.get("pakket");
+
+if(preset){
+  [...select.options].forEach(o=>{
+    if(o.text.toLowerCase().includes(preset.toLowerCase())){
+      o.selected = true;
+    }
+  });
+}
 
 function toggleAccu(){
-  const val = pakketSelect.value.toLowerCase();
+  const val = select.value.toLowerCase();
   if(val.includes("premium") || val.includes("full")){
     accuAddon.style.display = "block";
   } else {
@@ -60,9 +54,10 @@ function toggleAccu(){
   }
 }
 
-pakketSelect.addEventListener("change", toggleAccu);
+select.addEventListener("change", toggleAccu);
 toggleAccu();
 </script>
+
 
 
 
