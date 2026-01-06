@@ -29,11 +29,16 @@ function closeMenu() {
 }
 
 /* =========================
-   CONTEXT FOOTER HIGHLIGHT (definitief stabiel)
+   CONTEXT FOOTER HIGHLIGHT (architectuur-proof)
 ========================= */
-document.addEventListener("DOMContentLoaded", () => {
 
-  const runFooterContext = () => {
+(function () {
+  const detectFooter = new MutationObserver(() => {
+    const footer = document.querySelector("[data-service]");
+    if (!footer) return;
+
+    detectFooter.disconnect(); // footer is er nu
+
     const path = (window.location.pathname || "").toLowerCase();
     let activeService = "info";
 
@@ -44,11 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-service]").forEach(el => {
       el.classList.toggle("footer-accent", el.dataset.service === activeService);
     });
-  };
+  });
 
-  // Zorgt dat hij ook werkt bij Vercel DOM streaming / late rendering
-  setTimeout(runFooterContext, 60);
-});
+  detectFooter.observe(document.body, { childList: true, subtree: true });
+})();
+
 
 
 /* =========================
@@ -107,6 +112,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
