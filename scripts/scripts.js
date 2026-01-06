@@ -1,6 +1,6 @@
 /* ============================================================
    ZEKEROPWEG – CORE JS
-   Mobile menu + intake (stabiel)
+   Mobile menu + intake + context footer (stabiel)
 ============================================================ */
 
 /* =========================
@@ -29,6 +29,26 @@ function closeMenu() {
 }
 
 /* =========================
+   CONTEXT FOOTER HIGHLIGHT
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const path = (window.location.pathname || "").toLowerCase();
+  let activeService = "info"; // standaard = homepage
+
+  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
+  if (path.includes("accucheck")) activeService = "accu";
+  if (path.includes("bezwaar")) activeService = "bezwaar";
+
+  document.querySelectorAll("[data-service]").forEach(el => {
+    if (el.dataset.service === activeService) {
+      el.classList.add("footer-accent");
+    } else {
+      el.classList.remove("footer-accent");
+    }
+  });
+});
+
+/* =========================
    INTAKE LOGICA (veilig)
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,15 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateAddon() {
     const val = pakketSelect.value.toLowerCase();
-
-    if (val.includes("premium") || val.includes("full")) {
-      accuAddon.style.display = "block";
-    } else {
-      accuAddon.style.display = "none";
-    }
+    accuAddon.style.display = (val.includes("premium") || val.includes("full")) ? "block" : "none";
   }
 
-  // preset vanuit ?pakket=
   const params = new URLSearchParams(window.location.search);
   const preset = params.get("pakket");
 
@@ -63,27 +77,33 @@ document.addEventListener("DOMContentLoaded", () => {
   pakketSelect.addEventListener("change", updateAddon);
   updateAddon();
 });
+
+/* =========================
+   EV / HYBRIDE REMINDER
+========================= */
 const advertentieInput = document.querySelector('input[name="Advertentie"]');
 const evNotice = document.getElementById("evNotice");
 const evAnchor = document.getElementById("evAnchor");
 
 function checkEV() {
-  const link = advertentieInput.value.toLowerCase();
-  const isEV = link.includes("ev") || link.includes("hybride") || link.includes("electric") || link.includes("plug-in");
-  const hasAccu = document.querySelector('input[name="AccuCheck"]').checked;
+  if (!advertentieInput) return;
 
-  if(isEV && !hasAccu){
-    evNotice.style.display = "block";
-    evAnchor.style.display = "block";
+  const link = advertentieInput.value.toLowerCase();
+  const isEV = /ev|hybride|electric|plug-in|tesla|ioniq|niro|leaf|e-tron|polestar|id\./.test(link);
+  const accuCheck = document.querySelector('input[name="AccuCheck"]');
+  const hasAccu = accuCheck && accuCheck.checked;
+
+  if (isEV && !hasAccu) {
+    evNotice && (evNotice.style.display = "block");
+    evAnchor && (evAnchor.style.display = "block");
   } else {
-    evNotice.style.display = "none";
-    evAnchor.style.display = "none";
+    evNotice && (evNotice.style.display = "none");
+    evAnchor && (evAnchor.style.display = "none");
   }
 }
 
-advertentieInput.addEventListener("input", checkEV);
-document.querySelector('input[name="AccuCheck"]').addEventListener("change", checkEV);
-
+advertentieInput && advertentieInput.addEventListener("input", checkEV);
+document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
 
 
 
