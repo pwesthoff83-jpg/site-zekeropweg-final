@@ -29,24 +29,27 @@ function closeMenu() {
 }
 
 /* =========================
-   CONTEXT FOOTER HIGHLIGHT
+   CONTEXT FOOTER HIGHLIGHT (definitief stabiel)
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const path = (window.location.pathname || "").toLowerCase();
-  let activeService = "info"; // standaard = homepage
 
-  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
-  if (path.includes("accucheck")) activeService = "accu";
-  if (path.includes("bezwaar")) activeService = "bezwaar";
+  const runFooterContext = () => {
+    const path = (window.location.pathname || "").toLowerCase();
+    let activeService = "info";
 
-  document.querySelectorAll("[data-service]").forEach(el => {
-    if (el.dataset.service === activeService) {
-      el.classList.add("footer-accent");
-    } else {
-      el.classList.remove("footer-accent");
-    }
-  });
+    if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
+    if (path.includes("accucheck")) activeService = "accu";
+    if (path.includes("bezwaar")) activeService = "bezwaar";
+
+    document.querySelectorAll("[data-service]").forEach(el => {
+      el.classList.toggle("footer-accent", el.dataset.service === activeService);
+    });
+  };
+
+  // Zorgt dat hij ook werkt bij Vercel DOM streaming / late rendering
+  setTimeout(runFooterContext, 60);
 });
+
 
 /* =========================
    INTAKE LOGICA (veilig)
@@ -104,6 +107,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
