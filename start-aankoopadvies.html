@@ -50,7 +50,7 @@
 }
 .advisor-addon span{opacity:.6;font-size:.9rem;}
 .advisor-submit{
-  margin-top:2.8rem;
+  margin-top:0.6rem;
   padding:18px 34px;
   border-radius:999px;
   background:#c6a86a;
@@ -60,6 +60,26 @@
   width:100%;
 }
 .advisor-submit:hover{background:#b9995a;}
+
+.advisor-microtrust{
+  font-size:0.85rem;
+  opacity:0.65;
+  margin-top:2.4rem;
+  margin-bottom:0.6rem;
+}
+.field-hint{
+  font-size:0.8rem;
+  opacity:0.55;
+  margin-top:0.4rem;
+}
+.advisor-authority{
+  margin-top:1.2rem;
+  font-size:0.9rem;
+  opacity:0.7;
+}
+.reiskosten-section{
+  margin-top:-4.5rem;
+}
 </style>
 </head>
 
@@ -73,10 +93,14 @@
 <main class="page-content">
 
 <section class="services-section container intake-shell">
-  <h1 class="section-title">Zekerheid vóórdat u beslist</h1>
+  <h1 class="section-title">Zekerheid vóórdat u beslist. Rust tijdens uw keuze.</h1>
   <p class="section-subtitle">U staat er niet alleen voor. Uw aanvraag wordt persoonlijk beoordeeld.</p>
   <p class="accentline">
     U start hier een zorgvuldig begeleid traject waarin eerst uw situatie wordt beoordeeld — pas daarna volgen eventuele kosten of beslissingen.
+  </p>
+
+  <p class="advisor-authority">
+    Meer dan 16 jaar ervaring in onafhankelijke beoordeling en taxatie van auto’s.
   </p>
 
   <div class="advisor-card">
@@ -93,6 +117,7 @@
 
       <label>Link naar de auto die u overweegt</label>
       <input type="url" name="Advertentie" required>
+      <p class="field-hint">Ook een link van Marktplaats of Mobile.de is voldoende.</p>
 
       <label>Uw naam</label>
       <input type="text" name="Naam" required>
@@ -103,7 +128,6 @@
       <label>Wat wilt u zeker weten voordat u beslist?</label>
       <textarea name="Vraag" rows="4"></textarea>
 
-      <!-- ENIGE officiële AccuCheck addon -->
       <div class="advisor-addon" id="accuAddon" style="display:none;">
         <label>
           <input type="checkbox" name="AccuCheck" value="EV of hybride AccuCheck combitarief €149">
@@ -114,14 +138,12 @@
           </span>
         </label>
       </div>
+
       <div id="evNotice" style="display:none; margin-top:1.2rem; padding:1rem 1.2rem; border-radius:14px; background:#fff3e0; border:1px solid rgba(198,168,106,.4); font-size:.9rem;">
-  ⚠️ U lijkt een elektrische of hybride auto te overwegen.  
-  Bij deze voertuigen is een onafhankelijke AccuCheck sterk aan te raden vóór aankoop.
- </div>
-      <div id="evAnchor" style="display:none; margin-top:.9rem; font-size:.85rem; opacity:.7; line-height:1.5;">
-      Bij elektrische en hybride voertuigen kan een accuprobleem duizenden euro’s verschil maken bij aankoop of doorverkoop.  
-      De AccuCheck van €149 voorkomt dat risico.
- </div>
+        ⚠️ U lijkt een elektrische of hybride auto te overwegen. Bij deze voertuigen is een onafhankelijke AccuCheck sterk aan te raden vóór aankoop.
+      </div>
+
+      <p class="advisor-microtrust">Geen betaling vooraf · U ontvangt eerst inhoudelijk advies</p>
 
       <label>
         <input type="checkbox" required>
@@ -129,7 +151,7 @@
       </label>
 
       <button type="submit" class="advisor-submit">
-        Start mijn persoonlijke beoordeling
+        Ontvang mijn onafhankelijke beoordeling
       </button>
 
       <p style="margin-top:1.6rem;opacity:.7;font-size:.9rem;">
@@ -138,15 +160,6 @@
     </form>
   </div>
 </section>
-
-  <div id="evNotice" style="display:none; margin-top:1rem; font-size:.9rem; color:#8a6d3b;">
-  U heeft een elektrische of hybride auto ingevoerd.  
-  Zonder AccuCheck kan een verborgen accuprobleem duizenden euro’s verschil maken.
-</div>
-
-<div id="evAnchor" style="display:none; margin-top:.6rem; font-size:.85rem; opacity:.7;">
-  De AccuCheck van €149 voorkomt dit risico.
-</div>
 
 <section class="services-section container reiskosten-section">
   <h3 class="section-title" style="font-size:1.4rem;">Reiskosten</h3>
@@ -180,7 +193,6 @@ if(pakket && select){
     }
   });
 }
-
 function toggleAddon(){
   const val = select.value.toLowerCase();
   accuAddon.style.display = (val.includes("premium") || val.includes("full")) ? "block" : "none";
@@ -188,6 +200,7 @@ function toggleAddon(){
 select.addEventListener("change", toggleAddon);
 toggleAddon();
 </script>
+
 <script>
 const advertentie = document.querySelector('input[name="Advertentie"]');
 const accuCheck = document.querySelector('input[name="AccuCheck"]');
@@ -195,22 +208,15 @@ const evNotice = document.getElementById("evNotice");
 
 function checkEV(){
   if(!advertentie || !evNotice) return;
-
   const val = advertentie.value.toLowerCase();
-
   const isEV = /tesla|ev|electric|hybrid|phev|plugin|ioniq|niro|model|leaf|id\.|e-tron|polestar|xc40 recharge|c40 recharge/.test(val);
   const hasAccu = accuCheck && accuCheck.checked;
-
-  if(isEV && !hasAccu){
-    evNotice.style.display = "block";
-  } else {
-    evNotice.style.display = "none";
-  }
+  evNotice.style.display = (isEV && !hasAccu) ? "block" : "none";
 }
-
 advertentie.addEventListener("input", checkEV);
 accuCheck?.addEventListener("change", checkEV);
 </script>
 
 </body>
 </html>
+
