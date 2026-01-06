@@ -32,27 +32,29 @@ function closeMenu() {
    CONTEXT FOOTER HIGHLIGHT (architectuur-proof)
 ========================= */
 
-(function () {
-  const detectFooter = new MutationObserver(() => {
-    const footer = document.querySelector("[data-service]");
-    if (!footer) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const path = (window.location.pathname || "").toLowerCase();
 
-    detectFooter.disconnect(); // footer is er nu
+  let activeService = "info"; // default = info
 
-    const path = (window.location.pathname || "").toLowerCase();
-    let activeService = "info";
+  if (path.endsWith("/index.html") || path === "/" || path.includes("over") || path.includes("contact")) {
+    activeService = "info";
+  }
+  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) {
+    activeService = "advies";
+  }
+  if (path.includes("accucheck")) {
+    activeService = "accu";
+  }
+  if (path.includes("bezwaar")) {
+    activeService = "bezwaar";
+  }
 
-    if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
-    if (path.includes("accucheck")) activeService = "accu";
-    if (path.includes("bezwaar")) activeService = "bezwaar";
-
-    document.querySelectorAll("[data-service]").forEach(el => {
-      el.classList.toggle("footer-accent", el.dataset.service === activeService);
-    });
+  document.querySelectorAll("[data-service]").forEach(el => {
+    el.classList.toggle("footer-accent", el.dataset.service === activeService);
   });
+});
 
-  detectFooter.observe(document.body, { childList: true, subtree: true });
-})();
 
 
 
@@ -112,6 +114,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
