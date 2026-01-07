@@ -1,117 +1,107 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intake | ZekerOpWeg</title>
-    <meta name="description" content="Start uw intake voor aankoopadvies of een EV AccuCheck. Rustige inventarisatie van uw situatie, wensen en vragen.">
-    <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV AccuCheck aanvragen | ZekerOpWeg</title>
+<meta name="description" content="Vraag hier uw onafhankelijke EV AccuCheck aan. TÜV gecertificeerde accudiagnose en persoonlijk ZekerOpWeg advies.">
+<link rel="stylesheet" href="css/styles.css?v=3.0.0">
 </head>
 
 <body class="fade-in">
 
 <header class="header">
-    <div class="container header-container">
-        <a href="home.html" class="logo-wrap">
-            <img src="assets/images/logos/zekeropweg-logo.png" alt="ZekerOpWeg logo" class="site-logo" />
-        </a>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-        <nav class="main-nav" id="mainNav">
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-                <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-                <li><a href="gratisbezwaar.html">GratisBezwaar</a></li>
-                <li><a href="over.html">Over</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <div class="container header-container">
+    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+  </div>
 </header>
 
 <section class="hero hero-intake">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>Intakeformulier</h1>
-        <p>Met dit formulier maken we rustig een eerste inventarisatie van uw situatie. U ontvangt altijd persoonlijk contact.</p>
-    </div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Onafhankelijk · Gecertificeerd · Op locatie</span>
+    <h1>Start uw EV AccuCheck</h1>
+    <p>U vraagt hier een onafhankelijke accudiagnose aan. Uw aanvraag wordt persoonlijk opgevolgd voor planning en uitvoering.</p>
+  </div>
 </section>
 
-<section class="services-section container">
-    <div class="intake-section">
-        <h2 class="section-title">Uw gegevens</h2>
+<main class="page-content">
 
-        <form class="intake-form" action="dank.html" method="get">
-            <div class="form-row-grid">
-                <div>
-                    <label for="voornaam">Voornaam</label>
-                    <input type="text" id="voornaam" name="voornaam" required />
-                </div>
-                <div>
-                    <label for="achternaam">Achternaam</label>
-                    <input type="text" id="achternaam" name="achternaam" />
-                </div>
-            </div>
+<section class="services-section container intake-shell">
 
-            <div class="form-row-grid">
-                <div>
-                    <label for="email">E mail</label>
-                    <input type="email" id="email" name="email" required />
-                    <p class="field-hint">
-                      Het TÜV gecertificeerde accucertificaat en uw ZekerOpWeg advies worden digitaal naar dit e-mailadres verzonden.
-                    </p>
-                </div>
-                <div>
-                    <label for="telefoon">Telefoonnummer</label>
-                    <input type="tel" id="telefoon" name="telefoon" />
-                </div>
-            </div>
+<div class="advisor-card">
+<form action="dank.html" method="post">
 
-            <div class="form-row">
-                <label for="dienst">Waarvoor wilt u een intake</label>
-                <select id="dienst" name="dienst">
-                    <option value="aankoopadvies">Aankoopadvies</option>
-                    <option value="ev-accucheck">EV AccuCheck</option>
-                    <option value="gratisbezwaar">GratisBezwaar</option>
-                    <option value="anders">Anders of combinatie</option>
-                </select>
-            </div>
+<h3 class="section-title">Uw gegevens</h3>
 
-            <div class="form-row">
-                <label for="toelichting">Korte toelichting</label>
-                <textarea id="toelichting" name="toelichting" placeholder="Vertel kort waar u mee bezig bent of waar u tegenaan loopt."></textarea>
-            </div>
+<label>Naam</label>
+<input type="text" name="Naam" required>
 
-            <div class="form-row">
-                <label>
-                  <input type="checkbox" required>
-                  Ik begrijp dat ZekerOpWeg een onafhankelijke beoordeling of accudiagnose uitvoert en dat het digitale rapport en eventuele certificaten worden verzonden naar het door mij opgegeven e-mailadres.
-                </label>
-                <p class="micro-legal">
-                  Door verzending naar dit e-mailadres wordt dit e-mailadres onderdeel van het beoordelings- of keuringsdossier.
-                </p>
-            </div>
+<label>E-mailadres</label>
+<input type="email" name="Email" required>
+<p class="field-hint">Het TÜV gecertificeerde accucertificaat en uw ZekerOpWeg rapport worden digitaal naar dit adres verzonden.</p>
 
-            <div class="form-row-submit">
-                <p class="advisor-microtrust">
-                  Geen betaling vooraf · U ontvangt eerst inhoudelijke terugkoppeling
-                </p>
-                <button type="submit" class="btn-primary">Ontvang mijn onafhankelijke beoordeling</button>
-            </div>
-        </form>
-    </div>
+<label>Telefoonnummer</label>
+<input type="tel" name="Telefoon">
+
+<hr class="divider">
+
+<h3 class="section-title">Het voertuig</h3>
+
+<label>Kenteken</label>
+<input type="text" name="Kenteken">
+
+<label>Merk en model</label>
+<input type="text" name="Model">
+
+<label>Bouwjaar</label>
+<input type="number" name="Bouwjaar">
+
+<label>Aandrijving</label>
+<select name="Aandrijving">
+  <option>Volledig elektrisch</option>
+  <option>Plug-in hybride</option>
+</select>
+
+<hr class="divider">
+
+<h3 class="section-title">Doel van de meting</h3>
+
+<label><input type="radio" name="Doel" value="Aankoop" required> Aankoop</label>
+<label><input type="radio" name="Doel" value="Verkoop"> Verkoop of taxatie</label>
+<label><input type="radio" name="Doel" value="Einde garantie"> Einde garantie</label>
+<label><input type="radio" name="Doel" value="Anders"> Anders</label>
+
+<label>Locatie van het voertuig</label>
+<input type="text" name="Locatie" placeholder="Plaats of postcode">
+
+<p class="advisor-microtrust">Geen betaling vooraf. De meting wordt eerst uitgevoerd.</p>
+
+<button type="submit" class="advisor-submit">
+Ontvang mijn onafhankelijke AccuCheck
+</button>
+
+<p class="field-hint">
+Het TÜV gecertificeerde accucertificaat en het ZekerOpWeg advies ontvangt u digitaal na betaling.
+</p>
+
+</form>
+</div>
+
 </section>
+
+</main>
 
 <footer class="footer">
-    <div class="footer-inner">
-        <p>© 2026 ZekerOpWeg</p>
-    </div>
+<div class="container footer-grid">
+  <div class="footer-col">
+    <p class="footer-title">ZekerOpWeg</p>
+    <p>Onafhankelijk autoadvies met rust en overzicht.</p>
+    <p>© 2026 ZekerOpWeg</p>
+  </div>
+</div>
 </footer>
 
-<script src="scripts/scripts.js"></script>
+<script src="scripts/scripts.js?v=2"></script>
 </body>
 </html>
+
