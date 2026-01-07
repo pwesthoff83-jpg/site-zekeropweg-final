@@ -1,6 +1,5 @@
 /* ============================================================
-   ZEKEROPWEG – CORE JS
-   Mobile menu + intake + context footer (stabiel)
+   ZEKEROPWEG – CORE JS (definitief)
 ============================================================ */
 
 /* =========================
@@ -9,9 +8,7 @@
 function toggleMenu() {
   const menu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("menuOverlay");
-
   if (!menu || !overlay) return;
-
   menu.classList.add("open");
   overlay.classList.add("active");
   document.body.classList.add("menu-open");
@@ -20,52 +17,48 @@ function toggleMenu() {
 function closeMenu() {
   const menu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("menuOverlay");
-
   if (!menu || !overlay) return;
-
   menu.classList.remove("open");
   overlay.classList.remove("active");
   document.body.classList.remove("menu-open");
 }
 
 /* =========================
-   CONTEXT FOOTER HIGHLIGHT (architectuur-proof)
+   CONTEXT FOOTER HIGHLIGHT
 ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const path = (window.location.pathname || "").toLowerCase();
+  let activeService = "info";
 
-  let activeService = "info"; // default = info
-
-  if (path.endsWith("/index.html") || path === "/" || path.includes("over") || path.includes("contact")) {
-    activeService = "info";
-  }
-  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) {
-    activeService = "advies";
-  }
-  if (path.includes("accucheck")) {
-    activeService = "accu";
-  }
-  if (path.includes("bezwaar")) {
-    activeService = "bezwaar";
-  }
+  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
+  if (path.includes("accucheck")) activeService = "accu";
+  if (path.includes("bezwaar")) activeService = "bezwaar";
 
   document.querySelectorAll("[data-service]").forEach(el => {
     el.classList.toggle("footer-accent", el.dataset.service === activeService);
   });
 });
 
+/* =========================
+   PAGE ROUTING PROTECTION
+   (laat intake.html toe)
+========================= */
+const allowedPages = [
+  "index","home","aankoopadvies","ev-accucheck","ev-accucheck-zakelijk",
+  "bezwaarservice","intake","contact","over"
+];
 
-
+const currentPage = (location.pathname.split("/").pop() || "").toLowerCase();
+if (!allowedPages.some(p => currentPage.includes(p))) {
+  location.href = "contact.html";
+}
 
 /* =========================
-   INTAKE LOGICA (veilig)
+   INTAKE ADDON LOGICA
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-
   const pakketSelect = document.querySelector('select[name="Pakket"]');
   const accuAddon = document.getElementById("accuAddon");
-
   if (!pakketSelect || !accuAddon) return;
 
   function updateAddon() {
@@ -75,12 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(window.location.search);
   const preset = params.get("pakket");
-
   if (preset) {
     [...pakketSelect.options].forEach(o => {
-      if (o.text.toLowerCase().includes(preset.toLowerCase())) {
-        o.selected = true;
-      }
+      if (o.text.toLowerCase().includes(preset.toLowerCase())) o.selected = true;
     });
   }
 
@@ -97,24 +87,17 @@ const evAnchor = document.getElementById("evAnchor");
 
 function checkEV() {
   if (!advertentieInput) return;
-
   const link = advertentieInput.value.toLowerCase();
   const isEV = /ev|hybride|electric|plug-in|tesla|ioniq|niro|leaf|e-tron|polestar|id\./.test(link);
   const accuCheck = document.querySelector('input[name="AccuCheck"]');
   const hasAccu = accuCheck && accuCheck.checked;
 
-  if (isEV && !hasAccu) {
-    evNotice && (evNotice.style.display = "block");
-    evAnchor && (evAnchor.style.display = "block");
-  } else {
-    evNotice && (evNotice.style.display = "none");
-    evAnchor && (evAnchor.style.display = "none");
-  }
+  evNotice && (evNotice.style.display = isEV && !hasAccu ? "block" : "none");
+  evAnchor && (evAnchor.style.display = isEV && !hasAccu ? "block" : "none");
 }
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
-
 
 
 
