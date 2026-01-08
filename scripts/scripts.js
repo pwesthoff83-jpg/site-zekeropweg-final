@@ -30,9 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const path = (window.location.pathname || "").toLowerCase();
   let activeService = "info";
 
-  if (path.includes("aankoopadvies") || path.includes("start-aankoop")) activeService = "advies";
-  if (path.includes("accucheck")) activeService = "accu";
-  if (path.includes("bezwaar")) activeService = "bezwaar";
+  if (
+  !path.includes("aankoopadvies") &&
+  !path.includes("accucheck") &&
+  !path.includes("bezwaarservice") &&
+  !path.includes("contact") &&
+  !path.includes("start") &&
+  !path.includes("bulk") &&
+  !path.includes("zakelijke-plus")
+) {
+  window.location.href = "contact.html";
+}
 
   document.querySelectorAll("[data-service]").forEach(el => {
     el.classList.toggle("footer-accent", el.dataset.service === activeService);
@@ -98,6 +106,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
