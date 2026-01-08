@@ -27,18 +27,18 @@ function closeMenu() {
    CONTEXT FOOTER HIGHLIGHT
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const path = (window.location.pathname || "").toLowerCase();
-  let activeService = "info";
+ const allowed = [
+  "aankoopadvies",
+  "accucheck",
+  "bezwaarservice",
+  "contact",
+  "start",
+  "bulk-kentekens",
+  "bulk",
+  "zakelijke-plus"
+];
 
-  if (
-  !path.includes("aankoopadvies") &&
-  !path.includes("accucheck") &&
-  !path.includes("bezwaarservice") &&
-  !path.includes("contact") &&
-  !path.includes("start") &&
-  !path.includes("bulk") &&
-  !path.includes("zakelijke-plus")
-) {
+if (!allowed.some(p => path.includes(p))) {
   window.location.href = "contact.html";
 }
 
@@ -106,6 +106,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
