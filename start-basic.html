@@ -23,13 +23,14 @@
 <section class="services-section container" style="max-width:760px;">
 <h1 class="section-title">Activeer Juridische Bescherming Basic</h1>
 <p class="section-subtitle">
-Uw boetes worden professioneel beoordeeld en u ontvangt heldere vervolgstappen.
-U houdt zelf de regie. ZekerOpWeg zorgt voor de inhoudelijke beoordeling.
+Uw boetes worden professioneel beoordeeld.  
+U ontvangt duidelijke vervolgstappen en juridisch opgestelde bezwaarstukken wanneer dit zinvol is.
 </p>
 
 <form class="premium-form" method="POST" action="https://script.google.com/macros/s/AKfycbw3gM8jzxXnCVI621I1d0iw7hxH0g31m6d6AftJJkwOyM569vwuSZAmht6RJSa7sZUPdw/exec">
 
 <input type="hidden" name="abonnement" value="Basic">
+<input type="hidden" name="relatie_type" value="particulier">
 
 <div class="form-group">
 <label>Voornaam</label>
@@ -52,8 +53,25 @@ U houdt zelf de regie. ZekerOpWeg zorgt voor de inhoudelijke beoordeling.
 </div>
 
 <div class="form-group">
-<label>Kenteken</label>
+<label>Hoofd-kenteken</label>
 <input type="text" name="kenteken" required>
+</div>
+
+<div class="form-group">
+<label>Aantal voertuigen binnen huishouden of onderneming</label>
+<select name="aantal_kentekens" required>
+<option value="1">1 voertuig</option>
+<option value="2">2 voertuigen</option>
+<option value="3">3 voertuigen</option>
+<option value="4">4 voertuigen</option>
+<option value="5">5 voertuigen</option>
+<option value="6">6 voertuigen</option>
+<option value="7">7 voertuigen</option>
+<option value="8">8 voertuigen</option>
+<option value="9">9 voertuigen</option>
+<option value="10">10 voertuigen</option>
+<option value="11">11 of meer</option>
+</select>
 </div>
 
 <div class="form-check">
@@ -66,7 +84,7 @@ Ik geef ZekerOpWeg toestemming om mijn boetes juridisch te beoordelen en bezwaar
 <div class="form-check">
 <label>
 <input type="checkbox" required>
-Ik ga akkoord met automatische maandelijkse incasso van €1,49 via IBAN <strong>NL22 INGB 0116 6008 02</strong>.
+Ik ga akkoord met automatische maandelijkse incasso conform het geldende kentekenstaffeltarief.
 </label>
 </div>
 
@@ -83,8 +101,8 @@ Activeer Basic bescherming
 </form>
 
 <p class="accentline" style="margin-top:2.5rem;">
-U ontvangt per boete een inhoudelijke beoordeling en professioneel opgesteld bezwaar wanneer dit zinvol is.
-Verzending en opvolging verzorgt u zelf binnen Basic.
+Binnen Basic verzorgt ZekerOpWeg de beoordeling en documentatie.
+Verzending en opvolging verzorgt u zelf.
 </p>
 </section>
 
