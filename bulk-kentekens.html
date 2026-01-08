@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wagenpark toevoegen | ZekerOpWeg</title>
+<meta name="description" content="Upload uw zakelijke kentekens in één keer en activeer juridische bescherming voor uw wagenpark.">
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/bezwaarservice.css">
+</head>
+
+<body class="fade-in">
+
+<header class="header">
+<div class="container header-container">
+<a href="index.html" class="brand-logo">ZekerOpWeg</a>
+</div>
+</header>
+
+<main class="page-content">
+<section class="services-section container" style="max-width:720px;">
+<h1 class="section-title">Wagenpark aanmelden</h1>
+<p class="section-subtitle">Upload uw kentekens en activeer juridische bescherming.</p>
+
+<form class="premium-form" method="POST" enctype="multipart/form-data"
+action="https://script.google.com/macros/s/AKfycbwhKhaoMKNw2k4XRGYKRIlpro9FkMpqBr-BdpIFmBjQ8a8v3Uy-jlnmuiYrDLlvGLHz/exec">
+
+<input type="hidden" name="abonnement" value="Plus-Zakelijk">
+
+<div class="form-group">
+<label>Bedrijfsnaam</label>
+<input name="bedrijf" required>
+</div>
+
+<div class="form-group">
+<label>Vestigingsadres</label>
+<input name="adres" required>
+</div>
+
+<div class="form-group">
+<label>Contact e-mail</label>
+<input name="email" type="email" required>
+</div>
+
+<div class="form-group">
+<label>Upload kentekenlijst (CSV)</label>
+<input type="file" name="kentekenbestand" accept=".csv" required>
+</div>
+
+<div class="form-check">
+<label><input type="checkbox" required> Ik ga akkoord met automatische maandelijkse incasso.</label>
+</div>
+
+<button class="btn-primary">Upload wagenpark</button>
+</form>
+</section>
+</main>
+</body>
+</html>
 
