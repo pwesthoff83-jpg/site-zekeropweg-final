@@ -3,59 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wagenpark toevoegen | ZekerOpWeg</title>
-<meta name="description" content="Upload uw zakelijke kentekens in één keer en activeer juridische bescherming voor uw wagenpark.">
+<title>Wagenpark aanmelden | ZekerOpWeg</title>
+<meta name="description" content="Upload uw kentekens in één keer en activeer juridische bescherming voor uw volledige wagenpark.">
 
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/bezwaarservice.css">
+<link rel="stylesheet" href="css/styles.css?v=2.5.0">
+<link rel="stylesheet" href="css/bezwaarservice.css?v=1.4.0">
 </head>
 
 <body class="fade-in">
 
 <header class="header">
-<div class="container header-container">
-<a href="index.html" class="brand-logo">ZekerOpWeg</a>
-</div>
+  <div class="container header-container">
+    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+  </div>
 </header>
 
 <main class="page-content">
-<section class="services-section container" style="max-width:720px;">
-<h1 class="section-title">Wagenpark aanmelden</h1>
-<p class="section-subtitle">Upload uw kentekens en activeer juridische bescherming.</p>
 
-<form class="premium-form" method="POST" enctype="multipart/form-data"
-action="https://script.google.com/macros/s/AKfycbwhKhaoMKNw2k4XRGYKRIlpro9FkMpqBr-BdpIFmBjQ8a8v3Uy-jlnmuiYrDLlvGLHz/exec">
+<section class="services-section container" style="max-width:760px;">
+  <h1 class="section-title">Wagenpark aanmelden</h1>
+  <p class="section-subtitle">
+    Upload uw kentekens en activeer juridische bescherming voor uw volledige wagenpark.
+    Elk voertuig krijgt automatisch een eigen dossier.
+  </p>
 
-<input type="hidden" name="abonnement" value="Plus-Zakelijk">
+  <form class="premium-form"
+        method="POST"
+        enctype="multipart/form-data"
+        action="https://script.google.com/macros/s/AKfycbwhKhaoMKNw2k4XRGYKRIlpro9FkMpqBr-BdpIFmBjQ8a8v3Uy-jlnmuiYrDLlvGLHz/exec">
 
-<div class="form-group">
-<label>Bedrijfsnaam</label>
-<input name="bedrijf" required>
-</div>
+    <input type="hidden" name="abonnement" value="Plus-Zakelijk">
 
-<div class="form-group">
-<label>Vestigingsadres</label>
-<input name="adres" required>
-</div>
+    <div class="form-group">
+      <label>Bedrijfsnaam</label>
+      <input type="text" name="bedrijf" required>
+    </div>
 
-<div class="form-group">
-<label>Contact e-mail</label>
-<input name="email" type="email" required>
-</div>
+    <div class="form-group">
+      <label>Vestigingsadres</label>
+      <input type="text" name="adres" required>
+    </div>
 
-<div class="form-group">
-<label>Upload kentekenlijst (CSV)</label>
-<input type="file" name="kentekenbestand" accept=".csv" required>
-</div>
+    <div class="form-group">
+      <label>Contact e-mail</label>
+      <input type="email" name="email" required>
+    </div>
 
-<div class="form-check">
-<label><input type="checkbox" required> Ik ga akkoord met automatische maandelijkse incasso.</label>
-</div>
+    <div class="form-group">
+      <label>Upload kentekenlijst (CSV)</label>
+      <input type="file" name="kentekenbestand" accept=".csv" required>
+      <small style="opacity:.7;">CSV met één kolom: Kenteken</small>
+    </div>
 
-<button class="btn-primary">Upload wagenpark</button>
-</form>
+    <div class="form-check">
+      <label>
+        <input type="checkbox" required>
+        Ik ga akkoord met automatische maandelijkse incasso conform het geldende staffeltarief.
+      </label>
+    </div>
+
+    <div class="form-check">
+      <label>
+        <input type="checkbox" required>
+        Ik ga akkoord met de algemene voorwaarden en privacyverklaring.
+      </label>
+    </div>
+
+    <button type="submit" class="btn-primary" style="margin-top:1.5rem;">
+      Upload en activeer bescherming
+    </button>
+  </form>
+
+  <p class="accentline" style="margin-top:2.5rem;">
+    Extra kentekens binnen één overeenkomst zijn uitsluitend toegestaan voor voertuigen die geregistreerd staan op hetzelfde vestigingsadres.
+    Uw volledige wagenpark valt daarmee onder structurele juridische bescherming.
+  </p>
 </section>
+
 </main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-legal">
+      ZekerOpWeg Zakelijke Bescherming is bestemd voor ondernemingen met meerdere voertuigen.
+    </p>
+  </div>
+</footer>
+
+<script src="scripts/scripts.js"></script>
 </body>
 </html>
 
