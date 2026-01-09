@@ -1,51 +1,154 @@
 /* =====================================================
-   EV ACCUCHECK PAGINA ONLY
-   ZekerOpWeg – merkzuiver, rustig en high end
+   EV ACCUCHECK – PREMIUM LAYOUT LAYER
+   Zuiver los van styles.css
 ===================================================== */
 
-/* Tarievenlijst – premium hiërarchie */
-.pricing-list li{
-  font-size:1.05rem;
-  line-height:1.8;
-  margin-bottom:.8rem;
+/* Hero gelijk aan aankoopadvies */
+.hero-accucheck{
+  min-height: 78vh;
+  display:flex;
+  align-items:center;
+  text-align:center;
+}
+
+.hero-accucheck .hero-content{
+  max-width:880px;
+  margin:0 auto;
+}
+
+.hero-accucheck h1{
+  font-size:3.1rem;
+  line-height:1.25;
+}
+
+.hero-accucheck .hero-subline{
+  font-size:1.15rem;
   opacity:.9;
 }
 
-.pricing-list strong{
-  font-weight:600;
-}
-
-.pricing-list .price{
-  font-weight:500;
-  letter-spacing:.02em;
-}
-
-/* Subtiele diepte per regel */
-.pricing-list li:nth-child(1){opacity:.95;}
-.pricing-list li:nth-child(2){opacity:.9;}
-.pricing-list li:nth-child(3){opacity:.85;}
-
 /* Sectie-ritme */
-.services-section{
+.page-content section{
+  padding:7rem 0;
+}
+
+/* Premium containers */
+.ev-wrap{
+  max-width:1180px;
+  margin:0 auto;
+}
+
+/* Service grid */
+.ev-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3rem;
+  margin-top:4rem;
+}
+
+/* Premium cards */
+.ev-card{
+  background:#fff;
+  border-radius:26px;
+  padding:3rem 2.8rem;
+  box-shadow:0 24px 70px rgba(0,0,0,.08);
+  transition:.35s ease;
+}
+
+.ev-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 34px 90px rgba(0,0,0,.12);
+}
+
+.ev-card h3{
+  font-size:1.25rem;
+  margin-bottom:.6rem;
+}
+
+.ev-card p{
+  color:#5a6067;
+  line-height:1.75;
+}
+
+/* Soft background blocks */
+.section-bg-soft{
+  background:#f7f5f0;
+}
+
+/* Authority strip */
+.trust-strip{
+  text-align:center;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.trust-strip p{
+  font-size:1.1rem;
+  color:#5c6168;
+}
+
+/* Beslissingsbescherming */
+.price-guardian{
   max-width:880px;
+  margin:6rem auto;
+  background:#f6f1e8;
+  border-radius:28px;
+  padding:3rem 3.2rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
 }
 
-.services-section h2{
-  margin-bottom:1.6rem;
+.guardian-title{
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.75rem;
+  color:#c9a65a;
+  margin-bottom:.6rem;
 }
 
-.services-section p{
-  max-width:720px;
-  color:#4a4f55;
+/* Premium pricing grid */
+.premium-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3rem;
+  margin-top:4rem;
 }
 
-/* Lijst ademruimte */
-.services-section ul{
-  margin-top:1.2rem;
-  margin-bottom:1.8rem;
+.premium-card{
+  background:#fff;
+  border-radius:30px;
+  padding:3.2rem;
+  box-shadow:0 28px 85px rgba(0,0,0,.1);
 }
 
-/* Rust tussen secties */
-.services-section + .services-section{
-  margin-top:4.5rem;
+.premium-muted{
+  background:#f7f5f0;
+}
+
+/* Buttons */
+.cta-primary{
+  display:inline-block;
+  margin-top:2rem;
+  padding:.9rem 2.3rem;
+  background:linear-gradient(135deg,#e1c27a,#caa24d);
+  border-radius:999px;
+  color:#1c1c1c;
+  font-weight:500;
+  text-decoration:none;
+}
+
+.cta-outline{
+  display:inline-block;
+  margin-top:1.8rem;
+  padding:.8rem 2rem;
+  border:1px solid #d8b76a;
+  border-radius:999px;
+  color:#1c1c1c;
+  text-decoration:none;
+}
+
+/* Responsive */
+@media(max-width:980px){
+  .ev-grid,
+  .premium-grid{
+    grid-template-columns:1fr;
+  }
 }
