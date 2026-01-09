@@ -721,40 +721,6 @@ body.menu-open{ overflow:hidden; }
   transform:translateY(-1px);
 }
 
-/* =========================================================
-   MASTER OVERRIDE — UNIFIES ALL PAGE LAYOUT
-   (fixes hero bleed, floating content, oval gaps)
-========================================================= */
-
-/* Hero mag nooit layout forceren op volgende sectie */
-.hero + section{
-  margin-top:0 !important;
-}
-
-/* Alle page sections worden weer normaal */
-.services-section{
-  padding:4.5rem 0;
-  margin:0;
-}
-
-/* Containers mogen geen rare maxwidth + padding stapelen */
-.services-section.container{
-  padding:4.5rem 0 !important;
-}
-
-/* Grid cards mogen nooit zweven */
-.packages-section,
-.service-grid,
-.usp-premium,
-.premium-grid{
-  align-items:stretch;
-}
-
-/* Nooit meer “zwevende ovalen” */
-.section-bg-soft::before,
-.section-bg-soft::after{
-  display:none !important;
-}
 
 
 
