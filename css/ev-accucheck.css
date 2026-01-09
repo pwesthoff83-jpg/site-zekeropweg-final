@@ -1,91 +1,6 @@
 /* =====================================================
    EV ACCUCHECK PAGINA ONLY
 ===================================================== */
-.hero-ev{
-  position: relative;
-  min-height: 58vh;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center 55%;
-  overflow: hidden;
-}
-
-
-/* EV AccuCheck – Particulier */
-.hero-accucheck {
-  background-image: url("../assets/images/hero/ev-hero.webp");
-}
-
-/* EV AccuCheck – Zakelijk */
-.hero-accucheck-zakelijk {
-  background-image: url("../assets/images/hero/ev-accucheck-zakelijk-hero.webp");
-}
-
-.hero-ev .hero-eyebrow{
-  display:inline-block;
-  margin-bottom:0.9rem;
-  color:var(--gold);
-  font-size:0.75rem;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  text-shadow:0 2px 12px rgba(0,0,0,0.45);
-}
-
-.hero-ev h1{
-  color:#fff;
-  font-size:2.6rem;
-  line-height:1.2;
-  margin-bottom:1rem;
-}
-
-.hero-ev .hero-lead{
-  color:rgba(255,255,255,0.95);
-  font-size:1.1rem;
-  margin-bottom:0.8rem;
-}
-
-.hero-ev p{
-  color:rgba(255,255,255,0.90);
-  max-width:760px;
-  margin:0.4rem auto 0;
-  line-height:1.7;
-}
-@media (max-width:960px){
-  .hero-ev{
-    min-height: 48vh;
-    padding: 0;
-  }
-
-  .hero-ev h1{ font-size:2.15rem; }
-}
-
-.hero-actions .btn-primary,
-.hero-actions .btn-secondary {
-  padding: 0.9rem 1.9rem;
-  font-size: 0.95rem;
-  border-radius: 999px;
-  min-width: 190px;
-  text-align: center;
-}
-.hero-actions .btn-secondary {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.55);
-  color: #fff;
-}
-
-.hero-actions .btn-secondary:hover {
-  border-color: #fff;
-  background: rgba(255,255,255,0.06);
-}
-@media (max-width: 600px) {
-  .hero-actions {
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
 
 /* Zakelijke tarieven – premium uitstraling */
 .pricing-list li {
@@ -148,22 +63,7 @@
 .services-section {
   max-width: 880px;
 }
-.hero-actions {
-  margin-top: 2.4rem; /* was te krap */
-  gap: 1rem;
-}
+
 .services-section p {
   color: #4a4f55;
-}
-.hero-ev::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    to bottom,
-    rgba(7,18,30,0.70) 0%,
-    rgba(7,18,30,0.78) 45%,
-    rgba(7,18,30,0.85) 100%
-  );
-  z-index:1;
 }
