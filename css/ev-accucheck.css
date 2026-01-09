@@ -1,56 +1,51 @@
 /* =====================================================
    EV ACCUCHECK PAGINA ONLY
+   ZekerOpWeg – merkzuiver, rustig en high end
 ===================================================== */
 
-/* Zakelijke tarieven – premium uitstraling */
-.pricing-list li {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  margin-bottom: .8rem;
+/* Tarievenlijst – premium hiërarchie */
+.pricing-list li{
+  font-size:1.05rem;
+  line-height:1.8;
+  margin-bottom:.8rem;
+  opacity:.9;
 }
 
-.pricing-list strong {
-  font-weight: 600;
+.pricing-list strong{
+  font-weight:600;
 }
 
-.pricing-list .price {
-  font-weight: 500;
-  letter-spacing: .02em;
+.pricing-list .price{
+  font-weight:500;
+  letter-spacing:.02em;
 }
 
-.pricing-list li:nth-child(1) {
-  opacity: .95;
+/* Subtiele diepte per regel */
+.pricing-list li:nth-child(1){opacity:.95;}
+.pricing-list li:nth-child(2){opacity:.9;}
+.pricing-list li:nth-child(3){opacity:.85;}
+
+/* Sectie-ritme */
+.services-section{
+  max-width:880px;
 }
 
-.pricing-list li:nth-child(2) {
-  opacity: .9;
+.services-section h2{
+  margin-bottom:1.6rem;
 }
 
-.pricing-list li:nth-child(3) {
-  opacity: .85;
-}
-.services-section ul {
-  margin-top: 1.2rem;
-  margin-bottom: 1.8rem;
+.services-section p{
+  max-width:720px;
+  color:#4a4f55;
 }
 
-.services-section p {
-  max-width: 720px;
+/* Lijst ademruimte */
+.services-section ul{
+  margin-top:1.2rem;
+  margin-bottom:1.8rem;
 }
 
-/* Zakelijke tarieven + reiskosten als één geheel laten voelen */
-.services-section + .services-section {
-  margin-top: 4.5rem;
-}
-
-.services-section h2 {
-  margin-bottom: 1.6rem;
-}
-
-.services-section {
-  max-width: 880px;
-}
-
-.services-section p {
-  color: #4a4f55;
+/* Rust tussen secties */
+.services-section + .services-section{
+  margin-top:4.5rem;
 }
