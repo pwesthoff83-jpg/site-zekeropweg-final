@@ -1,630 +1,209 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
 /* =========================================================
-   ZEKEROPWEG MASTER STYLES
-   Doel: 1 clean basis, pagina CSS alleen voor page specifieke onderdelen
+   ZEKEROPWEG – MASTER PREMIUM STYLES
+   Premium Warm Style B
 ========================================================= */
 
-/* =========================
-   CORE TOKENS
-========================= */
 :root{
-  --navy:#071322;
-  --navy-deep:#0a1b32;
-  --gold:#d7b56d;
-
-  --text-main:#151515;
-  --text-muted:#5a5a5a;
-
-  --bg-soft:#f7f6f2;
-  --bg-card:#ffffff;
-
-  --radius-card:18px;
-  --shadow-soft:0 10px 28px rgba(0,0,0,.08);
-
-  --hero-height-desktop:62vh;
-  --hero-height-mobile:48vh;
-  --hero-height-compact:40vh;
-  --hero-height-compact-mobile:34vh;
+  --gold:#d8b365;
+  --gold-soft:#e9d39c;
+  --navy:#0c1420;
+  --ink:#1b2330;
+  --grey:#4a5568;
+  --soft:#f6f4ef;
+  --white:#ffffff;
+  --radius:18px;
 }
 
-/* =========================
-   RESET
-========================= */
-*{ box-sizing:border-box; margin:0; padding:0; }
-html,body{ height:100%; }
-img{ max-width:100%; display:block; }
-
+/* RESET */
+*{box-sizing:border-box}
 body{
-  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
-  color:var(--text-main);
-  background:#ffffff;
-  line-height:1.6;
-
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-.container{ width:90%; max-width:1200px; margin:0 auto; }
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-a:hover{ text-decoration:none; }
-
-.fade-in{
-  animation: zowFade .35s ease both;
-}
-
-@keyframes zowFade{
-  from{ opacity:0; transform:translateY(6px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-
-body.menu-open{ overflow:hidden; }
-
-/* =========================
-   HEADER + NAV
-========================= */
-.header{
-  position:sticky;
-  top:0;
-  z-index:1200;
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
   background:#fff;
-  box-shadow:0 1px 0 rgba(0,0,0,0.06);
-}
-
-.header-container{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1.2rem;
-  padding:22px 0;
-}
-
-.brand-logo{
-  font-size:1.4rem;
-  font-weight:600;
-  letter-spacing:0.045em;
-  color:#0f172a;
-  line-height:1;
-  white-space:nowrap;
-}
-
-.main-nav{ margin-left:auto; }
-.main-nav ul{
-  list-style:none;
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
-
-.main-nav a{
-  color:var(--text-main);
-  font-weight:500;
-  font-size:0.95rem;
-  padding:8px 2px;
-}
-
-.main-nav a.active{ color:var(--gold); }
-
-.menu-toggle{
-  display:none;
-  margin-left:auto;
-  background:none;
-  border:none;
-  font-size:1.6rem;
-  color:var(--navy);
-  cursor:pointer;
-  line-height:1;
-}
-
-.menu-toggle:focus,
-.menu-toggle:active{ outline:none; box-shadow:none; }
-
-/* Zakelijk link alleen tonen binnen EV context */
-.nav-ev-zakelijk{ display:none; }
-body.ev-context .nav-ev-zakelijk{ display:list-item; }
-
-@media (max-width:960px){
-  .main-nav{ display:none; }
-  .menu-toggle{ display:block; }
-  .brand-logo{ font-size:1.25rem; letter-spacing:0.035em; }
-}
-
-/* =========================
-   MOBILE MENU
-========================= */
-.mobile-menu{
-  position:fixed;
-  inset:0;
-  background:#ffffff;
-  z-index:3000;
-  padding:2.5rem 2rem;
-  transform:translateX(100%);
-  transition:transform 0.35s ease;
-}
-
-.mobile-menu.open{ transform:translateX(0); }
-
-.close-menu{
-  position:absolute;
-  top:1.5rem;
-  right:1.5rem;
-  font-size:2rem;
-  background:none;
-  border:none;
-  cursor:pointer;
-  color:var(--navy);
-}
-
-.mobile-nav{
-  display:flex;
-  flex-direction:column;
-  gap:1.2rem;
-  margin-top:2.2rem;
-}
-
-.mobile-nav a{
-  font-size:1.05rem;
-  font-weight:600;
-  color:var(--text-main);
-}
-
-.mobile-nav a.active{ color:var(--gold); }
-
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.25s ease;
-  z-index:2500;
-}
-
-.menu-overlay.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* =========================
-   BUTTONS (BASIS)
-========================= */
-.btn-primary,
-.btn-secondary,
-.cta-gold,
-.cta-outline{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:999px;
-  font-weight:600;
-  line-height:1;
-  cursor:pointer;
-  white-space:nowrap;
-  user-select:none;
-  transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
-}
-
-.btn-primary{
-  padding:0.75rem 1.8rem;
-  background:var(--navy);
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:var(--navy-deep);
-  transform:translateY(-1px);
-  box-shadow:0 10px 24px rgba(0,0,0,.12);
-}
-
-.btn-secondary{
-  padding:0.75rem 1.6rem;
-  background:transparent;
-  border:1px solid rgba(255,255,255,.6);
-  color:#fff;
-}
-
-.btn-secondary:hover{
-  background:rgba(255,255,255,0.06);
-  border-color:rgba(255,255,255,0.85);
-  transform:translateY(-1px);
-}
-
-/* CTA knoppen voor premium cards */
-.cta-gold{
-  padding:12px 28px;
-  font-size:14.5px;
-  letter-spacing:0.3px;
-  background:linear-gradient(135deg,#e2c27a,#c9a552);
-  color:#0b1420;
-  box-shadow:0 8px 20px rgba(191,160,85,0.18);
-  border:0;
-}
-
-.cta-gold:hover{
-  transform:translateY(-1px);
-  box-shadow:0 12px 26px rgba(191,160,85,0.22);
-}
-
-.cta-outline{
-  padding:12px 28px;
-  font-size:14.5px;
-  letter-spacing:0.3px;
-  background:transparent;
-  border:1px solid rgba(216,208,182,0.9);
-  color:#0b1420;
-  box-shadow:none;
-}
-
-.cta-outline:hover{
-  background:rgba(191,160,85,0.06);
-  border-color:rgba(191,160,85,0.35);
-  transform:translateY(-1px);
-}
-
-/* =========================
-   SECTION TITLES + TEXT
-========================= */
-.services-section{ padding:4.5rem 0; }
-.section-bg-soft{ background:var(--bg-soft); }
-
-.section-title{
-  font-size:1.9rem;
-  margin-bottom:1.4rem;
-  position:relative;
-  letter-spacing:.015em;
-}
-
-.section-title::after{
-  content:"";
-  display:block;
-  width:42px;
-  height:1px;
-  background:var(--gold);
-  margin-top:0.55rem;
-  opacity:0.65;
-}
-
-.section-subtitle,
-.section-intro{
-  max-width:720px;
-  color:var(--text-muted);
-  margin-bottom:2.4rem;
+  color:var(--ink);
   line-height:1.65;
 }
 
-/* =========================
-   CARDS + GRIDS
-========================= */
-.usp-premium,
-.service-grid,
-.testimonial-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:2rem;
-  margin-top:2.5rem;
+/* CONTAINER */
+.container{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 28px;
 }
 
-.usp-item,
-.service-card,
-.testimonial-card{
-  background:var(--bg-card);
-  border-radius:var(--radius-card);
-  padding:2.4rem;
-  box-shadow:var(--shadow-soft);
-  border:1px solid rgba(0,0,0,.04);
-  position:relative;
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.05);
 }
-
-.usp-item h3,
-.service-card h3{
-  margin-bottom:0.8rem;
-}
-
-.usp-item p,
-.service-card p,
-.testimonial-card p{
-  line-height:1.7;
-  margin-top:0.6rem;
-  color:var(--text-muted);
-}
-
-/* =========================
-   PREMIUM GRID CARD (EV blokken)
-========================= */
-.premium-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:40px;
-}
-
-.premium-card{
-  background:#ffffff;
-  border-radius:28px;
-  padding:48px;
-  position:relative;
-  box-shadow:0 18px 50px rgba(0,0,0,0.06);
-  border:1px solid rgba(0,0,0,.04);
+.header-container{
   display:flex;
-  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  height:86px;
 }
-
-.premium-muted{ background:#fbfaf7; }
-
-.premium-eyebrow{
-  text-transform:uppercase;
-  font-size:12px;
-  letter-spacing:.14em;
-  color:#bfa055;
-  display:block;
-  margin-bottom:14px;
+.brand-logo{
+  font-weight:700;
+  letter-spacing:.04em;
+  text-decoration:none;
+  color:var(--navy);
+  font-size:1.3rem;
 }
-
-.price-block{
-  margin:28px 0;
-  font-size:20px;
+.main-nav ul{
+  list-style:none;
+  display:flex;
+  gap:36px;
 }
-
-.price-block span{
-  display:block;
-  font-size:14px;
-  color:#999;
-  margin-top:6px;
-}
-
-/* CTA altijd onderaan in premium card */
-.premium-card .cta-gold,
-.premium-card .cta-outline{
-  margin-top:auto;
-}
-
-/* =========================
-   ACCENT UTILITIES
-========================= */
-.accentline{
+.main-nav a{
+  text-decoration:none;
+  color:#111;
+  font-weight:500;
   position:relative;
-  padding-left:1.1rem;
-  max-width:720px;
+}
+.main-nav a.active,
+.main-nav a:hover{
+  color:var(--gold);
 }
 
-.accentline::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0.25rem;
-  bottom:0.25rem;
-  width:1px;
-  background:rgba(198,168,106,.75);
-  opacity:0.55;
-  border-radius:2px;
-}
-
-/* USP trust blok op home */
-.usp-trust{
-  position:relative;
-  padding-left:1.1rem;
-  margin-top:3rem;
-  line-height:1.7;
-}
-
-.usp-trust::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0.25rem;
-  width:1px;
-  height:calc(100% - 0.5rem);
-  background:rgba(198,168,106,.75);
-  opacity:0.55;
-}
-
-/* =========================
-   HERO ENGINE (UNIVERSEEL)
-========================= */
+/* HERO */
 .hero{
-  position:relative;
-  height:var(--hero-height-desktop);
-  min-height:var(--hero-height-desktop);
+  min-height:82vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center 55%;
-  overflow:hidden;
+  text-align:center;
+  position:relative;
+  background:radial-gradient(circle at top,#6b7682,#2c3540);
+  color:#fff;
 }
-
-.hero::before{
+.hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(7,18,30,0.65) 0%,
-    rgba(7,18,30,0.72) 55%,
-    rgba(7,18,30,0.82) 100%
-  );
-  z-index:1;
+  background:linear-gradient(to bottom,rgba(0,0,0,.25),rgba(0,0,0,.65));
 }
-
 .hero-content{
   position:relative;
-  z-index:2;
-  max-width:820px;
-  padding:0 1.5rem;
-  text-align:center;
+  max-width:760px;
+  padding:0 24px;
 }
-
 .hero-eyebrow{
-  display:block;
-  margin-bottom:.8rem;
-  font-size:.75rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
+  letter-spacing:.25em;
   color:var(--gold);
-  font-weight:500;
+  font-size:.7rem;
+  text-transform:uppercase;
 }
-
 .hero h1{
-  color:#fff;
-  font-size:2.6rem;
-  font-weight:700;
-  line-height:1.25;
-  margin-bottom:1rem;
+  font-size:clamp(2.4rem,5vw,3.4rem);
+  margin:22px 0;
 }
-
-.hero p{
-  color:rgba(255,255,255,.92);
-  max-width:720px;
-  margin:0 auto;
+.hero-subline{
   font-size:1.05rem;
-  line-height:1.7;
+  color:#e6e6e6;
 }
 
-/* Hero acties: zorg dat links nooit paars worden */
+/* BUTTONS */
 .hero-actions{
-  margin-top:1.6rem;
+  margin-top:36px;
   display:flex;
-  gap:0.9rem;
+  gap:18px;
   justify-content:center;
-  flex-wrap:wrap;
 }
-
-.hero-actions a{
-  color:inherit;
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),#caa24d);
+  color:#111;
+  padding:15px 34px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn-secondary{
+  border:1px solid rgba(255,255,255,.5);
+  padding:14px 30px;
+  border-radius:999px;
+  color:#fff;
   text-decoration:none;
 }
 
-/* Compact hero variant voor Contact */
-.hero--compact{
-  height:var(--hero-height-compact);
-  min-height:var(--hero-height-compact);
+/* SECTIONS */
+.services-section{
+  padding:110px 0;
+}
+.section-bg-soft{background:var(--soft)}
+.section-title{
+  font-size:2.2rem;
+  margin-bottom:24px;
+}
+.section-subtitle{
+  max-width:760px;
+  color:var(--grey);
+  font-size:1.05rem;
 }
 
-@media(max-width:900px){
-  .hero{
-    height:var(--hero-height-mobile);
-    min-height:var(--hero-height-mobile);
-    background-position:center 65%;
-  }
-
-  .hero h1{ font-size:2.1rem; }
-
-  .hero--compact{
-    height:var(--hero-height-compact-mobile);
-    min-height:var(--hero-height-compact-mobile);
-  }
+/* GRID CARDS */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+  margin-top:56px;
+}
+.service-card{
+  background:#fff;
+  padding:38px;
+  border-radius:var(--radius);
+  box-shadow:0 20px 60px rgba(0,0,0,.06);
+  transition:.4s;
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 28px 90px rgba(0,0,0,.1);
 }
 
-/* =========================
-   HERO BACKGROUNDS (site breed)
-   EV achtergronden horen in ev-accucheck.css
-========================= */
-.hero-home{
-  background-image:url("/assets/images/hero/home-hero-desktop.webp");
+/* PREMIUM BLOCK */
+.premium-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:44px;
+}
+.premium-card{
+  background:#fff;
+  border-radius:24px;
+  padding:48px;
+  box-shadow:0 30px 90px rgba(0,0,0,.08);
+}
+.premium-eyebrow{
+  font-size:.7rem;
+  letter-spacing:.2em;
+  color:var(--gold);
 }
 
-.hero-over{
-  background-image:url("/assets/images/hero/over-hero.webp");
-}
-
-.hero-gb{
-  background-image:url("/assets/images/hero/bezwaar-hero.webp");
-}
-
-.hero-contact{
-  background-image:url("/assets/images/hero/contact-hero.webp");
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .footer{
-  margin-top:auto;
-  background:linear-gradient(to bottom,#06101c,#040b15);
-  color:#fff;
-  padding:1.9rem 0 1.4rem;
+  background:linear-gradient(135deg,#04080f,#0b1523);
+  color:#e5e5e5;
+  padding:120px 0 80px;
 }
-
 .footer-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.6rem;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 1.2rem;
-  text-align:left;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:60px;
 }
-
 .footer-title{
-  font-weight:600;
-  margin-bottom:0.55rem;
-  font-size:0.95rem;
-  letter-spacing:0.04em;
-  text-transform:uppercase;
+  color:#fff;
+  letter-spacing:.15em;
+  font-size:.7rem;
+  margin-bottom:20px;
 }
-
-.footer-col p{
-  margin:0 0 0.55rem 0;
-  font-size:0.92rem;
-  line-height:1.45;
-  opacity:0.92;
-}
-
-.footer a{ color:#fff; }
-.footer a:hover{ text-decoration:underline; }
-
-.footer-bottom{
-  margin-top:1.6rem;
-  padding-top:1rem;
-  border-top:1px solid rgba(255,255,255,0.08);
-  text-align:center;
-  font-size:0.9rem;
-  opacity:0.8;
-}
-
+.footer a{color:#e5e5e5;text-decoration:none}
+.footer a:hover{color:var(--gold)}
 .footer-legal{
-  font-size:.85rem;
-  opacity:.65;
-  line-height:1.5;
+  font-size:.8rem;
+  color:#aaa;
 }
-
-@media (max-width:820px){
-  .footer-grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-}
-
-/* =========================
-   SMALL HELPERS
-========================= */
-.section-title + p{ margin-top:1.2rem; }
-.services-section .btn-primary{ margin-top:2rem; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
