@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* =========================
+/* =====================================================
    CORE TOKENS
-========================= */
+===================================================== */
 :root{
   --navy:#071322;
   --navy-deep:#0a1b32;
@@ -15,949 +15,45 @@
   --bg-card:#ffffff;
 
   --radius-card:18px;
-  --shadow-soft:0 8px 22px rgba(0,0,0,.08);
+  --shadow-soft:0 18px 40px rgba(0,0,0,.06);
+
+  --hero-height-desktop:62vh;
+  --hero-height-mobile:48vh;
 }
 
-/* =========================
+/* =====================================================
    RESET
-========================= */
-*{ box-sizing:border-box; margin:0; padding:0; }
-img{ max-width:100%; display:block; }
-html,body{ height:100%; }
+===================================================== */
+*{box-sizing:border-box;margin:0;padding:0;}
+img{max-width:100%;display:block;}
+html,body{height:100%;}
 body{
-  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  font-family:"Inter",sans-serif;
   color:var(--text-main);
-  background:#ffffff;
+  background:#fff;
   line-height:1.6;
-
-  /* sticky footer */
   min-height:100vh;
   display:flex;
   flex-direction:column;
 }
-body.menu-open{ overflow:hidden; }
-
-.container{ width:90%; max-width:1200px; margin:0 auto; }
-
-/* =========================
-   HEADER + NAV
-========================= */
-.header{
-  position:sticky;
-  top:0;
-  z-index:1200;
-  background:#fff;
-  box-shadow:0 1px 0 rgba(0,0,0,0.06);
-}
-.header-container{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1.2rem;
-  padding:22px 0;
-}
-
-.brand-logo{
-  font-size:1.4rem;
-  font-weight:600;
-  letter-spacing:0.045em;
-  color:#0f172a;
-  text-decoration:none;
-  line-height:1;
-  white-space:nowrap;
-}
-
-.main-nav{ margin-left:auto; }
-.main-nav ul{
-  list-style:none;
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
-.main-nav a{
-  text-decoration:none;
-  color:var(--text-main);
-  font-weight:500;
-  font-size:0.95rem;
-}
-.main-nav a.active{ color:var(--gold); }
-
-.menu-toggle{
-  display:none;
-  margin-left:auto;
-  background:none;
-  border:none;
-  font-size:1.6rem;
-  color:var(--navy);
-  cursor:pointer;
-  line-height:1;
-}
-.menu-toggle:focus,
-.menu-toggle:active{ outline:none; box-shadow:none; }
-
-/* Zakelijk link standaard uit, alleen in EV context */
-.nav-ev-zakelijk{ display:none; }
-body.ev-context .nav-ev-zakelijk{ display:list-item; }
-
-/* =========================
-   MOBILE MENU (OFFCANVAS)
-========================= */
-.mobile-menu{
-  position:fixed;
-  inset:0;
-  background:#ffffff;
-  z-index:3000;
-  padding:2.5rem 2rem;
-  transform:translateX(100%);
-  transition:transform 0.35s ease;
-}
-.mobile-menu.open{ transform:translateX(0); }
-
-.close-menu{
-  position:absolute;
-  top:1.5rem;
-  right:1.5rem;
-  font-size:2rem;
-  background:none;
-  border:none;
-  cursor:pointer;
-  color:var(--navy);
-}
-
-.mobile-nav{
-  display:flex;
-  flex-direction:column;
-  gap:1.2rem;
-  margin-top:2.2rem;
-}
-.mobile-nav a{
-  font-size:1.05rem;
-  font-weight:600;
-  color:var(--text-main);
-  text-decoration:none;
-}
-.mobile-nav a.active{ color:var(--gold); }
-
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.25s ease;
-  z-index:2500;
-}
-.menu-overlay.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-@media (max-width:960px){
-  .main-nav{ display:none; }
-  .menu-toggle{ display:block; }
-  .brand-logo{ font-size:1.25rem; letter-spacing:0.035em; }
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.btn-primary{
-  display:inline-block;
-  padding:0.75rem 1.8rem;
-  background:var(--navy);
-  color:#fff;
-  text-decoration:none;
-  border-radius:999px;
-  font-weight:600;
-  transition:background-color 0.18s ease;
-}
-.btn-primary:hover{ background:var(--navy-deep); }
-
-.btn-secondary{
-  display:inline-block;
-  padding:0.75rem 1.6rem;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.6);
-  color:#fff;
-  text-decoration:none;
-  transition:background-color 0.18s ease, border-color 0.18s ease;
-}
-.btn-secondary:hover{
-  background-color:rgba(255,255,255,0.08);
-  border-color:rgba(255,255,255,0.8);
-}
-
-/* =========================
-   SECTION TITLES + TEXT
-========================= */
-.services-section{ padding:4.5rem 0; }
-.section-bg-soft{ background:var(--bg-soft); }
-
-.section-title{
-  font-size:1.9rem;
-  margin-bottom:1.4rem;
-  position:relative;
-}
-.section-title::after {
-  content: "";
-  display: block;
-  width: 42px;
-  height: 1px;
-  background: var(--gold);
-  margin-top: 0.55rem;
-  opacity: 0.65;
-}
-
-
-.section-subtitle,
-.section-intro{
-  max-width:720px;
-  color:var(--text-muted);
-  margin-bottom:2.4rem;
-  line-height:1.65;
-}
-
-/* Vertical gold accent line utility */
-.accentline{
-  position:relative;
-  padding-left:1.6rem;
-}
-.accentline::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0.2rem;
-  bottom:0.2rem;
-  width:3px;
-  background:var(--gold);
-  border-radius:2px;
-  opacity:0.95;
-}
-.ev-authority{
-  margin-top:1.4rem;
-  font-size:0.9rem;
-  opacity:0.65;
-}
-
-/* =========================
-   GRIDS + CARDS
-========================= */
-.usp-premium,
-.service-grid,
-.testimonial-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:2rem;
-  margin-top:2.5rem;
-}
-
-.usp-item,
-.service-card,
-.testimonial-card{
-  background:var(--bg-card);
-  border-radius:var(--radius-card);
-  padding:2.4rem;
-  box-shadow:var(--shadow-soft);
-}
-
-.usp-item h3,
-.service-card h3{ margin-bottom:0.8rem; }
-
-.usp-item p,
-.service-card p,
-.testimonial-card p{
-  line-height:1.7;
-  margin-top:0.6rem;
-  color:var(--text-muted);
-}
-
-
-
-/* =========================
-   FOOTER (sticky via body flex)
-========================= */
-.footer{
-  margin-top:auto;
-  background:var(--navy);
-  color:#fff;
-  padding:1.7rem 0 1.5rem;
-  text-align:center;
-}
-
-/* =========================================================
-   HOMEPAGE RITME – gelijk aan bezwaarservice
-========================================================= */
-
-/* 1. Algemene tekst-adem */
-.section-subtitle,
-.section-intro,
-.usp-trust {
-  margin-top: 1.6rem;
-  line-height: 1.7;
-}
-
-/* 2. USP-grid afstand */
-.usp-premium {
-  margin-top: 2.8rem;
-}
-
-/* 3. Tekst onder USP’s visueel verankeren */
-.usp-trust {
-  position: relative;
-  padding-left: 1.4rem;
-  margin-top: 3rem;
-}
-
-.usp-trust::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.25rem;
-  width: 1px;
-  height: calc(100% - 0.5rem);
-  background-color: var(--gold);
-  opacity: 0.45;
-}
-.usp-trust {
-  padding-left: 1.2rem;
-}
-
-
-/* 4. CTA-secties meer lucht */
-.services-section .btn-primary {
-  margin-top: 2rem;
-}
-
-/* 5. Extra ruimte tussen titel en tekst */
-.section-title + p {
-  margin-top: 1.2rem;
-}
-
-
-/* =========================
-   BRAND MANIFEST INLINE
-========================= */
-
-.brand-manifest-inline{
-  max-width: 640px;
-  margin: 1.6rem 0 2.4rem;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: #4a4f55;
-}
-
-<link rel="stylesheet" href="css/contact.css">
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.6rem;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 1.2rem;
-  text-align:left;
-}
-
-.footer-col p{
-  margin:0 0 0.8rem 0;
-  font-size:0.92rem;
-  line-height:1.5;
-  opacity:0.92;
-}
-
-.footer-title{
-  font-weight:600;
-  margin-bottom:0.9rem;
-  font-size:1rem;
-  letter-spacing:0.04em;
-  text-transform:uppercase;
-}
-
-.footer a{
-  color:#fff;
-  text-decoration:none;
-}
-
-.footer a:hover{
-  text-decoration:underline;
-}
-
-@media (max-width: 820px){
-  .footer-grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-}
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.6rem;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 1.2rem;
-  text-align:left;
-}
-
-.footer-col p{
-  margin:0 0 0.55rem 0;
-  font-size:0.92rem;
-  line-height:1.45;
-  opacity:0.92;
-}
-
-.footer-title{
-  font-weight:600;
-  margin-bottom:0.55rem;
-  font-size:0.95rem;
-  letter-spacing:0.04em;
-  text-transform:uppercase;
-}
-
-.footer a{
-  color:#fff;
-  text-decoration:none;
-}
-
-.footer a:hover{
-  text-decoration:underline;
-}
-
-@media (max-width: 820px){
-  .footer-grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-}
-
-.footer-accent{
-  display:inline-block;
-  padding:0.15rem 0.45rem;
-  border-radius:6px;
-  background:rgba(255,255,255,0.08);
-  font-weight:600;
-}
-
-
-.reiskosten-section{
-  margin-top:4.5rem;
-}
-
-.footer-bottom{
-  margin-top:1.6rem;
-  padding-top:1rem;
-  border-top:1px solid rgba(255,255,255,0.08);
-  text-align:center;
-  font-size:0.9rem;
-  opacity:0.8;
-}
-
-.footer-bottom{
-  white-space:nowrap;
-}
-
-/* =========================
-   START AANKOOPADVIES – FLOW FIX
-========================= */
-
-/* Card mag de volgende sectie niet wegduwen */
-.intake-shell{
-  margin-bottom: 3.2rem;
-}
-
-/* Schaduw mag niet extra ruimte forceren */
-.advisor-card{
-  margin-bottom: 0;
-}
-
-/* Reiskosten mag visueel dichter aansluiten */
-.services-section + .services-section{
-  margin-top: 2.4rem;
-}
-
-.advisor-microtrust{
-  font-size:0.85rem;
-  opacity:0.65;
-  margin-top:2.4rem;
-  margin-bottom:0.6rem;
-}
-.field-hint{
-  font-size:0.8rem;
-  opacity:0.55;
-  margin-top:0.4rem;
-}
-.advisor-authority{
-  margin-top:1.2rem;
-  font-size:0.9rem;
-  opacity:0.7;
-}
-/* =========================
-   GOUDE ACCENTLIJNEN – subtiel premium
-========================= */
-
-.accentline::before,
-.usp-trust::before,
-.accentline--compact::before{
-  width: 1px !important;                 /* dunner */
-  opacity: 0.55 !important;              /* zachter */
-  background-color: rgba(198,168,106,.75) !important; /* warmer, minder fel */
-}
-
-/* Iets meer ademruimte */
-.accentline,
-.usp-trust,
-.accentline--compact{
-  padding-left: 1.1rem;
-}
-/* =========================
-   PREMIUM DIEPTE & ZACHTE RANDEN
-========================= */
-
-/* Algemene kaartstijl */
-.package-card,
-.advisor-card,
-.ev-addon-card,
-.service-card{
-  border:1px solid rgba(0,0,0,.04);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.06),
-    0 3px 10px rgba(0,0,0,.03);
-}
-
-/* Zachte binnenrand voor luxer gevoel */
-.package-card::after,
-.advisor-card::after,
-.ev-addon-card::after,
-.service-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  pointer-events:none;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
-}
-
-/* =========================
-   KNOPPEN – MATTE LUXE
-========================= */
-
-.btn-primary,
-.btn-package,
-.advisor-submit{
-  background:linear-gradient(to bottom,#d4b97c,#c6a86a);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.35),
-    0 10px 24px rgba(0,0,0,.12);
-}
-
-.btn-primary:hover,
-.btn-package:hover,
-.advisor-submit:hover{
-  transform:translateY(-1px);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.4),
-    0 14px 28px rgba(0,0,0,.16);
-}
-
-.section-title{
-  letter-spacing:.015em;
-}
-
-.section-subtitle,
-.accentline{
-  max-width: 720px;
-}
-
-.footer{
-  background:linear-gradient(to bottom,#06101c,#040b15);
-}
-
-.footer-legal{
-  white-space:nowrap;
-}
-.footer-legal{
-  white-space:nowrap;
-  font-size:.85rem;
-  opacity:.65;
-  line-height:1.5;
-}
-.accu-authority{
-  margin-top:1.4rem;
-  font-size:0.92rem;
-  opacity:0.75;
-  line-height:1.6;
-}
-/* ⛔ Forceer géén doorhalingen op body-tekst */
-p, 
-.section-subtitle, 
-.services-section p {
-  text-decoration: none !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
-.services-section p {
-  position: relative;
-  z-index: 1;
-}
-
-
-.anchor-lead{
-  font-size:1.15rem;
-  font-weight:500;
-  line-height:1.6;
-  margin-bottom:0.6rem;
-}
-
-.anchor-body{
-  font-size:1rem;
-  line-height:1.7;
-  opacity:0.85;
-}
-.trust-strip{
-  margin:3.8rem auto 2.8rem;
-  text-align:center;
-  max-width:680px;
-}
-
-.trust-head{
-  font-size:0.95rem;
-  line-height:1.7;
-  opacity:0.85;
-}
-
-.trust-sub{
-  margin-top:0.8rem;
-  font-size:0.9rem;
-  letter-spacing:0.04em;
-  text-transform:uppercase;
-  color:var(--gold);
-  opacity:0.9;
-}
-.price-guardian{
-  max-width:720px;
-  margin:0 auto 2.6rem;
-  padding:1.8rem 2.2rem;
-  border-radius:20px;
-  background:linear-gradient(135deg,#f7f5f1,#f2ede5);
-  border:1px solid rgba(0,0,0,.06);
-}
-
-.guardian-title{
-  font-size:.8rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:.6rem;
-}
-.decision-lock-under{
-  margin-top:.7rem;
-  font-size:.78rem;
-  color:rgba(0,0,0,.45);
-  text-align:center;
-}
-
-.field-hint{
-  font-size:0.8rem;
-  opacity:0.55;
-  margin-top:0.4rem;
-  line-height:1.4;
-}
-
-.micro-legal{
-  font-size:0.75rem;
-  opacity:0.5;
-  margin-top:0.6rem;
-  line-height:1.45;
-}
-
-.advisor-microtrust{
-  font-size:0.85rem;
-  opacity:0.65;
-  margin-bottom:0.6rem;
-}
-/* =========================================
-   PREMIUM INTRO TEKST ACCUCHECK
-========================================= */
-
-.accu-intro {
-  display:flex;
-  gap:2.5rem;
-  margin:5rem auto 4rem;
-  max-width:880px;
-}
-
-.accu-intro-line {
-  width:2px;
-  background:linear-gradient(to bottom, rgba(200,170,110,.8), rgba(200,170,110,0));
-}
-
-.accu-intro-text h3{
-  font-size:1.15rem;
-  font-weight:600;
-  margin-bottom:.6rem;
-}
-
-.accu-intro-text p{
-  color:#666;
-  line-height:1.65;
-}
-/* ZEKEROPWEG – DECISION CTA */
-
-.premium-action{
-  margin-top:2rem;
-}
-
-.cta-decision{
-  display:inline-block;
-  padding:1.05rem 2.6rem;
-  border-radius:14px;
-  background:linear-gradient(145deg,#d6b46a,#c9a65a);
-  color:#0b1420;
-  font-weight:600;
-  text-decoration:none;
-  letter-spacing:.2px;
-  box-shadow:0 16px 40px rgba(0,0,0,.18);
-  transition:.25s ease;
-}
-
-.cta-decision:hover{
-  transform:translateY(-2px);
-  box-shadow:0 22px 56px rgba(0,0,0,.22);
-}
-
-.decision-note{
-  margin-top:.7rem;
-  font-size:.8rem;
-  opacity:.55;
-  max-width:460px;
-  line-height:1.45;
-}
-
-.service-card-decision{
-  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
-  border: 1px solid rgba(0,0,0,.04);
-}
-
-.decision-authority{
-  font-size:.8rem;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  opacity:.55;
-  margin-bottom:.8rem;
-}
-
-.decision-price{
-  margin-top:1.2rem;
-  font-size:.95rem;
-  opacity:.85;
-}
-
-.decision-muted{
-  opacity:.55;
-  font-size:.8rem;
-}
-
-.decision-subtrust{
-  font-size:.75rem;
-  opacity:.45;
-  margin-top:.4rem;
-}
-
-.cta-decision{
-  display:inline-block;
-  margin-top:1.4rem;
-  padding:16px 34px;
-  border-radius:999px;
-  background:linear-gradient(135deg,#d7b36a,#caa457);
-  color:#000;
-  font-weight:600;
-  text-decoration:none;
-  box-shadow:0 18px 45px rgba(0,0,0,.12);
-  transition:.25s;
-}
-
-.cta-decision:hover{
-  transform:translateY(-2px);
-  box-shadow:0 25px 65px rgba(0,0,0,.18);
-}
-
-/* Subtiele secondary CTA – aankoopadvies stijl */
-.cta-decision.subtle {
-  background: transparent;
-  color: #2b2b2b;
-  border: 1px solid rgba(0,0,0,0.12);
-  box-shadow: none;
-  margin-top: 18px;
-}
-
-.cta-decision.subtle:hover {
-  border-color: rgba(0,0,0,0.22);
-  background: rgba(0,0,0,0.02);
-}
-/* Secondary button sizing equal to main CTA */
-.cta-decision.subtle {
-  height: 56px;
-  padding: 0 34px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Gold left border content block */
-.card-document {
-  position: relative;
-  padding-left: 32px;
-}
-
-.card-document::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 22px;
-  bottom: 22px;
-  width: 3px;
-  background: linear-gradient(to bottom, #e1c07a, #c9a34a);
-  border-radius: 2px;
-}
-
-.card-document p {
-  margin-bottom: 18px;
-}
-/* Micro gold signature accent */
-.card-accent {
-  position: relative;
-  padding-left: 26px;
-}
-
-.card-accent::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 22px;
-  width: 3px;
-  height: 20px;
-  border-radius: 2px;
-  background: linear-gradient(180deg, #e6c67a, #caa44a);
-  opacity: 0.9;
-}
-.premium-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-  gap: 40px;
-}
-
-.premium-card {
-  background: #ffffff;
-  border-radius: 28px;
-  padding: 48px;
-  position: relative;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.06);
-}
-
-.premium-muted { background:#fbfaf7; }
-
-.premium-eyebrow {
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: .14em;
-  color:#bfa055;
-  display:block;
-  margin-bottom:14px;
-}
-
-.price-block {
-  margin:28px 0;
-  font-size:20px;
-}
-
-.price-block span {
-  display:block;
-  font-size:14px;
-  color:#999;
-  margin-top:4px;
-}
-
-.cta-primary {
-  display:inline-block;
-  background:linear-gradient(135deg,#e2c27a,#c9a552);
-  padding:18px 36px;
-  border-radius:999px;
-  color:#000;
-  font-weight:600;
-  text-decoration:none;
-}
-
-.cta-outline {
-  display:inline-block;
-  padding:18px 36px;
-  border-radius:999px;
-  border:1px solid #d8d0b6;
-  color:#000;
-  text-decoration:none;
-}
-.lux-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 16px;
-}
-
-.lux-list li {
-  position: relative;
-  padding-left: 18px;
-  margin-bottom: 16px;
-  line-height: 1.55;
-}
-
-.lux-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 10px;
-  height: 2px;
-  background: linear-gradient(90deg,#d7b96c,#bfa055);
-  border-radius: 2px;
-}
-.cta-gold,
-.cta-outline {
-  padding: 12px 28px;
-  font-size: 14.5px;
-  letter-spacing: 0.4px;
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(191,160,85,0.18);
-}
-
-.premium-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.premium-card .cta-gold,
-.premium-card .cta-outline {
-  margin-top: auto;
-}
-
-.cta-gold:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(191,160,85,0.22);
-}
-
-.cta-outline:hover {
-  background: rgba(191,160,85,0.05);
-}
-
-.cta-gold {
-  box-shadow: 0 6px 18px rgba(191,160,85,0.18);
-}
-:root{
-  --hero-height-desktop: 62vh;
-  --hero-height-mobile: 48vh;
-}
-
+.container{width:90%;max-width:1200px;margin:0 auto;}
+
+/* =====================================================
+   HEADER
+===================================================== */
+.header{position:sticky;top:0;z-index:1200;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.06);}
+.header-container{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+.brand-logo{font-size:1.4rem;font-weight:600;letter-spacing:.04em;color:#0f172a;text-decoration:none;}
+.main-nav ul{display:flex;gap:22px;list-style:none;}
+.main-nav a{text-decoration:none;color:var(--text-main);font-weight:500;font-size:.95rem;}
+.main-nav a.active{color:var(--gold);}
+
+/* =====================================================
+   HERO ENGINE (UNIVERSEEL)
+===================================================== */
 .hero{
-  position: relative;
-  height: var(--hero-height-desktop);
-  min-height: var(--hero-height-desktop);
+  position:relative;
+  height:var(--hero-height-desktop);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -965,20 +61,18 @@ p,
   background-position:center 55%;
   overflow:hidden;
 }
-
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(7,18,30,0.65) 0%,
-    rgba(7,18,30,0.72) 55%,
-    rgba(7,18,30,0.82) 100%
+    rgba(7,18,30,.65) 0%,
+    rgba(7,18,30,.72) 55%,
+    rgba(7,18,30,.82) 100%
   );
   z-index:1;
 }
-
 .hero-content{
   position:relative;
   z-index:2;
@@ -986,37 +80,94 @@ p,
   padding:0 1.5rem;
   text-align:center;
 }
-
 .hero-eyebrow{
   display:block;
-  margin-bottom:.8rem;
   font-size:.75rem;
   letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--gold);
+  margin-bottom:.8rem;
 }
-
 .hero h1{
   color:#fff;
   font-size:2.6rem;
   line-height:1.25;
   margin-bottom:1rem;
 }
-
 .hero p{
   color:rgba(255,255,255,.92);
   max-width:720px;
   margin:0 auto;
   line-height:1.7;
 }
-
 @media(max-width:900px){
   .hero{height:var(--hero-height-mobile);}
   .hero h1{font-size:2.1rem;}
 }
-
 .hero--compact{height:40vh;}
 
+/* =====================================================
+   HERO BACKGROUNDS
+===================================================== */
+.hero-home{background-image:url("/assets/images/hero/home-hero-desktop.webp");}
+.hero-over{background-image:url("/assets/images/hero/over-hero.webp");}
+.hero-gb{background-image:url("/assets/images/hero/bezwaar-hero.webp");}
+.hero-accucheck{background-image:url("/assets/images/hero/accucheck-hero.webp");}
+.hero-accucheck-zakelijk{background-image:url("/assets/images/hero/accucheck-zakelijk-hero.webp");}
+.hero-contact{background-image:url("/assets/images/hero/contact-hero.webp");}
+
+/* =====================================================
+   BUTTONS (MATTE LUXE)
+===================================================== */
+.cta-gold,
+.cta-outline{
+  padding:12px 28px;
+  font-size:14.5px;
+  letter-spacing:.4px;
+  border-radius:999px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.cta-gold{
+  background:linear-gradient(135deg,#d7b36a,#caa457);
+  color:#000;
+  box-shadow:0 6px 18px rgba(191,160,85,.18);
+}
+.cta-gold:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(191,160,85,.22);}
+.cta-outline{
+  border:1px solid rgba(0,0,0,.14);
+  color:#000;
+}
+.cta-outline:hover{background:rgba(191,160,85,.05);}
+
+/* =====================================================
+   SECTIONS & CARDS
+===================================================== */
+.services-section{padding:4.5rem 0;}
+.section-title{font-size:1.9rem;}
+.section-title::after{content:"";display:block;width:42px;height:1px;background:var(--gold);margin-top:.6rem;opacity:.6;}
+.section-subtitle{max-width:720px;color:var(--text-muted);margin-top:1.6rem;}
+
+.usp-premium{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:2.5rem;}
+.usp-item{
+  background:#fff;
+  padding:2.4rem;
+  border-radius:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.footer{
+  margin-top:auto;
+  background:linear-gradient(to bottom,#06101c,#040b15);
+  color:#fff;
+  padding:1.7rem 0;
+  text-align:center;
+}
 
 
 
