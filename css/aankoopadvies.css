@@ -551,3 +551,24 @@
   height:58px;
   min-width:260px;
 }
+
+/* ==========================================
+   FINAL CARD STRUCTURE LOCK
+========================================== */
+
+/* Kaarten mogen NOOIT meer open zijn */
+.package-card{
+  overflow:hidden;
+  padding-bottom:56px; /* interne vloer */
+}
+
+/* CTA altijd binnen kaart */
+.package-card a{
+  margin-top:48px !important;
+}
+
+/* Premium mag wél zweven */
+.package-card.featured:hover{
+  transform: translateY(-6px);
+  box-shadow:0 40px 95px rgba(215,181,109,.22);
+}
