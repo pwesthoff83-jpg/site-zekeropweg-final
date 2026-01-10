@@ -842,6 +842,74 @@ a.cta-gold:hover{
   background:linear-gradient(135deg,#111c35,#050b18) !important;
 }
 
+/* =========================================================
+   CANONICAL ROLEX CTA SYSTEM – FORCE GLOBAL
+========================================================= */
+
+/* BASE */
+a[class*="btn"],
+a[class*="cta"],
+button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0.95rem 2.1rem;
+  border-radius:999px;
+  font-weight:600;
+  letter-spacing:.02em;
+  font-size:.9rem;
+  line-height:1;
+  white-space:nowrap;
+  text-align:center;
+  cursor:pointer;
+  transition:all .22s ease;
+  text-decoration:none!important;
+  position:relative;
+  isolation:isolate;
+}
+
+/* DARK ROLEX */
+.btn-primary,
+.cta-gold,
+button[type="submit"],
+.premium-card a{
+  background:linear-gradient(180deg,#0f1b2e,#050b15);
+  color:#ffffff!important;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),
+             0 22px 55px rgba(0,0,0,.35);
+}
+
+/* OUTLINE ROLEX */
+.btn-secondary,
+.cta-outline{
+  background:transparent;
+  color:#0f172a!important;
+  border:1px solid rgba(15,23,42,.35);
+  box-shadow:0 18px 42px rgba(0,0,0,.08);
+}
+
+/* HOVER */
+.btn-primary:hover,
+.cta-gold:hover,
+button[type="submit"]:hover{
+  transform:translateY(-2px);
+  box-shadow:0 32px 75px rgba(0,0,0,.45);
+}
+
+.btn-secondary:hover,
+.cta-outline:hover{
+  background:rgba(15,23,42,.04);
+}
+
+/* FIX TEXT VISIBILITY */
+a[class*="btn"] span,
+a[class*="cta"] span,
+button span{
+  color:inherit!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+}
 
 
 
