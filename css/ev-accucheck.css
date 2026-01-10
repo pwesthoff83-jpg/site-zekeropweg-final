@@ -1,216 +1,55 @@
 /* =====================================================
-   EV ACCUCHECK – PREMIUM LAYOUT LAYER
-   Zuiver los van styles.css
+   EV ACCUCHECK – PREMIUM PAGE LAYER
+   Alleen page-specifiek, geen globale section overrides
 ===================================================== */
 
-/* Hero gelijk aan aankoopadvies */
-.hero-accucheck{
-  min-height: 56vh;
-  display:flex;
-  align-items:center;
-  text-align:center;
-}
-
-.hero-accucheck .hero-content{
-  max-width:880px;
-  margin:0 auto;
-}
-
+/* Hero finetune (basis komt uit styles.css) */
 .hero-accucheck h1{
-  font-size:3.1rem;
-  line-height:1.25;
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.hero-accucheck .hero-subline{
-  font-size:1.15rem;
-  opacity:.9;
+/* Overlap intro card onder hero */
+.accu-intro-wrap{
+  padding: 0;
 }
 
-/* Sectie-ritme */
-.page-content section{
-  padding:7rem 0;
+.premium-intro{
+  margin-top: -3.6rem;
+  background: #ffffff;
+  padding: 3.2rem 3.6rem;
+  border-radius: 26px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.08);
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 10;
 }
 
-/* Premium containers */
-.ev-wrap{
-  max-width:1180px;
-  margin:0 auto;
+.accu-intro-text h3{
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin-bottom: .8rem;
 }
 
-/* Service grid */
-.ev-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:3rem;
-  margin-top:4rem;
+.accu-intro-text p{
+  color: rgba(20,20,20,.70);
+  line-height: 1.75;
 }
 
-/* Premium cards */
-.ev-card{
-  background:#fff;
-  border-radius:26px;
-  padding:3rem 2.8rem;
-  box-shadow:0 24px 70px rgba(0,0,0,.08);
-  transition:.35s ease;
-}
-
-.ev-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 34px 90px rgba(0,0,0,.12);
-}
-
-.ev-card h3{
-  font-size:1.25rem;
-  margin-bottom:.6rem;
-}
-
-.ev-card p{
-  color:#5a6067;
-  line-height:1.75;
-}
-
-/* Soft background blocks */
-.section-bg-soft{
-  background:#f7f5f0;
-}
-
-/* Authority strip */
-.trust-strip{
-  text-align:center;
-  max-width:900px;
-  margin:0 auto;
-}
-
-.trust-strip p{
-  font-size:1.1rem;
-  color:#5c6168;
-}
-
-/* Beslissingsbescherming */
-.price-guardian{
-  max-width:880px;
-  margin:6rem auto;
-  background:#f6f1e8;
-  border-radius:28px;
-  padding:3rem 3.2rem;
-  box-shadow:0 20px 60px rgba(0,0,0,.06);
-}
-
-.guardian-title{
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:.75rem;
-  color:#c9a65a;
-  margin-bottom:.6rem;
-}
-
-/* Premium pricing grid */
-.premium-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:3rem;
-  margin-top:4rem;
-}
-
-.premium-card{
-  background:#fff;
-  border-radius:30px;
-  padding:3.2rem;
-  box-shadow:0 28px 85px rgba(0,0,0,.1);
-}
-
-.premium-muted{
-  background:#f7f5f0;
-}
-
-/* Buttons */
-.cta-primary{
-  display:inline-block;
-  margin-top:2rem;
-  padding:.9rem 2.3rem;
-  background:linear-gradient(135deg,#e1c27a,#caa24d);
-  border-radius:999px;
-  color:#1c1c1c;
-  font-weight:500;
-  text-decoration:none;
-}
-
-.cta-outline{
-  display:inline-block;
-  margin-top:1.8rem;
-  padding:.8rem 2rem;
-  border:1px solid #d8b76a;
-  border-radius:999px;
-  color:#1c1c1c;
-  text-decoration:none;
+/* Kleine spacing correcties voor deze pagina */
+#tarief .btn-primary,
+#tarief .btn-secondary{
+  margin-top: .4rem;
 }
 
 /* Responsive */
-@media(max-width:980px){
-  .ev-grid,
-  .premium-grid{
-    grid-template-columns:1fr;
+@media (max-width: 900px){
+  .premium-intro{
+    padding: 2.4rem 2.1rem;
+    margin-top: -2.4rem;
   }
 }
-.premium-intro{
-  margin-top:-3.8rem;
-  background:#fff;
-  padding:3.4rem 3.8rem;
-  border-radius:26px;
-  box-shadow:0 40px 80px rgba(0,0,0,.08);
-  max-width:920px;
-  margin-left:auto;
-  margin-right:auto;
-  position:relative;
-  z-index:10;
-}
-/* =========================================================
-   EV ACCUCHECK – HARD LOCK CTA SYSTEM
-========================================================= */
 
-/* Hero hoofdactie */
-.hero-accucheck .btn-primary{
-  background: linear-gradient(180deg,#0f1c2d 0%, #060b14 100%);
-  color:#ffffff !important;
-  border:1px solid rgba(255,255,255,.14);
-  text-shadow:0 1px 2px rgba(0,0,0,.45);
-  box-shadow:0 18px 45px rgba(0,0,0,.38);
-}
-
-/* Hover = dieper, nooit lichter */
-.hero-accucheck .btn-primary:hover{
-  background: linear-gradient(180deg,#13243a 0%, #050912 100%);
-  color:#ffffff !important;
-  box-shadow:0 26px 60px rgba(0,0,0,.55);
-}
-
-/* Gold CTA in tarieven */
-.cta-gold{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:.9rem 2.1rem;
-  border-radius:999px;
-  font-weight:600;
-  letter-spacing:.02em;
-  background:linear-gradient(135deg,#d8bc7a,#c6a86a);
-  color:#0b1420 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 18px 42px rgba(0,0,0,.28);
-  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-}
-
-.cta-gold:hover{
-  transform:translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 26px 60px rgba(0,0,0,.38);
-  filter:saturate(1.04);
-}
-
-/* Outline variant */
-.cta-outline{
-  border:1px solid rgba(15,23,42,.45);
-  color:#0f172a !important;
-  background:transparent;
-}
-.cta-outline:hover{
-  background:rgba(15,23,42,.04);
-}
