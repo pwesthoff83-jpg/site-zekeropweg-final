@@ -1101,9 +1101,37 @@ section{
   opacity:.85;
 }
 
+.packages-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:72px;
+  align-items:stretch;
+}
 
+.package{
+  width:100%;
+  max-width:none;
+  min-width:0;
+}
 
+.package p,
+.package li{
+  max-width:32ch;
+}
 
+.package{
+  padding:58px 56px 56px;
+}
+
+.package--premium{
+  padding-left:66px;
+  padding-right:66px;
+}
+
+.package .btn{
+  margin-top:auto;
+  align-self:flex-start;
+}
 
 
 
