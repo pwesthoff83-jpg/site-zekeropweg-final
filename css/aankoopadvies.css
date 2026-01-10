@@ -482,3 +482,47 @@
   max-width:420px;
   margin:0 auto;
 }
+
+/* ================================
+   CANONICAL PACKAGE GRID — FINAL
+================================ */
+
+.packages-section{
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  gap:3.2rem !important;
+  align-items:stretch !important;
+}
+
+/* Alle kaarten identiek */
+.package-card{
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+/* Premium iets groter (maar zelfde basisbreedte) */
+.package-card.featured{
+  transform:scale(1.035);
+}
+
+/* CTA altijd op vaste hoogte */
+.package-card a{
+  margin-top:auto !important;
+}
+
+/* Knoppen exact gelijk */
+.package-card a{
+  height:58px;
+  min-width:260px;
+}
+
+.ev-addon-card{
+  max-width:640px !important;
+}
+
+.ev-addon-card .card-cta{
+  margin-top:56px !important;
+}
