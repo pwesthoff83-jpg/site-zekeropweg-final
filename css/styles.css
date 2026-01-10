@@ -807,6 +807,41 @@ body.menu-open{ overflow:hidden; }
 
 .services
 
+/* =========================================
+   ROLEX BUTTON IMMUNITY LAYER (GLOBAL)
+========================================= */
+
+/* Reset ALLE mogelijke filters boven Rolex buttons */
+a.btn-primary,
+a.btn-secondary,
+a.cta-gold,
+a.cta-outline,
+button,
+.services-section a,
+.premium-card a,
+.service-card a{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  isolation:isolate !important;
+  opacity:1 !important;
+}
+
+/* Force text to stay bright */
+a.btn-primary *,
+a.btn-secondary *,
+a.cta-gold *,
+a.cta-outline *{
+  color:#ffffff !important;
+  opacity:1 !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+/* Rolex hover remains visible */
+a.btn-primary:hover,
+a.cta-gold:hover{
+  background:linear-gradient(135deg,#111c35,#050b18) !important;
+}
+
 
 
 
