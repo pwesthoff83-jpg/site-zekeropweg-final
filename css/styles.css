@@ -1152,6 +1152,48 @@ section{
   margin:0 auto;
 }
 
+/* ============================================
+   PREMIUM CARD ARCHITECTURE – ZEKEROPWEG
+============================================ */
+
+/* Card container (alle prijs/CTA kaarten) */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(320px,1fr));
+  gap:48px;
+  align-items:stretch;
+}
+
+/* Elke kaart */
+.card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:52px 46px 46px;
+  border-radius:32px;
+}
+
+/* Tekstdeel groeit */
+.card .card-body{
+  flex:1;
+}
+
+/* CTA altijd op vaste hoogte */
+.card .card-cta{
+  margin-top:48px;
+}
+
+/* Alle knoppen identieke hoogte */
+.card .btn{
+  height:58px;
+  min-width:260px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  font-weight:600;
+}
+
 
 
 
