@@ -1394,6 +1394,33 @@ body[data-page="home"] a[data-service="info"]{
   margin-bottom:2.6rem;
 }
 
+.card-cta{
+  display:inline-block;
+  margin-top:2.2rem;
+  font-weight:500;
+  font-size:.95rem;
+  letter-spacing:.02em;
+  color:#bfa055;
+  text-decoration:none;
+  position:relative;
+  padding-bottom:.3rem;
+}
+
+.card-cta::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:36px;
+  height:1px;
+  background:linear-gradient(90deg,#d7b96c,#bfa055);
+  transition:width .35s ease;
+}
+
+.card-cta:hover::after{
+  width:64px;
+}
+
 
 
 
