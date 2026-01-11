@@ -1242,6 +1242,27 @@ section{
   box-shadow:0 22px 46px rgba(0,0,0,.32);
 }
 
+/* =========================================================
+   FOOTER CONTEXT HIGHLIGHT — AANKOOPADVIES
+========================================================= */
+
+body.page-aankoopadvies .footer a[data-service="advies"]{
+  color: var(--gold) !important;
+  font-weight:600;
+  position:relative;
+}
+
+body.page-aankoopadvies .footer a[data-service="advies"]::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:1px;
+  background:rgba(215,181,109,.7);
+}
+
+
 
 
 
