@@ -119,3 +119,29 @@
   letter-spacing: .12em;
   align-self: center;
 }
+
+/* === EV ACCUCHECK – CTA HARD LOCK (alleen deze pagina) ================= */
+
+body.page-ev-accucheck #tarief .package a.btn,
+body.page-ev-accucheck #tarief .package a.btn-primary,
+body.page-ev-accucheck #tarief .package a.btn-secondary{
+
+  width:260px !important;
+  min-width:260px !important;
+  max-width:260px !important;
+  height:58px !important;
+
+  padding:0 !important;
+  line-height:58px !important;
+  text-align:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+}
+
+/* Zorg dat lange tekst nooit de knop kan oprekken */
+body.page-ev-accucheck #tarief .package a span,
+body.page-ev-accucheck #tarief .package a{
+  max-width:260px !important;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
