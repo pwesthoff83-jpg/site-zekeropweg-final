@@ -1556,6 +1556,23 @@ body.page-ev-accucheck-zakelijk .footer a[data-service="accu"]::after{
   background:rgba(215,181,109,.7);
 }
 
+/* EV AccuCheck context – highlight juiste dienst */
+body.page-ev-accucheck .footer a[data-service="accu"]{
+  color: var(--gold) !important;
+  font-weight:600;
+  position:relative;
+}
+
+body.page-ev-accucheck .footer a[data-service="accu"]::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:1px;
+  background:rgba(215,181,109,.7);
+}
+
 
 
 
