@@ -33,31 +33,43 @@
 <body class="fade-in" data-page="home"">
   
 <!-- ================= HEADER ================= -->
-<header class="header">
-  <div class="container header-container">
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
 
-    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a class="active" href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html">AccuCheck</a>
+      <a href="bezwaarservice.html">Bezwaar</a>
 
-    <button class="menu-toggle" aria-label="Menu openen">
-      ☰
-    </button>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
 
-    <nav class="main-nav">
-      <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-
-        <!-- CONTEXTUEEL -->
-         <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
-        <li><a href="over.html">Over</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
   </div>
-
-   <div id="menuOverlay" class="menu-overlay"></div>
 </header>
+
+<button class="zop-mobile-toggle" onclick="toggleMenu()">Menu</button>
+
+<div id="zopMobileMenu" class="zop-mobile-overlay" onclick="closeMenu(event)">
+  <div class="zop-mobile-inner">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">AccuCheck</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="automatisering.html">Automatisering</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html" class="zop-mobile-cta">Contact</a>
+  </div>
+</div>
+
 
 
 <!-- MOBILE MENU -->
@@ -280,6 +292,7 @@ Juist om twijfel, risico’s en latere spijt te voorkomen.
 <script src="scripts/scripts.js?v=1"></script>
 </body>
 </html>
+
 
 
 
