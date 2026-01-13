@@ -19,17 +19,28 @@
 
     <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-        <li><a href="bezwaarservice.html">Bezwaarservice</a></li>
-        <li><a href="over.html" class="active">Over</a></li>
-        <li><a href="contact.html">Contact</a></li>
+   <nav class="nav">
+  <ul class="nav-list">
+    <li><a href="index.main.html">Home</a></li>
+    <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
+    <li><a href="ev-accucheck.html">AccuCheck</a></li>
+    <li><a href="bezwaarservice.html">Bezwaar</a></li>
+
+    <li class="nav-item has-dropdown">
+      <a href="voor-bedrijven.html" class="nav-link" aria-haspopup="true" aria-expanded="false">
+        Voor bedrijven
+      </a>
+
+      <ul class="dropdown" aria-label="Voor bedrijven">
+        <li><a href="automatisering.html">Automatisering</a></li>
       </ul>
-    </nav>
-  </div>
+    </li>
+
+    <li><a href="over.html">Over</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+ 
 
   <div id="mobileMenu" class="mobile-menu">
     <button class="close-menu" aria-label="Menu sluiten">×</button>
@@ -245,6 +256,7 @@
 <script src="scripts/scripts.js?v=1"></script>
 </body>
 </html>
+
 
 
 
