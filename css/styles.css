@@ -1730,6 +1730,62 @@ body.page-ev-accucheck .footer a[data-service="advies"]::after{
   letter-spacing:.10em;
 }
 
+#tarief *{
+  all: revert !important;
+}
+
+/* ======================================================
+   EV ACCUCHECK – CLEAN PRICING SYSTEM (LOCKED)
+====================================================== */
+
+#tarief .packages-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:72px;
+  align-items:stretch;
+}
+
+#tarief .package{
+  display:flex;
+  flex-direction:column;
+  padding:58px 56px 56px;
+  border-radius:34px;
+  background:linear-gradient(180deg,#ffffff,#fbfaf7);
+  border:1.5px solid rgba(215,181,109,.55);
+  box-shadow:0 28px 70px rgba(0,0,0,.12);
+}
+
+#tarief .package--premium{
+  border:2.5px solid rgba(215,181,109,.95);
+  transform:translateY(-24px);
+}
+
+#tarief .package > a{
+  margin-top:auto;
+  align-self:center;
+  width:260px;
+  height:58px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#0c1220,#02060d);
+  color:#ffffff;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  box-shadow:0 18px 42px rgba(0,0,0,.45);
+  cursor:pointer;
+}
+
+/* kaart 3 compact */
+#tarief .package:nth-child(3) > a{
+  white-space:normal;
+  padding:0 26px;
+  line-height:1.2;
+  letter-spacing:.10em;
+}
+
 
 
 
