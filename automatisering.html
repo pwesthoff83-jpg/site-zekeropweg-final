@@ -1,1 +1,542 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZekerOpWeg Infrastructure | Automatisering van processen</title>
+  <meta name="description" content="ZekerOpWeg Infrastructure bouwt stille systemen die offertes, planning, rapportage, facturatie en opvolging automatisch laten draaien. Rust, controle en voorspelbaarheid." />
+
+  <!-- Sluit aan op je bestaande styling -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Pagina specifieke styling, premium warm -->
+  <style>
+    :root{
+      --ink:#0b1220;
+      --muted:#5a667a;
+      --paper:#fbf6ea;
+      --panel:#ffffff;
+      --line:rgba(11,18,32,.10);
+      --shadow:0 18px 40px rgba(11,18,32,.10);
+      --radius:18px;
+      --radius-sm:14px;
+      --max:1120px;
+    }
+
+    body{ background: var(--paper); color: var(--ink); }
+
+    .infra-page{ padding: 0 0 72px; }
+
+    .infra-wrap{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .infra-hero{
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(255,210,140,.35), transparent 55%),
+                  radial-gradient(900px 500px at 90% 30%, rgba(180,160,120,.22), transparent 55%),
+                  var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .infra-hero-inner{
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 26px;
+      padding: 34px;
+      align-items: center;
+    }
+
+    @media (max-width: 920px){
+      .infra-hero-inner{ grid-template-columns: 1fr; }
+    }
+
+    .infra-eyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(251,246,234,.75);
+      font-weight: 600;
+      color: rgba(11,18,32,.85);
+      letter-spacing: .2px;
+      margin-bottom: 14px;
+    }
+
+    .infra-h1{
+      font-size: clamp(30px, 3.2vw, 46px);
+      line-height: 1.06;
+      margin: 0 0 12px;
+      letter-spacing: -0.4px;
+    }
+
+    .infra-lead{
+      color: var(--muted);
+      font-size: 16.5px;
+      line-height: 1.6;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+
+    .infra-cta-row{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .infra-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,18,32,.18);
+      background: rgba(11,18,32,.92);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: .2px;
+      box-shadow: 0 14px 24px rgba(11,18,32,.18);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+      will-change: transform;
+    }
+    .infra-btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 30px rgba(11,18,32,.22); }
+    .infra-btn:active{ transform: translateY(0); opacity: .95; }
+
+    .infra-btn-secondary{
+      background: rgba(255,255,255,.9);
+      color: rgba(11,18,32,.92);
+      border: 1px solid rgba(11,18,32,.16);
+      box-shadow: none;
+      font-weight: 700;
+    }
+    .infra-btn-secondary:hover{ box-shadow: 0 10px 20px rgba(11,18,32,.10); }
+
+    .infra-hero-card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(251,246,234,.55);
+      padding: 16px;
+    }
+
+    .infra-hero-card h3{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: .2px;
+      color: rgba(11,18,32,.86);
+      text-transform: uppercase;
+    }
+
+    .infra-kpi{
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .infra-kpi li{
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.9);
+    }
+
+    .infra-dot{
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      margin-top: 2px;
+      background: rgba(11,18,32,.80);
+      box-shadow: 0 0 0 5px rgba(255,210,140,.22);
+    }
+
+    .infra-kpi strong{
+      display: block;
+      font-size: 14.5px;
+      margin-bottom: 2px;
+    }
+
+    .infra-kpi span{
+      display: block;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .infra-section{
+      margin-top: 26px;
+      padding-top: 18px;
+    }
+
+    .infra-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 980px){ .infra-grid{ grid-template-columns: 1fr; } }
+
+    .infra-card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 14px 26px rgba(11,18,32,.08);
+      padding: 18px;
+    }
+
+    .infra-card h3{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    .infra-card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14.5px;
+    }
+
+    .infra-two-col{
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 980px){ .infra-two-col{ grid-template-columns: 1fr; } }
+
+    .infra-list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .infra-list li{
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: rgba(11,18,32,.92);
+    }
+
+    .infra-check{
+      width: 16px;
+      height: 16px;
+      border-radius: 6px;
+      background: rgba(255,210,140,.60);
+      border: 1px solid rgba(11,18,32,.14);
+      margin-top: 2px;
+      position: relative;
+    }
+    .infra-check::after{
+      content:"";
+      position:absolute;
+      left: 4px;
+      top: 3px;
+      width: 7px;
+      height: 4px;
+      border-left: 2px solid rgba(11,18,32,.85);
+      border-bottom: 2px solid rgba(11,18,32,.85);
+      transform: rotate(-45deg);
+    }
+
+    .infra-price{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .infra-price-row{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(251,246,234,.50);
+    }
+
+    .infra-price-row strong{ font-size: 14.5px; }
+    .infra-price-row span{ color: rgba(11,18,32,.90); font-weight: 800; }
+
+    details.infra-faq{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 14px 16px;
+      box-shadow: 0 12px 22px rgba(11,18,32,.06);
+    }
+    details.infra-faq + details.infra-faq{ margin-top: 10px; }
+
+    details.infra-faq summary{
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: -0.1px;
+    }
+    details.infra-faq p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14.5px;
+    }
+
+    .infra-footer-cta{
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(11,18,32,.92);
+      color: #fff;
+      padding: 22px;
+      box-shadow: 0 18px 36px rgba(11,18,32,.18);
+    }
+    .infra-footer-cta h2{ margin: 0 0 6px; font-size: 22px; letter-spacing: -0.2px; }
+    .infra-footer-cta p{ margin: 0; color: rgba(255,255,255,.85); line-height: 1.55; }
+    .infra-footer-cta .infra-cta-row{ margin-top: 14px; }
+    .infra-footer-cta .infra-btn-secondary{ background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.22); }
+
+    .infra-note{
+      color: var(--muted);
+      font-size: 13.5px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body class="fade-in">
+  <!-- Gebruik je bestaande header als je die op elke pagina laadt.
+       Anders kun je hier je header snippet plakken. -->
+
+  <main class="infra-page">
+    <div class="infra-wrap">
+
+      <section class="infra-hero" aria-label="ZekerOpWeg Infrastructure">
+        <div class="infra-hero-inner">
+          <div>
+            <div class="infra-eyebrow">ZekerOpWeg Infrastructure</div>
+            <h1 class="infra-h1">Stille systemen die je operatie laten draaien</h1>
+            <p class="infra-lead">
+              Als processen handmatig blijven, groeit stress sneller dan omzet. Wij bouwen een digitale ruggengraat die offertes, planning, rapportage, facturatie en opvolging automatisch laat verlopen. Rust in de uitvoering, controle in de cijfers.
+            </p>
+
+            <div class="infra-cta-row">
+              <a class="infra-btn" href="contact.html">Plan kennismaking</a>
+              <a class="infra-btn infra-btn-secondary" href="#aanpak">Bekijk aanpak</a>
+            </div>
+
+            <p class="infra-note">
+              Geen schreeuw, geen druk. Wel helderheid, structuur en een systeem dat blijft lopen.
+            </p>
+          </div>
+
+          <aside class="infra-hero-card" aria-label="Kernresultaten">
+            <h3>Wat je mag verwachten</h3>
+            <ul class="infra-kpi">
+              <li>
+                <div class="infra-dot" aria-hidden="true"></div>
+                <div>
+                  <strong>Minder handwerk</strong>
+                  <span>Herhaalwerk verdwijnt uit je dag. De flow blijft lopen.</span>
+                </div>
+              </li>
+              <li>
+                <div class="infra-dot" aria-hidden="true"></div>
+                <div>
+                  <strong>Meer voorspelbaarheid</strong>
+                  <span>Planning en cashflow worden zichtbaar en stuurbaar.</span>
+                </div>
+              </li>
+              <li>
+                <div class="infra-dot" aria-hidden="true"></div>
+                <div>
+                  <strong>Professionele uitstraling</strong>
+                  <span>Rapporten, offertes en communicatie lopen strak en consistent.</span>
+                </div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="infra-section" id="aanbod" aria-label="Voor wie">
+        <div class="infra-card">
+          <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Voor bedrijven die groeien en rust willen houden</h2>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">
+            Dit past vooral bij organisaties met terugkerende diensten, veel offertes, veel planning en veel opvolging. Niet omdat mensen het niet kunnen, maar omdat herhaling geen mensenwerk hoort te zijn.
+          </p>
+
+          <div class="infra-grid">
+            <div class="infra-card">
+              <h3>Service en onderhoud</h3>
+              <p>Abonnementen, losse klussen, rapportage en vervolgplanning in één flow.</p>
+            </div>
+            <div class="infra-card">
+              <h3>Retail met montage</h3>
+              <p>Offerte, inmeten, planning, materiaal en betaling zonder losse lijstjes.</p>
+            </div>
+            <div class="infra-card">
+              <h3>Project en B2B</h3>
+              <p>Offertes en uitvoering met overzicht, controle en duidelijke opvolging.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="infra-section" id="modules" aria-label="Wat we bouwen">
+        <div class="infra-two-col">
+          <div class="infra-card">
+            <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Wat we bouwen</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.6;">
+              Geen losse tools, maar één systeem dat als ruggengraat werkt. Elk onderdeel is modulair, maar voelt als één geheel.
+            </p>
+
+            <ul class="infra-list">
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Offerte Autopilot</strong> met berekening, review en automatische opvolging.</span></li>
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Planning Autopilot</strong> met weekplanning en bevestiging door binnendienst.</span></li>
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Rapport en bewijs</strong> met vaste opmaak en dossieropbouw.</span></li>
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Facturatie Autopilot</strong> inclusief status en herinneringen.</span></li>
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Mail intake</strong> die nieuwe aanvragen automatisch verwerkt en routeert.</span></li>
+              <li><span class="infra-check" aria-hidden="true"></span><span><strong>Dashboard</strong> met inzicht in offertes, werk, betalingen en verwachte omzet.</span></li>
+            </ul>
+          </div>
+
+          <div class="infra-card">
+            <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Hoe het voelt in de praktijk</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.6;">
+              Mensen blijven beslissen, het systeem blijft dragen. Automatisering met controle, niet met chaos.
+            </p>
+
+            <div class="infra-grid" style="grid-template-columns: 1fr; margin-top: 12px;">
+              <div class="infra-card" style="box-shadow:none; background:rgba(251,246,234,.55);">
+                <h3 style="margin:0 0 6px; font-size:16px;">Review voordat een offerte eruit gaat</h3>
+                <p>Offerte wordt automatisch klaargezet als concept. Medewerker controleert en geeft akkoord. Daarna verstuurt het systeem automatisch.</p>
+              </div>
+
+              <div class="infra-card" style="box-shadow:none; background:rgba(251,246,234,.55);">
+                <h3 style="margin:0 0 6px; font-size:16px;">Weekplanning met menselijke afstemming</h3>
+                <p>Het systeem plant weeknummers voor capaciteit. Binnendienst stemt de exacte dag of nacht af met de klant. Flexibel en voorspelbaar tegelijk.</p>
+              </div>
+
+              <div class="infra-card" style="box-shadow:none; background:rgba(251,246,234,.55);">
+                <h3 style="margin:0 0 6px; font-size:16px;">Dossiers die blijven kloppen</h3>
+                <p>Foto’s, rapporten en communicatie worden automatisch opgeslagen bij de juiste klant. Eén waarheid, geen losse app gesprekken.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="infra-section" id="aanpak" aria-label="Aanpak">
+        <div class="infra-card">
+          <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Aanpak in vier weken</h2>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">
+            Je krijgt snel resultaat, zonder interne druk. Wij bouwen vooral op onze infrastructuur, met veilige toegang en duidelijke scope.
+          </p>
+
+          <div class="infra-grid" style="margin-top: 14px;">
+            <div class="infra-card">
+              <h3>Week 1</h3>
+              <p>Inventarisatie, rekenregels, datavelden, mailbox en mappenstructuur. Basis staat.</p>
+            </div>
+            <div class="infra-card">
+              <h3>Week 2</h3>
+              <p>Intake, mailrouting, dossieropbouw en rapporttemplates. Eerste flow werkt.</p>
+            </div>
+            <div class="infra-card">
+              <h3>Week 3</h3>
+              <p>Offerteflow, review gate, planninglogica en opvolging. Operationeel bruikbaar.</p>
+            </div>
+          </div>
+
+          <div class="infra-grid" style="grid-template-columns: 1fr; margin-top: 14px;">
+            <div class="infra-card">
+              <h3>Week 4</h3>
+              <p>Facturatie, herinneringen, dashboard, training en livegang. Systeem draait.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="infra-section" id="prijzen" aria-label="Investering">
+        <div class="infra-two-col">
+          <div class="infra-card">
+            <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Investering</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.6;">
+              Je koopt geen uren. Je koopt een infrastructuur die blijft draaien, met onderhoud en doorontwikkeling.
+            </p>
+
+            <div class="infra-price">
+              <div class="infra-price-row">
+                <strong>Implementatie</strong>
+                <span>vanaf 5.500</span>
+              </div>
+              <div class="infra-price-row">
+                <strong>Maandelijkse licentie en onderhoud</strong>
+                <span>vanaf 245 per maand</span>
+              </div>
+            </div>
+
+            <p class="infra-note">
+              Prijs hangt af van modules, volume en complexiteit. Altijd vooraf helder. Geen verrassingen.
+            </p>
+          </div>
+
+          <div class="infra-card">
+            <h2 style="margin:0 0 8px; font-size:22px; letter-spacing:-0.2px;">Veelgestelde vragen</h2>
+
+            <details class="infra-faq">
+              <summary>Moeten we alles op locatie bouwen</summary>
+              <p>Nee. Het grootste deel bouwen wij op onze infrastructuur. Op locatie doen we alleen tests, livegang en korte training.</p>
+            </details>
+
+            <details class="infra-faq">
+              <summary>Kunnen we binnenkomende mail automatisch verwerken</summary>
+              <p>Ja. Nieuwe aanvragen worden herkend, in een dossier gezet en krijgen de juiste volgende stap. Denk aan offerte, planning of administratie.</p>
+            </details>
+
+            <details class="infra-faq">
+              <summary>Kan een medewerker offertes eerst controleren</summary>
+              <p>Ja. Offertes gaan pas weg na een review en akkoord. Automatisering met controle.</p>
+            </details>
+
+            <details class="infra-faq">
+              <summary>Blijft onze data van ons</summary>
+              <p>Ja. Jullie data blijft van jullie. Wij bouwen de logica en zorgen dat het systeem betrouwbaar blijft draaien.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="infra-footer-cta" aria-label="Call to action">
+        <h2>Wil je rust en voorspelbaarheid in je operatie</h2>
+        <p>Plan een kennismaking. We brengen één proces scherp in kaart en laten zien welke leverage je direct kunt pakken.</p>
+        <div class="infra-cta-row">
+          <a class="infra-btn" href="contact.html">Plan kennismaking</a>
+          <a class="infra-btn infra-btn-secondary" href="mailto:operations@zekeropweg.nu">Mail direct</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Gebruik je bestaande footer als je die op elke pagina laadt.
+       Anders kun je hier je footer snippet plakken. -->
+</body>
+</html>
 
