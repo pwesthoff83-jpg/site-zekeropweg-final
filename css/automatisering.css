@@ -1,1 +1,318 @@
+/* =========================================================
+   AUTOMATISERING – PREMIUM WARM STYLE B
+   Geïsoleerd: raakt alleen automatisering pagina
+========================================================= */
+
+.auto-page{
+  background:#fbfaf7;
+}
+
+/* Container */
+.auto-container{
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* HERO */
+.auto-hero{
+  position: relative;
+  min-height: 56vh;
+  background-image: url("../assets/images/hero/automatisering-hero.webp");
+  background-size: cover;
+  background-position: center bottom;
+  display:flex;
+  align-items:center;
+  isolation:isolate;
+}
+
+.auto-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7,18,30,0.66) 0%,
+    rgba(7,18,30,0.54) 45%,
+    rgba(7,18,30,0.34) 100%
+  );
+  z-index:1;
+}
+
+.auto-hero-content{
+  position:relative;
+  z-index:2;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align:center;
+  padding: 0 1.6rem;
+}
+
+.auto-eyebrow{
+  display:block;
+  margin-bottom:.85rem;
+  font-size:.74rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color: rgba(215,181,109,.95);
+}
+
+.auto-hero h1{
+  color:#fff;
+  font-size:2.7rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  margin-bottom:1rem;
+  text-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+
+.auto-lead{
+  color: rgba(255,255,255,.92);
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1.06rem;
+}
+
+.auto-hero-cta{
+  margin-top: 1.8rem;
+  display:flex;
+  justify-content:center;
+  gap: 14px;
+  flex-wrap:wrap;
+}
+
+/* Buttons premium */
+.auto-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 0.9rem 2.1rem;
+  border-radius: 999px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  font-size: .95rem;
+  text-decoration:none;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+
+.auto-btn:hover{
+  transform: translateY(-1px);
+}
+
+.auto-btn-primary{
+  background: linear-gradient(180deg, #0f1c2d 0%, #060b14 100%);
+  color:#fff;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+.auto-btn-primary:hover{
+  background: linear-gradient(180deg, #13243a 0%, #050912 100%);
+  box-shadow: 0 26px 60px rgba(0,0,0,.55);
+}
+
+.auto-btn-ghost{
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.95);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: none;
+}
+
+.auto-btn-ghost:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+}
+
+/* Sections */
+.auto-section{
+  padding: 5.2rem 0;
+  background:#fbfaf7;
+}
+
+.auto-section-soft{
+  background: #ffffff;
+}
+
+.auto-section h2{
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.6rem;
+  color: rgba(7,18,30,.92);
+}
+
+.auto-subtitle{
+  margin-top: 2.2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(7,18,30,.92);
+}
+
+.auto-text{
+  color: rgba(20,20,20,.70);
+  line-height: 1.75;
+  font-size: 1.02rem;
+  max-width: 78ch;
+}
+
+/* Cards */
+.auto-cards-2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.auto-card{
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+  border-radius: 26px;
+  padding: 2.4rem 2.3rem;
+  border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 22px 55px rgba(0,0,0,.08);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.auto-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 30px 70px rgba(0,0,0,.10);
+}
+
+.auto-card h3{
+  font-size: 1.2rem;
+  margin-bottom: .7rem;
+  color: rgba(7,18,30,.92);
+}
+
+.auto-card p{
+  color: rgba(20,20,20,.70);
+  line-height: 1.75;
+  margin:0;
+}
+
+.auto-card-wide{
+  padding: 2.6rem 2.6rem;
+}
+
+/* Notes */
+.auto-notes{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.6rem;
+  margin-top: 2rem;
+}
+
+.auto-note{
+  background: rgba(215,181,109,.10);
+  border: 1px solid rgba(215,181,109,.25);
+  border-radius: 22px;
+  padding: 1.5rem 1.6rem;
+}
+
+.auto-note strong{
+  display:block;
+  color: rgba(7,18,30,.92);
+  margin-bottom: .5rem;
+}
+
+.auto-note span{
+  display:block;
+  color: rgba(20,20,20,.70);
+  line-height: 1.7;
+}
+
+/* Benefits as premium pills */
+.auto-benefit-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.7rem;
+}
+
+.auto-benefit{
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+  border-radius: 20px;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 18px 45px rgba(0,0,0,.06);
+  color: rgba(7,18,30,.88);
+  font-weight: 500;
+}
+
+/* Steps */
+.auto-steps{
+  display:grid;
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+.auto-step{
+  display:flex;
+  gap: 1.2rem;
+  align-items:flex-start;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+  border-radius: 24px;
+  padding: 1.6rem 1.8rem;
+  border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 18px 45px rgba(0,0,0,.06);
+}
+
+.auto-step-num{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(215,181,109,.16);
+  color: rgba(215,181,109,.95);
+  font-weight: 700;
+}
+
+.auto-step-body strong{
+  display:block;
+  color: rgba(7,18,30,.92);
+  margin-bottom: .3rem;
+}
+
+.auto-step-body span{
+  display:block;
+  color: rgba(20,20,20,.70);
+  line-height: 1.7;
+}
+
+/* CTA */
+.auto-cta{
+  padding: 4.8rem 0 6rem;
+  background: #ffffff;
+  text-align:center;
+  border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.auto-cta h2{
+  font-size: 1.9rem;
+  margin-bottom: .8rem;
+  color: rgba(7,18,30,.92);
+}
+
+.auto-cta p{
+  margin: 0 auto 1.6rem;
+  max-width: 72ch;
+  color: rgba(20,20,20,.70);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .auto-cards-2{ grid-template-columns: 1fr; }
+  .auto-notes{ grid-template-columns: 1fr; }
+  .auto-benefit-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px){
+  .auto-hero{ min-height: 48vh; background-position: center 70%; }
+  .auto-hero h1{ font-size: 2.2rem; }
+  .auto-lead{ font-size: 1.02rem; }
+}
 
