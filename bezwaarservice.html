@@ -13,39 +13,44 @@
 <body class="fade-in">
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container header-container">
-    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+<!-- ================= HEADER ================= -->
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
 
-    <button class="menu-toggle" aria-label="Menu openen">☰</button>
-
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="aankoopadvies.html">Aankoopadvies</a></li>
-        <li><a href="ev-accucheck.html">EV AccuCheck</a></li>
-        <li><a href="bezwaarservice.html" class="active">Bezwaarservice</a></li>
-        <li><a href="over.html">Over</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mobile-menu">
-    <button class="close-menu" aria-label="Menu sluiten">×</button>
-    <nav class="mobile-nav">
+    <nav class="zop-nav">
       <a href="index.html">Home</a>
       <a href="aankoopadvies.html">Aankoopadvies</a>
-      <a href="ev-accucheck.html">EV AccuCheck</a>
-      <a href="bezwaarservice.html" class="active">Bezwaarservice</a>
+      <a class="active" href="ev-accucheck.html">AccuCheck</a>
+      <a href="bezwaarservice.html">Bezwaar</a>
+
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+
       <a href="over.html">Over</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
   </div>
-
-  <div id="menuOverlay" class="menu-overlay"></div>
 </header>
+
+<button class="zop-mobile-toggle" onclick="toggleMenu()">Menu</button>
+
+<div id="zopMobileMenu" class="zop-mobile-overlay" onclick="closeMenu(event)">
+  <div class="zop-mobile-inner">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a class="active" href="ev-accucheck.html">AccuCheck</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="automatisering.html">Automatisering</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html" class="zop-mobile-cta">Contact</a>
+  </div>
+</div>
+
 
 <main class="page-content">
 
