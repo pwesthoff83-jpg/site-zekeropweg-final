@@ -902,6 +902,37 @@ body.menu-open{ overflow:hidden; }
   margin-bottom: 1rem;
 }
 
+.has-dropdown { position: relative; }
+
+.dropdown{
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 220px;
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(11,18,32,.12);
+  box-shadow: 0 14px 28px rgba(11,18,32,.12);
+  display: none;
+  z-index: 50;
+}
+
+.dropdown li a{
+  display: block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.dropdown li a:hover{
+  background: rgba(251,246,234,.85);
+}
+
+.has-dropdown:hover .dropdown{ display: block; }
+
 
 
 
