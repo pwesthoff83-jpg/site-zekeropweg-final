@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<title>Automatisering voor bedrijven | ZekerOpWeg</title>
-<meta name="description" content="ZekerOpWeg automatiseert randzaken zodat je grip krijgt, rust in je hoofd en minimaal één werkdag per week terugwint om te bouwen aan wat er echt toe doet.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/over.css">
-<link rel="stylesheet" href="css/automatisering.css">
+  <meta charset="UTF-8">
+  <title>Automatisering voor bedrijven | ZekerOpWeg</title>
+  <meta name="description" content="ZekerOpWeg automatiseert randzaken zodat je grip krijgt, rust in je hoofd en minimaal één werkdag per week terugwint om te bouwen aan wat er echt toe doet.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/automatisering.css">
 </head>
 
-<body class="fade-in">
+<body>
 
-<!-- ================= HEADER ================= -->
+<!-- Header -->
 <header class="zop-header">
   <div class="zop-header-inner">
     <a href="index.main.html" class="zop-logo">ZekerOpWeg</a>
@@ -32,13 +31,14 @@
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
+
+    <button class="zop-mobile-toggle" type="button" onclick="toggleMenu()">Menu</button>
   </div>
 </header>
 
-<button class="zop-mobile-toggle" onclick="toggleMenu()">Menu</button>
-
+<!-- Mobiel menu overlay -->
 <div id="zopMobileMenu" class="zop-mobile-overlay" onclick="closeMenu(event)">
-  <div class="zop-mobile-inner">
+  <div class="zop-mobile-inner" role="navigation" aria-label="Mobiel menu">
     <a href="index.main.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
     <a href="ev-accucheck.html">AccuCheck</a>
@@ -50,11 +50,14 @@
 </div>
 
 <main class="auto-page">
-  <!-- HERO -->
+
+  <!-- Hero -->
   <section class="auto-hero">
     <div class="auto-hero-content">
       <span class="auto-eyebrow">Voor bedrijven</span>
+
       <h1>Je bedrijf draait<br>maar je ondernemerschap staat stil</h1>
+
       <p class="auto-lead">
         Je werkt hard. Je bedrijf groeit. Maar ondertussen slokken offertes, planning, opvolging, rapportage en administratie je aandacht op.
         ZekerOpWeg bouwt stille systemen die deze randzaken overnemen zodat jij minimaal één werkdag per week terugwint om te bouwen aan wat er echt toe doet.
@@ -67,25 +70,156 @@
     </div>
   </section>
 
-  <!-- Rest van pagina blijft exact zoals geleverd -->
-  <!-- (sections volgen hier ongewijzigd) -->
+  <!-- Section 1 -->
+  <section class="auto-section">
+    <div class="auto-container">
+      <h2>Dit herken je waarschijnlijk</h2>
+
+      <div class="auto-cards-2">
+        <div class="auto-card">
+          <h3>Je groeit maar je hoofd staat altijd aan</h3>
+          <p>Meer werk, meer ruis, minder echte bouwtijd. Het voelt alsof je bedrijf jou bestuurt.</p>
+        </div>
+
+        <div class="auto-card">
+          <h3>Je bent meer aan het regelen dan aan het ondernemen</h3>
+          <p>Opvolging, lijstjes, losse apps en ad hoc beslissingen vreten focus.</p>
+        </div>
+
+        <div class="auto-card">
+          <h3>Je mist overzicht en grip op cijfers</h3>
+          <p>Je weet te laat wat er open staat, wat er binnenkomt en waar de bottleneck zit.</p>
+        </div>
+
+        <div class="auto-card">
+          <h3>Je team vraagt steeds meer sturing</h3>
+          <p>Zonder vaste flow wordt alles mens afhankelijk. Dat is duur, fragiel en vermoeiend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="auto-section auto-section-soft" id="wat-wij-doen">
+    <div class="auto-container">
+      <h2>Wat wij doen</h2>
+
+      <p class="auto-text">
+        Wij bouwen een digitale ruggengraat onder jouw bedrijf. Eén stil systeem dat offertes, planning, rapportage, communicatie en cashflow automatisch laat verlopen.
+      </p>
+
+      <div class="auto-notes">
+        <div class="auto-note">
+          <strong>Geen offerte wordt meer gemist</strong>
+          <span>Alle offertes worden tijdig opgevolgd zonder dat jij daar achteraan hoeft.</span>
+        </div>
+
+        <div class="auto-note">
+          <strong>Geen factuur blijft liggen</strong>
+          <span>Betalingen worden automatisch opgevolgd en zichtbaar bewaakt.</span>
+        </div>
+
+        <div class="auto-note">
+          <strong>Planning wordt voorspelbaar</strong>
+          <span>Afspraken, taken en opvolging lopen in één flow zodat je team rustiger werkt.</span>
+        </div>
+      </div>
+
+      <h3 class="auto-subtitle">Wat dit jou direct oplevert</h3>
+
+      <div class="auto-benefit-grid">
+        <div class="auto-benefit">Minimaal één werkdag per week terug</div>
+        <div class="auto-benefit">Geen gemiste offertes meer</div>
+        <div class="auto-benefit">Snellere betalingen en minder achterstallig</div>
+        <div class="auto-benefit">Altijd overzicht in planning en lopend werk</div>
+        <div class="auto-benefit">Professionele uitstraling naar klanten</div>
+        <div class="auto-benefit">Minder afhankelijkheid van personeel</div>
+        <div class="auto-benefit">Meer rust in je hoofd</div>
+        <div class="auto-benefit">Meer ruimte om te bouwen aan groei</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="auto-section">
+    <div class="auto-container">
+      <h2>Voor wie dit is</h2>
+
+      <div class="auto-card auto-card-wide">
+        <p>
+          Voor ondernemers die voelen dat hun bedrijf groter wordt dan hun systeem.
+          Je wilt je energie weer steken in groei, structuur en toekomst.
+          Niet in randzaken die elke dag opnieuw aandacht vragen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="auto-section auto-section-soft">
+    <div class="auto-container">
+      <h2>Hoe het werkt</h2>
+
+      <div class="auto-steps">
+        <div class="auto-step">
+          <div class="auto-step-num">1</div>
+          <div class="auto-step-body">
+            <strong>We brengen jouw belangrijkste proces scherp in kaart</strong>
+            <span>Waar zit ruis, waar lekt tijd, wat moet altijd doorlopen.</span>
+          </div>
+        </div>
+
+        <div class="auto-step">
+          <div class="auto-step-num">2</div>
+          <div class="auto-step-body">
+            <strong>We bouwen jouw infrastructuur</strong>
+            <span>Offertes, planning, rapportage, facturatie en opvolging in één flow.</span>
+          </div>
+        </div>
+
+        <div class="auto-step">
+          <div class="auto-step-num">3</div>
+          <div class="auto-step-body">
+            <strong>Je team werkt rustiger en consistenter</strong>
+            <span>Minder vragen, minder fouten, meer voorspelbaarheid.</span>
+          </div>
+        </div>
+
+        <div class="auto-step">
+          <div class="auto-step-num">4</div>
+          <div class="auto-step-body">
+            <strong>Jij krijgt je ondernemerschap terug</strong>
+            <span>Meer focus op groei en minder energieverlies aan randzaken.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="auto-cta">
+    <div class="auto-container">
+      <h2>Wil je je ondernemerschap terug</h2>
+      <p>Plan een rustige kennismaking. Geen verkooppraat. Wel helderheid.</p>
+      <a class="auto-btn auto-btn-primary" href="contact.html">Plan kennismaking</a>
+    </div>
+  </section>
 
 </main>
 
 <script>
-function toggleMenu(){
-  const menu = document.getElementById("zopMobileMenu");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
-}
-function closeMenu(e){
-  if(e.target && e.target.id === "zopMobileMenu"){
-    document.getElementById("zopMobileMenu").style.display = "none";
+  function toggleMenu(){
+    const menu = document.getElementById("zopMobileMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
   }
-}
+  function closeMenu(e){
+    if(e.target && e.target.id === "zopMobileMenu"){
+      document.getElementById("zopMobileMenu").style.display = "none";
+    }
+  }
 </script>
 
 </body>
 </html>
-
 
 
