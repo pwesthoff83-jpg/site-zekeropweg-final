@@ -207,3 +207,18 @@ body.page-ev-accucheck #tarief .package a{
 #tarief .package:nth-child(1) > a{
   margin-top:42px;
 }
+
+/* EV AccuCheck – unlock full width layout */
+body.page-ev-accucheck .pricing-engine,
+body.page-ev-accucheck .pricing-grid{
+  max-width: 1200px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.page-ev-accucheck .pricing-grid{
+  display: grid !important;
+  grid-template-columns: repeat(3,1fr) !important;
+  gap: 72px !important;
+}
+
