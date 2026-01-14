@@ -38,41 +38,22 @@
 </section>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwvUilndRmg-sGr-xd-E1CspfsgdnyiiXn3d-XcuIbvsPj6fu09QLbg33Xx-m-sng0cuA/exec";
-
-document.getElementById("bezwaarForm").addEventListener("submit", async function(e){
+document.getElementById("bezwaarForm").addEventListener("submit", function(e){
   e.preventDefault();
+  const data = Object.fromEntries(new FormData(this).entries());
 
-  const f = this;
-  const data = {
-    naam: f.naam.value,
-    email: f.email.value,
-    kenteken: f.kenteken.value,
-    beschikking: f.beschikking.value,
-    type: f.type.value,
-    toelichting: f.toelichting.value,
-    token: f.token.value
-  };
-
-  document.getElementById("apiResult").innerText = "Bezig met verzenden...";
-
-  const r = await fetch(API_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbz4ObVIWOFvb9qkaDps_uRcbMqh5wYIFqCyfDst3XMzz6tn17D6diNi6FtAYEtvmCSV7g/exec", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(data)
-  });
-
-  const t = await r.text();
-
-  if (t.startsWith("OK|")) {
-    const d = t.split("|")[1];
-    document.getElementById("apiResult").innerHTML =
-      "Uw dossier is succesvol aangemaakt.<br><strong>Dossiernummer: " + d + "</strong>";
-    f.reset();
-  } else {
-    document.getElementById("apiResult").innerText = "❌ " + t;
-  }
+  })
+  .then(r => r.text())
+  .then(t => document.getElementById("apiResult").innerText = t);
 });
 </script>
+
 
 </body>
 </html>
