@@ -14,7 +14,7 @@
   <h1>Bezwaar starten</h1>
   <p>Vul hieronder uw gegevens in. Wij starten direct uw bezwaarprocedure.</p>
 
-  <form id="bezwaarForm">
+  <form id="bezwaarForm" enctype="multipart/form-data">
 
     <input name="naam" placeholder="Naam" required>
     <input name="email" placeholder="E-mail" required>
@@ -29,6 +29,11 @@
     </div>
 
     <input type="hidden" name="token" value="TESTTOKEN123">
+
+    <div class="form-group">
+  <label>Upload uw boete (PDF of foto)</label>
+  <input type="file" name="boete" accept=".pdf,.jpg,.jpeg,.png" required>
+</div>
 
     <button type="submit" class="btn-primary">Bezwaar starten</button>
   </form>
