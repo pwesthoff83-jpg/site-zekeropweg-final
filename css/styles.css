@@ -1098,6 +1098,72 @@ body.menu-open{ overflow:hidden; }
   font-size:1.06rem;
 }
 
+/* ==========================================
+   ACCUCHECK PRICING ENGINE — FINAL
+========================================== */
+
+#tarief .packages-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:72px;
+  align-items:stretch;
+}
+
+#tarief .package{
+  display:flex;
+  flex-direction:column;
+  padding:58px 56px 56px;
+  border-radius:34px;
+  background:linear-gradient(180deg,#ffffff,#fbfaf7);
+  border:1.5px solid rgba(215,181,109,.55);
+  box-shadow:0 28px 70px rgba(0,0,0,.12);
+  transition:box-shadow .35s ease, transform .35s ease;
+}
+
+/* middenkaart premium */
+#tarief .package--premium{
+  border:2.5px solid rgba(215,181,109,.95);
+  transform:translateY(-24px);
+}
+
+/* zachte premium hover */
+#tarief .package:hover{
+  transform:translateY(-10px);
+  box-shadow:0 38px 90px rgba(0,0,0,.18);
+}
+
+/* content vult kaart */
+#tarief .package-content{
+  flex:1;
+}
+
+/* CTA altijd exact onder */
+#tarief .package > a{
+  margin-top:auto;
+  align-self:center;
+  width:260px;
+  height:58px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#0c1220,#02060d);
+  color:#ffffff;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  box-shadow:0 18px 42px rgba(0,0,0,.45);
+  cursor:pointer;
+}
+
+/* kaart 3 — 2 regels */
+#tarief .package:nth-child(3) > a{
+  white-space:normal;
+  line-height:1.15;
+  padding:0 26px;
+  letter-spacing:.10em;
+}
+
 
 
 
