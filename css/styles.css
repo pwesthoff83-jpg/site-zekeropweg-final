@@ -1201,6 +1201,75 @@ body.menu-open{ overflow:hidden; }
   letter-spacing:.14em;
 }
 
+/* ==========================================
+   ACCUCHECK = AANKOOPADVIES PREMIUM ENGINE
+========================================== */
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:60px;
+  align-items:stretch;
+}
+
+.pricing-card{
+  background:#ffffff;
+  border-radius:28px;
+  padding:3.1rem;
+  position:relative;
+  border:1px solid rgba(0,0,0,.04);
+  box-shadow:var(--shadow-card);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Zachte binnenrand (exact zoals aankoopadvies) */
+.pricing-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
+}
+
+/* Focuskaart (middelste) */
+.pricing-featured{
+  transform: translateY(-24px);
+  border:2px solid var(--gold);
+  box-shadow: 0 30px 90px rgba(0,0,0,.18);
+}
+
+/* Body vult kaart */
+.pricing-body{
+  flex:1;
+}
+
+/* CTA exact zelfde gedrag */
+.pricing-cta{
+  margin-top:50px;
+  height:58px;
+  min-width:240px;
+  align-self:center;
+}
+
+.pricing-card h3{
+  margin-bottom:.85rem;
+  font-size:1.18rem;
+  letter-spacing:-0.01em;
+}
+
+.pricing-card p,
+.pricing-card li{
+  color:rgba(20,20,20,.68);
+  line-height:1.75;
+}
+
+.pricing-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(0,0,0,.12);
+}
 
 
 
