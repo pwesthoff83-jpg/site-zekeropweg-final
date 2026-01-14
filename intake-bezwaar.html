@@ -46,17 +46,16 @@
 document.getElementById("bezwaarForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const fd = new FormData(this);
+  const formData = new FormData(this);
 
   fetch("https://script.google.com/macros/s/AKfycbz4ObVIWOFvb9qkaDps_uRcbMqh5wYIFqCyfDst3XMzz6tn17D6diNi6FtAYEtvmCSV7g/exec", {
     method: "POST",
-    body: fd
+    body: formData
   })
   .then(r => r.text())
   .then(t => document.getElementById("apiResult").innerText = t);
 });
 </script>
-
 
 
 </body>
