@@ -6,22 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-  <script>
-document.getElementById("bezwaarForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(this).entries());
 
-  fetch("https://script.google.com/macros/s/AKfycbz4ObVIWOFvb9qkaDps_uRcbMqh5wYIFqCyfDst3XMzz6tn17D6diNi6FtAYEtvmCSV7g/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(r => r.text())
-  .then(t => document.getElementById("apiResult").innerText = t);
-});
-</script>
-
-</body>
-</html>
+<body class="fade-in">
 
 <section class="container">
 
@@ -29,28 +15,66 @@ document.getElementById("bezwaarForm").addEventListener("submit", function(e){
   <p>Vul hieronder uw gegevens in. Wij starten direct uw bezwaarprocedure.</p>
 
   <form id="bezwaarForm">
+
     <input name="naam" placeholder="Naam" required>
     <input name="email" placeholder="E-mail" required>
     <input name="kenteken" placeholder="Kenteken" required>
     <input name="beschikking" placeholder="Beschikkingsnummer" required>
-    <input name="type" placeholder="Overtreding (bv rood licht)" required>
+    <input name="type" placeholder="Overtreding (bijv. rood licht)" required>
+
     <div class="form-group">
-  <label for="toelichting">
-    Toelichting bij deze boete (optioneel)
-  </label>
-  <textarea 
-    id="toelichting" 
-    name="toelichting" 
-    rows="5"
-    placeholder="Bijvoorbeeld: Ik moest uitwijken voor een ambulance / Ik was aan het lossen / Ik was niet de bestuurder / Er stond geen duidelijk bord / etc."
-    style="width:100%; border-radius:8px; padding:12px; border:1px solid #ccc;">
-  </textarea>
-</div>
-    <input name="token" placeholder="Abonnementscode" required>
-    <button type="submit">Bezwaar starten</button>
+      <label for="toelichting">Toelichting bij deze boete (optioneel)</label>
+      <textarea id="toelichting" name="toelichting" rows="5"
+        placeholder="Bijvoorbeeld: ik was aan het lossen / ik was niet de bestuurder / bord ontbrak / etc."></textarea>
+    </div>
+
+    <input type="hidden" name="token" value="TESTTOKEN123">
+
+    <button type="submit" class="btn-primary">Bezwaar starten</button>
   </form>
 
-  <div id="apiResult"></div>
+  <div id="apiResult" style="margin-top:1.5rem;"></div>
 
 </section>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbwvUilndRmg-sGr-xd-E1CspfsgdnyiiXn3d-XcuIbvsPj6fu09QLbg33Xx-m-sng0cuA/exec";
+
+document.getElementById("bezwaarForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const f = this;
+  const data = {
+    naam: f.naam.value,
+    email: f.email.value,
+    kenteken: f.kenteken.value,
+    beschikking: f.beschikking.value,
+    type: f.type.value,
+    toelichting: f.toelichting.value,
+    token: f.token.value
+  };
+
+  document.getElementById("apiResult").innerText = "Bezig met verzenden...";
+
+  const r = await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+  const t = await r.text();
+
+  if (t.startsWith("OK|")) {
+    const d = t.split("|")[1];
+    document.getElementById("apiResult").innerHTML =
+      "Uw dossier is succesvol aangemaakt.<br><strong>Dossiernummer: " + d + "</strong>";
+    f.reset();
+  } else {
+    document.getElementById("apiResult").innerText = "❌ " + t;
+  }
+});
+</script>
+
+</body>
+</html>
+
 
