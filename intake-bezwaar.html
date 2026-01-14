@@ -11,48 +11,29 @@
 <section class="container">
 
 <h1>Bezwaar starten</h1>
-<p>Vul hieronder uw gegevens in. Wij starten direct uw bezwaarprocedure.</p>
+<p>Upload uw boete. Wij starten direct uw dossier.</p>
 
-<form id="bezwaarForm" enctype="multipart/form-data">
+<form action="https://script.google.com/macros/s/AKfycbypmcR9fHM63qZlIi8h6qObxbFiNZ7TWdSuA8Z89bwjL59B_l5p9JmH35jGmrq7plmAoA/exec"
+      method="POST"
+      enctype="multipart/form-data">
 
   <input name="naam" placeholder="Naam" required>
   <input name="email" placeholder="E-mail" required>
   <input name="kenteken" placeholder="Kenteken" required>
   <input name="beschikking" placeholder="Beschikkingsnummer" required>
-  <input name="type" placeholder="Overtreding (bijv. rood licht)" required>
+  <input name="type" placeholder="Overtreding" required>
   <input type="hidden" name="token" value="TEST-PEPIJN">
 
-  <div class="form-group">
-    <label>Toelichting</label>
-    <textarea name="toelichting" rows="4"></textarea>
-  </div>
+  <label>Toelichting</label>
+  <textarea name="toelichting"></textarea>
 
-  <div class="form-group">
-    <label>Upload boete (PDF of foto)</label>
-    <input type="file" name="boete" accept=".pdf,image/*" required>
-  </div>
+  <label>Upload boete (PDF / foto)</label>
+  <input type="file" name="boete" accept=".pdf,image/*" required>
 
   <button class="btn-primary" type="submit">Bezwaar starten</button>
 </form>
-<div id="apiResult"></div>
 
-<script>
-document.getElementById("bezwaarForm").addEventListener("submit", async e => {
-  e.preventDefault();
-
-  const form = e.target;
-  const fd = new FormData(form);
-
-  const r = await fetch("https://script.google.com/macros/s/AKfycbypmcR9fHM63qZlIi8h6qObxbFiNZ7TWdSuA8Z89bwjL59B_l5p9JmH35jGmrq7plmAoA/exec", {
-    method:"POST",
-    body:fd
-  });
-
-  document.getElementById("apiResult").innerText = await r.text();
-});
-</script>
-
-
+</section>
 </body>
 </html>
 
