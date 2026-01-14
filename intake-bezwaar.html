@@ -45,19 +45,18 @@
 <script>
 document.getElementById("bezwaarForm").addEventListener("submit", function(e){
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(this).entries());
+
+  const fd = new FormData(this);
 
   fetch("https://script.google.com/macros/s/AKfycbz4ObVIWOFvb9qkaDps_uRcbMqh5wYIFqCyfDst3XMzz6tn17D6diNi6FtAYEtvmCSV7g/exec", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
+    body: fd
   })
   .then(r => r.text())
   .then(t => document.getElementById("apiResult").innerText = t);
 });
 </script>
+
 
 
 </body>
