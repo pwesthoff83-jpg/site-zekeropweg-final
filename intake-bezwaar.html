@@ -50,7 +50,7 @@ document.getElementById("bezwaarForm").addEventListener("submit", function(e){
 
   const data = Object.fromEntries(new FormData(this).entries());
 
-  fetch("JOUW_WEBAPP_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbyAj0gwQHRudMaf4HGhaVgOlq7YR5LrhhetRVNTSSnkF_GCZeujMCxPXi2S0SE-jfR79w/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
