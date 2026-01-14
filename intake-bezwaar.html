@@ -34,7 +34,7 @@
 
     <div class="form-group">
   <label>Upload uw boete (PDF of foto)</label>
-  <input type="file" name="boete" accept=".pdf,.jpg,.jpeg,.png" required>
+  
 </div>
 
     <button type="submit" class="btn-primary">Bezwaar starten</button>
@@ -48,16 +48,18 @@
 document.getElementById("bezwaarForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const formData = new FormData(this);
+  const data = Object.fromEntries(new FormData(this).entries());
 
-  fetch("https://script.google.com/macros/s/AKfycbyAj0gwQHRudMaf4HGhaVgOlq7YR5LrhhetRVNTSSnkF_GCZeujMCxPXi2S0SE-jfR79w/exec", {
+  fetch("JOUW_WEBAPP_URL", {
     method: "POST",
-    body: formData
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
   })
   .then(r => r.text())
   .then(t => document.getElementById("apiResult").innerText = t);
 });
 </script>
+
 
 
 </body>
