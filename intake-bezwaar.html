@@ -6,7 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+  <script>
+document.getElementById("bezwaarForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this).entries());
+
+  fetch("https://script.google.com/macros/s/AKfycbz4ObVIWOFvb9qkaDps_uRcbMqh5wYIFqCyfDst3XMzz6tn17D6diNi6FtAYEtvmCSV7g/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(r => r.text())
+  .then(t => document.getElementById("apiResult").innerText = t);
+});
+</script>
+
+</body>
+</html>
 
 <section class="container">
 
