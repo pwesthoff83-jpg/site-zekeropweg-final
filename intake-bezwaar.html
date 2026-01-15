@@ -14,58 +14,31 @@
 <h2>Bezwaar starten</h2>
 <p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
 
-<form id="bezwaarForm">
-
-<input name="naam" placeholder="Naam" required>
-<input name="email" placeholder="E-mail" required>
-<input name="kenteken" placeholder="Kenteken" required>
-<input name="beschikking" placeholder="Beschikkingsnummer" required>
-<input name="type" placeholder="Overtreding (bijv. parkeren)" required>
-<input name="token" placeholder="Abonnementscode" required>
-
-<textarea name="toelichting" rows="4" placeholder="Uw toelichting (optioneel)"></textarea>
-
-<input type="file" id="boete" required>
-
-<button class="btn-primary">Bezwaar starten</button>
+<form id="bezwaarForm" enctype="multipart/form-data">
+  <input name="naam" required placeholder="Naam">
+  <input name="email" required placeholder="E-mail">
+  <input name="kenteken" required placeholder="Kenteken">
+  <input name="beschikking" required placeholder="Beschikkingsnummer">
+  <input name="type" required placeholder="Overtreding">
+  <input name="token" required placeholder="Abonnementscode">
+  <textarea name="toelichting" placeholder="Uw toelichting"></textarea>
+  <input type="file" name="boete" accept=".pdf,image/*" required>
+  <button>Bezwaar starten</button>
 </form>
 
 <div id="apiResult"></div>
-</div>
 
 <script>
 document.getElementById("bezwaarForm").addEventListener("submit", async e => {
   e.preventDefault();
-  const r = document.getElementById("apiResult");
-  r.innerHTML = "⏳ Dossier wordt aangemaakt...";
-
-  const f = document.getElementById("boete").files[0];
-  const b64 = await new Promise(res=>{
-    const reader = new FileReader();
-    reader.onload = () => res(reader.result.split(",")[1]);
-    reader.readAsDataURL(f);
-  });
-
-  const payload = {
-    naam: bezwaarForm.naam.value,
-    email: bezwaarForm.email.value,
-    kenteken: bezwaarForm.kenteken.value,
-    beschikking: bezwaarForm.beschikking.value,
-    type: bezwaarForm.type.value,
-    token: bezwaarForm.token.value,
-    toelichting: bezwaarForm.toelichting.value,
-    filename: f.name,
-    filedata: b64
-  };
-
-  const res = await fetch("https://script.google.com/macros/s/AKfycbzvjY88WQvi_lmBFGiqZsG-GIWvf0YTKZ_tVHlcaqjGux9NxIU_x5sOkDpLtcf_9iZYVw/exec", {
+  const r = await fetch("https://script.google.com/macros/s/AKfycbxxMDeXHvE5epSwyRkIIC5snSUija6BJMrimV_pbfcULzPzPpd6JpVHXgBScSrv6_xJhw/exec", {
     method:"POST",
-    body: JSON.stringify(payload)
+    body:new FormData(e.target)
   });
-
-  r.innerHTML = await res.text();
+  document.getElementById("apiResult").innerText = await r.text();
 });
 </script>
+
 </section>
 </body>
 </html>
