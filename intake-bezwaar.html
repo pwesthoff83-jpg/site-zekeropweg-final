@@ -30,7 +30,7 @@
 </div>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxcMBFbWaaFroWFPohAPlofFnxusv_9rCeNDxg8LluybU8sSrGY1tqI1FGuIvC7iNdfqg/exec";
+const API = "https://script.google.com/macros/s/AKfycbwhztm9vHKd1LLGmb3JxGjS8Ps90XzYc0SV7_fZI-Vz3BZOfrkvfCvCFT8vgH30UfBUVQ/exec";
 
 document.getElementById("bezwaarForm").addEventListener("submit", async e => {
   e.preventDefault();
@@ -47,7 +47,7 @@ document.getElementById("bezwaarForm").addEventListener("submit", async e => {
 
     const r = await fetch(API, {
       method:"POST",
-      headers:{"Content-Type":"application/json"},
+      headers:{ "Content-Type":"application/json" },
       body: JSON.stringify(data)
     });
 
@@ -57,6 +57,8 @@ document.getElementById("bezwaarForm").addEventListener("submit", async e => {
   reader.readAsDataURL(file);
 });
 </script>
+
+  
 </section>
 </body>
 </html>
