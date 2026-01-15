@@ -1,65 +1,185 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<title>Bezwaar starten | ZekerOpWeg</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bezwaar starten | ZekerOpWeg</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body class="fade-in">
-<section class="container">
-<div class="contact-card">
+  <section class="container" style="padding-top: 48px; padding-bottom: 80px;">
+    <div class="contact-card">
+      <h2>Bezwaar starten</h2>
+      <p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
 
-<h2>Bezwaar starten</h2>
-<p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
+      <form id="bezwaarForm" novalidate>
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label>Naam</label>
+            <input name="naam" required placeholder="Naam" autocomplete="name" />
+          </div>
 
-<form id="bezwaarForm">
-  <input name="naam" required placeholder="Naam">
-  <input name="email" required placeholder="E-mail">
-  <input name="kenteken" required placeholder="Kenteken">
-  <input name="beschikking" required placeholder="Beschikkingsnummer">
-  <input name="type" required placeholder="Overtreding">
-  <input name="token" required placeholder="Abonnementscode">
-  <textarea name="toelichting" rows="4" placeholder="Uw toelichting (optioneel)"></textarea>
-  <input type="file" id="boete" required accept=".pdf,image/*">
-  <button class="btn-primary">Bezwaar starten</button>
-</form>
+          <div class="form-group">
+            <label>E mail</label>
+            <input name="email" required placeholder="E mail" autocomplete="email" />
+          </div>
+        </div>
 
-<div id="apiResult"></div>
-</div>
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+          <div class="form-group">
+            <label>Kenteken</label>
+            <input name="kenteken" required placeholder="Kenteken" />
+          </div>
 
-<script>
-const API = "https://script.google.com/macros/s/AKfycbwhztm9vHKd1LLGmb3JxGjS8Ps90XzYc0SV7_fZI-Vz3BZOfrkvfCvCFT8vgH30UfBUVQ/exec";
+          <div class="form-group">
+            <label>Beschikkingsnummer</label>
+            <input name="beschikking" required placeholder="Beschikkingsnummer" />
+          </div>
+        </div>
 
-document.getElementById("bezwaarForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const result = document.getElementById("apiResult");
-  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+          <div class="form-group">
+            <label>Overtreding</label>
+            <input name="type" required placeholder="Overtreding (bijv. parkeren)" />
+          </div>
 
-  const file = document.getElementById("boete").files[0];
-  const reader = new FileReader();
+          <div class="form-group">
+            <label>Abonnementscode</label>
+            <input name="token" required placeholder="Abonnementscode" />
+          </div>
+        </div>
 
-  reader.onload = async () => {
-    const data = Object.fromEntries(new FormData(e.target));
-    data.filename = file.name;
-    data.filedata = reader.result.split(",")[1];
+        <div class="form-group" style="margin-top:16px;">
+          <label>Uw toelichting (optioneel)</label>
+          <textarea name="toelichting" rows="6" placeholder="Uw toelichting"></textarea>
+        </div>
 
-    const r = await fetch(API, {
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify(data)
+        <div class="form-group" style="margin-top:16px;">
+          <label>Upload boete (PDF of foto)</label>
+          <input type="file" id="boeteFile" accept=".pdf,image/*" required />
+          <small style="display:block; margin-top:6px; opacity:0.75;">
+            Tip: maximaal 10 MB per upload
+          </small>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn-primary" style="margin-top:18px;">
+          Bezwaar starten
+        </button>
+
+        <div id="apiResult" style="margin-top:16px;"></div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // ✅ Zet hier je actuele web app URL
+    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxcMBFbWaaFroWFPohAPlofFnxusv_9rCeNDxg8LluybU8sSrGY1tqI1FGuIvC7iNdfqg/exec";
+
+    const form = document.getElementById("bezwaarForm");
+    const result = document.getElementById("apiResult");
+    const btn = document.getElementById("submitBtn");
+    const fileInput = document.getElementById("boeteFile");
+
+    function esc(s){
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function setStatus(html){
+      result.innerHTML = html;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Basic validatie
+      const fd = new FormData(form);
+      const file = fileInput.files && fileInput.files[0];
+
+      if (!file) {
+        setStatus("❌ Selecteer een bestand.");
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        setStatus("❌ Bestand is te groot. Maximaal 10 MB.");
+        return;
+      }
+
+      // UI state
+      btn.disabled = true;
+      btn.style.opacity = "0.7";
+      setStatus("⏳ Dossier wordt aangemaakt...");
+
+      try {
+        // File → base64
+        const base64 = await new Promise((resolve, reject) => {
+          const r = new FileReader();
+          r.onload = () => resolve(String(r.result));
+          r.onerror = reject;
+          r.readAsDataURL(file);
+        });
+
+        // Payload bouwen
+        const payload = {
+          naam: String(fd.get("naam") || "").trim(),
+          email: String(fd.get("email") || "").trim(),
+          kenteken: String(fd.get("kenteken") || "").trim(),
+          beschikking: String(fd.get("beschikking") || "").trim(),
+          type: String(fd.get("type") || "").trim(),
+          token: String(fd.get("token") || "").trim(),
+          toelichting: String(fd.get("toelichting") || "").trim(),
+          filename: file.name,
+          mimetype: file.type || "application/octet-stream",
+          filedata: base64.split(",")[1] // alleen base64, zonder prefix
+        };
+
+        // Extra harde validatie client side
+        for (const k of ["naam","email","kenteken","beschikking","type","token"]) {
+          if (!payload[k]) {
+            throw new Error("Veld ontbreekt: " + k);
+          }
+        }
+
+        // Timeout + fetch
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 25000);
+
+        const resp = await fetch(WEBAPP_URL, {
+          method: "POST",
+          // 🔥 Cruciaal: text/plain → geen CORS preflight → Apps Script werkt wél
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+
+        clearTimeout(timer);
+
+        const text = await resp.text();
+
+        if (text.startsWith("OK|")) {
+          const dossier = text.split("|")[1] || "";
+          setStatus(
+            "✅ Dossier aangemaakt: <strong>" + esc(dossier) + "</strong><br>" +
+            "U ontvangt een bevestiging per e mail zodra de intake is verwerkt."
+          );
+          form.reset();
+        } else {
+          setStatus("❌ " + esc(text));
+        }
+
+      } catch (err) {
+        console.error(err);
+        const msg = (err && err.name === "AbortError")
+          ? "Timeout. De server reageert niet snel genoeg."
+          : "Verbindingsfout. Check de web app toegang en logs.";
+        setStatus("❌ " + esc(msg));
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      }
     });
-
-    result.innerHTML = await r.text();
-  };
-
-  reader.readAsDataURL(file);
-});
-</script>
-
-  
-</section>
+  </script>
 </body>
 </html>
 
