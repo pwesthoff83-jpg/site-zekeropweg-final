@@ -19,28 +19,36 @@
   <input name="email" required placeholder="E-mail">
   <input name="kenteken" required placeholder="Kenteken">
   <input name="beschikking" required placeholder="Beschikkingsnummer">
-  <input name="type" required placeholder="Overtreding">
+  <input name="type" required placeholder="Overtreding (bijv. parkeren)">
   <input name="token" required placeholder="Abonnementscode">
-  <textarea name="toelichting" placeholder="Uw toelichting"></textarea>
-  <input type="file" name="boete" accept=".pdf,image/*" required>
-  <button>Bezwaar starten</button>
+  <textarea name="toelichting" rows="5" placeholder="Uw toelichting (optioneel)"></textarea>
+
+  <label class="upload-btn">
+    Upload boete (PDF of foto)
+    <input type="file" name="boete" accept=".pdf,image/*" required>
+  </label>
+
+  <button class="btn-primary">Bezwaar starten</button>
 </form>
 
 <div id="apiResult"></div>
+</div>
 
 <script>
 document.getElementById("bezwaarForm").addEventListener("submit", async e => {
   e.preventDefault();
-  const r = await fetch("https://script.google.com/macros/s/AKfycbxxMDeXHvE5epSwyRkIIC5snSUija6BJMrimV_pbfcULzPzPpd6JpVHXgBScSrv6_xJhw/exec", {
+  document.getElementById("apiResult").innerHTML = "⏳ Dossier wordt aangemaakt...";
+
+  const r = await fetch("https://script.google.com/macros/s/AKfycbw3SDysoG6ecoUN3Vzr__iGpdRFMsl6yQzO97JMoyAfMsorbrsJC_tq8w0_uXOp37lQUg/exec", {
     method:"POST",
     body:new FormData(e.target)
   });
-  document.getElementById("apiResult").innerText = await r.text();
+
+  const t = await r.text();
+  document.getElementById("apiResult").innerHTML = t;
 });
 </script>
 
 </section>
 </body>
 </html>
-
-
