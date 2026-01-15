@@ -1,76 +1,3 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bezwaar starten | ZekerOpWeg</title>
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-
-<body class="fade-in">
-  <section class="container" style="padding-top: 48px; padding-bottom: 80px;">
-    <div class="contact-card">
-      <h2>Bezwaar starten</h2>
-      <p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
-
-      <form id="bezwaarForm" novalidate>
-        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div class="form-group">
-            <label>Naam</label>
-            <input name="naam" required placeholder="Naam" autocomplete="name" />
-          </div>
-
-          <div class="form-group">
-            <label>E mail</label>
-            <input name="email" required placeholder="E mail" autocomplete="email" />
-          </div>
-        </div>
-
-        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
-          <div class="form-group">
-            <label>Kenteken</label>
-            <input name="kenteken" required placeholder="Kenteken" />
-          </div>
-
-          <div class="form-group">
-            <label>Beschikkingsnummer</label>
-            <input name="beschikking" required placeholder="Beschikkingsnummer" />
-          </div>
-        </div>
-
-        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
-          <div class="form-group">
-            <label>Overtreding</label>
-            <input name="type" required placeholder="Overtreding (bijv. parkeren)" />
-          </div>
-
-          <div class="form-group">
-            <label>Abonnementscode</label>
-            <input name="token" required placeholder="Abonnementscode" />
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-top:16px;">
-          <label>Uw toelichting (optioneel)</label>
-          <textarea name="toelichting" rows="6" placeholder="Uw toelichting"></textarea>
-        </div>
-
-        <div class="form-group" style="margin-top:16px;">
-          <label>Upload boete (PDF of foto)</label>
-          <input type="file" id="boeteFile" accept=".pdf,image/*" required />
-          <small style="display:block; margin-top:6px; opacity:0.75;">
-            Tip: maximaal 10 MB per upload
-          </small>
-        </div>
-
-        <button id="submitBtn" type="submit" class="btn-primary" style="margin-top:18px;">
-          Bezwaar starten
-        </button>
-
-        <div id="apiResult" style="margin-top:16px;"></div>
-      </form>
-    </div>
-  </section>
 <script>
 document.getElementById("bezwaarForm").addEventListener("submit", e=>{
   e.preventDefault();
@@ -79,7 +6,35 @@ document.getElementById("bezwaarForm").addEventListener("submit", e=>{
   result.innerHTML = "⏳ Dossier wordt aangemaakt...";
 
   const f = e.target;
-  const file = document.getElementById("boete").files[0];
+  const file = document.getElementById("boeteFile").files[0];
+  if(!file){
+    result.innerHTML="❌ Geen bestand geselecteerd";
+    return;
+  }
+
+  const r = new FileReader();
+
+  r.onload = async ()=>{
+    const data = Object.fromEntries(new FormData(f));
+    data.filename = file.name;
+    data.mimetype = file.type;
+    data.filedata = r.result.split(",")[1];
+
+    try{
+      const res = await fetch("<script>
+document.getElementById("bezwaarForm").addEventListener("submit", e=>{
+  e.preventDefault();
+
+  const result = document.getElementById("apiResult");
+  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
+
+  const f = e.target;
+  const file = document.getElementById("boeteFile").files[0];
+  if(!file){
+    result.innerHTML="❌ Geen bestand geselecteerd";
+    return;
+  }
+
   const r = new FileReader();
 
   r.onload = async ()=>{
@@ -107,9 +62,22 @@ document.getElementById("bezwaarForm").addEventListener("submit", e=>{
   r.readAsDataURL(file);
 });
 </script>
+,{
+        method:"POST",
+        body:JSON.stringify(data)
+      });
 
- 
-</body>
-</html>
+      const txt = await res.text();
+      result.innerHTML = txt.startsWith("OK|")
+        ? "✅ Dossier aangemaakt: <b>"+txt.split("|")[1]+"</b>"
+        : "❌ " + txt;
 
+    }catch(err){
+      result.innerHTML="❌ Verbindingsfout";
+    }
+  };
+
+  r.readAsDataURL(file);
+});
+</script>
 
