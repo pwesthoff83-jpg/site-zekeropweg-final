@@ -71,115 +71,44 @@
       </form>
     </div>
   </section>
+<script>
+document.getElementById("bezwaarForm").addEventListener("submit", e=>{
+  e.preventDefault();
 
-  <script>
-    // ✅ Zet hier je actuele web app URL
-    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwJMnrWBwhh5bg-7EVRWpZKqVgGTO5rDi9xqI1VhyMGE75bL3RTm9HzhbD1kpmMXEkW6A/exec";
+  const result = document.getElementById("apiResult");
+  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
 
-    const form = document.getElementById("bezwaarForm");
-    const result = document.getElementById("apiResult");
-    const btn = document.getElementById("submitBtn");
-    const fileInput = document.getElementById("boeteFile");
+  const f = e.target;
+  const file = document.getElementById("boete").files[0];
+  const r = new FileReader();
 
-    function esc(s){
-      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  r.onload = async ()=>{
+    const data = Object.fromEntries(new FormData(f));
+    data.filename = file.name;
+    data.mimetype = file.type;
+    data.filedata = r.result.split(",")[1];
+
+    try{
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwJMnrWBwhh5bg-7EVRWpZKqVgGTO5rDi9xqI1VhyMGE75bL3RTm9HzhbD1kpmMXEkW6A/exec",{
+        method:"POST",
+        body:JSON.stringify(data)
+      });
+
+      const txt = await res.text();
+      result.innerHTML = txt.startsWith("OK|")
+        ? "✅ Dossier aangemaakt: <b>"+txt.split("|")[1]+"</b>"
+        : "❌ " + txt;
+
+    }catch(err){
+      result.innerHTML="❌ Verbindingsfout";
     }
+  };
 
-    function setStatus(html){
-      result.innerHTML = html;
-    }
+  r.readAsDataURL(file);
+});
+</script>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Basic validatie
-      const fd = new FormData(form);
-      const file = fileInput.files && fileInput.files[0];
-
-      if (!file) {
-        setStatus("❌ Selecteer een bestand.");
-        return;
-      }
-
-      if (file.size > 10 * 1024 * 1024) {
-        setStatus("❌ Bestand is te groot. Maximaal 10 MB.");
-        return;
-      }
-
-      // UI state
-      btn.disabled = true;
-      btn.style.opacity = "0.7";
-      setStatus("⏳ Dossier wordt aangemaakt...");
-
-      try {
-        // File → base64
-        const base64 = await new Promise((resolve, reject) => {
-          const r = new FileReader();
-          r.onload = () => resolve(String(r.result));
-          r.onerror = reject;
-          r.readAsDataURL(file);
-        });
-
-        // Payload bouwen
-        const payload = {
-          naam: String(fd.get("naam") || "").trim(),
-          email: String(fd.get("email") || "").trim(),
-          kenteken: String(fd.get("kenteken") || "").trim(),
-          beschikking: String(fd.get("beschikking") || "").trim(),
-          type: String(fd.get("type") || "").trim(),
-          token: String(fd.get("token") || "").trim(),
-          toelichting: String(fd.get("toelichting") || "").trim(),
-          filename: file.name,
-          mimetype: file.type || "application/octet-stream",
-          filedata: base64.split(",")[1] // alleen base64, zonder prefix
-        };
-
-        // Extra harde validatie client side
-        for (const k of ["naam","email","kenteken","beschikking","type","token"]) {
-          if (!payload[k]) {
-            throw new Error("Veld ontbreekt: " + k);
-          }
-        }
-
-        // Timeout + fetch
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 25000);
-
-        const resp = await fetch(WEBAPP_URL, {
-          method: "POST",
-          // 🔥 Cruciaal: text/plain → geen CORS preflight → Apps Script werkt wél
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload),
-          signal: controller.signal
-        });
-
-        clearTimeout(timer);
-
-        const text = await resp.text();
-
-        if (text.startsWith("OK|")) {
-          const dossier = text.split("|")[1] || "";
-          setStatus(
-            "✅ Dossier aangemaakt: <strong>" + esc(dossier) + "</strong><br>" +
-            "U ontvangt een bevestiging per e mail zodra de intake is verwerkt."
-          );
-          form.reset();
-        } else {
-          setStatus("❌ " + esc(text));
-        }
-
-      } catch (err) {
-        console.error(err);
-        const msg = (err && err.name === "AbortError")
-          ? "Timeout. De server reageert niet snel genoeg."
-          : "Verbindingsfout. Check de web app toegang en logs.";
-        setStatus("❌ " + esc(msg));
-      } finally {
-        btn.disabled = false;
-        btn.style.opacity = "1";
-      }
-    });
-  </script>
+ 
 </body>
 </html>
 
