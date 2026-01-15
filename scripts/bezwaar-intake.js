@@ -47,7 +47,7 @@ document.getElementById("bezwaarForm").addEventListener("submit", async e => {
     data.filedata = reader.result.split(",")[1];
     data.filename = file.name;
 
-    const r = await fetch("https://script.google.com/macros/s/AKfycbwUd2uxep2MqgNxZSHcRj1FpesnjQoapjB-xcOGGprMhSr5iBs0AHeu5zjmCaQSlV6SoA/exec", {
+    const r = await fetch("https://script.google.com/macros/s/AKfycbz1OMBqnZb_U7HQ-WrkuQMWGbzmQ5wYhCodBb6v5ymNdYmUFU3D2VeuLh7eZggLQmZPSg/exec", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(data)
