@@ -1,83 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bezwaar starten | ZekerOpWeg</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="fade-in">
+<section class="container" style="padding-top:48px;padding-bottom:80px">
+<div class="contact-card">
+
+<h2>Bezwaar starten</h2>
+<p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
+
+<form id="bezwaarForm">
+
+<div class="form-row">
+  <input name="naam" placeholder="Naam" required>
+  <input name="email" placeholder="E mail" required>
+</div>
+
+<div class="form-row">
+  <input name="kenteken" placeholder="Kenteken" required>
+  <input name="beschikking" placeholder="Beschikkingsnummer" required>
+</div>
+
+<div class="form-row">
+  <input name="type" placeholder="Overtreding" required>
+  <input name="token" placeholder="Abonnementscode" required>
+</div>
+
+<textarea name="toelichting" rows="5" placeholder="Uw toelichting (optioneel)"></textarea>
+
+<label class="upload-btn">
+Upload boete (PDF of foto)
+<input type="file" id="boeteFile" accept=".pdf,image/*" required>
+</label>
+
+<button class="btn-primary">Bezwaar starten</button>
+<div id="apiResult"></div>
+
+</form>
+</div>
+</section>
+
 <script>
+const BACKEND_URL = "https://script.google.com/macros/s/AKfycbz6piYr6-ls7UKSCTOFidqStRqQqljjW4tNHfd63sTXgbaEr3z2ILalCZVEw-xgXE0FzA/exec";
+
 document.getElementById("bezwaarForm").addEventListener("submit", e=>{
-  e.preventDefault();
+ e.preventDefault();
+ const r=document.getElementById("apiResult");
+ r.innerHTML="⏳ Dossier wordt aangemaakt...";
 
-  const result = document.getElementById("apiResult");
-  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
+ const f=e.target;
+ const file=document.getElementById("boeteFile").files[0];
+ if(!file){ r.innerHTML="❌ Geen bestand gekozen"; return;}
 
-  const f = e.target;
-  const file = document.getElementById("boeteFile").files[0];
-  if(!file){
-    result.innerHTML="❌ Geen bestand geselecteerd";
-    return;
-  }
+ const reader=new FileReader();
+ reader.onload=async ()=>{
+  const data=Object.fromEntries(new FormData(f));
+  data.filename=file.name;
+  data.mimetype=file.type;
+  data.filedata=reader.result.split(",")[1];
 
-  const r = new FileReader();
-
-  r.onload = async ()=>{
-    const data = Object.fromEntries(new FormData(f));
-    data.filename = file.name;
-    data.mimetype = file.type;
-    data.filedata = r.result.split(",")[1];
-
-    try{
-      const res = await fetch("<script>
-document.getElementById("bezwaarForm").addEventListener("submit", e=>{
-  e.preventDefault();
-
-  const result = document.getElementById("apiResult");
-  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
-
-  const f = e.target;
-  const file = document.getElementById("boeteFile").files[0];
-  if(!file){
-    result.innerHTML="❌ Geen bestand geselecteerd";
-    return;
-  }
-
-  const r = new FileReader();
-
-  r.onload = async ()=>{
-    const data = Object.fromEntries(new FormData(f));
-    data.filename = file.name;
-    data.mimetype = file.type;
-    data.filedata = r.result.split(",")[1];
-
-    try{
-      const res = await fetch("https://script.google.com/macros/s/AKfycbwJMnrWBwhh5bg-7EVRWpZKqVgGTO5rDi9xqI1VhyMGE75bL3RTm9HzhbD1kpmMXEkW6A/exec",{
-        method:"POST",
-        body:JSON.stringify(data)
-      });
-
-      const txt = await res.text();
-      result.innerHTML = txt.startsWith("OK|")
-        ? "✅ Dossier aangemaakt: <b>"+txt.split("|")[1]+"</b>"
-        : "❌ " + txt;
-
-    }catch(err){
-      result.innerHTML="❌ Verbindingsfout";
-    }
-  };
-
-  r.readAsDataURL(file);
+  try{
+    const res=await fetch(BACKEND_URL,{method:"POST",body:JSON.stringify(data)});
+    const t=await res.text();
+    r.innerHTML = t.startsWith("OK|")
+      ? "✅ Dossier aangemaakt: <b>"+t.split("|")[1]+"</b>"
+      : "❌ "+t;
+  }catch(e){ r.innerHTML="❌ Verbindingsfout"; }
+ };
+ reader.readAsDataURL(file);
 });
 </script>
-,{
-        method:"POST",
-        body:JSON.stringify(data)
-      });
 
-      const txt = await res.text();
-      result.innerHTML = txt.startsWith("OK|")
-        ? "✅ Dossier aangemaakt: <b>"+txt.split("|")[1]+"</b>"
-        : "❌ " + txt;
+</body>
+</html>
 
-    }catch(err){
-      result.innerHTML="❌ Verbindingsfout";
-    }
-  };
-
-  r.readAsDataURL(file);
-});
-</script>
 
