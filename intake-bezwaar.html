@@ -7,12 +7,9 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 
-  <script src="/js/bezwaar-intake.js"></script>
-
-  
 <body class="fade-in">
-<section class="container">
 
+<section class="container">
 <div class="contact-card">
 
 <h2>Bezwaar starten</h2>
@@ -20,55 +17,32 @@
 
 <form id="bezwaarForm" enctype="multipart/form-data">
 
-<input name="naam" placeholder="Naam" required>
-<input name="email" placeholder="E-mail" required>
-<input name="kenteken" placeholder="Kenteken" required>
-<input name="beschikking" placeholder="Beschikkingsnummer" required>
-<input name="type" placeholder="Overtreding (bijv. parkeren)" required>
-<input name="token" placeholder="Abonnementscode" required>
+  <input name="naam" placeholder="Naam" required>
+  <input name="email" placeholder="E-mail" required>
+  <input name="kenteken" placeholder="Kenteken" required>
+  <input name="beschikking" placeholder="Beschikkingsnummer" required>
+  <input name="type" placeholder="Overtreding (bijv. parkeren)" required>
+  <input name="token" placeholder="Abonnementscode" required>
 
-<textarea name="toelichting" rows="5" placeholder="Uw toelichting (optioneel)"></textarea>
+  <textarea name="toelichting" rows="5" placeholder="Uw toelichting (optioneel)"></textarea>
 
-<label class="upload-btn">
-Upload boete (PDF of foto)
-<input type="file" name="boete" accept=".pdf,image/*" required>
-</label>
+  <label class="upload-btn">
+    Upload boete (PDF of foto)
+    <input type="file" name="boete" accept=".pdf,image/*" required>
+  </label>
 
-<button class="btn-primary">Bezwaar starten</button>
-
+  <button type="submit" class="btn-primary">Bezwaar starten</button>
 </form>
 
-<div id="apiResult"></div>
+<div id="apiResult" style="margin-top:20px;font-weight:600;"></div>
 </div>
+</section>
 
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("bezwaarForm");
   const result = document.getElementById("apiResult");
-
-  if (!form) {
-    console.error("FORM NOT FOUND");
-    return;
-  }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    result.innerHTML = "⏳ Dossier wordt aangemaakt...";
-
-    const fd = new FormData(form);
-
-    try {
-      const r = await fetch("<script>
-window.addEventListener("DOMContentLoaded", () => {
-
-  const form = document.getElementById("bezwaarForm");
-  const result = document.getElementById("apiResult");
-
-  if (!form) {
-    console.error("FORM NOT FOUND");
-    return;
-  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -92,28 +66,10 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-", {
-        method: "POST",
-        body: fd
-      });
 
-      const t = await r.text();
-      result.innerHTML = t;
-
-    } catch (err) {
-      console.error(err);
-      result.innerHTML = "❌ Verbindingsfout";
-    }
-  });
-});
-</script>
-
-  <div id="apiResult"></div>
-
-
-</section>
 </body>
 </html>
+
 
 
 
