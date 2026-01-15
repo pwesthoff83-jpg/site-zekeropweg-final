@@ -9,25 +9,20 @@
 
 <body class="fade-in">
 <section class="container">
-
 <div class="contact-card">
+
 <h2>Bezwaar starten</h2>
 <p>Upload uw boete en wij starten automatisch uw juridische dossier.</p>
 
-<form id="bezwaarForm" enctype="multipart/form-data">
+<form id="bezwaarForm">
   <input name="naam" required placeholder="Naam">
   <input name="email" required placeholder="E-mail">
   <input name="kenteken" required placeholder="Kenteken">
   <input name="beschikking" required placeholder="Beschikkingsnummer">
-  <input name="type" required placeholder="Overtreding (bijv. parkeren)">
+  <input name="type" required placeholder="Overtreding">
   <input name="token" required placeholder="Abonnementscode">
-  <textarea name="toelichting" rows="5" placeholder="Uw toelichting (optioneel)"></textarea>
-
-  <label class="upload-btn">
-    Upload boete (PDF of foto)
-    <input type="file" name="boete" accept=".pdf,image/*" required>
-  </label>
-
+  <textarea name="toelichting" rows="4" placeholder="Uw toelichting (optioneel)"></textarea>
+  <input type="file" id="boete" required accept=".pdf,image/*">
   <button class="btn-primary">Bezwaar starten</button>
 </form>
 
@@ -35,20 +30,35 @@
 </div>
 
 <script>
+const API = "https://script.google.com/macros/s/AKfycbz1OMBqnZb_U7HQ-WrkuQMWGbzmQ5wYhCodBb6v5ymNdYmUFU3D2VeuLh7eZggLQmZPSg/exec";
+
 document.getElementById("bezwaarForm").addEventListener("submit", async e => {
   e.preventDefault();
-  document.getElementById("apiResult").innerHTML = "⏳ Dossier wordt aangemaakt...";
+  const result = document.getElementById("apiResult");
+  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
 
-  const r = await fetch("https://script.google.com/macros/s/AKfycbw3SDysoG6ecoUN3Vzr__iGpdRFMsl6yQzO97JMoyAfMsorbrsJC_tq8w0_uXOp37lQUg/exec", {
-    method:"POST",
-    body:new FormData(e.target)
-  });
+  const file = document.getElementById("boete").files[0];
+  const reader = new FileReader();
 
-  const t = await r.text();
-  document.getElementById("apiResult").innerHTML = t;
+  reader.onload = async () => {
+    const data = Object.fromEntries(new FormData(e.target));
+    data.filename = file.name;
+    data.filedata = reader.result.split(",")[1];
+
+    const r = await fetch(API, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(data)
+    });
+
+    result.innerHTML = await r.text();
+  };
+
+  reader.readAsDataURL(file);
 });
 </script>
-
 </section>
 </body>
 </html>
+
+
