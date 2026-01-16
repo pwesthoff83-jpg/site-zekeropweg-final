@@ -46,35 +46,46 @@ Upload boete (PDF of foto)
 </section>
 
 <script>
-const BACKEND_URL = "https://script.google.com/macros/s/AKfycbxGDhL5AdIGTSdKVTz8LDGRkBbobH5usbJCVnn8f4pwSwMGrjYIfMClACyaA_mjl4jEzw/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbyXXaNVYYyWDEPa858VwGkoFdGQVE5ne_3XVZGMtB-NSqxbhybc0KqyAnTUOwJTR1F6zg/exec";
 
-document.getElementById("bezwaarForm").addEventListener("submit", e=>{
- e.preventDefault();
- const r=document.getElementById("apiResult");
- r.innerHTML="⏳ Dossier wordt aangemaakt...";
+document.getElementById("bezwaarForm").addEventListener("submit", e => {
+  e.preventDefault();
 
- const f=e.target;
- const file=document.getElementById("boeteFile").files[0];
- if(!file){ r.innerHTML="❌ Geen bestand gekozen"; return;}
+  const result = document.getElementById("apiResult");
+  result.innerHTML = "⏳ Dossier wordt aangemaakt...";
 
- const reader=new FileReader();
- reader.onload=async ()=>{
-  const data=Object.fromEntries(new FormData(f));
-  data.filename=file.name;
-  data.mimetype=file.type;
-  data.filedata=reader.result.split(",")[1];
+  const file = document.getElementById("boeteFile").files[0];
+  const reader = new FileReader();
 
-  try{
-    const res=await fetch(BACKEND_URL,{method:"POST",body:JSON.stringify(data)});
-    const t=await res.text();
-    r.innerHTML = t.startsWith("OK|")
-      ? "✅ Dossier aangemaakt: <b>"+t.split("|")[1]+"</b>"
-      : "❌ "+t;
-  }catch(e){ r.innerHTML="❌ Verbindingsfout"; }
- };
- reader.readAsDataURL(file);
+  reader.onload = async () => {
+
+    const data = Object.fromEntries(new FormData(e.target));
+
+    data.filename = file.name;
+    data.mimetype = file.type;
+    data.filedata = reader.result.split(",")[1];
+
+    try {
+      const r = await fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      const txt = await r.text();
+
+      result.innerHTML = txt.startsWith("OK|")
+        ? "✅ Dossier aangemaakt: <b>" + txt.split("|")[1] + "</b>"
+        : "❌ " + txt;
+
+    } catch (err) {
+      result.innerHTML = "❌ Verbindingsfout";
+    }
+  };
+
+  reader.readAsDataURL(file);
 });
 </script>
+
 
 </body>
 </html>
