@@ -104,10 +104,33 @@
   </p>
 
   <div class="advisor-card">
-    "<form action="https://formspree.io/f/mwvvvapd" method="POST">
+
+    <form action="https://formsubmit.co/advies@zekeropweg.nu" method="POST">
+
+      <!-- FormSubmit instellingen -->
+      <input type="hidden" name="_subject" value="Nieuwe intake ZekerOpWeg">
+      <input type="hidden" name="_template" value="table">
+
+      <!-- Autoreply naar klant -->
+      <input type="hidden" name="_autoresponse" value="Goedendag,
+
+Hartelijk dank voor uw aanvraag bij ZekerOpWeg.
+
+Wij hebben uw intake goed ontvangen en bekijken:
+- de advertentie
+- uw vragen en twijfels
+- of een AccuCheck zinvol is
+
+U ontvangt van ons eerst een persoonlijk en eerlijk adviesvoorstel.
+Pas na uw akkoord volgt een eventuele betaling.
+
+Met vriendelijke groet,
+ZekerOpWeg
+info@zekeropweg.nu
+www.zekeropweg.nu">
 
       <input type="hidden" name="_replyto" value="">
-      
+
       <label>Welke begeleiding past bij uw situatie?</label>
       <select name="Pakket" id="pakketSelect" required>
         <option value="">Selecteer</option>
@@ -122,7 +145,6 @@
       <p class="field-hint">
       Elke openbare advertentielink is voldoende.
       </p>
-
 
       <label>Uw naam</label>
       <input type="text" name="Naam" required>
@@ -228,7 +250,6 @@ document.querySelector("form").addEventListener("submit", function(){
 
   const email = document.querySelector('input[name="Email"]').value;
 
-  // Zorg dat Formspree het klant-emailadres als reply-to gebruikt
   let replyField = document.querySelector('input[name="_replyto"]');
   if(!replyField){
     replyField = document.createElement("input");
@@ -242,9 +263,9 @@ document.querySelector("form").addEventListener("submit", function(){
 });
 </script>
 
-
-  
-  
 </body>
 </html>
 
+
+
+  
