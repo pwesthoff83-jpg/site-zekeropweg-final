@@ -222,29 +222,24 @@ accuCheck?.addEventListener("change", checkEV);
 </script>
 
 <script>
-// Dynamisch onderwerp voor Formspree – zonder locatie (conversie vriendelijk)
 document.querySelector("form").addEventListener("submit", function(){
 
-  const pakket = document.getElementById("pakketSelect").value || "Onbekend pakket";
-  const naam = document.querySelector('input[name="Naam"]').value || "";
+  const email = document.querySelector('input[name="Email"]').value;
 
-  const subject =
-    "[ADVIESPAKKET: " + pakket + "] – " + naam;
-
-  // hidden field vullen of aanmaken
-  let subjectField = document.getElementById("subjectField");
-
-  if(!subjectField){
-    subjectField = document.createElement("input");
-    subjectField.type = "hidden";
-    subjectField.name = "_subject";
-    subjectField.id = "subjectField";
-    document.querySelector("form").appendChild(subjectField);
+  // Zorg dat Formspree het klant-emailadres als reply-to gebruikt
+  let replyField = document.querySelector('input[name="_replyto"]');
+  if(!replyField){
+    replyField = document.createElement("input");
+    replyField.type = "hidden";
+    replyField.name = "_replyto";
+    document.querySelector("form").appendChild(replyField);
   }
 
-  subjectField.value = subject;
+  replyField.value = email;
+
 });
 </script>
+
 
   
   
