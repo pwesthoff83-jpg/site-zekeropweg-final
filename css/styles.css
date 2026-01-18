@@ -1650,15 +1650,33 @@ p + .card-cta{
     border: 0 !important;
     cursor: pointer !important;
 
-    fo
+    font-size: 28px !important;
+    line-height: 1 !important;
+    color: #0b1220 !important;
 
+    z-index: 5000 !important;
+  }
 
+  /* overlay + menu boven alles */
+  .menu-overlay{ z-index: 9998 !important; }
+  .mobile-menu{ z-index: 9999 !important; }
 
+  /* kaarten altijd onder elkaar op mobiel */
+  .pricing-grid,
+  .packages-grid,
+  .premium-grid,
+  .service-grid,
+  .usp-premium,
+  .testimonial-grid{
+    grid-template-columns: 1fr !important;
+  }
 
-
-
-
-
+  /* featured cards nooit omhoog schuiven op mobiel */
+  .pricing-featured,
+  .package--premium{
+    transform: none !important;
+  }
+}
 
 
 
