@@ -242,3 +242,31 @@
   }
 
 }
+
+/* =====================================================
+   AANKOOPADVIES – DEFINITIEVE MOBILE LOCK
+   Dit wint van ALLE regels uit aankoopadvies.css
+===================================================== */
+
+@media (max-width: 900px){
+
+  /* HOOFD GRID VAN AANKOOPADVIES */
+  .packages-section{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  /* KAARTEN */
+  .package-card{
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  /* FEATURED MAG NIET ZWEVEN OP MOBILE */
+  .package-card.featured{
+    transform: none !important;
+  }
+
+}
