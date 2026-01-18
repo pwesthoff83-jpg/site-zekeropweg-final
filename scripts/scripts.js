@@ -24,27 +24,43 @@ function closeMenu() {
 }
 
 /* =========================
-   CONTEXT FOOTER HIGHLIGHT
+   FOOTER MAIL HIGHLIGHT
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
- const allowed = [
-  "aankoopadvies",
-  "accucheck",
-  "bezwaarservice",
-  "contact",
-  "start",
-  "bulk-kentekens",
-  "bulk",
-  "zakelijke-plus"
-];
 
-if (!allowed.some(p => path.includes(p))) {
-  window.location.href = "contact.html";
-}
+  const path = window.location.pathname.toLowerCase();
+
+  let activeService = "info";   // default
+
+  if (path.includes("aankoopadvies")) {
+    activeService = "advies";
+  }
+
+  if (path.includes("ev-accucheck")) {
+    activeService = "accu";
+  }
+
+  if (path.includes("bezwaar")) {
+    activeService = "bezwaar";
+  }
+
+  if (
+    path.endsWith("index.html") ||
+    path.endsWith("/") ||
+    path.includes("over") ||
+    path.includes("contact")
+  ) {
+    activeService = "info";
+  }
 
   document.querySelectorAll("[data-service]").forEach(el => {
-    el.classList.toggle("footer-accent", el.dataset.service === activeService);
+    if (el.dataset.service === activeService) {
+      el.classList.add("footer-accent");
+    } else {
+      el.classList.remove("footer-accent");
+    }
   });
+
 });
 
 /* =========================
@@ -106,6 +122,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
