@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.getElementById("mobileMenu");
-  const closeBtn = document.querySelector(".close-menu");
   const overlay = document.getElementById("menuOverlay");
 
-  if (!toggle || !menu || !closeBtn || !overlay) return;
+  if (!toggle || !menu || !overlay) return;
+
+  const closeBtn = menu.querySelector(".close-menu");
 
   const openMenu = () => {
     menu.classList.add("open");
@@ -19,6 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   toggle.addEventListener("click", openMenu);
-  closeBtn.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeMenu);
+  }
 });
+
