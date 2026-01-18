@@ -1,1 +1,142 @@
+/* =========================================================
+   ZEKEROPWEG STABILITY PATCH – NON DESTRUCTIVE
+   Maakt alle pagina's gelijk aan EV AccuCheck layout
+   Fixes: header, buttons, mobile menu, spacing
+========================================================= */
+
+/* ─────────────────────────────────────────────────────────
+   1) ÉÉN NAVIGATIE ALS BRON VAN WAARHEID (zop-*)
+───────────────────────────────────────────────────────── */
+
+.header,
+.main-nav,
+.brand-logo{
+  display:none !important;
+}
+
+/* Desktop */
+@media(min-width:901px){
+  .zop-nav{ display:flex !important; }
+  .menu-toggle{ display:none !important; }
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .zop-nav{ display:none !important; }
+
+  .menu-toggle{
+    display:block !important;
+    font-size:1.5rem;
+    margin-left:auto;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   2) UNIFIED BUTTON SYSTEM (AccuCheck standaard)
+───────────────────────────────────────────────────────── */
+
+.btn-primary,
+.btn-secondary{
+  min-width:260px !important;
+  height:58px !important;
+  border-radius:999px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:.82rem !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+}
+
+/* Hero altijd inverse */
+.hero .btn-secondary{
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.55) !important;
+  background:rgba(255,255,255,.06) !important;
+}
+
+/* ─────────────────────────────────────────────────────────
+   3) SPACING = ACCUCHECK MODEL
+───────────────────────────────────────────────────────── */
+
+.services-section{
+  padding-top:80px !important;
+  padding-bottom:80px !important;
+}
+
+@media(max-width:768px){
+  .services-section{
+    padding-top:56px !important;
+    padding-bottom:56px !important;
+  }
+}
+
+/* Cards */
+.service-card{
+  padding:28px 26px 26px !important;
+}
+
+.service-grid{
+  gap:22px !important;
+}
+
+/* Hero actions */
+.hero-actions{
+  margin-top:30px !important;
+  gap:14px !important;
+}
+
+/* ─────────────────────────────────────────────────────────
+   4) MOBILE OPTICAL FIXES
+───────────────────────────────────────────────────────── */
+
+@media(max-width:768px){
+
+  .btn-primary,
+  .btn-secondary{
+    width:92% !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .hero-content{
+    padding:0 18px !important;
+  }
+
+  .premium-intro{
+    padding:2.6rem 1.6rem !important;
+    margin-top:-2.8rem !important;
+  }
+
+}
+
+/* ─────────────────────────────────────────────────────────
+   5) FOOTER CONSISTENTIE
+───────────────────────────────────────────────────────── */
+
+.footer-grid{
+  grid-template-columns:1.1fr 1fr 1fr !important;
+}
+
+@media(max-width:900px){
+  .footer-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   6) ZACHTE STABILITEIT – geen hover sprongen
+───────────────────────────────────────────────────────── */
+
+.pricing-card,
+.service-card,
+.package{
+  transform:none !important;
+}
+
+.pricing-card:hover,
+.service-card:hover,
+.package:hover{
+  transform:none !important;
+}
 
