@@ -157,3 +157,42 @@
   }
 
 }
+
+/* ============================================
+   ZEKEROPWEG – MOBILE SINGLE COLUMN LOCK
+   Geen enkele kaart naast elkaar op mobiel
+============================================ */
+
+@media (max-width: 900px){
+
+  /* Alle mogelijke grids */
+  .service-grid,
+  .usp-premium,
+  .testimonial-grid,
+  .pricing-grid,
+  .premium-grid,
+  .packages-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  /* Kaarten 100% breed */
+  .service-card,
+  .usp-item,
+  .testimonial-card,
+  .pricing-card,
+  .premium-card,
+  .package {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Speciale correctie voor uitgelichte kaart */
+  .pricing-featured,
+  .package--premium {
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+
+}
