@@ -37,19 +37,26 @@
   </div>
 </header>
 
-<button class="zop-mobile-toggle" onclick="toggleMenu()">Menu</button>
+   <!-- ================= MOBILE MENU ================= -->
+<button class="menu-toggle" aria-label="Menu openen">☰</button>
 
-<div id="zopMobileMenu" class="zop-mobile-overlay" onclick="closeMenu(event)">
-  <div class="zop-mobile-inner">
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Menu sluiten">×</button>
+
+  <nav class="mobile-nav">
     <a href="index.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
-    <a class="active" href="ev-accucheck.html">AccuCheck</a>
+    <a href="ev-accucheck.html">AccuCheck</a>
     <a href="bezwaarservice.html">Bezwaar</a>
-    <a href="automatisering.html">Automatisering</a>
+
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+
     <a href="over.html">Over</a>
-    <a href="contact.html" class="zop-mobile-cta">Contact</a>
-  </div>
+    <a href="contact.html">Contact</a>
+  </nav>
 </div>
+
+<div id="menuOverlay" class="menu-overlay"></div>
 
 
 <main class="page-content">
