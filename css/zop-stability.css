@@ -327,3 +327,27 @@
   max-width: 100%;
 }
 
+/* ===== HARDE ZICHTBAARHEID FIX ===== */
+
+.hero .btn-primary,
+.footer .btn-primary,
+.section-dark .btn-primary,
+.card-cta,
+.pricing-cta,
+.package-card a{
+
+  /* Tekst altijd wit */
+  color: #ffffff !important;
+
+  /* Donkere achtergrond zoals op aankoopadvies */
+  background: linear-gradient(180deg,#0f1c2d 0%, #060b14 100%) !important;
+
+  text-shadow: 0 1px 2px rgba(0,0,0,.45) !important;
+}
+
+/* Hover mag NIET van kleur wisselen */
+.hero .btn-primary:hover,
+.card-cta:hover,
+.pricing-cta:hover{
+  color: #ffffff !important;
+}
