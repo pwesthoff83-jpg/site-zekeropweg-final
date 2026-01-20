@@ -29,20 +29,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const current = window.location.pathname.split("/").pop();
+  // Alleen bestandsnaam zonder pad
+  let current = window.location.pathname.split("/").pop();
+
+  // Fallback: als je op / zit
+  if (!current) current = "index.html";
 
   document.querySelectorAll(".zop-nav a").forEach(link => {
 
     const href = link.getAttribute("href");
 
-    if(href === current){
-      link.classList.add("active");
-    }
+    // 1. Eerst ALLES resetten
+    link.classList.remove("active");
 
-    if(current === "" && href === "index.html"){
+    // 2. ALLEEN exacte match mag active worden
+    if (href === current) {
       link.classList.add("active");
     }
 
   });
 
 });
+
+
