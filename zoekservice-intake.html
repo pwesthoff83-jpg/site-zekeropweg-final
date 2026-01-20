@@ -53,44 +53,42 @@
 
 <section class="services-section container intake-shell">
 
-  <h1 class="section-title">
-    Ik zoek met u mee – als onafhankelijk adviseur
-  </h1>
+<h1 class="section-title">
+Ik zoek met u mee – zonder verkoopbelang
+</h1>
 
-  <p class="section-subtitle">
-    Geen verkoopbelang. Geen dealerpraat.  
-    Ik vertaal uw gebruik en twijfels naar concrete, veilige keuzes.
-  </p>
+<p class="section-subtitle">
+U beschrijft uw situatie.  
+Ik vertaal dat naar realistische, veilige keuzes.
+</p>
 
-  <p class="accentline">
-    U start hier geen bestelling, maar een gesprek.  
-    Op basis van uw situatie ontvangt u eerst een persoonlijk voorstel:
-    welke auto’s logisch zijn, wat realistisch is binnen uw budget
-    en waar ik u het beste kan begeleiden.
-  </p>
+<p class="accentline">
+Dit is geen bestelling maar een gesprek.  
+U ontvangt eerst een persoonlijk voorstel met passende modellen,
+verwachte aandachtspunten en een helder plan van aanpak.
+</p>
 
-  <div class="advisor-card">
+<div class="advisor-card">
 
 <form action="https://formsubmit.co/advies@zekeropweg.nu" method="POST">
 
-<input type="hidden" name="_subject" value="Nieuwe intake Zoekservice">
+<input type="hidden" name="_subject" value="Intake Zoekservice">
 <input type="hidden" name="_template" value="table">
 
-<!-- AUTOREPLY -->
 <input type="hidden" name="_autoresponse" value="Goedendag,
 
 Dank voor uw zoekopdracht bij ZekerOpWeg.
 
 Ik bekijk persoonlijk:
-- uw gebruikssituatie
-- budget en maandlasten
-- type aandrijving
-- aandachtspunten zoals trekgewicht, ruimte en betrouwbaarheid
+- uw gebruik en kilometrage  
+- budget en maandlasten  
+- welke aandrijving logisch is  
+- risico’s per type auto  
 
-U ontvangt eerst een helder voorstel met:
-1) realistische modellen
-2) verwachte aandachtspunten
-3) hoe ik u het beste kan begeleiden
+U ontvangt eerst een inhoudelijk voorstel:
+1) concrete modellen  
+2) aandachtspunten per optie  
+3) welke begeleiding zinvol is  
 
 Pas na uw akkoord volgen eventuele kosten.
 
@@ -98,64 +96,65 @@ Met vriendelijke groet,
 Pepijn – ZekerOpWeg
 www.zekeropweg.nu">
 
-<!-- BLOK 1 – GEBRUIK -->
+
+<!-- BLOK 1 -->
 <label>Hoe gaat u de auto gebruiken?</label>
 <textarea name="Gebruik" rows="3" required
-placeholder="Bijv: 4 dagen woon-werk 60 km, 2 kinderen, vaak stad, soms vakantie met dakkoffer…"></textarea>
+placeholder="Bijv: woon-werk 60 km, 2 kinderen, veel stad, soms vakantie…"></textarea>
 
 <p class="field-hint">
-Dit helpt mij bepalen: benzine, hybride, EV – en welk formaat logisch is.
+Hiermee bepaal ik formaat, comfortniveau en type aandrijving.
 </p>
 
 
 <label>Jaarlijks kilometrage</label>
-<select name="Kilometrage" required>
-  <option value="">Selecteer</option>
-  <option>0 – 10.000 km</option>
-  <option>10.000 – 20.000 km</option>
-  <option>20.000 – 30.000 km</option>
-  <option>30.000 km of meer</option>
+<select name="Kilometers" required>
+<option value="">Selecteer</option>
+<option>0 – 10.000 km</option>
+<option>10.000 – 20.000 km</option>
+<option>20.000 – 30.000 km</option>
+<option>Meer dan 30.000 km</option>
 </select>
 
 
 <label>Beschikbaar budget</label>
 <input type="text" name="Budget" required
-placeholder="Bijv: € 22.000 all-in of € 350 p/m private lease">
+placeholder="Bijv: € 22.000 all-in of € 350 p/m">
 
 
-<!-- BLOK 2 – PRIORITEIT -->
-<label>Wat weegt voor u het zwaarst?</label>
+<!-- BLOK 2 -->
+<label>Wat vindt u belangrijker?</label>
 <select name="Prioriteit" required>
-  <option>Laagste maandlasten</option>
-  <option>Betrouwbaarheid en lage risico’s</option>
-  <option>Comfort en opties</option>
-  <option>Duurzaam / elektrisch</option>
-  <option>Ruimte voor gezin of werk</option>
+<option>Laagste maandlasten</option>
+<option>Betrouwbaarheid en weinig risico</option>
+<option>Comfort en opties</option>
+<option>Duurzaam rijden</option>
+<option>Ruimte en praktisch</option>
 </select>
 
 
 <label>Voorkeur aandrijving</label>
 <select name="Aandrijving">
-  <option>Ik laat mij adviseren</option>
-  <option>Benzine</option>
-  <option>Hybride</option>
-  <option>Plug-in hybride</option>
-  <option>Volledig elektrisch</option>
+<option>Ik laat mij adviseren</option>
+<option>Benzine</option>
+<option>Hybride</option>
+<option>Plug-in hybride</option>
+<option>Elektrisch</option>
 </select>
 
 
-<!-- BLOK 3 – MINIMA -->
+<!-- BLOK 3 -->
 <label>Wat moet de auto minimaal hebben?</label>
 <textarea name="Musthaves" rows="3"
-placeholder="Automaat, trekhaak, CarPlay, hoge instap, kinderzitjes, camera…"></textarea>
+placeholder="Automaat, trekhaak, CarPlay, hoge instap…"></textarea>
 
 
 <label>Voorbeelden die u aanspreken (optioneel)</label>
 <textarea name="Voorbeelden" rows="3"
-placeholder="Linkjes of modellen die u al heeft gezien"></textarea>
+placeholder="Linkjes of modellen die u al zag"></textarea>
 
 
-<!-- PERSOONLIJK -->
+<!-- BLOK 4 -->
 <label>Uw naam</label>
 <input type="text" name="Naam" required>
 
@@ -164,19 +163,6 @@ placeholder="Linkjes of modellen die u al heeft gezien"></textarea>
 
 <label>Telefoon (optioneel)</label>
 <input type="tel" name="Telefoon">
-
-
-<!-- EV ACCU CHECK SUGGESTIE -->
-<div class="advisor-addon">
-<label>
-<input type="checkbox" name="AccuCheck" value="Mogelijk relevant">
-<strong>EV AccuCheck meenemen indien relevant</strong><br>
-<span>
-TÜV certificaat + onafhankelijk advies, alleen voorgesteld
-wanneer een elektrische of plug-in logisch blijkt.
-</span>
-</label>
-</div>
 
 
 <p class="advisor-microtrust">
@@ -188,12 +174,12 @@ Start mijn zoekopdracht
 </button>
 
 <p style="margin-top:1.6rem;opacity:.7;font-size:.9rem;">
-U ontvangt geen offerte-druk maar een inhoudelijk plan.
+AccuCheck komt alleen in beeld bij Premium of Full Service,
+wanneer een EV of plug-in daadwerkelijk wordt overwogen.
 </p>
 
 </form>
-
-  </div>
+</div>
 </section>
 
 
