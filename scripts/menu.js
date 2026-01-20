@@ -27,3 +27,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const current = window.location.pathname.split("/").pop();
+
+  document.querySelectorAll(".zop-nav a").forEach(link => {
+
+    const href = link.getAttribute("href");
+
+    if(href === current){
+      link.classList.add("active");
+    }
+
+    if(current === "" && href === "index.html"){
+      link.classList.add("active");
+    }
+
+  });
+
+});
