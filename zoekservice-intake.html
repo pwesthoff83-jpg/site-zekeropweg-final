@@ -51,56 +51,81 @@
     Onafhankelijk, zonder verkoopbelang en met oog voor de kosten van morgen.
   </p>
 
-  <div class="service-card">
+ <div class="service-card">
 
-  <form action="https://formsubmit.co/advies@zekeropweg.nu" method="POST">
+<form action="https://formsubmit.co/advies@zekeropweg.nu" method="POST">
 
-    <input type="hidden" name="_subject" value="Nieuwe intake Zoekservice">
-    <input type="hidden" name="_template" value="table">
+<input type="hidden" name="_subject" value="Nieuwe intake Zoekservice">
+<input type="hidden" name="_template" value="table">
 
-    <label>Hoe wordt de auto vooral gebruikt?</label>
-    <textarea name="gebruik" required></textarea>
 
-    <label>Beschikbaar budget inclusief rijklaar kosten</label>
-    <input type="text" name="budget" required>
+<!-- BLOK 1 -->
+<h3>Gebruik en doel</h3>
 
-    <label>Minimale eisen aan de auto</label>
-    <textarea name="eisen"></textarea>
+<label>Waarvoor wordt de auto vooral gebruikt?</label>
+<textarea name="gebruik" placeholder="Woon-werk, gezin, vakantie, aanhanger, stad, snelweg..."></textarea>
 
-    <label>Voorkeur aandrijving</label>
-    <select name="aandrijving">
-      <option>Benzine</option>
-      <option>Hybride</option>
-      <option>Elektrisch</option>
-      <option>Geen voorkeur</option>
-    </select>
+<label>Hoeveel kilometer per jaar?</label>
+<select name="kilometers">
+  <option>0–10.000</option>
+  <option>10.000–20.000</option>
+  <option>20.000–30.000</option>
+  <option>30.000+</option>
+</select>
 
-    <label>Gezinssituatie en benodigde ruimte</label>
-    <textarea name="ruimte"></textarea>
 
-    <label>Kilometers per jaar</label>
-    <input type="text" name="kilometers">
+<!-- BLOK 2 -->
+<h3>Budget en kosten</h3>
 
-    <label>Belangrijkste reden voor vervanging</label>
-    <textarea name="reden"></textarea>
+<label>Beschikbaar budget totaal</label>
+<input type="text" name="budget" placeholder="Bijv. € 18.000">
 
-    <label>Naam</label>
-    <input type="text" name="naam" required>
+<label>Belangrijk in gebruikskosten</label>
+<select name="focus">
+  <option>Lage maandlasten</option>
+  <option>Betrouwbaarheid</option>
+  <option>Zuinig rijden</option>
+  <option>Restwaarde</option>
+</select>
 
-    <label>E-mail</label>
-    <input type="email" name="email" required>
 
-    <p class="micro-legal">
-      Uw gegevens worden alleen gebruikt voor deze aanvraag en niet gedeeld met derden.
-    </p>
+<!-- BLOK 3 -->
+<h3>Type auto</h3>
 
-    <button class="btn-primary">
-      Intake verzenden
-    </button>
+<label>Voorkeur aandrijving</label>
+<select name="aandrijving">
+  <option>Geen voorkeur</option>
+  <option>Benzine</option>
+  <option>Hybride</option>
+  <option>Elektrisch</option>
+</select>
 
-  </form>
+<label>Minimale eisen</label>
+<textarea name="eisen" placeholder="Trekhaak, automaat, CarPlay, kinderzitjes, bagageruimte..."></textarea>
 
-  </div>
+
+<!-- BLOK 4 -->
+<h3>Persoonlijk</h3>
+
+<label>Naam</label>
+<input type="text" name="naam" required>
+
+<label>E-mail</label>
+<input type="email" name="email" required>
+
+
+<p class="micro-legal">
+Uw gegevens worden alleen gebruikt voor deze aanvraag.
+</p>
+
+<button class="btn-primary">
+Intake verzenden
+</button>
+
+</form>
+
+</div>
+ 
 
 </section>
 
