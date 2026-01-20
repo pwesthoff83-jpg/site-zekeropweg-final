@@ -51,99 +51,59 @@
     Onafhankelijk, zonder verkoopbelang en met oog voor de kosten van morgen.
   </p>
 
-<section class="services-section container intake-shell">
-
-<h2 class="section-title">Zoekservice op maat</h2>
-
-<p class="section-subtitle">
-Niet zoeken in aanbod, maar selecteren vanuit uw gebruik en toekomst.
-</p>
-
-<p class="accentline">
-Ik kijk verder dan kilometerstand en opties: onderhoudsverleden, modelrisico’s,
-accustatus bij EV, en de échte kosten over 3 tot 5 jaar.
-</p>
-
-
 <div class="advisor-card">
 
 <form action="https://formsubmit.co/advies@zekeropweg.nu" method="POST">
 
-<input type="hidden" name="_subject" value="Intake Zoekservice ZekerOpWeg">
-<input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_subject" value="Zoekservice Intake – ZekerOpWeg">
+  <input type="hidden" name="_template" value="table">
 
+  <!-- SERIE 1: HOE GAAT U DE AUTO GEBRUIKEN -->
+  <label>Hoe gebruikt u de auto? Beschrijf kort uw dagelijkse ritten en wensen</label>
+  <textarea name="gebruik" rows="4" placeholder="Bijv. ‘Dagelijks woon-werk verkeer, 25 km p/d, weekendvakanties met laden’"></textarea>
 
-<label>Hoe gaat u de auto gebruiken?</label>
-<textarea name="gebruik" rows="4"
-placeholder="Denk aan: woon-werk afstand, gezin, stad of snelweg, trekgewicht, parkeren, vakanties…"></textarea>
+  <label>Hoeveel kilometer rijdt u gemiddeld per jaar?</label>
+  <input type="text" name="kilometers" placeholder="Bijv. 18.000 km">
 
+  <!-- SERIE 2: BUDGET EN PRIORITEITEN -->
+  <label>Welk budget reserveert u voor de totale aankoop (inclusief rijklaarkosten)?</label>
+  <input type="text" name="budget" placeholder="Bijv. €22.000">
 
-<label>Jaarlijks kilometrage</label>
-<select name="kilometers">
-<option>0–10.000 km</option>
-<option>10.000–20.000 km</option>
-<option>20.000–30.000 km</option>
-<option>30.000+ km</option>
-</select>
+  <label>Wat weegt zwaarder bij uw keuze?</label>
+  <textarea name="prioriteiten" rows="3" placeholder="Bijv. ‘Betrouwbaarheid belangrijker dan acceleratie’"></textarea>
 
+  <!-- SERIE 3: AUTOMATISERING VAN VOORKEUR -->
+  <label>Heeft u een voorkeur voor aandrijving?</label>
+  <textarea name="aandrijving" rows="2" placeholder="Bijv. ‘Bijna altijd elektrisch’ / ‘Geen voorkeur’"></textarea>
 
-<label>Beschikbaar budget</label>
-<input type="text" name="budget" placeholder="Bijv. € 22.000 all-in">
+  <label>Zijn er zaken die de auto minimaal moet hebben?</label>
+  <textarea name="eisen" rows="3" placeholder="Bijv. ‘Trekhaak / automaat / groot bagageruimte’"></textarea>
 
+  <!-- SERIE 4: VOORBEELDEN (OPTIONEEL) -->
+  <label>Heeft u al auto’s gezien die u aanspreken? (links / modellen)</label>
+  <textarea name="voorbeelden" rows="3" placeholder="Bijv. ‘Model X – advertentielink…’"></textarea>
 
-<label>Wat vindt u belangrijker?</label>
-<select name="focus">
-<option>Laagste maandlasten</option>
-<option>Maximale betrouwbaarheid</option>
-<option>Comfort en veiligheid</option>
-<option>Restwaarde en toekomstzeker</option>
-</select>
+  <!-- SERIE 5: PERSOONLIJKE GEGEVENS -->
+  <label>Uw naam</label>
+  <input type="text" name="naam" required>
 
+  <label>Uw e-mail</label>
+  <input type="email" name="email" required>
 
-<label>Voorkeur aandrijving</label>
-<select name="aandrijving">
-<option>Ik laat mij adviseren</option>
-<option>Benzine</option>
-<option>Hybride</option>
-<option>Elektrisch</option>
-</select>
+  <label>Telefoonnummer (optioneel)</label>
+  <input type="text" name="telefoon">
 
+  <p class="advisor-microtrust">
+    Na verzending neem ik persoonlijk contact op om alles kort te bespreken en de volgende stap toe te lichten.
+  </p>
 
-<label>Wat moet de auto minimaal hebben?</label>
-<textarea name="eisen" rows="3"
-placeholder="Automaat, trekhaak, CarPlay, hoge instap, ruimte voor kinderzitjes…"></textarea>
-
-
-<label>Voorbeelden die u aanspreken (optioneel)</label>
-<textarea name="voorbeelden" rows="3"
-placeholder="Linkjes of modellen die u al heeft gezien"></textarea>
-
-
-<label>Uw naam</label>
-<input type="text" name="naam" required>
-
-<label>Uw e-mailadres</label>
-<input type="email" name="email" required>
-
-<label>Telefoon (optioneel)</label>
-<input type="text" name="telefoon">
-
-
-<p class="advisor-microtrust">
-Eerst persoonlijk voorstel · Geen betaling vooraf · Onafhankelijk
-</p>
-
-
-<button type="submit" class="advisor-submit">
-Start mijn zoekopdracht
-</button>
+  <button type="submit" class="advisor-submit">
+    Start mijn zoekopdracht
+  </button>
 
 </form>
 
 </div>
-
-</section>
- 
 
 </section>
 
