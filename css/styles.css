@@ -1346,6 +1346,136 @@ body.menu-open{ overflow:hidden; }
   border-radius:999px !important;
 }
 
+/* =========================================================
+   ZEKEROPWEG – PREMIUM INTAKE FORM
+   Zelfde gevoel als start-aankoopadvies.html
+========================================================= */
+
+.intake-shell{
+  max-width:780px;
+  margin:0 auto;
+}
+
+/* Hoofdkaart */
+.advisor-card{
+  background:linear-gradient(180deg,#fbfaf7,#ffffff);
+  border-radius:32px;
+  padding:3.2rem 3.6rem;
+
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:
+    0 48px 120px rgba(0,0,0,.08),
+    inset 0 0 0 1px rgba(255,255,255,.6);
+
+  margin-top:3.2rem;
+}
+
+/* Labels */
+.advisor-card label{
+  display:block;
+  margin-top:2.1rem;
+
+  font-weight:600;
+  font-size:.96rem;
+  letter-spacing:.02em;
+}
+
+/* Input styling = ZOW signature */
+.advisor-card input,
+.advisor-card select,
+.advisor-card textarea{
+
+  width:100%;
+  margin-top:.6rem;
+
+  padding:16px 18px;
+  border-radius:18px;
+
+  border:1px solid rgba(0,0,0,.10);
+  background:#ffffff;
+
+  font-size:.97rem;
+  line-height:1.6;
+
+  transition:.18s ease;
+}
+
+/* Focus = goud accent */
+.advisor-card input:focus,
+.advisor-card textarea:focus,
+.advisor-card select:focus{
+
+  outline:none;
+
+  border-color:#c6a86a;
+  box-shadow:
+    0 0 0 3px rgba(198,168,106,.15),
+    0 14px 32px rgba(0,0,0,.06);
+}
+
+/* Placeholder subtiel */
+.advisor-card ::placeholder{
+  color:rgba(0,0,0,.42);
+}
+
+/* Hints onder velden */
+.field-hint{
+  font-size:.82rem;
+  opacity:.58;
+  margin-top:.5rem;
+  line-height:1.45;
+}
+
+/* Vertrouwensregel */
+.advisor-microtrust{
+  font-size:0.86rem;
+  opacity:.68;
+  margin-top:2.6rem;
+  margin-bottom:.8rem;
+}
+
+/* SUBMIT = ZOW CTA */
+.advisor-submit{
+
+  margin-top:1rem;
+  padding:18px 34px;
+
+  border-radius:999px;
+
+  background:linear-gradient(180deg,#0c1220,#02060d);
+  color:#ffffff;
+
+  font-weight:600;
+  letter-spacing:.08em;
+
+  border:none;
+  width:100%;
+
+  transition:.22s ease;
+}
+
+.advisor-submit:hover{
+  background:linear-gradient(180deg,#111b2f,#050b16);
+  transform:translateY(-1px);
+}
+
+/* Mobile verfijning */
+@media(max-width:768px){
+
+  .advisor-card{
+    padding:2.2rem 1.8rem;
+    border-radius:24px;
+  }
+
+  .advisor-card input,
+  .advisor-card select,
+  .advisor-card textarea{
+    padding:15px 16px;
+  }
+
+}
+
+
 
 
 
