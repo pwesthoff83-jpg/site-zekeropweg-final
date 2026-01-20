@@ -742,6 +742,7 @@ body.menu-open{ overflow:hidden; }
   padding:6px 0;
 }
 
+/* basis streep */
 .zop-nav a::after,
 .zop-drop-label::after{
   content:"";
@@ -750,14 +751,28 @@ body.menu-open{ overflow:hidden; }
   left:0;
   width:0%;
   height:2px;
-  background:#d9b36c;
-  transition:.25s;
+
+  /* echt ZOW goud */
+  background: linear-gradient(90deg, #e0c07a, #c6a86a);
+  transition:.25s ease;
 }
 
+/* hover */
 .zop-nav a:hover::after,
 .zop-drop-label:hover::after{
   width:100%;
 }
+
+/* 🔥 DIT IS DE MAGIE: actief item */
+.zop-nav a.active{
+  color:#c6a86a;
+  font-weight:600;
+}
+
+.zop-nav a.active::after{
+  width:100%;
+}
+
 
 .zop-contact{
   padding:6px 0;
@@ -1474,6 +1489,7 @@ body.menu-open{ overflow:hidden; }
   }
 
 }
+
 
 
 
