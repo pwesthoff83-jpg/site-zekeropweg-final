@@ -1,210 +1,145 @@
 /* ============================================================
-   ZEKEROPWEG – CORE JS (CLEAN & STABLE)
+   ZEKEROPWEG – CORE JS (FINAL, SINGLE SOURCE)
 ============================================================ */
 
-
-/* =========================
-   MOBILE MENU
-========================= */
-function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.add("open");
-  overlay.classList.add("active");
-  document.body.classList.add("menu-open");
-}
-
-function closeMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const overlay = document.getElementById("menuOverlay");
-
-  if (!menu || !overlay) return;
-
-  menu.classList.remove("open");
-  overlay.classList.remove("active");
-  document.body.classList.remove("menu-open");
-}
-
-
-/* =========================
-   DOM READY
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     ACTIVE NAV (HEADER)
-  ========================= */
+  /* ======================================================
+     CURRENT PAGE
+  ====================================================== */
 
-  let current = window.location.pathname.split("/").pop().toLowerCase();
+  let page = window.location.pathname
+    .split("/")
+    .pop()
+    .toLowerCase();
 
-  if (!current || current === "/") {
-    current = "index.html";
+  if (!page || page === "/") {
+    page = "index.html";
   }
+
+
+  /* ======================================================
+     HEADER NAV ACTIVE
+  ====================================================== */
+
+  const navMap = {
+    "index.html": "index.html",
+
+    "aankoopadvies.html": "aankoopadvies.html",
+
+    "ev-accucheck.html": "ev-accucheck.html",
+    "ev-accucheck-zakelijk.html": "ev-accucheck.html",
+
+    "bezwaarservice.html": "bezwaarservice.html",
+
+    "contact.html": "contact.html",
+    "over.html": "over.html"
+  };
+
+  const activeNav = navMap[page];
 
   document.querySelectorAll(".zop-nav a").forEach(link => {
 
-    const href = link.getAttribute("href").toLowerCase();
-
-    // Reset
     link.classList.remove("active");
 
-    // Home
-    if (current.includes("index") && href.includes("index")) {
-      link.classList.add("active");
-    }
-
-    // AccuCheck (particulier + zakelijk)
-    else if (
-      current.includes("accucheck") &&
-      href.includes("ev-accucheck")
-    ) {
-      link.classList.add("active");
-    }
-
-    // Overige exact match
-    else if (current === href) {
+    if (link.getAttribute("href") === activeNav) {
       link.classList.add("active");
     }
 
   });
 
 
-  /* =========================
-     FOOTER MAIL HIGHLIGHT
-  ========================= */
+  /* ======================================================
+     FOOTER MAIL ACTIVE
+  ====================================================== */
 
   const mailMap = {
+    "index.html": "info",
+
     "aankoopadvies.html": "advies",
+
     "ev-accucheck.html": "accu",
     "ev-accucheck-zakelijk.html": "accu",
+
     "bezwaarservice.html": "bezwaar",
+
     "contact.html": "info",
-    "over.html": "info",
-    "index.html": "info"
+    "over.html": "info"
   };
 
-  const activeService = mailMap[current] || "info";
+  const activeMail = mailMap[page] || "info";
 
-  // Reset
-  document.querySelectorAll("[data-service]").forEach(mail => {
-    mail.classList.remove("footer-accent");
+  document.querySelectorAll("footer [data-service]").forEach(el => {
+    el.classList.remove("footer-accent");
   });
 
-  const mailLink = document.querySelector(
-    `footer a[data-service="${activeService}"]`
+  const mail = document.querySelector(
+    `footer [data-service="${activeMail}"]`
   );
 
-  if (mailLink) {
-    mailLink.classList.add("footer-accent");
+  if (mail) {
+    mail.classList.add("footer-accent");
   }
 
 
-  /* =========================
-     PAGE ROUTING PROTECTION
-  ========================= */
+  /* ======================================================
+     INTAKE ADDON
+  ====================================================== */
 
-  const allowedPages = [
-    "index",
-    "home",
-    "aankoopadvies",
-    "ev-accucheck",
-    "ev-accucheck-zakelijk",
-    "bezwaarservice",
-    "intake",
-    "contact",
-    "over"
-  ];
+  const pakket = document.querySelector('select[name="Pakket"]');
+  const addon = document.getElementById("accuAddon");
 
-  const currentPage =
-    (window.location.pathname.split("/").pop() || "").toLowerCase();
+  if (pakket && addon) {
 
-  if (!allowedPages.some(p => currentPage.includes(p))) {
-    window.location.href = "contact.html";
-  }
+    function update() {
+      const v = pakket.value.toLowerCase();
 
-
-  /* =========================
-     INTAKE ADDON LOGICA
-  ========================= */
-
-  const pakketSelect = document.querySelector('select[name="Pakket"]');
-  const accuAddon = document.getElementById("accuAddon");
-
-  if (pakketSelect && accuAddon) {
-
-    function updateAddon() {
-      const val = pakketSelect.value.toLowerCase();
-
-      accuAddon.style.display =
-        (val.includes("premium") || val.includes("full"))
+      addon.style.display =
+        (v.includes("premium") || v.includes("full"))
           ? "block"
           : "none";
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const preset = params.get("pakket");
-
-    if (preset) {
-      [...pakketSelect.options].forEach(o => {
-        if (o.text.toLowerCase().includes(preset.toLowerCase())) {
-          o.selected = true;
-        }
-      });
-    }
-
-    pakketSelect.addEventListener("change", updateAddon);
-    updateAddon();
+    pakket.addEventListener("change", update);
+    update();
   }
 
 
-  /* =========================
-     EV / HYBRIDE REMINDER
-  ========================= */
+  /* ======================================================
+     EV REMINDER
+  ====================================================== */
 
-  const advertentieInput =
-    document.querySelector('input[name="Advertentie"]');
-
-  const evNotice = document.getElementById("evNotice");
-  const evAnchor = document.getElementById("evAnchor");
+  const advert = document.querySelector('input[name="Advertentie"]');
+  const notice = document.getElementById("evNotice");
+  const anchor = document.getElementById("evAnchor");
 
   function checkEV() {
 
-    if (!advertentieInput) return;
+    if (!advert) return;
 
-    const link = advertentieInput.value.toLowerCase();
+    const v = advert.value.toLowerCase();
 
     const isEV =
       /ev|hybride|electric|plug-in|tesla|ioniq|niro|leaf|e-tron|polestar|id\./
-        .test(link);
+        .test(v);
 
-    const accuCheck =
-      document.querySelector('input[name="AccuCheck"]');
+    const acc = document.querySelector('input[name="AccuCheck"]');
+    const has = acc && acc.checked;
 
-    const hasAccu = accuCheck && accuCheck.checked;
-
-    if (evNotice) {
-      evNotice.style.display =
-        (isEV && !hasAccu) ? "block" : "none";
+    if (notice) {
+      notice.style.display = (isEV && !has) ? "block" : "none";
     }
 
-    if (evAnchor) {
-      evAnchor.style.display =
-        (isEV && !hasAccu) ? "block" : "none";
+    if (anchor) {
+      anchor.style.display = (isEV && !has) ? "block" : "none";
     }
   }
 
-  if (advertentieInput) {
-    advertentieInput.addEventListener("input", checkEV);
-  }
-
+  advert && advert.addEventListener("input", checkEV);
   document
     .querySelector('input[name="AccuCheck"]')
     ?.addEventListener("change", checkEV);
 
 });
-
 
 
