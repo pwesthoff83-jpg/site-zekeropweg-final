@@ -31,6 +31,9 @@
   <input type="hidden" name="bron" value="accucheck-intake">
   <input type="hidden" name="dienst" value="aviloo-flash">
   <input type="hidden" name="versie" value="2026-1">
+  <input type="hidden" name="product" id="productField">
+
+  
 
 
   <h3>Klantgegevens</h3>
@@ -152,22 +155,66 @@
 const klanttype = document.getElementById("klanttype");
 const particulier = document.getElementById("particulierFields");
 const zakelijk = document.getElementById("zakelijkFields");
+const productField = document.getElementById("productField");
 
-klanttype.addEventListener("change", function(){
 
-  if(this.value === "particulier"){
+/* Toon juiste velden */
+function updateFields(type){
+
+  if(type === "particulier"){
     particulier.style.display = "block";
     zakelijk.style.display = "none";
   }
 
-  if(this.value === "zakelijk"){
+  if(type === "zakelijk"){
     particulier.style.display = "none";
     zakelijk.style.display = "block";
   }
 
+}
+
+
+/* Handmatig wisselen */
+klanttype.addEventListener("change", function(){
+  updateFields(this.value);
 });
 
+
+/* URL parameter uitlezen */
+function getQueryParam(param){
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const dienst = getQueryParam("dienst");
+
+
+/* Automatisch instellen via link */
+if(dienst){
+
+  if(dienst === "ev-accucheck-particulier"){
+
+    klanttype.value = "particulier";
+    updateFields("particulier");
+
+  }
+
+  if(dienst === "ev-accucheck-zakelijk"){
+
+    klanttype.value = "zakelijk";
+    updateFields("zakelijk");
+
+  }
+
+  /* Opslaan product */
+  if(productField){
+    productField.value = dienst;
+  }
+
+}
+
 </script>
+
 
 </body>
 </html>
