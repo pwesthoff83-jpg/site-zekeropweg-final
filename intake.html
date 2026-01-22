@@ -160,13 +160,30 @@
 
 <script>
 
+/* ===========================
+   BASIS VARIABELEN
+=========================== */
+
 const klanttype = document.getElementById("klanttype");
 const particulier = document.getElementById("particulierFields");
 const zakelijk = document.getElementById("zakelijkFields");
 const productField = document.getElementById("productField");
 
+const merkEl = document.getElementById("merk");
+const modelEl = document.getElementById("model");
+const bouwjaarEl = document.getElementById("bouwjaar");
 
-/* Toon juiste velden */
+const platformField = document.getElementById("platformField");
+const kabelField = document.getElementById("kabeladviesField");
+
+const preview = document.getElementById("kabelPreview");
+const previewText = document.getElementById("kabelPreviewText");
+
+
+/* ===========================
+   PART / ZAKELIJK TOGGLE
+=========================== */
+
 function updateFields(type){
 
   if(type === "particulier"){
@@ -175,20 +192,21 @@ function updateFields(type){
   }
 
   if(type === "zakelijk"){
-    particulier.style.display = "none";
+    particulier.style.display.display = "none";
     zakelijk.style.display = "block";
   }
 
 }
 
-
-/* Handmatig wisselen */
 klanttype.addEventListener("change", function(){
   updateFields(this.value);
 });
 
 
-/* URL parameter uitlezen */
+/* ===========================
+   URL PARAMETER
+=========================== */
+
 function getQueryParam(param){
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
@@ -196,32 +214,133 @@ function getQueryParam(param){
 
 const dienst = getQueryParam("dienst");
 
-
-/* Automatisch instellen via link */
 if(dienst){
 
   if(dienst === "ev-accucheck-particulier"){
-
     klanttype.value = "particulier";
     updateFields("particulier");
-
   }
 
   if(dienst === "ev-accucheck-zakelijk"){
-
     klanttype.value = "zakelijk";
     updateFields("zakelijk");
-
   }
 
-  /* Opslaan product */
   if(productField){
     productField.value = dienst;
   }
 
 }
 
+
+/* ===========================
+   KABEL LOGICA
+=========================== */
+
+function norm(s){
+  return (s || "").toString().trim().toLowerCase();
+}
+
+
+function inferPlatform(merk, model){
+
+  const m = norm(merk);
+  const mo = norm(model);
+
+  if(["volkswagen","vw","skoda","audi","seat","cupra","porsche"].includes(m)) return "vag";
+  if(m.includes("tesla")) return "tesla";
+  if(m.includes("hyundai") || m.includes("kia")) return "hyundai_kia";
+  if(m.includes("nissan")) return "nissan";
+  if(m.includes("bmw") || m.includes("mini")) return "bmw";
+  if(m.includes("renault")) return "renault";
+
+  if(mo.includes("enyaq") || mo.includes("id.") || mo.includes("born") || mo.includes("q4")) return "vag";
+  if(mo.includes("model")) return "tesla";
+  if(mo.includes("ioniq") || mo.includes("ev6") || mo.includes("kona")) return "hyundai_kia";
+  if(mo.includes("leaf")) return "nissan";
+
+  return "onbekend";
+}
+
+
+function inferCable(platform, bouwjaar){
+
+  const year = parseInt(bouwjaar, 10);
+  const y = Number.isFinite(year) ? year : 9999;
+
+  if(platform === "tesla"){
+    return {kabel:"14019", reden:"Tesla profiel"};
+  }
+
+  if(platform === "vag"){
+    if(y >= 2020) return {kabel:"14018", reden:"VAG modern (DoIP Ethernet)"};
+    return {kabel:"14005", reden:"VAG ouder (OBD CAN)"};
+  }
+
+  if(platform === "hyundai_kia"){
+    if(y >= 2020) return {kabel:"14018", reden:"Hyundai Kia modern"};
+    return {kabel:"14005", reden:"Hyundai Kia ouder"};
+  }
+
+  if(platform === "nissan"){
+    if(y <= 2016) return {kabel:"14008", reden:"Nissan legacy"};
+    return {kabel:"14005", reden:"Nissan OBD"};
+  }
+
+  return {kabel:"14018", reden:"Onbekend → standaard DoIP"};
+}
+
+
+/* ===========================
+   UPDATE ADVIES
+=========================== */
+
+function updateKabelAdvies(){
+
+  if(!merkEl || !bouwjaarEl) return;
+
+  const merk = merkEl.value;
+  const model = modelEl.value;
+  const bouwjaar = bouwjaarEl.value;
+
+  if(!merk || !bouwjaar){
+    preview.style.display = "none";
+    platformField.value = "";
+    kabelField.value = "";
+    return;
+  }
+
+  const platform = inferPlatform(merk, model);
+  const result = inferCable(platform, bouwjaar);
+
+  platformField.value = platform;
+  kabelField.value = result.kabel;
+
+  preview.style.display = "block";
+  previewText.textContent =
+    "Neem kabel " + result.kabel +
+    " mee (" + result.reden + ").";
+
+}
+
+
+/* ===========================
+   LISTENERS
+=========================== */
+
+["input","change"].forEach(evt => {
+
+  if(merkEl) merkEl.addEventListener(evt, updateKabelAdvies);
+  if(modelEl) modelEl.addEventListener(evt, updateKabelAdvies);
+  if(bouwjaarEl) bouwjaarEl.addEventListener(evt, updateKabelAdvies);
+
+});
+
+
+document.addEventListener("DOMContentLoaded", updateKabelAdvies);
+
 </script>
+
 
 
 </body>
