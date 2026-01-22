@@ -1,107 +1,173 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EV AccuCheck aanvragen | ZekerOpWeg</title>
-<meta name="description" content="Vraag hier uw onafhankelijke EV AccuCheck aan. TÜV gecertificeerde accudiagnose en persoonlijk ZekerOpWeg advies.">
-<link rel="stylesheet" href="css/styles.css?v=3.0.0">
+  <meta charset="UTF-8">
+  <title>EV AccuCheck Intake | ZekerOpWeg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Intakeformulier voor ZekerOpWeg EV AccuCheck inclusief AVILOO accudiagnose.">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="fade-in">
+<body>
 
-<header class="header">
-  <div class="container header-container">
-    <a href="index.html" class="brand-logo">ZekerOpWeg</a>
+<section class="intake-container">
+
+  <h1>EV AccuCheck Intake</h1>
+
+  <p class="intake-intro">
+    Vul dit formulier in om uw TÜV-gecertificeerde accudiagnose
+    snel en zorgvuldig te laten uitvoeren.
+    ⏱️ Duur: ± 2 minuten.
+  </p>
+
+
+<form id="accucheckForm"
+      action="https://formsubmit.co/advies@zekeropweg.nu"
+      method="POST">
+
+
+  <!-- Hidden -->
+  <input type="hidden" name="bron" value="accucheck-intake">
+  <input type="hidden" name="dienst" value="aviloo-flash">
+  <input type="hidden" name="versie" value="2026-1">
+
+
+  <h3>Klantgegevens</h3>
+
+  <label>Naam *</label>
+  <input type="text" name="naam" required>
+
+  <label>E-mail *</label>
+  <input type="email" name="email" required>
+
+  <label>Telefoon *</label>
+  <input type="tel" name="telefoon" required>
+
+  <label>Klanttype *</label>
+  <select name="klanttype" id="klanttype" required>
+    <option value="">Selecteer</option>
+    <option value="particulier">Particulier</option>
+    <option value="zakelijk">Zakelijk</option>
+  </select>
+
+
+  <h3>Voertuiggegevens</h3>
+
+  <label>Kenteken *</label>
+  <input type="text" name="kenteken" required>
+
+  <label>VIN / Chassisnummer</label>
+  <input type="text" name="vin">
+
+  <label>Merk *</label>
+  <input type="text" name="merk" required>
+
+  <label>Model *</label>
+  <input type="text" name="model" required>
+
+  <label>Bouwjaar *</label>
+  <input type="number" name="bouwjaar" required>
+
+  <label>Kilometerstand *</label>
+  <input type="number" name="kmstand" required>
+
+
+  <!-- Particulier -->
+  <div id="particulierFields" style="display:none;">
+
+    <h3>Gebruik en Laden</h3>
+
+    <label>Hoe vaak snellaadt u?</label>
+    <select name="snelladen">
+      <option value="">Selecteer</option>
+      <option value="zelden">Zelden</option>
+      <option value="soms">Soms</option>
+      <option value="regelmatig">Regelmatig</option>
+      <option value="vaak">Vaak</option>
+    </select>
+
+    <label>Hoofdgebruik</label>
+    <select name="gebruik">
+      <option value="">Selecteer</option>
+      <option value="woon-werk">Woon-werk</option>
+      <option value="zakelijk">Zakelijk</option>
+      <option value="lange-ritten">Lange ritten</option>
+      <option value="stad">Stadsverkeer</option>
+    </select>
+
   </div>
-</header>
 
-<section class="hero hero-intake">
-  <div class="hero-content">
-    <span class="hero-eyebrow">Onafhankelijk · Gecertificeerd · Op locatie</span>
-    <h1>Start uw EV AccuCheck</h1>
-    <p>U vraagt hier een onafhankelijke accudiagnose aan. Uw aanvraag wordt persoonlijk opgevolgd voor planning en uitvoering.</p>
+
+  <!-- Zakelijk -->
+  <div id="zakelijkFields" style="display:none;">
+
+    <h3>Zakelijke informatie</h3>
+
+    <label>Bedrijfsnaam</label>
+    <input type="text" name="bedrijfsnaam">
+
+    <label>Doel van de check</label>
+    <select name="doel_zakelijk">
+      <option value="">Selecteer</option>
+      <option value="voorraad">Voorraadcontrole</option>
+      <option value="verkoop">Verkoopvoorbereiding</option>
+      <option value="garantie">Garantieclaim</option>
+      <option value="lease-einde">Lease-einde</option>
+    </select>
+
   </div>
-</section>
 
-<main class="page-content">
 
-<section class="services-section container intake-shell">
+  <h3>Doel AccuCheck</h3>
 
-<div class="advisor-card">
-<form action="dank.html" method="post">
+  <select name="doel_algemeen" required>
+    <option value="">Selecteer</option>
+    <option value="aankoop">Aankoop</option>
+    <option value="verkoop">Verkoop</option>
+    <option value="garantie">Garantie</option>
+    <option value="zekerheid">Zekerheid</option>
+  </select>
 
-<h3 class="section-title">Uw gegevens</h3>
 
-<label>Naam</label>
-<input type="text" name="Naam" required>
+  <h3>Toestemming</h3>
 
-<label>E-mailadres</label>
-<input type="email" name="Email" required>
-<p class="field-hint">Het TÜV gecertificeerde accucertificaat en uw ZekerOpWeg rapport worden digitaal naar dit adres verzonden.</p>
+  <label class="checkbox">
+    <input type="checkbox" name="toestemming" required>
+    Ik ga akkoord met verwerking van mijn gegevens
+  </label>
 
-<label>Telefoonnummer</label>
-<input type="tel" name="Telefoon">
 
-<hr class="divider">
-
-<h3 class="section-title">Het voertuig</h3>
-
-<label>Kenteken</label>
-<input type="text" name="Kenteken">
-
-<label>Merk en model</label>
-<input type="text" name="Model">
-
-<label>Bouwjaar</label>
-<input type="number" name="Bouwjaar">
-
-<label>Aandrijving</label>
-<select name="Aandrijving">
-  <option>Volledig elektrisch</option>
-  <option>Plug-in hybride</option>
-</select>
-
-<hr class="divider">
-
-<h3 class="section-title">Doel van de meting</h3>
-
-<label><input type="radio" name="Doel" value="Aankoop" required> Aankoop</label>
-<label><input type="radio" name="Doel" value="Verkoop"> Verkoop of taxatie</label>
-<label><input type="radio" name="Doel" value="Einde garantie"> Einde garantie</label>
-<label><input type="radio" name="Doel" value="Anders"> Anders</label>
-
-<label>Locatie van het voertuig</label>
-<input type="text" name="Locatie" placeholder="Plaats of postcode">
-
-<p class="advisor-microtrust">Geen betaling vooraf. De meting wordt eerst uitgevoerd.</p>
-
-<button type="submit" class="advisor-submit">
-Ontvang mijn onafhankelijke AccuCheck
-</button>
-
-<p class="field-hint">
-Het TÜV gecertificeerde accucertificaat en het ZekerOpWeg advies ontvangt u digitaal na betaling.
-</p>
+  <button type="submit" class="btn-primary">
+    Intake verzenden
+  </button>
 
 </form>
-</div>
 
 </section>
 
-</main>
 
-<footer class="footer">
-<div class="container footer-grid">
-  <div class="footer-col">
-    <p class="footer-title">ZekerOpWeg</p>
-    <p>Onafhankelijk autoadvies met rust en overzicht.</p>
-    <p>© 2026 ZekerOpWeg</p>
-  </div>
-</div>
-</footer>
+<script>
 
-<script src="scripts/scripts.js?v=2"></script>
+const klanttype = document.getElementById("klanttype");
+const particulier = document.getElementById("particulierFields");
+const zakelijk = document.getElementById("zakelijkFields");
+
+klanttype.addEventListener("change", function(){
+
+  if(this.value === "particulier"){
+    particulier.style.display = "block";
+    zakelijk.style.display = "none";
+  }
+
+  if(this.value === "zakelijk"){
+    particulier.style.display = "none";
+    zakelijk.style.display = "block";
+  }
+
+});
+
+</script>
+
 </body>
 </html>
-
