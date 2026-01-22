@@ -82,5 +82,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const path = window.location.pathname.toLowerCase();
+
+  // Reset alle mails
+  document.querySelectorAll("[data-service]").forEach(mail => {
+    mail.classList.remove("active");
+  });
+
+  let activeService = "info"; // default
+
+  if (path.includes("aankoopadvies")) {
+    activeService = "advies";
+  }
+
+  if (path.includes("accucheck")) {
+    activeService = "accu";
+  }
+
+  if (path.includes("bezwaar")) {
+    activeService = "bezwaar";
+  }
+
+  // Activeer juiste mail
+  const activeMail = document.querySelector(
+    `[data-service="${activeService}"]`
+  );
+
+  if (activeMail) {
+    activeMail.classList.add("active");
+  }
+
+});
 
 
