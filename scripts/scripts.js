@@ -28,37 +28,34 @@ function closeMenu() {
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
-  const path = window.location.pathname.toLowerCase();
+  let path = window.location.pathname.toLowerCase();
 
-  let activeService = "info";   // default
-
-  if (path.includes("aankoopadvies")) {
-    activeService = "advies";
+  if (path === "/" || path === "") {
+    path = "index.html";
   }
 
-  if (path.includes("ev-accucheck")) {
-    activeService = "accu";
-  }
+  document.querySelectorAll(".zop-nav a").forEach(link => {
 
-  if (path.includes("bezwaar")) {
-    activeService = "bezwaar";
-  }
+    const href = link.getAttribute("href").toLowerCase();
 
-  if (
-    path.endsWith("index.html") ||
-    path.endsWith("/") ||
-    path.includes("over") ||
-    path.includes("contact")
-  ) {
-    activeService = "info";
-  }
+    // Reset
+    link.classList.remove("active");
 
-  document.querySelectorAll("[data-service]").forEach(el => {
-    if (el.dataset.service === activeService) {
-      el.classList.add("footer-accent");
-    } else {
-      el.classList.remove("footer-accent");
+    // Homepage
+    if ((path === "/" || path.includes("index")) && href.includes("index")) {
+      link.classList.add("active");
     }
+
+    // AccuCheck (alles met accucheck)
+    if (path.includes("accucheck") && href.includes("ev-accucheck")) {
+      link.classList.add("active");
+    }
+
+    // Overige pagina's exact match
+    if (path.endsWith(href)) {
+      link.classList.add("active");
+    }
+
   });
 
 });
@@ -122,6 +119,7 @@ function checkEV() {
 
 advertentieInput && advertentieInput.addEventListener("input", checkEV);
 document.querySelector('input[name="AccuCheck"]')?.addEventListener("change", checkEV);
+
 
 
 
