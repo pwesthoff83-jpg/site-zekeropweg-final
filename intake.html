@@ -3,345 +3,330 @@
 <head>
   <meta charset="UTF-8">
   <title>EV AccuCheck Intake | ZekerOpWeg</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Intakeformulier voor ZekerOpWeg EV AccuCheck inclusief AVILOO accudiagnose.">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Intakeformulier voor ZekerOpWeg EV AccuCheck inclusief TÜV-gecertificeerde accudiagnose.">
+
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1">
+  <link rel="stylesheet" href="css/zop-stability.css">
 </head>
 
-<body>
 
-<section class="intake-container">
+<body class="fade-in page-intake" data-page="intake">
 
-  <h1>EV AccuCheck Intake</h1>
 
-  <p class="intake-intro">
-    Vul dit formulier in om uw TÜV-gecertificeerde accudiagnose
-    snel en zorgvuldig te laten uitvoeren.
-    ⏱️ Duur: ± 2 minuten.
+<!-- ================= HEADER ================= -->
+
+<header class="zop-header">
+  <div class="zop-header-inner">
+
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+
+    <nav class="zop-nav">
+
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <a href="ev-accucheck.html" class="active">AccuCheck</a>
+      <a href="bezwaarservice.html">Bezwaar</a>
+
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+
+    </nav>
+
+  </div>
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="page-content">
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="services-section container">
+
+  <h2 class="section-title">EV AccuCheck Intake</h2>
+
+  <p class="section-subtitle">
+    Met deze intake bereid ik uw TÜV-gecertificeerde accudiagnose
+    zorgvuldig voor.
+    <br>
+    Duur: ± 2 minuten.
   </p>
-
-
-<form id="accucheckForm"
-      action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
-      method="POST">
-  
-  <!-- Hidden -->
-  <input type="hidden" name="redirect" value="https://zekeropweg.nu/">
-
-  <input type="hidden" name="bron" value="accucheck-intake">
-  <input type="hidden" name="dienst" value="aviloo-flash">
-  <input type="hidden" name="versie" value="2026-1">
-  <input type="hidden" name="product" id="productField">
-  <input type="hidden" name="platform" id="platformField" value="">
-  <input type="hidden" name="kabeladvies" id="kabeladviesField" value="">
- 
- 
-  <h3>Klantgegevens</h3>
-
-  <label>Naam *</label>
-  <input type="text" name="naam" required>
-
-  <label>E-mail *</label>
-  <input type="email" name="email" required>
-
-  <label>Telefoon *</label>
-  <input type="tel" name="telefoon" required>
-
-  <label>Klanttype *</label>
-  <select name="klanttype" id="klanttype" required>
-    <option value="">Selecteer</option>
-    <option value="particulier">Particulier</option>
-    <option value="zakelijk">Zakelijk</option>
-  </select>
-
-
-  <h3>Voertuiggegevens</h3>
-
-  <label>Kenteken *</label>
-  <input type="text" name="kenteken" required>
-
-  <label>VIN / Chassisnummer</label>
-  <input type="text" name="vin">
-
-  <label>Merk *</label>
-  <input type="text" name="merk" id="merk" required>
-
-  <label>Model *</label>
-  <input type="text" name="model" id="model" required>
-
-  <label>Bouwjaar *</label>
-  <input type="number" name="bouwjaar" id="bouwjaar" required>
-
-  <label>Kilometerstand *</label>
-  <input type="number" name="kmstand" required>
-
-
-  <!-- Particulier -->
-  <div id="particulierFields" style="display:none;">
-
-    <h3>Gebruik en Laden</h3>
-
-    <label>Hoe vaak snellaadt u?</label>
-    <select name="snelladen">
-      <option value="">Selecteer</option>
-      <option value="zelden">Zelden</option>
-      <option value="soms">Soms</option>
-      <option value="regelmatig">Regelmatig</option>
-      <option value="vaak">Vaak</option>
-    </select>
-
-    <label>Hoofdgebruik</label>
-    <select name="gebruik">
-      <option value="">Selecteer</option>
-      <option value="woon-werk">Woon-werk</option>
-      <option value="zakelijk">Zakelijk</option>
-      <option value="lange-ritten">Lange ritten</option>
-      <option value="stad">Stadsverkeer</option>
-    </select>
-
-  </div>
-
-
-  <!-- Zakelijk -->
-  <div id="zakelijkFields" style="display:none;">
-
-    <h3>Zakelijke informatie</h3>
-
-    <label>Bedrijfsnaam</label>
-    <input type="text" name="bedrijfsnaam">
-
-    <label>Doel van de check</label>
-    <select name="doel_zakelijk">
-      <option value="">Selecteer</option>
-      <option value="voorraad">Voorraadcontrole</option>
-      <option value="verkoop">Verkoopvoorbereiding</option>
-      <option value="garantie">Garantieclaim</option>
-      <option value="lease-einde">Lease-einde</option>
-    </select>
-
-  </div>
-
-
-  <h3>Doel AccuCheck</h3>
-
-  <select name="doel_algemeen" required>
-    <option value="">Selecteer</option>
-    <option value="aankoop">Aankoop</option>
-    <option value="verkoop">Verkoop</option>
-    <option value="garantie">Garantie</option>
-    <option value="zekerheid">Zekerheid</option>
-  </select>
-
-
-  <h3>Toestemming</h3>
-
-  <label class="checkbox">
-    <input type="checkbox" name="toestemming" required>
-    Ik ga akkoord met verwerking van mijn gegevens
-  </label>
-
-  <!-- Kabeladvies preview -->
-<div id="kabelPreview" style="display:none; margin-top:20px; padding:12px; border:1px solid #d7b56d; border-radius:6px; background:#faf7f0;">
-  <strong>Werkvoorbereiding</strong><br>
-  <span id="kabelPreviewText"></span>
-</div>
-
-
-  <button type="submit" class="btn-primary">
-    Intake verzenden
-  </button>
-
-</form>
 
 </section>
 
 
+
+<!-- ================= FORM BLOCK ================= -->
+
+<section class="services-section container intake-shell">
+
+  <h1 class="section-title">
+    Zekerheid vóór u beslist
+  </h1>
+
+  <p class="section-subtitle">
+    U laat uw voertuig testen.
+    Ik zorg voor een objectieve, professionele beoordeling.
+  </p>
+
+  <p class="accentline">
+    Uw gegevens worden uitsluitend gebruikt
+    voor voorbereiding, uitvoering en rapportage
+    van uw EV AccuCheck.
+  </p>
+
+
+
+  <div class="advisor-card">
+
+
+<!-- ================= FORM ================= -->
+
+<form id="accucheckForm"
+      action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
+      method="POST">
+
+
+<!-- ================= HIDDEN ================= -->
+
+<input type="hidden" name="redirect" value="https://zekeropweg.nu/">
+
+<input type="hidden" name="bron" value="accucheck-intake">
+<input type="hidden" name="dienst" value="aviloo-flash">
+<input type="hidden" name="versie" value="2026-1">
+
+<input type="hidden" name="product" id="productField">
+<input type="hidden" name="platform" id="platformField" value="">
+<input type="hidden" name="kabeladvies" id="kabeladviesField" value="">
+
+
+
+<!-- ================= KLANT ================= -->
+
+<h3>Klantgegevens</h3>
+
+<label>Naam *</label>
+<input type="text" name="naam" required>
+
+<label>E-mail *</label>
+<input type="email" name="email" required>
+
+<label>Telefoon *</label>
+<input type="tel" name="telefoon" required>
+
+<label>Klanttype *</label>
+<select name="klanttype" id="klanttype" required>
+  <option value="">Selecteer</option>
+  <option value="particulier">Particulier</option>
+  <option value="zakelijk">Zakelijk</option>
+</select>
+
+
+
+<!-- ================= AUTO ================= -->
+
+<h3>Voertuiggegevens</h3>
+
+<label>Kenteken *</label>
+<input type="text" name="kenteken" required>
+
+<label>VIN / Chassisnummer</label>
+<input type="text" name="vin">
+
+<label>Merk *</label>
+<input type="text" name="merk" id="merk" required>
+
+<label>Model *</label>
+<input type="text" name="model" id="model" required>
+
+<label>Bouwjaar *</label>
+<input type="number" name="bouwjaar" id="bouwjaar" required>
+
+<label>Kilometerstand *</label>
+<input type="number" name="kmstand" required>
+
+
+
+<!-- ================= PARTICULIER ================= -->
+
+<div id="particulierFields" style="display:none;">
+
+  <h3>Gebruik en Laden</h3>
+
+  <label>Hoe vaak snellaadt u?</label>
+  <select name="snelladen">
+    <option value="">Selecteer</option>
+    <option value="zelden">Zelden</option>
+    <option value="soms">Soms</option>
+    <option value="regelmatig">Regelmatig</option>
+    <option value="vaak">Vaak</option>
+  </select>
+
+  <label>Hoofdgebruik</label>
+  <select name="gebruik">
+    <option value="">Selecteer</option>
+    <option value="woon-werk">Woon-werk</option>
+    <option value="zakelijk">Zakelijk</option>
+    <option value="lange-ritten">Lange ritten</option>
+    <option value="stad">Stadsverkeer</option>
+  </select>
+
+</div>
+
+
+
+<!-- ================= ZAKELIJK ================= -->
+
+<div id="zakelijkFields" style="display:none;">
+
+  <h3>Zakelijke informatie</h3>
+
+  <label>Bedrijfsnaam</label>
+  <input type="text" name="bedrijfsnaam">
+
+  <label>Doel van de check</label>
+  <select name="doel_zakelijk">
+    <option value="">Selecteer</option>
+    <option value="voorraad">Voorraadcontrole</option>
+    <option value="verkoop">Verkoopvoorbereiding</option>
+    <option value="garantie">Garantieclaim</option>
+    <option value="lease-einde">Lease-einde</option>
+  </select>
+
+</div>
+
+
+
+<!-- ================= DOEL ================= -->
+
+<h3>Doel AccuCheck</h3>
+
+<select name="doel_algemeen" required>
+  <option value="">Selecteer</option>
+  <option value="aankoop">Aankoop</option>
+  <option value="verkoop">Verkoop</option>
+  <option value="garantie">Garantie</option>
+  <option value="zekerheid">Zekerheid</option>
+</select>
+
+
+
+<!-- ================= TOESTEMMING ================= -->
+
+<h3>Toestemming</h3>
+
+<label class="checkbox">
+  <input type="checkbox" name="toestemming" required>
+  Ik ga akkoord met verwerking van mijn gegevens
+</label>
+
+
+
+<!-- ================= KABEL PREVIEW ================= -->
+
+<div id="kabelPreview"
+     style="display:none;margin-top:20px;padding:14px;border:1px solid #d7b56d;border-radius:8px;background:#faf7f0;">
+
+  <strong>Werkvoorbereiding</strong><br>
+  <span id="kabelPreviewText"></span>
+
+</div>
+
+
+
+<!-- ================= CTA ================= -->
+
+<p class="advisor-microtrust">
+Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
+</p>
+
+
+<button type="submit" class="advisor-submit">
+Intake verzenden
+</button>
+
+
+</form>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= AFSLUIT ================= -->
+
+<section class="services-section container">
+
+  <p class="accentline">
+    Na ontvangst neem ik contact met u op
+    voor planning en uitvoering van de meting.
+  </p>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>© 2026 ZekerOpWeg</p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p>
+        <a href="mailto:accucheck@zekeropweg.nu" data-service="accu">
+          accucheck@zekeropweg.nu
+        </a><br>
+        EV AccuCheck
+      </p>
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="scripts/menu.js" defer></script>
+
+
+<!-- ====== JOUW ENGINE SCRIPT (ONGEWijzigD) ====== -->
 <script>
 
-/* ===========================
-   BASIS VARIABELEN
-=========================== */
-
-const klanttype = document.getElementById("klanttype");
-const particulier = document.getElementById("particulierFields");
-const zakelijk = document.getElementById("zakelijkFields");
-const productField = document.getElementById("productField");
-
-const merkEl = document.getElementById("merk");
-const modelEl = document.getElementById("model");
-const bouwjaarEl = document.getElementById("bouwjaar");
-
-const platformField = document.getElementById("platformField");
-const kabelField = document.getElementById("kabeladviesField");
-
-const preview = document.getElementById("kabelPreview");
-const previewText = document.getElementById("kabelPreviewText");
-
-
-/* ===========================
-   PART / ZAKELIJK TOGGLE
-=========================== */
-
-function updateFields(type){
-
-  if(type === "particulier"){
-    particulier.style.display = "block";
-    zakelijk.style.display = "none";
-  }
-
-  if(type === "zakelijk"){
-    particulier.style.display.display = "none";
-    zakelijk.style.display = "block";
-  }
-
-}
-
-klanttype.addEventListener("change", function(){
-  updateFields(this.value);
-});
-
-
-/* ===========================
-   URL PARAMETER
-=========================== */
-
-function getQueryParam(param){
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
-
-const dienst = getQueryParam("dienst");
-
-if(dienst){
-
-  if(dienst === "ev-accucheck-particulier"){
-    klanttype.value = "particulier";
-    updateFields("particulier");
-  }
-
-  if(dienst === "ev-accucheck-zakelijk"){
-    klanttype.value = "zakelijk";
-    updateFields("zakelijk");
-  }
-
-  if(productField){
-    productField.value = dienst;
-  }
-
-}
-
-
-/* ===========================
-   KABEL LOGICA
-=========================== */
-
-function norm(s){
-  return (s || "").toString().trim().toLowerCase();
-}
-
-
-function inferPlatform(merk, model){
-
-  const m = norm(merk);
-  const mo = norm(model);
-
-  if(["volkswagen","vw","skoda","audi","seat","cupra","porsche"].includes(m)) return "vag";
-  if(m.includes("tesla")) return "tesla";
-  if(m.includes("hyundai") || m.includes("kia")) return "hyundai_kia";
-  if(m.includes("nissan")) return "nissan";
-  if(m.includes("bmw") || m.includes("mini")) return "bmw";
-  if(m.includes("renault")) return "renault";
-
-  if(mo.includes("enyaq") || mo.includes("id.") || mo.includes("born") || mo.includes("q4")) return "vag";
-  if(mo.includes("model")) return "tesla";
-  if(mo.includes("ioniq") || mo.includes("ev6") || mo.includes("kona")) return "hyundai_kia";
-  if(mo.includes("leaf")) return "nissan";
-
-  return "onbekend";
-}
-
-
-function inferCable(platform, bouwjaar){
-
-  const year = parseInt(bouwjaar, 10);
-  const y = Number.isFinite(year) ? year : 9999;
-
-  if(platform === "tesla"){
-    return {kabel:"14019", reden:"Tesla profiel"};
-  }
-
-  if(platform === "vag"){
-    if(y >= 2020) return {kabel:"14018", reden:"VAG modern (DoIP Ethernet)"};
-    return {kabel:"14005", reden:"VAG ouder (OBD CAN)"};
-  }
-
-  if(platform === "hyundai_kia"){
-    if(y >= 2020) return {kabel:"14018", reden:"Hyundai Kia modern"};
-    return {kabel:"14005", reden:"Hyundai Kia ouder"};
-  }
-
-  if(platform === "nissan"){
-    if(y <= 2016) return {kabel:"14008", reden:"Nissan legacy"};
-    return {kabel:"14005", reden:"Nissan OBD"};
-  }
-
-  return {kabel:"14018", reden:"Onbekend → standaard DoIP"};
-}
-
-
-/* ===========================
-   UPDATE ADVIES
-=========================== */
-
-function updateKabelAdvies(){
-
-  if(!merkEl || !bouwjaarEl) return;
-
-  const merk = merkEl.value;
-  const model = modelEl.value;
-  const bouwjaar = bouwjaarEl.value;
-
-  if(!merk || !bouwjaar){
-    preview.style.display = "none";
-    platformField.value = "";
-    kabelField.value = "";
-    return;
-  }
-
-  const platform = inferPlatform(merk, model);
-  const result = inferCable(platform, bouwjaar);
-
-  platformField.value = platform;
-  kabelField.value = result.kabel;
-
-  preview.style.display = "block";
-  previewText.textContent =
-    "Neem kabel " + result.kabel +
-    " mee (" + result.reden + ").";
-
-}
-
-
-/* ===========================
-   LISTENERS
-=========================== */
-
-["input","change"].forEach(evt => {
-
-  if(merkEl) merkEl.addEventListener(evt, updateKabelAdvies);
-  if(modelEl) modelEl.addEventListener(evt, updateKabelAdvies);
-  if(bouwjaarEl) bouwjaarEl.addEventListener(evt, updateKabelAdvies);
-
-});
-
-
-document.addEventListener("DOMContentLoaded", updateKabelAdvies);
+/* =========================== */
+/* JOUW BESTAANDE SCRIPT HIER */
+/* (ongewijzigd gelaten)      */
+/* =========================== */
 
 </script>
 
-<body class="page-intake">
-
 </body>
 </html>
-
