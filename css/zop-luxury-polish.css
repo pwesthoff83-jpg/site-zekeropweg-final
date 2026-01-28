@@ -1,13 +1,30 @@
 /* =====================================================
-   ZEKEROPWEG — LUXURY POLISH LAYER
-   Subtiele merkverfijning · Geen layout-logica
-   Laatste CSS-laag — mag alles zacht overschrijven
+   ZEKEROPWEG — LUXURY POLISH (FINAL)
+   High-end micro-afwerking · Geen layout-logica
+   Laatste CSS-laag — veilig en gecontroleerd
 ===================================================== */
 
 
-/* -------------------------------------
-   2) HERO TYPOGRAFIE — ZACHTER WIT
-------------------------------------- */
+/* =====================================================
+   1. PAGINA CANVAS — WARM, RUSTIG, PREMIUM
+===================================================== */
+
+.page-aankoopadvies{
+  background: linear-gradient(
+    to bottom,
+    #fcfbf8 0%,
+    #f6f5f1 100%
+  );
+}
+
+
+/* =====================================================
+   2. HERO → CONTENT OVERGANG (ÉÉN REGISSEUR)
+===================================================== */
+
+.hero{
+  box-shadow: inset 0 -110px 120px -80px rgba(7,18,30,0.65);
+}
 
 .hero h1{
   color: rgba(255,255,255,0.96);
@@ -17,154 +34,66 @@
   color: rgba(255,255,255,0.88);
 }
 
-/* -------------------------------------
-   3) EYEBROW — EDITORIAL FINISH
-------------------------------------- */
-
 .hero-eyebrow{
   letter-spacing: 0.28em;
   opacity: 0.85;
 }
 
-/* -------------------------------------
-   4) SECTION TITLES — AUTORITEIT & RUST
-------------------------------------- */
+
+/* =====================================================
+   3. TYPOGRAFIE — RUST & LEESTEMPO
+===================================================== */
+
+.page-aankoopadvies{
+  --text-body: 1.68;
+}
+
+.page-aankoopadvies p,
+.page-aankoopadvies .section-subtitle{
+  line-height: var(--text-body);
+  letter-spacing: 0.01em;
+}
 
 .section-title{
   letter-spacing: -0.02em;
 }
 
 .section-title::after{
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
-/* -------------------------------------
-   5) CARD SHADOWS — DUURDER OPPERVLAK
-------------------------------------- */
-
-.package-card,
-.service-card,
-.premium-card,
-.pricing-card,
-.usp-item{
-  box-shadow:
-    0 18px 40px rgba(0,0,0,0.06),
-    0 2px 8px rgba(0,0,0,0.03);
-}
-
-/* -------------------------------------
-   6) BUTTON MICRO-WEIGHT (GEEN KLEURWIJZIGING)
-------------------------------------- */
-
-.btn-primary,
-.btn-package--primary{
-  letter-spacing: 0.1em;
-}
-
-.btn-primary:hover{
-  transform: translateY(-1px);
-}
 
 /* =====================================================
-   MICRO LUXURY POLISH — AANKOOPADVIES
-   Subtiele rust, geen layout-wijzigingen
+   4. INTROBLOK — COMPACT & EDITORIAL
 ===================================================== */
 
-.page-aankoopadvies{
-
-  /* Iets rustiger leestempo */
-  --text-body: 1.68;
-}
-
-/* Algemene lopende tekst */
-.page-aankoopadvies .section-subtitle,
-.page-aankoopadvies p{
-  line-height: var(--text-body);
-  letter-spacing: 0.01em;
-}
-
-/* Introblok compacter en coherenter */
 .page-aankoopadvies .services-section.container:first-of-type{
   padding-bottom: 3.2rem;
 }
 
-/* Laat paragrafen meer “blok” voelen */
 .page-aankoopadvies .section-subtitle{
-  margin-bottom: 1.9rem;
   max-width: 64ch;
+  margin-bottom: 1.9rem;
 }
 
-/* Guardian text = rustiger, editorial */
-.page-aankoopadvies .guardian-text{
-  font-size: 0.96rem;
-  line-height: 1.7;
-  color: rgba(20,20,20,.62);
-  max-width: 62ch;
-  margin-top: 2.2rem;
-}
-
-/* Accentline iets minder schreeuwerig */
 .page-aankoopadvies .accentline{
   margin-top: 2.6rem;
   font-size: 0.97rem;
 }
 
-/* Zoekservice kaart: betere ademhaling */
-.page-aankoopadvies .premium-card{
-  padding-top: 3.6rem;
-  padding-bottom: 3.8rem;
+
+/* =====================================================
+   5. GUARDIAN / BRIDGE TEKST — NIET LOSZWEVEND
+===================================================== */
+
+.page-aankoopadvies .guardian-text{
+  max-width: 60ch;
+  margin: 2.4rem auto 0;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: rgba(20,20,20,.62);
 }
 
-/* Lijst in zoekservice: minder “opsomming” gevoel */
-.page-aankoopadvies .lux-list li{
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
-/* CTA onder zoekservice: rustiger afstand */
-.page-aankoopadvies .premium-card .btn-primary{
-  margin-top: 3.2rem;
-}
-
-/* BRIDGE TEKST — RUSTIGE OVERGANG */
-.page-aankoopadvies .services-section--bridge{
-  padding-top: 1.6rem;
-  padding-bottom: 3.6rem;
-}
-
-.page-aankoopadvies .services-section--bridge .guardian-text{
-  margin-top: 0;
-  max-width: 58ch;
-}
-
-.page-aankoopadvies .services-section--bridge .accentline{
-  margin-top: 1.6rem;
-}
-
-/* ZOEKSERVICE CTA — NIET FULL WIDTH */
-.page-aankoopadvies .premium-card > .btn-primary{
-  width: auto;
-  display: inline-flex;
-  min-width: 260px;
-  padding-left: 3.2rem;
-  padding-right: 3.2rem;
-  margin: 3.2rem auto 0;
-}
-
-/* ZOEKSERVICE CARD — ZELFDE BREEDTE ALS EV ACCUCHECK */
-.page-aankoopadvies .premium-card{
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* EV ACCUCHECK CARD — CENTREREN ZOALS ZOEKSERVICE */
-.page-aankoopadvies .ev-addon-card{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* BRIDGE TITEL — SUBTIEL, NIET PROMO */
 .page-aankoopadvies .bridge-title{
   font-size: 0.95rem;
   font-weight: 600;
@@ -174,50 +103,75 @@
   margin-bottom: 1.2rem;
 }
 
-/* PAGINA CANVAS — SUBTIEL WARM, NIET WIT */
-.page-aankoopadvies{
-  background: linear-gradient(
-    to bottom,
-    #fbfaf7 0%,
-    #f7f6f2 100%
-  );
+
+/* =====================================================
+   6. CARDS — MATERIAAL & DIEPTE
+===================================================== */
+
+.package-card,
+.service-card,
+.premium-card,
+.usp-item,
+.ev-addon-card{
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.06),
+    0 2px 8px rgba(0,0,0,0.03);
 }
 
-/* =========================================
-   SECTIE OVERGANGEN — VISUELE RUST
-========================================= */
 
-/* Algemene sectie spacing verfijnen */
+/* =====================================================
+   7. ZOEKSERVICE KAART — BREEDTE & ADEM
+===================================================== */
+
+.page-aankoopadvies .premium-card{
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3.6rem;
+  padding-bottom: 3.8rem;
+}
+
+.page-aankoopadvies .lux-list li{
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   8. CTA — GEEN FULL WIDTH, WEL ZWAARTE
+===================================================== */
+
+.page-aankoopadvies .premium-card > .btn-primary{
+  display: inline-flex;
+  width: auto;
+  min-width: 260px;
+  padding-left: 3.2rem;
+  padding-right: 3.2rem;
+  margin: 3.2rem auto 0;
+  letter-spacing: 0.1em;
+}
+
+.btn-primary:hover{
+  transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   9. EV ACCUCHECK — GELIJKWAARDIG AAN ZOEKSERVICE
+===================================================== */
+
+.page-aankoopadvies .ev-addon-card{
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* =====================================================
+   10. ALGEMENE SECTIE-RUST (GEEN GRADIENT HACKS)
+===================================================== */
+
 .page-aankoopadvies .services-section{
   position: relative;
 }
 
-/* Overgang van hero naar eerste content */
-.page-aankoopadvies .services-section:first-of-type::before{
-  content:"";
-  position:absolute;
-  top:-80px;
-  left:0;
-  right:0;
-  height:80px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0)
-  );
-}
-
-/* Overgang tussen tekstblokken en kaarten */
-.page-aankoopadvies .services-section + .services-section::before{
-  content:"";
-  position:absolute;
-  top:-60px;
-  left:0;
-  right:0;
-  height:60px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.04),
-    rgba(0,0,0,0)
-  );
-}
