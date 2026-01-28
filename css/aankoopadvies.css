@@ -668,3 +668,25 @@
 .page-aankoopadvies .hero.hero-aankoopadvies{
   background-position: center 100%;
 }
+
+/* ===============================
+   AANKOOPADVIES — SECTIE CANVAS FIX
+   Zorgt dat achtergrond niet "afkapt"
+================================ */
+
+.page-aankoopadvies .services-section{
+  background: transparent;
+}
+
+.page-aankoopadvies .services-section > .container{
+  position: relative;
+  z-index: 1;
+}
+
+/* Secties met kaarten krijgen bewust canvas-adem */
+.page-aankoopadvies .services-section:has(.package-card),
+.page-aankoopadvies .services-section:has(.pricing-card),
+.page-aankoopadvies .services-section:has(.premium-card),
+.page-aankoopadvies .services-section:has(.ev-addon-card){
+  padding-bottom: 6.5rem;
+}
