@@ -716,3 +716,33 @@
   padding-top: 4.8rem;
   padding-bottom: 4.8rem;
 }
+
+/* =====================================
+   AANKOOPADVIES — CANVAS CONTINUÏTEIT
+   ÉÉN REGISSEUR, GEEN KNIPPEN
+===================================== */
+
+/* 1. Pagina bepaalt ALTIJD de achtergrond */
+body.page-aankoopadvies {
+  background: linear-gradient(
+    to bottom,
+    #fcfbf8 0%,
+    #f6f5f1 100%
+  );
+}
+
+/* 2. Geen enkele sectie mag de canvas breken */
+body.page-aankoopadvies .services-section {
+  background: transparent !important;
+}
+
+/* 3. Hero mag NIET zelf visueel afsnijden */
+body.page-aankoopadvies .hero {
+  box-shadow: none !important;
+}
+
+/* 4. Overgang hero → eerste sectie strak */
+body.page-aankoopadvies .hero + section {
+  margin-top: 0 !important;
+  padding-top: 4.8rem;
+}
