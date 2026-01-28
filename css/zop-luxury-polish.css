@@ -216,3 +216,42 @@
     #f7f6f2 100%
   );
 }
+
+/* =========================================
+   SECTIE OVERGANGEN — VISUELE RUST
+========================================= */
+
+/* Algemene sectie spacing verfijnen */
+.page-aankoopadvies .services-section{
+  position: relative;
+}
+
+/* Overgang van hero naar eerste content */
+.page-aankoopadvies .services-section:first-of-type::before{
+  content:"";
+  position:absolute;
+  top:-80px;
+  left:0;
+  right:0;
+  height:80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0)
+  );
+}
+
+/* Overgang tussen tekstblokken en kaarten */
+.page-aankoopadvies .services-section + .services-section::before{
+  content:"";
+  position:absolute;
+  top:-60px;
+  left:0;
+  right:0;
+  height:60px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0)
+  );
+}
