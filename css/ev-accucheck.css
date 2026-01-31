@@ -404,3 +404,35 @@ body.page-ev-accucheck .pricing-grid{
     transform:none;
   }
 }
+
+/* ==================================================
+   PRICING – FIX MOBILE OVERLAP "VASTE PARTNER"
+================================================== */
+
+/* Desktop: badge zwevend (zoals nu) */
+.pricing-card.pricing-featured {
+  position: relative;
+}
+
+.pricing-card.pricing-featured .decision-badge {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Mobile: badge wordt onderdeel van layout */
+@media (max-width: 768px) {
+
+  .pricing-card.pricing-featured .decision-badge {
+    position: static;
+    transform: none;
+    margin: 0 auto 14px;
+    display: inline-block;
+  }
+
+  .pricing-card.pricing-featured .pricing-body h3 {
+    margin-top: 0;
+  }
+}
