@@ -513,16 +513,18 @@ body.page-ev-accucheck footer{
   color: var(--navy);
 }
 
-/* =========================================
-   ZEKEROPWEG — EDITORIAL GUIDELINE
-   Subtiele luxe verankering
-========================================= */
+/* ================================
+   ZOP — EDITORIAL GUIDELINE (FIX)
+   Definitieve stacking-oplossing
+================================ */
 
 .zow-editorial__inner{
   position: relative;
   padding-left: 28px;
+  z-index: 1; /* <-- essentieel */
 }
 
+/* Gouden lijn */
 .zow-editorial__inner::before{
   content:"";
   position:absolute;
@@ -531,37 +533,25 @@ body.page-ev-accucheck footer{
   bottom:.45em;
   width:2px;
   border-radius:2px;
+
   background: linear-gradient(
     to bottom,
     rgba(215,181,109,0),
     rgba(215,181,109,.7),
     rgba(215,181,109,0)
   );
+
+  z-index: 0; /* <-- lijn onder tekst */
+}
+
+/* Zorg dat tekst erboven ligt */
+.zow-editorial__inner > *{
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 720px){
   .zow-editorial__inner{
     padding-left: 18px;
   }
-}
-
-.zow-decision-stage__inner{
-  position: relative;
-  padding-left: 28px;
-}
-
-.zow-decision-stage__inner::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:.45em;
-  bottom:.45em;
-  width:2px;
-  border-radius:2px;
-  background: linear-gradient(
-    to bottom,
-    rgba(215,181,109,0),
-    rgba(215,181,109,.7),
-    rgba(215,181,109,0)
-  );
 }
