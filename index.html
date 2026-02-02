@@ -148,162 +148,33 @@
   </div>
 </section>
 
-<!-- ZekerOpWeg – “Niet iedereen…” sectie (premium, rustig, editoriaal) -->
-<section class="zow-stage" aria-labelledby="zow-stage-title">
-  <div class="zow-container">
-    <div class="zow-stage__frame">
-      <p class="zow-stage__kicker">Waar u ook staat in het proces</p>
+<section class="services-section zow-decision-stage">
+  <div class="container">
+    <div class="zow-decision-stage__inner">
 
-      <h2 id="zow-stage-title" class="zow-stage__title">
-        Niet iedereen staat op hetzelfde punt<br />
+      <p class="zow-eyebrow">
+        Uw uitgangspunt bepaalt de route
+      </p>
+
+      <h2 class="zow-decision-stage__title">
+        Niet iedereen staat op hetzelfde punt<br>
         wanneer hij over een auto beslist.
       </h2>
 
-      <p class="zow-stage__question">
+      <p class="zow-decision-stage__question">
         Twijfelt u nog welke auto bij u past, of heeft u al een concrete auto op het oog?
       </p>
 
-      <div class="zow-stage__divider" aria-hidden="true"></div>
+      <div class="zow-divider"></div>
 
-      <p class="zow-stage__promise">
-        ZekerOpWeg sluit aan bij uw situatie.<br />
-        <span class="zow-stage__promise-strong">Niet andersom.</span>
+      <p class="zow-decision-stage__promise">
+        ZekerOpWeg sluit aan bij uw situatie.<br>
+        <strong>Niet andersom.</strong>
       </p>
+
     </div>
   </div>
 </section>
-
-<style>
-  /* ------------------------------
-     ZekerOpWeg – Premium typography
-     ------------------------------ */
-
-  .zow-container {
-    /* match je bestaande grid/container als je die al hebt */
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 32px);
-  }
-
-  .zow-stage {
-    /* rustig, luchtig */
-    padding: clamp(24px, 6vw, 80px) 0;
-    background: transparent;
-  }
-
-  .zow-stage__frame {
-    /* editoriaal anker: voorkomt “zwevende” tekst */
-    max-width: 720px;
-    position: relative;
-    padding-left: clamp(18px, 2.2vw, 28px);
-  }
-
-  /* subtiele verticale lijn links (premium, niet schreeuwerig) */
-  .zow-stage__frame::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.35em;
-    bottom: 0.35em;
-    width: 2px;
-    border-radius: 2px;
-
-    /* Accentkleur: pas aan naar jouw ZekerOpWeg accent */
-    background: linear-gradient(
-      to bottom,
-      rgba(190, 155, 90, 0.0),
-      rgba(190, 155, 90, 0.75),
-      rgba(190, 155, 90, 0.0)
-    );
-  }
-
-  .zow-stage__kicker {
-    margin: 0 0 12px;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(17, 24, 39, 0.62); /* slate-ish */
-  }
-
-  .zow-stage__title {
-    margin: 0;
-    font-size: clamp(28px, 3.2vw, 40px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    font-weight: 650; /* voelt premium zonder “bold schreeuw” */
-    color: rgba(17, 24, 39, 0.96);
-  }
-
-  .zow-stage__question {
-    margin: 18px 0 0;
-    font-size: clamp(16px, 1.2vw, 18px);
-    line-height: 1.65;
-    color: rgba(17, 24, 39, 0.78);
-  }
-
-  .zow-stage__divider {
-    margin: 22px 0 16px;
-    height: 1px;
-    width: min(420px, 100%);
-    background: linear-gradient(
-      to right,
-      rgba(17, 24, 39, 0.20),
-      rgba(17, 24, 39, 0.08),
-      rgba(17, 24, 39, 0.0)
-    );
-  }
-
-  .zow-stage__promise {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.7;
-    letter-spacing: 0.01em;
-    color: rgba(17, 24, 39, 0.72);
-  }
-
-  .zow-stage__promise-strong {
-    color: rgba(17, 24, 39, 0.92);
-    font-weight: 600;
-  }
-
-  /* Dark mode (als je site dat gebruikt) */
-  @media (prefers-color-scheme: dark) {
-    .zow-stage__kicker {
-      color: rgba(255, 255, 255, 0.62);
-    }
-    .zow-stage__title {
-      color: rgba(255, 255, 255, 0.94);
-    }
-    .zow-stage__question {
-      color: rgba(255, 255, 255, 0.74);
-    }
-    .zow-stage__divider {
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.20),
-        rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0.0)
-      );
-    }
-    .zow-stage__promise {
-      color: rgba(255, 255, 255, 0.68);
-    }
-    .zow-stage__promise-strong {
-      color: rgba(255, 255, 255, 0.92);
-    }
-  }
-
-  /* Mobile refinements */
-  @media (max-width: 520px) {
-    .zow-stage__frame {
-      padding-left: 16px;
-    }
-    .zow-stage__kicker {
-      font-size: 12px;
-    }
-  }
-</style>
-
 
 
 <p class="sr-only">
@@ -498,6 +369,7 @@ werkzaam voor automobilisten en bedrijven in heel Nederland.
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
+
 
 
 
