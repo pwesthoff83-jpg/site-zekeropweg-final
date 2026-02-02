@@ -446,3 +446,19 @@ body.page-ev-accucheck .pricing-grid{
 .section-bg-soft {
   border: none !important;
 }
+
+/* ==================================================
+   EV ACCUCHECK – REMOVE SECTION FRAME FOR PRICING
+   Fix voor pseudo-element kader op services-section
+================================================== */
+
+body.page-ev-accucheck .pricing-section::before,
+body.page-ev-accucheck .pricing-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.page-ev-accucheck .pricing-section {
+  background: transparent !important;
+}
+
