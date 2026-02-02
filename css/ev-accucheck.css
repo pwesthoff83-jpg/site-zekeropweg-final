@@ -462,3 +462,14 @@ body.page-ev-accucheck .pricing-section {
   background: transparent !important;
 }
 
+/* ==================================================
+   EV ACCUCHECK – REMOVE GLOBAL SECTION FRAME
+   Pricing mag geen services-section frame hebben
+================================================== */
+
+body.page-ev-accucheck .pricing-section::before,
+body.page-ev-accucheck .pricing-section::after {
+  content: none;
+  display: none;
+}
+
