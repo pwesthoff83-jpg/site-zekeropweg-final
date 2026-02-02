@@ -473,3 +473,19 @@ body.page-ev-accucheck .pricing-section::after {
   display: none;
 }
 
+/* ==================================================
+   EV ACCUCHECK – HARD REMOVE SERVICES-SECTION FRAME
+   Definitieve fix – geen pseudo elements
+================================================== */
+
+body.page-ev-accucheck section.services-section.section-bg-soft::before,
+body.page-ev-accucheck section.services-section.section-bg-soft::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.page-ev-accucheck section.services-section.section-bg-soft {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
