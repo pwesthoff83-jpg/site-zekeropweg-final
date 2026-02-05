@@ -1,13 +1,23 @@
-/* =====================================
+/* =====================================================
+   ZEKEROPWEG — COMPONENTS
+   Zelfstandige bouwstenen
+   Geen layout-logica, geen page overrides
+===================================================== */
+
+
+/* =====================================================
    COMPONENT — DECISION BLOCK
-   Onafhankelijke advieskader
-===================================== */
+   Onafhankelijk advieskader
+===================================================== */
 
 .decision-block{
   max-width: 760px;
   margin: 6rem auto;
   padding: 3.2rem 3.6rem;
-   border-radius: 18px;
+  border-radius: 18px;
+
+  /* theming hook (luxury bepaalt kleur) */
+  background: var(--surface-soft, transparent);
 }
 
 .decision-text{
@@ -19,22 +29,22 @@
 
 .decision-subtext{
   font-size: .95rem;
-  color: rgba(0,0,0,.6);
   line-height: 1.6;
+  color: rgba(0,0,0,.6);
 }
 
-/* ================================
-   ZOP — EDITORIAL GUIDELINE (FIX)
-   Definitieve stacking-oplossing
-================================ */
+
+/* =====================================================
+   COMPONENT — ZOW EDITORIAL
+   Verticale lijn + leesritme
+===================================================== */
 
 .zow-editorial__inner{
   position: relative;
   padding-left: 28px;
-  z-index: 1; /* <-- essentieel */
 }
 
-/* Gouden lijn */
+/* Decoratieve verticale lijn */
 .zow-editorial__inner::before{
   content:"";
   position:absolute;
@@ -50,11 +60,9 @@
     rgba(215,181,109,.7),
     rgba(215,181,109,0)
   );
-
-  z-index: 0; /* <-- lijn onder tekst */
 }
 
-/* Zorg dat tekst erboven ligt */
+/* Zorg dat content boven lijn ligt */
 .zow-editorial__inner > *{
   position: relative;
   z-index: 1;
@@ -66,10 +74,10 @@
   }
 }
 
-/* Component surface (theming hook) */
-.decision-block{
-  background: var(--surface-soft, transparent);
-}
+
+/* =====================================================
+   ZOW EDITORIAL — TYPOGRAFIE
+===================================================== */
 
 .zow-editorial__kicker{
   margin: 2.4rem 0 1.6rem;
@@ -81,12 +89,12 @@
 }
 
 .zow-editorial__text{
-  margin-top: 1.4rem;
-  margin-bottom: 1.8rem; /* <-- essentieel */
+  margin: 0 0 1.8rem;
+  max-width: 62ch;
+
   font-size: 1.02rem;
   line-height: 1.7;
   color: rgba(20,20,20,.72);
-  max-width: 62ch;
 }
 
 .zow-editorial__transition{
@@ -95,10 +103,11 @@
   color: rgba(7,18,30,.75);
 }
 
-/* =====================================
-   ZOW — EYEBROW COMPONENT (GLOBAL)
-   Gebruik voor alle sectie-headers
-===================================== */
+
+/* =====================================================
+   COMPONENT — EYEBROW (GLOBAL)
+   Subtitel boven sectietitel
+===================================================== */
 
 .zow-eyebrow{
   display: block;
@@ -106,9 +115,9 @@
   font-family: inherit;
   font-size: .72rem;
   font-weight: 500;
-  letter-spacing: .32em;   /* zoals BESLISSINGSBESCHERMING */
+  letter-spacing: .32em;
   text-transform: uppercase;
 
-  color: rgba(20,20,20,.45);  /* standaard: licht grijs */
+  color: rgba(20,20,20,.45);
   margin-bottom: 0.9rem;
 }
