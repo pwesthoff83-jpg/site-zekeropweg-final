@@ -104,37 +104,6 @@
 }
 
 
-/* =====================================================
-   COMPONENT — EYEBROW (GLOBAL)
-   Subtitel boven sectietitel
-===================================================== */
-
-.zow-eyebrow{
-  display: block;
-
-  font-family: inherit;
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-
-  color: rgba(20,20,20,.45);
-  margin-bottom: 0.9rem;
-}
-
-/* =====================================================
-   COMPONENTS — TOKEN KOPPELING
-   Verfijnt bestaande componenten
-   Geen nieuwe layout, geen overrides
-===================================================== */
-
-/* Eyebrow — gebruikt design tokens */
-.zow-eyebrow{
-  font-size: var(--font-size-eyebrow);
-  letter-spacing: var(--track-eyebrow);
-  color: var(--color-ink-muted);
-}
-
 /* Editorial body text */
 .zow-editorial__text{
   font-size: var(--font-size-body);
@@ -166,3 +135,29 @@
   line-height: 1.25;
 }
 
+/* =====================================================
+   COMPONENT — EYEBROW (DEFINITIEF)
+   Editorial, rustig, premium
+===================================================== */
+
+.zow-eyebrow{
+  display: inline-block;
+
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .24em;          /* minder schreeuwerig */
+  text-transform: uppercase;
+
+  color: rgba(7,18,30,.58);       /* rijker, niet lichtgrijs */
+}
+
+/* Subtiele verankering aan titel */
+.zow-eyebrow::after{
+  content:"";
+  display:block;
+  width: 28px;
+  height: 1px;
+  margin-top: .6rem;
+
+  background: rgba(215,181,109,.55);
+}
