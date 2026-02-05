@@ -1,7 +1,7 @@
 /* =====================================================
    ZEKEROPWEG — COMPONENTS
    Zelfstandige bouwstenen
-   Geen layout-logica, geen page overrides
+   Geen layout-logica · Geen page overrides
 ===================================================== */
 
 
@@ -12,7 +12,9 @@
 
 .decision-block{
   max-width: 760px;
-  margin: 6rem auto;
+  margin-left: auto;
+  margin-right: auto;
+
   padding: 3.2rem 3.6rem;
   border-radius: 18px;
 
@@ -36,7 +38,7 @@
 
 /* =====================================================
    COMPONENT — ZOW EDITORIAL
-   Verticale lijn + leesritme
+   Verticale lijn + content-stack
 ===================================================== */
 
 .zow-editorial__inner{
@@ -44,25 +46,21 @@
   padding-left: 28px;
 }
 
-/* Decoratieve verticale lijn */
+/* Decoratieve verticale lijn (kleur via luxury) */
 .zow-editorial__inner::before{
   content:"";
   position:absolute;
   left:0;
   top:.45em;
   bottom:.45em;
+
   width:2px;
   border-radius:2px;
 
-  background: linear-gradient(
-    to bottom,
-    rgba(215,181,109,0),
-    rgba(215,181,109,.7),
-    rgba(215,181,109,0)
-  );
+  background: var(--editorial-accent, transparent);
 }
 
-/* Zorg dat content boven lijn ligt */
+/* Content altijd boven lijn */
 .zow-editorial__inner > *{
   position: relative;
   z-index: 1;
@@ -76,15 +74,17 @@
 
 
 /* =====================================================
-   ZOW EDITORIAL — TYPOGRAFIE
+   COMPONENT — ZOW EDITORIAL TYPOGRAFIE
 ===================================================== */
 
 .zow-editorial__kicker{
   margin: 2.4rem 0 1.6rem;
+
   font-size: .85rem;
   font-weight: 500;
   letter-spacing: .12em;
   text-transform: uppercase;
+
   color: rgba(7,18,30,.55);
 }
 
