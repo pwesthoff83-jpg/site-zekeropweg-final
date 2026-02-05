@@ -1,12 +1,13 @@
 /* =========================================================
-   ZEKEROPWEG STABILITY PATCH – NON DESTRUCTIVE
-   Maakt alle pagina's gelijk aan EV AccuCheck layout
-   Fixes: header, buttons, mobile menu, spacing
+   ZEKEROPWEG — STABILITY LAYER (DEFINITIEF)
+   Doel: layout, gedrag en consistentie
+   GEEN kleuren, GEEN branding, GEEN luxe
 ========================================================= */
 
-/* ─────────────────────────────────────────────────────────
-   1) ÉÉN NAVIGATIE ALS BRON VAN WAARHEID (zop-*)
-───────────────────────────────────────────────────────── */
+
+/* =========================================================
+   1) NAVIGATIE — ÉÉN BRON VAN WAARHEID
+========================================================= */
 
 .header,
 .main-nav,
@@ -15,15 +16,14 @@
 }
 
 /* Desktop */
-@media(min-width:901px){
+@media (min-width: 901px){
   .zop-nav{ display:flex !important; }
   .menu-toggle{ display:none !important; }
 }
 
 /* Mobile */
-@media(max-width:900px){
+@media (max-width: 900px){
   .zop-nav{ display:none !important; }
-
   .menu-toggle{
     display:block !important;
     font-size:1.5rem;
@@ -31,47 +31,64 @@
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   2) UNIFIED BUTTON SYSTEM (AccuCheck standaard)
-───────────────────────────────────────────────────────── */
+
+/* =========================================================
+   2) BUTTONS — STRUCTUUR (GEEN KLEUR)
+========================================================= */
 
 .btn-primary,
-.btn-secondary{
+.btn-secondary,
+.btn-package,
+.card-cta,
+.pricing-cta,
+.package-card a{
   min-width:260px !important;
-  height:58px !important;
-  border-radius:999px !important;
+  min-height:58px !important;
+
   display:inline-flex !important;
   align-items:center !important;
   justify-content:center !important;
+
+  border-radius:999px !important;
+
   font-size:.82rem !important;
   letter-spacing:.08em !important;
   text-transform:uppercase !important;
+
+  white-space:normal !important;
+  line-height:1.32 !important;
+  text-align:center !important;
 }
 
-/* Hero altijd inverse */
-.hero .btn-secondary{
-  color:#ffffff !important;
-  border:1px solid rgba(255,255,255,.55) !important;
-  background:rgba(255,255,255,.06) !important;
+/* Lange teksten mogen nooit afkappen */
+.btn-primary span,
+.btn-secondary span{
+  display:inline-block;
+  max-width:100%;
 }
 
-/* ─────────────────────────────────────────────────────────
-   3) SPACING = ACCUCHECK MODEL
-───────────────────────────────────────────────────────── */
+
+/* =========================================================
+   3) SECTIE-SPACING — ACCUCHECK MODEL
+========================================================= */
 
 .services-section{
   padding-top:80px !important;
   padding-bottom:80px !important;
 }
 
-@media(max-width:768px){
+@media (max-width: 768px){
   .services-section{
     padding-top:56px !important;
     padding-bottom:56px !important;
   }
 }
 
-/* Cards */
+
+/* =========================================================
+   4) CARDS — STRUCTUUR & ADEM
+========================================================= */
+
 .service-card{
   padding:28px 26px 26px !important;
 }
@@ -80,53 +97,45 @@
   gap:22px !important;
 }
 
-/* Hero actions */
+
+/* =========================================================
+   5) HERO — AFSTAND & FLOW
+========================================================= */
+
 .hero-actions{
   margin-top:30px !important;
   gap:14px !important;
 }
 
-/* ─────────────────────────────────────────────────────────
-   4) MOBILE OPTICAL FIXES
-───────────────────────────────────────────────────────── */
-
-@media(max-width:768px){
-
-  .btn-primary,
-  .btn-secondary{
-    width:92% !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
-  }
-
+@media (max-width: 768px){
   .hero-content{
     padding:0 18px !important;
   }
 
-  .premium-intro{
-    padding:2.6rem 1.6rem !important;
-    margin-top:-2.8rem !important;
+  .hero-actions{
+    gap:14px;
   }
-
 }
 
-/* ─────────────────────────────────────────────────────────
-   5) FOOTER CONSISTENTIE
-───────────────────────────────────────────────────────── */
+
+/* =========================================================
+   6) FOOTER — GRID CONSISTENTIE
+========================================================= */
 
 .footer-grid{
   grid-template-columns:1.1fr 1fr 1fr !important;
 }
 
-@media(max-width:900px){
+@media (max-width: 900px){
   .footer-grid{
     grid-template-columns:1fr !important;
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   6) ZACHTE STABILITEIT – geen hover sprongen
-───────────────────────────────────────────────────────── */
+
+/* =========================================================
+   7) GEEN HOVER-SPRONGEN (STABILITEIT)
+========================================================= */
 
 .pricing-card,
 .service-card,
@@ -140,285 +149,78 @@
   transform:none !important;
 }
 
-/* ===== MOBILE GRID FIX VOOR ALLE PAKKETTEN ===== */
 
-@media(max-width:900px){
+/* =========================================================
+   8) MOBILE — ÉÉN KOLOM, ALTIJD
+========================================================= */
 
+@media (max-width: 900px){
+
+  /* Alle grids onder elkaar */
+  .service-grid,
   .pricing-grid,
   .packages-grid,
   .premium-grid,
-  .service-grid{
-    grid-template-columns:1fr !important;
-  }
-
-  .pricing-featured,
-  .package--premium{
-    transform:none !important;
-  }
-
-}
-
-/* ============================================
-   ZEKEROPWEG – MOBILE SINGLE COLUMN LOCK
-   Geen enkele kaart naast elkaar op mobiel
-============================================ */
-
-@media (max-width: 900px){
-
-  /* Alle mogelijke grids */
-  .service-grid,
   .usp-premium,
-  .testimonial-grid,
-  .pricing-grid,
-  .premium-grid,
-  .packages-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
+  .testimonial-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
   }
 
-  /* Kaarten 100% breed */
+  /* Kaarten altijd volle breedte */
   .service-card,
+  .pricing-card,
+  .package-card,
+  .premium-card,
   .usp-item,
   .testimonial-card,
-  .pricing-card,
-  .premium-card,
-  .package {
-    width: 100% !important;
-    max-width: 100% !important;
+  .package{
+    width:100% !important;
+    max-width:100% !important;
   }
 
-  /* Speciale correctie voor uitgelichte kaart */
+  /* Featured mag niet zweven */
   .pricing-featured,
-  .package--premium {
-    transform: none !important;
-    margin-top: 0 !important;
+  .package--premium,
+  .package-card.featured{
+    transform:none !important;
+    margin-top:0 !important;
   }
-
 }
 
-/* =============================================
-   AANKOOPADVIES – MOBILE OVERRIDE
-   Deze wint van aankoopadvies.css
-============================================= */
+
+/* =========================================================
+   9) AANKOOPADVIES — MOBILE LOCK
+========================================================= */
 
 @media (max-width: 900px){
 
-  /* Specifiek aankoopadvies */
   body.page-aankoopadvies .service-grid,
   body.page-aankoopadvies .pricing-grid,
   body.page-aankoopadvies .packages-grid{
-    grid-template-columns: 1fr !important;
+    grid-template-columns:1fr !important;
   }
 
   body.page-aankoopadvies .service-card,
   body.page-aankoopadvies .pricing-card,
   body.page-aankoopadvies .package{
-    width: 100% !important;
-    max-width: 100% !important;
+    width:100% !important;
+    max-width:100% !important;
   }
-
-}
-
-/* =====================================================
-   AANKOOPADVIES – DEFINITIEVE MOBILE LOCK
-   Dit wint van ALLE regels uit aankoopadvies.css
-===================================================== */
-
-@media (max-width: 900px){
-
-  /* HOOFD GRID VAN AANKOOPADVIES */
-  .packages-section{
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
-  }
-
-  /* KAARTEN */
-  .package-card{
-    width: 100% !important;
-    max-width: 100% !important;
-    transform: none !important;
-  }
-
-  /* FEATURED MAG NIET ZWEVEN OP MOBILE */
-  .package-card.featured{
-    transform: none !important;
-  }
-
-}
-
-/* Extra veiligheid voor lange teksten */
-.btn-primary span,
-.btn-secondary span{
-  display: inline-block;
-  max-width: 100%;
-}
-
-/* === DEFINITIEVE BUTTON TEXT FIX === */
-
-.btn-primary,
-.btn-secondary,
-.btn-package,
-.card-cta,
-.pricing-cta,
-.package-card a{
-  height: auto !important;
-  min-height: 58px !important;
-  padding: 14px 28px !important;
-
-  white-space: normal !important;
-  line-height: 1.32 !important;
-  text-align: center !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Extra veiligheid voor lange teksten */
-.btn-primary span,
-.btn-secondary span{
-  display: inline-block;
-  max-width: 100%;
-}
-
-/* ==========================================
-   ABSOLUTE INFO BUTTON TRUTH – ZOW
-   Dit mag door GEEN ENKELE CSS meer worden
-   overschreven. Punt.
-========================================== */
-
-a.btn-secondary,
-.service-card a.btn-secondary,
-.hero-actions a.btn-secondary {
-
-  background:#ffffff !important;
-  color:#0b1220 !important;
-
-  border:1px solid rgba(215,181,109,.9) !important;
-
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.06),
-    inset 0 0 0 1px rgba(215,181,109,.25) !important;
-
-  text-shadow:none !important;
-
-}
-
-/* HOVER = subtiel goud */
-a.btn-secondary:hover,
-.service-card a.btn-secondary:hover,
-.hero-actions a.btn-secondary:hover {
-
-  background:rgba(215,181,109,.06) !important;
-  color:#0b1220 !important;
-
-  border-color:rgba(215,181,109,1) !important;
-
-}
-
-/* ==========================================
-   NUCLEAR OVERRIDE – INFO KNOPPEN ZOW
-   Ongeacht welke CSS ooit bestaat
-========================================== */
-
-.service-grid .btn-secondary,
-.service-card .btn-secondary,
-a.btn-secondary,
-.btn-secondary,
-.card-cta,
-.service-card a {
-
-  background:#ffffff !important;
-  background-image:none !important;
-
-  color:#0b1220 !important;
-
-  border:1px solid rgba(215,181,109,.9) !important;
-
-  box-shadow:
-    0 8px 22px rgba(0,0,0,.06),
-    inset 0 0 0 1px rgba(215,181,109,.22) !important;
-
-  text-shadow:none !important;
-
-  font-weight:500 !important;
-
-}
-
-/* hover */
-
-.service-grid .btn-secondary:hover,
-.service-card .btn-secondary:hover,
-a.btn-secondary:hover,
-.btn-secondary:hover,
-.card-cta:hover {
-
-  background:rgba(215,181,109,.07) !important;
-  color:#0b1220 !important;
-
-  border-color:rgba(215,181,109,1) !important;
-
-}
-
-/* === HARDE PRIORITEIT OVER OUDE STYLES === */
-
-.btn-info,
-a.btn-info{
-  background:#ffffff !important;
-  color:#0b1220 !important;
-  border:1.5px solid rgba(215,181,109,.55) !important;
-}
-
-.btn-info:hover,
-a.btn-info:hover{
-  background:#fcfaf6 !important;
-  border-color:rgba(215,181,109,.95) !important;
-}
-
-/* Primary blijft navy maar via ONS systeem */
-.btn-primary,
-a.btn-primary{
-  background:linear-gradient(180deg,#0f172a,#050912) !important;
-  color:#ffffff !important;
-}
-
-/* --- ZAKELIJK EV ACCUCHECK FINISH --- */
-
-/* Cards iets rustiger en meer adem */
-.page-ev-accucheck-zakelijk .service-card{
-  padding: 2.6rem 2.8rem;
-}
-
-/* Lijsten compacter en zakelijker */
-.page-ev-accucheck-zakelijk .lux-list li{
-  margin-bottom: 10px;
-}
-
-/* Subtiele balans tussen kaarten */
-.page-ev-accucheck-zakelijk .service-grid{
-  gap: 2.4rem;
-}
-
-/* Note small minder dominant */
-.page-ev-accucheck-zakelijk .note-small{
-  margin-top: 1.4rem;
-  opacity: .6;
-  font-size: .85rem;
 }
 
 
-/* =====================================
-   Final CTA – echte centrering
-===================================== */
+/* =========================================================
+   10) FINAL CTA — STRUCTURE ONLY
+========================================================= */
 
 .services-section .final-cta,
 .services-section .final-cta-card{
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
 }
 
 
