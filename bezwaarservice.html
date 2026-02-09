@@ -3,74 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juridische Bescherming | ZekerOpWeg</title>
-  <meta name="description" content="Abonnement voor juridische bescherming bij verkeers en parkeerboetes. Zorgvuldige beoordeling, professioneel opgesteld bezwaar en duidelijke begeleiding." />
+  <title>Boete laten beoordelen | ZekerOpWeg</title>
+  <meta name="description" content="Laat uw verkeers- of parkeerboete juridisch beoordelen. Voor €29,50 krijgt u een onderbouwd ja/nee. Alleen bij voldoende slagingskans stellen wij een sterk bezwaar op." />
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-
     {
       "@type": "Organization",
       "@id": "https://zekeropweg.nu#org",
       "name": "ZekerOpWeg",
       "url": "https://zekeropweg.nu",
       "logo": "https://zekeropweg.nu/assets/logo.png",
-      "description": "Onafhankelijk preventief adviesinstituut voor automobilisten en bedrijven. Aankoopadvies, EV accudiagnose en ondersteuning bij verkeers en parkeerboetes.",
-      "founder": {
-        "@type": "Person",
-        "name": "Pepijn Westhoff"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Nederland"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/"
-      ]
+      "description": "Onafhankelijk preventief adviesinstituut voor automobilisten en bedrijven. Aankoopadvies, EV accudiagnose en ondersteuning bij verkeers- en parkeerboetes.",
+      "founder": { "@type": "Person", "name": "Pepijn Westhoff" },
+      "areaServed": { "@type": "Country", "name": "Nederland" },
+      "sameAs": [ "https://www.linkedin.com/" ]
     },
-
     {
       "@type": "Service",
-      "name": "Aankoopadvies auto",
-      "provider": { "@id": "https://zekeropweg.nu#org" },
-      "areaServed": "Netherlands",
-      "url": "https://zekeropweg.nu/aankoopadvies.html",
-      "description": "Onafhankelijk aankoopadvies voor gebruikte en nieuwe voertuigen, inclusief selectie, beoordeling en begeleiding zonder verkoopbelang."
-    },
-
-    {
-      "@type": "Service",
-      "name": "EV AccuCheck",
-      "provider": { "@id": "https://zekeropweg.nu#org" },
-      "areaServed": "Netherlands",
-      "url": "https://zekeropweg.nu/ev-accucheck.html",
-      "description": "TÜV gecertificeerde accudiagnose op locatie voor elektrische en hybride voertuigen met objectief accucertificaat."
-    },
-
-    {
-      "@type": "Service",
-      "name": "Bezwaarservice verkeersboetes",
+      "name": "Boete beoordeling (verkeers- en parkeerboetes)",
       "provider": { "@id": "https://zekeropweg.nu#org" },
       "areaServed": "Netherlands",
       "url": "https://zekeropweg.nu/bezwaarservice.html",
-      "description": "Ondersteuning bij bezwaar tegen verkeers en parkeerboetes met menselijke controle en juridische onderbouwing."
+      "description": "Juridische beoordeling van boetes. Alleen bij voldoende slagingskans volgt een professioneel opgesteld bezwaar."
     }
-
   ]
 }
-</script>
+  </script>
 
-  <link rel="stylesheet" href="css/styles.css?v=2.0.0" />
-  <link rel="stylesheet" href="css/bezwaarservice.css?v=1.0.0" />
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/bezwaarservice.css?v=1.0.0" />
   <link rel="stylesheet" href="css/zop-stability.css" />
 </head>
 
 <body class="fade-in">
 
-<!-- HEADER -->
 <!-- ================= HEADER ================= -->
 <header class="zop-header">
   <div class="zop-header-inner">
@@ -79,31 +48,26 @@
     <nav class="zop-nav">
       <a href="index.html">Home</a>
       <a href="aankoopadvies.html">Aankoopadvies</a>
-      <a class="active" href="ev-accucheck.html">AccuCheck</a>
-      <a href="bezwaarservice.html">Bezwaar</a>
+      <a href="ev-accucheck.html">AccuCheck</a>
+      <a class="active" href="bezwaarservice.html">Bezwaar</a>
 
-     <div class="zop-dropdown">
-  <span class="zop-drop-label">Voor bedrijven</span>
-  <div class="zop-drop-menu">
-
-    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-
-    <a href="automatisering.html">Automatisering</a>
-
-  </div>
-</div>
-
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
 
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
 
     <button class="menu-toggle" aria-label="Menu openen">☰</button>
-    
   </div>
 </header>
 
-   <!-- ================= MOBILE MENU ================= -->
+<!-- ================= MOBILE MENU ================= -->
 <button class="menu-toggle" aria-label="Menu openen">☰</button>
 
 <div id="mobileMenu" class="mobile-menu">
@@ -113,10 +77,9 @@
     <a href="index.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
     <a href="ev-accucheck.html">AccuCheck</a>
-    <a href="bezwaarservice.html">Bezwaar</a>
+    <a class="active" href="bezwaarservice.html">Bezwaar</a>
 
     <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-
     <a href="over.html">Over</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -124,232 +87,223 @@
 
 <div id="menuOverlay" class="menu-overlay"></div>
 
-<!-- HERO -->
+<main>
+
+<!-- ================= HERO ================= -->
 <section class="hero hero-standard hero-gb">
   <div class="hero-content">
-    <span class="hero-eyebrow">Juridische Bescherming</span>
-    <h1>Altijd voorbereid bij verkeers en parkeerboetes</h1>
+    <span class="hero-eyebrow">Boete beoordeling</span>
+    <h1>Twijfelt u aan uw boete? Krijg een juridisch onderbouwd besluit.</h1>
     <p>
-      Met ZekerOpWeg Juridische Bescherming bent u structureel beschermd.
-      Uw boetes worden zorgvuldig beoordeeld en u ontvangt heldere begeleiding bij elke vervolgstap.
-      Rust, overzicht en duidelijke communicatie staan centraal.
+      Voor <strong>€29,50</strong> beoordelen wij uw verkeers- of parkeerboete inhoudelijk.
+      Alleen wanneer de <strong>slagingskans voldoende hoog</strong> is, stellen wij een
+      <strong>sterk en passend bezwaar</strong> op. Geen standaardteksten, geen valse hoop.
+    </p>
+
+    <div style="margin-top:1.25rem;">
+      <a href="intake-bezwaar.html" class="btn-primary">Boete laten beoordelen</a>
+    </div>
+
+    <p style="margin-top:.9rem; opacity:.9;">
+      <strong>Geen kans = geen bezwaar.</strong> Soms is betalen de verstandigste keuze — dat zeggen wij ook.
     </p>
   </div>
 </section>
 
-
-<!-- USP -->
+<!-- ================= USP ================= -->
 <section class="services-section container">
   <div class="usp-premium">
     <div class="usp-item">
-      <h3>Zorgvuldige beoordeling</h3>
-      <p>
-        Elke boete wordt inhoudelijk bekeken. U ontvangt een eerlijke inschatting en begrijpt precies waar u aan toe bent.
-      </p>
+      <h3>Inhoudelijke beoordeling</h3>
+      <p>Wij controleren termijn, bewijs en wettelijke grondslag. U krijgt een helder ja/nee met uitleg.</p>
     </div>
 
     <div class="usp-item">
-      <h3>Begeleide afhandeling</h3>
-      <p>
-        Wanneer bezwaar zinvol is, ontvangt u een persoonlijk opgesteld bezwaar met duidelijke verzend instructies.
-      </p>
+      <h3>Bezwaar alleen bij voldoende kans</h3>
+      <p>Alleen als bezwaar juridisch verdedigbaar is, ontvangt u een professioneel opgesteld bezwaar.</p>
     </div>
 
     <div class="usp-item">
-      <h3>Structureel voorbereid</h3>
-      <p>
-        U hoeft niet meer te twijfelen. Met Juridische Bescherming weet u bij elke boete direct wat de juiste vervolgstap is.
-      </p>
+      <h3>Duidelijke regie</h3>
+      <p>U weet precies wat de beste vervolgstap is. Geen gedoe, wel overzicht en communicatie.</p>
     </div>
   </div>
 </section>
 
-<!-- INTRO -->
+<!-- ================= WAT U KRIJGT ================= -->
 <section class="services-section container">
-  <h2 class="section-title">Structurele juridische bescherming</h2>
+  <h2 class="section-title">Wat u krijgt voor €29,50</h2>
   <p class="section-subtitle">
-    Met één abonnement bent u doorlopend voorbereid. U stuurt boetes aan ons door en ontvangt een inhoudelijke beoordeling,
-    inclusief een professioneel opgesteld bezwaar wanneer dat zinvol is.
-  </p>
-</section>
-
-<!-- HOE HET WERKT -->
-<section class="services-section container">
-  <h2 class="section-title">Uw dossier in vaste stappen</h2>
-  <p class="section-subtitle">
-    Elk dossier volgt een zorgvuldig ingericht traject. U weet altijd waar u aan toe bent.
+    U betaalt niet voor “bezwaar maken”, maar voor een onderbouwde beslissing.
   </p>
 
   <div class="service-grid">
-
     <div class="service-card">
-      <h3 class="service-title">Binnenkomst</h3>
+      <h3 class="service-title">Controle & beoordeling</h3>
       <p class="service-text">
-        Uw boete wordt gecontroleerd op volledigheid, termijn en juridische basis.
+        We toetsen de boete op volledigheid, termijnen, bewijsvoering en juridische basis.
       </p>
     </div>
 
     <div class="service-card">
-      <h3 class="service-title">Beoordeling</h3>
+      <h3 class="service-title">Heldere conclusie</h3>
       <p class="service-text">
-        U ontvangt een inhoudelijke beoordeling met een duidelijke vervolgstap.
+        U ontvangt een schriftelijke conclusie (PDF): bezwaar zinvol of niet, met toelichting.
       </p>
     </div>
 
     <div class="service-card">
-      <h3 class="service-title">Bezwaar</h3>
+      <h3 class="service-title">Bezwaar bij voldoende slagingskans</h3>
       <p class="service-text">
-        Wanneer bezwaar zinvol is, wordt dit opgesteld en – bij Plus – direct voor u ingediend.
-        Vanaf dat moment wordt de invordering tijdelijk opgeschort.
+        Alleen wanneer de kans op succes voldoende is, stellen wij een passend bezwaar op.
       </p>
     </div>
-
-    <div class="service-card">
-      <h3 class="service-title">Opvolging</h3>
-      <p class="service-text">
-        De behandelende instantie beoordeelt uw bezwaar. Tijdens deze fase blijft uw dossier bewaakt.
-      </p>
-    </div>
-
-    <div class="service-card">
-      <h3 class="service-title">Tijdsbewaking</h3>
-      <p class="service-text">
-        Bij overschrijding van wettelijke termijnen wordt – bij Plus – automatisch de juiste vervolgstap ingezet.
-      </p>
-    </div>
-
-    <div class="service-card">
-      <h3 class="service-title">Afronding</h3>
-      <p class="service-text">
-        U ontvangt de uitkomst met heldere uitleg over de vervolgmogelijkheden.
-      </p>
-    </div>
-
   </div>
 </section>
 
+<!-- ================= HOE HET WERKT ================= -->
+<section class="services-section container">
+  <h2 class="section-title">Hoe het werkt</h2>
+  <p class="section-subtitle">Snel, duidelijk en zonder ruis.</p>
 
-<!-- DISCLAIMER -->
+  <div class="service-grid">
+    <div class="service-card">
+      <h3 class="service-title">1) Boete aanleveren</h3>
+      <p class="service-text">
+        U uploadt uw boete via het intakeformulier. Wij checken direct op volledigheid en termijn.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3 class="service-title">2) Juridische beoordeling</h3>
+      <p class="service-text">
+        U krijgt een inhoudelijk oordeel: wel of niet zinvol om aan te vechten, inclusief onderbouwing.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h3 class="service-title">3) Bezwaar (alleen bij voldoende kans)</h3>
+      <p class="service-text">
+        Als bezwaar verdedigbaar is, ontvangt u een professioneel opgesteld bezwaar (PDF) met verzendinstructies.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSPARANTIE ================= -->
+<section class="services-section container">
+  <div class="service-card" style="max-width:860px; margin:0 auto;">
+    <h3>Transparant over proceskosten</h3>
+    <p class="service-text">
+      Indien een proceskostenvergoeding wordt toegekend, wordt deze aangewend ter dekking van onze juridische werkzaamheden.
+      U betaalt nooit extra achteraf.
+    </p>
+  </div>
+</section>
+
+<!-- ================= DISCLAIMER ================= -->
 <section class="services-section container">
   <p class="accentline">
-    Deze dienst is gericht op juridische begeleiding en documentgeneratie.
-    Wij dienen alleen bezwaar in wanneer dit inhoudelijk verdedigbaar is.
-    U blijft eindverantwoordelijk voor de aangeleverde informatie.
-    U blijft verantwoordelijk voor het verzenden van stukken en de voortgang van uw dossier.
+    Deze dienst is gericht op juridische beoordeling en documentgeneratie.
+    Wij stellen alleen bezwaar op wanneer dit inhoudelijk verdedigbaar is.
+    U blijft eindverantwoordelijk voor de door u aangeleverde informatie en het tijdig verzenden van stukken.
   </p>
 </section>
 
-<!-- ABONNEMENTEN -->
-<section class="services-section section-bg-soft" id="abonnementen">
+<!-- ================= VOOR BEDRIJVEN ================= -->
+<section class="services-section section-bg-soft" id="zakelijk">
   <div class="container">
-    <h2 class="section-title">Juridische Bescherming abonnementen</h2>
+    <h2 class="section-title">Voor bedrijven: bundel- en dossieraanpak</h2>
     <p class="section-subtitle">
-      Kies het beschermingsniveau dat bij u past. Altijd helder, altijd zorgvuldig.
+      Heeft u meerdere voertuigen of stapelen boetes zich op? Dan is een losse boete-aanpak niet efficiënt.
+      Wij bieden een zakelijke inventarisatie en selectie op kans & impact.
     </p>
 
     <div class="service-grid">
-
-      <!-- BASIC -->
       <div class="service-card">
-        <h3 class="service-title">Juridische Bescherming Basic</h3>
-        <p class="price">€ 1,49 per maand per kenteken</p>
-        <p class="service-text">Voor wie overzicht wil en zelf de regie houdt.</p>
-        <ul class="service-list">
-          <li>Inhoudelijke beoordeling van elke boete</li>
-          <li>Persoonlijk opgesteld bezwaar in PDF</li>
-          <li>Heldere verzend instructies</li>
-          <li>U verzendt en bewaakt zelf</li>
-        </ul>
-         <div style="margin-top:1.8rem;">
-      <a href="intake-bezwaar.html?pakket=basic" class="btn-primary">
-      Start Basic
-    </a>
-  </div>
-</div>
-
-
-      <!-- PLUS -->
-      <div class="service-card highlight">
-        <h3 class="service-title">Juridische Bescherming Plus</h3>
-        <p class="price">€ 8,95 per maand per kenteken</p>
-        <p class="service-text">Voor wie volledige rust en afhandeling wenst.</p>
-        <ul class="service-list">
-          <li>Alles van Basic</li>
-          <li>Wij dienen bezwaar voor u in</li>
-          <li>Wij bewaken termijnen en opvolging</li>
-          <li>Ingebrekestelling en vervolgstappen</li>
-          <li>Proceskostenvergoeding wordt voor u afgehandeld</li>
-        </ul>
-       <a href="intake-bezwaar.html?pakket=plus" class="btn-primary">
-      Start Plus
-      </a>
-
+        <h3 class="service-title">Inventarisatie</h3>
+        <p class="service-text">
+          Overzicht van openstaande boetes (per voertuig/medewerker), termijnen en prioriteit.
+        </p>
       </div>
 
+      <div class="service-card">
+        <h3 class="service-title">Selectie op slagingskans</h3>
+        <p class="service-text">
+          Alleen kansrijke dossiers worden uitgewerkt. U voorkomt tijdverlies en onnodige procedures.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3 class="service-title">Vaste bundelprijs (na intake)</h3>
+        <p class="service-text">
+          U ontvangt een duidelijke bundelofferte op basis van volume en complexiteit.
+          Ideaal bij grotere bedragen (bijv. meerdere bedrijfsbussen).
+        </p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="contact.html" class="btn-primary">Zakelijke bundel bespreken</a>
+      <p style="margin-top:.75rem; opacity:.9;">
+        Voor bedrijven werken wij bij voorkeur met bundels: één overzicht, één plan, één aanspreekpunt.
+      </p>
     </div>
   </div>
 </section>
-<section class="services-section container" style="margin-top:2.5rem;">
-  <section class="services-section container">
-  <div class="service-card" style="max-width:760px; margin:0 auto;">
-    <h3>Meerdere voertuigen binnen één huishouden of onderneming</h3>
-    <p class="service-text">
-      Juridische Bescherming Plus is geschikt voor huishoudens en ondernemingen met meerdere voertuigen.
-      Extra kentekens kunnen binnen één abonnement worden toegevoegd tegen een gereduceerd tarief.
-    </p>
-    <p class="service-text">
-      Voorwaarde is dat de voertuigen geregistreerd staan op hetzelfde woon- of vestigingsadres.
-      Op deze manier blijft de bescherming overzichtelijk, eerlijk en juridisch zuiver ingericht.
-    </p>
-  </div>
-</section>
 
-  <p class="accentline" style="max-width:720px; margin:0 auto;">
-    In 2026 ligt een standaard parkeerboete doorgaans rond de €120 tot €130.
-    In de praktijk zien wij dat één succesvolle beoordeling vaak al meer waarde vertegenwoordigt dan twaalf maanden Juridische Bescherming Plus.
+<!-- ================= ABONNEMENTEN (ALS UPSELL) ================= -->
+<section class="services-section container" id="abonnementen">
+  <h2 class="section-title">Voor vaste klanten: Juridische Bescherming</h2>
+  <p class="section-subtitle">
+    Wilt u structureel grip en minder losse handelingen? Dan is Juridische Bescherming bedoeld als doorlopende ondersteuning
+    (met prioriteit en dossierbewaking). Dit is een vervolgoptie — niet nodig om te starten.
   </p>
-</section>
 
-
-<!-- VOOR WIE -->
-<section class="services-section section-bg-soft">
-  <div class="container">
-    <h2 class="section-title">Voor wie is dit bedoeld</h2>
-
-    <div class="service-grid">
-      <div class="service-card">
-        <h3 class="service-title">Particulieren</h3>
-        <p class="service-text">
-          Voor wie rust wil in de afhandeling en behoefte heeft aan duidelijke begeleiding bij boetes die vragen oproepen.
-        </p>
+  <div class="service-grid">
+    <div class="service-card">
+      <h3 class="service-title">Basic</h3>
+      <p class="price">€ 1,49 per maand per kenteken</p>
+      <ul class="service-list">
+        <li>Beoordeling van boetes</li>
+        <li>Bezwaar opgesteld (PDF) bij voldoende kans</li>
+        <li>U verzendt en bewaakt zelf</li>
+      </ul>
+      <div style="margin-top:1.2rem;">
+        <a href="intake-bezwaar.html?pakket=basic" class="btn-primary">Start Basic</a>
       </div>
+    </div>
 
-      <div class="service-card">
-        <h3 class="service-title">Ondernemers</h3>
-        <p class="service-text">
-          Voor ondernemers die overzicht willen houden en structureel voorbereid willen zijn bij boetes die binnenkomen.
-        </p>
+    <div class="service-card highlight">
+      <h3 class="service-title">Plus</h3>
+      <p class="price">€ 8,95 per maand per kenteken</p>
+      <ul class="service-list">
+        <li>Alles van Basic</li>
+        <li>Indienen en dossierbewaking</li>
+        <li>Termijnbewaking en vervolgstappen</li>
+        <li>Afhandeling proceskostenvergoeding</li>
+      </ul>
+      <div style="margin-top:1.2rem;">
+        <a href="intake-bezwaar.html?pakket=plus" class="btn-primary">Start Plus</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ================= CTA ================= -->
 <section class="services-section container">
-  <div class="service-card" style="text-align:center;">
-    <h3>Altijd voorbereid bij een boete</h3>
+  <div class="service-card" style="text-align:center; max-width:860px; margin:0 auto;">
+    <h3>Boete ontvangen? Laat juridisch beoordelen of bezwaar zinvol is.</h3>
     <p>
-      Met ZekerOpWeg Juridische Bescherming weet u bij elke boete direct waar u aan toe bent.
-      U ontvangt begeleiding, overzicht en professioneel opgestelde documenten wanneer dat nodig is.
+      Voor <strong>€29,50</strong> krijgt u een duidelijk besluit. Alleen bij voldoende slagingskans volgt een sterk bezwaar.
     </p>
-   <a href="intake-bezwaar.html" class="btn-primary">
-  Bezwaar starten
-</a>
-
+    <a href="intake-bezwaar.html" class="btn-primary">Boete laten beoordelen</a>
   </div>
 </section>
 
 </main>
+
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="container footer-grid">
 
@@ -388,7 +342,7 @@
       </p>
       <p>
         <a href="mailto:bezwaarsupport@zekeropweg.nu" data-service="bezwaar">bezwaarsupport@zekeropweg.nu</a><br>
-        Bezwaarservice
+        Boete beoordeling & bezwaar
       </p>
     </div>
 
@@ -406,4 +360,3 @@
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
-
