@@ -4,33 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Bezwaar starten | ZekerOpWeg</title>
-  <meta name="description" content="Start uw bezwaar zorgvuldig en overzichtelijk. Upload uw boete en wij starten het dossier. Alleen mogelijk met een actief abonnement." />
+  <title>Boete laten beoordelen | ZekerOpWeg</title>
+  <meta name="description" content="Laat uw boete juridisch beoordelen. Introprijs €19,50 t/m 31 maart 2026, daarna €29,50. Alleen bij voldoende slagingskans volgt bezwaar." />
 
-  <!-- Core styling (zelfde basis als je andere premium intake pagina’s) -->
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
   <link rel="stylesheet" href="css/zop-stability.css" />
 
   <style>
-    /* ============================================================
-       INTAKE BEZWAAR – PREMIUM SHELL (alleen layout)
-       - Sluit aan op je bestaande styles.css look & feel
-       - Geen inhoudelijke engine-wijzigingen nodig
-    ============================================================ */
-
     main.page-content { padding-top: 2.5rem; padding-bottom: 3.5rem; }
-
-    .intake-shell {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 0;
-    }
+    .intake-shell { max-width: 920px; margin: 0 auto; }
 
     .intake-hero {
-      margin: 0 auto 2rem;
+      margin-bottom: 2rem;
       border-radius: 22px;
-      padding: 2.2rem 2.2rem 2rem;
-      background: radial-gradient(1200px 420px at 20% -10%, rgba(215,181,109,.22), rgba(0,0,0,0)) ,
+      padding: 2.2rem;
+      background: radial-gradient(1200px 420px at 20% -10%, rgba(215,181,109,.22), rgba(0,0,0,0)),
                   linear-gradient(180deg, rgba(10,16,24,.045), rgba(10,16,24,.02));
       border: 1px solid rgba(215,181,109,.25);
       box-shadow: 0 18px 50px rgba(0,0,0,.08);
@@ -47,465 +35,174 @@
     .intake-hero h1 {
       margin: 0 0 .8rem;
       font-size: clamp(1.8rem, 3.6vw, 2.35rem);
-      line-height: 1.12;
     }
 
     .intake-hero p.lead {
-      margin: 0;
-      opacity: .85;
+      opacity: .9;
       font-size: 1.05rem;
       line-height: 1.55;
       max-width: 65ch;
     }
 
-    .microtrust-row {
-      margin-top: 1.35rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: .9rem;
+    .price-line {
+      margin-top: 1.2rem;
+      font-weight: 700;
     }
 
-    .microtrust {
-      border-radius: 16px;
-      padding: .9rem 1rem;
-      background: rgba(255,255,255,.6);
-      border: 1px solid rgba(10,16,24,.06);
-      font-size: .95rem;
-      opacity: .9;
+    .price-line span {
+      opacity: .7;
+      font-weight: 500;
+      margin-left: .4rem;
     }
 
     .intake-grid {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 1.4rem;
-      align-items: start;
     }
 
     .card {
       border-radius: 22px;
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.9);
       border: 1px solid rgba(10,16,24,.06);
       box-shadow: 0 16px 44px rgba(0,0,0,.08);
       padding: 1.8rem;
-    }
-
-    .card h2 {
-      margin: 0 0 .6rem;
-      font-size: 1.25rem;
-    }
-
-    .card p {
-      margin: 0 0 1.1rem;
-      opacity: .85;
-      line-height: 1.55;
-    }
-
-    .accentline {
-      margin: 1.1rem 0 0;
-      padding-left: 1rem;
-      border-left: 3px solid rgba(215,181,109,.75);
-      opacity: .9;
-      line-height: 1.55;
-    }
-
-    .pillrow {
-      margin-top: 1.1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .55rem;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: .42rem .78rem;
-      border: 1px solid rgba(215,181,109,.35);
-      background: rgba(215,181,109,.12);
-      font-size: .9rem;
-      opacity: .92;
-      white-space: nowrap;
-    }
-
-    .section-title {
-      margin: 0 0 .45rem;
-      font-size: 1.1rem;
     }
 
     .divider {
       height: 1px;
       background: rgba(10,16,24,.08);
       margin: 1.2rem 0;
-      opacity: .6;
     }
 
-    /* Form polish (werkt op standaard input/select/textarea zonder classes) */
-    form label { display: block; margin: 1rem 0 .45rem; font-weight: 600; }
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="tel"],
-    form input[type="number"],
-    form input[type="file"],
-    form select,
-    form textarea {
-      width: 100%;
-      border-radius: 14px;
-      padding: .95rem 1rem;
-      border: 1px solid rgba(10,16,24,.12);
-      background: rgba(255,255,255,.98);
-      outline: none;
+    form label { display:block; margin:1rem 0 .4rem; font-weight:600; }
+    form input, form textarea {
+      width:100%;
+      border-radius:14px;
+      padding:.95rem 1rem;
+      border:1px solid rgba(10,16,24,.12);
     }
 
-    form textarea { resize: vertical; min-height: 110px; }
-
-    .field-hint {
-      margin: .45rem 0 0;
-      font-size: .92rem;
-      opacity: .75;
-      line-height: 1.45;
+    .actions { margin-top:1.4rem; }
+    .btn-primary {
+      border-radius:999px;
+      padding:.95rem 1.25rem;
+      font-weight:700;
+      cursor:pointer;
     }
 
-    .checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: .65rem;
-      margin-top: 1.15rem;
-      opacity: .95;
-      line-height: 1.45;
-    }
-    .checkbox input { margin-top: .22rem; }
-
-    .actions {
-      margin-top: 1.25rem;
-      display: flex;
-      gap: .9rem;
-      flex-wrap: wrap;
-      align-items: center;
+    .accentline {
+      margin-top:1.1rem;
+      padding-left:1rem;
+      border-left:3px solid rgba(215,181,109,.75);
+      opacity:.9;
     }
 
-    /* Buttons: vallen terug op je bestaande .btn-primary/.advisor-submit als je ze al hebt */
-    .btn-primary, .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: .95rem 1.25rem;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid rgba(10,16,24,.12);
-      cursor: pointer;
-    }
-    .btn-secondary {
-      background: rgba(255,255,255,.8);
-      opacity: .9;
-    }
-
-    .hidden { display: none !important; }
-
-    .statusbox {
-      border-radius: 18px;
-      padding: 1rem 1rem;
-      border: 1px solid rgba(10,16,24,.10);
-      background: rgba(250,247,240,.9);
-    }
-
-    .statusbox strong { display:block; margin-bottom: .35rem; }
-    .statusbox .small { font-size: .92rem; opacity: .8; line-height: 1.45; }
-
-    /* Mobile */
     @media (max-width: 920px) {
       .intake-grid { grid-template-columns: 1fr; }
-      .microtrust-row { grid-template-columns: 1fr; }
-      .intake-hero { padding: 1.7rem 1.25rem; border-radius: 18px; }
-      .card { border-radius: 18px; padding: 1.25rem; }
+      .card { padding:1.3rem; border-radius:18px; }
+      .intake-hero { padding:1.6rem; }
     }
   </style>
 </head>
 
-<body class="fade-in" data-page="intake-bezwaar">
+<body class="fade-in">
 
 <header class="zop-header">
   <div class="zop-header-inner">
     <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-
-    <button class="menu-toggle" aria-label="Menu openen">☰</button>
-
-    <nav class="zop-nav">
-      <a href="index.html">Home</a>
-      <a href="aankoopadvies.html">Aankoopadvies</a>
-      <a href="ev-accucheck.html">AccuCheck</a>
-      <a href="bezwaarservice.html">Bezwaar</a>
-
-      <div class="zop-dropdown">
-        <span class="zop-drop-label">Voor bedrijven</span>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-          <a href="automatisering.html">Automatisering</a>
-        </div>
-      </div>
-
-      <a href="over.html">Over</a>
-      <a href="contact.html" class="zop-contact">Contact</a>
-    </nav>
   </div>
 </header>
 
 <main class="page-content">
-  <section class="container intake-shell">
+<section class="container intake-shell">
 
-    <div class="intake-hero">
-      <div class="eyebrow">Juridische bescherming · bezwaarservice</div>
-      <h1>Bezwaar starten</h1>
-      <p class="lead">
-        Upload uw boete en wij starten uw dossier in vaste stappen.
-        U ontvangt overzicht, duidelijke communicatie en een zorgvuldig opgebouwd bezwaar wanneer dat inhoudelijk verdedigbaar is.
-      </p>
+  <div class="intake-hero">
+    <div class="eyebrow">Juridische beoordeling</div>
+    <h1>Boete laten beoordelen</h1>
+    <p class="lead">
+      U ontvangt een **inhoudelijke juridische beoordeling** van uw boete.
+      Alleen wanneer bezwaar **voldoende slagingskans** heeft, werken wij een goed onderbouwd bezwaar voor u uit.
+    </p>
 
-      <div class="microtrust-row">
-        <div class="microtrust">Zorgvuldige beoordeling · geen standaardteksten</div>
-        <div class="microtrust">Heldere vervolgstap · u weet direct waar u aan toe bent</div>
-        <div class="microtrust">Termijnbewaking bij Plus · rust tijdens het traject</div>
-      </div>
+    <div class="price-line">
+      Introprijs: €19,50
+      <span>(standaard €29,50 · t/m 31 maart 2026)</span>
     </div>
 
-    <div class="intake-grid">
+    <p class="accentline">
+      Geen kans = geen bezwaar. Soms is betalen de verstandigste keuze — dat zeggen wij ook.
+    </p>
+  </div>
 
-      <!-- LEFT: Gate + Form -->
-      <div class="card">
+  <div class="intake-grid">
 
-        <!-- ============ GATE: geen actief abonnement ============ -->
-        <div id="noAccess" class="hidden">
-          <h2>Actief abonnement vereist</h2>
-          <p>
-            Om bezwaar te starten is een actief Juridische Bescherming abonnement nodig.
-            Zo blijft de afhandeling overzichtelijk en juridisch zuiver ingericht.
-          </p>
+    <!-- FORM -->
+    <div class="card">
+      <h2>Dossiergegevens</h2>
+      <p>Vul dit formulier zo volledig mogelijk in voor een goede beoordeling.</p>
 
-          <div class="statusbox" style="margin-top:.9rem;">
-            <strong>Wat u nu kunt doen</strong>
-            <div class="small">
-              Sluit eerst Basic of Plus af. Daarna kunt u direct bezwaar starten vanuit uw bevestiging of met uw abonnementsgegevens.
-            </div>
-          </div>
+      <form action="https://formsubmit.co/bezwaarsupport@zekeropweg.nu"
+            method="POST"
+            enctype="multipart/form-data">
 
-          <div class="actions">
-            <a class="btn-primary" href="bezwaarservice.html">Abonnement bekijken</a>
-            <a class="btn-secondary" href="contact.html">Vraag stellen</a>
-          </div>
+        <input type="hidden" name="_subject" value="Boete beoordeling – intake" />
+        <input type="hidden" name="tarief_intro" value="19.50" />
+        <input type="hidden" name="tarief_standaard" value="29.50" />
 
-          <p class="accentline">
-            U kunt deze pagina straks openen via een unieke link of met een abonnementsparameter.
-          </p>
-        </div>
+        <label>Naam</label>
+        <input type="text" name="Naam" required />
 
-        <!-- ============ FORM: alleen zichtbaar voor actieve abonnee ============ -->
-        <div id="bezwaarForm" class="hidden">
+        <label>E-mail</label>
+        <input type="email" name="Email" required />
 
-          <h2 class="section-title">Dossiergegevens</h2>
-          <p>
-            Vul zo volledig mogelijk in. Hoe beter de input, hoe sterker het dossier.
-          </p>
+        <label>Kenteken</label>
+        <input type="text" name="Kenteken" required />
 
-          <!--
-            ✅ BELANGRIJK:
-            - Pas hieronder ALLEEN je action/method/names aan als jij dat al gebruikt.
-            - Als je FormSubmit of Make-hook gebruikt: zet jouw bestaande action hier terug.
-            - Ik laat hieronder een nette, veilige default structuur staan.
-          -->
+        <label>Beschikkingsnummer</label>
+        <input type="text" name="Beschikkingsnummer" required />
 
-          <form id="bezwaarIntakeForm"
-                action="https://formsubmit.co/bezwaarsupport@zekeropweg.nu"
-                method="POST"
-                enctype="multipart/form-data">
+        <div class="divider"></div>
 
-            <!-- Hidden (kan je vervangen door jouw intake engine velden) -->
-            <input type="hidden" name="_subject" value="Bezwaar starten – intake" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="bron" value="intake-bezwaar" />
-            <input type="hidden" name="pakket" id="pakketField" value="" />
-            <input type="hidden" name="abonnee" id="abonneeField" value="" />
+        <label>Uw toelichting (optioneel)</label>
+        <textarea name="Toelichting" placeholder="Waarom twijfelt u aan deze boete?"></textarea>
 
-            <div class="divider"></div>
+        <label>Upload boete (PDF of foto)</label>
+        <input type="file" name="BoeteUpload" accept=".pdf,image/*" required />
 
-            <h3 class="section-title">Uw gegevens</h3>
-
-            <label>Naam</label>
-            <input type="text" name="Naam" required />
-
-            <label>E mail</label>
-            <input type="email" name="Email" required />
-
-            <label>Kenteken</label>
-            <input type="text" name="Kenteken" required />
-
-            <label>Beschikkingsnummer</label>
-            <input type="text" name="Beschikkingsnummer" required />
-
-            <div class="divider"></div>
-
-            <h3 class="section-title">Boete en toelichting</h3>
-
-            <label>Overtreding of type boete</label>
-            <input type="text" name="Overtreding" placeholder="Bijv parkeren, rood licht, snelheid" />
-
-            <label>Uw toelichting (optioneel)</label>
-            <textarea name="Toelichting" placeholder="Wat is er gebeurd? Waarom is bezwaar volgens u terecht?"></textarea>
-            <p class="field-hint">
-              Houd het feitelijk. Wij vertalen dit naar een juridisch zuivere onderbouwing.
-            </p>
-
-            <label>Upload boete (PDF of foto)</label>
-            <input type="file" name="BoeteUpload" accept=".pdf,image/*" required />
-            <p class="field-hint">
-              Zorg dat beschikkingsnummer, datum en bedrag zichtbaar zijn.
-            </p>
-
-            <div class="divider"></div>
-
-            <h3 class="section-title">Toestemming</h3>
-
-            <label class="checkbox">
-              <input type="checkbox" name="Toestemming" required />
-              Ik ga akkoord met verwerking van mijn gegevens voor beoordeling en dossieropbouw.
-            </label>
-
-            <div class="actions">
-              <button type="submit" class="btn-primary">Bezwaar starten</button>
-              <a class="btn-secondary" href="bezwaarservice.html">Pakketten bekijken</a>
-            </div>
-
-            <p class="field-hint" style="margin-top:1rem;">
-              Wij dienen alleen bezwaar in wanneer dit inhoudelijk verdedigbaar is.
-            </p>
-
-          </form>
-
-        </div>
-      </div>
-
-      <!-- RIGHT: Context / stappen / wat je ontvangt -->
-      <aside class="card">
-        <h2>Wat gebeurt er na verzending</h2>
-        <p>
-          Uw dossier loopt altijd via vaste stappen. U weet waar u staat en wat de volgende actie is.
-        </p>
-
-        <div class="pillrow">
-          <span class="pill">Binnenkomst</span>
-          <span class="pill">Beoordeling</span>
-          <span class="pill">Bezwaar</span>
-          <span class="pill">Opvolging</span>
-          <span class="pill">Tijdsbewaking</span>
-          <span class="pill">Afronding</span>
+        <div class="actions">
+          <button type="submit" class="btn-primary">Laat mijn boete beoordelen</button>
         </div>
 
         <p class="accentline">
-          Plus: wij dienen in, bewaken termijnen en zetten vervolgstappen in bij overschrijding.
+          U betaalt voor de beoordeling. Bezwaar volgt alleen bij voldoende juridische kans.
         </p>
-
-        <div class="divider"></div>
-
-        <div class="statusbox">
-          <strong>Tip voor hogere slagingskans</strong>
-          <div class="small">
-            Voeg 1 duidelijke zin toe met uw kernpunt. Bijvoorbeeld: “Ik stond stil wegens verkeerssituatie” of “De bebording was onduidelijk”.
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="statusbox">
-          <strong>Abonnement check</strong>
-          <div class="small">
-            Deze pagina toont het formulier alleen bij actieve toegang. Krijgt u een blokkade? Open dan de link uit uw bevestiging of kies eerst een pakket.
-          </div>
-        </div>
-      </aside>
-
+      </form>
     </div>
-  </section>
+
+    <!-- SIDEBAR -->
+    <aside class="card">
+      <h2>Wat gebeurt er daarna?</h2>
+      <p>
+        Wij beoordelen uw boete inhoudelijk op termijn, bewijs en wettelijke grondslag.
+        U ontvangt een helder ja/nee met toelichting.
+      </p>
+
+      <p class="accentline">
+        Alleen bij voldoende slagingskans ontvangt u een uitgewerkt bezwaar.
+      </p>
+    </aside>
+
+  </div>
+
+</section>
 </main>
 
 <footer class="footer">
-  <div class="container footer-grid">
-
-    <div class="footer-col">
-      <p class="footer-title">ZekerOpWeg</p>
-      <p>© 2026 ZekerOpWeg</p>
-      <p style="opacity:.75;line-height:1.5;">
-        Handelsnaam van Pepijn Westhoff<br>
-        KvK 99323575<br>
-        BTW NL005381985B31<br>
-        IBAN NL22 INGB 0116 6008 02
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <p class="footer-title">Contact</p>
-      <p>
-        <a href="mailto:info@zekeropweg.nu" data-service="info">info@zekeropweg.nu</a><br>
-        Algemene vragen en eerste contact
-      </p>
-      <p>
-        <a href="mailto:facturen@zekeropweg.nu" data-service="facturen">facturen@zekeropweg.nu</a><br>
-        Facturatie en administratie
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <p class="footer-title">Diensten</p>
-      <p>
-        <a href="mailto:advies@zekeropweg.nu" data-service="advies">advies@zekeropweg.nu</a><br>
-        Persoonlijk aankoopadvies
-      </p>
-      <p>
-        <a href="mailto:accucheck@zekeropweg.nu" data-service="accu">accucheck@zekeropweg.nu</a><br>
-        EV AccuCheck
-      </p>
-      <p>
-        <a href="mailto:bezwaarsupport@zekeropweg.nu" data-service="bezwaar">bezwaarsupport@zekeropweg.nu</a><br>
-        Bezwaarservice
-      </p>
-    </div>
-
-  </div>
-
-  <div class="container" style="margin-top:1.6rem; opacity:.7; font-size:.9rem;">
-    Diensten worden geleverd conform Nederlandse wetgeving. ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.
+  <div class="container" style="opacity:.7;font-size:.9rem;">
+    © 2026 ZekerOpWeg · Diensten conform Nederlandse wetgeving
   </div>
 </footer>
 
-<!-- Gate logic: bepaalt of het form zichtbaar is -->
-<script>
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-
-    // ✅ Toegang via URL:
-    // /intake-bezwaar.html?abonnee=true&pakket=plus
-    const abonnee = (params.get("abonnee") || "").toLowerCase();
-    const pakket = (params.get("pakket") || "").toLowerCase();
-
-    const noAccess = document.getElementById("noAccess");
-    const formWrap = document.getElementById("bezwaarForm");
-
-    const pakketField = document.getElementById("pakketField");
-    const abonneeField = document.getElementById("abonneeField");
-
-    // Zet hidden fields (voor logging)
-    if (pakketField) pakketField.value = pakket || "";
-    if (abonneeField) abonneeField.value = abonnee || "";
-
-    const hasAccess = (abonnee === "true");
-
-    if (hasAccess) {
-      formWrap.classList.remove("hidden");
-      noAccess.classList.add("hidden");
-    } else {
-      noAccess.classList.remove("hidden");
-      formWrap.classList.add("hidden");
-    }
-  })();
-</script>
-
-<!-- Jouw bestaande menu.js (active nav + footer highlight) -->
-<script src="scripts/menu.js" defer></script>
 </body>
 </html>
