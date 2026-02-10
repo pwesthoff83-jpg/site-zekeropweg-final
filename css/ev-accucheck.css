@@ -1,17 +1,22 @@
 /* =====================================================
-   EV ACCUCHECK — DEFINITIEVE PAGE CSS (PARTICULIER)
+   EV ACCUCHECK — PARTICULIER (DEFINITIEF)
    Scope: alleen body.page-ev-accucheck
    Doel:
-   1) Pricing-card exact centreren
-   2) Decision badge compact + gecentreerd
-   (Zakelijk blijft onaangeraakt)
+   1) Card center
+   2) Beslissingsbescherming badge smaller + center
+   Zakelijk blijft onaangeraakt
 ===================================================== */
 
+/* =====================================================
+   PAGE CANVAS
+===================================================== */
 body.page-ev-accucheck{
   background: linear-gradient(to bottom, #fcfbf8 0%, #f6f5f1 100%);
 }
 
-/* HERO kleine polish */
+/* =====================================================
+   HERO
+===================================================== */
 body.page-ev-accucheck .hero-accucheck h1{
   max-width: 18ch;
   margin-left: auto;
@@ -19,43 +24,81 @@ body.page-ev-accucheck .hero-accucheck h1{
 }
 
 /* =====================================================
-   PRICING — SINGLE CARD CANVAS (CENTERED)
-   Werkt ook als .pricing-grid NIET in een .container staat
+   INTRO CARD (indien aanwezig)
 ===================================================== */
+body.page-ev-accucheck .accu-intro-wrap{ padding: 0; }
 
-body.page-ev-accucheck .pricing-grid{
-  /* hard reset zodat oude grid/floats je niet meer slopen */
-  display: flex !important;
-  justify-content: center !important;
-  align-items: stretch;
-  width: 100%;
-  margin: 3.5rem auto 0;
-  padding: 0 24px; /* nette ademruimte op smalle schermen */
-  box-sizing: border-box;
+body.page-ev-accucheck .premium-intro{
+  margin-top: -3.6rem;
+  background: #ffffff;
+  padding: 3.2rem 3.6rem;
+  border-radius: 26px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.08);
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 10;
 }
 
-/* de kaart zelf: altijd in het midden */
+body.page-ev-accucheck .accu-intro-text h3{
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin-bottom: .8rem;
+}
+
+body.page-ev-accucheck .accu-intro-text p{
+  color: rgba(20,20,20,.70);
+  line-height: 1.75;
+}
+
+@media (max-width: 900px){
+  body.page-ev-accucheck .premium-intro{
+    padding: 2.4rem 2.1rem;
+    margin-top: -2.4rem;
+  }
+}
+
+/* =====================================================
+   PRICING — DEFINITIEF CENTER (dit is de kern)
+   Fix: pricing-grid wordt vaak als GRID gedefinieerd in globals.
+   Wij slopen dat hier bewust alleen op deze pagina.
+===================================================== */
+body.page-ev-accucheck .pricing-grid{
+  /* kill grid-layout uit andere CSS */
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
+
+  width: 100% !important;
+  margin: 3.5rem auto 0 !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+
+  justify-content: center !important;
+  align-items: stretch !important;
+}
+
+/* Card: exact center + luxe look blijft */
 body.page-ev-accucheck .pricing-grid > .pricing-card{
-  width: 100%;
-  max-width: 720px;
-  margin-inline: auto !important;
+  width: 100% !important;
+  max-width: 720px !important;
+
   margin-left: auto !important;
   margin-right: auto !important;
 
   background: #ffffff;
-  border-radius: 32px;
+  border-radius: 34px;
   padding: 3.8rem 3.6rem 3.6rem;
-  box-shadow:
-    0 40px 100px rgba(0,0,0,.08),
-    inset 0 0 0 1px rgba(255,255,255,.6);
-
+  box-shadow: 0 40px 100px rgba(0,0,0,.08);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  text-align: left; /* content links zoals jij wil */
+
+  text-align: left; /* content links, CTA later gecentreerd */
 }
 
-/* featured (goudrand + luxe schaduw) */
+/* Featured rand/shadow */
 body.page-ev-accucheck .pricing-grid > .pricing-card.pricing-featured{
   border: 2px solid rgba(215,181,109,.75);
   box-shadow:
@@ -64,18 +107,20 @@ body.page-ev-accucheck .pricing-grid > .pricing-card.pricing-featured{
 }
 
 /* =====================================================
-   BADGE — compact + gecentreerd (niet te breed)
+   BADGE — smaller + center (jouw punt #2)
 ===================================================== */
-
 body.page-ev-accucheck .pricing-card .decision-badge{
+  align-self: center;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: auto;
-  max-width: max-content;
-  margin: 0 auto 2.2rem;   /* CENTER */
-  padding: 0.55rem 2.2rem; /* niet te breed */
+  width: auto !important;
+  max-width: max-content !important;
+
+  margin: 0 auto 2.2rem;
+  padding: 0.55rem 2.2rem;
 
   font-size: .7rem;
   letter-spacing: .14em;
@@ -84,23 +129,11 @@ body.page-ev-accucheck .pricing-card .decision-badge{
   border-radius: 999px;
   background: #f6ecd3;
   color: #7c642c;
-  box-shadow: 0 12px 30px rgba(215,181,109,.18);
 }
 
 /* =====================================================
-   TYPO + SPACING (bewust rustig, high-end)
+   PRICE BLOCK (zoals je nu hebt)
 ===================================================== */
-
-body.page-ev-accucheck .pricing-card h3{
-  font-size: 1.55rem;
-  margin: 0 0 1.4rem;
-  letter-spacing: -0.01em;
-}
-
-body.page-ev-accucheck .pricing-card .price-block{
-  margin: 0 0 2.2rem;
-}
-
 body.page-ev-accucheck .pricing-card .price-block strong{
   display: block;
   font-size: 2.2rem;
@@ -112,28 +145,21 @@ body.page-ev-accucheck .pricing-card .price-block span{
   display: block;
   margin-top: .6rem;
   color: rgba(11,18,32,.55);
-  font-size: .95rem;
 }
 
-body.page-ev-accucheck .pricing-card p{
-  color: rgba(11,18,32,.72);
-  line-height: 1.75;
-  max-width: 60ch;
-  margin: 0 0 1.8rem;
-}
-
-/* features list (zoals zakelijk: dash-gold) */
+/* =====================================================
+   FEATURES LIST (dash-gold)
+===================================================== */
 body.page-ev-accucheck .pricing-card .lux-list{
   list-style: none;
   padding: 0;
-  margin: 1.2rem 0 0;
+  margin: 1.6rem 0 0;
 }
 
 body.page-ev-accucheck .pricing-card .lux-list li{
   position: relative;
   padding-left: 1.4rem;
   margin-bottom: .8rem;
-  color: rgba(11,18,32,.78);
 }
 
 body.page-ev-accucheck .pricing-card .lux-list li::before{
@@ -144,26 +170,71 @@ body.page-ev-accucheck .pricing-card .lux-list li::before{
 }
 
 /* =====================================================
-   CTA — bewust gecentreerd (zoals jij wil)
+   CTA — bewust gecentreerd (zoals je wil)
 ===================================================== */
-
 body.page-ev-accucheck .pricing-card .pricing-cta{
   margin-top: auto;
   align-self: center;
+  width: 260px;
 }
 
-/* kleine responsive polish */
+/* =====================================================
+   FAQ (laat je huidige rustige stijl intact)
+===================================================== */
+body.page-ev-accucheck .faq-list{
+  max-width: 760px;
+  margin: 2.5rem auto 0;
+}
+
+body.page-ev-accucheck .faq-item{
+  padding: 2.8rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+body.page-ev-accucheck .faq-item:last-child{
+  border-bottom: none;
+}
+
+body.page-ev-accucheck .faq-item h3{
+  font-size: .98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(11,18,32,.92);
+  margin-bottom: .6rem;
+}
+
+body.page-ev-accucheck .faq-item p{
+  font-size: .94rem;
+  line-height: 1.75;
+  color: rgba(11,18,32,.68);
+  max-width: 66ch;
+}
+
+body.page-ev-accucheck .faq-item + .faq-item{
+  margin-top: .6rem;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 @media (max-width: 760px){
   body.page-ev-accucheck .pricing-grid{
-    padding: 0 16px;
-    margin-top: 2.6rem;
+    padding: 0 16px !important;
+    margin-top: 2.6rem !important;
   }
+
   body.page-ev-accucheck .pricing-grid > .pricing-card{
     padding: 2.8rem 2.2rem 2.6rem;
     border-radius: 26px;
   }
+
   body.page-ev-accucheck .pricing-card .decision-badge{
     padding: 0.5rem 1.6rem;
     margin-bottom: 1.8rem;
   }
+
+  body.page-ev-accucheck .pricing-card .pricing-cta{
+    width: 240px;
+  }
 }
+
