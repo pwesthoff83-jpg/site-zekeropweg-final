@@ -210,6 +210,28 @@
   }
 }
 
+/* =========================================================
+   PAKKETTEN — STRUCTURELE LAYOUT
+========================================================= */
+
+.packages-section{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 900px){
+  .packages-section{
+    grid-template-columns: 1fr !important;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 900px){
+  .package-card.featured{
+    order: -1;
+  }
+}
 
 /* =========================================================
    10) FINAL CTA — STRUCTURE ONLY
