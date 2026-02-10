@@ -578,3 +578,30 @@ body.page-ev-accucheck .accucheck-surface{
   padding-left: 2.4rem;
   padding-right: 2.4rem;
 }
+
+/* =====================================================
+   EV ACCUCHECK — CARD UITLIJNING (DEFINITIEF)
+   Alleen particulier, geen zakelijk effect
+===================================================== */
+
+/* 1. Center de enkele pricing card (zonder grid te slopen) */
+body.page-ev-accucheck .pricing-grid {
+  display: flex;
+  justify-content: center;
+}
+
+/* 2. Beperk breedte van de card (zelfde schaal als zoekservice) */
+body.page-ev-accucheck .pricing-card {
+  max-width: 720px;
+  width: 100%;
+}
+
+/* 3. Badge (Beslissingsbescherming) correct centreren en versmallen */
+body.page-ev-accucheck .decision-badge {
+  display: inline-block;
+  margin: 0 auto 2.2rem;
+  padding: 0.55rem 2.4rem;
+  align-self: center;
+  width: auto;
+  max-width: fit-content;
+}
