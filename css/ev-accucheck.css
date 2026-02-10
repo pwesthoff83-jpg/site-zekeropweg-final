@@ -1,691 +1,169 @@
 /* =====================================================
-   EV ACCUCHECK — PAGE LAYER (OPSCHOOND & DEFINITIEF)
-   Alleen page-specifiek, geen pricing / packages
-===================================================== */
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero-accucheck h1{
-  max-width: 18ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-/* =====================================================
-   INTRO CARD (ONDER HERO)
-===================================================== */
-
-.accu-intro-wrap{
-  padding: 0;
-}
-
-.premium-intro{
-  margin-top: -3.6rem;
-  background: #ffffff;
-  padding: 3.2rem 3.6rem;
-  border-radius: 26px;
-  box-shadow: 0 40px 80px rgba(0,0,0,.08);
-  max-width: 920px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 10;
-}
-
-.accu-intro-text h3{
-  font-size: 1.35rem;
-  letter-spacing: -0.01em;
-  margin-bottom: .8rem;
-}
-
-.accu-intro-text p{
-  color: rgba(20,20,20,.70);
-  line-height: 1.75;
-}
-
-@media (max-width: 900px){
-  .premium-intro{
-    padding: 2.4rem 2.1rem;
-    margin-top: -2.4rem;
-  }
-}
-
-
-/* =====================================================
-   EV ACCUCHECK — DECISION CARD (KERNCOMPONENT)
-===================================================== */
-
-.accucheck-pricing{
-  max-width: 760px;
-  margin: 3.5rem auto 0;
-}
-
-body.page-ev-accucheck .accucheck-card{
-  background: linear-gradient(180deg,#ffffff 0%,#fbfaf6 100%);
-  border-radius: 32px;
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.12),
-    inset 0 0 0 1px rgba(255,255,255,.6);
-}
-
-
-.accucheck-card.featured{
-  border:1px solid rgba(215,181,109,.55);
-  box-shadow:
-    0 36px 90px rgba(215,181,109,.18),
-    0 14px 34px rgba(0,0,0,.10);
-}
-
-.accucheck-card h3{
-  margin-bottom:.8rem;
-}
-
-.accucheck-card .price{
-  font-size:2rem;
-  font-weight:600;
-  margin:.4rem 0 1.4rem;
-}
-
-.accucheck-card .price::after{
-  content:"";
-  display:block;
-  width:32px;
-  height:1px;
-  margin-top:1rem;
-  background:rgba(215,181,109,.6);
-}
-
-.accucheck-card ul{
-  list-style:none;
-  padding:0;
-  margin:1.6rem 0;
-}
-
-.accucheck-card ul li{
-  position:relative;
-  padding-left:1.4rem;
-  margin-bottom:.6rem;
-}
-
-.accucheck-card ul li::before{
-  content:"–";
-  position:absolute;
-  left:0;
-  color:var(--zop-gold);
-}
-
-.accucheck-card .btn-package{
-  margin: 2.8rem auto 0;
-}
-
-
-/* =====================================================
-   USE CASE BLOK (ZAKELIJK / CONTEXT)
-===================================================== */
-
-.usecase-block{
-  margin-top:2.4rem;
-  padding:1.6rem 1.8rem;
-  background:#f9f7f3;
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:20px;
-}
-
-.usecase-block h4{
-  margin-bottom:1rem;
-  font-size:1rem;
-  letter-spacing:.02em;
-}
-
-.usecase-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1rem;
-}
-
-.usecase-item{
-  background:#ffffff;
-  padding:1rem 1.1rem;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.06);
-}
-
-.usecase-item strong{
-  display:block;
-  margin-bottom:.35rem;
-  color:#0b1220;
-}
-
-.usecase-item p{
-  font-size:.92rem;
-  opacity:.78;
-  line-height:1.5;
-}
-
-@media(max-width:760px){
-  .usecase-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-
-/* =====================================================
-   FAQ
-===================================================== */
-
-.faq-list{
-  max-width: 900px;
-  margin: 2.5rem auto 0;
-}
-
-.faq-item{
-  padding: 2.4rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-.faq-item:last-child{
-  border-bottom: none;
-}
-
-.faq-item h3{
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-}
-
-.faq-item p{
-  font-size: 0.95rem;
-  line-height: 1.65;
-  opacity: 0.85;
-}
-
-/* =========================================
-   EV ACCUCHECK — FAQ RUST & HIËRARCHIE
-========================================= */
-
-body.page-ev-accucheck .faq-list{
-  max-width: 760px;
-}
-
-body.page-ev-accucheck .faq-item{
-  padding: 2.8rem 0;
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
-
-body.page-ev-accucheck .faq-item h3{
-  font-size: .98rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: rgba(11,18,32,.92);
-}
-
-body.page-ev-accucheck .faq-item p{
-  font-size: .94rem;
-  line-height: 1.75;
-  color: rgba(11,18,32,.68);
-  max-width: 66ch;
-}
-
-
-/* Extra ademruimte tussen FAQ-blokken */
-body.page-ev-accucheck .faq-item + .faq-item{
-  margin-top: .6rem;
-}
-
-
-/* =====================================================
-   MICRO COPY / ACCENTEN
-===================================================== */
-
-.context-accent{
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--zop-gold);
-  margin: 2.2rem 0 0.6rem;
-}
-
-.accentline{
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
-}
-
-
-/* =====================================================
-   PAGE FLOW & CANVAS
+   EV ACCUCHECK — DEFINITIEVE PAGE CSS (PARTICULIER)
+   Scope: alleen body.page-ev-accucheck
+   Doel:
+   1) Pricing-card exact centreren
+   2) Decision badge compact + gecentreerd
+   (Zakelijk blijft onaangeraakt)
 ===================================================== */
 
 body.page-ev-accucheck{
-  background: linear-gradient(
-    to bottom,
-    #fcfbf8 0%,
-    #f6f5f1 100%
-  );
+  background: linear-gradient(to bottom, #fcfbf8 0%, #f6f5f1 100%);
 }
 
-body.page-ev-accucheck .services-section + .services-section{
-  border-top: 1px solid rgba(0,0,0,.04);
-}
-
-body.page-ev-accucheck .hero + section{
-  margin-top: 0 !important;
-}
-
-body.page-ev-accucheck footer{
-  margin-top: 6rem;
-}
-
-/* =========================================
-   EV ACCUCHECK — FORCE CARD VISUAL
-   Override section-bg-soft reset
-========================================= */
-
-body.page-ev-accucheck .section-bg-soft .accucheck-card{
-  background: #ffffff;
-  border-radius: 28px;
-  box-shadow:
-    0 28px 70px rgba(0,0,0,.08);
-}
-
-/* =========================================
-   ACCUCHECK — CARD SURFACE (VERPLICHT)
-========================================= */
-
-body.page-ev-accucheck .accucheck-surface{
-  background: transparent;
-  padding: 3.5rem 0;
-  display: flex;
-  justify-content: center;
-}
-
-/* ================================
-   ACCUCHECK — SINGLE PRICING CARD
-================================ */
-
-.pricing-single{
-  display:flex;
-  justify-content:center;
-  margin-top:3.5rem;
-}
-
-.pricing-card{
-  max-width:720px;
-  width:100%;
-  background:#ffffff;
-  border-radius:32px;
-  padding:3.6rem 3.8rem;
-  box-shadow:
-    0 50px 120px rgba(0,0,0,.12),
-    inset 0 0 0 1px rgba(255,255,255,.6);
-  text-align:center;
-}
-
-.pricing-eyebrow{
-  display:inline-block;
-  font-size:.7rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:#9f7c2f;
-  margin-bottom:1.2rem;
-}
-
-.pricing-title{
-  font-size:1.6rem;
-  margin-bottom:1.2rem;
-}
-
-.pricing-price{
-  margin:1.6rem 0 2.2rem;
-}
-
-.pricing-old{
-  display:block;
-  font-size:1rem;
-  text-decoration:line-through;
-  opacity:.45;
-}
-
-.pricing-current{
-  display:block;
-  font-size:2.4rem;
-  font-weight:700;
-}
-
-.pricing-note{
-  display:block;
-  font-size:.8rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  opacity:.65;
-  margin-top:.4rem;
-}
-
-.pricing-desc{
-  max-width:56ch;
-  margin:0 auto 2rem;
-  line-height:1.75;
-}
-
-.pricing-list{
-  list-style:none;
-  padding:0;
-  margin:0 auto 2.2rem;
-  max-width:420px;
-  text-align:left;
-}
-
-.pricing-list li{
-  padding-left:18px;
-  position:relative;
-  margin-bottom:.8rem;
-}
-
-.pricing-list li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:.6em;
-  width:10px;
-  height:2px;
-  background:#c6a86a;
-}
-
-.pricing-footnote{
-  font-size:.9rem;
-  opacity:.65;
-  margin-bottom:2.6rem;
-}
-
-.editorial-faq{
-  max-width:640px;
-  margin:3rem auto 0;
-}
-
-.editorial-faq article{
-  margin-bottom:3.2rem;
-}
-
-.editorial-faq h3{
-  font-size:1rem;
-  font-weight:600;
-  margin-bottom:.6rem;
-  color:#0b1220;
-}
-
-.editorial-faq p{
-  font-size:.95rem;
-  line-height:1.8;
-  color:rgba(11,18,32,.68);
-}
-
-.pricing-card--zekeropweg{
-  background:#fff;
-  border-radius:32px;
-  padding:3.6rem 3.8rem;
-  box-shadow:0 40px 100px rgba(0,0,0,.08);
-  max-width:760px;
-  margin:0 auto;
-}
-
-.pricing-context{
-  font-size:.7rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--zop-gold);
-}
-
-.pricing-title{
-  margin:.4rem 0 1.2rem;
-}
-
-.pricing-intro{
-  max-width:52ch;
-  line-height:1.7;
-  color:rgba(20,20,20,.75);
-}
-
-.pricing-value{
-  margin:2.4rem 0 2rem;
-}
-
-.pricing-regular{
-  display:block;
-  font-size:.85rem;
-  color:rgba(20,20,20,.55);
-}
-
-.pricing-current{
-  display:block;
-  font-size:2.4rem;
-  font-weight:600;
-  margin:.2rem 0;
-}
-
-.pricing-note{
-  font-size:.75rem;
-  color:rgba(20,20,20,.55);
-}
-
-.pricing-list{
-  margin:2rem 0;
-}
-
-.btn-primary--wide{
-  width:100%;
-  max-width:420px;
-  margin:2.8rem auto 0;
-}
-
-.pricing-card{
-  background:#fff;
-  border-radius:34px;
-  padding:3.8rem 3.6rem 3.6rem;
-  box-shadow:0 40px 100px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
-}
-
-.pricing-card--featured{
-  border:2px solid rgba(215,181,109,.75);
-  box-shadow:
-    0 48px 120px rgba(215,181,109,.22),
-    0 18px 40px rgba(0,0,0,.10);
-}
-
-.pricing-badge{
-  align-self:center;
-  padding:8px 22px;
-  font-size:.7rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  border-radius:999px;
-  background:#f6ecd3;
-  color:#7c642c;
-  margin-bottom:1.6rem;
-}
-
-.pricing-title{
-  text-align:center;
-  margin-bottom:1.2rem;
-}
-
-.pricing-lead{
-  text-align:center;
-  max-width:46ch;
-  margin:0 auto 2.4rem;
-  color:rgba(20,20,20,.75);
-}
-
-.pricing-price-block{
-  text-align:center;
-  margin-bottom:2.6rem;
-}
-
-.pricing-old{
-  display:block;
-  font-size:.85rem;
-  color:rgba(20,20,20,.5);
-}
-
-.pricing-price{
-  font-size:2.4rem;
-  font-weight:600;
-  margin:.2rem 0;
-}
-
-.pricing-tax{
-  font-size:.8rem;
-  font-weight:400;
-  opacity:.6;
-}
-
-.pricing-meta{
-  font-size:.75rem;
-  color:rgba(20,20,20,.55);
-}
-
-.pricing-features{
-  margin:2.6rem 0 2.2rem;
-}
-
-.pricing-footnote{
-  font-size:.9rem;
-  opacity:.7;
-  line-height:1.6;
-}
-
-.pricing-card .btn-primary{
-  margin-top:auto;
-  align-self:center;
-  width:260px;
-}
-
-/* Center de AccuCheck kaart */
-.page-ev-accucheck .accucheck-card {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Beslissingsbescherming badge centreren en beperken */
-.page-ev-accucheck .accucheck-card .badge {
-  display: inline-block;
-  max-width: fit-content;
-  margin: 0 auto 2.2rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-}
-
-/* =====================================================
-   EV ACCUCHECK — CARD UITLIJNING (DEFINITIEF)
-   Alleen particulier, geen zakelijk effect
-===================================================== */
-
-/* 1. Center de enkele pricing card (zonder grid te slopen) */
-body.page-ev-accucheck .pricing-grid {
-  display: flex;
-  justify-content: center;
-}
-
-/* 2. Beperk breedte van de card (zelfde schaal als zoekservice) */
-body.page-ev-accucheck .pricing-card {
-  max-width: 720px;
-  width: 100%;
-}
-
-/* 3. Badge (Beslissingsbescherming) correct centreren en versmallen */
-body.page-ev-accucheck .decision-badge {
-  display: inline-block;
-  margin: 0 auto 2.2rem;
-  padding: 0.55rem 2.4rem;
-  align-self: center;
-  width: auto;
-  max-width: fit-content;
-}
-
-/* =====================================================
-   EV ACCUCHECK — PAGE LAYER (OPSCHOOND & DEFINITIEF)
-===================================================== */
-
-/* ================= HERO ================= */
-
-.hero-accucheck h1{
+/* HERO kleine polish */
+body.page-ev-accucheck .hero-accucheck h1{
   max-width: 18ch;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ================= INTRO CARD ================= */
+/* =====================================================
+   PRICING — SINGLE CARD CANVAS (CENTERED)
+   Werkt ook als .pricing-grid NIET in een .container staat
+===================================================== */
 
-.accu-intro-wrap{ padding:0; }
-
-.premium-intro{
-  margin-top:-3.6rem;
-  background:#fff;
-  padding:3.2rem 3.6rem;
-  border-radius:26px;
-  box-shadow:0 40px 80px rgba(0,0,0,.08);
-  max-width:920px;
-  margin:0 auto;
-  position:relative;
-  z-index:10;
-}
-
-/* ================= ACCUCHECK PRICING ================= */
-
-/* GRID → forceer center voor SINGLE card */
 body.page-ev-accucheck .pricing-grid{
-  display:flex;
-  justify-content:center;
+  /* hard reset zodat oude grid/floats je niet meer slopen */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: stretch;
+  width: 100%;
+  margin: 3.5rem auto 0;
+  padding: 0 24px; /* nette ademruimte op smalle schermen */
+  box-sizing: border-box;
 }
 
-/* DE CARD ZELF */
-body.page-ev-accucheck .pricing-card{
-  max-width:720px;
-  width:100%;
-  margin:0 auto;
-  background:#ffffff;
-  border-radius:32px;
-  padding:3.8rem 3.6rem 3.6rem;
+/* de kaart zelf: altijd in het midden */
+body.page-ev-accucheck .pricing-grid > .pricing-card{
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 3.8rem 3.6rem 3.6rem;
   box-shadow:
     0 40px 100px rgba(0,0,0,.08),
     inset 0 0 0 1px rgba(255,255,255,.6);
-  display:flex;
-  flex-direction:column;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left; /* content links zoals jij wil */
 }
 
-/* FEATURED RAND */
-body.page-ev-accucheck .pricing-card.pricing-featured{
-  border:2px solid rgba(215,181,109,.75);
+/* featured (goudrand + luxe schaduw) */
+body.page-ev-accucheck .pricing-grid > .pricing-card.pricing-featured{
+  border: 2px solid rgba(215,181,109,.75);
   box-shadow:
     0 48px 120px rgba(215,181,109,.22),
     0 18px 40px rgba(0,0,0,.10);
 }
 
-/* ================= BADGE ================= */
+/* =====================================================
+   BADGE — compact + gecentreerd (niet te breed)
+===================================================== */
 
-body.page-ev-accucheck .decision-badge{
-  align-self:center;
-  display:inline-block;
-  padding:0.55rem 2.4rem;
-  margin:0 auto 2.2rem;
-  font-size:.7rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  border-radius:999px;
-  background:#f6ecd3;
-  color:#7c642c;
-  width:auto;
-  max-width:fit-content;
+body.page-ev-accucheck .pricing-card .decision-badge{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  max-width: max-content;
+  margin: 0 auto 2.2rem;   /* CENTER */
+  padding: 0.55rem 2.2rem; /* niet te breed */
+
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+
+  border-radius: 999px;
+  background: #f6ecd3;
+  color: #7c642c;
+  box-shadow: 0 12px 30px rgba(215,181,109,.18);
 }
 
-/* ================= CTA ================= */
+/* =====================================================
+   TYPO + SPACING (bewust rustig, high-end)
+===================================================== */
 
-body.page-ev-accucheck .pricing-card .btn-primary{
-  margin-top:auto;
-  align-self:center;
-  width:260px;
+body.page-ev-accucheck .pricing-card h3{
+  font-size: 1.55rem;
+  margin: 0 0 1.4rem;
+  letter-spacing: -0.01em;
+}
+
+body.page-ev-accucheck .pricing-card .price-block{
+  margin: 0 0 2.2rem;
+}
+
+body.page-ev-accucheck .pricing-card .price-block strong{
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+body.page-ev-accucheck .pricing-card .price-block span{
+  display: block;
+  margin-top: .6rem;
+  color: rgba(11,18,32,.55);
+  font-size: .95rem;
+}
+
+body.page-ev-accucheck .pricing-card p{
+  color: rgba(11,18,32,.72);
+  line-height: 1.75;
+  max-width: 60ch;
+  margin: 0 0 1.8rem;
+}
+
+/* features list (zoals zakelijk: dash-gold) */
+body.page-ev-accucheck .pricing-card .lux-list{
+  list-style: none;
+  padding: 0;
+  margin: 1.2rem 0 0;
+}
+
+body.page-ev-accucheck .pricing-card .lux-list li{
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: .8rem;
+  color: rgba(11,18,32,.78);
+}
+
+body.page-ev-accucheck .pricing-card .lux-list li::before{
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--zop-gold);
+}
+
+/* =====================================================
+   CTA — bewust gecentreerd (zoals jij wil)
+===================================================== */
+
+body.page-ev-accucheck .pricing-card .pricing-cta{
+  margin-top: auto;
+  align-self: center;
+}
+
+/* kleine responsive polish */
+@media (max-width: 760px){
+  body.page-ev-accucheck .pricing-grid{
+    padding: 0 16px;
+    margin-top: 2.6rem;
+  }
+  body.page-ev-accucheck .pricing-grid > .pricing-card{
+    padding: 2.8rem 2.2rem 2.6rem;
+    border-radius: 26px;
+  }
+  body.page-ev-accucheck .pricing-card .decision-badge{
+    padding: 0.5rem 1.6rem;
+    margin-bottom: 1.8rem;
+  }
 }
