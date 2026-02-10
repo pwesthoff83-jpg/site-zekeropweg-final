@@ -64,12 +64,14 @@
   margin: 3.5rem auto 0;
 }
 
-.accucheck-card{
-  background:#ffffff;
-  border-radius:28px;
-  padding:3.2rem 3rem 3.4rem;
-  box-shadow:0 28px 70px rgba(0,0,0,.08);
+body.page-ev-accucheck .accucheck-card{
+  background: linear-gradient(180deg,#ffffff 0%,#fbfaf6 100%);
+  border-radius: 32px;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.12),
+    inset 0 0 0 1px rgba(255,255,255,.6);
 }
+
 
 .accucheck-card.featured{
   border:1px solid rgba(215,181,109,.55);
@@ -205,26 +207,29 @@
    EV ACCUCHECK — FAQ RUST & HIËRARCHIE
 ========================================= */
 
+body.page-ev-accucheck .faq-list{
+  max-width: 760px;
+}
+
 body.page-ev-accucheck .faq-item{
-  padding: 2.6rem 0;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
 }
 
 body.page-ev-accucheck .faq-item h3{
-  font-size: 1.02rem;
+  font-size: .98rem;
   font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: .6rem;
+  letter-spacing: -0.01em;
+  color: rgba(11,18,32,.92);
 }
 
 body.page-ev-accucheck .faq-item p{
   font-size: .94rem;
-  line-height: 1.7;
-  opacity: .82;
-  max-width: 68ch;
+  line-height: 1.75;
+  color: rgba(11,18,32,.68);
+  max-width: 66ch;
 }
+
 
 /* Extra ademruimte tussen FAQ-blokken */
 body.page-ev-accucheck .faq-item + .faq-item{
@@ -285,3 +290,15 @@ body.page-ev-accucheck .section-bg-soft .accucheck-card{
   box-shadow:
     0 28px 70px rgba(0,0,0,.08);
 }
+
+/* =========================================
+   ACCUCHECK — CARD SURFACE (VERPLICHT)
+========================================= */
+
+body.page-ev-accucheck .accucheck-surface{
+  background: transparent;
+  padding: 3.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
