@@ -1,57 +1,89 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EV AccuCheck €149 | Vandaag mogelijk regio Rotterdam | ZekerOpWeg</title>
-  <meta name="description" content="EV of hybride kopen? Laat vóór aankoop de accu meten. Vandaag mogelijk in regio Barendrecht, Rotterdam en Dordrecht. €149 incl. btw. TÜV gecertificeerd accucertificaat. Plan direct." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV AccuCheck €149 | Regio Rotterdam | ZekerOpWeg</title>
 
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/zop-luxury-polish.css">
-  <link rel="stylesheet" href="css/zop-stability.css">
-  <link rel="stylesheet" href="css/accucheck.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/zop-luxury-polish.css">
+<link rel="stylesheet" href="css/zop-stability.css">
+<link rel="stylesheet" href="css/accucheck.css">
 
-  <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17962185957');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-17962185957');
+</script>
 
-  <style>
-    section[id] { scroll-margin-top: 110px; }
+<style>
 
-    /* HERO HARD RESET */
-    .hero.hero-accucheck-simple {
-      background: #0b1c2d !important;
-      background-image: none !important;
-      filter: none !important;
-      opacity: 1 !important;
-    }
+/* HERO */
+.hero.hero-accucheck-simple {
+  background: #0b1c2d;
+  padding: 80px 20px;
+  text-align: center;
+}
 
-    .hero.hero-accucheck-simple::before,
-    .hero.hero-accucheck-simple::after {
-      display: none !important;
-      content: none !important;
-      background: none !important;
-    }
+.hero.hero-accucheck-simple h1,
+.hero.hero-accucheck-simple p {
+  color: #ffffff;
+}
 
-    .hero.hero-accucheck-simple * {
-      filter: none !important;
-      opacity: 1 !important;
-    }
+.hero.hero-accucheck-simple p:last-of-type {
+  color: #c6a15b;
+}
 
-    .hero.hero-accucheck-simple h1,
-    .hero.hero-accucheck-simple p {
-      color: #ffffff !important;
-    }
+/* IMAGE BLOCKS */
+.image-block {
+  margin: 60px auto;
+  text-align: center;
+}
 
-    .hero.hero-accucheck-simple p:last-of-type {
-      color: #c6a15b !important;
-    }
-  </style>
+.image-block img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* CERTIFICATE LAYOUT */
+.aviloo-layout {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.aviloo-layout .text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.aviloo-layout .certificate {
+  flex: 0 0 340px;
+}
+
+.aviloo-layout .certificate img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+@media(max-width:768px){
+  .aviloo-layout {
+    flex-direction: column;
+  }
+  .aviloo-layout .certificate {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+</style>
 </head>
 
 <body class="fade-in page-ev-accucheck">
@@ -62,58 +94,47 @@
     <nav class="zop-nav">
       <a href="index.html">Home</a>
       <a href="ev-accucheck.html" class="active">AccuCheck</a>
-      <a href="contact.html" class="zop-contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<main class="page-content">
+<main>
 
-  <!-- HERO -->
-  <section class="hero hero-accucheck-simple">
-    <div class="container" style="text-align:center; padding:60px 20px;">
-      <h1>EV AccuCheck €149 Op Locatie</h1>
+<!-- HERO -->
+<section class="hero hero-accucheck-simple">
+  <h1>EV AccuCheck €149 Op Locatie</h1>
+  <p>Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat</p>
+  <div style="margin-top:30px;">
+    <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">
+      Plan AccuCheck €149
+    </a>
+  </div>
+  <p style="margin-top:20px;font-weight:600;">
+    Binnen 15 minuten persoonlijk contact tijdens kantooruren
+  </p>
+</section>
 
-      <p style="font-size:18px; margin-top:15px;">
-        Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat
-      </p>
+<!-- WHAT YOU GET -->
+<section class="services-section container">
+  <h2 class="section-title">Wat U Ontvangt</h2>
+  <p>
+    Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
+    Volledige transparantie over de werkelijke accustatus vóór aankoop.
+  </p>
+</section>
 
-      <div style="margin-top:30px;">
-        <!-- CTA 1: moet scrollen naar intake -->
-        <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">Plan AccuCheck €149</a>
-      </div>
-
-      <p style="margin-top:15px; font-weight:600;">
-        Vaak dezelfde dag uitgevoerd
-      </p>
-
-      <p style="margin-top:10px; font-weight:600; color:#b08d57;">
-        Binnen 15 minuten persoonlijk contact tijdens kantooruren
-      </p>
-    </div>
-  </section>
-
-  <!-- PREMIUM -->
-  <section id="premium" class="services-section container">
-    <h2 class="section-title">Wat U Ontvangt</h2>
-    <p style="max-width:800px;">
-      Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
-      Volledige transparantie over de werkelijke accustatus vóór aankoop.
-    </p>
-  </section>
-
-<div style="margin-top:30px; text-align:center;">
-<img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg"
-     alt="Aviloo batterijdiagnose apparatuur"
-     style="max-width:100%; border-radius:12px;">
+<!-- AVILOO DEVICE IMAGE -->
+<div class="image-block">
+  <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg"
+       alt="Aviloo batterijdiagnose apparatuur">
 </div>
-  
-  <!-- AVILOO -->
-  <section id="aviloo" class="services-section section-bg-soft">
-  <div class="container" style="display:flex; align-items:center; gap:40px; flex-wrap:wrap;">
-    
-    <!-- Tekst -->
-    <div style="flex:1; min-width:280px;">
+
+<!-- AVILOO METHOD + CERTIFICATE -->
+<section class="services-section section-bg-soft">
+  <div class="container aviloo-layout">
+
+    <div class="text">
       <h2 class="section-title">Aviloo Meetmethode</h2>
       <p>
         De meting wordt uitgevoerd met professionele Aviloo meetapparatuur.
@@ -125,87 +146,46 @@
       </p>
     </div>
 
-    <!-- Kleine afbeelding rechts -->
-    <div style="flex:0 0 320px; text-align:right;">
+    <div class="certificate">
       <img src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png"
-           alt="TÜV gecertificeerd EV accu certificaat"
-           style="width:100%; max-width:320px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+           alt="TÜV gecertificeerd EV accu certificaat">
     </div>
 
   </div>
 </section>
-  
-  <!-- LOCATIE -->
-  <section id="locatie" class="services-section container">
-    <h2 class="section-title">AccuCheck op Locatie</h2>
-    <p style="max-width:800px;">
-      Wij komen naar u toe voor de meting.
-      Binnen 24 uur ontvangt u het digitale accucertificaat.
-    </p>
-  </section>
 
-<div style="margin-top:30px; text-align:center;">
+<!-- REAL EXECUTION IMAGE -->
+<div class="image-block">
   <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg6.jpg"
-       alt="Onafhankelijke EV accucheck uitgevoerd in Mercedes op locatie"
-       style="max-width:100%; border-radius:12px;">
+       alt="Onafhankelijke EV accucheck uitgevoerd in Mercedes op locatie">
 </div>
-  
-  <!-- REGIO -->
-  <section id="regio" class="services-section section-bg-soft">
-    <div class="container">
-      <h2 class="section-title">Werkgebied Regio Rotterdam</h2>
-      <p style="max-width:800px;">
-        Wij voeren AccuChecks uit in regio Rotterdam en omstreken.
-        Onder andere in Barendrecht, Dordrecht, Zwijndrecht, Ridderkerk,
-        Hendrik Ido Ambacht, Spijkenisse en Schiedam.
-      </p>
-      <p style="max-width:800px; margin-top:15px;">
-        Twijfelt u over uw locatie? Neem gerust contact op.
-        In veel gevallen is dezelfde dag nog mogelijk.
-      </p>
-    </div>
-  </section>
 
-  <!-- OFFER -->
-  <section class="services-section">
-    <div class="container">
-      <div class="pricing-grid">
-        <div class="pricing-card pricing-featured">
-          <span class="decision-badge">EV AccuCheck</span>
+<!-- REGIO -->
+<section class="services-section container">
+  <h2 class="section-title">Werkgebied Regio Rotterdam</h2>
+  <p>
+    Barendrecht, Rotterdam, Dordrecht, Zwijndrecht, Ridderkerk,
+    Hendrik Ido Ambacht, Spijkenisse en Schiedam.
+  </p>
+</section>
 
-          <div class="pricing-body">
-            <h3>€149 incl. btw</h3>
-            <p style="font-weight:600; margin-top:10px;">
-              Gebaseerd op TÜV gecertificeerde meetmethodiek
-            </p>
+<!-- OFFER -->
+<section class="services-section section-bg-soft">
+  <div class="container" style="text-align:center;">
+    <h3>EV AccuCheck €149 incl. btw</h3>
+    <ul class="lux-list" style="max-width:600px;margin:20px auto;">
+      <li>Objectieve State of Health meting</li>
+      <li>Analyse op celniveau indien ondersteund</li>
+      <li>TÜV gecertificeerd accucertificaat</li>
+    </ul>
 
-            <ul class="lux-list">
-              <li>Objectieve State of Health meting</li>
-              <li>Analyse op celniveau indien ondersteund</li>
-              <li>TÜV gecertificeerd accucertificaat</li>
-            </ul>
-          </div>
-
-          <!-- CTA 2: moet ook scrollen naar intake -->
-          <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary pricing-cta">Plan AccuCheck €149</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTAKE -->
-  <section id="intake" class="services-section section-bg-soft">
-    <div class="container">
-      <h2 class="section-title">Plan Direct Uw AccuCheck</h2>
-      <p style="margin-bottom:30px;">
-        Vraag vandaag nog uw meting aan. U ontvangt snel een bevestiging.
-      </p>
-
-      <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">
-        Ga naar intakeformulier
-      </a>
-    </div>
-  </section>
+    <a href="intake-ads.html?dienst=ev-accucheck-particulier"
+       class="btn-primary"
+       style="margin-top:25px; display:inline-block;">
+       Plan AccuCheck €149
+    </a>
+  </div>
+</section>
 
 </main>
 
@@ -215,6 +195,5 @@
   </div>
 </footer>
 
-<!-- BELANGRIJK: menu.js verwijderd, want die kan anker clicks blokkeren op landingspagina -->
 </body>
 </html>
