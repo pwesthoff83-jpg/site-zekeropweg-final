@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/zop-stability.css">
   <link rel="stylesheet" href="css/accucheck.css">
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -19,75 +19,38 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
- </style>
-  
+
   <style>
-    /* Zorgt dat ankerlinks niet onder de header vallen */
     section[id] { scroll-margin-top: 110px; }
 
-    /* === CRUCIALE FIX: hero niet mistig + CTA klikbaar ===
-       In jouw CSS zit zeer waarschijnlijk een overlay of filter bovenop de hero.
-       Deze overrides zetten die uit en geven de content een hogere z-index.
-    */
-    .hero.hero-accucheck-simple,
-    .hero-accucheck-simple {
+    /* HERO HARD RESET */
+    .hero.hero-accucheck-simple {
+      background: #0b1c2d !important;
+      background-image: none !important;
       filter: none !important;
       opacity: 1 !important;
-      backdrop-filter: none !important;
     }
+
     .hero.hero-accucheck-simple::before,
-    .hero.hero-accucheck-simple::after,
-    .hero-accucheck-simple::before,
-    .hero-accucheck-simple::after {
+    .hero.hero-accucheck-simple::after {
+      display: none !important;
       content: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
+      background: none !important;
     }
-    .hero-accucheck-simple * {
+
+    .hero.hero-accucheck-simple * {
       filter: none !important;
       opacity: 1 !important;
     }
-    .hero-accucheck-simple .container {
-      position: relative !important;
-      z-index: 5 !important;
-    }
-    .hero-accucheck-simple a.btn-primary,
-    .hero-accucheck-simple .btn-primary,
-    .pricing-cta,
-    a.btn-primary {
-      position: relative !important;
-      z-index: 10 !important;
-      pointer-events: auto !important;
+
+    .hero.hero-accucheck-simple h1,
+    .hero.hero-accucheck-simple p {
+      color: #ffffff !important;
     }
 
-    /* Extra zekerheid: mocht er ergens een onzichtbare laag liggen */
-    .hero, .hero * { pointer-events: auto !important; }
-    <style>
-/* HERO FIX – schone, strakke achtergrond */
-
-.hero.hero-accucheck-simple {
-  background: linear-gradient(135deg, #0b1c2d 0%, #f5f7fa 100%) !important;
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-.hero.hero-accucheck-simple::before,
-.hero.hero-accucheck-simple::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* Zorg dat tekst helder is */
-.hero.hero-accucheck-simple h1,
-.hero.hero-accucheck-simple p {
-  color: #ffffff !important;
-}
-
-/* Subtekst goud accent */
-.hero.hero-accucheck-simple p:last-of-type {
-  color: #c6a15b !important;
-}
-</style>
+    .hero.hero-accucheck-simple p:last-of-type {
+      color: #c6a15b !important;
+    }
   </style>
 </head>
 
