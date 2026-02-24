@@ -19,7 +19,8 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
-
+ </style>
+  
   <style>
     /* Zorgt dat ankerlinks niet onder de header vallen */
     section[id] { scroll-margin-top: 110px; }
@@ -61,6 +62,32 @@
 
     /* Extra zekerheid: mocht er ergens een onzichtbare laag liggen */
     .hero, .hero * { pointer-events: auto !important; }
+    <style>
+/* HERO FIX – schone, strakke achtergrond */
+
+.hero.hero-accucheck-simple {
+  background: linear-gradient(135deg, #0b1c2d 0%, #142f4a 100%) !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.hero.hero-accucheck-simple::before,
+.hero.hero-accucheck-simple::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Zorg dat tekst helder is */
+.hero.hero-accucheck-simple h1,
+.hero.hero-accucheck-simple p {
+  color: #ffffff !important;
+}
+
+/* Subtekst goud accent */
+.hero.hero-accucheck-simple p:last-of-type {
+  color: #c6a15b !important;
+}
+</style>
   </style>
 </head>
 
