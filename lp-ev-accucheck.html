@@ -4,18 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EV AccuCheck €149 | Vandaag mogelijk regio Rotterdam | ZekerOpWeg</title>
-  <meta name="description" content="EV of hybride kopen? Laat vóór aankoop de accu meten. Vandaag mogelijk in regio Barendrecht, Rotterdam en Dordrecht. €149 incl. btw. TÜV-gecertificeerd accucertificaat. Plan direct." />
+  <meta name="description" content="EV of hybride kopen? Laat vóór aankoop de accu meten. Vandaag mogelijk in regio Barendrecht, Rotterdam en Dordrecht. €149 incl. btw. TÜV gecertificeerd accucertificaat. Plan direct." />
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/zop-luxury-polish.css">
   <link rel="stylesheet" href="css/zop-stability.css">
   <link rel="stylesheet" href="css/accucheck.css">
 
-  <style>
-    section[id] { scroll-margin-top: 110px; }
-  </style>
-</head>
-  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
@@ -24,6 +19,50 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
+
+  <style>
+    /* Zorgt dat ankerlinks niet onder de header vallen */
+    section[id] { scroll-margin-top: 110px; }
+
+    /* === CRUCIALE FIX: hero niet mistig + CTA klikbaar ===
+       In jouw CSS zit zeer waarschijnlijk een overlay of filter bovenop de hero.
+       Deze overrides zetten die uit en geven de content een hogere z-index.
+    */
+    .hero.hero-accucheck-simple,
+    .hero-accucheck-simple {
+      filter: none !important;
+      opacity: 1 !important;
+      backdrop-filter: none !important;
+    }
+    .hero.hero-accucheck-simple::before,
+    .hero.hero-accucheck-simple::after,
+    .hero-accucheck-simple::before,
+    .hero-accucheck-simple::after {
+      content: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .hero-accucheck-simple * {
+      filter: none !important;
+      opacity: 1 !important;
+    }
+    .hero-accucheck-simple .container {
+      position: relative !important;
+      z-index: 5 !important;
+    }
+    .hero-accucheck-simple a.btn-primary,
+    .hero-accucheck-simple .btn-primary,
+    .pricing-cta,
+    a.btn-primary {
+      position: relative !important;
+      z-index: 10 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Extra zekerheid: mocht er ergens een onzichtbare laag liggen */
+    .hero, .hero * { pointer-events: auto !important; }
+  </style>
+</head>
 
 <body class="fade-in page-ev-accucheck">
 
@@ -46,10 +85,11 @@
       <h1>EV AccuCheck €149 Op Locatie</h1>
 
       <p style="font-size:18px; margin-top:15px;">
-        Vandaag mogelijk regio Rotterdam · TÜV-gecertificeerd accucertificaat
+        Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat
       </p>
 
       <div style="margin-top:30px;">
+        <!-- CTA 1: moet scrollen naar intake -->
         <a href="#intake" class="btn-primary">Plan AccuCheck €149</a>
       </div>
 
@@ -67,7 +107,7 @@
   <section id="premium" class="services-section container">
     <h2 class="section-title">Premium AccuCheck</h2>
     <p style="max-width:800px;">
-      Onafhankelijke batterijmeting met TÜV-gecertificeerd accucertificaat.
+      Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
       Volledige transparantie over de werkelijke accustatus vóór aankoop.
     </p>
   </section>
@@ -79,7 +119,7 @@
       <p style="max-width:800px;">
         De meting wordt uitgevoerd met professionele Aviloo meetapparatuur.
         Deze methode analyseert de State of Health van de batterij en levert
-        een objectief TÜV-gecertificeerd rapport op.
+        een objectief TÜV gecertificeerd rapport op.
       </p>
       <p style="max-width:800px; margin-top:15px;">
         Onafhankelijk gemeten. Geen dealerbelang. Geen verkooppraat.
@@ -102,8 +142,8 @@
       <h2 class="section-title">Werkgebied Regio Rotterdam</h2>
       <p style="max-width:800px;">
         Wij voeren AccuChecks uit in regio Rotterdam en omstreken.
-        Onder andere in Barendrecht, Dordrecht, Zwijndrecht,
-        Ridderkerk, Hendrik Ido Ambacht, Spijkenisse en Schiedam.
+        Onder andere in Barendrecht, Dordrecht, Zwijndrecht, Ridderkerk,
+        Hendrik Ido Ambacht, Spijkenisse en Schiedam.
       </p>
       <p style="max-width:800px; margin-top:15px;">
         Twijfelt u over uw locatie? Neem gerust contact op.
@@ -122,16 +162,17 @@
           <div class="pricing-body">
             <h3>€149 incl. btw</h3>
             <p style="font-weight:600; margin-top:10px;">
-              Gebaseerd op TÜV-gecertificeerde meetmethodiek
+              Gebaseerd op TÜV gecertificeerde meetmethodiek
             </p>
 
             <ul class="lux-list">
               <li>Objectieve State of Health meting</li>
               <li>Analyse op celniveau indien ondersteund</li>
-              <li>TÜV-gecertificeerd accucertificaat</li>
+              <li>TÜV gecertificeerd accucertificaat</li>
             </ul>
           </div>
 
+          <!-- CTA 2: moet ook scrollen naar intake -->
           <a href="#intake" class="btn-primary pricing-cta">Plan AccuCheck €149</a>
         </div>
       </div>
@@ -160,5 +201,6 @@
   </div>
 </footer>
 
+<!-- BELANGRIJK: menu.js verwijderd, want die kan anker clicks blokkeren op landingspagina -->
 </body>
 </html>
