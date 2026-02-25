@@ -20,73 +20,125 @@ gtag('config', 'AW-17962185957');
 
 <style>
 
-/* HERO */
-.hero.hero-accucheck-simple {
-  background: #0b1c2d;
-  padding: 80px 20px;
-  text-align: center;
+/* ===== HERO HARD RESET ===== */
+.hero {
+  background: linear-gradient(135deg, #0b1c2d 0%, #091421 100%) !important;
+  padding: 120px 20px !important;
+  text-align: left !important;
+  color: #fff !important;
 }
 
-.hero.hero-accucheck-simple h1,
-.hero.hero-accucheck-simple p {
-  color: #ffffff;
+.hero::before,
+.hero::after {
+  display:none !important;
 }
 
-.hero.hero-accucheck-simple p:last-of-type {
-  color: #c6a15b;
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
 }
 
-/* IMAGE BLOCKS */
-.image-block {
-  margin: 60px auto;
-  text-align: center;
+.hero-left {
+  flex:1;
+  min-width:280px;
 }
 
-.image-block img {
-  width: 100%;
-  max-width: 900px;
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+.hero-left h1 {
+  font-size:48px;
+  line-height:1.1;
+  margin-bottom:20px;
+  color:#fff;
 }
 
-/* CERTIFICATE LAYOUT */
-.aviloo-layout {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  flex-wrap: wrap;
+.hero-left p {
+  font-size:18px;
+  opacity:0.85;
 }
 
-.aviloo-layout .text {
-  flex: 1;
-  min-width: 280px;
+.hero-cta {
+  margin-top:30px;
 }
 
-.aviloo-layout .certificate {
-  flex: 0 0 340px;
+.hero-right {
+  flex:1;
+  text-align:right;
+  min-width:280px;
+  color:#c6a15b;
+  font-weight:600;
 }
 
-.aviloo-layout .certificate img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+/* ===== INTEGRATED IMAGE SECTIONS ===== */
+
+.integrated-section {
+  padding:100px 20px;
+}
+
+.integrated-container {
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:60px;
+  flex-wrap:wrap;
+}
+
+.integrated-text {
+  flex:1;
+  min-width:280px;
+}
+
+.integrated-text h2 {
+  margin-bottom:20px;
+}
+
+.integrated-image {
+  flex:1;
+  min-width:280px;
+}
+
+.integrated-image img {
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.12);
+  opacity:0.95;
+  transition:all .4s ease;
+}
+
+.integrated-image img:hover {
+  opacity:1;
+  transform:scale(1.02);
+}
+
+.reverse {
+  flex-direction:row-reverse;
+}
+
+.section-soft {
+  background:#f8f9fb;
 }
 
 @media(max-width:768px){
-  .aviloo-layout {
-    flex-direction: column;
+  .hero-inner{
+    flex-direction:column;
+    text-align:center;
   }
-  .aviloo-layout .certificate {
-    flex: none;
-    width: 100%;
-    max-width: 400px;
+  .hero-right{
+    text-align:center;
+  }
+  .integrated-container{
+    flex-direction:column;
   }
 }
 
 </style>
 </head>
 
-<body class="fade-in page-ev-accucheck">
+<body>
 
 <header class="zop-header">
   <div class="zop-header-inner">
@@ -102,88 +154,67 @@ gtag('config', 'AW-17962185957');
 <main>
 
 <!-- HERO -->
-<section class="hero hero-accucheck-simple">
-  <h1>EV AccuCheck €149 Op Locatie</h1>
-  <p>Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat</p>
-  <div style="margin-top:30px;">
-    <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">
-      Plan AccuCheck €149
-    </a>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>EV AccuCheck €149<br>Op Locatie</h1>
+      <p>Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat</p>
+      <div class="hero-cta">
+        <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">
+          Plan AccuCheck €149
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      Binnen 15 minuten persoonlijk contact tijdens kantooruren
+    </div>
   </div>
-  <p style="margin-top:20px;font-weight:600;">
-    Binnen 15 minuten persoonlijk contact tijdens kantooruren
-  </p>
 </section>
 
-<!-- WHAT YOU GET -->
-<section class="services-section container">
-  <h2 class="section-title">Wat U Ontvangt</h2>
-  <p>
-    Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
-    Volledige transparantie over de werkelijke accustatus vóór aankoop.
-  </p>
+<!-- WAT U ONTVANGT -->
+<section class="integrated-section">
+  <div class="integrated-container">
+    <div class="integrated-text">
+      <h2>Wat U Ontvangt</h2>
+      <p>
+        Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
+        Volledige transparantie over de werkelijke accustatus vóór aankoop.
+      </p>
+    </div>
+    <div class="integrated-image">
+      <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpg"
+           alt="Aviloo batterijdiagnose apparatuur">
+    </div>
+  </div>
 </section>
 
-<!-- AVILOO DEVICE IMAGE -->
-<div class="image-block">
-  <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg"
-       alt="Aviloo batterijdiagnose apparatuur">
-</div>
-
-<!-- AVILOO METHOD + CERTIFICATE -->
-<section class="services-section section-bg-soft">
-  <div class="container aviloo-layout">
-
-    <div class="text">
-      <h2 class="section-title">Aviloo Meetmethode</h2>
+<!-- AVILOO -->
+<section class="integrated-section section-soft">
+  <div class="integrated-container reverse">
+    <div class="integrated-text">
+      <h2>Aviloo Meetmethode</h2>
       <p>
         De meting wordt uitgevoerd met professionele Aviloo meetapparatuur.
-        Deze methode analyseert de State of Health van de batterij en levert
-        een objectief TÜV gecertificeerd rapport op.
-      </p>
-      <p style="margin-top:15px;">
-        Onafhankelijk gemeten. Geen dealerbelang. Geen verkooppraat.
+        Analyse van State of Health met objectief TÜV gecertificeerd rapport.
       </p>
     </div>
-
-    <div class="certificate">
-      <img src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png"
-           alt="TÜV gecertificeerd EV accu certificaat">
+    <div class="integrated-image">
+      <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg.jpg"
+           alt="Onafhankelijke EV accucheck op locatie">
     </div>
-
   </div>
 </section>
 
-<!-- REAL EXECUTION IMAGE -->
-<div class="image-block">
-  <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg.jpg"
-       alt="Onafhankelijke EV accucheck uitgevoerd in Mercedes op locatie">
-</div>
-
 <!-- REGIO -->
-<section class="services-section container">
-  <h2 class="section-title">Werkgebied Regio Rotterdam</h2>
-  <p>
-    Barendrecht, Rotterdam, Dordrecht, Zwijndrecht, Ridderkerk,
-    Hendrik Ido Ambacht, Spijkenisse en Schiedam.
-  </p>
-</section>
-
-<!-- OFFER -->
-<section class="services-section section-bg-soft">
-  <div class="container" style="text-align:center;">
-    <h3>EV AccuCheck €149 incl. btw</h3>
-    <ul class="lux-list" style="max-width:600px;margin:20px auto;">
-      <li>Objectieve State of Health meting</li>
-      <li>Analyse op celniveau indien ondersteund</li>
-      <li>TÜV gecertificeerd accucertificaat</li>
-    </ul>
-
-    <a href="intake-ads.html?dienst=ev-accucheck-particulier"
-       class="btn-primary"
-       style="margin-top:25px; display:inline-block;">
-       Plan AccuCheck €149
-    </a>
+<section class="integrated-section">
+  <div class="integrated-container">
+    <div class="integrated-text">
+      <h2>Werkgebied Regio Rotterdam</h2>
+      <p>
+        Barendrecht, Rotterdam, Dordrecht, Zwijndrecht, Ridderkerk,
+        Hendrik Ido Ambacht, Spijkenisse en Schiedam.
+      </p>
+    </div>
   </div>
 </section>
 
