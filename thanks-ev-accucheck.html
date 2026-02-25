@@ -26,18 +26,17 @@
       margin-top: 15px;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17962185957');
-</script>
-  
 <body class="fade-in">
 
 <header class="zop-header">
@@ -48,23 +47,17 @@
 
 <main class="page-content">
   <section class="thankyou-wrapper">
-    
     <h1>Aanvraag ontvangen</h1>
 
-    <p>
-      Dank voor uw aanvraag van de EV AccuCheck.
-    </p>
+    <p>Dank voor uw aanvraag van de EV AccuCheck.</p>
 
     <p class="thankyou-highlight">
       Wij nemen binnen 15 minuten persoonlijk contact met u op tijdens kantooruren.
     </p>
 
     <div style="margin-top: 35px;">
-      <a href="index.html" class="btn-primary">
-        Terug naar homepage
-      </a>
+      <a href="index.html" class="btn-primary">Terug naar homepage</a>
     </div>
-
   </section>
 </main>
 
@@ -74,14 +67,14 @@
   </div>
 </footer>
 
+<!-- Conversion event (vuurt op thank you page load) -->
 <script>
-gtag('event', 'conversion', {
-  'send_to': 'AW-17962185957/TWG8CMK1kP4bEOXphPVC',
-  'value': 149.0,
-  'currency': 'EUR'
-});
+  gtag('event', 'conversion', {
+    'send_to': 'AW-17962185957/TWG8CMK1kP4bEOXphPVC',
+    'value': 149.0,
+    'currency': 'EUR'
+  });
 </script>
-  
+
 </body>
 </html>
-
