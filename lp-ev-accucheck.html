@@ -1,230 +1,661 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EV AccuCheck €149 | Regio Rotterdam | ZekerOpWeg</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV en hybride AccuCheck €149 op locatie | Regio Rotterdam | ZekerOpWeg</title>
+  <meta name="description" content="EV of hybride kopen? Laat vóór aankoop de accu meten. Onafhankelijke AccuCheck op locatie. €149 incl btw. Vandaag mogelijk regio Rotterdam. Plan direct via intake." />
 
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/zop-luxury-polish.css">
-<link rel="stylesheet" href="css/zop-stability.css">
-<link rel="stylesheet" href="css/accucheck.css">
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-17962185957');
-</script>
+  <style>
+    :root{
+      --navy:#0b1c2d;
+      --navy2:#091421;
+      --gold:#c6a15b;
+      --ink:#0e1116;
+      --muted:#5b6775;
+      --bg:#ffffff;
+      --soft:#f6f7f9;
+      --card:#ffffff;
+      --shadow: 0 18px 55px rgba(0,0,0,.12);
+      --shadow2: 0 10px 28px rgba(0,0,0,.10);
+      --r:18px;
+    }
 
-<style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.55;
+    }
 
-/* ===== HERO HARD RESET ===== */
-.hero {
-  background: linear-gradient(135deg, #0b1c2d 0%, #091421 100%) !important;
-  padding: 120px 20px !important;
-  text-align: left !important;
-  color: #fff !important;
-}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
 
-.hero::before,
-.hero::after {
-  display:none !important;
-}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      height:70px;
+    }
+    .brand{
+      font-weight:800; letter-spacing:.2px;
+      display:flex; align-items:center; gap:10px;
+      font-size:20px;
+    }
+    .brand-dot{
+      width:10px; height:10px; border-radius:999px;
+      background:var(--gold);
+      box-shadow: 0 0 0 4px rgba(198,161,91,.18);
+    }
 
-.hero-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  flex-wrap:wrap;
-}
+    .nav-mini{
+      display:flex; align-items:center; gap:14px;
+      color:var(--muted); font-weight:600; font-size:14px;
+    }
+    .nav-mini span{display:none}
+    @media(min-width:900px){
+      .nav-mini span{display:inline}
+    }
 
-.hero-left {
-  flex:1;
-  min-width:280px;
-}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:800;
+      letter-spacing:.2px;
+      border:1px solid rgba(0,0,0,.08);
+      background:#fff;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow2)}
+    .btn-primary{
+      background: linear-gradient(180deg, #122a44 0%, #091421 100%);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 55px rgba(9,20,33,.28);
+    }
+    .btn-primary:hover{opacity:.96}
 
-.hero-left h1 {
-  font-size:48px;
-  line-height:1.1;
-  margin-bottom:20px;
-  color:#fff;
-}
+    .hero{
+      background: radial-gradient(900px 380px at 20% 20%, rgba(198,161,91,.18), transparent 60%),
+                  linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      color:#fff;
+      padding:64px 0 44px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:34px;
+      align-items:center;
+    }
+    @media(max-width:980px){
+      .hero-grid{grid-template-columns:1fr; gap:26px}
+    }
 
-.hero-left p {
-  font-size:18px;
-  opacity:0.85;
-}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.92);
+      font-weight:700;
+      font-size:13px;
+      width:max-content;
+    }
+    .badge i{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--gold);
+      box-shadow:0 0 0 4px rgba(198,161,91,.18);
+      display:inline-block;
+    }
 
-.hero-cta {
-  margin-top:30px;
-}
+    h1{
+      margin:14px 0 14px;
+      font-size:46px;
+      line-height:1.08;
+      letter-spacing:-.4px;
+    }
+    @media(max-width:520px){
+      h1{font-size:36px}
+    }
 
-.hero-right {
-  flex:1;
-  text-align:right;
-  min-width:280px;
-  color:#c6a15b;
-  font-weight:600;
-}
+    .lead{
+      font-size:18px;
+      color: rgba(255,255,255,.86);
+      margin:0 0 18px;
+      max-width:56ch;
+    }
 
-/* ===== INTEGRATED IMAGE SECTIONS ===== */
+    .value-row{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:16px;
+    }
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.92);
+      font-weight:700;
+      font-size:13px;
+    }
 
-.integrated-section {
-  padding:100px 20px;
-}
+    .hero-card{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: var(--r);
+      padding:18px;
+    }
+    .hero-card h3{
+      margin:0 0 10px;
+      font-size:16px;
+      color:#fff;
+    }
+    .hero-card .price{
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:-.5px;
+      margin:0 0 4px;
+    }
+    .hero-card .price small{
+      font-size:14px;
+      opacity:.85;
+      font-weight:700;
+      margin-left:6px;
+    }
+    .hero-card .sub{
+      margin:0 0 16px;
+      color: rgba(255,255,255,.78);
+      font-weight:600;
+      font-size:14px;
+    }
+    .hero-card ul{
+      margin:0 0 16px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .hero-card li{
+      display:flex; gap:10px; align-items:flex-start;
+      color: rgba(255,255,255,.90);
+      font-weight:650;
+      font-size:14px;
+    }
+    .tick{
+      width:18px; height:18px;
+      border-radius:6px;
+      background: rgba(198,161,91,.18);
+      border:1px solid rgba(198,161,91,.40);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--gold);
+      font-weight:900;
+      line-height:1;
+      flex:0 0 18px;
+      margin-top:2px;
+    }
 
-.integrated-container {
-  max-width:1100px;
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:60px;
-  flex-wrap:wrap;
-}
+    .section{
+      padding:62px 0;
+    }
+    .section.soft{background: var(--soft)}
+    .section h2{
+      margin:0 0 10px;
+      font-size:32px;
+      letter-spacing:-.25px;
+    }
+    .muted{color: var(--muted)}
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+    @media(max-width:920px){
+      .grid-3{grid-template-columns:1fr}
+    }
+    .card{
+      background: var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: var(--r);
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    .card h3{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted); font-weight:550}
 
-.integrated-text {
-  flex:1;
-  min-width:280px;
-}
+    .integrated{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:34px;
+      align-items:center;
+      margin-top:18px;
+    }
+    @media(max-width:980px){
+      .integrated{grid-template-columns:1fr}
+    }
 
-.integrated-text h2 {
-  margin-bottom:20px;
-}
+    .img-frame{
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+      background: #e9edf3;
+    }
+    .img-frame::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,28,45,.10) 0%, rgba(11,28,45,.04) 55%, rgba(11,28,45,.00) 100%);
+      pointer-events:none;
+    }
+    .img-frame img{
+      width:100%;
+      height:auto;
+      opacity:.92;
+      filter: saturate(.95) contrast(.98);
+    }
+    .img-note{
+      font-size:12px;
+      color: var(--muted);
+      margin-top:10px;
+      font-weight:650;
+    }
 
-.integrated-image {
-  flex:1;
-  min-width:280px;
-}
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+    @media(max-width:920px){
+      .steps{grid-template-columns:1fr}
+    }
+    .step{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: var(--r);
+      padding:18px;
+    }
+    .step .n{
+      width:34px; height:34px;
+      border-radius:12px;
+      background: rgba(198,161,91,.18);
+      border:1px solid rgba(198,161,91,.40);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      color:#7a5c20;
+      margin-bottom:10px;
+    }
+    .step h3{margin:0 0 6px; font-size:18px}
+    .step p{margin:0; color:var(--muted); font-weight:550}
 
-.integrated-image img {
-  width:100%;
-  border-radius:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.12);
-  opacity:0.95;
-  transition:all .4s ease;
-}
+    .faq{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+    details{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: 16px;
+      padding:14px 16px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.05);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:850;
+      color: var(--ink);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-weight:550;
+    }
 
-.integrated-image img:hover {
-  opacity:1;
-  transform:scale(1.02);
-}
+    .cta-band{
+      background: linear-gradient(135deg, rgba(198,161,91,.16) 0%, rgba(255,255,255,0) 55%),
+                  #0b1c2d;
+      color:#fff;
+      border-radius: 26px;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      box-shadow: 0 22px 70px rgba(9,20,33,.28);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .cta-band h3{
+      margin:0 0 4px;
+      font-size:20px;
+    }
+    .cta-band p{
+      margin:0;
+      color: rgba(255,255,255,.84);
+      font-weight:650;
+    }
 
-.reverse {
-  flex-direction:row-reverse;
-}
+    .sticky{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-top:1px solid rgba(0,0,0,.08);
+      z-index:80;
+      padding:10px 0;
+    }
+    .sticky-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .sticky-left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .sticky-left b{font-size:14px}
+    .sticky-left span{font-size:12px; color:var(--muted); font-weight:650}
+    .sticky .btn{padding:12px 16px}
 
-.section-soft {
-  background:#f8f9fb;
-}
+    .footer{
+      padding:40px 0 90px;
+      color: var(--muted);
+      font-weight:650;
+      font-size:13px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
 
-@media(max-width:768px){
-  .hero-inner{
-    flex-direction:column;
-    text-align:center;
-  }
-  .hero-right{
-    text-align:center;
-  }
-  .integrated-container{
-    flex-direction:column;
-  }
-}
-
-</style>
+    /* Small link style */
+    .mini-link{
+      color: rgba(255,255,255,.86);
+      font-weight:750;
+      font-size:13px;
+      text-decoration: underline;
+      text-decoration-color: rgba(198,161,91,.55);
+      text-underline-offset: 3px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="zop-header">
-  <div class="zop-header-inner">
-    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-    <nav class="zop-nav">
-      <a href="index.html">Home</a>
-      <a href="ev-accucheck.html" class="active">AccuCheck</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <h1>EV AccuCheck €149<br>Op Locatie</h1>
-      <p>Vandaag mogelijk regio Rotterdam · TÜV gecertificeerd accucertificaat</p>
-      <div class="hero-cta">
-        <a href="intake-ads.html?dienst=ev-accucheck-particulier" class="btn-primary">
-          Plan AccuCheck €149
-        </a>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        ZekerOpWeg
+      </div>
+      <div class="nav-mini">
+        <span>Onafhankelijk</span>
+        <span>Op locatie</span>
+        <span>EV en hybride</span>
+        <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan direct</a>
       </div>
     </div>
-    <div class="hero-right">
-      Binnen 15 minuten persoonlijk contact tijdens kantooruren
-    </div>
   </div>
-</section>
 
-<!-- WAT U ONTVANGT -->
-<section class="integrated-section">
-  <div class="integrated-container">
-    <div class="integrated-text">
-      <h2>Wat U Ontvangt</h2>
-      <p>
-        Onafhankelijke batterijmeting met TÜV gecertificeerd accucertificaat.
-        Volledige transparantie over de werkelijke accustatus vóór aankoop.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
+        <h1>EV en hybride AccuCheck<br>op locatie voor €149</h1>
+        <p class="lead">
+          U staat op het punt een EV of hybride te kopen. Dan wilt u één ding zeker weten:
+          wat is de werkelijke accustatus. U krijgt een onafhankelijke meting en duidelijke uitleg,
+          zodat u met vertrouwen beslist.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €149</a>
+          <div style="margin-top:12px; font-weight:700; color:rgba(255,255,255,.82); font-size:13px;">
+            Vandaag mogelijk regio Rotterdam. Binnen 15 minuten persoonlijk contact tijdens kantooruren.
+          </div>
+        </div>
+
+        <div class="value-row">
+          <div class="pill">Onafhankelijk gemeten</div>
+          <div class="pill">EV en hybride</div>
+          <div class="pill">Op locatie</div>
+          <div class="pill">Heldere uitleg</div>
+        </div>
+
+        <div style="margin-top:16px; opacity:.9; font-size:13px; font-weight:700;">
+          Liever eerst lezen hoe het werkt? <a class="mini-link" href="#hoe-het-werkt">Bekijk stappen</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Dit ontvangt u</h3>
+        <div class="price">€149 <small>incl btw</small></div>
+        <div class="sub">Voor EV en hybride. Voor aankoop of bij twijfel.</div>
+        <ul>
+          <li><span class="tick">✓</span> Objectieve accustatus meting en toelichting</li>
+          <li><span class="tick">✓</span> Duidelijke risico inschatting vóór aankoop</li>
+          <li><span class="tick">✓</span> Snelle planning en uitvoering op locatie</li>
+        </ul>
+        <a class="btn btn-primary" style="width:100%" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €149</a>
+        <div style="margin-top:10px; color:rgba(255,255,255,.78); font-weight:650; font-size:12px;">
+          U wordt na de intake snel gebeld voor afstemming.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BLOCKS -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Waarom dit het geld waard is</h2>
+      <p class="muted" style="max-width:72ch; font-weight:650;">
+        Een accuprobleem is vaak onzichtbaar tijdens een proefrit. Juist bij EV en hybride kan de accu
+        het verschil maken tussen een goede koop en een dure verrassing. Deze check geeft u rust en bewijs vóór u beslist.
       </p>
-    </div>
-    <div class="integrated-image">
-      <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpg"
-           alt="Aviloo batterijdiagnose apparatuur">
-    </div>
-  </div>
-</section>
 
-<!-- AVILOO -->
-<section class="integrated-section section-soft">
-  <div class="integrated-container reverse">
-    <div class="integrated-text">
-      <h2>Aviloo Meetmethode</h2>
-      <p>
-        De meting wordt uitgevoerd met professionele Aviloo meetapparatuur.
-        Analyse van State of Health met objectief TÜV gecertificeerd rapport.
+      <div class="grid-3">
+        <div class="card">
+          <h3>Voorkom miskoop</h3>
+          <p>U weet waar u aan toe bent en onderhandelt sterker als de accustatus tegenvalt.</p>
+        </div>
+        <div class="card">
+          <h3>Duidelijke uitleg</h3>
+          <p>Geen technisch verhaal. Wel helder advies wat u nu het beste doet.</p>
+        </div>
+        <div class="card">
+          <h3>Snel geregeld</h3>
+          <p>In veel gevallen dezelfde dag mogelijk in regio Rotterdam en omstreken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATED PHOTO 1 -->
+  <section class="section soft">
+    <div class="wrap">
+      <div class="integrated">
+        <div>
+          <h2>Zo ziet het er in het echt uit</h2>
+          <p class="muted" style="font-weight:650; max-width:72ch;">
+            De meting gebeurt op locatie. U krijgt direct context bij de uitkomst.
+            Dit is ideaal bij aankoop bij particulier of autobedrijf, en ook bij plug in hybride waar accustatus vaak onduidelijk is.
+          </p>
+          <div style="margin-top:18px;">
+            <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €149</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="img-frame">
+            <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg.jpg" alt="EV accucheck op locatie">
+          </div>
+          <div class="img-note">Rustige foto ter ondersteuning. Geen afleiding, wel vertrouwen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="hoe-het-werkt">
+    <div class="wrap">
+      <h2>Hoe het werkt</h2>
+      <p class="muted" style="max-width:80ch; font-weight:650;">
+        U vult de intake in. U krijgt snel persoonlijk contact. Daarna plannen we de meting op locatie.
+        U ontvangt uitleg en een duidelijke conclusie waarmee u direct een beslissing kunt nemen.
       </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Intake invullen</h3>
+          <p>U laat weten om welke EV of hybride het gaat en waar u bent.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Snelle afstemming</h3>
+          <p>Binnen 15 minuten contact tijdens kantooruren om te plannen.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Meting op locatie</h3>
+          <p>U krijgt een duidelijke uitkomst en advies wat verstandig is.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;">
+        <div class="cta-band">
+          <div>
+            <h3>Direct plannen voor €149 incl btw</h3>
+            <p>EV en hybride. Voor aankoop. Regio Rotterdam.</p>
+          </div>
+          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Start intake</a>
+        </div>
+      </div>
     </div>
-    <div class="integrated-image">
-      <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg.jpg"
-           alt="Onafhankelijke EV accucheck op locatie">
+  </section>
+
+  <!-- INTEGRATED PHOTO 2 -->
+  <section class="section soft">
+    <div class="wrap">
+      <div class="integrated">
+        <div>
+          <div class="img-frame">
+            <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpg" alt="Accucheck met professionele meetapparatuur">
+          </div>
+          <div class="img-note">Apparatuur en setting. Visueel bewijs dat het professioneel is.</div>
+        </div>
+
+        <div>
+          <h2>Voor wie is dit bedoeld</h2>
+          <p class="muted" style="font-weight:650;">
+            Voor iedereen die een EV of plug in hybride koopt en zekerheid wil vóór aankoop.
+            Ook geschikt als u twijfelt door actieradius, laadgedrag, of onbekende accuhistorie.
+          </p>
+
+          <div class="grid-3" style="grid-template-columns:1fr; margin-top:14px;">
+            <div class="card">
+              <h3>Particuliere aankoop</h3>
+              <p>Extra belangrijk omdat garantie vaak beperkt is of ontbreekt.</p>
+            </div>
+            <div class="card">
+              <h3>Autobedrijf aankoop</h3>
+              <p>U weet objectief waar u aan toe bent voordat u tekent.</p>
+            </div>
+            <div class="card">
+              <h3>Hybride twijfel</h3>
+              <p>Bij plug in hybride is accustatus vaak de grootste onbekende factor.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €149</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Veel gestelde vragen</h2>
+
+      <div class="faq">
+        <details>
+          <summary>Is dit ook voor hybride geschikt</summary>
+          <p>Ja. Deze dienst is bedoeld voor EV én plug in hybride. Juist bij hybride is accustatus vaak onduidelijk terwijl het veel impact heeft op gebruik en kosten.</p>
+        </details>
+
+        <details>
+          <summary>Hoe snel kan dit</summary>
+          <p>In regio Rotterdam en omstreken is in veel gevallen dezelfde dag mogelijk. Na intake neem ik snel contact op om te plannen.</p>
+        </details>
+
+        <details>
+          <summary>Wat als de uitkomst tegenvalt</summary>
+          <p>Dan heeft u juist winst. U voorkomt een miskoop of u onderhandelt met feiten. U krijgt een duidelijke conclusie en advies wat verstandig is.</p>
+        </details>
+
+        <details>
+          <summary>Waar wordt dit gedaan</summary>
+          <p>Op locatie. Regio Rotterdam en omstreken zoals Barendrecht, Rotterdam, Dordrecht, Zwijndrecht, Ridderkerk, Hendrik Ido Ambacht, Spijkenisse en Schiedam.</p>
+        </details>
+      </div>
+
+      <div style="margin-top:22px;">
+        <div class="cta-band">
+          <div>
+            <h3>Klaar om zekerheid te kopen</h3>
+            <p>Plan de EV en hybride AccuCheck voor €149 incl btw</p>
+          </div>
+          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Start intake</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="wrap">
+      © 2026 ZekerOpWeg
     </div>
   </div>
-</section>
 
-<!-- REGIO -->
-<section class="integrated-section">
-  <div class="integrated-container">
-    <div class="integrated-text">
-      <h2>Werkgebied Regio Rotterdam</h2>
-      <p>
-        Barendrecht, Rotterdam, Dordrecht, Zwijndrecht, Ridderkerk,
-        Hendrik Ido Ambacht, Spijkenisse en Schiedam.
-      </p>
+  <!-- STICKY CTA -->
+  <div class="sticky">
+    <div class="wrap sticky-inner">
+      <div class="sticky-left">
+        <b>EV en hybride AccuCheck €149 incl btw</b>
+        <span>Op locatie. Regio Rotterdam. Snelle afstemming.</span>
+      </div>
+      <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan direct</a>
     </div>
   </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <p>© 2026 ZekerOpWeg</p>
-  </div>
-</footer>
 
 </body>
 </html>
