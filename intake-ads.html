@@ -40,45 +40,41 @@
 
   <div class="advisor-card">
     
-<form>
-   <input type="hidden" name="_redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
+<form action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh" method="POST">
 
-      <input type="hidden" name="bron" value="ads-intake">
-      <input type="hidden" name="product" value="ev-accucheck-149">
+  <input type="hidden" name="_redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
+  <input type="hidden" name="bron" value="ads-intake">
+  <input type="hidden" name="product" value="ev-accucheck-149">
 
-      <input type="hidden" name="_redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
+  <label>Naam *</label>
+  <input type="text" name="naam" required>
 
+  <label>Telefoon *</label>
+  <input type="tel" name="telefoon" required>
 
-      <label>Naam *</label>
-      <input type="text" name="naam" required>
+  <label>Waar staat de auto? *</label>
+  <input type="text" name="locatie_auto" placeholder="Plaats of dealernaam" required>
 
-      <label>Telefoon *</label>
-      <input type="tel" name="telefoon" required>
+  <label>Kenteken (indien bekend)</label>
+  <input type="text" name="kenteken">
 
-      <label>Waar staat de auto? *</label>
-      <input type="text" name="locatie_auto" placeholder="Plaats of dealernaam" required>
+  <label>Wanneer wilt u testen? *</label>
+  <select name="planning" required>
+    <option value="">Selecteer</option>
+    <option value="zo-snel-mogelijk">Zo snel mogelijk</option>
+    <option value="morgen">Morgen</option>
+    <option value="deze-week">Deze week</option>
+  </select>
 
-      <label>Kenteken (indien bekend)</label>
-      <input type="text" name="kenteken">
+  <p style="margin-top:15px; font-size:14px;">
+    Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
+  </p>
 
-      <label>Wanneer wilt u testen? *</label>
-      <select name="planning" required>
-        <option value="">Selecteer</option>
-        <option value="zo-snel-mogelijk">Zo snel mogelijk</option>
-        <option value="morgen">Morgen</option>
-        <option value="deze-week">Deze week</option>
-      </select>
+  <button type="submit" class="advisor-submit">
+    Plan AccuCheck €149
+  </button>
 
-      <p style="margin-top:15px; font-size:14px;">
-        Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
-      </p>
-
-      <button type="submit" class="advisor-submit">
-        Plan AccuCheck €149
-      </button>
-
-    </form>
-
+</form>
   </div>
 
 </section>
@@ -93,18 +89,6 @@
   </div>
 </footer>
 
-<script>
-document.getElementById("evForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  fetch(this.action, {
-    method: "POST",
-    body: new FormData(this)
-  }).then(() => {
-    window.location.href = "https://zekeropweg.nu/thanks-ev-accucheck.html";
-  });
-});
-</script>
   
 </body>
 </html>
