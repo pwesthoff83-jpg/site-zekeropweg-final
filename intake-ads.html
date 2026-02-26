@@ -40,7 +40,7 @@
 
   <div class="advisor-card">
 
-    <form action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh" method="POST">
+   <input type="hidden" name="_redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
 
       <input type="hidden" name="bron" value="ads-intake">
       <input type="hidden" name="product" value="ev-accucheck-149">
@@ -92,6 +92,19 @@
   </div>
 </footer>
 
+<script>
+document.getElementById("evForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  fetch(this.action, {
+    method: "POST",
+    body: new FormData(this)
+  }).then(() => {
+    window.location.href = "https://zekeropweg.nu/thanks-ev-accucheck.html";
+  });
+});
+</script>
+  
 </body>
 </html>
 
