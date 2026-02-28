@@ -385,3 +385,52 @@ body.page-ev-accucheck .pricing-grid{
   font-size: 0.85rem;
   opacity: 0.7;
 }
+
+/* ================================
+   X5 PAGE — concrete section layout
+   Scope: body.page-x5-accucheck
+================================ */
+
+body.page-x5-accucheck .concrete-section{
+  display: grid;
+  grid-template-columns: 1.6fr 0.7fr;
+  gap: 60px;
+  align-items: start;
+}
+
+body.page-x5-accucheck .content-left .btn-primary{
+  margin-top: 1.2rem;
+  display: inline-block;
+}
+
+body.page-x5-accucheck .content-right{
+  max-width: 360px;     /* <- maakt hem klein */
+  justify-self: end;    /* <- netjes rechts */
+}
+
+body.page-x5-accucheck .content-right img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+body.page-x5-accucheck .image-caption{
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  body.page-x5-accucheck .concrete-section{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  body.page-x5-accucheck .content-right{
+    max-width: 520px;
+    justify-self: start;
+  }
+}
