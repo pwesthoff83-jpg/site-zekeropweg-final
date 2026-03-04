@@ -1,772 +1,95 @@
 /* =====================================================
-   EV ACCUCHECK — PARTICULIER (DEFINITIEF)
-   Scope: alleen body.page-ev-accucheck
-   Doel:
-   1) Card center
-   2) Beslissingsbescherming badge smaller + center
-   Zakelijk blijft onaangeraakt
+   ZEKEROPWEG – EV ACCUCHECK
+   Premium landing page stylesheet
+   Scope: page-ev-accucheck
 ===================================================== */
 
+
 /* =====================================================
-   PAGE CANVAS
+   PAGE BACKGROUND
 ===================================================== */
+
 body.page-ev-accucheck{
-  background: linear-gradient(to bottom, #fcfbf8 0%, #f6f5f1 100%);
+  background:linear-gradient(to bottom,#fcfbf8 0%,#f6f5f1 100%);
 }
+
 
 /* =====================================================
    HERO
 ===================================================== */
-body.page-ev-accucheck .hero-accucheck h1{
-  max-width: 18ch;
-  margin-left: auto;
-  margin-right: auto;
+
+.hero-ev{
+  background:
+    linear-gradient(180deg,rgba(5,15,30,.80),rgba(5,15,30,.92)),
+    url('../assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg');
+
+  background-size:cover;
+  background-position:center;
+  padding:140px 0;
 }
 
-/* =====================================================
-   INTRO CARD (indien aanwezig)
-===================================================== */
-body.page-ev-accucheck .accu-intro-wrap{ padding: 0; }
-
-body.page-ev-accucheck .premium-intro{
-  margin-top: -3.6rem;
-  background: #ffffff;
-  padding: 3.2rem 3.6rem;
-  border-radius: 26px;
-  box-shadow: 0 40px 80px rgba(0,0,0,.08);
-  max-width: 920px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 10;
+.hero-accucheck{
+  position:relative;
+  padding-bottom:3rem;
 }
 
-body.page-ev-accucheck .accu-intro-text h3{
-  font-size: 1.35rem;
-  letter-spacing: -0.01em;
-  margin-bottom: .8rem;
+.hero-accucheck h1{
+  max-width:18ch;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:clamp(2rem,3vw,3rem);
+  line-height:1.2;
+  letter-spacing:-0.5px;
 }
 
-body.page-ev-accucheck .accu-intro-text p{
-  color: rgba(20,20,20,.70);
-  line-height: 1.75;
+.hero-sub{
+  max-width:650px;
+  margin:1.2rem auto 0;
+  font-size:1.05rem;
+  line-height:1.6;
 }
 
-@media (max-width: 900px){
-  body.page-ev-accucheck .premium-intro{
-    padding: 2.4rem 2.1rem;
-    margin-top: -2.4rem;
-  }
+.hero-meta{
+  margin-top:1.2rem;
+  font-size:.95rem;
+  opacity:.9;
 }
 
-/* =====================================================
-   PRICING — DEFINITIEF CENTER (dit is de kern)
-   Fix: pricing-grid wordt vaak als GRID gedefinieerd in globals.
-   Wij slopen dat hier bewust alleen op deze pagina.
-===================================================== */
-body.page-ev-accucheck .pricing-grid{
-  /* kill grid-layout uit andere CSS */
-  display: flex !important;
-  grid-template-columns: none !important;
-  gap: 0 !important;
-
-  width: 100% !important;
-  margin: 3.5rem auto 0 !important;
-  padding: 0 24px !important;
-  box-sizing: border-box !important;
-
-  justify-content: center !important;
-  align-items: stretch !important;
+.hero-meta span{
+  display:block;
+  margin-top:.4rem;
+  font-weight:500;
+  opacity:.8;
 }
 
-/* Card: exact center + luxe look blijft */
-body.page-ev-accucheck .pricing-grid > .pricing-card{
-  width: 100% !important;
-  max-width: 720px !important;
-
-  margin-left: auto !important;
-  margin-right: auto !important;
-
-  background: #ffffff;
-  border-radius: 34px;
-  padding: 3.8rem 3.6rem 3.6rem;
-  box-shadow: 0 40px 100px rgba(0,0,0,.08);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-
-  text-align: left; /* content links, CTA later gecentreerd */
-}
-
-/* Featured rand/shadow */
-body.page-ev-accucheck .pricing-grid > .pricing-card.pricing-featured{
-  border: 2px solid rgba(215,181,109,.75);
-  box-shadow:
-    0 48px 120px rgba(215,181,109,.22),
-    0 18px 40px rgba(0,0,0,.10);
-}
-
-/* =====================================================
-   BADGE — smaller + center (jouw punt #2)
-===================================================== */
-body.page-ev-accucheck .pricing-card .decision-badge{
-  align-self: center;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: auto !important;
-  max-width: max-content !important;
-
-  margin: 0 auto 2.2rem;
-  padding: 0.55rem 2.2rem;
-
-  font-size: .7rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-
-  border-radius: 999px;
-  background: #f6ecd3;
-  color: #7c642c;
-}
-
-/* =====================================================
-   PRICE BLOCK (zoals je nu hebt)
-===================================================== */
-body.page-ev-accucheck .pricing-card .price-block strong{
-  display: block;
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-body.page-ev-accucheck .pricing-card .price-block span{
-  display: block;
-  margin-top: .6rem;
-  color: rgba(11,18,32,.55);
-}
-
-/* =====================================================
-   FEATURES LIST (dash-gold)
-===================================================== */
-body.page-ev-accucheck .pricing-card .lux-list{
-  list-style: none;
-  padding: 0;
-  margin: 1.6rem 0 0;
-}
-
-body.page-ev-accucheck .pricing-card .lux-list li{
-  position: relative;
-  padding-left: 1.4rem;
-  margin-bottom: .8rem;
-}
-
-body.page-ev-accucheck .pricing-card .lux-list li::before{
-  content: "–";
-  position: absolute;
-  left: 0;
-  color: var(--zop-gold);
-}
-
-/* =====================================================
-   CTA — bewust gecentreerd (zoals je wil)
-===================================================== */
-body.page-ev-accucheck .pricing-card .pricing-cta{
-  margin-top: auto;
-  align-self: center;
-  width: 260px;
-}
-
-/* =====================================================
-   FAQ (laat je huidige rustige stijl intact)
-===================================================== */
-body.page-ev-accucheck .faq-list{
-  max-width: 760px;
-  margin: 2.5rem auto 0;
-}
-
-body.page-ev-accucheck .faq-item{
-  padding: 2.8rem 0;
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
-
-body.page-ev-accucheck .faq-item:last-child{
-  border-bottom: none;
-}
-
-body.page-ev-accucheck .faq-item h3{
-  font-size: .98rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: rgba(11,18,32,.92);
-  margin-bottom: .6rem;
-}
-
-body.page-ev-accucheck .faq-item p{
-  font-size: .94rem;
-  line-height: 1.75;
-  color: rgba(11,18,32,.68);
-  max-width: 66ch;
-}
-
-body.page-ev-accucheck .faq-item + .faq-item{
-  margin-top: .6rem;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-@media (max-width: 760px){
-  body.page-ev-accucheck .pricing-grid{
-    padding: 0 16px !important;
-    margin-top: 2.6rem !important;
-  }
-
-  body.page-ev-accucheck .pricing-grid > .pricing-card{
-    padding: 2.8rem 2.2rem 2.6rem;
-    border-radius: 26px;
-  }
-
-  body.page-ev-accucheck .pricing-card .decision-badge{
-    padding: 0.5rem 1.6rem;
-    margin-bottom: 1.8rem;
-  }
-
-  body.page-ev-accucheck .pricing-card .pricing-cta{
-    width: 240px;
-  }
-}
-
-/* =====================================================
-   EV ACCUCHECK — DEFINITIEVE CENTER FIX
-   Oorzaak: pricing-grid is elders een 3-koloms grid
-   Oplossing: alleen hier -> flex + center
-===================================================== */
-
-body.page-ev-accucheck .pricing-grid{
-  display: flex !important;
-  justify-content: center !important;
-  align-items: stretch !important;
-
-  grid-template-columns: none !important;
-  gap: 0 !important;
-}
-
-/* De kaart zelf */
-body.page-ev-accucheck .pricing-grid > .pricing-card{
-  width: 100%;
-  max-width: 720px;
-
-  margin-left: auto;
-  margin-right: auto;
-}
-
-body.page-ev-accucheck .pricing-grid{
-  max-width: 1100px;     /* of wat jouw design gebruikt */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;    /* match container padding */
-  padding-right: 24px;
-}
-
-.image-caption{
-  max-width: 580px;
-  margin: 1.2rem auto 0;
-  font-size: 0.95rem;
-  opacity: 0.85;
-  line-height: 1.6;
-}
-
-.image-caption--sub{
-  font-size: 0.85rem;
-  opacity: 0.65;
-  margin-top: 0.6rem;
-}
-
-.zop-nav a.active{
-  color:#c6a86a;
+.hero-strong{
+  margin-top:1rem;
   font-weight:600;
+  font-size:1.1rem;
 }
 
-.zop-drop-menu a.active{
-  color:#c6a86a;
-  font-weight:600;
+.hero-accucheck .btn-primary{
+  margin-top:2rem;
+  transition:all .25s ease;
 }
 
-.footer a.footer-accent {
-  color: var(--gold) !important;
-  font-weight: 600;
-  position: relative;
+.hero-accucheck .btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(0,0,0,.18);
 }
 
-.footer a.footer-accent {
-  color: #c6a86a !important;
-  font-weight: 600;
-}
-
-.hero-sub {
-  max-width: 650px;
-  margin: 1.2rem auto 0 auto;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-.hero-strong {
-  margin-top: 1rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.hero-meta {
-  margin-top: 1.2rem;
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-.hero-meta span {
-  display: block;
-  margin-top: 0.4rem;
-  font-weight: 500;
-  opacity: 0.8;
-}
-
-
-.hero-accucheck {
-  position: relative;
-}
-
-.hero-accucheck::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.65),
-    rgba(0,0,0,0.75)
-  );
-  z-index: 0;
-}
-
-.hero-accucheck .hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-accucheck h1 {
-  font-size: clamp(2rem, 3vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-}
-
-.content-left .btn-primary {
-  margin-top: 2rem;
-}
-
-.content-right {
-  max-width: 380px;
-}
-
-.content-right img {
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-}
-.image-caption {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-
-body.page-x5-accucheck .content-left .btn-primary{
-  margin-top: 1.2rem;
-  display: inline-block;
-}
-
-body.page-x5-accucheck .content-right{
-  max-width: 360px;     /* <- maakt hem klein */
-  justify-self: end;    /* <- netjes rechts */
-}
-
-body.page-x5-accucheck .content-right img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-}
-
-body.page-x5-accucheck .image-caption{
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  opacity: 0.7;
-  line-height: 1.6;
-}
-
-
-  body.page-x5-accucheck .content-right{
-    max-width: 520px;
-    justify-self: start;
-  }
-}
-
-/* =========================================
-   X5 CONCRETE SECTION — DEFINITIEVE FIX
-========================================= */
-
-body.page-x5-accucheck .concrete-section{
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 80px;
-  align-items: start;
-}
-
-body.page-x5-accucheck .content-right{
-  width: 340px;
-}
-
-body.page-x5-accucheck .content-right img{
-  width: 340px;
-  max-width: 340px;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
-}
-
-body.page-x5-accucheck .image-caption{
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  opacity: 0.7;
-  line-height: 1.5;
-}
-
-/* Responsive */
-@media (max-width: 1000px){
-  body.page-x5-accucheck .concrete-section{
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  body.page-x5-accucheck .content-right{
-    width: 100%;
-    max-width: 420px;
-  }
-
-  body.page-x5-accucheck .content-right img{
-    width: 100%;
-    max-width: 420px;
-  }
-}
-
-/* ===== X5 IMAGE FORCE FIX ===== */
-
-body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
-  width: 340px !important;
-  max-width: 340px !important;
-  display: block !important;
-  margin: 0 auto !important;
-}
-
-.hero-x5-premium {
-  padding: 120px 0 80px;
-  text-align: center;
-  background: linear-gradient(to bottom, #0f1a2a, #1c2430);
-  color: #fff;
-}
-
-.section-premium {
-  padding: 100px 0;
-}
-
-.grid-2col {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.image-box img {
-  width: 100%;
-  max-width: 420px;
-  border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(0,0,0,.18);
-}
-
-.strong-line {
-  font-weight: 600;
-  margin-top: 1.5rem;
-}
-
-.premium-points {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
-  margin-top: 60px;
-}
-
-.premium-points strong {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
-
-.premium-card {
-  max-width: 620px;
-  margin: 0 auto;
-  padding: 60px;
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 40px 100px rgba(0,0,0,.08);
-  text-align: center;
-}
-
-.premium-card .price {
-  font-size: 2rem;
-  margin: 20px 0;
-}
-.hero-x5-premium {
-  background: radial-gradient(circle at top, #1a1f27 0%, #0c1117 70%);
-  padding: 140px 0 100px;
-  text-align: center;
-  color: #fff;
-}
-
-.hero-x5-premium h1 {
-  font-size: clamp(2.4rem, 3vw, 3.4rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.hero-eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #c6a86a;
-  margin-bottom: 1.2rem;
-}
-
-.visual-block {
-  padding: 120px 0;
-  background: #0f141b;
-  text-align: center;
-}
-
-.visual-frame {
-  max-width: 720px;
-  margin: 0 auto;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 60px 120px rgba(0,0,0,0.45);
-}
-
-.visual-frame img {
-  width: 100%;
-  display: block;
-  filter: brightness(0.85) contrast(1.05);
-}
-
-.zow-report-preview {
-  padding: 90px 0;
-}
-
-.report-card {
-  max-width: 880px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 48px;
-  box-shadow: 0 40px 100px rgba(0,0,0,.08);
-  border: 1px solid rgba(0,0,0,.06);
-}
-
-.report-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32px;
-}
-
-.report-label {
-  font-size: .8rem;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: #c6a86a;
-}
-
-.report-header h3 {
-  margin: 6px 0;
-  font-size: 1.4rem;
-}
-
-.report-badge {
-  padding: 6px 14px;
-  font-size: .7rem;
-  text-transform: uppercase;
-  border-radius: 999px;
-  background: rgba(198,168,106,.15);
-  color: #7c642c;
-  border: 1px solid rgba(198,168,106,.35);
-}
-
-.report-body h4 {
-  margin-top: 26px;
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-
-.report-body p {
-  color: rgba(11,18,32,.75);
-  line-height: 1.7;
-}
-
-.report-body ul {
-  padding-left: 18px;
-  color: rgba(11,18,32,.75);
-}
-
-.report-footer-line {
-  margin-top: 30px;
-  font-weight: 600;
-}
-
-/* ===== Certificaat Premium Integratie ===== */
-
-.zow-certificaat-section {
-  padding: 100px 0;
-  background: linear-gradient(to bottom, #f6f5f1 0%, #ffffff 100%);
-}
 
-.zow-certificaat-section .cert-intro {
-  max-width: 70ch;
-  margin: 0 auto 40px;
-  text-align: center;
-  color: rgba(11,18,32,.72);
-  line-height: 1.75;
-}
-
-.cert-frame {
-  max-width: 900px;
-  margin: 0 auto;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 
-    0 50px 140px rgba(0,0,0,.12),
-    0 20px 50px rgba(0,0,0,.08);
-  border: 1px solid rgba(0,0,0,.06);
-}
-
-.cert-frame img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
-.cert-note {
-  text-align: center;
-  margin-top: 18px;
-  font-size: .9rem;
-  color: rgba(11,18,32,.6);
-}
-
-/* Rapport Preview Styling */
-
-.zow-rapport-preview {
-  background: linear-gradient(to bottom, #ffffff 0%, #f6f5f1 100%);
-  padding: 120px 0;
-}
-
-.rapport-card {
-  max-width: 900px;
-  margin: 60px auto 0;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 60px;
-  box-shadow:
-    0 40px 100px rgba(0,0,0,.08),
-    0 15px 40px rgba(0,0,0,.05);
-  border: 1px solid rgba(0,0,0,.06);
-}
-
-.rapport-header {
-  margin-bottom: 40px;
-}
-
-.rapport-eyebrow {
-  font-size: .85rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  opacity: .6;
-  margin-bottom: 10px;
-}
-
-.rapport-body h4 {
-  margin-top: 35px;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.rapport-body p {
-  line-height: 1.8;
-  margin-bottom: 18px;
-}
-
-.rapport-body ul {
-  padding-left: 20px;
-  line-height: 1.8;
-}
-
-.hero-ev {
-  background: linear-gradient(180deg, rgba(5,15,30,0.85), rgba(5,15,30,0.95)),
-              url('../assets/images/ev-accu-test-voor-aankoop-op-locatie.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 140px 0;
-}
-
-.section-dark {
-  background: #0b1422;
-  color: #fff;
-  padding: 100px 0;
-}
-
-.section-dark h2 {
-  color: #fff;
-}
-
-.section-dark p {
-  color: rgba(255,255,255,0.85);
-}
-
-.premium-image {
-  border-radius: 18px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-  max-width: 720px;
-  margin: 60px auto;
-  display: block;
-}
-
-.price-block-premium {
-  font-size: 42px;
-  font-weight: 600;
-  margin: 20px 0;
-}
-
-.price-sub {
-  font-size: 15px;
-  opacity: .7;
-  margin-bottom: 30px;
-}
+/* =====================================================
+   TRUST STRIP
+===================================================== */
 
-.trust-strip {
+.trust-strip{
   display:flex;
   justify-content:center;
   gap:2.5rem;
   flex-wrap:wrap;
-  text-align:center;
 
+  text-align:center;
   font-size:.9rem;
   letter-spacing:.4px;
   color:#5a6472;
@@ -798,10 +121,60 @@ body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
   display:none;
 }
 
-.section-dark .lux-list li{
+
+/* =====================================================
+   PREMIUM IMAGE
+===================================================== */
+
+.premium-image{
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.15);
+  max-width:720px;
+  margin:60px auto;
+  display:block;
+}
+
+.image-caption{
+  margin-top:.6rem;
+  font-size:.85rem;
+  opacity:.7;
+  line-height:1.6;
+}
+
+.image-caption--sub{
+  font-size:.85rem;
+  opacity:.65;
+  margin-top:.6rem;
+}
+
+
+/* =====================================================
+   DARK SECTION
+===================================================== */
+
+.section-dark{
+  background:#0b1422;
+  color:#fff;
+  padding:100px 0;
+}
+
+.section-dark h2{
+  color:#fff;
+}
+
+.section-dark p{
+  color:rgba(255,255,255,.85);
+}
+
+.section-dark .lux-list{
   list-style:none;
-  padding-left:1.2rem;
+  padding:0;
+}
+
+.section-dark .lux-list li{
   position:relative;
+  padding-left:1.2rem;
+  margin-bottom:.6rem;
 }
 
 .section-dark .lux-list li:before{
@@ -810,15 +183,190 @@ body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
   left:0;
   color:#d4af37;
 }
+
+
+/* =====================================================
+   PROCESS SECTION
+===================================================== */
+
+.process-section{
+  padding:4rem 0;
+  background:#ffffff;
+  text-align:center;
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;
+  margin-top:2rem;
+}
+
+.process-step{
+  padding:1.4rem;
+  background:#f6f8fb;
+  border-radius:12px;
+}
+
+
+/* =====================================================
+   PRICING CARD
+===================================================== */
+
+.pricing-grid{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+
+  max-width:1100px;
+  margin:3.5rem auto 0;
+  padding:0 24px;
+}
+
+.pricing-card{
+  width:100%;
+  max-width:720px;
+
+  background:#ffffff;
+  border-radius:34px;
+  padding:3.8rem 3.6rem 3.6rem;
+
+  box-shadow:0 40px 100px rgba(0,0,0,.08);
+
+  display:flex;
+  flex-direction:column;
+}
+
+.pricing-featured{
+  border:2px solid rgba(215,181,109,.75);
+
+  box-shadow:
+    0 48px 120px rgba(215,181,109,.22),
+    0 18px 40px rgba(0,0,0,.10);
+}
+
+.decision-badge{
+  align-self:center;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 2.2rem;
+  padding:.55rem 2.2rem;
+
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+
+  border-radius:999px;
+
+  background:#f6ecd3;
+  color:#7c642c;
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+.price-block-premium{
+  font-size:42px;
+  font-weight:600;
+  margin:20px 0;
+}
+
+.price-sub{
+  font-size:15px;
+  opacity:.7;
+  margin-bottom:30px;
+}
+
+
+/* =====================================================
+   FEATURE LIST
+===================================================== */
+
+.lux-list{
+  list-style:none;
+  padding:0;
+}
+
+.lux-list li{
+  position:relative;
+  padding-left:1.4rem;
+  margin-bottom:.8rem;
+}
+
+.lux-list li::before{
+  content:"–";
+  position:absolute;
+  left:0;
+  color:#c6a86a;
+}
+
+
+/* =====================================================
+   CTA NOTES
+===================================================== */
+
+.cta-note{
+  margin-top:1rem;
+  font-size:.9rem;
+  opacity:.75;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.capacity-note{
+  margin-top:1rem;
+  font-size:.85rem;
+  opacity:.7;
+}
+
+
+/* =====================================================
+   CERTIFICATE SECTION
+===================================================== */
+
 .cert-section{
   padding:5rem 0;
   background:#f5f7fb;
   text-align:center;
 }
 
-.cert-section img{
-  margin-top:2rem;
+.cert-frame{
+  max-width:900px;
+  margin:0 auto;
+
+  border-radius:28px;
+  overflow:hidden;
+
+  box-shadow:
+    0 50px 140px rgba(0,0,0,.12),
+    0 20px 50px rgba(0,0,0,.08);
+
+  border:1px solid rgba(0,0,0,.06);
 }
+
+.cert-frame img{
+  width:100%;
+  display:block;
+  height:auto;
+}
+
+.cert-note{
+  text-align:center;
+  margin-top:18px;
+  font-size:.9rem;
+  color:rgba(11,18,32,.6);
+}
+
+
+/* =====================================================
+   FOOTER LINKS
+===================================================== */
 
 .footer-col a{
   position:relative;
@@ -832,7 +380,7 @@ body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
   bottom:-3px;
   width:0%;
   height:1px;
-  background:#c6a86b;
+  background:#c6a86a;
   transition:width .25s ease;
 }
 
@@ -840,44 +388,63 @@ body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
   width:100%;
 }
 
-.hero-accucheck{
-  padding-bottom:3rem;
+.footer a.footer-accent{
+  color:#c6a86a !important;
+  font-weight:600;
 }
 
-.hero-accucheck + .container{
-  margin-top:-60px;
+
+/* =====================================================
+   NAV ACTIVE LINKS
+===================================================== */
+
+.zop-nav a.active{
+  color:#c6a86a;
+  font-weight:600;
 }
 
-.cta-note{
-margin-top:1rem;
-font-size:.9rem;
-opacity:.75;
-max-width:520px;
-margin-left:auto;
-margin-right:auto;
+.zop-drop-menu a.active{
+  color:#c6a86a;
+  font-weight:600;
 }
 
-.process-section{
-padding:4rem 0;
-background:#ffffff;
-text-align:center;
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:760px){
+
+.hero-ev{
+  padding:100px 0;
+}
+
+.pricing-grid{
+  padding:0 16px;
+  margin-top:2.6rem;
+}
+
+.pricing-card{
+  padding:2.8rem 2.2rem 2.6rem;
+  border-radius:26px;
+}
+
+.decision-badge{
+  padding:.5rem 1.6rem;
+  margin-bottom:1.8rem;
+}
+
+.trust-strip{
+  gap:1rem;
+  font-size:.8rem;
+}
+
+.trust-strip span:after{
+  display:none;
 }
 
 .process-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:2rem;
-margin-top:2rem;
+  grid-template-columns:1fr;
 }
 
-.process-step{
-padding:1.4rem;
-background:#f6f8fb;
-border-radius:12px;
-}
-
-.capacity-note{
-margin-top:1rem;
-font-size:.85rem;
-opacity:.7;
 }
