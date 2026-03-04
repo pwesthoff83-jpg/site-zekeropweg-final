@@ -7,74 +7,54 @@
 
 <title>EV AccuCheck vóór aankoop | ZekerOpWeg</title>
 
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/zop-luxury-polish.css">
+<link rel="stylesheet" href="css/zop-stability.css">
+
 <style>
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-margin:0;
-color:#0f172a;
-line-height:1.6;
-background:#ffffff;
-}
+/* HERO */
 
-.container{
-max-width:1100px;
-margin:0 auto;
-padding:0 24px;
-}
-
-h1{
-font-size:44px;
-line-height:1.2;
-margin-bottom:18px;
-}
-
-h2{
-font-size:30px;
-margin-bottom:18px;
-}
-
-.hero{
-padding:110px 0 70px;
-background:#f8fafc;
+.hero-ev{
+background:
+linear-gradient(180deg, rgba(5,15,30,0.85), rgba(5,15,30,0.95)),
+url('assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg');
+background-size:cover;
+background-position:center;
+padding:140px 0;
+color:white;
 }
 
 .hero-eyebrow{
 letter-spacing:2px;
 font-size:13px;
-color:#c59d5f;
+color:#c6a86a;
 margin-bottom:16px;
 }
 
 .hero-sub{
 font-size:18px;
-color:#475569;
 max-width:620px;
 margin-bottom:28px;
+opacity:.9;
 }
 
-.btn-primary{
-display:inline-block;
-background:#0b1320;
-color:white;
-padding:14px 26px;
-border-radius:28px;
-text-decoration:none;
-font-weight:600;
-}
+/* TRUST STRIP */
 
 .trust-strip{
-border-top:1px solid #e2e8f0;
-border-bottom:1px solid #e2e8f0;
+border-top:1px solid rgba(0,0,0,.06);
+border-bottom:1px solid rgba(0,0,0,.06);
 padding:20px 0;
 text-align:center;
 font-size:14px;
-color:#475569;
+color:#5a6472;
 }
 
 .trust-strip span{
 margin:0 20px;
 }
+
+/* VISUAL */
 
 .visual-block{
 padding:80px 0;
@@ -84,6 +64,8 @@ padding:80px 0;
 width:100%;
 border-radius:18px;
 }
+
+/* SECTION */
 
 .section{
 padding:90px 0;
@@ -101,6 +83,8 @@ width:100%;
 border-radius:14px;
 }
 
+/* PROCESS */
+
 .process{
 background:#f8fafc;
 }
@@ -112,6 +96,8 @@ gap:40px;
 margin-top:40px;
 }
 
+/* CERT */
+
 .cert-section{
 padding:90px 0;
 text-align:center;
@@ -122,6 +108,8 @@ max-width:760px;
 width:100%;
 border-radius:14px;
 }
+
+/* PRICE */
 
 .pricing{
 padding:100px 0;
@@ -144,27 +132,11 @@ font-weight:700;
 margin:18px 0;
 }
 
-.footer{
-background:#0b1320;
-color:white;
-padding:60px 0;
-}
+/* FOOTER EMAIL GOLD */
 
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:40px;
-}
-
-.footer a{
-color:#c6a86a;
-text-decoration:none;
-}
-
-.footer-legal{
-margin-top:40px;
-opacity:.7;
-font-size:14px;
+.footer a.footer-accent{
+color:#c6a86a !important;
+font-weight:600;
 }
 
 </style>
@@ -172,12 +144,63 @@ font-size:14px;
 </head>
 
 
-<body>
+<body class="page-ev-accucheck">
+
+
+<!-- HEADER -->
+
+<header class="zop-header">
+
+<div class="zop-header-inner">
+
+<a href="index.html" class="zop-logo">
+ZekerOpWeg
+</a>
+
+<nav class="zop-nav">
+
+<a href="index.html">Home</a>
+<a href="aankoopadvies.html">Aankoopadvies</a>
+
+<div class="zop-dropdown">
+<a href="ev-accucheck.html" class="zop-drop-label active">AccuCheck</a>
+
+<div class="zop-drop-menu">
+<a href="ev-accucheck.html">EV AccuCheck</a>
+<a href="bmw-x5-45e-50e-accucheck.html">
+BMW X5 45e / 50e Beslischeck
+</a>
+</div>
+</div>
+
+<div class="zop-dropdown">
+<span class="zop-drop-label">Voor bedrijven</span>
+
+<div class="zop-drop-menu">
+<a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+<a href="automatisering.html">Automatisering</a>
+</div>
+</div>
+
+<a href="bezwaarservice.html">Bezwaar</a>
+<a href="over.html">Over</a>
+<a href="contact.html" class="zop-contact">Contact</a>
+
+</nav>
+
+<button class="menu-toggle">☰</button>
+
+</div>
+
+</header>
+
+
+<main>
 
 
 <!-- HERO -->
 
-<section class="hero">
+<section class="hero hero-ev">
 
 <div class="container">
 
@@ -186,15 +209,15 @@ ONAFHANKELIJKE EV ACCUCHECK
 </p>
 
 <h1>
-Weet vóór aankoop hoe de accustatus werkelijk is
+Weet vóór aankoop hoe gezond de EV-accu werkelijk is
 </h1>
 
 <p class="hero-sub">
 De aandrijfaccu bepaalt waarde, rijbereik en financieel risico.
-Een onafhankelijke AccuCheck geeft objectief inzicht vóór aankoop.
+Met een onafhankelijke AccuCheck weet u vóór aankoop exact wat u koopt.
 </p>
 
-<a href="#" class="btn-primary">
+<a href="intake.html?dienst=ev-accucheck" class="btn-primary">
 Plan AccuCheck vóór aankoop
 </a>
 
@@ -203,7 +226,7 @@ Plan AccuCheck vóór aankoop
 </section>
 
 
-<!-- TRUST BAR -->
+<!-- TRUST STRIP -->
 
 <section class="trust-strip">
 
@@ -250,14 +273,14 @@ Waarom een AccuCheck vóór aankoop belangrijk is
 
 <p>
 De aandrijfaccu is de duurste component van een elektrische auto.
-De conditie van de accu bepaalt het praktische rijbereik,
-de restwaarde en het financiële risico bij aankoop.
+De conditie van de accu bepaalt het rijbereik, de restwaarde en
+het financiële risico bij aankoop.
 </p>
 
 <ul>
 
 <li>Accugezondheid beïnvloedt restwaarde</li>
-<li>Degradatie is niet zichtbaar bij een proefrit</li>
+<li>Degradatie is niet zichtbaar tijdens een proefrit</li>
 <li>Accustatus bepaalt toekomstig rijbereik</li>
 <li>Objectieve meting voorkomt discussies achteraf</li>
 
@@ -296,12 +319,12 @@ Hoe de AccuCheck verloopt
 
 <div>
 <strong>Accuanalyse</strong>
-<p>De accugezondheid en prestaties worden geanalyseerd.</p>
+<p>De accugezondheid en prestaties worden gemeten.</p>
 </div>
 
 <div>
 <strong>Rapport</strong>
-<p>U ontvangt een onafhankelijk accucertificaat.</p>
+<p>U ontvangt een objectief accucertificaat.</p>
 </div>
 
 </div>
@@ -311,14 +334,14 @@ Hoe de AccuCheck verloopt
 </section>
 
 
-<!-- CERTIFICAAT -->
+<!-- CERT -->
 
 <section class="cert-section">
 
 <div class="container">
 
 <h2>
-Accucertificaat na meting
+Accucertificaat na uitvoering
 </h2>
 
 <div class="cert-frame">
@@ -328,8 +351,8 @@ Accucertificaat na meting
 </div>
 
 <p>
-Na uitvoering ontvangt u een digitaal accucertificaat
-met de gemeten accustatus van het voertuig.
+Na de meting ontvangt u een digitaal accucertificaat
+met de gemeten accustatus.
 </p>
 
 </div>
@@ -337,7 +360,7 @@ met de gemeten accustatus van het voertuig.
 </section>
 
 
-<!-- PRIJS -->
+<!-- PRICE -->
 
 <section class="pricing">
 
@@ -348,10 +371,10 @@ met de gemeten accustatus van het voertuig.
 <p class="price">€149</p>
 
 <p>
-Inclusief btw · Op locatie uitgevoerd
+Inclusief btw · Meting op locatie · Rapportage inbegrepen
 </p>
 
-<a href="#" class="btn-primary">
+<a href="intake.html?dienst=ev-accucheck" class="btn-primary">
 Plan uw AccuCheck
 </a>
 
@@ -359,13 +382,10 @@ Plan uw AccuCheck
 
 </section>
 
-
-</body>
-</html>
-
-
 </main>
 
+
+<!-- FOOTER -->
 
 <footer class="footer">
 
@@ -427,16 +447,6 @@ Bezwaarservice
 </p>
 
 </div>
-
-</div>
-
-
-<div class="container">
-
-<p class="footer-legal">
-Diensten worden geleverd conform Nederlandse wetgeving.
-ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.
-</p>
 
 </div>
 
