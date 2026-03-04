@@ -759,3 +759,91 @@ body.page-x5-accucheck img[src*="bmw-x5-interieur-accucheck"]{
   opacity: .7;
   margin-bottom: 30px;
 }
+
+.trust-strip {
+  display:flex;
+  justify-content:center;
+  gap:2.5rem;
+  flex-wrap:wrap;
+  text-align:center;
+
+  font-size:.9rem;
+  letter-spacing:.4px;
+  color:#5a6472;
+
+  padding:1.2rem 0;
+  margin-top:2rem;
+
+  border-top:1px solid rgba(0,0,0,.06);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.trust-strip span{
+  position:relative;
+  padding:0 1rem;
+}
+
+.trust-strip span:after{
+  content:"";
+  position:absolute;
+  right:-1.25rem;
+  top:50%;
+  transform:translateY(-50%);
+  width:1px;
+  height:14px;
+  background:rgba(0,0,0,.15);
+}
+
+.trust-strip span:last-child:after{
+  display:none;
+}
+
+.section-dark .lux-list li{
+  list-style:none;
+  padding-left:1.2rem;
+  position:relative;
+}
+
+.section-dark .lux-list li:before{
+  content:"–";
+  position:absolute;
+  left:0;
+  color:#d4af37;
+}
+.cert-section{
+  padding:5rem 0;
+  background:#f5f7fb;
+  text-align:center;
+}
+
+.cert-section img{
+  margin-top:2rem;
+}
+
+.footer-col a{
+  position:relative;
+  text-decoration:none;
+}
+
+.footer-col a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-3px;
+  width:0%;
+  height:1px;
+  background:#c6a86b;
+  transition:width .25s ease;
+}
+
+.footer-col a:hover::after{
+  width:100%;
+}
+
+.hero-accucheck{
+  padding-bottom:3rem;
+}
+
+.hero-accucheck + .container{
+  margin-top:-60px;
+}
