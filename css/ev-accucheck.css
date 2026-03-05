@@ -66,51 +66,6 @@ font-size:14px;
 opacity:.85;
 }
 
-
-
-/* =====================================================
-   TRUST STRIP
-===================================================== */
-
-.trust-strip{
-  display:flex;
-  justify-content:center;
-  gap:2.5rem;
-  flex-wrap:wrap;
-
-  text-align:center;
-  font-size:.9rem;
-  letter-spacing:.4px;
-  color:#5a6472;
-
-  padding:1.2rem 0;
-  margin-top:2rem;
-
-  border-top:1px solid rgba(0,0,0,.06);
-  border-bottom:1px solid rgba(0,0,0,.06);
-}
-
-.trust-strip span{
-  position:relative;
-  padding:0 1rem;
-}
-
-.trust-strip span:after{
-  content:"";
-  position:absolute;
-  right:-1.25rem;
-  top:50%;
-  transform:translateY(-50%);
-  width:1px;
-  height:14px;
-  background:rgba(0,0,0,.15);
-}
-
-.trust-strip span:last-child:after{
-  display:none;
-}
-
-
 /* =====================================================
    PREMIUM IMAGE
 ===================================================== */
@@ -423,20 +378,6 @@ opacity:.85;
   margin-bottom:1.8rem;
 }
 
-.trust-strip{
-  gap:1rem;
-  font-size:.8rem;
-}
-
-.trust-strip span:after{
-  display:none;
-}
-
-.process-grid{
-  grid-template-columns:1fr;
-}
-
-}
 
 /* ===============================
 TRUST BAR
@@ -455,37 +396,6 @@ align-items:center;
 gap:60px;
 flex-wrap:wrap;
 text-align:center;
-}
-
-.trust-item{
-position:relative;
-}
-
-.trust-item strong{
-display:block;
-font-size:.9rem;
-font-weight:600;
-letter-spacing:.02em;
-}
-
-.trust-item span{
-display:block;
-font-size:.8rem;
-opacity:.65;
-margin-top:4px;
-}
-
-/* divider */
-
-.trust-item:not(:last-child)::after{
-content:"";
-position:absolute;
-right:-30px;
-top:50%;
-transform:translateY(-50%);
-width:1px;
-height:24px;
-background:rgba(0,0,0,0.12);
 }
 
 .trustbar{
@@ -523,16 +433,6 @@ justify-content:center;
 gap:70px;
 flex-wrap:wrap;
 text-align:center;
-}
-
-.trust-item strong{
-display:block;
-font-size:.9rem;
-}
-
-.trust-item span{
-font-size:.8rem;
-opacity:.7;
 }
 
 
@@ -668,63 +568,45 @@ opacity:.8;
 letter-spacing:.4px;
 }
 
-/* =========================
-   PREMIUM TRUST BAR
-========================= */
-
-.trust-strip{
-border-top:1px solid rgba(0,0,0,.08);
-border-bottom:1px solid rgba(0,0,0,.08);
-
-padding:20px 0;
-background:#ffffff;
-}
-
-.trust-items{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-
-font-size:14px;
-letter-spacing:.3px;
-color:#4b5563;
-}
-
-.trust-items span{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.trust-items span::before{
-content:"✓";
-color:#c6a86a;
-font-weight:600;
-}
+/* ===== PREMIUM TRUSTBAR ===== */
 
 .trust-strip{
 
 border-top:1px solid rgba(0,0,0,.06);
 border-bottom:1px solid rgba(0,0,0,.06);
 
-padding:26px 0;
-
+padding:28px 0;
 background:#ffffff;
+
 }
 
-.trust-grid{
+.trust-items{
 
-display:grid;
-grid-template-columns:repeat(4,1fr);
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
 
-gap:40px;
-
-text-align:center;
+flex-wrap:wrap;
 
 font-size:14px;
+letter-spacing:.3px;
 color:#4b5563;
 
-letter-spacing:.2px;
+}
+
+.trust-items span{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.trust-items span::before{
+
+content:"✓";
+color:#c6a86a;
+font-weight:600;
 
 }
