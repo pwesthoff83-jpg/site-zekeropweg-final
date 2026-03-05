@@ -11,136 +11,440 @@
 <link rel="stylesheet" href="css/zop-luxury-polish.css">
 <link rel="stylesheet" href="css/zop-stability.css">
 
-<style>
+/* =======================================================
+EV ACCUCHECK PREMIUM STYLE
+gebaseerd op X5 structuur maar lichter
+======================================================= */
 
-/* HERO */
+body.page-ev-accucheck{
+background:#f6f5f1;
+}
 
-.hero-ev{
+
+/* =======================================================
+HERO
+======================================================= */
+
+body.page-ev-accucheck .ev-hero{
+
+position:relative;
+padding:110px 0 80px;
+
 background:
-linear-gradient(180deg, rgba(5,15,30,0.85), rgba(5,15,30,0.95)),
+linear-gradient(
+180deg,
+rgba(12,18,28,.55) 0%,
+rgba(12,18,28,.75) 60%,
+rgba(12,18,28,.30) 80%,
+rgba(246,245,241,1) 100%
+),
 url('assets/images/ev-hero.webp');
+
 background-size:cover;
 background-position:center;
-padding:140px 0;
-color:white;
+
+color:#fff;
+text-align:center;
+
 }
 
-.hero-eyebrow{
-letter-spacing:2px;
-font-size:13px;
-color:#c6a86a;
+body.page-ev-accucheck .ev-hero .container{
+max-width:900px;
+}
+
+body.page-ev-accucheck .hero-eyebrow{
+
+font-size:.78rem;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:rgba(198,168,106,.95);
 margin-bottom:16px;
+
 }
 
-.hero-sub{
-font-size:18px;
-max-width:620px;
-margin-bottom:28px;
-opacity:.9;
+body.page-ev-accucheck .hero-title{
+
+font-size:clamp(2.1rem,3.2vw,3rem);
+line-height:1.15;
+letter-spacing:-0.02em;
+margin:0;
+
 }
 
-/* TRUST STRIP */
+body.page-ev-accucheck .hero-sub{
 
-.trust-strip{
-border-top:1px solid rgba(0,0,0,.06);
-border-bottom:1px solid rgba(0,0,0,.06);
-padding:20px 0;
-text-align:center;
-font-size:14px;
-color:#5a6472;
+max-width:60ch;
+margin:18px auto 0;
+
+font-size:1.05rem;
+line-height:1.7;
+color:rgba(255,255,255,.82);
+
 }
 
-.trust-strip span{
-margin:0 20px;
+body.page-ev-accucheck .hero-actions{
+
+margin-top:28px;
+
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:14px;
+
 }
 
-/* VISUAL */
+body.page-ev-accucheck .hero-meta{
 
-.visual-block{
-padding:80px 0;
+margin-top:16px;
+
+font-size:.9rem;
+color:rgba(255,255,255,.72);
+
 }
 
-.visual-frame img{
-width:100%;
-border-radius:18px;
-}
-
-/* SECTION */
-
-.section{
-padding:90px 0;
-}
-
-.grid-2col{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-
-.side-image{
-width:100%;
-border-radius:14px;
-}
-
-/* PROCESS */
-
-.process{
-background:#f8fafc;
-}
-
-.process-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:40px;
-margin-top:40px;
-}
-
-/* CERT */
-
-.cert-section{
-padding:90px 0;
-text-align:center;
-}
-
-.cert-frame img{
-max-width:760px;
-width:100%;
-border-radius:14px;
-}
-
-/* PRICE */
-
-.pricing{
-padding:100px 0;
-background:#f8fafc;
-}
-
-.price-card{
-max-width:420px;
-margin:0 auto;
-text-align:center;
-background:white;
-padding:42px;
-border-radius:18px;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
-}
-
-.price{
-font-size:42px;
-font-weight:700;
-margin:18px 0;
-}
-
-/* FOOTER EMAIL GOLD */
-
-.footer a.footer-accent{
-color:#c6a86a !important;
+body.page-ev-accucheck .hero-meta span{
+color:#c6a86a;
 font-weight:600;
 }
 
-</style>
 
+
+/* =======================================================
+TRUSTBAR
+======================================================= */
+
+body.page-ev-accucheck .trust-strip{
+
+padding:26px 0;
+background:#ffffff;
+
+border-top:1px solid rgba(0,0,0,.06);
+border-bottom:1px solid rgba(0,0,0,.06);
+
+}
+
+body.page-ev-accucheck .trust-items{
+
+display:flex;
+justify-content:center;
+gap:42px;
+
+flex-wrap:wrap;
+
+font-size:.92rem;
+letter-spacing:.02em;
+color:#4b5563;
+
+}
+
+body.page-ev-accucheck .trust-items span{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+body.page-ev-accucheck .trust-items span::before{
+
+content:"✓";
+color:#c6a86a;
+font-weight:600;
+
+}
+
+
+
+/* =======================================================
+SECTION STRUCTURE
+======================================================= */
+
+body.page-ev-accucheck .ev-section{
+
+padding:95px 0;
+background:#f6f5f1;
+
+}
+
+body.page-ev-accucheck .ev-section.white{
+background:#ffffff;
+}
+
+body.page-ev-accucheck .ev-lead{
+
+max-width:70ch;
+margin:0 auto;
+
+line-height:1.85;
+color:rgba(11,18,32,.72);
+
+font-size:1.02rem;
+
+}
+
+
+
+/* =======================================================
+CINEMATIC IMAGE
+======================================================= */
+
+body.page-ev-accucheck .ev-frame{
+
+max-width:1000px;
+margin:0 auto;
+
+border-radius:26px;
+overflow:hidden;
+
+box-shadow:0 60px 140px rgba(0,0,0,.22);
+
+}
+
+body.page-ev-accucheck .ev-frame img{
+
+width:100%;
+display:block;
+
+filter:brightness(.92) contrast(1.05);
+
+}
+
+body.page-ev-accucheck .ev-caption{
+
+max-width:900px;
+margin:14px auto 0;
+
+font-size:.9rem;
+text-align:center;
+color:rgba(11,18,32,.7);
+
+}
+
+
+
+/* =======================================================
+CONTENT GRID
+======================================================= */
+
+body.page-ev-accucheck .ev-grid{
+
+display:grid;
+grid-template-columns:1.2fr 1fr;
+
+gap:60px;
+align-items:center;
+
+}
+
+body.page-ev-accucheck .ev-grid img{
+
+width:100%;
+border-radius:18px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.08);
+
+}
+
+
+
+/* =======================================================
+PROCESS
+======================================================= */
+
+body.page-ev-accucheck .process-grid{
+
+margin-top:40px;
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+}
+
+body.page-ev-accucheck .process-step{
+
+background:#ffffff;
+
+padding:26px;
+border-radius:18px;
+
+border:1px solid rgba(0,0,0,.05);
+
+box-shadow:0 15px 40px rgba(0,0,0,.05);
+
+}
+
+body.page-ev-accucheck .process-step strong{
+display:block;
+margin-bottom:6px;
+}
+
+
+
+/* =======================================================
+CERTIFICaat FRAME
+======================================================= */
+
+body.page-ev-accucheck .cert-frame{
+
+max-width:900px;
+margin:0 auto;
+
+border-radius:26px;
+overflow:hidden;
+
+background:#ffffff;
+
+border:1px solid rgba(0,0,0,.06);
+
+box-shadow:0 45px 120px rgba(0,0,0,.08);
+
+}
+
+body.page-ev-accucheck .cert-frame img{
+width:100%;
+display:block;
+}
+
+
+
+/* =======================================================
+PRICING
+======================================================= */
+
+body.page-ev-accucheck .price-section{
+
+padding:110px 0;
+background:#f6f5f1;
+
+}
+
+body.page-ev-accucheck .price-card{
+
+max-width:520px;
+margin:0 auto;
+
+background:#ffffff;
+
+padding:56px 46px;
+
+border-radius:24px;
+
+box-shadow:
+0 40px 100px rgba(0,0,0,.08),
+0 12px 30px rgba(0,0,0,.04);
+
+text-align:center;
+
+}
+
+body.page-ev-accucheck .price-main{
+
+font-size:3rem;
+font-weight:600;
+
+margin:16px 0;
+
+}
+
+body.page-ev-accucheck .price-sub{
+
+font-size:15px;
+opacity:.75;
+
+margin-bottom:26px;
+
+}
+
+
+
+/* =======================================================
+PEPIJN BLOCK
+======================================================= */
+
+body.page-ev-accucheck .pepijn-grid{
+
+display:grid;
+grid-template-columns:1.6fr 1fr;
+
+gap:70px;
+align-items:center;
+
+}
+
+body.page-ev-accucheck .pepijn-card{
+
+background:#ffffff;
+
+padding:30px;
+
+border-radius:20px;
+
+border:1px solid rgba(0,0,0,.06);
+
+box-shadow:0 20px 60px rgba(0,0,0,.06);
+
+text-align:center;
+
+}
+
+body.page-ev-accucheck .pepijn-card img{
+
+width:100%;
+max-width:240px;
+
+border-radius:12px;
+
+margin-bottom:16px;
+
+}
+
+body.page-ev-accucheck .pepijn-name{
+font-weight:600;
+margin-bottom:4px;
+}
+
+body.page-ev-accucheck .pepijn-role{
+
+font-size:.9rem;
+color:#6b7280;
+
+}
+
+body.page-ev-accucheck .pepijn-motto{
+
+margin-top:14px;
+
+font-style:italic;
+font-size:.95rem;
+line-height:1.6;
+
+color:#374151;
+
+}
+
+
+
+/* =======================================================
+RESPONSIVE
+======================================================= */
+
+@media(max-width:900px){
+
+body.page-ev-accucheck .ev-grid{
+grid-template-columns:1fr;
+}
+
+body.page-ev-accucheck .pepijn-grid{
+grid-template-columns:1fr;
+}
+
+body.page-ev-accucheck .process-grid{
+grid-template-columns:1fr;
+}
+
+}
 </head>
 
 
