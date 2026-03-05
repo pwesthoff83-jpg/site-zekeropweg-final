@@ -121,86 +121,94 @@
       box-shadow: 0 12px 32px rgba(0,0,0,.28);
     }
 
-    /* HERO */
     .hero-ev{
-      position: relative;
 
-      background:
-        linear-gradient(
-          180deg,
-          rgba(8,18,35,0.65) 0%,
-          rgba(8,18,35,0.85) 55%,
-          rgba(8,18,35,0.95) 100%
-        ),
-        url('assets/images/ev-hero.webp');
+position:relative;
 
-      background-size: cover;
-      background-position: center;
+background:
+linear-gradient(
+180deg,
+rgba(5,12,25,0.88) 0%,
+rgba(5,12,25,0.92) 55%,
+rgba(5,12,25,0.96) 100%
+),
+url('assets/images/ev-hero.webp');
 
-      padding: 200px 0 160px;
-      color: #fff;
-      overflow: hidden;
-    }
+background-size:cover;
+background-position:center;
 
-    .hero-ev .container{
-      max-width: 900px;
-    }
+padding:220px 0 170px;
 
-    .hero-eyebrow{
-      letter-spacing: 2px;
-      font-size: 13px;
-      color: var(--zop-gold);
-      margin: 0 0 16px;
-      text-transform: uppercase;
-    }
+color:#fff;
 
-    .hero-ev h1{
-      font-size: clamp(38px, 4.5vw, 56px);
-      line-height: 1.15;
-      font-weight: 650;
-      max-width: 900px;
-      margin: 0 0 26px;
-    }
+}
 
-    .hero-sub{
-      font-size: 20px;
-      max-width: 640px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.85);
-      margin: 0 0 32px;
-    }
+/* H1 helderder */
 
-    .cta-trust{
-      margin: 14px 0 6px;
-      color: rgba(255,255,255,0.82);
-      font-size: 14px;
-    }
+.hero-ev h1{
 
-    .cta-note{
-      margin: 0 0 14px;
-      color: rgba(255,255,255,0.78);
-      font-size: 14px;
-      max-width: 720px;
-    }
+font-size:clamp(40px,4.8vw,58px);
+line-height:1.12;
+font-weight:650;
 
-    .hero-meta,
-    .hero-proof{
-      margin: 10px 0 0;
-      color: rgba(255,255,255,0.78);
-      font-size: 14px;
-    }
+max-width:880px;
 
-    .hero-ev::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-1px;
-      height:120px;
-      background: linear-gradient(to bottom, rgba(8,18,35,0) 0%, #ffffff 100%);
-      pointer-events: none;
-    }
+margin-bottom:28px;
 
+letter-spacing:-0.02em;
+
+color:#ffffff;
+
+}
+
+/* subtekst rustiger */
+
+.hero-sub{
+
+font-size:20px;
+max-width:640px;
+
+line-height:1.7;
+
+color:rgba(255,255,255,0.88);
+
+margin-bottom:36px;
+
+}
+
+/* CTA spacing */
+
+.hero-ev .btn-primary{
+margin-top:8px;
+margin-bottom:16px;
+}
+
+/* kleine teksten rustiger */
+
+.cta-trust,
+.hero-meta,
+.hero-proof{
+
+font-size:14px;
+line-height:1.6;
+
+color:rgba(255,255,255,0.75);
+
+}
+
+.cta-note{
+
+font-size:14px;
+line-height:1.7;
+
+max-width:700px;
+
+color:rgba(255,255,255,0.75);
+
+margin-bottom:18px;
+
+}
+   
     /* TRUST STRIP */
     .trust-strip{
       border-top: 1px solid var(--zop-line);
