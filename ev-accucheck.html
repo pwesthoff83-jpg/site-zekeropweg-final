@@ -20,6 +20,15 @@
 
   gtag('config', 'AW-17962185957');
 </script>
+
+<script>
+function trackAccuCheckClick() {
+  gtag('event', 'accucheck_click', {
+    'event_category': 'engagement',
+    'event_label': 'Plan AccuCheck button'
+  });
+}
+</script>
   
 <style>
 
@@ -412,7 +421,9 @@ Een verborgen accuprobleem kan duizenden euro's kosten.
 Met een onafhankelijke AccuCheck weet u vóór aankoop exact wat u koopt.
 </p>
 
-<a href="intake.html?dienst=ev-accucheck" class="btn-primary">
+<a href="intake.html?dienst=ev-accucheck"
+class="btn-primary"
+onclick="trackAccuCheckClick()">
 Plan AccuCheck vóór aankoop
 </a>
 
