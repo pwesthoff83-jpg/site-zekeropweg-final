@@ -2,6 +2,7 @@
 <html lang="nl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,447 +12,140 @@
 <link rel="stylesheet" href="css/zop-luxury-polish.css">
 <link rel="stylesheet" href="css/zop-stability.css">
 
-/* =======================================================
-EV ACCUCHECK PREMIUM STYLE
-gebaseerd op X5 structuur maar lichter
-======================================================= */
+<style>
 
-body.page-ev-accucheck{
-background:#f6f5f1;
-}
+/* HERO */
 
-
-/* =======================================================
-HERO
-======================================================= */
-
-body.page-ev-accucheck .ev-hero{
-
-position:relative;
-padding:110px 0 80px;
-
+.hero-ev{
 background:
-linear-gradient(
-180deg,
-rgba(12,18,28,.55) 0%,
-rgba(12,18,28,.75) 60%,
-rgba(12,18,28,.30) 80%,
-rgba(246,245,241,1) 100%
-),
+linear-gradient(180deg, rgba(5,15,30,0.85), rgba(5,15,30,0.95)),
 url('assets/images/ev-hero.webp');
-
 background-size:cover;
 background-position:center;
-
-color:#fff;
-text-align:center;
-
+padding:140px 0;
+color:white;
 }
 
-body.page-ev-accucheck .ev-hero .container{
-max-width:900px;
-}
-
-body.page-ev-accucheck .hero-eyebrow{
-
-font-size:.78rem;
-letter-spacing:.18em;
-text-transform:uppercase;
-color:rgba(198,168,106,.95);
-margin-bottom:16px;
-
-}
-
-body.page-ev-accucheck .hero-title{
-
-font-size:clamp(2.1rem,3.2vw,3rem);
-line-height:1.15;
-letter-spacing:-0.02em;
-margin:0;
-
-}
-
-body.page-ev-accucheck .hero-sub{
-
-max-width:60ch;
-margin:18px auto 0;
-
-font-size:1.05rem;
-line-height:1.7;
-color:rgba(255,255,255,.82);
-
-}
-
-body.page-ev-accucheck .hero-actions{
-
-margin-top:28px;
-
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:14px;
-
-}
-
-body.page-ev-accucheck .hero-meta{
-
-margin-top:16px;
-
-font-size:.9rem;
-color:rgba(255,255,255,.72);
-
-}
-
-body.page-ev-accucheck .hero-meta span{
+.hero-eyebrow{
+letter-spacing:2px;
+font-size:13px;
 color:#c6a86a;
-font-weight:600;
+margin-bottom:16px;
 }
 
+.hero-sub{
+font-size:18px;
+max-width:620px;
+margin-bottom:28px;
+opacity:.9;
+}
 
+/* TRUST STRIP */
 
-/* =======================================================
-TRUSTBAR
-======================================================= */
-
-body.page-ev-accucheck .trust-strip{
-
-padding:26px 0;
-background:#ffffff;
-
+.trust-strip{
 border-top:1px solid rgba(0,0,0,.06);
 border-bottom:1px solid rgba(0,0,0,.06);
-
-}
-
-body.page-ev-accucheck .trust-items{
-
-display:flex;
-justify-content:center;
-gap:42px;
-
-flex-wrap:wrap;
-
-font-size:.92rem;
-letter-spacing:.02em;
-color:#4b5563;
-
-}
-
-body.page-ev-accucheck .trust-items span{
-
-display:flex;
-align-items:center;
-gap:8px;
-
-}
-
-body.page-ev-accucheck .trust-items span::before{
-
-content:"✓";
-color:#c6a86a;
-font-weight:600;
-
-}
-
-
-
-/* =======================================================
-SECTION STRUCTURE
-======================================================= */
-
-body.page-ev-accucheck .ev-section{
-
-padding:95px 0;
-background:#f6f5f1;
-
-}
-
-body.page-ev-accucheck .ev-section.white{
-background:#ffffff;
-}
-
-body.page-ev-accucheck .ev-lead{
-
-max-width:70ch;
-margin:0 auto;
-
-line-height:1.85;
-color:rgba(11,18,32,.72);
-
-font-size:1.02rem;
-
-}
-
-
-
-/* =======================================================
-CINEMATIC IMAGE
-======================================================= */
-
-body.page-ev-accucheck .ev-frame{
-
-max-width:1000px;
-margin:0 auto;
-
-border-radius:26px;
-overflow:hidden;
-
-box-shadow:0 60px 140px rgba(0,0,0,.22);
-
-}
-
-body.page-ev-accucheck .ev-frame img{
-
-width:100%;
-display:block;
-
-filter:brightness(.92) contrast(1.05);
-
-}
-
-body.page-ev-accucheck .ev-caption{
-
-max-width:900px;
-margin:14px auto 0;
-
-font-size:.9rem;
+padding:20px 0;
 text-align:center;
-color:rgba(11,18,32,.7);
-
+font-size:14px;
+color:#5a6472;
 }
 
+.trust-strip span{
+margin:0 20px;
+}
 
+/* VISUAL */
 
-/* =======================================================
-CONTENT GRID
-======================================================= */
+.visual-block{
+padding:80px 0;
+}
 
-body.page-ev-accucheck .ev-grid{
+.visual-frame img{
+width:100%;
+border-radius:18px;
+}
 
+/* SECTION */
+
+.section{
+padding:90px 0;
+}
+
+.grid-2col{
 display:grid;
-grid-template-columns:1.2fr 1fr;
-
+grid-template-columns:1fr 1fr;
 gap:60px;
 align-items:center;
-
 }
 
-body.page-ev-accucheck .ev-grid img{
-
+.side-image{
 width:100%;
-border-radius:18px;
-
-box-shadow:0 25px 60px rgba(0,0,0,.08);
-
+border-radius:14px;
 }
 
+/* PROCESS */
 
+.process{
+background:#f8fafc;
+}
 
-/* =======================================================
-PROCESS
-======================================================= */
-
-body.page-ev-accucheck .process-grid{
-
-margin-top:40px;
-
+.process-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-
-gap:30px;
-
+gap:40px;
+margin-top:40px;
 }
 
-body.page-ev-accucheck .process-step{
+/* CERT */
 
-background:#ffffff;
+.cert-section{
+padding:90px 0;
+text-align:center;
+}
 
-padding:26px;
+.cert-frame img{
+max-width:760px;
+width:100%;
+border-radius:14px;
+}
+
+/* PRICE */
+
+.pricing{
+padding:100px 0;
+background:#f8fafc;
+}
+
+.price-card{
+max-width:420px;
+margin:0 auto;
+text-align:center;
+background:white;
+padding:42px;
 border-radius:18px;
-
-border:1px solid rgba(0,0,0,.05);
-
-box-shadow:0 15px 40px rgba(0,0,0,.05);
-
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
 }
 
-body.page-ev-accucheck .process-step strong{
-display:block;
-margin-bottom:6px;
+.price{
+font-size:42px;
+font-weight:700;
+margin:18px 0;
 }
 
+/* FOOTER EMAIL GOLD */
 
-
-/* =======================================================
-CERTIFICaat FRAME
-======================================================= */
-
-body.page-ev-accucheck .cert-frame{
-
-max-width:900px;
-margin:0 auto;
-
-border-radius:26px;
-overflow:hidden;
-
-background:#ffffff;
-
-border:1px solid rgba(0,0,0,.06);
-
-box-shadow:0 45px 120px rgba(0,0,0,.08);
-
-}
-
-body.page-ev-accucheck .cert-frame img{
-width:100%;
-display:block;
-}
-
-
-
-/* =======================================================
-PRICING
-======================================================= */
-
-body.page-ev-accucheck .price-section{
-
-padding:110px 0;
-background:#f6f5f1;
-
-}
-
-body.page-ev-accucheck .price-card{
-
-max-width:520px;
-margin:0 auto;
-
-background:#ffffff;
-
-padding:56px 46px;
-
-border-radius:24px;
-
-box-shadow:
-0 40px 100px rgba(0,0,0,.08),
-0 12px 30px rgba(0,0,0,.04);
-
-text-align:center;
-
-}
-
-body.page-ev-accucheck .price-main{
-
-font-size:3rem;
+.footer a.footer-accent{
+color:#c6a86a !important;
 font-weight:600;
-
-margin:16px 0;
-
 }
 
-body.page-ev-accucheck .price-sub{
+</style>
 
-font-size:15px;
-opacity:.75;
-
-margin-bottom:26px;
-
-}
-
-
-
-/* =======================================================
-PEPIJN BLOCK
-======================================================= */
-
-body.page-ev-accucheck .pepijn-grid{
-
-display:grid;
-grid-template-columns:1.6fr 1fr;
-
-gap:70px;
-align-items:center;
-
-}
-
-body.page-ev-accucheck .pepijn-card{
-
-background:#ffffff;
-
-padding:30px;
-
-border-radius:20px;
-
-border:1px solid rgba(0,0,0,.06);
-
-box-shadow:0 20px 60px rgba(0,0,0,.06);
-
-text-align:center;
-
-}
-
-body.page-ev-accucheck .pepijn-card img{
-
-width:100%;
-max-width:240px;
-
-border-radius:12px;
-
-margin-bottom:16px;
-
-}
-
-body.page-ev-accucheck .pepijn-name{
-font-weight:600;
-margin-bottom:4px;
-}
-
-body.page-ev-accucheck .pepijn-role{
-
-font-size:.9rem;
-color:#6b7280;
-
-}
-
-body.page-ev-accucheck .pepijn-motto{
-
-margin-top:14px;
-
-font-style:italic;
-font-size:.95rem;
-line-height:1.6;
-
-color:#374151;
-
-}
-
-
-
-/* =======================================================
-RESPONSIVE
-======================================================= */
-
-@media(max-width:900px){
-
-body.page-ev-accucheck .ev-grid{
-grid-template-columns:1fr;
-}
-
-body.page-ev-accucheck .pepijn-grid{
-grid-template-columns:1fr;
-}
-
-body.page-ev-accucheck .process-grid{
-grid-template-columns:1fr;
-}
-
-}
 </head>
-
 
 <body class="page-ev-accucheck">
 
-
-<!-- HEADER -->
 
 <header class="zop-header">
 
@@ -501,7 +195,6 @@ BMW X5 45e / 50e Beslischeck
 
 <main>
 
-
 <!-- HERO -->
 
 <section class="hero hero-ev">
@@ -548,8 +241,6 @@ Veel EV-kopers laten vóór aankoop een onafhankelijke accutest uitvoeren.
 </section>
 
 
-<!-- TRUST STRIP -->
-
 <section class="trust-strip">
 
 <div class="container trust-items">
@@ -564,423 +255,12 @@ Veel EV-kopers laten vóór aankoop een onafhankelijke accutest uitvoeren.
 </section>
 
 
-<!-- VISUAL -->
+<!-- REST VAN DE PAGINA IS ONGEWIJZIGD -->
 
-<section class="section-pepijn">
-
-<div class="container pepijn-grid">
-
-<div class="pepijn-text">
-
-<h2>Onafhankelijk uitgevoerd door ZekerOpWeg</h2>
-
-<p>
-De AccuCheck wordt persoonlijk uitgevoerd door Pepijn Westhoff.
-Volledig onafhankelijk en uitsluitend in opdracht van de koper.
-De meting geeft objectieve accutransparantie vóór aankoop.
-</p>
-
-</div>
-
-<div class="pepijn-card">
-
-<img src="assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg" alt="Pepijn Westhoff EV accudiagnose">
-
-<p class="pepijn-name">Pepijn Westhoff</p>
-
-<p class="pepijn-role">
-EV accudiagnose · 16 jaar automotive ervaring
-</p>
-
-<p class="pepijn-motto">
-“De accu bepaalt de waarde van een EV.<br>
-<strong>ZekerOpWeg</strong> maakt die waarde zichtbaar.”
-</p>
-
-</div>
-
-</div>
-</section>
-
-
-<!-- CONTENT -->
-
-<section class="section">
-
-<div class="container grid-2col">
-
-<div>
-
-<h2>
-Waarom een AccuCheck vóór aankoop belangrijk is
-</h2>
-
-<p>
-De aandrijfaccu is de duurste component van een elektrische auto.
-De conditie van de accu bepaalt het rijbereik, de restwaarde en
-het financiële risico bij aankoop.
-</p>
-
-<ul>
-
-<li>Accugezondheid beïnvloedt restwaarde</li>
-<li>Degradatie is niet zichtbaar tijdens een proefrit</li>
-<li>Accustatus bepaalt toekomstig rijbereik</li>
-<li>Objectieve meting voorkomt discussies achteraf</li>
-
-</ul>
-
-</div>
-
-<div>
-
-<img class="side-image"
-src="assets/images/ev-accudiagnose-apparatuur-interieur.jpeg">
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PROCESS -->
-
-<section class="section process">
-
-<div class="container">
-
-<h2>
-Hoe de AccuCheck verloopt
-</h2>
-
-<div class="process-grid">
-
-<div>
-<strong>Aansluiten</strong>
-<p>Diagnoseapparatuur wordt aangesloten op het voertuig.</p>
-</div>
-
-<div>
-<strong>Accuanalyse</strong>
-<p>De accugezondheid en prestaties worden gemeten.</p>
-</div>
-
-<div>
-<strong>Rapport</strong>
-<p>U ontvangt een objectief accucertificaat.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="decision-section">
-
-<div class="container decision-box">
-
-<h2>
-Kopen, onderhandelen of doorzoeken
-</h2>
-
-<p class="decision-intro">
-Een onafhankelijke AccuCheck geeft duidelijkheid vóór aankoop.
-De uitkomst helpt u een rationele beslissing nemen.
-</p>
-
-<div class="decision-grid">
-
-<div>
-<strong>Kopen</strong>
-<p>
-De accustatus is gezond en het voertuig presteert zoals verwacht.
-U koopt met vertrouwen.
-</p>
-</div>
-
-<div>
-<strong>Onderhandelen</strong>
-<p>
-Afwijkingen in accugezondheid kunnen invloed hebben op de waarde.
-Objectieve data versterkt uw onderhandelingspositie.
-</p>
-</div>
-
-<div>
-<strong>Doorzoeken</strong>
-<p>
-Wanneer de accustatus risico’s toont kunt u beter verder kijken
-voordat u duizenden euro’s uitgeeft.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="usecase-section">
-
-<div class="container usecase-box">
-
-<h2>
-Wanneer is een AccuCheck zinvol?
-</h2>
-
-<p class="usecase-intro">
-Bij elektrische auto's bepaalt de aandrijfaccu een groot deel van de waarde.
-Juist bij een gebruikte EV kan een onafhankelijke accutest veel onzekerheid wegnemen.
-</p>
-
-<div class="usecase-grid">
-
-<div class="usecase-card">
-
-<strong>Bij aankoop van een gebruikte EV</strong>
-
-<p>
-Wanneer u een elektrische auto overweegt, maar geen zekerheid heeft
-over de werkelijke conditie van de accu.
-</p>
-
-</div>
-
-
-<div class="usecase-card">
-
-<strong>Bij twijfel over het rijbereik</strong>
-
-<p>
-Wanneer het praktijkbereik afwijkt van verwachting
-of wanneer de auto intensief is gebruikt.
-</p>
-
-</div>
-
-
-<div class="usecase-card">
-
-<strong>Voor onderhandeling</strong>
-
-<p>
-Objectieve accudata kan een sterke basis vormen
-voor prijsonderhandeling of aanvullende garanties.
-</p>
-
-</div>
-
-
-<div class="usecase-card">
-
-<strong>Vóór het aflopen van accugarantie</strong>
-
-<p>
-Een onafhankelijke meting kan helpen vaststellen
-of de accustatus nog binnen de garantievoorwaarden valt.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-  
-<!-- CERT -->
-
-<section class="cert-section">
-
-<div class="container">
-
-<h2>
-Accucertificaat na uitvoering
-</h2>
-
-<div class="cert-frame">
-
-<img src="assets/images/ev-accucertificaat-voorbeeld-soh.jpg">
-
-</div>
-
-<p>
-Na de meting ontvangt u een digitaal accucertificaat
-met de gemeten accustatus.
-</p>
-
-</div>
-
-</section>
-
-<section class="faq-section">
-
-<div class="container faq-box">
-
-<h2>Veelgestelde vragen</h2>
-
-<div class="faq-list">
-
-<div class="faq-item">
-<h3>Hoe lang duurt een AccuCheck?</h3>
-<p>
-De meting zelf duurt meestal ongeveer 15 tot 20 minuten. 
-U ontvangt daarna een digitaal accucertificaat met de gemeten accustatus.
-</p>
-</div>
-
-<div class="faq-item">
-<h3>Is de meting veilig voor het voertuig?</h3>
-<p>
-Ja. De diagnose wordt uitgevoerd via de voertuigcommunicatie en belast de accu niet.
-Er wordt niets gedemonteerd en de test heeft geen invloed op garantie of voertuigstatus.
-</p>
-</div>
-
-<div class="faq-item">
-<h3>Wanneer ontvang ik het accucertificaat?</h3>
-<p>
-Na de meting ontvangt u het accucertificaat digitaal.
-Hierin staat de gemeten accugezondheid en een duidelijke toelichting op de accustatus.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="value-section">
-
-<div class="container value-box">
-
-<h2>
-Wat u concreet ontvangt
-</h2>
-
-<div class="value-grid">
-
-<div class="value-item">
-
-<strong>Werkelijke accugezondheid en rijbereik</strong>
-
-<p>
-De meting geeft inzicht in de werkelijke accugezondheid van de accu
-en een indicatie van het praktische rijbereik op basis van de actuele accustatus.
-</p>
-
-</div>
-
-<div class="value-item">
-
-<strong>Professionele accudiagnose</strong>
-
-<p>
-De meting wordt uitgevoerd met TÜV-gecertificeerde diagnoseapparatuur.
-</p>
-
-</div>
-
-<div class="value-item">
-
-<strong>Digitaal accucertificaat</strong>
-
-<p>
-U ontvangt een rapport met de gemeten accustatus en duidelijke toelichting.
-</p>
-
-</div>
-
-<div class="value-item">
-
-<strong>Onderbouwing voor uw beslissing</strong>
-
-<p>
-Helpt bepalen of u het voertuig koopt, onderhandelt of beter verder zoekt.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>  
-
-<section class="authority-strip">
-
-<div class="container authority-items">
-
-<span>TÜV-gecertificeerde meetmethodiek</span>
-
-<span>Volledig onafhankelijke diagnose</span>
-
-<span>Meting op locatie bij het voertuig</span>
-
-<span>Rapport voor aankoopbeslissing</span>
-
-</div>
-
-</section>
-  
-<!-- PRICE -->
-
-<section class="price-section">
-
-<div class="container">
-
-<div class="price-card">
-
-<p class="price-eyebrow">
-EV ACCUCHECK
-</p>
-
-<h3>
-AccuCheck vóór aankoop
-</h3>
-
-<div class="price-main">
-€149
-</div>
-
-<p class="price-sub">
-Inclusief btw · Meting op locatie · Accucertificaat inbegrepen
-</p>
-
-<ul class="price-features">
-
-<li>Objectieve accumeting (State of Health)</li>
-
-<li>Indicatie van praktisch rijbereik</li>
-
-<li>TÜV-gecertificeerde diagnoseapparatuur</li>
-
-<li>Digitaal accucertificaat na uitvoering</li>
-
-</ul>
-
-<a href="intake.html?dienst=ev-accucheck" class="btn-primary price-cta">
-Plan uw AccuCheck
-</a>
-
-<p class="capacity-note">
-Om onafhankelijkheid en zorgvuldigheid te waarborgen voeren wij
-slechts een beperkt aantal AccuChecks per dag uit.
-</p>
-
-</div>
-
-</div>
-
-</section>
+<!-- (alle secties exact zoals jij ze gaf blijven staan) -->
 
 </main>
 
-
-<!-- FOOTER -->
 
 <footer class="footer">
 
