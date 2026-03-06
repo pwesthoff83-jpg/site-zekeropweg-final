@@ -40,7 +40,7 @@
 
   <div class="advisor-card">
     
-<form action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh" method="POST">
+ <form id="evForm" action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh" method="POST">
 
   <input type="hidden" name="redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
   <input type="hidden" name="bron" value="ads-intake">
@@ -91,6 +91,28 @@
   </div>
 </footer>
 
+  <script>
+document.getElementById("evForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const data = new FormData(form);
+
+  fetch("https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh", {
+    method: "POST",
+    body: data
+  })
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error("Webhook fout");
+    }
+    window.location.href = "https://zekeropweg.nu/thanks-ev-accucheck.html";
+  })
+  .catch(function() {
+    alert("Er ging iets mis met verzenden. Probeer opnieuw.");
+  });
+});
+</script>
   
 </body>
 </html>
