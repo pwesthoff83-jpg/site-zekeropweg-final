@@ -38,8 +38,8 @@
 
   <div class="advisor-card">
 
-<form action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
-      method="POST">
+<form id="x5Form" action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
+method="POST">
 
 <!-- Hidden velden -->
 <input type="hidden" name="dienst" value="Premium AccuCheck X5">
@@ -137,5 +137,29 @@ Metingen rondom ondertekening krijgen voorrang in planning.
 </section>
 
 </main>
+
+<script>
+document.getElementById("x5Form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const data = new FormData(form);
+
+  fetch("https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh", {
+    method: "POST",
+    body: data
+  })
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error("Webhook fout");
+    }
+    window.location.href = "https://zekeropweg.nu/bedankt-x5.html";
+  })
+  .catch(function() {
+    alert("Er ging iets mis met verzenden. Probeer opnieuw.");
+  });
+});
+</script>  
+  
 </body>
 </html>
