@@ -46,7 +46,7 @@
   <input type="hidden" name="bron" value="ads-intake">
   <label>Welke AccuCheck wilt u? *</label>
 
-<select name="product" required>
+<select name="product" required id="productSelect">
   <option value="">Selecteer</option>
   <option value="instap-accucheck-95">
     Instap AccuCheck €95 (bij ZekerOpWeg locatie · uitsluitend op afspraak)
@@ -112,6 +112,23 @@ Instap AccuCheck €95 uitsluitend op afspraak bij ZekerOpWeg locatie in Barendr
   </div>
 </footer>
 
+<script>
+const params = new URLSearchParams(window.location.search);
+const productParam = params.get("product");
+
+if(productParam){
+  const select = document.querySelector('select[name="product"]');
+
+  if(productParam === "instap"){
+    select.value = "instap-accucheck-95";
+  }
+
+  if(productParam === "locatie"){
+    select.value = "ev-accucheck-129";
+  }
+}
+</script>
+  
   <script>
 document.getElementById("evForm").addEventListener("submit", function(e) {
   e.preventDefault();
