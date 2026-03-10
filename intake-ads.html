@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Plan EV AccuCheck | ZekerOpWeg</title>
+  <title>Plan EV AccuCheck (±1 minuut) | ZekerOpWeg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Plan direct uw EV/Hybride AccuCheck.">
 
@@ -41,6 +41,7 @@
   <div class="advisor-card">
     
  <form id="evForm" action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh" method="POST">
+   <div id="step1">
 
   <input type="hidden" name="redirect" value="https://zekeropweg.nu/thanks-ev-accucheck.html">
   <input type="hidden" name="bron" value="ads-intake">
@@ -60,6 +61,14 @@
 Instap AccuCheck €95 wordt uitgevoerd bij ZekerOpWeg in Barendrecht.
 AccuCheck €129 wordt uitgevoerd op locatie bij het voertuig.
 </p>   
+     
+<button type="button" id="nextStep" class="advisor-submit">
+Bekijk beschikbaarheid
+</button>
+
+</div>     
+
+ <div id="step2" style="display:none;">  
    
   <label>Naam *</label>
   <input type="text" name="naam" required>
@@ -70,8 +79,17 @@ AccuCheck €129 wordt uitgevoerd op locatie bij het voertuig.
   <label>E-mailadres *</label>
   <input type="email" name="email" placeholder="bijv. naam@email.nl" required>
   
-  <label>Waar staat de auto? *</label>
-  <input type="text" id="locatieAuto" name="locatie_auto" placeholder="Plaats of dealernaam" required> 
+ <div id="locatieBlock">
+
+<label>Waar staat de auto? *</label>
+
+<input type="text"
+       id="locatieAuto"
+       name="locatie_auto"
+       placeholder="Plaats of dealernaam"
+       required>
+
+</div>
 
    <label>Kenteken</label>
  <input type="text" name="kenteken" style="text-transform:uppercase;">
@@ -88,6 +106,8 @@ AccuCheck €129 wordt uitgevoerd op locatie bij het voertuig.
     Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
   </p>
 
+</div>
+   
   <button type="submit" class="advisor-submit">
     Plan AccuCheck
   </button>
@@ -119,6 +139,7 @@ const productParam = params.get("product");
 
 const productSelect = document.getElementById("productSelect");
 const locatieInput = document.getElementById("locatieAuto");
+const locatieBlock = document.getElementById("locatieBlock");
 
 if(productParam){
 
@@ -132,34 +153,47 @@ if(productParam){
 
 }
 
-/* functie om locatie veld aan te passen */
-
 function updateLocatie(){
 
   if(productSelect.value === "instap-accucheck-95"){
 
     locatieInput.value = "Locatie meting (alleen op afspraak): Sneekermeer 11, Barendrecht";
     locatieInput.readOnly = true;
+    locatieBlock.style.display = "none";
 
   } else {
 
     locatieInput.value = "";
     locatieInput.readOnly = false;
+    locatieBlock.style.display = "block";
 
   }
 
 }
 
-/* uitvoeren bij laden */
-
 updateLocatie();
-
-/* uitvoeren bij wijziging */
-
 productSelect.addEventListener("change", updateLocatie);
 
-</script>
 
+/* stap 1 → stap 2 */
+
+const nextBtn = document.getElementById("nextStep");
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+
+nextBtn.addEventListener("click", function(){
+
+  if(productSelect.value === ""){
+    alert("Kies eerst welke AccuCheck u wilt.");
+    return;
+  }
+
+  step1.style.display = "none";
+  step2.style.display = "block";
+
+});
+
+</script>
 
 
 <script>
