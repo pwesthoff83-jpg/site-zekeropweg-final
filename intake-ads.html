@@ -71,7 +71,7 @@ AccuCheck €129 wordt uitgevoerd op locatie bij het voertuig.
   <input type="email" name="email" placeholder="bijv. naam@email.nl" required>
   
   <label>Waar staat de auto? *</label>
-  <input type="text" name="locatie_auto" placeholder="Plaats of dealernaam" required>
+  <input type="text" id="locatieAuto" name="locatie_auto" placeholder="Plaats of dealernaam" required> 
 
    <label>Kenteken</label>
  <input type="text" name="kenteken" style="text-transform:uppercase;">
@@ -113,24 +113,59 @@ Instap AccuCheck €95 uitsluitend op afspraak bij ZekerOpWeg locatie in Barendr
 </footer>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const productParam = params.get("product");
 
+const productSelect = document.getElementById("productSelect");
+const locatieInput = document.getElementById("locatieAuto");
+
 if(productParam){
-  const select = document.querySelector('select[name="product"]');
 
   if(productParam === "instap"){
-    select.value = "instap-accucheck-95";
+    productSelect.value = "instap-accucheck-95";
   }
 
   if(productParam === "locatie"){
-    select.value = "ev-accucheck-129";
+    productSelect.value = "ev-accucheck-129";
   }
+
 }
+
+/* functie om locatie veld aan te passen */
+
+function updateLocatie(){
+
+  if(productSelect.value === "instap-accucheck-95"){
+
+    locatieInput.value = "Locatie meting (alleen op afspraak): Sneekermeer 11, Barendrecht";
+    locatieInput.readOnly = true;
+
+  } else {
+
+    locatieInput.value = "";
+    locatieInput.readOnly = false;
+
+  }
+
+}
+
+/* uitvoeren bij laden */
+
+updateLocatie();
+
+/* uitvoeren bij wijziging */
+
+productSelect.addEventListener("change", updateLocatie);
+
 </script>
-  
-  <script>
+
+
+
+<script>
+
 document.getElementById("evForm").addEventListener("submit", function(e) {
+
   e.preventDefault();
 
   const form = this;
@@ -141,15 +176,22 @@ document.getElementById("evForm").addEventListener("submit", function(e) {
     body: data
   })
   .then(function(response) {
+
     if (!response.ok) {
       throw new Error("Webhook fout");
     }
+
     window.location.href = "https://zekeropweg.nu/thanks-ev-accucheck.html";
+
   })
   .catch(function() {
+
     alert("Er ging iets mis met verzenden. Probeer opnieuw.");
+
   });
+
 });
+
 </script>
   
 </body>
