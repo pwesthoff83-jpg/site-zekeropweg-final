@@ -514,6 +514,112 @@ box-shadow:0 8px 18px rgba(0,0,0,0.12);
 opacity:0.95;
 
 }    
+
+/* ===============================
+EV BATTERY DASHBOARD
+=============================== */
+
+.soh-score-card{
+text-align:center;
+padding:36px 28px;
+}
+
+.soh-number{
+font-size:72px;
+font-weight:900;
+letter-spacing:-1px;
+color:var(--navy);
+margin-bottom:4px;
+}
+
+.soh-label{
+font-weight:700;
+color:var(--muted);
+margin-bottom:20px;
+}
+
+/* battery bar */
+
+.battery-meter{
+margin-bottom:14px;
+}
+
+.battery-bar{
+
+height:12px;
+width:100%;
+
+background:#e7ecf2;
+
+border-radius:10px;
+
+overflow:hidden;
+
+box-shadow: inset 0 2px 4px rgba(0,0,0,.08);
+}
+
+.battery-fill{
+
+height:100%;
+width:98.7%;
+
+background:linear-gradient(
+90deg,
+#23c55e,
+#22c55e,
+#4ade80
+);
+
+box-shadow:0 4px 10px rgba(34,197,94,.4);
+
+}
+
+/* scale */
+
+.battery-scale{
+
+display:flex;
+justify-content:space-between;
+
+font-size:11px;
+
+color:#6b7280;
+
+margin-top:6px;
+
+}
+
+/* status */
+
+.battery-status{
+
+font-size:13px;
+font-weight:650;
+
+margin-top:12px;
+margin-bottom:16px;
+
+}
+
+.battery-status.good{
+color:#16a34a;
+}
+
+/* mini certificate */
+
+.soh-cert-preview img{
+
+width:130px;
+
+border-radius:8px;
+
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+opacity:.95;
+
+margin-top:6px;
+
+}    
   </style>
 </head>
 
