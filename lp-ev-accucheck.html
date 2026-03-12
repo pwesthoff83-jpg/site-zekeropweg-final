@@ -769,6 +769,20 @@ border-color:#c6a15b;
 transform:translateY(-2px);
 box-shadow:0 16px 36px rgba(0,0,0,.12);
 }
+
+.whatsapp-float {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: #25D366;
+color: white;
+font-weight: 700;
+padding: 16px 20px;
+border-radius: 40px;
+font-size:15px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+z-index: 999;
+}
     
   </style>
   
@@ -882,6 +896,9 @@ Check voertuig
         <div class="price">Vanaf €95 <small>incl btw</small></div>
         <div class="sub">€95 in Barendrecht • €129 op locatie bij de auto</div>
         <ul>
+         <div style="margin-bottom:10px;font-size:13px;color:#facc15;font-weight:700;">
+          Vandaag vaak nog mogelijk
+         </div> 
          <div style="margin-top:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);">
          Meer dan 90% van de EV-kopers laat eerst de batterij controleren
          </div> 
@@ -971,6 +988,22 @@ document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophal
 
 }
 </script>
+
+ <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
+<div class="wrap" style="text-align:center;max-width:720px;">
+
+<div style="font-weight:800;font-size:18px;margin-bottom:8px;">
+Controleer de batterij vóórdat u een EV koopt
+</div>
+
+<p style="margin:0;color:#374151;font-weight:600;">
+Een versleten batterij kan €5.000 tot €15.000 kosten.
+Met een onafhankelijke AccuCheck weet u binnen 15 minuten
+hoe gezond de batterij echt is.
+</p>
+
+</div>
+</section> 
   
   <section style="background:#f6f7f9;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
   <div class="wrap" style="text-align:center;max-width:720px;">
@@ -1457,8 +1490,11 @@ AccuCheck €129
     </div>
   </div>
 
-https://wa.me/31623452349?text=Hallo%2C%20ik%20wil%20graag%20een%20EV%20of%20hybride%20AccuCheck%20plannen target="_blank" class="whatsapp-float">
-  💬 Plan via WhatsApp
+<a href="https://wa.me/31623452349?text=Hallo%20ik%20wil%20een%20EV%20accucheck%20plannen"
+class="whatsapp-float" target="_blank">
+
+💬 Direct plannen via WhatsApp
+
 </a>
 
 <style>
