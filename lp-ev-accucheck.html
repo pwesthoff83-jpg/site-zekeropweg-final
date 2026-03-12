@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> EV Accu Test vóór aankoop | AccuCheck Elektrische Auto vanaf €95 | ZekerOpWeg</title>
+  <title> EV AccuCheck vóór aankoop | Accutest Elektrische Auto vanaf €95 | Regio Rotterdam </title>
   <meta name="description" content="EV AccuCheck in 15 minuten met TÜV accucertificaat. Vanaf €95 in Barendrecht of op locatie regio Rotterdam. Controleer de accu vóór aankoop." />
 
 <!-- Google tag (gtag.js) -->
@@ -854,10 +854,7 @@ async function checkKenteken(){
 
 let kenteken = document.getElementById("kentekenInput")
 .value.replace(/[^A-Za-z0-9]/g,'')
-.toUpperCase();
-<input 
-id="kentekenInput"
-onkeypress="if(event.key==='Enter'){checkKenteken()}"  
+.toUpperCase();  
 
 if(!kenteken){
 document.getElementById("kentekenResult").innerHTML="Voer een kenteken in.";
@@ -884,6 +881,50 @@ let brandstof = voertuig.brandstof_omschrijving || "";
 
 let merkUpper = merk.toUpperCase();
 
+const batterijDegradatie = {
+
+TESLA:"8-15%",
+BMW:"10-16%",
+AUDI:"10-16%",
+VOLKSWAGEN:"10-16%",
+VOLVO:"10-16%",
+PORSCHE:"8-14%",
+HYUNDAI:"8-14%",
+KIA:"8-14%",
+MERCEDES:"10-18%",
+NISSAN:"12-20%",
+RENAULT:"12-20%",
+PEUGEOT:"10-16%",
+OPEL:"10-16%",
+MG:"10-18%",
+BYD:"8-14%"
+
+};
+
+let degradatie = batterijDegradatie[merkUpper] || "10-18%";
+
+ const batterijRisico = {
+
+TESLA:"€12.000 – €20.000",
+BMW:"€9.000 – €18.000",
+AUDI:"€12.000 – €22.000",
+VOLKSWAGEN:"€8.000 – €16.000",
+VOLVO:"€12.000 – €20.000",
+PORSCHE:"€20.000 – €35.000",
+HYUNDAI:"€8.000 – €15.000",
+KIA:"€8.000 – €15.000",
+MERCEDES:"€12.000 – €22.000",
+NISSAN:"€7.000 – €14.000",
+RENAULT:"€7.000 – €13.000",
+PEUGEOT:"€8.000 – €14.000",
+OPEL:"€8.000 – €14.000",
+MG:"€8.000 – €15.000",
+BYD:"€9.000 – €16.000"
+
+};
+
+let batterijKosten = batterijRisico[merkUpper] || "€8.000 – €18.000"; 
+  
 let ondersteund = avilooBrands.includes(merkUpper);
 
 let resultaatHTML = `
@@ -893,14 +934,22 @@ Brandstof: ${brandstof}<br><br>
 `;
 
 if(ondersteund){
-
 resultaatHTML += `
 <div style="color:#16a34a;font-weight:700;">
-✔ AVILOO AccuCheck mogelijk
+✔ Deze auto is geschikt voor AVILOO Flash Test
 </div>
 
 <div style="font-size:13px;margin-top:6px;color:#374151;">
-Accudiagnose met TÜV certificaat in ±15 minuten.
+Gemiddelde batterijdegradatie na ±5-6 jaar: <b>${degradatie}</b>
+</div>
+
+<div style="font-size:13px;margin-top:6px;color:#374151;">
+Gemiddelde batterij vervangingskosten: <b>${batterijKosten}</b>
+</div>
+
+<div style="margin-top:10px;padding:10px;background:#fff3cd;border-radius:8px;font-size:13px;font-weight:600;">
+⚠ Accustatus kan per auto sterk verschillen.  
+Een accutest voorkomt een dure miskoop.
 </div>
 
 <a href="intake-ads.html?dienst=ev-accucheck-particulier"
@@ -908,39 +957,6 @@ style="display:inline-block;margin-top:10px;background:#0b1c2d;color:white;paddi
 Plan AccuCheck
 </a>
 `;
-
-}else{
-
-resultaatHTML += `
-<div style="color:#f59e0b;font-weight:700;">
-⚠ Controle nodig
-</div>
-
-<div style="font-size:13px;margin-top:6px;color:#374151;">
-Niet alle voertuigen staan in de database.  
-Stuur het kenteken via WhatsApp voor een snelle check.
-</div>
-
-<a href="https://wa.me/31623452349?text=Ik%20wil%20weten%20of%20deze%20auto%20getest%20kan%20worden:%20${kenteken}"
-target="_blank"
-style="display:inline-block;margin-top:10px;background:#25D366;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
-Check via WhatsApp
-</a>
-`;
-
-}
-
-resultaatHTML += "</div>";
-
-document.getElementById("kentekenResult").innerHTML = resultaatHTML;
-
-}catch(error){
-
-document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
-
-}
-
-}
 
 </script>
       
@@ -1041,6 +1057,7 @@ AccuCheck €129
   <input 
     id="kentekenInput" 
     type="text" 
+    onkeypress="if(event.key==='Enter'){checkKenteken()}"
     placeholder="Voer kenteken in (bijv. AB123C)"
     style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;"
   >
@@ -1054,56 +1071,18 @@ AccuCheck €129
 
 </div>
 
-<script>
-async function checkKenteken(){
-
-let kenteken = document.getElementById("kentekenInput").value
-.replace(/[^A-Za-z0-9]/g,'')
-.toUpperCase();
-
-if(!kenteken){
-document.getElementById("kentekenResult").innerHTML="Voer een kenteken in.";
-return;
-}
-
-let url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
-
-try{
-
-let response = await fetch(url);
-let data = await response.json();
-
-if(data.length === 0){
-document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden.";
-return;
-}
-
-let voertuig = data[0];
-
-let merk = voertuig.merk;
-let handelsnaam = voertuig.handelsbenaming;
-let brandstof = voertuig.brandstof_omschrijving || "";
-
-document.getElementById("kentekenResult").innerHTML = `
-<div style="margin-top:10px;padding:10px;background:#f6f7f9;border-radius:8px;">
-<b>${merk} ${handelsnaam}</b><br>
-Brandstof: ${brandstof}<br><br>
-✔ Grote kans dat deze EV / hybride getest kan worden.<br>
-<a href="intake-ads.html?dienst=ev-accucheck-particulier" 
-style="display:inline-block;margin-top:8px;background:#0b1c2d;color:white;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:700;">
-Plan AccuCheck
-</a>
+<div style="margin-top:12px;font-size:12px;color:#6b7280;font-weight:600;">
+✔ Meer dan 95% van alle EV's kan getest worden  
+✔ Accutest duurt ±15 minuten  
+✔ TÜV accucertificaat
 </div>
-`;
-
-}catch(error){
-
-document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
-
-}
-
-}
-</script>
+  
+<div style="margin-top:14px;font-size:13px;color:#374151;font-weight:600;">
+Gemiddelde batterijvervanging EV: €8.000 – €20.000  
+Een accutest vanaf €95 voorkomt een dure miskoop.
+</div>
+  
+<script>
 
  <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
 <div class="wrap" style="text-align:center;max-width:720px;">
