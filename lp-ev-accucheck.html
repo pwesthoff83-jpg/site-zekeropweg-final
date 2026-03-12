@@ -934,13 +934,14 @@ Brandstof: ${brandstof}<br><br>
 `;
 
 if(ondersteund){
+
 resultaatHTML += `
 <div style="color:#16a34a;font-weight:700;">
 ✔ Deze auto is geschikt voor AVILOO Flash Test
 </div>
 
 <div style="font-size:13px;margin-top:6px;color:#374151;">
-Gemiddelde batterijdegradatie na ±5-6 jaar: <b>${degradatie}</b>
+Gemiddelde batterijdegradatie na ±5 jaar / 100.000 km: <b>${degradatie}</b>
 </div>
 
 <div style="font-size:13px;margin-top:6px;color:#374151;">
@@ -958,6 +959,38 @@ Plan AccuCheck
 </a>
 `;
 
+}else{
+
+resultaatHTML += `
+<div style="color:#f59e0b;font-weight:700;">
+⚠ Controle nodig
+</div>
+
+<div style="font-size:13px;margin-top:6px;color:#374151;">
+Niet alle voertuigen staan in de database.  
+Stuur het kenteken via WhatsApp voor een snelle check.
+</div>
+
+<a href="https://wa.me/31623452349?text=Kan%20deze%20EV%20getest%20worden:%20${kenteken}"
+target="_blank"
+style="display:inline-block;margin-top:10px;background:#25D366;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
+Check via WhatsApp
+</a>
+`;
+
+}
+
+resultaatHTML += "</div>";
+
+document.getElementById("kentekenResult").innerHTML = resultaatHTML;
+
+}catch(error){
+
+document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
+
+}
+
+}
 </script>
       
         <div style="font-size:12px;color:#6b7280;margin-top:6px;">
@@ -1051,7 +1084,7 @@ AccuCheck €129
 <div style="max-width:420px;background:#fff;padding:18px;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.08);">
 
   <div style="font-weight:800;font-size:16px;margin-bottom:10px;">
-    Check of uw auto getest kan worden
+   Controleer direct of deze EV / Hyrbide getest kan worden 
   </div>
 
   <input 
@@ -1082,8 +1115,6 @@ Gemiddelde batterijvervanging EV: €8.000 – €20.000
 Een accutest vanaf €95 voorkomt een dure miskoop.
 </div>
   
-<script>
-
  <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
 <div class="wrap" style="text-align:center;max-width:720px;">
 
