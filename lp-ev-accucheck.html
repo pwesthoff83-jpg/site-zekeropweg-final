@@ -841,26 +841,142 @@ z-index: 999;
       Zo voorkomt u een miskoop vóórdat u tekent.
      </p>
 
-     <div style="margin-top:18px;background:#fff;padding:18px;border-radius:14px;max-width:420px;">
+ <script>
 
-<div style="font-weight:800;font-size:16px;margin-bottom:8px;color:#0e1116;">
-Check direct of uw auto getest kan worden
+const avilooBrands = [
+"TESLA","BMW","AUDI","VOLKSWAGEN","VOLVO","PORSCHE","KIA","HYUNDAI","MERCEDES-BENZ",
+"SKODA","CUPRA","SEAT","TOYOTA","NISSAN","RENAULT","PEUGEOT","OPEL","CITROEN",
+"FIAT","FORD","BYD","MG","MINI","LEXUS","JAGUAR","LAND ROVER","MAZDA",
+"MITSUBISHI","SUBARU","HONDA","GENESIS","CADILLAC","CHEVROLET","GMC","XPENG"
+];
+
+async function checkKenteken(){
+
+let kenteken = document.getElementById("kentekenInput")
+.value.replace(/[^A-Za-z0-9]/g,'')
+.toUpperCase();
+<input 
+id="kentekenInput"
+onkeypress="if(event.key==='Enter'){checkKenteken()}"  
+
+if(!kenteken){
+document.getElementById("kentekenResult").innerHTML="Voer een kenteken in.";
+return;
+}
+
+let url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
+
+try{
+
+let response = await fetch(url);
+let data = await response.json();
+
+if(data.length === 0){
+document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden.";
+return;
+}
+
+let voertuig = data[0];
+
+let merk = voertuig.merk || "";
+let model = voertuig.handelsbenaming || "";
+let brandstof = voertuig.brandstof_omschrijving || "";
+
+let merkUpper = merk.toUpperCase();
+
+let ondersteund = avilooBrands.includes(merkUpper);
+
+let resultaatHTML = `
+<div style="margin-top:10px;padding:12px;background:#f6f7f9;border-radius:10px;">
+<b>${merk} ${model}</b><br>
+Brandstof: ${brandstof}<br><br>
+`;
+
+if(ondersteund){
+
+resultaatHTML += `
+<div style="color:#16a34a;font-weight:700;">
+✔ AVILOO AccuCheck mogelijk
 </div>
 
-<input 
-id="kentekenInputHero" 
-type="text" 
-placeholder="Voer kenteken in (bijv. AB123C)"
-style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;">
+<div style="font-size:13px;margin-top:6px;color:#374151;">
+Accudiagnose met TÜV certificaat in ±15 minuten.
+</div>
 
-<button onclick="checkKentekenHero()" 
-style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
-Check voertuig
-</button>
+<a href="intake-ads.html?dienst=ev-accucheck-particulier"
+style="display:inline-block;margin-top:10px;background:#0b1c2d;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
+Plan AccuCheck
+</a>
+`;
 
-<div id="kentekenResultHero" style="margin-top:10px;font-size:14px;font-weight:600;"></div>
+}else{
 
-</div>  
+resultaatHTML += `
+<div style="color:#f59e0b;font-weight:700;">
+⚠ Controle nodig
+</div>
+
+<div style="font-size:13px;margin-top:6px;color:#374151;">
+Niet alle voertuigen staan in de database.  
+Stuur het kenteken via WhatsApp voor een snelle check.
+</div>
+
+<a href="https://wa.me/31623452349?text=Ik%20wil%20weten%20of%20deze%20auto%20getest%20kan%20worden:%20${kenteken}"
+target="_blank"
+style="display:inline-block;margin-top:10px;background:#25D366;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
+Check via WhatsApp
+</a>
+`;
+
+}
+
+resultaatHTML += "</div>";
+
+document.getElementById("kentekenResult").innerHTML = resultaatHTML;
+
+}catch(error){
+
+document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
+
+}
+
+}
+
+</script>
+      
+        <div style="font-size:12px;color:#6b7280;margin-top:6px;">
+         Meer dan 95% van alle EV en plug-in hybrides wordt ondersteund
+       </div>
+
+<div style="background:#0b1c2d;color:white;padding:20px;border-radius:14px;margin-top:18px;text-align:center;">
+
+<div style="font-weight:800;font-size:18px;">
+Voorkom een accu miskoop
+</div>
+
+<div style="margin-top:6px;font-size:14px;">
+De batterij kan €5.000 – €15.000 kosten
+</div>
+
+<div style="margin-top:14px;">
+
+<a href="intake-ads.html?dienst=instap-accucheck"
+style="background:#c6a15b;color:black;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:800;margin-right:8px;">
+AccuCheck €95
+</a>
+
+<a href="intake-ads.html?dienst=ev-accucheck-particulier"
+style="background:white;color:#0b1c2d;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:800;">
+AccuCheck €129
+</a>
+
+</div>
+
+<div style="margin-top:10px;font-size:12px;opacity:0.8;">
+±15 minuten • TÜV accucertificaat
+</div>
+
+</div>
         
        <div class="hero-cta">
 
