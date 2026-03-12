@@ -897,6 +897,79 @@ box-shadow:0 16px 36px rgba(0,0,0,.12);
     </div>
   </section>
 
+<div style="max-width:420px;background:#fff;padding:18px;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.08);">
+
+  <div style="font-weight:800;font-size:16px;margin-bottom:10px;">
+    Check of uw auto getest kan worden
+  </div>
+
+  <input 
+    id="kentekenInput" 
+    type="text" 
+    placeholder="Voer kenteken in (bijv. AB123C)"
+    style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;"
+  >
+
+  <button onclick="checkKenteken()" 
+    style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
+    Check voertuig
+  </button>
+
+  <div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
+
+</div>
+
+<script>
+async function checkKenteken(){
+
+let kenteken = document.getElementById("kentekenInput").value
+.replace(/[^A-Za-z0-9]/g,'')
+.toUpperCase();
+
+if(!kenteken){
+document.getElementById("kentekenResult").innerHTML="Voer een kenteken in.";
+return;
+}
+
+let url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
+
+try{
+
+let response = await fetch(url);
+let data = await response.json();
+
+if(data.length === 0){
+document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden.";
+return;
+}
+
+let voertuig = data[0];
+
+let merk = voertuig.merk;
+let handelsnaam = voertuig.handelsbenaming;
+let brandstof = voertuig.brandstof_omschrijving || "";
+
+document.getElementById("kentekenResult").innerHTML = `
+<div style="margin-top:10px;padding:10px;background:#f6f7f9;border-radius:8px;">
+<b>${merk} ${handelsnaam}</b><br>
+Brandstof: ${brandstof}<br><br>
+✔ Grote kans dat deze EV / hybride getest kan worden.<br>
+<a href="intake-ads.html?dienst=ev-accucheck-particulier" 
+style="display:inline-block;margin-top:8px;background:#0b1c2d;color:white;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:700;">
+Plan AccuCheck
+</a>
+</div>
+`;
+
+}catch(error){
+
+document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
+
+}
+
+}
+</script>
+  
   <section style="background:#f6f7f9;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
   <div class="wrap" style="text-align:center;max-width:720px;">
     
