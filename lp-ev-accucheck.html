@@ -485,19 +485,6 @@ overflow:hidden;
 
 }
 
-.soh-bar-fill{
-
-width:98.7%;
-
-height:100%;
-
-background:linear-gradient(90deg,#28c76f,#34e17a);
-
-border-radius:10px;
-
-box-shadow:0 2px 6px rgba(40,199,111,0.35);
-
-}
 
 .soh-status{
 
@@ -625,6 +612,14 @@ background:#0b1c2d;
 border-radius:2px;
 }  
 
+.battery-status.good{
+background:rgba(34,197,94,.08);
+border:1px solid rgba(34,197,94,.25);
+padding:8px 12px;
+border-radius:8px;
+display:inline-block;
+}    
+    
 /* mini certificate */
 
 .soh-cert-preview img{
@@ -893,7 +888,7 @@ WhatsApp direct met accudiagnose specialist
     <div class="wrap hero-grid">
       <div>
         <div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
-        <h1>EV kopen? Controleer eerst de accustatus</h1>
+        <h1>EV kopen? Laat eerst de batterij controleren</h1>
      <p class="lead">
        De batterij is het duurste onderdeel van een EV of plug-in hybride.
        Een versleten batterij kan duizenden euro’s kosten.
@@ -1296,6 +1291,10 @@ AccuCheck €129
   <div class="battery-status good">
     ✔ Accu in goede conditie, geen afwijkingen vastgesteld
   </div>
+
+ <div class="battery-health-note">
+  Accustatus gezond
+ </div>    
 
   <div class="soh-cert-preview">
     <img src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png"
