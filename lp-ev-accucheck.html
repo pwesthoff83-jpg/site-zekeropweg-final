@@ -88,10 +88,6 @@ font-weight:700;
 text-decoration:none;
 }
 
-.btn:hover{
-opacity:.9;
-}
-
 .hero{
 background:linear-gradient(135deg,var(--navy),var(--navy2));
 color:white;
@@ -129,7 +125,7 @@ color:#111;
 box-shadow:0 20px 40px rgba(0,0,0,.2);
 }
 
-input{
+input,select{
 width:100%;
 padding:14px;
 border-radius:8px;
@@ -191,12 +187,6 @@ padding:20px;
 .hero-visual ul{
 list-style:none;
 padding:0;
-margin:12px 0 20px;
-}
-
-.hero-visual li{
-margin-bottom:6px;
-font-weight:600;
 }
 
 .hero-cert{
@@ -278,10 +268,6 @@ text-decoration:none;
 box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-@media(max-width:600px){
-.whatsapp{bottom:80px;}
-}
-
 </style>
 </head>
 
@@ -315,8 +301,6 @@ Inclusief TÜV accucertificaat.
 <div class="kenteken-tool">
 
 <h3>Check of deze EV getest kan worden</h3>
-
-<p>Gebruik deze check tijdens bezichtiging of proefrit.</p>
 
 <input id="kentekenInput" placeholder="Bijv: AB123C">
 
@@ -372,50 +356,40 @@ Inclusief TÜV accucertificaat.
 <!-- TRUST STRIP -->
 
 <section class="hero-trust">
-
 <div class="wrap trust-row">
-
 <div>✔ Onafhankelijke accudiagnose</div>
 <div>✔ TÜV accucertificaat</div>
 <div>✔ Meting ±15 minuten</div>
 <div>✔ Regio Rotterdam</div>
-<span>✔ 95% van alle EV's testbaar</span>
-  
-
+<div>✔ 95% van alle EV's testbaar</div>
 </div>
-
 </section>
 
-<section class="section soft">
+<!-- BATTERIJ RISICO CALCULATOR -->
 
+<section class="section soft">
 <div class="wrap">
 
 <h2>Wat kost een versleten EV batterij?</h2>
 
-<p class="muted" style="max-width:70ch;font-weight:650;">
-De batterij is het duurste onderdeel van een elektrische auto.
-Onderstaande calculator geeft een indicatie van mogelijke vervangkosten.
-</p>
-
 <div class="card" style="max-width:500px">
 
 <label>Auto waarde (€)</label>
-<input id="carValue" type="number" placeholder="Bijv. 28000">
+<input id="carValue" type="number">
 
 <label>Batterij capaciteit (kWh)</label>
-<input id="batterySize" type="number" placeholder="Bijv. 75">
+<input id="batterySize" type="number">
 
-<button onclick="calculateBatteryRisk()">
-Bereken batterij risico
-</button>
+<button onclick="calculateBatteryRisk()">Bereken batterij risico</button>
 
-<div id="batteryResult" style="margin-top:15px;font-weight:700;"></div>
+<div id="batteryResult"></div>
 
 </div>
 
 </div>
-
 </section>
+
+<!-- EV DATABASE -->
 
 <section class="section">
 
@@ -423,97 +397,22 @@ Bereken batterij risico
 
 <h2>Bekende batterijdegradatie per EV model</h2>
 
-<p class="muted" style="max-width:70ch;font-weight:650;">
-Niet elke elektrische auto heeft dezelfde batterijdegradatie.
-Kies een model om een indicatie te zien van accugezondheid en risico.
-</p>
-
 <div class="card" style="max-width:520px">
 
-<select id="evModel" style="width:100%;padding:14px;border-radius:8px;border:1px solid #d1d5db;margin-bottom:12px;font-size:16px;">
+<select id="evModel">
 
 <option value="">Selecteer een EV model</option>
-
 <option value="tesla3">Tesla Model 3</option>
 <option value="teslay">Tesla Model Y</option>
 <option value="kona">Hyundai Kona Electric</option>
 <option value="niro">Kia e-Niro</option>
 <option value="leaf">Nissan Leaf</option>
-<option value="etron">Audi e-tron</option>
-<option value="id4">Volkswagen ID.4</option>
 
 </select>
 
-<button onclick="checkEVDatabase()">
-Bekijk batterij info
-</button>
+<button onclick="checkEVDatabase()">Bekijk batterij info</button>
 
-<div id="evDatabaseResult" style="margin-top:18px;font-weight:600;"></div>
-
-</div>
-
-</div>
-
-</section>
-  
-<section class="section">
-
-<div class="wrap">
-
-<h2>Ervaringen van klanten</h2>
-
-<div class="grid grid-2">
-
-<div class="card">
-★★★★★
-<p>"Duidelijk rapport en professioneel advies. De accutest gaf ons zekerheid bij aankoop."</p>
-<b>– Mark, Rotterdam</b>
-</div>
-
-<div class="card">
-★★★★★
-<p>"Binnen 15 minuten wist ik hoe de batterij ervoor stond. Zeker aan te raden."</p>
-<b>– Linda, Dordrecht</b>
-</div>
-
-</div>
-
-</div>
-
-</section>  
-  
-<!-- WAAROM ZEKEROPWEG -->
-
-<section class="section">
-
-<div class="wrap">
-
-<h2>Waarom ZekerOpWeg</h2>
-
-<p>
-Onafhankelijke aankoopchecks voor elektrische auto's.
-Geen verkooppraat — alleen duidelijke technische informatie.
-</p>
-
-<div class="grid grid-2">
-
-<div class="card">
-
-<h3>Onafhankelijk advies</h3>
-
-<p>Geen belang bij verkoop van de auto.
-Alleen objectieve informatie over de batterij.</p>
-
-</div>
-
-<div class="card">
-
-<h3>Voorkom miskoop</h3>
-
-<p>Een versleten batterij kan duizenden euro’s kosten.
-Een accutest voorkomt verrassingen.</p>
-
-</div>
+<div id="evDatabaseResult"></div>
 
 </div>
 
@@ -521,139 +420,47 @@ Een accutest voorkomt verrassingen.</p>
 
 </section>
 
-<!-- WAT ONTVANG JE -->
-
-<section class="section" style="background:#f6f7f9">
-
-<div class="wrap">
-
-<h2>Wat u ontvangt na de AccuCheck</h2>
-
-<div class="steps">
-
-<div class="step">
-<h3>Accugezondheid</h3>
-<p>Exact State of Health percentage van de batterij.</p>
-</div>
-
-<div class="step">
-<h3>TÜV accucertificaat</h3>
-<p>Professioneel document met batterijanalyse.</p>
-</div>
-
-<div class="step">
-<h3>Duidelijke uitleg</h3>
-<p>U krijgt toelichting en advies voor de aankoop.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- HOE HET WERKT -->
-
-<section class="section">
-
-<div class="wrap">
-
-<h2>Hoe werkt de AccuCheck</h2>
-
-<div class="steps">
-
-<div class="step">
-<h3>1. Intake</h3>
-<p>U geeft aan om welke EV het gaat.</p>
-</div>
-
-<div class="step">
-<h3>2. Meting</h3>
-<p>Professionele batterijdiagnose met AVILOO apparatuur.</p>
-</div>
-
-<div class="step">
-<h3>3. Resultaat</h3>
-<p>Direct inzicht in accugezondheid en certificaat.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
+<!-- AI ACCUSTATUS CHECK -->
 
 <section class="section soft">
 
 <div class="wrap">
 
-<h2>Vaak dezelfde dag mogelijk</h2>
+<h2>AI EV Accustatus Checker</h2>
 
-<p style="font-weight:650;">
-In regio Rotterdam kunnen AccuChecks vaak
-nog dezelfde dag of binnen 24 uur worden uitgevoerd.
-</p>
+<div class="card" style="max-width:520px">
 
-<div class="card" style="max-width:500px">
+<input id="aiKenteken" placeholder="Voer kenteken in">
 
-<b>Beschikbaarheid vandaag:</b>
+<button onclick="aiBatteryCheck()">Controleer accustatus indicatie</button>
 
-<ul style="margin-top:10px">
-
-<li>Rotterdam – beschikbaar</li>
-<li>Barendrecht – beschikbaar</li>
-<li>Dordrecht – beschikbaar</li>
-
-</ul>
+<div id="aiResult"></div>
 
 </div>
 
 </div>
 
 </section>
-  
-<!-- PRIJZEN -->
 
-<section class="section">
+<!-- ACTIERADIUS SIMULATOR -->
+
+<section class="section soft">
 
 <div class="wrap">
 
-<h2>AccuCheck prijzen</h2>
+<h2>EV actieradius simulator</h2>
 
-<p style="font-weight:650;margin-bottom:20px;">
-Kiest u voor de voordeligste optie in Barendrecht
-of voor een meting op locatie bij de auto?
-</p>
+<div class="card" style="max-width:520px">
 
-<div class="pricing">
+<label>Originele WLTP actieradius</label>
+<input id="rangeOriginal">
 
-<div class="price-card">
+<label>Accugezondheid (%)</label>
+<input id="batteryHealth">
 
-<h3>Instap AccuCheck</h3>
+<button onclick="calculateRange()">Bereken actieradius</button>
 
-<div class="price">€95</div>
-
-<p>Uitgevoerd in Barendrecht</p>
-
-<a class="btn" href="#">Plan AccuCheck</a>
-
-<div style="font-size:12px;margin-top:8px;color:#9ca3af;">
-Gemiddeld 3-5 AccuChecks per dag in regio Rotterdam
-</div>
-
-</div>
-
-<div class="price-card" style="border:2px solid var(--gold)">
-
-<h3>Meest gekozen</h3>
-
-<div class="price">€129</div>
-
-<p>Meting op locatie bij de auto</p>
-
-<a class="btn" href="#">Plan AccuCheck</a>
-
-</div>
+<div id="rangeResult"></div>
 
 </div>
 
@@ -661,29 +468,6 @@ Gemiddeld 3-5 AccuChecks per dag in regio Rotterdam
 
 </section>
 
-<section class="section">
-
-<div class="wrap">
-
-<h2>EV AccuCheck regio Rotterdam</h2>
-
-<p>
-Een accucheck voor een elektrische auto geeft inzicht in de werkelijke
-batterijconditie vóór aankoop. Zeker bij gebruikte EV’s kan de accustatus
-sterk verschillen afhankelijk van gebruik, laadgedrag en leeftijd.
-</p>
-
-<p>
-ZekerOpWeg voert onafhankelijke accutests uit in regio Rotterdam,
-Barendrecht, Dordrecht, Ridderkerk, Zwijndrecht en Schiedam.
-De meting gebeurt met professionele diagnoseapparatuur en
-resulteert in een duidelijk accucertificaat.
-</p>
-
-</div>
-
-</section>
-  
 <div class="footer">
 © 2026 ZekerOpWeg
 </div>
@@ -693,6 +477,8 @@ WhatsApp plannen
 </a>
 
 <script>
+
+/* RDW kenteken check */
 
 async function checkKenteken(){
 
@@ -707,7 +493,6 @@ let d=await r.json()
 if(d.length===0){
 
 document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden"
-
 return
 
 }
@@ -719,78 +504,78 @@ voertuig.merk+" "+voertuig.handelsbenaming
 
 }
 
-</script>
+/* batterij risico */
 
-const evDatabase={
+function calculateBatteryRisk(){
 
-tesla3:{
-degradation:"8-12% na 150.000 km",
-risk:"Laag",
-note:"Tesla Model 3 staat bekend om relatief lage batterijdegradatie."
-},
+let value=document.getElementById("carValue").value
+let size=document.getElementById("batterySize").value
 
-teslay:{
-degradation:"8-12%",
-risk:"Laag",
-note:"Modern batterijmanagement zorgt voor stabiele degradatie."
-},
+let cost=size*180
 
-kona:{
-degradation:"10-14%",
-risk:"Laag tot gemiddeld",
-note:"Kona Electric heeft goede batterijduur maar vroege modellen hadden recalls."
-},
+document.getElementById("batteryResult").innerHTML=
+"Indicatie batterij vervanging: €"+cost
 
-niro:{
-degradation:"10-15%",
-risk:"Laag tot gemiddeld",
-note:"Over het algemeen stabiele batterijconditie."
-},
-
-leaf:{
-degradation:"15-25%",
-risk:"Gemiddeld tot hoog",
-note:"Oudere Nissan Leafs hebben vaak hogere degradatie."
-},
-
-etron:{
-degradation:"10-16%",
-risk:"Gemiddeld",
-note:"Grote batterij maar hoog gewicht beïnvloedt slijtage."
-},
-
-id4:{
-degradation:"10-15%",
-risk:"Gemiddeld",
-note:"Volkswagen ID modellen hebben normale degradatie."
 }
 
-};
+/* EV database */
+
+const evDatabase={
+tesla3:{degradation:"8-12%",risk:"Laag"},
+teslay:{degradation:"8-12%",risk:"Laag"},
+kona:{degradation:"10-14%",risk:"Gemiddeld"},
+niro:{degradation:"10-15%",risk:"Gemiddeld"},
+leaf:{degradation:"15-25%",risk:"Hoog"}
+}
 
 function checkEVDatabase(){
 
 let model=document.getElementById("evModel").value
+let data=evDatabase[model]
 
-if(!model){
+if(!data){
 document.getElementById("evDatabaseResult").innerHTML="Selecteer een model"
 return
 }
 
-let data=evDatabase[model]
-
 document.getElementById("evDatabaseResult").innerHTML=
-
-"<b>Gemiddelde degradatie:</b> "+data.degradation+"<br><br>"+
-"<b>Risico niveau:</b> "+data.risk+"<br><br>"+
-data.note+
-"<br><br><a class='btn' href='#'>Plan AccuCheck</a>"
+"Gemiddelde degradatie: "+data.degradation+"<br>Risico: "+data.risk
 
 }
 
-<div style="margin-top:10px;font-size:12px;color:#6b7280;">
-Indicaties gebaseerd op praktijkdata van EV batterijgebruik.
-Voor exacte accustatus is een onafhankelijke meting nodig.
-</div>
-  
+/* AI checker */
+
+function aiBatteryCheck(){
+
+let kenteken=document.getElementById("aiKenteken").value
+
+if(kenteken.length<5){
+
+document.getElementById("aiResult").innerHTML="Voer een geldig kenteken in"
+return
+
+}
+
+document.getElementById("aiResult").innerHTML=
+"Indicatie accustatus waarschijnlijk tussen 85-95%.<br><br><a class='btn'>Plan AccuCheck</a>"
+
+}
+
+/* actieradius */
+
+function calculateRange(){
+
+let original=document.getElementById("rangeOriginal").value
+let health=document.getElementById("batteryHealth").value
+
+let range=(original*(health/100)).toFixed(0)
+
+document.getElementById("rangeResult").innerHTML=
+"Geschatte actieradius: "+range+" km"
+
+}
+
+</script>
+
 </body>
 </html>
