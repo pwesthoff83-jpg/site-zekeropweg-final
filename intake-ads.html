@@ -137,6 +137,8 @@ Instap AccuCheck €95 uitsluitend op afspraak bij ZekerOpWeg locatie in Barendr
 const params = new URLSearchParams(window.location.search);
 const productParam = params.get("product");
 
+
+
 const productSelect = document.getElementById("productSelect");
 const locatieInput = document.getElementById("locatieAuto");
 const locatieBlock = document.getElementById("locatieBlock");
@@ -157,15 +159,17 @@ function updateLocatie(){
 
   if(productSelect.value === "instap-accucheck-95"){
 
-    locatieInput.value = "Locatie meting (alleen op afspraak): Sneekermeer 11, Barendrecht";
+    locatieBlock.style.display = "block";
+
+    locatieInput.value = "Sneekermeer 11, Barendrecht";
     locatieInput.readOnly = true;
-    locatieBlock.style.display = "none";
 
   } else {
 
+    locatieBlock.style.display = "block";
+
     locatieInput.value = "";
     locatieInput.readOnly = false;
-    locatieBlock.style.display = "block";
 
   }
 
