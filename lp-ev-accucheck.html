@@ -1171,6 +1171,238 @@ transform:scale(1.03);
 </a>
 
 <script>
+const batteryDatabase = {
+
+"TESLA MODEL 3":{
+battery:"55-82 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"TESLA MODEL Y":{
+battery:"60-82 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"TESLA MODEL S":{
+battery:"60-100 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"TESLA MODEL X":{
+battery:"75-100 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"NISSAN LEAF":{
+battery:"24-62 kWh",
+degradation:"15-25%",
+risk:"Gemiddeld tot hoog"
+},
+
+"AUDI E-TRON":{
+battery:"71-114 kWh",
+degradation:"10-16%",
+risk:"Gemiddeld"
+},
+
+"AUDI Q4":{
+battery:"52-77 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"AUDI Q8":{
+battery:"95-114 kWh",
+degradation:"10-16%",
+risk:"Gemiddeld"
+},
+
+"AUDI Q7":{
+battery:"17-26 kWh (PHEV)",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"BMW I3":{
+battery:"22-42 kWh",
+degradation:"15-25%",
+risk:"Gemiddeld"
+},
+
+"BMW I4":{
+battery:"70-84 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"BMW IX":{
+battery:"76-112 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"BMW IX3":{
+battery:"80 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"BMW X5":{
+battery:"24-29 kWh (PHEV)",
+degradation:"10-16%",
+risk:"Gemiddeld"
+},
+
+"HYUNDAI KONA":{
+battery:"39-65 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"HYUNDAI IONIQ":{
+battery:"28-84 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"KIA EV6":{
+battery:"58-84 kWh",
+degradation:"10-15%",
+risk:"Laag"
+},
+
+"KIA NIRO":{
+battery:"39-65 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"KIA EV9":{
+battery:"100 kWh",
+degradation:"10-15%",
+risk:"Laag"
+},
+
+"VOLKSWAGEN ID.3":{
+battery:"45-77 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"VOLKSWAGEN ID.4":{
+battery:"52-77 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"VOLKSWAGEN ID.5":{
+battery:"77 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"VOLKSWAGEN ID.7":{
+battery:"77-86 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"VOLKSWAGEN ID BUZZ":{
+battery:"77-86 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"SKODA ENYAQ":{
+battery:"52-77 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"RENAULT ZOE":{
+battery:"22-52 kWh",
+degradation:"15-25%",
+risk:"Gemiddeld"
+},
+
+"RENAULT MEGANE":{
+battery:"40-60 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"PEUGEOT E-208":{
+battery:"50-54 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"PEUGEOT E-2008":{
+battery:"50-54 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"VOLVO XC40":{
+battery:"69-82 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"VOLVO C40":{
+battery:"69-82 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"PORSCHE TAYCAN":{
+battery:"71-97 kWh",
+degradation:"8-12%",
+risk:"Laag"
+},
+
+"POLESTAR 2":{
+battery:"64-82 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"FORD MUSTANG MACH-E":{
+battery:"70-99 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+},
+
+"MG4":{
+battery:"51-77 kWh",
+degradation:"10-16%",
+risk:"Gemiddeld"
+},
+
+"MG ZS":{
+battery:"45-72 kWh",
+degradation:"10-16%",
+risk:"Gemiddeld"
+},
+
+"BYD ATTO":{
+battery:"50-60 kWh",
+degradation:"10-14%",
+risk:"Laag"
+},
+
+"TOYOTA BZ4X":{
+battery:"71 kWh",
+degradation:"10-15%",
+risk:"Gemiddeld"
+}
+
+};
+  
 const evModelData = {
   "TESLA MODEL 3": {
     type: "EV",
