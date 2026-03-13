@@ -589,21 +589,79 @@ details p{
   .logo{height:34px}
   .whatsapp{bottom:16px;right:16px}
 }
+
+.navbar{
+background:white;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.nav-wrap{
+max-width:1100px;
+margin:auto;
+padding:14px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo img{
+height:36px;
+}
+
+.nav-menu{
+display:flex;
+gap:28px;
+font-weight:500;
+font-size:15px;
+}
+
+.nav-menu a{
+color:#0e1116;
+text-decoration:none;
+}
+
+.nav-menu a:hover{
+opacity:.6;
+}
+
+@media(max-width:900px){
+
+.nav-menu{
+display:none;
+}
+
+}
+  
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <img src="/assets/images/zekeropweg-logo.png" alt="ZekerOpWeg" class="logo" />
-    <div class="topbar-right">
-      <span>Regio Rotterdam</span>
-      <a href="tel:+31623452349">06-23452349</a>
-      <a class="btn btn-secondary" href="#prijzen">Plan AccuCheck</a>
-    </div>
-  </div>
+<header class="navbar">
+
+<div class="nav-wrap">
+
+<div class="logo">
+<img src="/assets/images/zekeropweg-logo.png" alt="ZekerOpWeg">
 </div>
+
+<nav class="nav-menu">
+
+<a href="/">Home</a>
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">AccuCheck</a>
+<a href="/voor-bedrijven.html">Voor bedrijven</a>
+<a href="/bezwaar.html">Bezwaar</a>
+<a href="/over.html">Over</a>
+<a href="/contact.html">Contact</a>
+
+</nav>
+
+</div>
+
+</header>
 
 <!-- HERO -->
 <section class="hero">
