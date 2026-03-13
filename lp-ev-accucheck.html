@@ -875,7 +875,7 @@ WhatsApp direct met accudiagnose specialist
         <span>Onafhankelijk</span>
         <span>Op locatie</span>
         <span>EV en hybride</span>
-        <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan direct</a>
+        <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier&kenteken=">Plan direct</a>
       </div>
     </div>
   </div>
@@ -1140,11 +1140,10 @@ Gemiddelde batterijvervangingskosten: <b>${batterijKosten}</b>
 Een accutest voorkomt een dure miskoop.
 </div>
 
-<a href="intake-ads.html?dienst=ev-accucheck-particulier"
+<a href="#" onclick="gaNaarIntake('ev-accucheck-particulier')"
 style="display:inline-block;margin-top:10px;background:#0b1c2d;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
 Plan AccuCheck
 </a>
-`;
 
 }else{
 
@@ -1200,6 +1199,32 @@ checkKenteken();
 }
    
 </script>
+<script>
+
+function gaNaarIntake(dienst){
+
+let kenteken = document
+.getElementById("kentekenInput")
+.value
+.replace(/[^A-Za-z0-9]/g,'')
+.toUpperCase();
+
+if(!kenteken){
+
+window.location.href =
+"intake-ads.html?dienst=" + dienst;
+
+return;
+
+}
+
+window.location.href =
+"intake-ads.html?dienst=" + dienst + "&kenteken=" + kenteken;
+
+}
+
+</script>
+        
       
         <div style="font-size:12px;color:#6b7280;margin-top:6px;">
         ✓ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
@@ -1288,12 +1313,14 @@ De batterij kan €5.000 – €15.000 kosten
 
 <div style="margin-top:14px;">
 
-<a href="intake-ads.html?dienst=instap-accucheck"
+href="#"
+onclick="gaNaarIntake('instap-accucheck')"
 style="background:#c6a15b;color:black;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:800;margin-right:8px;">
 AccuCheck €95
 </a>
 
-<a href="intake-ads.html?dienst=ev-accucheck-particulier"
+<a href="#"
+onclick="gaNaarIntake('ev-accucheck-particulier')"
 style="background:white;color:#0b1c2d;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:800;">
 AccuCheck €129
 </a>
@@ -1352,7 +1379,8 @@ AccuCheck €129
          <li><span class="tick">✓</span> €129 op locatie waar de auto staat</li> 
          <li><span class="tick">✓</span> Meting bij de auto mogelijk (dealer of particulier)</li>
         </ul>
-        <a class="btn btn-primary" style="width:100%" href="intake-ads.html?dienst=ev-accucheck-particulier">Bekijk opties & plan</a>
+        <a class="btn btn-primary" style="width:100%" href="#"
+        onclick="gaNaarIntake('ev-accucheck-particulier')">Bekijk opties & plan</a>
         <div style="margin-top:10px; color:rgba(255,255,255,.78); font-weight:650; font-size:12px;">
          Kiest u voor €95 in Barendrecht of €129 op locatie? Na intake stemmen we direct af.
         </div>
@@ -1423,12 +1451,14 @@ hoe gezond de batterij echt is.
   
   <div class="quick-choice">
 
-<a class="choice-btn" href="intake-ads.html?dienst=instap-accucheck">
+<a class="choice-btn"href="#"
+onclick="gaNaarIntake('instap-accucheck')">
 AccuCheck €95  
 <span>Bij ZekerOpWeg Barendrecht</span>
 </a>
 
-<a class="choice-btn" href="intake-ads.html?dienst=ev-accucheck-particulier">
+<a class="choice-btn" href="#"
+onclick="gaNaarIntake('ev-accucheck-particulier')"
 AccuCheck €129  
 <span>Op locatie bij de auto</span>
 </a>
@@ -1655,7 +1685,8 @@ Accustatus: <strong>Gezond</strong>
             Dit is ideaal bij aankoop bij particulier of autobedrijf, en ook bij plug in hybride waar accustatus vaak onduidelijk is.
           </p>
           <div style="margin-top:18px;">
-            <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €129</a>
+            <a class="btn btn-primary"href="#"
+            onclick="gaNaarIntake('ev-accucheck-particulier')" >Plan AccuCheck €129</a>
           </div>
         </div>
 
@@ -1692,7 +1723,8 @@ Accustatus: <strong>Gezond</strong>
         </ul>
 
         <div style="margin-top:20px;">
-          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">
+          <a class="btn btn-primary" href="#"
+           onclick="gaNaarIntake('ev-accucheck-particulier')"
             Plan AccuCheck €129
           </a>
         </div>
@@ -1745,7 +1777,8 @@ Accustatus: <strong>Gezond</strong>
             <h3>AccuCheck plannen vanaf €95</h3>
             <p>EV en hybride. Voor aankoop. Regio Rotterdam.</p>
           </div>
-          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Start intake</a>
+          <a class="btn btn-primary" href="#"
+           onclick="gaNaarIntake('ev-accucheck-particulier')">Start intake</a>
         </div>
         <div style="margin-top:10px;font-size:13px;font-weight:600;color:#6b7280;">
          ✔ AccuCheck ±15 minuten  
@@ -1790,7 +1823,8 @@ Accustatus: <strong>Gezond</strong>
           </div>
 
           <div style="margin-top:18px;">
-            <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck €129</a>
+            <a class="btn btn-primary" href="#"
+              onclick="gaNaarIntake('ev-accucheck-particulier')">Plan AccuCheck €129</a>
           </div>
         </div>
       </div>
@@ -1858,7 +1892,8 @@ Accustatus: <strong>Gezond</strong>
         </ul>
 
         <div style="margin-top:16px;">
-          <a class="btn btn-primary" href="intake-ads.html?dienst=instap-accucheck">
+          <a class="btn btn-primary" href="#"
+           onclick="gaNaarIntake('instap-accucheck')">
             Plan Instap AccuCheck €95
           </a>
         </div>
@@ -1880,7 +1915,8 @@ Accustatus: <strong>Gezond</strong>
         </ul>
 
         <div style="margin-top:16px;">
-          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">
+          <a class="btn btn-primary" href="#"
+           onclick="gaNaarIntake('ev-accucheck-particulier')">
             Plan AccuCheck €129
           </a>
         </div>
@@ -1925,7 +1961,8 @@ Accustatus: <strong>Gezond</strong>
             <h3>Klaar om zekerheid te kopen</h3>
             <p>Plan de EV en hybride AccuCheck voor €129 incl btw</p>
           </div>
-          <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Start intake</a>
+          <a class="btn btn-primary" href="#"
+          onclick="gaNaarIntake('ev-accucheck-particulier')">Start intake</a>
         </div>
       </div>
     </div>
@@ -1945,7 +1982,8 @@ Accustatus: <strong>Gezond</strong>
         <b>EV en hybride AccuCheck vóór aankoop vanaf €95</b>
         <span>Op locatie. Regio Rotterdam. Snelle afstemming.</span>
       </div>
-      <a class="btn btn-primary" href="intake-ads.html?dienst=ev-accucheck-particulier">Plan AccuCheck</a>
+      <a class="btn btn-primary" href="#"
+onclick="gaNaarIntake('ev-accucheck-particulier')">Plan AccuCheck</a>
     </div>
   </div>
 
