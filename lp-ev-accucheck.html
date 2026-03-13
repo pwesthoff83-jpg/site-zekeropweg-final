@@ -1402,6 +1402,24 @@ risk:"Gemiddeld"
 }
 
 };
+
+function getBatteryData(merk,model){
+
+let key=(merk+" "+model).toUpperCase();
+
+for(let car in batteryDatabase){
+
+if(key.includes(car)){
+
+return batteryDatabase[car];
+
+}
+
+}
+
+return null;
+
+}
   
 const evModelData = {
   "TESLA MODEL 3": {
@@ -1469,7 +1487,7 @@ const evModelData = {
   }
 };
 
-function normalizeVehicleKey(merk, model) {
+  function normalizeVehicleKey(merk, model) {
   return `${(merk || "").trim()} ${(model || "").trim()}`
     .replace(/\s+/g, " ")
     .toUpperCase();
@@ -1522,7 +1540,28 @@ async function checkKenteken() {
   const resultEl = document.getElementById("kentekenResult");
   const rawKenteken = document.getElementById("kentekenInput").value || "";
   const kenteken = rawKenteken.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  const batteryInfo = getBatteryData(merk,model);
 
+let batteryHTML="";
+
+if(batteryInfo){
+
+batteryHTML=`
+
+<div style="margin-top:12px;padding:12px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;">
+
+<div><b>Batterij capaciteit:</b> ${batteryInfo.battery}</div>
+
+<div><b>Gemiddelde degradatie:</b> ${batteryInfo.degradation}</div>
+
+<div><b>Risico:</b> ${batteryInfo.risk}</div>
+
+</div>
+
+`;
+
+}
+  
   if (kenteken.length < 6) {
     resultEl.innerHTML = "<div style='color:#b91c1c;font-weight:800;'>Voer een geldig kenteken in.</div>";
     return;
@@ -1551,6 +1590,7 @@ async function checkKenteken() {
       <div style="padding:16px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
         <div style="font-weight:900;font-size:18px;color:#0b1c2d;margin-bottom:6px;">
           ${merk} ${model}
+          ${batteryHTML}
         </div>
 
         <div style="display:inline-block;background:#ecfdf5;color:#166534;border:1px solid #bbf7d0;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:12px;">
