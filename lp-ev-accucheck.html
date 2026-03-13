@@ -1028,17 +1028,17 @@ margin-top:0;
   
 </style>
 
+<!-- HERO -->
+<section class="hero">
 
-  <!-- HERO -->
-  <section class="hero">
-    
-    <div class="wrap hero-grid">
+<div class="wrap hero-grid">
 
-      <div class="hero-left">
-      
-      <div>
-        <div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
-      <h1>EV kopen? <br> Controleer eerst de batterij</h1>
+<!-- LINKER KANT -->
+<div class="hero-left">
+
+<div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
+
+<h1>EV kopen?<br>Controleer eerst de batterij</h1>
 
 <p class="lead">
 De batterij is het duurste onderdeel van een elektrische auto.
@@ -1048,256 +1048,18 @@ Binnen ±15 minuten weet u de werkelijke accustatus
 inclusief TÜV accucertificaat.
 </p>
 
- <script>
-
-const avilooBrands = [
-"TESLA","BMW","AUDI","VOLKSWAGEN","VOLVO","PORSCHE","KIA","HYUNDAI","MERCEDES-BENZ",
-"SKODA","CUPRA","SEAT","TOYOTA","NISSAN","RENAULT","PEUGEOT","OPEL","CITROEN",
-"FIAT","FORD","BYD","MG","MINI","LEXUS","JAGUAR","LAND ROVER","MAZDA",
-"MITSUBISHI","SUBARU","HONDA","GENESIS","CADILLAC","CHEVROLET","GMC","XPENG"
-];
-
-async function checkKenteken(){
-
-let kenteken = document.getElementById("kentekenInput")
-.value.replace(/[^A-Za-z0-9]/g,'')
-.toUpperCase();  
-
-if(!kenteken){
-document.getElementById("kentekenResult").innerHTML="Voer een kenteken in.";
-return;
-}
-
-let url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
-
-try{
-
-let response = await fetch(url);
-let data = await response.json();
-
-if(data.length === 0){
-document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden.";
-return;
-}
-
-let voertuig = data[0];
-
-let merk = voertuig.merk || "";
-let model = voertuig.handelsbenaming || "";
-let brandstof = voertuig.brandstof_omschrijving || "";
-
-let merkUpper = merk.toUpperCase();
-
-const batterijDegradatie = {
-
-TESLA:"8-15%",
-BMW:"10-16%",
-AUDI:"10-16%",
-VOLKSWAGEN:"10-16%",
-VOLVO:"10-16%",
-PORSCHE:"8-14%",
-HYUNDAI:"8-14%",
-KIA:"8-14%",
-MERCEDES:"10-18%",
-NISSAN:"12-20%",
-RENAULT:"12-20%",
-PEUGEOT:"10-16%",
-OPEL:"10-16%",
-MG:"10-18%",
-BYD:"8-14%"
-
-};
-
-let degradatie = batterijDegradatie[merkUpper] || "10-18%";
-
- const batterijRisico = {
-
-TESLA:"€12.000 – €20.000",
-BMW:"€9.000 – €18.000",
-AUDI:"€12.000 – €22.000",
-VOLKSWAGEN:"€8.000 – €16.000",
-VOLVO:"€12.000 – €20.000",
-PORSCHE:"€20.000 – €35.000",
-HYUNDAI:"€8.000 – €15.000",
-KIA:"€8.000 – €15.000",
-MERCEDES:"€12.000 – €22.000",
-NISSAN:"€7.000 – €14.000",
-RENAULT:"€7.000 – €13.000",
-PEUGEOT:"€8.000 – €14.000",
-OPEL:"€8.000 – €14.000",
-MG:"€8.000 – €15.000",
-BYD:"€9.000 – €16.000"
-
-};
-
-let batterijKosten = batterijRisico[merkUpper] || "€8.000 – €18.000"; 
-  
-let ondersteund = avilooBrands.includes(merkUpper);
-
-let resultaatHTML = `
-<div style="margin-top:12px;padding:16px;background:#f6f7f9;border-radius:12px;color:#0b1c2d;line-height:1.5;">
-<div style="font-weight:800;font-size:18px;color:#0b1c2d;margin-bottom:4px;">${merk} ${model}</div>
-<div style="font-size:14px;color:#5b6775;margin-bottom:12px;">Brandstof: ${brandstof}</div>
-`;
-
-if(ondersteund){
-
-resultaatHTML += `
-<div style="color:#16a34a;font-weight:800;font-size:15px;margin-bottom:10px;">
-✔ Deze auto is geschikt voor AVILOO Flash Test
+<div style="font-size:12px;color:#6b7280;margin-top:6px;">
+✓ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
+✓ TÜV ondersteund accucertificaat  
+✓ Accutest duurt ±15 minuten  
+✓ Resultaat direct beschikbaar
 </div>
 
-<div style="
-margin-top:12px;
-background:#e8f7ee;
-border:1px solid #b7e4c7;
-padding:10px;
-border-radius:8px;
-font-size:13px;
-font-weight:700;
-color:#065f46;
-">
-
-Deze auto kan direct getest worden met een AccuCheck
-
-</div>
-
-<div style="font-size:14px;margin-top:8px;color:#374151;">
-Gemiddelde batterijdegradatie na ±5 jaar / 100.000 km: <b>${degradatie}</b>
-</div>
-
-<div style="font-size:14px;margin-top:8px;color:#374151;">
-Gemiddelde batterijvervangingskosten: <b>${batterijKosten}</b>
-</div>
-
-<div style="margin-top:10px;padding:10px;background:#fff3cd;border-radius:8px;font-size:13px;font-weight:600;">
-⚠ Accustatus kan per auto sterk verschillen.  
-Een accutest voorkomt een dure miskoop.
-</div>
-
-<a href="#" onclick="gaNaarIntake('ev-accucheck-particulier')"
-style="
-display:block;
-margin-top:12px;
-background:#0b1c2d;
-color:white;
-padding:12px 16px;
-border-radius:10px;
-text-decoration:none;
-font-weight:800;
-text-align:center;
-font-size:15px;
-">
-
-Plan AccuCheck voor deze auto
-
-</a>
-
-<div style="
-margin-top:6px;
-font-size:12px;
-color:#6b7280;
-font-weight:600;
-text-align:center;
-">
-
-Inclusief TÜV accucertificaat
-
-</div>
-
-}else{
-
-resultaatHTML += `
-<div style="color:#f59e0b;font-weight:700;">
-⚠ Controle nodig
-</div>
-
-<div style="font-size:13px;margin-top:6px;color:#374151;">
-Niet alle voertuigen staan in de database.  
-Stuur het kenteken via WhatsApp voor een snelle check.
-</div>
-
-<a href="https://wa.me/31623452349?text=Kan%20deze%20EV%20getest%20worden:%20${kenteken}"
-target="_blank"
-style="display:inline-block;margin-top:10px;background:#25D366;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">
-Check via WhatsApp
-</a>
-`;
-
-}
-
-resultaatHTML += "</div>";
-
-document.getElementById("kentekenResult").innerHTML = resultaatHTML;
-
-}catch(error){
-
-document.getElementById("kentekenResult").innerHTML="Kon voertuigdata niet ophalen.";
-
-}
-
-}
-
-let kentekenTimer;
-
-function autoCheckKenteken(){
-
-clearTimeout(kentekenTimer);
-
-kentekenTimer = setTimeout(() => {
-
-let kenteken = document.getElementById("kentekenInput")
-.value.replace(/[^A-Za-z0-9]/g,'')
-.toUpperCase();
-
-if(kenteken.length < 6) return;
-
-checkKenteken();
-
-}, 600);
-
-}
-   
-</script>
-<script>
-
-function gaNaarIntake(dienst){
-
-let kenteken = document
-.getElementById("kentekenInput")
-.value
-.replace(/[^A-Za-z0-9]/g,'')
-.toUpperCase();
-
-if(!kenteken){
-
-window.location.href =
-"intake-ads.html?dienst=" + dienst;
-
-return;
-
-}
-
-window.location.href =
-"intake-ads.html?dienst=" + dienst + "&kenteken=" + kenteken;
-
-}
-
-</script>
-        
-      
-        <div style="font-size:12px;color:#6b7280;margin-top:6px;">
-        ✓ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
-        ✓ TÜV ondersteund accucertificaat  
-        ✓ Accutest duurt ±15 minuten  
-        ✓ Resultaat direct beschikbaar
-       </div>
-
-<div style="font-size:13px;color:#6b7280;margin-bottom:6px;font-weight:600;">
+<div style="font-size:13px;color:#6b7280;margin-bottom:10px;font-weight:600;">
 Binnen 10 seconden weet u of een accutest mogelijk is
-Voor elektrische auto's en plug-in hybrides
 </div>
-  
+
+<!-- TOOL CARD -->
 <div style="
 max-width:420px;
 background:#fff;
@@ -1305,114 +1067,106 @@ padding:22px;
 border-radius:16px;
 box-shadow:0 20px 45px rgba(0,0,0,.15);
 border:1px solid rgba(0,0,0,.04);
-"> 
-  
-  <div style="font-weight:800;font-size:16px;margin-bottom:10px;">
-   Controleer direct of deze EV of plug/in hybride getest kan worden 
-  </div>
+margin-top:14px;
+">
 
-  <div style="font-size:13px;color:#16a34a;font-weight:700;margin-bottom:6px;">
-    ✔ Direct resultaat na invoeren kenteken
-  </div>
+<div style="font-weight:800;font-size:16px;margin-bottom:10px;">
+Controleer direct of deze EV getest kan worden
+</div>
 
-<div style="font-size:12px;color:#6b7280;margin-bottom:8px;">
+<div style="font-size:13px;color:#16a34a;font-weight:700;margin-bottom:6px;">
+✔ Direct resultaat na invoeren kenteken
+</div>
+
+<div style="font-size:12px;color:#6b7280;margin-bottom:10px;">
 Wordt vaak gebruikt tijdens bezichtiging of proefrit
 </div>
-    
- <input 
-id="kentekenInput" 
+
+<input
+id="kentekenInput"
 type="text"
 placeholder="Bijv. Tesla Model 3 → AB123C"
 style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;"
 oninput="autoCheckKenteken()"
 >
 
-   <button onclick="autoCheckKenteken()"
-    style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
-    Check voertuig
-  </button>
+<button onclick="autoCheckKenteken()"
+style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
+Check voertuig
+</button>
 
-  <div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
-  <div class="battery-risk-box">
+<div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
+
+<div class="battery-risk-box">
 
 <div class="risk-item">
-
 <div class="risk-title">Batterij vervangen</div>
-
 <div class="risk-price">€8.000 – €20.000</div>
-
 <div class="risk-note">Gemiddelde kosten EV batterij</div>
-
 </div>
 
 <div class="risk-divider"></div>
 
 <div class="risk-item">
-
 <div class="risk-title">AccuCheck</div>
-
 <div class="risk-price gold">€95</div>
-
 <div class="risk-note">Voorkomt dure miskoop</div>
+</div>
+
+</div>
 
 </div>
 
 </div>
+
+<!-- RECHTER KANT -->
+<div class="hero-card">
+
+<h3>Dit ontvangt u</h3>
+
+<div class="price">
+Vanaf €95 <small>incl btw</small>
 </div>
 
-    </div>   <!-- sluit hero-left -->
-
-      <div class="hero-card">
-        <h3>Dit ontvangt u</h3>
-        <div class="price">Vanaf €95 <small>incl btw</small></div>
-        <div class="sub">€95 in Barendrecht • €129 op locatie bij de auto</div>
-        <ul>
-         <div style="margin-bottom:10px;font-size:13px;color:#facc15;font-weight:700;">
-          Vandaag vaak nog mogelijk
-         </div> 
-         <div style="margin-top:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);">
-         Meer dan 90% van de EV-kopers laat eerst de batterij controleren
-         </div> 
-         <li><span class="tick">✓</span> Accutest in ±15 minuten (klaar terwijl u wacht)</li>
-         <li><span class="tick">✓</span> TÜV accucertificaat</li>
-         <li><span class="tick">✓</span> €95 bij ZekerOpWeg in Barendrecht</li>
-         <li><span class="tick">✓</span> €129 op locatie waar de auto staat</li> 
-         <li><span class="tick">✓</span> Meting bij de auto mogelijk (dealer of particulier)</li>
-        </ul>
-        <a class="btn btn-primary" style="width:100%" href="#"
-        onclick="gaNaarIntake('ev-accucheck-particulier')">Bekijk opties & plan</a>
-        <div style="margin-top:10px; color:rgba(255,255,255,.78); font-weight:650; font-size:12px;">
-         Kiest u voor €95 in Barendrecht of €129 op locatie? Na intake stemmen we direct af.
-        </div>
-      </div>
-    </div>
-  </section>
-
-<section class="hero-trust">
-<div class="wrap">
-
-<div class="trust-row">
-
-<div class="trust-item">
-✔ Meer dan 95% van EV en plug in hybrides testbaar
+<div class="sub">
+€95 in Barendrecht • €129 op locatie bij de auto
 </div>
 
-<div class="trust-item">
-✔ Accutest ±15 minuten
+<ul>
+
+<div style="margin-bottom:10px;font-size:13px;color:#facc15;font-weight:700;">
+Vandaag vaak nog mogelijk
 </div>
 
-<div class="trust-item">
-✔ TÜV accucertificaat
+<div style="margin-top:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);">
+Meer dan 90% van de EV-kopers laat eerst de batterij controleren
 </div>
 
-<div class="trust-item">
-✔ Regio Rotterdam en op locatie
+<li><span class="tick">✓</span> Accutest in ±15 minuten (klaar terwijl u wacht)</li>
+<li><span class="tick">✓</span> TÜV accucertificaat</li>
+<li><span class="tick">✓</span> €95 bij ZekerOpWeg in Barendrecht</li>
+<li><span class="tick">✓</span> €129 op locatie waar de auto staat</li>
+<li><span class="tick">✓</span> Meting bij de auto mogelijk (dealer of particulier)</li>
+
+</ul>
+
+<a class="btn btn-primary" style="width:100%"
+href="#"
+onclick="gaNaarIntake('ev-accucheck-particulier')">
+
+Bekijk opties & plan
+
+</a>
+
+<div style="margin-top:10px;color:rgba(255,255,255,.78);font-weight:650;font-size:12px;">
+Kiest u voor €95 in Barendrecht of €129 op locatie? Na intake stemmen we direct af.
 </div>
 
 </div>
 
 </div>
 </section>
+ 
   
   <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
 <div class="wrap" style="text-align:center;max-width:720px;">
