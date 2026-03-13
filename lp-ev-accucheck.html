@@ -1028,145 +1028,141 @@ margin-top:0;
   
 </style>
 
-<!-- HERO -->
-<section class="hero">
+<script>
 
-<div class="wrap hero-grid">
+const batterijDegradatie = {
 
-<!-- LINKER KANT -->
-<div class="hero-left">
+TESLA:"8–15%",
+BMW:"10–16%",
+AUDI:"10–16%",
+VOLKSWAGEN:"10–16%",
+VOLVO:"10–16%",
+PORSCHE:"8–14%",
+HYUNDAI:"8–14%",
+KIA:"8–14%",
+MERCEDES:"10–18%",
+NISSAN:"12–20%",
+RENAULT:"12–20%",
+PEUGEOT:"10–16%",
+OPEL:"10–16%",
+MG:"10–18%",
+BYD:"8–14%"
 
-<div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
+};
 
-<h1>EV kopen?<br>Controleer eerst de batterij</h1>
+const batterijRisico = {
 
-<p class="lead">
-De batterij is het duurste onderdeel van een elektrische auto.
-Een versleten batterij kan duizenden euro’s kosten.
+TESLA:"€12.000 tot €20.000",
+BMW:"€9.000 tot €18.000",
+AUDI:"€12.000 tot €22.000",
+VOLKSWAGEN:"€8.000 tot €16.000",
+VOLVO:"€12.000 tot €20.000",
+PORSCHE:"€20.000 tot €35.000",
+HYUNDAI:"€8.000 tot €15.000",
+KIA:"€8.000 tot €15.000",
+MERCEDES:"€12.000 tot €22.000",
+NISSAN:"€7.000 tot €14.000",
+RENAULT:"€7.000 tot €13.000",
+PEUGEOT:"€8.000 tot €14.000",
+OPEL:"€8.000 tot €14.000",
+MG:"€8.000 tot €15.000",
+BYD:"€9.000 tot €16.000"
 
-Binnen ±15 minuten weet u de werkelijke accustatus
-inclusief TÜV accucertificaat.
-</p>
+};
 
-<div style="font-size:12px;color:#6b7280;margin-top:6px;">
-✓ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
-✓ TÜV ondersteund accucertificaat  
-✓ Accutest duurt ±15 minuten  
-✓ Resultaat direct beschikbaar
+async function checkKenteken(){
+
+let kenteken = document.getElementById("kentekenInput")
+.value.replace(/[^A-Za-z0-9]/g,'')
+.toUpperCase();
+
+if(!kenteken) return;
+
+let url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
+
+let response = await fetch(url);
+let data = await response.json();
+
+if(data.length === 0){
+
+document.getElementById("kentekenResult").innerHTML =
+"Kenteken niet gevonden.";
+
+return;
+
+}
+
+let voertuig = data[0];
+
+let merk = voertuig.merk || "";
+let model = voertuig.handelsbenaming || "";
+
+let merkUpper = merk.toUpperCase();
+
+let degradatie = batterijDegradatie[merkUpper] || "10–18%";
+let batterijKosten = batterijRisico[merkUpper] || "€8.000 tot €18.000";
+
+let html = `
+<div style="margin-top:12px;padding:14px;background:#f6f7f9;border-radius:10px;">
+
+<div style="font-weight:800;font-size:18px;margin-bottom:6px;">
+${merk} ${model}
 </div>
 
-<div style="font-size:13px;color:#6b7280;margin-bottom:10px;font-weight:600;">
-Binnen 10 seconden weet u of een accutest mogelijk is
+<div style="color:#16a34a;font-weight:700;margin-bottom:10px;">
+✔ Deze auto kan getest worden met een AccuCheck
 </div>
 
-<!-- TOOL CARD -->
-<div style="
-max-width:420px;
-background:#fff;
-padding:22px;
-border-radius:16px;
-box-shadow:0 20px 45px rgba(0,0,0,.15);
-border:1px solid rgba(0,0,0,.04);
-margin-top:14px;
+<div style="font-size:14px;margin-bottom:4px;">
+Gemiddelde batterijdegradatie: <b>${degradatie}</b>
+</div>
+
+<div style="font-size:14px;margin-bottom:8px;">
+Gemiddelde batterijvervangkosten: <b>${batterijKosten}</b>
+</div>
+
+<a href="#" onclick="gaNaarIntake('ev-accucheck-particulier')"
+style="
+display:block;
+margin-top:10px;
+background:#0b1c2d;
+color:white;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:800;
 ">
 
-<div style="font-weight:800;font-size:16px;margin-bottom:10px;">
-Controleer direct of deze EV getest kan worden
-</div>
-
-<div style="font-size:13px;color:#16a34a;font-weight:700;margin-bottom:6px;">
-✔ Direct resultaat na invoeren kenteken
-</div>
-
-<div style="font-size:12px;color:#6b7280;margin-bottom:10px;">
-Wordt vaak gebruikt tijdens bezichtiging of proefrit
-</div>
-
-<input
-id="kentekenInput"
-type="text"
-placeholder="Bijv. Tesla Model 3 → AB123C"
-style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;"
-oninput="autoCheckKenteken()"
->
-
-<button onclick="autoCheckKenteken()"
-style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
-Check voertuig
-</button>
-
-<div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
-
-<div class="battery-risk-box">
-
-<div class="risk-item">
-<div class="risk-title">Batterij vervangen</div>
-<div class="risk-price">€8.000 – €20.000</div>
-<div class="risk-note">Gemiddelde kosten EV batterij</div>
-</div>
-
-<div class="risk-divider"></div>
-
-<div class="risk-item">
-<div class="risk-title">AccuCheck</div>
-<div class="risk-price gold">€95</div>
-<div class="risk-note">Voorkomt dure miskoop</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RECHTER KANT -->
-<div class="hero-card">
-
-<h3>Dit ontvangt u</h3>
-
-<div class="price">
-Vanaf €95 <small>incl btw</small>
-</div>
-
-<div class="sub">
-€95 in Barendrecht • €129 op locatie bij de auto
-</div>
-
-<ul>
-
-<div style="margin-bottom:10px;font-size:13px;color:#facc15;font-weight:700;">
-Vandaag vaak nog mogelijk
-</div>
-
-<div style="margin-top:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);">
-Meer dan 90% van de EV-kopers laat eerst de batterij controleren
-</div>
-
-<li><span class="tick">✓</span> Accutest in ±15 minuten (klaar terwijl u wacht)</li>
-<li><span class="tick">✓</span> TÜV accucertificaat</li>
-<li><span class="tick">✓</span> €95 bij ZekerOpWeg in Barendrecht</li>
-<li><span class="tick">✓</span> €129 op locatie waar de auto staat</li>
-<li><span class="tick">✓</span> Meting bij de auto mogelijk (dealer of particulier)</li>
-
-</ul>
-
-<a class="btn btn-primary" style="width:100%"
-href="#"
-onclick="gaNaarIntake('ev-accucheck-particulier')">
-
-Bekijk opties & plan
+Plan AccuCheck voor deze auto
 
 </a>
 
-<div style="margin-top:10px;color:rgba(255,255,255,.78);font-weight:650;font-size:12px;">
-Kiest u voor €95 in Barendrecht of €129 op locatie? Na intake stemmen we direct af.
 </div>
+`;
 
-</div>
+document.getElementById("kentekenResult").innerHTML = html;
 
-</div>
-</section>
- 
+}
+
+let kentekenTimer;
+
+function autoCheckKenteken(){
+
+clearTimeout(kentekenTimer);
+
+kentekenTimer = setTimeout(() => {
+
+let kenteken = document.getElementById("kentekenInput").value;
+
+if(kenteken.length < 6) return;
+
+checkKenteken();
+
+}, 600);
+
+}
+
+</script>
   
   <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
 <div class="wrap" style="text-align:center;max-width:720px;">
