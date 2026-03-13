@@ -182,7 +182,7 @@ line-height:1.65;
       font-size:16px;
       color:#fff;
     }
-    .hero-card .price{
+    .-card .price{
       font-size:34px;
       font-weight:900;
       letter-spacing:-.5px;
@@ -1028,6 +1028,97 @@ margin-top:0;
   
 </style>
 
+<!-- HERO -->
+<section class="hero">
+
+<div class="wrap hero-grid">
+
+<!-- LINKER KANT -->
+<div class="hero-left">
+
+<div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
+
+<h1>EV kopen?<br>Controleer eerst de batterij</h1>
+
+<p class="lead">
+De batterij is het duurste onderdeel van een elektrische auto.
+Een versleten batterij kan duizenden euro’s kosten.
+
+Binnen ±15 minuten weet u de werkelijke accustatus
+inclusief TÜV accucertificaat.
+</p>
+
+<div style="font-size:12px;color:#6b7280;margin-top:6px;">
+✓ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
+✓ TÜV ondersteund accucertificaat  
+✓ Accutest duurt ±15 minuten  
+✓ Resultaat direct beschikbaar
+</div>
+
+<div style="font-size:13px;color:#6b7280;margin-bottom:10px;font-weight:600;">
+Binnen 10 seconden weet u of een accutest mogelijk is
+</div>
+
+<!-- TOOL CARD -->
+<div style="
+max-width:420px;
+background:#fff;
+padding:22px;
+border-radius:16px;
+box-shadow:0 20px 45px rgba(0,0,0,.15);
+border:1px solid rgba(0,0,0,.04);
+margin-top:14px;
+">
+
+<div style="font-weight:800;font-size:16px;margin-bottom:10px;">
+Controleer direct of deze EV getest kan worden
+</div>
+
+<div style="font-size:13px;color:#16a34a;font-weight:700;margin-bottom:6px;">
+✔ Direct resultaat na invoeren kenteken
+</div>
+
+<div style="font-size:12px;color:#6b7280;margin-bottom:10px;">
+Wordt vaak gebruikt tijdens bezichtiging of proefrit
+</div>
+
+<input
+id="kentekenInput"
+type="text"
+placeholder="Bijv. Tesla Model 3 → AB123C"
+style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:10px;text-transform:uppercase;"
+oninput="autoCheckKenteken()"
+>
+
+<button onclick="autoCheckKenteken()"
+style="width:100%;padding:12px;border:none;border-radius:8px;background:#0b1c2d;color:white;font-weight:700;">
+Check voertuig
+</button>
+
+<div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
+
+<div class="battery-risk-box">
+
+<div class="risk-item">
+<div class="risk-title">Batterij vervangen</div>
+<div class="risk-price">€8.000 tot €20.000</div>
+<div class="risk-note">Gemiddelde kosten EV batterij</div>
+</div>
+
+<div class="risk-divider"></div>
+
+<div class="risk-item">
+<div class="risk-title">AccuCheck</div>
+<div class="risk-price gold">€95</div>
+<div class="risk-note">Voorkomt dure miskoop</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+  
 <script>
 
 const batterijDegradatie = {
