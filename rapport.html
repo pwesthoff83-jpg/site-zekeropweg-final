@@ -1,772 +1,241 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ZekerOpWeg EV Aankooprapport</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EV Aankooprapport | ZekerOpWeg</title>
 
 <style>
-:root{
-  --navy:#0b1c2d;
-  --navy2:#071423;
-  --gold:#c6a15b;
-  --ink:#0e1116;
-  --muted:#6b7280;
-  --soft:#f6f7f9;
-  --line:#e5e7eb;
-  --green:#166534;
-  --greenbg:#ecfdf5;
-}
-
-*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink);
-  background:#fff;
-  line-height:1.6;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+background:#f6f7f9;
+margin:0;
+padding:40px 20px;
+color:#0e1116;
 }
 
-.wrap{
-  max-width:960px;
-  margin:0 auto;
-  padding:0 24px;
-}
-
-.topbar{
-  border-bottom:1px solid rgba(0,0,0,.06);
-  background:#fff;
-}
-
-.topbar-inner{
-  min-height:74px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:14px;
+box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
 
 .logo{
-  font-size:24px;
-  font-weight:800;
-  color:var(--navy);
-  text-decoration:none;
-  letter-spacing:-.4px;
+font-size:22px;
+font-weight:700;
+margin-bottom:20px;
+color:#0b1c2d;
 }
 
-.logo span{color:var(--gold)}
-
-.top-actions{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 18px;
-  border-radius:999px;
-  border:none;
-  background:linear-gradient(180deg,#122a44,#071423);
-  color:#fff;
-  text-decoration:none;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.btn-light{
-  background:#fff;
-  color:var(--navy);
-  border:1px solid rgba(0,0,0,.08);
-}
-
-.hero{
-  padding:34px 0 22px;
-  background:
-    radial-gradient(680px 260px at 12% 0%, rgba(198,161,91,.15), transparent 60%),
-    linear-gradient(180deg,#ffffff 0%, #fbfcfe 100%);
-  border-bottom:1px solid rgba(0,0,0,.05);
-}
-
-.eyebrow{
-  color:var(--gold);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:1.3px;
-  text-transform:uppercase;
-  margin-bottom:8px;
+.logo span{
+color:#c6a15b;
 }
 
 h1{
-  margin:0 0 10px;
-  color:var(--navy);
-  font-size:40px;
-  line-height:1.06;
-  letter-spacing:-.7px;
+font-size:32px;
+margin-bottom:10px;
 }
 
-.hero p{
-  margin:0;
-  color:var(--muted);
-  font-weight:600;
-  max-width:70ch;
-}
-
-.report-meta{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:24px;
-}
-
-@media(max-width:760px){
-  .report-meta{grid-template-columns:1fr}
-  h1{font-size:32px}
-}
-
-.meta-card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:16px;
-}
-
-.meta-label{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-  margin-bottom:6px;
-}
-
-.meta-value{
-  font-size:16px;
-  font-weight:800;
-  color:var(--ink);
-}
-
-.section{
-  padding:34px 0;
-}
-
-.section + .section{
-  border-top:1px solid rgba(0,0,0,.05);
-}
-
-.section h2{
-  margin:0 0 14px;
-  font-size:28px;
-  line-height:1.15;
-  color:var(--navy);
-  letter-spacing:-.4px;
-}
-
-.section-lead{
-  color:var(--muted);
-  font-weight:600;
-  margin:0 0 18px;
-  max-width:72ch;
-}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:22px;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-@media(max-width:860px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
+.sub{
+color:#6b7280;
+margin-bottom:30px;
 }
 
 .card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 14px 30px rgba(0,0,0,.04);
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:20px;
+margin-bottom:20px;
 }
 
-.card-soft{
-  background:var(--soft);
+.card-title{
+font-weight:800;
+margin-bottom:8px;
 }
 
-.data-grid{
-  display:grid;
-  grid-template-columns:160px 1fr;
-  gap:10px 14px;
+.metric{
+font-size:24px;
+font-weight:900;
+color:#0b1c2d;
 }
 
-.data-grid div:nth-child(odd){
-  color:var(--muted);
-  font-weight:800;
+.risk{
+font-weight:800;
 }
 
-.data-grid div:nth-child(even){
-  color:var(--ink);
-  font-weight:700;
-}
+.low{color:#166534}
+.medium{color:#b45309}
+.high{color:#b91c1c}
 
-.kpi{
-  font-size:13px;
-  color:var(--muted);
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-}
-
-.big{
-  font-size:34px;
-  line-height:1.05;
-  font-weight:900;
-  color:var(--navy);
-  margin:6px 0;
-}
-
-.big.gold{color:var(--gold)}
-
-.risk-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.5px;
-}
-
-.risk-low{
-  background:var(--greenbg);
-  color:var(--green);
-  border:1px solid #bbf7d0;
-}
-
-.risk-medium{
-  background:#fff7ed;
-  color:#b45309;
-  border:1px solid #fed7aa;
-}
-
-.risk-high{
-  background:#fef2f2;
-  color:#b91c1c;
-  border:1px solid #fecaca;
-}
-
-.icon-list{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:grid;
-  gap:10px;
-}
-
-.icon-list li{
-  font-weight:700;
-  color:#1f2937;
-}
-
-.quote-card{
-  background:linear-gradient(180deg,#fffdf9,#ffffff);
-  border:1px solid rgba(198,161,91,.35);
-}
-
-.cta-band{
-  margin-top:18px;
-  background:
-    linear-gradient(135deg, rgba(198,161,91,.18) 0%, rgba(255,255,255,0) 50%),
-    var(--navy);
-  color:#fff;
-  border-radius:22px;
-  padding:24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  flex-wrap:wrap;
-}
-
-.cta-band h3{
-  margin:0 0 6px;
-  font-size:24px;
-}
-
-.cta-band p{
-  margin:0;
-  color:rgba(255,255,255,.84);
-  font-weight:650;
+.btn{
+display:inline-block;
+margin-top:20px;
+background:#0b1c2d;
+color:white;
+padding:12px 22px;
+border-radius:999px;
+font-weight:700;
+text-decoration:none;
 }
 
 .footer{
-  padding:32px 0 50px;
-  border-top:1px solid rgba(0,0,0,.06);
-  color:var(--muted);
-  font-size:12px;
-  font-weight:700;
+margin-top:30px;
+font-size:13px;
+color:#6b7280;
 }
 
-.loading{
-  padding:50px 0;
-  text-align:center;
-  color:var(--muted);
-  font-weight:700;
-}
-
-.hidden{display:none !important}
-
-@media print{
-  .topbar,.top-actions,.cta-band,.download-wrap{display:none !important}
-  body{background:#fff}
-  .section{padding:22px 0}
-  .card{box-shadow:none}
-}
 </style>
+
 </head>
+
 <body>
 
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <a href="index.html" class="logo">Zeker<span>Op</span>Weg</a>
-    <div class="top-actions">
-      <button class="btn btn-light" onclick="window.print()">Download PDF</button>
-      <a href="ev-accucheck.html" class="btn">Plan AccuCheck</a>
-    </div>
-  </div>
+<div class="container">
+
+<div class="logo">Zeker<span>Op</span>Weg</div>
+
+<h1>EV aankooprapport</h1>
+
+<p class="sub">
+Analyse van batterij en aankooprisico op basis van voertuigdata.
+</p>
+
+<div id="reportContent">
+
+<div class="card">
+<div class="card-title">Voertuig</div>
+<div id="vehicleName" class="metric">Laden...</div>
 </div>
 
-<div id="loading" class="loading">Rapport wordt geladen...</div>
-
-<div id="report" class="hidden">
-  <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow">ZekerOpWeg aankooprapport</div>
-      <h1>EV Aankooprapport</h1>
-      <p>
-        Onafhankelijke batterij- en aankoopanalyse voor inzicht vóór aankoop.
-        Dit rapport combineert voertuigdata, modelanalyse en praktisch advies van Pepijn.
-      </p>
-
-      <div class="report-meta">
-        <div class="meta-card">
-          <div class="meta-label">Kenteken</div>
-          <div class="meta-value" id="metaKenteken">-</div>
-        </div>
-        <div class="meta-card">
-          <div class="meta-label">Rapportdatum</div>
-          <div class="meta-value" id="metaDatum">-</div>
-        </div>
-        <div class="meta-card">
-          <div class="meta-label">Voertuig</div>
-          <div class="meta-value" id="metaVoertuig">-</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <h2>Voertuig</h2>
-      <div class="grid-2">
-        <div class="card">
-          <div class="data-grid">
-            <div>Merk</div><div id="merk">-</div>
-            <div>Model</div><div id="model">-</div>
-            <div>Bouwjaar</div><div id="bouwjaar">-</div>
-            <div>Voertuigtype</div><div id="voertuigtype">-</div>
-            <div>Vermogen</div><div id="vermogen">-</div>
-          </div>
-        </div>
-
-        <div class="card card-soft">
-          <div class="kpi">Batterij capaciteit</div>
-          <div class="big" id="batteryCap">-</div>
-
-          <div class="kpi" style="margin-top:18px;">Gemiddelde degradatie</div>
-          <div class="big" id="degradation">-</div>
-
-          <div class="kpi" style="margin-top:18px;">Verwachte accugezondheid</div>
-          <div class="meta-value" id="healthEstimate">-</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <h2>Batterij & financieel risico</h2>
-      <p class="section-lead">
-        De batterij is het duurste onderdeel van een elektrische auto en bepaalt grotendeels
-        de toekomstige waarde en bruikbaarheid van het voertuig.
-      </p>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="kpi">Mogelijke batterijvervanging</div>
-          <div class="big gold" id="replacementCost">-</div>
-          <p id="replacementNote">-</p>
-        </div>
-
-        <div class="card">
-          <div class="kpi">Batterijrisico</div>
-          <div id="riskWrap" style="margin-top:10px;">-</div>
-          <p style="margin-top:12px;">Op basis van modeldata, batterijconfiguratie en bekende praktijkervaring.</p>
-        </div>
-
-        <div class="card">
-          <div class="kpi">Conclusie in één oogopslag</div>
-          <div class="meta-value" id="summaryShort" style="margin-top:10px;">-</div>
-          <p style="margin-top:12px;">Een onafhankelijke AccuCheck geeft direct inzicht in de werkelijke accustatus van het individuele voertuig.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <h2>Modelinzichten</h2>
-      <div class="grid-2">
-        <div class="card">
-          <ul class="icon-list" id="modelInsights">
-            <li>-</li>
-          </ul>
-        </div>
-
-        <div class="card quote-card">
-          <h3 style="margin:0 0 10px;font-size:22px;color:#0b1c2d;">Advies van Pepijn</h3>
-          <p id="pepijnAdvice" style="margin:0;">
-            -
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <h2>Samenvatting</h2>
-      <div class="card">
-        <p id="summaryText" style="margin:0;">
-          -
-        </p>
-      </div>
-
-      <div class="cta-band">
-        <div>
-          <h3>Onafhankelijke EV AccuCheck</h3>
-          <p>✓ TÜV accucertificaat • ✓ ±15 minuten batterijdiagnose • ✓ vanaf €95</p>
-        </div>
-        <div class="download-wrap" style="display:flex;gap:12px;flex-wrap:wrap;">
-          <button class="btn btn-light" onclick="window.print()">Download PDF</button>
-          <a href="ev-accucheck.html" class="btn">Plan AccuCheck</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">
-    <div class="wrap">
-      Dit rapport is gebaseerd op voertuigdata, modelanalyse en rekenkundige indicaties.
-      De werkelijke accustatus kan per voertuig verschillen. Voor exacte accugezondheid is een fysieke batterijdiagnose nodig.
-    </div>
-  </div>
+<div class="card">
+<div class="card-title">Geschatte batterijcapaciteit</div>
+<div id="batterySize" class="metric">—</div>
 </div>
+
+<div class="card">
+<div class="card-title">Gemiddelde batterijdegradatie</div>
+<div id="degradation" class="metric">—</div>
+</div>
+
+<div class="card">
+<div class="card-title">Risico-inschatting</div>
+<div id="riskLevel" class="metric risk">—</div>
+</div>
+
+</div>
+
+<a class="btn" onclick="window.print()">Download PDF</a>
+
+<div class="footer">
+ZekerOpWeg · Onafhankelijke EV analyse
+</div>
+
+</div>
+
 
 <script>
-const batteryDatabase = {
-  "TESLA MODEL 3":{
-    battery:"55–82 kWh",
-    degradation:"8–12%",
-    healthEstimate:"± 88% – 92% bij 150.000 km",
-    replacement:"€12.000 – €16.000",
-    risk:"Laag",
-    insights:[
-      "Over het algemeen lage batterijdegradatie.",
-      "Goede software-ondersteuning en efficiënte aandrijving.",
-      "Veel snelladen kan extra batterijslijtage veroorzaken."
-    ],
-    pepijn:"Op basis van 16 jaar ervaring bij dealerbedrijven is de Tesla Model 3 een model met over het algemeen stabiele batterijprestaties. Bij aankoop adviseer ik altijd om accugezondheid, snellaadgebruik en algemene voertuigconditie te controleren."
-  },
-  "TESLA MODEL Y":{
-    battery:"60–82 kWh",
-    degradation:"8–12%",
-    healthEstimate:"± 88% – 92% bij 150.000 km",
-    replacement:"€12.000 – €17.000",
-    risk:"Laag",
-    insights:[
-      "Relatief stabiele batterijprestaties.",
-      "Ruim aanbod op de markt vraagt om scherpe vergelijking.",
-      "Snellaadgebruik en onderhoudsgeschiedenis blijven relevant."
-    ],
-    pepijn:"De Tesla Model Y staat bekend om efficiënte aandrijving en stabiele batterijprestaties. Toch kan de werkelijke accustatus per voertuig verschillen, dus een onafhankelijke meting blijft verstandig."
-  },
-  "NISSAN LEAF":{
-    battery:"24–62 kWh",
-    degradation:"15–25%",
-    healthEstimate:"± 75% – 88% bij 150.000 km",
-    replacement:"€6.000 – €11.000",
-    risk:"Gemiddeld tot hoog",
-    insights:[
-      "Oudere Leafs kunnen hogere batterijdegradatie hebben.",
-      "Afhankelijk van uitvoering zijn verschillen groot.",
-      "Koeling en laadgedrag hebben veel invloed op slijtage."
-    ],
-    pepijn:"Bij een Nissan Leaf is de accustatus extra belangrijk. Juist bij oudere bouwjaren kan de batterijconditie sterk verschillen, waardoor een fysieke accutest vóór aankoop veel waarde heeft."
-  },
-  "AUDI E-TRON":{
-    battery:"71–114 kWh",
-    degradation:"10–16%",
-    healthEstimate:"± 84% – 90% bij 150.000 km",
-    replacement:"€18.000 – €28.000",
-    risk:"Gemiddeld",
-    insights:[
-      "Grote batterijcapaciteit, maar ook hogere vervangkosten.",
-      "Voertuiggewicht beïnvloedt gebruik en slijtage.",
-      "Accustatus is belangrijk voor restwaarde en range."
-    ],
-    pepijn:"Bij de Audi e-tron adviseer ik om batterijconditie en gebruiksgeschiedenis altijd serieus mee te nemen. De mogelijke vervangkosten liggen relatief hoog."
-  },
-  "BMW X5":{
-    battery:"24–29,5 kWh (PHEV)",
-    degradation:"10–16%",
-    healthEstimate:"± 84% – 90% bij 150.000 km",
-    replacement:"€8.000 – €14.000",
-    risk:"Gemiddeld",
-    insights:[
-      "Plug-in hybride, dus batterij is minder zichtbaar tijdens proefrit.",
-      "Elektrische actieradius zegt niet altijd genoeg over gezondheid.",
-      "Sterk model, maar accutest blijft relevant vóór aankoop."
-    ],
-    pepijn:"Bij de BMW X5 plug-in hybride is de batterijconditie vaak moeilijk in te schatten zonder meting. Daarom adviseer ik juist bij dit type voertuig een onafhankelijke AccuCheck."
-  },
-  "HYUNDAI KONA":{
-    battery:"39–65 kWh",
-    degradation:"10–14%",
-    healthEstimate:"± 86% – 91% bij 150.000 km",
-    replacement:"€10.000 – €14.000",
-    risk:"Laag tot gemiddeld",
-    insights:[
-      "Over het algemeen goede batterijduur.",
-      "Vroege bouwjaren verdienen extra aandacht.",
-      "Accustatus blijft bepalend voor restwaarde."
-    ],
-    pepijn:"De Hyundai Kona Electric staat in de basis goed bekend, maar ik adviseer altijd om bij aankoop de werkelijke batterijconditie te controleren."
-  },
-  "KIA NIRO":{
-    battery:"39–65 kWh",
-    degradation:"10–15%",
-    healthEstimate:"± 85% – 90% bij 150.000 km",
-    replacement:"€10.000 – €14.000",
-    risk:"Gemiddeld",
-    insights:[
-      "Stabiele batterijprestaties in veel gevallen.",
-      "Sterke praktische EV, maar verschillen per voertuig blijven bestaan.",
-      "Accugezondheid is bepalend voor toekomstig gebruik."
-    ],
-    pepijn:"De Kia Niro is populair en praktisch, maar juist daardoor worden grote verschillen tussen gebruikte exemplaren snel onderschat. Een accutest voorkomt dat risico."
-  },
-  "VOLKSWAGEN ID":{
-    battery:"45–86 kWh",
-    degradation:"10–15%",
-    healthEstimate:"± 85% – 90% bij 150.000 km",
-    replacement:"€11.000 – €18.000",
-    risk:"Gemiddeld",
-    insights:[
-      "Normale degradatie voor moderne EV-platformen.",
-      "Batterijcapaciteit verschilt sterk per uitvoering.",
-      "Softwarehistorie en laadgedrag zijn belangrijk."
-    ],
-    pepijn:"Bij Volkswagen ID-modellen zijn batterijgrootte en uitvoering belangrijk voor de uiteindelijke waarde. Voor aankoop blijft een onafhankelijke meting verstandig."
-  },
-  "RENAULT ZOE":{
-    battery:"22–52 kWh",
-    degradation:"15–25%",
-    healthEstimate:"± 75% – 88% bij 150.000 km",
-    replacement:"€6.000 – €10.000",
-    risk:"Gemiddeld",
-    insights:[
-      "Hogere degradatie mogelijk dan bij nieuwere EV-platformen.",
-      "Verschillen tussen accupakketten zijn groot.",
-      "Accugezondheid is zeer relevant voor gebruikswaarde."
-    ],
-    pepijn:"Bij de Renault Zoe kan de werkelijke batterijconditie behoorlijk verschillen. Daarom is dit typisch een model waarbij een accutest veel onzekerheid wegneemt."
-  },
-  "POLESTAR 2":{
-    battery:"64–82 kWh",
-    degradation:"10–14%",
-    healthEstimate:"± 86% – 91% bij 150.000 km",
-    replacement:"€12.000 – €18.000",
-    risk:"Laag",
-    insights:[
-      "Moderne batterijarchitectuur en stabiele prestaties.",
-      "Verschil tussen Standard Range en Long Range is relevant.",
-      "Laadgedrag en kilometrage blijven belangrijk."
-    ],
-    pepijn:"De Polestar 2 oogt vaak technisch sterk, maar net als bij andere EV’s kan de accustatus per exemplaar verschillen. Voor aankoop blijft meten verstandiger dan aannemen."
-  }
-};
 
-function getQueryParam(name){
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name) || "";
+function getKenteken(){
+
+const urlParams = new URLSearchParams(window.location.search);
+
+return urlParams.get("kenteken");
+
 }
 
-function normalizeVehicleKey(merk, model) {
-  return `${(merk || "").trim()} ${(model || "").trim()}`
-    .replace(/\s+/g, " ")
-    .toUpperCase();
+async function loadVehicle(){
+
+const kenteken = getKenteken();
+
+if(!kenteken){
+
+document.getElementById("vehicleName").innerText="Geen kenteken";
+
+return;
+
 }
 
-function findBatteryData(merk, model){
-  const key = normalizeVehicleKey(merk, model);
+const url="https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken="+kenteken;
 
-  for(const dbKey in batteryDatabase){
-    if(key.includes(dbKey) || dbKey.includes(key)){
-      return batteryDatabase[dbKey];
-    }
-  }
+const res=await fetch(url);
+const data=await res.json();
 
-  if((merk || "").toUpperCase().includes("TESLA")){
-    return {
-      battery:"Modelafhankelijk",
-      degradation:"8–12%",
-      healthEstimate:"± 88% – 92% bij 150.000 km",
-      replacement:"€12.000 – €18.000",
-      risk:"Laag",
-      insights:[
-        "Tesla-modellen staan meestal bekend om relatief stabiele batterijprestaties.",
-        "Snellaadgedrag blijft een relevante factor.",
-        "Werkelijke accustatus blijft per voertuig verschillend."
-      ],
-      pepijn:"Tesla-modellen presteren vaak sterk, maar ik adviseer altijd om vóór aankoop de werkelijke accugezondheid te laten meten."
-    };
-  }
+if(!data.length){
 
-  return {
-    battery:"Nog onbekend",
-    degradation:"10–18%",
-    healthEstimate:"Bandbreedte afhankelijk van model en kilometrage",
-    replacement:"Modelafhankelijk",
-    risk:"Gemiddeld",
-    insights:[
-      "Voor dit model is een generieke indicatie gebruikt.",
-      "Werkelijke accustatus kan per voertuig sterk verschillen.",
-      "Een onafhankelijke meting geeft de meeste zekerheid."
-    ],
-    pepijn:"Op basis van mijn ervaring adviseer ik bij gebruikte EV’s altijd om niet alleen naar merk en model te kijken, maar vooral naar de werkelijke batterijconditie van het individuele voertuig."
-  };
+document.getElementById("vehicleName").innerText="Kenteken niet gevonden";
+
+return;
+
 }
 
-function renderRiskBadge(risk){
-  const riskText = (risk || "").toLowerCase();
+const voertuig=data[0];
 
-  if(riskText.includes("laag")){
-    return `<span class="risk-badge risk-low">Laag risico</span>`;
-  }
+const merk=voertuig.merk || "";
+const model=voertuig.handelsbenaming || "";
 
-  if(riskText.includes("hoog")){
-    return `<span class="risk-badge risk-high">Hoog risico</span>`;
-  }
+document.getElementById("vehicleName").innerText=merk+" "+model;
 
-  return `<span class="risk-badge risk-medium">Gemiddeld risico</span>`;
+analyzeVehicle(merk,model);
+
 }
 
-function buildSummary(merk, model, risk){
-  if((risk || "").toLowerCase().includes("laag")){
-    return `${merk} ${model} staat op basis van modeldata bekend als een voertuig met relatief stabiele batterijprestaties. Toch kan de werkelijke accustatus per exemplaar verschillen.`;
-  }
+function analyzeVehicle(merk,model){
 
-  if((risk || "").toLowerCase().includes("hoog")){
-    return `${merk} ${model} vraagt extra aandacht bij aankoop. De kans op relevante verschillen in batterijconditie is groter, waardoor een onafhankelijke AccuCheck sterk wordt aanbevolen.`;
-  }
+let battery="Onbekend";
+let degradation="10–18%";
+let risk="Gemiddeld";
 
-  return `${merk} ${model} vraagt bij aankoop om een zorgvuldige beoordeling van de batterijconditie. Een onafhankelijke AccuCheck geeft direct meer zekerheid over de werkelijke accustatus.`;
+let key=(merk+" "+model).toUpperCase();
+
+if(key.includes("TESLA")){
+
+battery="60–82 kWh";
+degradation="8–12%";
+risk="Laag";
+
 }
 
-async function loadReport(){
-  const kentekenRaw = getQueryParam("kenteken");
-  const kenteken = kentekenRaw.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+if(key.includes("LEAF")){
 
-  if(!kenteken){
-    document.getElementById("loading").innerHTML = "Geen kenteken meegegeven in de URL.";
-    return;
-  }
+battery="24–62 kWh";
+degradation="15–25%";
+risk="Hoog";
 
-  try{
-    const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
-    const response = await fetch(url);
-    const data = await response.json();
-
-    if(!data || data.length === 0){
-      document.getElementById("loading").innerHTML = "Kenteken niet gevonden.";
-      return;
-    }
-
-    const voertuig = data[0];
-    const merk = voertuig.merk || "Onbekend merk";
-    const model = voertuig.handelsbenaming || "Onbekend model";
-    const bouwjaar = voertuig.datum_eerste_toelating
-      ? voertuig.datum_eerste_toelating.substring(0,4)
-      : "Onbekend";
-    const vermogen = voertuig.maximum_massa_trekken_ongeremd
-      ? "Niet beschikbaar"
-      : (voertuig.catalogusprijs ? "Niet gespecificeerd" : "Niet gespecificeerd");
-
-    const batteryInfo = findBatteryData(merk, model);
-    const voertuigtype = batteryInfo.battery.toLowerCase().includes("phev") || batteryInfo.battery.toLowerCase().includes("plug")
-      ? "Plug-in hybride"
-      : ((merk + " " + model).toUpperCase().includes("PHEV") ? "Plug-in hybride" : "Elektrisch of hybride");
-
-    document.getElementById("metaKenteken").textContent = kenteken;
-    document.getElementById("metaDatum").textContent = new Date().toLocaleDateString("nl-NL");
-    document.getElementById("metaVoertuig").textContent = `${merk} ${model}`;
-
-    document.getElementById("merk").textContent = merk;
-    document.getElementById("model").textContent = model;
-    document.getElementById("bouwjaar").textContent = bouwjaar;
-    document.getElementById("voertuigtype").textContent = voertuigtype;
-    document.getElementById("vermogen").textContent = vermogen;
-
-    document.getElementById("batteryCap").textContent = batteryInfo.battery;
-    document.getElementById("degradation").textContent = batteryInfo.degradation;
-    document.getElementById("healthEstimate").textContent = batteryInfo.healthEstimate;
-    document.getElementById("replacementCost").textContent = batteryInfo.replacement;
-    document.getElementById("replacementNote").textContent = "De werkelijke kosten kunnen variëren afhankelijk van gebruik, laadgedrag en accustatus.";
-    document.getElementById("riskWrap").innerHTML = renderRiskBadge(batteryInfo.risk);
-
-    const summaryShort = (batteryInfo.risk || "").toLowerCase().includes("laag")
-      ? "Relatief gunstige modelindicatie"
-      : ((batteryInfo.risk || "").toLowerCase().includes("hoog")
-        ? "Extra aandacht vóór aankoop nodig"
-        : "Accutest vóór aankoop verstandig");
-
-    document.getElementById("summaryShort").textContent = summaryShort;
-
-    document.getElementById("modelInsights").innerHTML =
-      batteryInfo.insights.map(item => `<li>• ${item}</li>`).join("");
-
-    document.getElementById("pepijnAdvice").textContent = batteryInfo.pepijn;
-    document.getElementById("summaryText").textContent = buildSummary(merk, model, batteryInfo.risk);
-
-    document.getElementById("loading").classList.add("hidden");
-    document.getElementById("report").classList.remove("hidden");
-  }catch(error){
-    document.getElementById("loading").innerHTML = "Er ging iets mis bij het laden van het rapport.";
-  }
 }
 
-loadReport();
+if(key.includes("KONA")){
+
+battery="39–64 kWh";
+degradation="10–14%";
+risk="Laag";
+
+}
+
+document.getElementById("batterySize").innerText=battery;
+
+document.getElementById("degradation").innerText=degradation;
+
+const riskEl=document.getElementById("riskLevel");
+
+riskEl.innerText=risk;
+
+riskEl.classList.remove("low","medium","high");
+
+if(risk==="Laag") riskEl.classList.add("low");
+if(risk==="Gemiddeld") riskEl.classList.add("medium");
+if(risk==="Hoog") riskEl.classList.add("high");
+
+}
+
+loadVehicle();
+
 </script>
 
 </body>
