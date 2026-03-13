@@ -728,6 +728,12 @@ box-shadow:0 10px 25px rgba(0,0,0,.25);
 .hero-cta:hover{
 opacity:.9;
 } 
+
+.cta-active{
+background:#c6a15b;
+transform:scale(1.03);
+}
+
   
 </style>
 </head>
@@ -788,7 +794,9 @@ opacity:.9;
 
         <button onclick="checkKenteken()">Check voertuig</button>
 
-        <div id="kentekenResult" style="margin-top:14px;"></div>
+       <div id="kentekenResult" style="margin-top:14px;"></div>
+
+       <div id="vehicleAdvice" style="margin-top:10px;"></div> 
 
         <div class="risk-box">
           <div class="risk-item">
@@ -1305,6 +1313,8 @@ async function checkKenteken() {
     const model = voertuig.handelsbenaming || "Onbekend model";
     const modelInfo = findModelData(merk, model);
 
+    showVehicleAdvice(merk, model);
+
     resultEl.innerHTML = `
       <div style="padding:16px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
         <div style="font-weight:900;font-size:18px;color:#0b1c2d;margin-bottom:6px;">
@@ -1436,9 +1446,48 @@ heroCTA.classList.remove("cta-active");
 
 }
 
-.cta-active{
-background:#c6a15b;
-transform:scale(1.03);
+function showVehicleAdvice(merk, model){
+
+const advice = document.getElementById("vehicleAdvice");
+
+let type = "EV of hybride";
+let message = "Voor exacte accustatus is een onafhankelijke meting nodig.";
+
+if(model.toUpperCase().includes("TESLA")){
+type = "Elektrische auto";
+message = "Tesla batterijen degraderen gemiddeld langzaam, maar controle vóór aankoop blijft verstandig.";
+}
+
+if(model.toUpperCase().includes("LEAF")){
+type = "Elektrische auto";
+message = "Oudere Nissan Leafs kunnen hogere batterijdegradatie hebben.";
+}
+
+if(model.toUpperCase().includes("X5") || model.toUpperCase().includes("PHEV")){
+type = "Plug-in hybride";
+message = "Bij plug-in hybrides is accugezondheid vaak minder zichtbaar tijdens een proefrit.";
+}
+
+advice.innerHTML = `
+<div style="
+margin-top:14px;
+padding:14px;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:12px;
+">
+
+<div style="font-weight:700;margin-bottom:6px;">
+Voertuigtype: ${type}
+</div>
+
+<div style="font-size:14px;color:#374151;">
+${message}
+</div>
+
+</div>
+`;
+
 }
   
 </script>
