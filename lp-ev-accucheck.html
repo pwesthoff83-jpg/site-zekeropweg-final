@@ -37,7 +37,7 @@ padding:0 20px;
 }
 
 h1{
-font-size:48px;
+font-size:46px;
 line-height:1.05;
 letter-spacing:-.5px;
 margin:14px 0;
@@ -51,20 +51,6 @@ margin:0 0 10px;
 p{
 color:var(--muted);
 font-weight:500;
-}
-
-.btn{
-display:inline-block;
-padding:16px 26px;
-border-radius:999px;
-background:linear-gradient(180deg,#122a44,#071423);
-color:white;
-font-weight:700;
-text-decoration:none;
-}
-
-.btn:hover{
-opacity:.92;
 }
 
 .section{
@@ -90,6 +76,20 @@ border-radius:18px;
 padding:28px;
 box-shadow:0 20px 40px rgba(0,0,0,.06);
 border:1px solid rgba(0,0,0,.06);
+}
+
+.btn{
+display:inline-block;
+padding:16px 26px;
+border-radius:999px;
+background:linear-gradient(180deg,#122a44,#071423);
+color:white;
+font-weight:700;
+text-decoration:none;
+}
+
+.btn:hover{
+opacity:.9;
 }
 
 .hero{
@@ -173,11 +173,57 @@ font-weight:800;
 color:var(--gold);
 }
 
+.hero-visual{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,.15);
+}
+
+.hero-visual img{
+width:100%;
+}
+
+.hero-visual-content{
+padding:20px;
+}
+
+.hero-visual ul{
+list-style:none;
+padding:0;
+margin:12px 0 20px;
+}
+
+.hero-visual li{
+margin-bottom:6px;
+font-weight:600;
+}
+
+.hero-cert{
+width:90px;
+margin-bottom:10px;
+}
+
+.hero-trust{
+background:#f6f7f9;
+padding:18px 0;
+border-bottom:1px solid #eee;
+}
+
+.trust-row{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+font-weight:700;
+font-size:13px;
+}
+
 .pricing{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
-margin-top:20px;
+margin-top:30px;
 }
 
 .price-card{
@@ -191,7 +237,6 @@ box-shadow:0 20px 40px rgba(0,0,0,.05);
 .price{
 font-size:32px;
 font-weight:800;
-margin:6px 0;
 }
 
 .steps{
@@ -233,6 +278,10 @@ text-decoration:none;
 box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
+@media(max-width:600px){
+.whatsapp{bottom:80px;}
+}
+
 </style>
 </head>
 
@@ -252,19 +301,15 @@ box-shadow:0 10px 25px rgba(0,0,0,.2);
 
 <p>
 De batterij is het duurste onderdeel van een elektrische auto.
-
-Met een onafhankelijke AccuCheck weet u binnen ±15 minuten
-hoe gezond de batterij werkelijk is.
+Binnen ±15 minuten weet u hoe gezond de batterij werkelijk is.
 Inclusief TÜV accucertificaat.
 </p>
 
 <div class="trust">
-
 <span>✔ TÜV accucertificaat</span>
 <span>✔ Test ±15 minuten</span>
 <span>✔ Vanaf €95</span>
 <span>✔ Regio Rotterdam</span>
-
 </div>
 
 <div class="kenteken-tool">
@@ -273,9 +318,7 @@ Inclusief TÜV accucertificaat.
 
 <p>Gebruik deze check tijdens bezichtiging of proefrit.</p>
 
-<input
-id="kentekenInput"
-placeholder="Bijv: AB123C">
+<input id="kentekenInput" placeholder="Bijv: AB123C">
 
 <button onclick="checkKenteken()">Check voertuig</button>
 
@@ -299,21 +342,21 @@ placeholder="Bijv: AB123C">
 
 </div>
 
-<div class="card">
+<div class="hero-visual">
 
-<h3>EV AccuCheck</h3>
+<img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg">
 
-<div class="price">€129</div>
+<div class="hero-visual-content">
 
-<p>Meting op locatie bij de auto</p>
+<img class="hero-cert" src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png">
+
+<h3>Onafhankelijke EV AccuCheck</h3>
 
 <ul>
-
-<li>✔ Accutest ±15 minuten</li>
-<li>✔ TÜV accucertificaat</li>
-<li>✔ Meting bij dealer of particulier</li>
-<li>✔ Direct resultaat</li>
-
+<li>✓ Meting ±15 minuten</li>
+<li>✓ TÜV accucertificaat</li>
+<li>✓ Bij dealer of particulier</li>
+<li>✓ Vanaf €95</li>
 </ul>
 
 <a class="btn" href="#">Plan AccuCheck</a>
@@ -322,43 +365,87 @@ placeholder="Bijv: AB123C">
 
 </div>
 
+</div>
+
 </section>
 
-<!-- WAAROM -->
+<!-- TRUST STRIP -->
+
+<section class="hero-trust">
+
+<div class="wrap trust-row">
+
+<div>✔ Onafhankelijke accudiagnose</div>
+<div>✔ TÜV accucertificaat</div>
+<div>✔ Meting ±15 minuten</div>
+<div>✔ Regio Rotterdam</div>
+
+</div>
+
+</section>
+
+<!-- WAAROM ZEKEROPWEG -->
 
 <section class="section">
 
 <div class="wrap">
 
-<h2>Waarom een AccuCheck vóór aankoop</h2>
+<h2>Waarom ZekerOpWeg</h2>
 
 <p>
-De accustatus van een EV is niet zichtbaar tijdens een proefrit.
-Toch bepaalt de batterij grotendeels de waarde van de auto.
+Onafhankelijke aankoopchecks voor elektrische auto's.
+Geen verkooppraat — alleen duidelijke technische informatie.
 </p>
 
 <div class="grid grid-2">
 
 <div class="card">
 
-<h3>Voorkom een miskoop</h3>
+<h3>Onafhankelijk advies</h3>
 
-<p>
-Een versleten batterij kan duizenden euro’s kosten.
-Een accutest voorkomt verrassingen.
-</p>
+<p>Geen belang bij verkoop van de auto.
+Alleen objectieve informatie over de batterij.</p>
 
 </div>
 
 <div class="card">
 
-<h3>Onderhandelen met feiten</h3>
+<h3>Voorkom miskoop</h3>
 
-<p>
-Met een accucertificaat kunt u de prijs
-van de auto beter beoordelen en onderhandelen.
-</p>
+<p>Een versleten batterij kan duizenden euro’s kosten.
+Een accutest voorkomt verrassingen.</p>
 
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- WAT ONTVANG JE -->
+
+<section class="section" style="background:#f6f7f9">
+
+<div class="wrap">
+
+<h2>Wat u ontvangt na de AccuCheck</h2>
+
+<div class="steps">
+
+<div class="step">
+<h3>Accugezondheid</h3>
+<p>Exact State of Health percentage van de batterij.</p>
+</div>
+
+<div class="step">
+<h3>TÜV accucertificaat</h3>
+<p>Professioneel document met batterijanalyse.</p>
+</div>
+
+<div class="step">
+<h3>Duidelijke uitleg</h3>
+<p>U krijgt toelichting en advies voor de aankoop.</p>
 </div>
 
 </div>
@@ -369,7 +456,7 @@ van de auto beter beoordelen en onderhandelen.
 
 <!-- HOE HET WERKT -->
 
-<section class="section" style="background:#f6f7f9">
+<section class="section">
 
 <div class="wrap">
 
@@ -378,36 +465,18 @@ van de auto beter beoordelen en onderhandelen.
 <div class="steps">
 
 <div class="step">
-
 <h3>1. Intake</h3>
-
-<p>
-U geeft aan om welke EV het gaat
-en waar de auto staat.
-</p>
-
+<p>U geeft aan om welke EV het gaat.</p>
 </div>
 
 <div class="step">
-
 <h3>2. Meting</h3>
-
-<p>
-De batterij wordt professioneel gemeten
-met AVILOO diagnose apparatuur.
-</p>
-
+<p>Professionele batterijdiagnose met AVILOO apparatuur.</p>
 </div>
 
 <div class="step">
-
 <h3>3. Resultaat</h3>
-
-<p>
-U ontvangt een TÜV accucertificaat
-met de gemeten accugezondheid.
-</p>
-
+<p>Direct inzicht in accugezondheid en certificaat.</p>
 </div>
 
 </div>
@@ -423,6 +492,11 @@ met de gemeten accugezondheid.
 <div class="wrap">
 
 <h2>AccuCheck prijzen</h2>
+
+<p style="font-weight:650;margin-bottom:20px;">
+Kiest u voor de voordeligste optie in Barendrecht
+of voor een meting op locatie bij de auto?
+</p>
 
 <div class="pricing">
 
@@ -456,20 +530,12 @@ met de gemeten accugezondheid.
 
 </section>
 
-<!-- FOOTER -->
-
 <div class="footer">
-
 © 2026 ZekerOpWeg
-
 </div>
 
-<a
-href="https://wa.me/31623452349"
-class="whatsapp">
-
+<a href="https://wa.me/31623452349" class="whatsapp">
 WhatsApp plannen
-
 </a>
 
 <script>
