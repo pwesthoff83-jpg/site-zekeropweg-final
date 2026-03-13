@@ -96,12 +96,15 @@
     }
     .btn-primary:hover{opacity:.96}
 
-    .hero{
-      background: radial-gradient(900px 380px at 20% 20%, rgba(198,161,91,.18), transparent 60%),
-                  linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      color:#fff;
-      padding:64px 0 44px;
-    }
+   .hero{
+  background: radial-gradient(900px 380px at 20% 20%, rgba(198,161,91,.18), transparent 60%),
+              linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color:#fff;
+
+  padding:64px 0 110px;
+
+  position:relative;
+}
     
    .hero-grid{
   display:grid;
@@ -142,12 +145,16 @@
       h1{font-size:36px}
     }
 
-    .lead{
-      font-size:18px;
-      color: rgba(255,255,255,.86);
-      margin:0 0 18px;
-      max-width:56ch;
-    }
+   .lead{
+font-size:18px;
+color: rgba(255,255,255,.86);
+
+margin:0 0 24px;
+
+max-width:52ch;
+
+line-height:1.65;
+}
 
     .value-row{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -891,6 +898,118 @@ WhatsApp direct met accudiagnose specialist
   color:#25D366;
   text-decoration:none;
 }
+
+ .hero-trust{
+
+background:#f6f7f9;
+
+padding:18px 0;
+
+border-top:1px solid rgba(0,0,0,.04);
+border-bottom:1px solid rgba(0,0,0,.04);
+
+}
+
+.trust-row{
+
+display:flex;
+
+justify-content:center;
+gap:28px;
+
+flex-wrap:wrap;
+
+font-size:13px;
+font-weight:700;
+
+color:#374151;
+
+}
+
+.trust-item{
+
+display:flex;
+align-items:center;
+gap:6px;
+
+} 
+
+.battery-risk-box{
+
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+background:#ffffff;
+
+border-radius:12px;
+
+padding:14px 16px;
+
+margin-top:14px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+border:1px solid rgba(0,0,0,.05);
+
+}
+
+.risk-item{
+
+text-align:center;
+flex:1;
+
+}
+
+.risk-title{
+
+font-size:12px;
+
+font-weight:700;
+
+color:#6b7280;
+
+}
+
+.risk-price{
+
+font-size:20px;
+
+font-weight:900;
+
+color:#0b1c2d;
+
+margin-top:2px;
+
+}
+
+.risk-price.gold{
+
+color:#c6a15b;
+
+}
+
+.risk-note{
+
+font-size:11px;
+
+color:#6b7280;
+
+}
+
+.risk-divider{
+
+width:1px;
+
+height:36px;
+
+background:#e5e7eb;
+
+margin:0 10px;
+
+}
+  
 </style>
 
 
@@ -899,14 +1018,15 @@ WhatsApp direct met accudiagnose specialist
     <div class="wrap hero-grid">
       <div>
         <div class="badge"><i></i> Voor EV en plug in hybride vóór aankoop</div>
-        <h1>EV kopen? Laat eerst de batterij controleren</h1>
-     <p class="lead">
-       De batterij is het duurste onderdeel van een EV of plug-in hybride.
-       Een versleten batterij kan duizenden euro’s kosten.
+      <h1>EV kopen? Controleer eerst de batterij</h1>
 
-      Binnen ±15 minuten weet u de werkelijke accustatus inclusief TÜV accucertificaat.
-      Zo voorkomt u een miskoop vóórdat u tekent.
-     </p>
+<p class="lead">
+De batterij is het duurste onderdeel van een elektrische auto.
+Een versleten batterij kan duizenden euro’s kosten.
+
+Binnen ±15 minuten weet u de werkelijke accustatus
+inclusief TÜV accucertificaat.
+</p>
 
  <script>
 
@@ -1093,7 +1213,14 @@ Binnen 10 seconden weet u of een accutest mogelijk is
 Voor elektrische auto's en plug-in hybrides
 </div>
   
-  <div style="max-width:420px;background:#fff;padding:18px;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.08);">
+<div style="
+max-width:420px;
+background:#fff;
+padding:22px;
+border-radius:16px;
+box-shadow:0 20px 45px rgba(0,0,0,.15);
+border:1px solid rgba(0,0,0,.04);
+"> 
   
   <div style="font-weight:800;font-size:16px;margin-bottom:10px;">
    Controleer direct of deze EV of plug/in hybride getest kan worden 
@@ -1121,7 +1248,31 @@ oninput="autoCheckKenteken()"
   </button>
 
   <div id="kentekenResult" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
+  <div class="battery-risk-box">
 
+<div class="risk-item">
+
+<div class="risk-title">Batterij vervangen</div>
+
+<div class="risk-price">€8.000 – €20.000</div>
+
+<div class="risk-note">Gemiddelde kosten EV batterij</div>
+
+</div>
+
+<div class="risk-divider"></div>
+
+<div class="risk-item">
+
+<div class="risk-title">AccuCheck</div>
+
+<div class="risk-price gold">€95</div>
+
+<div class="risk-note">Voorkomt dure miskoop</div>
+
+</div>
+
+</div>
 </div>
 
 <div style="background:#0b1c2d;color:white;padding:20px;border-radius:14px;margin:24px auto 0 auto;text-align:center;max-width:520px;">        
@@ -1161,7 +1312,7 @@ AccuCheck €129
          ⚡ Vandaag vaak nog mogelijk in regio Rotterdam
          </div>
          
-      <a class="btn btn-primary" href="#instap-accucheck">Plan AccuCheck</a>
+      <a class="btn btn-primary" href="#instap-accucheck">Plan AccuCheck vanaf €95</a>
 
       <div style="margin-top:12px; font-weight:650; color:rgba(255,255,255,.82); font-size:13px;">
        Accutest in ±15 minuten • TÜV accucertificaat • Meting bij de auto mogelijk • Vaak vandaag mogelijk regio Rotterdam
@@ -1179,10 +1330,10 @@ AccuCheck €129
           <div class="pill">TÜV accucertificaat</div>
         </div>
 
-       <div style="margin:16px auto 0 auto; opacity:.9; font-size:13px; font-weight:700; text-align:center; max-width:520px;">
-          Liever eerst lezen hoe het werkt? <a class="mini-link" href="#hoe-het-werkt">Bekijk stappen</a>
-        </div>
-      </div>
+    <div style="margin:24px auto 0 auto; opacity:.9; font-size:13px; font-weight:700; text-align:center; max-width:520px;">
+     Liever eerst zien hoe het werkt?
+    <a class="mini-link" href="#hoe-het-werkt">Bekijk stappen</a>
+    </div>
 
       <div class="hero-card">
         <h3>Dit ontvangt u</h3>
@@ -1209,21 +1360,32 @@ AccuCheck €129
     </div>
   </section>
 
-<div style="margin-top:12px;font-size:12px;color:#6b7280;font-weight:600;">
-✔ Meer dan 95% van alle EV's en plug-in hybrides kan getest worden  
-✔ Accutest duurt ±15 minuten  
+<section class="hero-trust">
+<div class="wrap">
+
+<div class="trust-row">
+
+<div class="trust-item">
+✔ Meer dan 95% van EV en plug in hybrides testbaar
+</div>
+
+<div class="trust-item">
+✔ Accutest ±15 minuten
+</div>
+
+<div class="trust-item">
 ✔ TÜV accucertificaat
 </div>
-  
-<div style="margin-top:14px;font-size:13px;color:#374151;font-weight:600;">
-Gemiddelde batterijvervanging EV: €8.000 – €20.000  
-Een accutest vanaf €95 voorkomt een dure miskoop.
+
+<div class="trust-item">
+✔ Regio Rotterdam en op locatie
 </div>
- 
-  <div style="margin-top:6px;font-size:12px;color:#6b7280;">
-Veel kopers laten de AccuCheck uitvoeren tijdens de bezichtiging of proefrit.
-</div> 
- 
+
+</div>
+
+</div>
+</section>
+  
   <section style="background:#fff;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);">
 <div class="wrap" style="text-align:center;max-width:720px;">
 
