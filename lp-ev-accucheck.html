@@ -711,6 +711,23 @@ padding:12px 22px;
 border-radius:999px;
 font-weight:700;
 }
+
+.hero-cta{
+display:inline-block;
+margin-top:18px;
+background:#c6a15b;
+color:white;
+padding:14px 26px;
+border-radius:999px;
+font-weight:700;
+text-decoration:none;
+font-size:16px;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.hero-cta:hover{
+opacity:.9;
+} 
   
 </style>
 </head>
@@ -721,7 +738,9 @@ font-weight:700;
     
   <a href="index.html" class="lp-logo">Zeker<span>Op</span>Weg</a>
     
-  <a href="#prijzen" class="top-cta">Plan AccuCheck € 95</a>  
+  <a href="#prijzen" class="hero-cta" id="heroCTA">
+   Plan AccuCheck €95
+  </a>
   
   </div>
 </header>
@@ -739,6 +758,10 @@ font-weight:700;
         Binnen ±15 minuten weet u hoe gezond de batterij werkelijk is.
         Inclusief TÜV accucertificaat.
       </p>
+
+      <a href="#prijzen" class="hero-cta">
+       Plan AccuCheck €95
+      </a>
 
       <div class="trust">
         <span>✔ TÜV accucertificaat</span>
@@ -1383,6 +1406,30 @@ function calculateBatteryRisk() {
     </div>
   `;
 }
+
+const heroCTA = document.getElementById("heroCTA");
+const kentekenInput = document.getElementById("kentekenInput");
+
+if(heroCTA && kentekenInput){
+
+kentekenInput.addEventListener("input", function(){
+
+let value = kentekenInput.value.replace(/[^A-Za-z0-9]/g,"");
+
+if(value.length >= 6){
+
+heroCTA.textContent = "Plan AccuCheck voor deze auto";
+
+} else {
+
+heroCTA.textContent = "Plan AccuCheck €95";
+
+}
+
+});
+
+}  
+  
 </script>
 
 </body>
