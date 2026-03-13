@@ -26,6 +26,7 @@ margin:0;
 font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
 color:var(--text);
 line-height:1.6;
+background:white;
 }
 
 .wrap{
@@ -34,56 +35,41 @@ margin:auto;
 padding:0 20px;
 }
 
-h1{
-font-size:46px;
-line-height:1.05;
-margin:14px 0;
-}
+/* TOPBAR */
 
-h2{
-font-size:32px;
-margin:0 0 10px;
-}
-
-.section{
-padding:80px 0;
-}
-
-.grid{
-display:grid;
-gap:30px;
-}
-
-.grid-2{
-grid-template-columns:1fr 1fr;
-}
-
-@media(max-width:900px){
-.grid-2{grid-template-columns:1fr;}
-}
-
-.card{
+.topbar{
 background:white;
-border-radius:18px;
-padding:28px;
-box-shadow:0 20px 40px rgba(0,0,0,.06);
-border:1px solid rgba(0,0,0,.06);
+border-bottom:1px solid #eee;
+padding:16px 0;
 }
 
-.btn{
-display:inline-block;
-padding:14px 24px;
-border-radius:999px;
-background:linear-gradient(180deg,#122a44,#071423);
-color:white;
-font-weight:700;
-text-decoration:none;
+.logo{
+height:40px;
 }
+
+/* HERO */
 
 .hero{
 background:linear-gradient(135deg,var(--navy),var(--navy2));
 color:white;
 padding:90px 0;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+@media(max-width:900px){
+.hero-grid{grid-template-columns:1fr;}
+}
+
+h1{
+font-size:46px;
+line-height:1.1;
+margin:14px 0;
 }
 
 .badge{
@@ -98,14 +84,26 @@ font-size:13px;
 display:flex;
 gap:18px;
 flex-wrap:wrap;
-margin-top:16px;
+margin-top:18px;
 font-size:13px;
 }
+
+.hero-image{
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 30px 70px rgba(0,0,0,.3);
+}
+
+.hero-image img{
+width:100%;
+}
+
+/* TOOL */
 
 .kenteken-tool{
 background:white;
 border-radius:16px;
-padding:22px;
+padding:24px;
 margin-top:24px;
 color:#111;
 box-shadow:0 20px 40px rgba(0,0,0,.2);
@@ -131,9 +129,23 @@ border-radius:8px;
 cursor:pointer;
 }
 
-.hero-trust{
+.btn{
+display:inline-block;
+margin-top:12px;
+padding:14px 22px;
+border-radius:999px;
+background:linear-gradient(180deg,#122a44,#071423);
+color:white;
+font-weight:700;
+text-decoration:none;
+}
+
+/* TRUST BAR */
+
+.trustbar{
 background:#f6f7f9;
 padding:18px 0;
+border-bottom:1px solid #eee;
 }
 
 .trust-row{
@@ -145,12 +157,31 @@ font-weight:700;
 font-size:13px;
 }
 
+/* SECTIONS */
+
+.section{
+padding:80px 0;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:26px;
+box-shadow:0 20px 40px rgba(0,0,0,.06);
+border:1px solid rgba(0,0,0,.06);
+max-width:520px;
+}
+
+/* FOOTER */
+
 .footer{
 text-align:center;
 padding:40px 0;
 font-size:13px;
 border-top:1px solid #eee;
 }
+
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -170,11 +201,23 @@ box-shadow:0 10px 25px rgba(0,0,0,.2);
 
 <body>
 
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="wrap">
+
+<img src="/assets/images/zekeropweg-logo.png" class="logo">
+
+</div>
+
+</div>
+
 <!-- HERO -->
 
 <section class="hero">
 
-<div class="wrap grid grid-2">
+<div class="wrap hero-grid">
 
 <div>
 
@@ -203,21 +246,15 @@ Inclusief TÜV accucertificaat.
 
 <button onclick="checkKenteken()">Check voertuig</button>
 
-<div id="kentekenResult" style="margin-top:12px;"></div>
+<div id="kentekenResult"></div>
 
 </div>
 
 </div>
 
-<div class="card">
+<div class="hero-image">
 
-<h3>EV AccuCheck</h3>
-
-<p>✔ Meting ±15 minuten</p>
-<p>✔ TÜV accucertificaat</p>
-<p>✔ Vanaf €95</p>
-
-<a class="btn" href="#">Plan AccuCheck</a>
+<img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg">
 
 </div>
 
@@ -225,30 +262,30 @@ Inclusief TÜV accucertificaat.
 
 </section>
 
-<!-- TRUST STRIP -->
+<!-- TRUST BAR -->
 
-<section class="hero-trust">
+<section class="trustbar">
 
 <div class="wrap trust-row">
 
 <div>✔ Onafhankelijke accudiagnose</div>
 <div>✔ TÜV accucertificaat</div>
 <div>✔ Meting ±15 minuten</div>
-<div>✔ 95% EV testbaar</div>
+<div>✔ 95% van EV's testbaar</div>
 
 </div>
 
 </section>
 
-<!-- TOOL 2 AI ACCUSTATUS -->
+<!-- TOOL 2 -->
 
-<section class="section soft">
+<section class="section">
 
 <div class="wrap">
 
-<h2>EV Accustatus Checker</h2>
+<h2>AI EV Accustatus Checker</h2>
 
-<div class="card" style="max-width:500px">
+<div class="card">
 
 <input id="aiKenteken" placeholder="Voer kenteken in">
 
@@ -264,7 +301,7 @@ Controleer accustatus indicatie
 
 </section>
 
-<!-- TOOL 3 BATTERIJ RISICO -->
+<!-- TOOL 3 -->
 
 <section class="section">
 
@@ -272,7 +309,7 @@ Controleer accustatus indicatie
 
 <h2>Wat kost een versleten EV batterij?</h2>
 
-<div class="card" style="max-width:500px">
+<div class="card">
 
 <label>Auto waarde (€)</label>
 <input id="carValue">
@@ -302,7 +339,7 @@ WhatsApp plannen
 
 <script>
 
-/* RDW kenteken check */
+/* RDW CHECK */
 
 async function checkKenteken(){
 
@@ -314,14 +351,17 @@ let r=await fetch(url)
 let d=await r.json()
 
 if(d.length===0){
+
 document.getElementById("kentekenResult").innerHTML="Kenteken niet gevonden"
 return
+
 }
 
 let voertuig=d[0]
 
 document.getElementById("kentekenResult").innerHTML=
-"<b>"+voertuig.merk+" "+voertuig.handelsbenaming+"</b><br><br><a class='btn'>Plan AccuCheck</a>"
+
+"<b>"+voertuig.merk+" "+voertuig.handelsbenaming+"</b><br><a class='btn'>Plan AccuCheck</a>"
 
 }
 
@@ -338,7 +378,7 @@ if(v.length>5) checkKenteken()
 
 }
 
-/* AI checker */
+/* AI CHECK */
 
 function aiBatteryCheck(){
 
@@ -352,11 +392,11 @@ return
 }
 
 document.getElementById("aiResult").innerHTML=
-"Indicatie accustatus waarschijnlijk tussen <b>85-95%</b>.<br><br><a class='btn'>Plan AccuCheck</a>"
+"Indicatie accustatus waarschijnlijk tussen <b>85-95%</b>.<br><a class='btn'>Plan AccuCheck</a>"
 
 }
 
-/* batterij risico */
+/* BATTERY RISK */
 
 function calculateBatteryRisk(){
 
