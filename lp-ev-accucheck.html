@@ -1414,21 +1414,32 @@ if(heroCTA && kentekenInput){
 
 kentekenInput.addEventListener("input", function(){
 
-let value = kentekenInput.value.replace(/[^A-Za-z0-9]/g,"");
+let kenteken = kentekenInput.value
+.replace(/[^A-Za-z0-9]/g,"")
+.toUpperCase();
 
-if(value.length >= 6){
+if(kenteken.length >= 6){
 
-heroCTA.textContent = "Plan AccuCheck voor deze auto";
+heroCTA.textContent = "Plan AccuCheck voor " + kenteken;
 
-} else {
+heroCTA.classList.add("cta-active");
+
+}else{
 
 heroCTA.textContent = "Plan AccuCheck €95";
+
+heroCTA.classList.remove("cta-active");
 
 }
 
 });
 
-}  
+}
+
+.cta-active{
+background:#c6a15b;
+transform:scale(1.03);
+}
   
 </script>
 
