@@ -786,23 +786,22 @@ transform:scale(1.03);
         <p>Gebruik deze check tijdens bezichtiging of proefrit.</p>
 
         <input
-          id="kentekenInput"
-          type="text"
-          placeholder="Bijv: AB123C"
-          oninput="autoCheckKenteken()"
-        />
+  id="kentekenInput"
+  type="text"
+  placeholder="Bijv: AB123C"
+  oninput="autoCheckKenteken()"
+/>
 
-        <button onclick="checkKenteken()">Check voertuig</button>
+<button type="button" onclick="autoCheckKenteken()">Check voertuig</button>
 
-       <div id="kentekenResult" style="margin-top:14px;"></div>
+<div id="kentekenResult" style="margin-top:14px;"></div>
 
-       <div id="vehicleAdvice" style="margin-top:10px;"></div> 
-
-        <div class="risk-box">
-          <div class="risk-item">
-            <div class="risk-title">Batterij vervangen</div>
-            <div class="risk-price">€8.000 – €20.000</div>
-          </div>
+<div class="risk-box">
+  <div class="risk-item">
+    <div class="risk-title">Batterij vervangen</div>
+    <div class="risk-price">€8.000 tot €20.000</div>
+  </div>
+       
           <div class="risk-item">
             <div class="risk-title">AccuCheck</div>
             <div class="risk-price gold">€95</div>
@@ -1171,455 +1170,230 @@ transform:scale(1.03);
 </a>
 
 <script>
-const batteryDatabase = {
-
-"TESLA MODEL 3":{
-battery:"55-82 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"TESLA MODEL Y":{
-battery:"60-82 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"TESLA MODEL S":{
-battery:"60-100 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"TESLA MODEL X":{
-battery:"75-100 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"NISSAN LEAF":{
-battery:"24-62 kWh",
-degradation:"15-25%",
-risk:"Gemiddeld tot hoog"
-},
-
-"AUDI E-TRON":{
-battery:"71-114 kWh",
-degradation:"10-16%",
-risk:"Gemiddeld"
-},
-
-"AUDI Q4":{
-battery:"52-77 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"AUDI Q8":{
-battery:"95-114 kWh",
-degradation:"10-16%",
-risk:"Gemiddeld"
-},
-
-"AUDI Q7":{
-battery:"17-26 kWh (PHEV)",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"BMW I3":{
-battery:"22-42 kWh",
-degradation:"15-25%",
-risk:"Gemiddeld"
-},
-
-"BMW I4":{
-battery:"70-84 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"BMW IX":{
-battery:"76-112 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"BMW IX3":{
-battery:"80 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"BMW X5":{
-battery:"24-29 kWh (PHEV)",
-degradation:"10-16%",
-risk:"Gemiddeld"
-},
-
-"HYUNDAI KONA":{
-battery:"39-65 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"HYUNDAI IONIQ":{
-battery:"28-84 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"KIA EV6":{
-battery:"58-84 kWh",
-degradation:"10-15%",
-risk:"Laag"
-},
-
-"KIA NIRO":{
-battery:"39-65 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"KIA EV9":{
-battery:"100 kWh",
-degradation:"10-15%",
-risk:"Laag"
-},
-
-"VOLKSWAGEN ID.3":{
-battery:"45-77 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"VOLKSWAGEN ID.4":{
-battery:"52-77 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"VOLKSWAGEN ID.5":{
-battery:"77 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"VOLKSWAGEN ID.7":{
-battery:"77-86 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"VOLKSWAGEN ID BUZZ":{
-battery:"77-86 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"SKODA ENYAQ":{
-battery:"52-77 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"RENAULT ZOE":{
-battery:"22-52 kWh",
-degradation:"15-25%",
-risk:"Gemiddeld"
-},
-
-"RENAULT MEGANE":{
-battery:"40-60 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"PEUGEOT E-208":{
-battery:"50-54 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"PEUGEOT E-2008":{
-battery:"50-54 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"VOLVO XC40":{
-battery:"69-82 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"VOLVO C40":{
-battery:"69-82 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"PORSCHE TAYCAN":{
-battery:"71-97 kWh",
-degradation:"8-12%",
-risk:"Laag"
-},
-
-"POLESTAR 2":{
-battery:"64-82 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"FORD MUSTANG MACH-E":{
-battery:"70-99 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-},
-
-"MG4":{
-battery:"51-77 kWh",
-degradation:"10-16%",
-risk:"Gemiddeld"
-},
-
-"MG ZS":{
-battery:"45-72 kWh",
-degradation:"10-16%",
-risk:"Gemiddeld"
-},
-
-"BYD ATTO":{
-battery:"50-60 kWh",
-degradation:"10-14%",
-risk:"Laag"
-},
-
-"TOYOTA BZ4X":{
-battery:"71 kWh",
-degradation:"10-15%",
-risk:"Gemiddeld"
-}
-
+const batterijDegradatie = {
+  TESLA: "8–15%",
+  BMW: "10–16%",
+  AUDI: "10–16%",
+  VOLKSWAGEN: "10–16%",
+  VOLVO: "10–16%",
+  PORSCHE: "8–14%",
+  HYUNDAI: "8–14%",
+  KIA: "8–14%",
+  MERCEDES: "10–18%",
+  "MERCEDES-BENZ": "10–18%",
+  NISSAN: "12–20%",
+  RENAULT: "12–20%",
+  PEUGEOT: "10–16%",
+  OPEL: "10–16%",
+  MG: "10–18%",
+  BYD: "8–14%",
+  SKODA: "10–16%",
+  CUPRA: "10–16%",
+  SEAT: "10–16%",
+  TOYOTA: "8–14%",
+  CITROEN: "10–16%",
+  FIAT: "10–16%",
+  FORD: "10–16%",
+  MINI: "10–16%",
+  LEXUS: "8–14%",
+  JAGUAR: "10–16%",
+  "LAND ROVER": "10–18%",
+  MAZDA: "10–16%",
+  MITSUBISHI: "10–16%",
+  SUBARU: "10–16%",
+  HONDA: "10–16%",
+  GENESIS: "10–16%",
+  CADILLAC: "10–18%",
+  CHEVROLET: "10–18%",
+  GMC: "10–18%",
+  XPENG: "8–14%"
 };
 
-function getBatteryData(merk,model){
-
-let key=(merk+" "+model).toUpperCase();
-
-for(let car in batteryDatabase){
-
-if(key.includes(car)){
-
-return batteryDatabase[car];
-
-}
-
-}
-
-return null;
-
-}
-  
-const evModelData = {
-  "TESLA MODEL 3": {
-    type: "EV",
-    battery: "55–82 kWh",
-    degradation: "8–12%",
-    risk: "Laag",
-    note: "Tesla Model 3 staat bekend om relatief lage batterijdegradatie."
-  },
-  "TESLA MODEL Y": {
-    type: "EV",
-    battery: "60–82 kWh",
-    degradation: "8–12%",
-    risk: "Laag",
-    note: "Modern batterijmanagement zorgt voor stabiele degradatie."
-  },
-  "HYUNDAI KONA": {
-    type: "EV",
-    battery: "39–64 kWh",
-    degradation: "10–14%",
-    risk: "Laag tot gemiddeld",
-    note: "Goede batterijduur, vroege bouwjaren verdienen extra aandacht."
-  },
-  "KIA E-NIRO": {
-    type: "EV",
-    battery: "39–64 kWh",
-    degradation: "10–15%",
-    risk: "Laag tot gemiddeld",
-    note: "Over het algemeen stabiele batterijconditie."
-  },
-  "NISSAN LEAF": {
-    type: "EV",
-    battery: "24–62 kWh",
-    degradation: "15–25%",
-    risk: "Gemiddeld tot hoog",
-    note: "Oudere Nissan Leafs hebben vaker hogere degradatie."
-  },
-  "AUDI E-TRON": {
-    type: "EV",
-    battery: "71–95 kWh",
-    degradation: "10–16%",
-    risk: "Gemiddeld",
-    note: "Grote batterij, maar gewicht beïnvloedt slijtage."
-  },
-  "VOLKSWAGEN ID.4": {
-    type: "EV",
-    battery: "52–77 kWh",
-    degradation: "10–15%",
-    risk: "Gemiddeld",
-    note: "Normale degradatie voor moderne EV-platformen."
-  },
-  "BMW X5 XDRIVE45E": {
-    type: "Plug-in hybride",
-    battery: "24 kWh",
-    degradation: "10–16%",
-    risk: "Gemiddeld",
-    note: "PHEV-accu is kleiner, maar accustatus blijft belangrijk bij aankoop."
-  },
-  "MERCEDES-BENZ CLA": {
-    type: "Plug-in hybride / EV variant afhankelijk van uitvoering",
-    battery: "Modelafhankelijk",
-    degradation: "10–18%",
-    risk: "Gemiddeld",
-    note: "Exacte accudata hangt af van uitvoering en bouwjaar."
-  }
+const batterijRisico = {
+  TESLA: "€12.000 tot €20.000",
+  BMW: "€9.000 tot €18.000",
+  AUDI: "€12.000 tot €22.000",
+  VOLKSWAGEN: "€8.000 tot €16.000",
+  VOLVO: "€12.000 tot €20.000",
+  PORSCHE: "€20.000 tot €35.000",
+  HYUNDAI: "€8.000 tot €15.000",
+  KIA: "€8.000 tot €15.000",
+  MERCEDES: "€12.000 tot €22.000",
+  "MERCEDES-BENZ": "€12.000 tot €22.000",
+  NISSAN: "€7.000 tot €14.000",
+  RENAULT: "€7.000 tot €13.000",
+  PEUGEOT: "€8.000 tot €14.000",
+  OPEL: "€8.000 tot €14.000",
+  MG: "€8.000 tot €15.000",
+  BYD: "€9.000 tot €16.000",
+  SKODA: "€8.000 tot €16.000",
+  CUPRA: "€9.000 tot €17.000",
+  SEAT: "€8.000 tot €16.000",
+  TOYOTA: "€8.000 tot €15.000",
+  CITROEN: "€8.000 tot €14.000",
+  FIAT: "€8.000 tot €14.000",
+  FORD: "€9.000 tot €17.000",
+  MINI: "€8.000 tot €16.000",
+  LEXUS: "€9.000 tot €17.000",
+  JAGUAR: "€12.000 tot €22.000",
+  "LAND ROVER": "€12.000 tot €24.000",
+  MAZDA: "€8.000 tot €15.000",
+  MITSUBISHI: "€8.000 tot €15.000",
+  SUBARU: "€8.000 tot €15.000",
+  HONDA: "€8.000 tot €15.000",
+  GENESIS: "€10.000 tot €18.000",
+  CADILLAC: "€12.000 tot €22.000",
+  CHEVROLET: "€10.000 tot €18.000",
+  GMC: "€12.000 tot €22.000",
+  XPENG: "€10.000 tot €18.000"
 };
 
-  function normalizeVehicleKey(merk, model) {
-  return `${(merk || "").trim()} ${(model || "").trim()}`
-    .replace(/\s+/g, " ")
-    .toUpperCase();
-}
-
-function findModelData(merk, model) {
-  const key = normalizeVehicleKey(merk, model);
-
-  if (evModelData[key]) return evModelData[key];
-
-  for (const dbKey in evModelData) {
-    if (key.includes(dbKey) || dbKey.includes(key)) {
-      return evModelData[dbKey];
-    }
-  }
-
-  const upperMerk = (merk || "").toUpperCase();
-  const upperModel = (model || "").toUpperCase();
-
-  if (upperMerk.includes("TESLA")) {
-    return {
-      type: "EV",
-      battery: "Modelafhankelijk",
-      degradation: "8–12%",
-      risk: "Laag",
-      note: "Tesla-modellen hebben doorgaans relatief stabiele batterijprestaties."
-    };
-  }
-
-  if (upperModel.includes("HYBRID") || upperModel.includes("PHEV")) {
-    return {
-      type: "Plug-in hybride",
-      battery: "Modelafhankelijk",
-      degradation: "10–18%",
-      risk: "Gemiddeld",
-      note: "Bij plug-in hybrides is accustatus vaak minder zichtbaar bij een proefrit."
-    };
-  }
-
-  return {
-    type: "EV of hybride",
-    battery: "Nog onbekend",
-    degradation: "10–18%",
-    risk: "Gemiddeld",
-    note: "Voor exacte accustatus is een onafhankelijke meting nodig."
-  };
-}
+const ondersteundeMerken = [
+  "TESLA",
+  "BMW",
+  "AUDI",
+  "VOLKSWAGEN",
+  "VOLVO",
+  "PORSCHE",
+  "HYUNDAI",
+  "KIA",
+  "MERCEDES",
+  "MERCEDES-BENZ",
+  "SKODA",
+  "CUPRA",
+  "SEAT",
+  "TOYOTA",
+  "NISSAN",
+  "RENAULT",
+  "PEUGEOT",
+  "OPEL",
+  "CITROEN",
+  "FIAT",
+  "FORD",
+  "BYD",
+  "MG",
+  "MINI",
+  "LEXUS",
+  "JAGUAR",
+  "LAND ROVER",
+  "MAZDA",
+  "MITSUBISHI",
+  "SUBARU",
+  "HONDA",
+  "GENESIS",
+  "CADILLAC",
+  "CHEVROLET",
+  "GMC",
+  "XPENG"
+];
 
 async function checkKenteken() {
-  const resultEl = document.getElementById("kentekenResult");
-  const rawKenteken = document.getElementById("kentekenInput").value || "";
-  const kenteken = rawKenteken.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
-  const batteryInfo = getBatteryData(merk,model);
+  const resultBox = document.getElementById("kentekenResult");
+  const input = document.getElementById("kentekenInput");
 
-let batteryHTML="";
+  if (!resultBox || !input) return;
 
-if(batteryInfo){
+  const kenteken = input.value.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
 
-batteryHTML=`
-
-<div style="margin-top:12px;padding:12px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;">
-
-<div><b>Batterij capaciteit:</b> ${batteryInfo.battery}</div>
-
-<div><b>Gemiddelde degradatie:</b> ${batteryInfo.degradation}</div>
-
-<div><b>Risico:</b> ${batteryInfo.risk}</div>
-
-</div>
-
-`;
-
-}
-  
-  if (kenteken.length < 6) {
-    resultEl.innerHTML = "<div style='color:#b91c1c;font-weight:800;'>Voer een geldig kenteken in.</div>";
+  if (!kenteken) {
+    resultBox.innerHTML = "";
     return;
   }
 
-  resultEl.innerHTML = "<div style='color:#6b7280;font-weight:700;'>Bezig met controleren...</div>";
+  resultBox.innerHTML = `
+    <div style="margin-top:12px;padding:14px;background:#f6f7f9;border:1px solid #e5e7eb;border-radius:10px;color:#0b1c2d;">
+      Voertuig wordt gecontroleerd...
+    </div>
+  `;
 
   try {
     const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + kenteken;
     const response = await fetch(url);
     const data = await response.json();
 
-    if (!data || data.length === 0) {
-      resultEl.innerHTML = "<div style='color:#b91c1c;font-weight:800;'>Kenteken niet gevonden.</div>";
+    if (!Array.isArray(data) || data.length === 0) {
+      resultBox.innerHTML = `
+        <div style="margin-top:12px;padding:14px;background:#fff4f4;border:1px solid #f3caca;border-radius:10px;color:#7f1d1d;">
+          Kenteken niet gevonden.
+        </div>
+      `;
       return;
     }
 
     const voertuig = data[0];
-    const merk = voertuig.merk || "Onbekend merk";
-    const model = voertuig.handelsbenaming || "Onbekend model";
-    const modelInfo = findModelData(merk, model);
+    const merk = (voertuig.merk || "").trim();
+    const model = (voertuig.handelsbenaming || "").trim();
+    const brandstof = (voertuig.brandstof_omschrijving || "").trim();
+    const merkUpper = merk.toUpperCase();
 
-    showVehicleAdvice(merk, model);
+    const ondersteund = ondersteundeMerken.includes(merkUpper);
+    const degradatie = batterijDegradatie[merkUpper] || "10–18%";
+    const batterijKosten = batterijRisico[merkUpper] || "€8.000 tot €18.000";
 
-    resultEl.innerHTML = `
-      <div style="padding:16px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
-        <div style="font-weight:900;font-size:18px;color:#0b1c2d;margin-bottom:6px;">
-          ${merk} ${model}
-          ${batteryHTML}
-        </div>
-
-        <div style="display:inline-block;background:#ecfdf5;color:#166534;border:1px solid #bbf7d0;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:12px;">
-          ✔ Test waarschijnlijk mogelijk
-        </div>
-
-        <div style="display:grid;gap:8px;font-size:14px;color:#111827;">
-          <div><strong>Voertuigtype:</strong> ${modelInfo.type}</div>
-          <div><strong>Geschatte batterijcapaciteit:</strong> ${modelInfo.battery}</div>
-          <div><strong>Verwachte degradatie:</strong> ${modelInfo.degradation}</div>
-          <div><strong>Risico-inschatting:</strong> ${modelInfo.risk}</div>
-        </div>
-
-        <div style="margin-top:10px;font-size:13px;color:#6b7280;line-height:1.5;">
-          ${modelInfo.note}
-        </div>
-
-        <div style="margin-top:14px;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;">
-          <div style="font-size:12px;color:#6b7280;font-weight:800;">Waarom dit belangrijk is</div>
-          <div style="font-size:14px;color:#111827;font-weight:700;">
-            Een accutest van €95 kan een miskoop van duizenden euro’s helpen voorkomen.
+    if (ondersteund) {
+      resultBox.innerHTML = `
+        <div style="margin-top:12px;padding:14px;background:#f6f7f9;border-radius:10px;color:#0b1c2d;line-height:1.5;">
+          <div style="font-weight:800;font-size:18px;margin-bottom:4px;">
+            ${merk} ${model}
           </div>
-        </div>
 
-        <a class="btn" href="#prijzen" style="margin-top:14px;">Plan AccuCheck voor deze auto</a>
+          <div style="font-size:13px;color:#5b6775;margin-bottom:10px;">
+            ${brandstof || "Elektrisch / hybride"}
+          </div>
+
+          <div style="color:#16a34a;font-weight:800;margin-bottom:10px;">
+            ✔ Deze auto wordt ondersteund voor AccuCheck
+          </div>
+
+          <div style="font-size:14px;margin-bottom:4px;">
+            Gemiddelde batterijdegradatie: <b>${degradatie}</b>
+          </div>
+
+          <div style="font-size:14px;margin-bottom:10px;">
+            Gemiddelde batterijvervangkosten: <b>${batterijKosten}</b>
+          </div>
+
+          <a href="#"
+             onclick="gaNaarIntake('ev-accucheck-particulier'); return false;"
+             style="display:block;margin-top:10px;background:#0b1c2d;color:white;padding:12px;border-radius:10px;text-align:center;font-weight:800;text-decoration:none;">
+            Plan AccuCheck voor deze auto
+          </a>
+        </div>
+      `;
+    } else {
+      resultBox.innerHTML = `
+        <div style="margin-top:12px;padding:14px;background:#fff8e8;border:1px solid rgba(198,161,91,.24);border-radius:10px;color:#0b1c2d;line-height:1.5;">
+          <div style="font-weight:800;font-size:18px;margin-bottom:4px;">
+            ${merk} ${model}
+          </div>
+
+          <div style="font-size:13px;color:#5b6775;margin-bottom:10px;">
+            ${brandstof || "Elektrisch / hybride"}
+          </div>
+
+          <div style="color:#b45309;font-weight:800;margin-bottom:10px;">
+            ⚠ Controle nodig voor dit voertuig
+          </div>
+
+          <div style="font-size:14px;margin-bottom:10px;">
+            Niet ieder voertuig staat direct in de tool. Stuur het kenteken via WhatsApp voor een snelle handmatige check.
+          </div>
+
+          <a href="https://wa.me/31623452349?text=Kan%20deze%20EV%20getest%20worden:%20${encodeURIComponent(kenteken)}"
+             target="_blank"
+             style="display:block;margin-top:10px;background:#25D366;color:white;padding:12px;border-radius:10px;text-align:center;font-weight:800;text-decoration:none;">
+            Check via WhatsApp
+          </a>
+        </div>
+      `;
+    }
+  } catch (error) {
+    resultBox.innerHTML = `
+      <div style="margin-top:12px;padding:14px;background:#fff4f4;border:1px solid #f3caca;border-radius:10px;color:#7f1d1d;">
+        Kon voertuigdata niet ophalen.
       </div>
     `;
-  } catch (error) {
-    resultEl.innerHTML = "<div style='color:#b91c1c;font-weight:800;'>Er ging iets mis bij het ophalen van voertuiggegevens.</div>";
+    console.error(error);
   }
 }
 
@@ -1627,141 +1401,39 @@ let kentekenTimer;
 
 function autoCheckKenteken() {
   clearTimeout(kentekenTimer);
+
   kentekenTimer = setTimeout(() => {
-    const value = document.getElementById("kentekenInput").value.replace(/[^A-Za-z0-9]/g, "");
-    if (value.length >= 6) checkKenteken();
+    const input = document.getElementById("kentekenInput");
+    if (!input) return;
+
+    const kenteken = input.value.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+
+    if (kenteken.length < 6) {
+      document.getElementById("kentekenResult").innerHTML = "";
+      return;
+    }
+
+    checkKenteken();
   }, 500);
 }
 
-function aiBatteryCheck() {
-  const el = document.getElementById("aiResult");
-  const kenteken = (document.getElementById("aiKenteken").value || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+function gaNaarIntake(dienst) {
+  const input = document.getElementById("kentekenInput");
+  const kenteken = input
+    ? input.value.replace(/[^A-Za-z0-9]/g, "").toUpperCase()
+    : "";
 
-  if (kenteken.length < 6) {
-    el.innerHTML = "<div style='color:#b91c1c;font-weight:800;margin-top:12px;'>Voer een geldig kenteken in.</div>";
+  if (!kenteken) {
+    window.location.href = "intake-ads.html?dienst=" + encodeURIComponent(dienst);
     return;
   }
 
-  const lastChar = kenteken.charCodeAt(kenteken.length - 1) || 65;
-  const estimated = 85 + (lastChar % 9);
-
-  el.innerHTML = `
-    <div style="margin-top:12px;padding:16px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
-      <div style="font-size:12px;color:#6b7280;font-weight:800;">Indicatie accustatus</div>
-      <div style="font-size:30px;font-weight:900;color:#0b1c2d;line-height:1.1;margin:6px 0 10px;">
-        ${estimated}% – ${Math.min(estimated + 4, 97)}%
-      </div>
-      <div style="font-size:14px;color:#374151;font-weight:700;">
-        Dit is een eerste modelindicatie. Voor exacte accugezondheid is een onafhankelijke meting nodig.
-      </div>
-      <a class="btn" href="#prijzen" style="margin-top:14px;">Plan AccuCheck</a>
-    </div>
-  `;
+  window.location.href =
+    "intake-ads.html?dienst=" +
+    encodeURIComponent(dienst) +
+    "&kenteken=" +
+    encodeURIComponent(kenteken);
 }
-
-function calculateBatteryRisk() {
-  const result = document.getElementById("batteryResult");
-  const value = Number(document.getElementById("carValue").value || 0);
-  const size = Number(document.getElementById("batterySize").value || 0);
-
-  if (!size || size <= 0) {
-    result.innerHTML = "<div style='color:#b91c1c;font-weight:800;'>Vul ten minste de batterijcapaciteit in.</div>";
-    return;
-  }
-
-  const replacement = Math.round(size * 180);
-  const ratio = value > 0 ? Math.round((replacement / value) * 100) : null;
-
-  result.innerHTML = `
-    <div style="padding:16px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;">
-      <div style="font-size:12px;color:#6b7280;font-weight:800;">Indicatie batterij vervanging</div>
-      <div style="font-size:30px;font-weight:900;color:#0b1c2d;line-height:1.1;margin:6px 0 10px;">
-        €${replacement.toLocaleString("nl-NL")}
-      </div>
-      <div style="font-size:14px;color:#374151;font-weight:700;">
-        ${ratio ? `Dat is ongeveer ${ratio}% van de huidige voertuigwaarde.` : "Een accutest vanaf €95 is vaak een kleine investering tegenover dit risico."}
-      </div>
-      <div style="margin-top:10px;font-size:14px;color:#111827;font-weight:800;">
-        AccuCheck vanaf €95
-      </div>
-      <a class="btn" href="#prijzen" style="margin-top:14px;">Bekijk prijzen</a>
-    </div>
-  `;
-}
-
-const heroCTA = document.getElementById("heroCTA");
-const kentekenInput = document.getElementById("kentekenInput");
-
-if(heroCTA && kentekenInput){
-
-kentekenInput.addEventListener("input", function(){
-
-let kenteken = kentekenInput.value
-.replace(/[^A-Za-z0-9]/g,"")
-.toUpperCase();
-
-if(kenteken.length >= 6){
-
-heroCTA.textContent = "Plan AccuCheck voor " + kenteken;
-
-heroCTA.classList.add("cta-active");
-
-}else{
-
-heroCTA.textContent = "Plan AccuCheck €95";
-
-heroCTA.classList.remove("cta-active");
-
-}
-
-});
-
-}
-
-function showVehicleAdvice(merk, model){
-
-const advice = document.getElementById("vehicleAdvice");
-
-let type = "EV of hybride";
-let message = "Voor exacte accustatus is een onafhankelijke meting nodig.";
-
-if(model.toUpperCase().includes("TESLA")){
-type = "Elektrische auto";
-message = "Tesla batterijen degraderen gemiddeld langzaam, maar controle vóór aankoop blijft verstandig.";
-}
-
-if(model.toUpperCase().includes("LEAF")){
-type = "Elektrische auto";
-message = "Oudere Nissan Leafs kunnen hogere batterijdegradatie hebben.";
-}
-
-if(model.toUpperCase().includes("X5") || model.toUpperCase().includes("PHEV")){
-type = "Plug-in hybride";
-message = "Bij plug-in hybrides is accugezondheid vaak minder zichtbaar tijdens een proefrit.";
-}
-
-advice.innerHTML = `
-<div style="
-margin-top:14px;
-padding:14px;
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:12px;
-">
-
-<div style="font-weight:700;margin-bottom:6px;">
-Voertuigtype: ${type}
-</div>
-
-<div style="font-size:14px;color:#374151;">
-${message}
-</div>
-
-</div>
-`;
-
-}
-  
 </script>
 
 </body>
