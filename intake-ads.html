@@ -91,8 +91,8 @@ Bekijk beschikbaarheid
 
 </div>
 
-   <label>Kenteken</label>
- <input type="text" name="kenteken" style="text-transform:uppercase;">
+  <label>Kenteken</label>
+<input id="kenteken" type="text" name="kenteken" style="text-transform:uppercase;">
 
   <label>Wanneer wilt u testen? *</label>
   <select name="planning" required>
@@ -133,70 +133,64 @@ Instap AccuCheck €95 uitsluitend op afspraak bij ZekerOpWeg locatie in Barendr
 </footer>
 
 <script>
-
 const params = new URLSearchParams(window.location.search);
 const productParam = params.get("product");
-
-
+const kentekenParam = params.get("kenteken");
+const dienstParam = params.get("dienst");
 
 const productSelect = document.getElementById("productSelect");
 const locatieInput = document.getElementById("locatieAuto");
 const locatieBlock = document.getElementById("locatieBlock");
+const kentekenInput = document.getElementById("kenteken");
+const dienstInput = document.getElementById("dienst");
 
-if(productParam){
-
-  if(productParam === "instap"){
+if (productParam) {
+  if (productParam === "instap") {
     productSelect.value = "instap-accucheck-95";
   }
 
-  if(productParam === "locatie"){
+  if (productParam === "locatie") {
     productSelect.value = "ev-accucheck-129";
   }
-
 }
 
-function updateLocatie(){
+if (kentekenParam && kentekenInput) {
+  kentekenInput.value = kentekenParam.toUpperCase();
+}
 
-  if(productSelect.value === "instap-accucheck-95"){
+if (dienstParam && dienstInput) {
+  dienstInput.value = dienstParam;
+}
 
+function updateLocatie() {
+  if (productSelect.value === "instap-accucheck-95") {
     locatieBlock.style.display = "block";
-
     locatieInput.value = "Sneekermeer 11, Barendrecht";
     locatieInput.readOnly = true;
-
   } else {
-
     locatieBlock.style.display = "block";
-
     locatieInput.value = "";
     locatieInput.readOnly = false;
-
   }
-
 }
 
 updateLocatie();
 productSelect.addEventListener("change", updateLocatie);
 
-
 /* stap 1 → stap 2 */
-
 const nextBtn = document.getElementById("nextStep");
 const step1 = document.getElementById("step1");
 const step2 = document.getElementById("step2");
 
-nextBtn.addEventListener("click", function(){
-
-  if(productSelect.value === ""){
+nextBtn.addEventListener("click", function () {
+  if (productSelect.value === "") {
     alert("Kies eerst welke AccuCheck u wilt.");
     return;
   }
 
   step1.style.display = "none";
   step2.style.display = "block";
-
 });
-
 </script>
 
 
