@@ -1,144 +1,773 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Batterij- en aankooprapport | ZekerOpWeg</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZekerOpWeg Batterij- en Aankooprapport</title>
 
   <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #f6f7f9;
-      margin: 0;
-      padding: 40px 20px;
-      color: #0e1116;
+    :root{
+      --navy:#0b1c2d;
+      --navy2:#071423;
+      --gold:#c6a15b;
+      --text:#0e1116;
+      --muted:#6b7280;
+      --soft:#f6f7f9;
+      --line:#e5e7eb;
+      --success:#166534;
+      --warn:#b45309;
+      --danger:#b91c1c;
+      --white:#ffffff;
+      --shadow:0 20px 40px rgba(0,0,0,.08);
+      --radius:18px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 40px;
-      border-radius: 14px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #0b1c2d;
+    body{
+      margin:0;
+      padding:32px 18px 60px;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f5f7fa 0%, #eef2f7 100%);
+      line-height:1.6;
     }
 
-    .logo span {
-      color: #c6a15b;
+    .report-shell{
+      max-width:980px;
+      margin:0 auto;
+      display:grid;
+      gap:24px;
     }
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+    .page{
+      background:var(--white);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.05);
     }
 
-    .sub {
-      color: #6b7280;
-      margin-bottom: 30px;
+    .page-header{
+      padding:28px 34px;
+      background:
+        radial-gradient(680px 220px at 16% 0%, rgba(198,161,91,.18), transparent 56%),
+        linear-gradient(135deg,var(--navy),var(--navy2));
+      color:#fff;
     }
 
-    .card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
+    .page-header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    .card-title {
-      font-weight: 800;
-      margin-bottom: 8px;
+    .brand{
+      font-size:26px;
+      font-weight:800;
+      letter-spacing:-.3px;
+      color:#fff;
     }
 
-    .metric {
-      font-size: 24px;
-      font-weight: 900;
-      color: #0b1c2d;
+    .brand span{
+      color:var(--gold);
     }
 
-    .risk {
-      font-weight: 800;
+    .doc-meta{
+      text-align:right;
+      font-size:13px;
+      color:rgba(255,255,255,.82);
+      font-weight:700;
     }
 
-    .low { color: #166534; }
-    .medium { color: #b45309; }
-    .high { color: #b91c1c; }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      background: #0b1c2d;
-      color: white;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      text-decoration: none;
-      border: 0;
-      cursor: pointer;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.92);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+      margin-bottom:16px;
     }
 
-    .footer {
-      margin-top: 30px;
-      font-size: 13px;
-      color: #6b7280;
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(198,161,91,.14);
+    }
+
+    h1{
+      font-size:40px;
+      line-height:1.04;
+      letter-spacing:-.7px;
+      margin:0 0 12px;
+    }
+
+    .hero-sub{
+      max-width:66ch;
+      color:rgba(255,255,255,.88);
+      font-size:17px;
+      margin:0;
+      font-weight:500;
+    }
+
+    .page-body{
+      padding:30px 34px 34px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    @media(max-width:900px){
+      .grid-2,.grid-3{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:33px;
+      }
+
+      .page-header,.page-body{
+        padding-left:22px;
+        padding-right:22px;
+      }
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .panel.soft{
+      background:#f8fafc;
+    }
+
+    .panel h2,
+    .panel h3{
+      margin:0 0 10px;
+      letter-spacing:-.2px;
+    }
+
+    .panel h2{
+      font-size:28px;
+    }
+
+    .panel h3{
+      font-size:19px;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .vehicle-title{
+      font-size:34px;
+      line-height:1.1;
+      color:var(--navy);
+      font-weight:900;
+      letter-spacing:-.6px;
+      margin:6px 0 12px;
+    }
+
+    .badge-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      border:1px solid var(--line);
+      background:#fff;
+      color:#374151;
+    }
+
+    .badge.gold{
+      border-color:rgba(198,161,91,.45);
+      background:rgba(198,161,91,.10);
+      color:#7a5c20;
+    }
+
+    .badge.success{
+      border-color:#bbf7d0;
+      background:#ecfdf5;
+      color:var(--success);
+    }
+
+    .badge.warn{
+      border-color:#fcd34d;
+      background:#fff8e7;
+      color:var(--warn);
+    }
+
+    .badge.danger{
+      border-color:#fecaca;
+      background:#fef2f2;
+      color:var(--danger);
+    }
+
+    .summary-score{
+      background:linear-gradient(180deg,#ffffff,#fbfcfe);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:20px;
+      padding:24px;
+      text-align:center;
+    }
+
+    .summary-score-label{
+      font-size:12px;
+      font-weight:800;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .summary-score-value{
+      font-size:56px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-1px;
+      color:var(--navy);
+      margin:10px 0 8px;
+    }
+
+    .summary-score-text{
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .summary-score-text.low{color:var(--success)}
+    .summary-score-text.medium{color:var(--warn)}
+    .summary-score-text.high{color:var(--danger)}
+
+    .metric-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .metric-card{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .metric-label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      margin-bottom:6px;
+    }
+
+    .metric-value{
+      font-size:22px;
+      font-weight:900;
+      color:var(--navy);
+      line-height:1.2;
+    }
+
+    .metric-sub{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+      margin-top:6px;
+    }
+
+    .section-title{
+      font-size:28px;
+      color:var(--navy);
+      margin:0 0 8px;
+      letter-spacing:-.3px;
+    }
+
+    .text-block{
+      color:#374151;
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .checklist{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .checklist li{
+      position:relative;
+      padding-left:28px;
+      font-weight:700;
+      color:#1f2937;
+    }
+
+    .checklist li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      width:18px;
+      height:18px;
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:900;
+      color:#7a5c20;
+      background:rgba(198,161,91,.18);
+      border:1px solid rgba(198,161,91,.35);
+    }
+
+    .warning-list{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .warning-list li{
+      position:relative;
+      padding-left:28px;
+      font-weight:700;
+      color:#1f2937;
+    }
+
+    .warning-list li::before{
+      content:"!";
+      position:absolute;
+      left:0;
+      top:0;
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      font-weight:900;
+      color:#92400e;
+      background:#fef3c7;
+      border:1px solid #fcd34d;
+    }
+
+    .advice-box{
+      border:1px solid rgba(198,161,91,.42);
+      background:linear-gradient(180deg,#fffdf8,#ffffff);
+    }
+
+    .advice-box h3{
+      color:var(--navy);
+    }
+
+    .advice-lead{
+      font-size:16px;
+      font-weight:700;
+      color:#1f2937;
+      margin-bottom:10px;
+    }
+
+    .cta-band{
+      background:
+        radial-gradient(520px 180px at 12% 10%, rgba(198,161,91,.18), transparent 55%),
+        linear-gradient(135deg,var(--navy),var(--navy2));
+      color:#fff;
+      border-radius:22px;
+      padding:24px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .cta-band h3{
+      margin:0 0 6px;
+      font-size:24px;
+      color:#fff;
+    }
+
+    .cta-band p{
+      margin:0;
+      color:rgba(255,255,255,.84);
+      font-weight:600;
+      max-width:58ch;
+    }
+
+    .cta-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--navy);
+      font-weight:900;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    .small-note{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .page-footer{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      margin-top:20px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .page-number{
+      color:#9ca3af;
+    }
+
+    .print-btn-wrap{
+      max-width:980px;
+      margin:16px auto 0;
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .print-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(180deg,#122a44,#071423);
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 12px 26px rgba(7,20,35,.18);
+    }
+
+    @media print{
+      body{
+        background:#fff;
+        padding:0;
+      }
+
+      .report-shell{
+        max-width:100%;
+        gap:0;
+      }
+
+      .page{
+        border:none;
+        border-radius:0;
+        box-shadow:none;
+        page-break-after:always;
+      }
+
+      .page:last-child{
+        page-break-after:auto;
+      }
+
+      .print-btn-wrap{
+        display:none;
+      }
+
+      .page-header{
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+      }
+
+      .cta-band{
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="logo">Zeker<span>Op</span>Weg</div>
+  <div class="report-shell">
 
-    <h1>Batterij- en aankooprapport</h1>
-    <p class="sub">Analyse van batterij, aandrijflijn en aankooprisico op basis van voertuigdata.</p>
+    <!-- PAGINA 1 -->
+    <section class="page">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="brand">Zeker<span>Op</span>Weg</div>
+            <div class="eyebrow">Premium batterij- en aankooprapport</div>
+            <h1>Batterij- en aankooprapport</h1>
+            <p class="hero-sub">
+              Onafhankelijke eerste risicoanalyse voor gebruikte elektrische auto’s en plug-in hybrides.
+              Ontwikkeld om miskopen, verborgen accurisico’s en onnodige twijfel vóór aankoop te helpen voorkomen.
+            </p>
+          </div>
 
-    <div id="reportContent">
-      <div class="card">
-        <div class="card-title">Voertuig</div>
-        <div id="vehicleName" class="metric">Laden...</div>
+          <div class="doc-meta">
+            <div>Rapporttype: Digitale vooranalyse</div>
+            <div id="reportDate">Datum: —</div>
+            <div>Merkstijl: ZekerOpWeg Premium</div>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="card-title">Geschatte batterijcapaciteit</div>
-        <div id="batterySize" class="metric">—</div>
+      <div class="page-body">
+        <div class="grid-2">
+          <div class="panel">
+            <div class="muted">Voertuigprofiel</div>
+            <div id="vehicleName" class="vehicle-title">Laden...</div>
+
+            <div class="badge-row">
+              <div id="driveTypeBadge" class="badge gold">Voertuigtype: —</div>
+              <div id="verdictBadge" class="badge">Conclusie: —</div>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-label">Geschatte batterijcapaciteit</div>
+                <div id="batterySize" class="metric-value">—</div>
+                <div class="metric-sub">Indicatieve modelinformatie</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Gemiddelde degradatie</div>
+                <div id="degradation" class="metric-value">—</div>
+                <div class="metric-sub">Praktijkindicatie, modelafhankelijk</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Risico-inschatting</div>
+                <div id="riskLevel" class="metric-value">—</div>
+                <div class="metric-sub">Op basis van voertuigtype en bekende patronen</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-label">Vervangingskosten batterij</div>
+                <div id="replacementCost" class="metric-value">—</div>
+                <div class="metric-sub">Indicatie, geen offerte</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-score">
+            <div class="summary-score-label">ZekerOpWeg aankoopoordeel</div>
+            <div id="summaryScore" class="summary-score-value">—</div>
+            <div id="summaryScoreText" class="summary-score-text">Laden...</div>
+
+            <div class="panel soft" style="margin-top:20px;text-align:left;">
+              <h3 style="margin-top:0;">Kernconclusie</h3>
+              <div id="coreConclusion" class="text-block">
+                Rapport wordt geladen...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel advice-box" style="margin-top:22px;">
+          <h3>Waarom dit rapport waardevol is vóór aankoop</h3>
+          <div class="advice-lead">
+            Bij gebruikte elektrische auto’s en plug-in hybrides zit het grootste financiële risico vaak in de batterij en het laadsysteem.
+          </div>
+          <div class="text-block">
+            Dit rapport helpt u om sneller te zien waar de belangrijkste aandachtspunten liggen:
+            batterijconditie, laadgedrag, type voertuig, bekende risico’s en de vragen die u vóór aankoop aan de verkoper moet stellen.
+            Voor de exacte accustatus blijft een onafhankelijke AccuCheck de veiligste vervolgstap.
+          </div>
+        </div>
+
+        <div class="page-footer">
+          <div>ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
+          <div class="page-number">Pagina 1 van 3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINA 2 -->
+    <section class="page">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="brand">Zeker<span>Op</span>Weg</div>
+            <div class="eyebrow">Accu, laden en techniek</div>
+            <h1>Accu-informatie en laadgedrag</h1>
+            <p class="hero-sub">
+              Wat betekent dit voertuigtype voor batterijslijtage, laadgedrag en toekomstig gebruik?
+            </p>
+          </div>
+          <div class="doc-meta">
+            <div id="vehicleNameHeader2">Voertuig: —</div>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="card-title">Gemiddelde batterijdegradatie</div>
-        <div id="degradation" class="metric">—</div>
+      <div class="page-body">
+        <div class="grid-2">
+          <div class="panel">
+            <h2 class="section-title">Accu-informatie</h2>
+            <div id="batteryInfoText" class="text-block">
+              —
+            </div>
+
+            <ul id="batteryChecklist" class="checklist">
+              <li>Accugegevens worden geladen</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h2 class="section-title">Laden en gebruik</h2>
+            <div id="chargingText" class="text-block">
+              —
+            </div>
+
+            <ul id="chargingChecklist" class="checklist">
+              <li>Laadgedrag wordt geladen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:22px;">
+          <h2 class="section-title">Bekende aandachtspunten</h2>
+          <div id="knownIssues" class="text-block">
+            —
+          </div>
+        </div>
+
+        <div class="panel soft" style="margin-top:22px;">
+          <h2 class="section-title">Wat een koper vaak onderschat</h2>
+          <ul id="buyerBlindspots" class="warning-list">
+            <li>Wordt geladen...</li>
+          </ul>
+        </div>
+
+        <div class="page-footer">
+          <div>ZekerOpWeg · Premium rapport voor gebruikte EV’s en plug-in hybrides</div>
+          <div class="page-number">Pagina 2 van 3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINA 3 -->
+    <section class="page">
+      <div class="page-header">
+        <div class="page-header-inner">
+          <div>
+            <div class="brand">Zeker<span>Op</span>Weg</div>
+            <div class="eyebrow">Risicoanalyse en kooptips</div>
+            <h1>Praktische risico’s en aankoopadvies</h1>
+            <p class="hero-sub">
+              Waar moet u op letten vóór u koopt, onderhandelt of juist afhaakt?
+            </p>
+          </div>
+          <div class="doc-meta">
+            <div id="vehicleNameHeader3">Voertuig: —</div>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="card-title">Risico-inschatting</div>
-        <div id="riskLevel" class="metric risk">—</div>
+      <div class="page-body">
+        <div class="grid-2">
+          <div class="panel">
+            <h2 class="section-title">Risicoanalyse</h2>
+            <div id="riskAnalysisText" class="text-block">
+              —
+            </div>
+
+            <ul id="riskChecklist" class="warning-list">
+              <li>Risicoanalyse wordt geladen</li>
+            </ul>
+          </div>
+
+          <div class="panel advice-box">
+            <h2 class="section-title">Aankoopadvies ZekerOpWeg</h2>
+            <div id="buyAdvice" class="text-block">
+              —
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:22px;">
+          <h2 class="section-title">Controlepunten vóór aankoop</h2>
+          <ul id="purchaseTips" class="checklist">
+            <li>Controlepunten worden geladen</li>
+          </ul>
+        </div>
+
+        <div class="cta-band">
+          <div>
+            <h3>Wilt u echte zekerheid vóór aankoop?</h3>
+            <p>
+              Dit rapport is een sterke eerste vooranalyse. Maar de exacte accustatus,
+              werkelijke batterijconditie en technische risico’s worden pas zichtbaar met een
+              onafhankelijke ZekerOpWeg AccuCheck door Pepijn.
+            </p>
+            <div class="small-note">
+              Persoonlijk uitgevoerd · EV en plug-in hybride · TÜV accucertificaat · vanaf €95
+            </div>
+          </div>
+
+          <a
+            class="cta-btn"
+            href="https://wa.me/31623452349?text=Ik%20wil%20een%20ZekerOpWeg%20AccuCheck%20plannen"
+            target="_blank"
+            rel="noopener"
+          >
+            Plan ZekerOpWeg AccuCheck
+          </a>
+        </div>
+
+        <div class="page-footer">
+          <div>ZekerOpWeg · Bescherming tegen de verkeerde deal</div>
+          <div class="page-number">Pagina 3 van 3</div>
+        </div>
       </div>
+    </section>
+  </div>
 
-      <div class="card">
-        <div class="card-title">Bekende aandachtspunten</div>
-        <div id="knownIssues">—</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Indicatie vervangingskosten batterij</div>
-        <div id="replacementCost" class="metric">—</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Aankoopadvies ZekerOpWeg</div>
-        <div id="buyAdvice">—</div>
-      </div>
-    </div>
-
-    <button class="btn" onclick="window.print()">Download PDF</button>
-
-    <div class="footer">ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
+  <div class="print-btn-wrap">
+    <button class="print-btn" onclick="window.print()">Download PDF</button>
   </div>
 
   <script>
@@ -147,39 +776,338 @@
       return urlParams.get("kenteken");
     }
 
-    function renderReport(battery, degradation, risk, issues, replacementCost, advice) {
-      document.getElementById("batterySize").innerText = battery;
-      document.getElementById("degradation").innerText = degradation;
-      document.getElementById("knownIssues").innerText = issues;
-      document.getElementById("replacementCost").innerText = replacementCost;
-      document.getElementById("buyAdvice").innerText = advice;
-
-      const riskEl = document.getElementById("riskLevel");
-      riskEl.innerText = risk;
-      riskEl.classList.remove("low", "medium", "high");
-
-      if (risk === "Laag") riskEl.classList.add("low");
-      if (risk === "Gemiddeld") riskEl.classList.add("medium");
-      if (risk === "Hoog") riskEl.classList.add("high");
-    }
-
-    function analyzeUnsupported() {
-      renderReport(
-        "Niet van toepassing",
-        "Niet van toepassing",
-        "Buiten scope",
-        "Dit rapport is bedoeld voor elektrische en hybride voertuigen met een tractiebatterij.",
-        "Niet van toepassing",
-        "Vul een elektrisch of hybride voertuig in voor een relevante batterij- en aankoopanalyse."
-      );
-    }
-
-    function isBEV(key) {
-      const normalized = key
+    function normalizeText(text) {
+      return (text || "")
+        .toUpperCase()
         .replace(/\s+/g, "")
         .replace(/-/g, "")
         .replace(/\./g, "");
+    }
 
+    function setToday() {
+      const d = new Date();
+      const formatted = d.toLocaleDateString("nl-NL", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+      document.getElementById("reportDate").innerText = "Datum: " + formatted;
+    }
+
+    function setVehicleHeaders(name) {
+      document.getElementById("vehicleNameHeader2").innerText = "Voertuig: " + name;
+      document.getElementById("vehicleNameHeader3").innerText = "Voertuig: " + name;
+    }
+
+    function setVerdictBadge(text, type) {
+      const badge = document.getElementById("verdictBadge");
+      badge.className = "badge";
+      if (type === "success") badge.classList.add("success");
+      if (type === "warn") badge.classList.add("warn");
+      if (type === "danger") badge.classList.add("danger");
+      badge.innerText = text;
+    }
+
+    function setDriveTypeBadge(text) {
+      document.getElementById("driveTypeBadge").innerText = text;
+    }
+
+    function setSummary(score, text, riskClass) {
+      document.getElementById("summaryScore").innerText = score;
+      const el = document.getElementById("summaryScoreText");
+      el.innerText = text;
+      el.className = "summary-score-text " + riskClass;
+    }
+
+    function renderList(id, items, mode = "check") {
+      const el = document.getElementById(id);
+      el.className = mode === "warning" ? "warning-list" : "checklist";
+      el.innerHTML = items.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function renderReport(data) {
+      document.getElementById("batterySize").innerText = data.batterySize;
+      document.getElementById("degradation").innerText = data.degradation;
+      document.getElementById("replacementCost").innerText = data.replacementCost;
+      document.getElementById("knownIssues").innerText = data.knownIssues;
+      document.getElementById("buyAdvice").innerText = data.buyAdvice;
+      document.getElementById("coreConclusion").innerText = data.coreConclusion;
+      document.getElementById("batteryInfoText").innerText = data.batteryInfoText;
+      document.getElementById("chargingText").innerText = data.chargingText;
+      document.getElementById("riskAnalysisText").innerText = data.riskAnalysisText;
+
+      setDriveTypeBadge("Voertuigtype: " + data.driveTypeLabel);
+      setVerdictBadge("Conclusie: " + data.verdictLabel, data.verdictClass);
+      setSummary(data.summaryScore, data.summaryText, data.summaryClass);
+
+      const riskEl = document.getElementById("riskLevel");
+      riskEl.innerText = data.riskLevel;
+      riskEl.className = "metric-value";
+      if (data.summaryClass === "low") riskEl.classList.add("low");
+      if (data.summaryClass === "medium") riskEl.classList.add("medium");
+      if (data.summaryClass === "high") riskEl.classList.add("high");
+
+      renderList("batteryChecklist", data.batteryChecklist, "check");
+      renderList("chargingChecklist", data.chargingChecklist, "check");
+      renderList("buyerBlindspots", data.buyerBlindspots, "warning");
+      renderList("riskChecklist", data.riskChecklist, "warning");
+      renderList("purchaseTips", data.purchaseTips, "check");
+    }
+
+    function buildUnsupportedReport() {
+      return {
+        driveTypeLabel: "Buiten scope",
+        verdictLabel: "Niet geschikt",
+        verdictClass: "danger",
+        summaryScore: "—",
+        summaryText: "Niet van toepassing",
+        summaryClass: "high",
+        batterySize: "Niet van toepassing",
+        degradation: "Niet van toepassing",
+        riskLevel: "Buiten scope",
+        replacementCost: "Niet van toepassing",
+        knownIssues: "Dit rapport is bedoeld voor elektrische voertuigen, plug-in hybrides en hybride voertuigen met een relevante tractiebatterij.",
+        buyAdvice: "Vul een elektrisch of hybride voertuig in voor een relevante batterij- en aankoopanalyse.",
+        coreConclusion: "Voor dit voertuigtype geeft dit rapport geen bruikbare batterijgerichte aankoopanalyse.",
+        batteryInfoText: "Voor conventionele brandstofauto’s is een batterijgericht aankooprapport niet de juiste analysemethode.",
+        chargingText: "Er is geen relevant elektrisch laadprofiel beschikbaar voor dit voertuig.",
+        riskAnalysisText: "De grootste risico’s bij dit voertuig zitten waarschijnlijk niet in een tractiebatterij, maar in reguliere mechanische en onderhoudstechnische punten.",
+        batteryChecklist: [
+          "Geen relevant tractiebatterijprofiel beschikbaar",
+          "Geen EV- of hybride analyse van toepassing",
+          "Gebruik bij voorkeur een algemene aankoopkeuring"
+        ],
+        chargingChecklist: [
+          "Geen laadprofiel beschikbaar",
+          "Geen batterijgerichte gebruiksanalyse van toepassing",
+          "Focus op regulier technisch onderhoud"
+        ],
+        buyerBlindspots: [
+          "Kopers kunnen onterecht denken dat elk modern voertuig een relevant batterijrapport nodig heeft",
+          "Bij niet-elektrische modellen liggen de grootste risico’s vaak elders"
+        ],
+        riskChecklist: [
+          "Geen batterijgerichte analyse van toepassing",
+          "Gebruik een reguliere aankoopinspectie"
+        ],
+        purchaseTips: [
+          "Controleer onderhoudshistorie",
+          "Controleer foutcodes en algemene technische staat",
+          "Laat bij twijfel een volledige aankoopkeuring uitvoeren"
+        ]
+      };
+    }
+
+    function buildBEVReport(merk, model) {
+      const key = normalizeText(merk + " " + model);
+
+      let data = {
+        driveTypeLabel: "Volledig elektrisch",
+        verdictLabel: "Interessant, mits accutest",
+        verdictClass: "success",
+        summaryScore: "A",
+        summaryText: "Lager accurisico dan gemiddeld",
+        summaryClass: "low",
+        batterySize: "30–90 kWh",
+        degradation: "8–18%",
+        riskLevel: "Laag tot gemiddeld",
+        replacementCost: "€6.000 – €15.000",
+        knownIssues: "Controleer laadgeschiedenis, praktijkrange, foutcodes en algemene batterijconditie.",
+        buyAdvice: "Bij een gebruikte EV bepaalt de batterij voor een groot deel de waarde. Koop daarom alleen met objectieve accuinformatie of een onafhankelijke accutest.",
+        coreConclusion: "Dit voertuigtype past bij een aankoop waarbij batterijconditie een centrale factor is. De juiste vervolgstap is het objectief laten meten van de accu vóór aankoop.",
+        batteryInfoText: "Bij volledig elektrische auto’s is de tractiebatterij het duurste en meest bepalende onderdeel. De resterende accucapaciteit heeft direct invloed op actieradius, gebruikservaring en restwaarde.",
+        chargingText: "Veel snelladen, langdurig stilstaan op hoge lading en structureel ongunstig laadgedrag kunnen invloed hebben op de batterijconditie. Niet elk exemplaar met hetzelfde bouwjaar is daarom gelijk.",
+        riskAnalysisText: "Het grootste risico bij een gebruikte EV is dat de werkelijke batterijconditie niet zichtbaar is tijdens een proefrit. Een auto kan netjes rijden, maar alsnog sneller capaciteit hebben verloren dan verwacht.",
+        batteryChecklist: [
+          "Controleer praktijkrange en laadprestaties",
+          "Vraag naar laadgedrag en gebruiksprofiel",
+          "Let op accugarantie, foutmeldingen en software-updates"
+        ],
+        chargingChecklist: [
+          "Veel DC-snelladen is niet per definitie slecht, maar wel relevant",
+          "Laadverlies en afwijkende laadtijden kunnen op problemen wijzen",
+          "Vraag hoe vaak de auto langdurig op 100% stond"
+        ],
+        buyerBlindspots: [
+          "Een proefrit zegt weinig over echte accugezondheid",
+          "Een nette auto kan alsnog een tegenvallende batterij hebben",
+          "Restwaarde hangt sterk samen met batterijconditie"
+        ],
+        riskChecklist: [
+          "Verborgen batterijdegradatie",
+          "Lagere praktijkrange dan verwacht",
+          "Onvoldoende inzicht in laad- en gebruiksgeschiedenis"
+        ],
+        purchaseTips: [
+          "Vraag naar laadgeschiedenis en praktisch gebruik",
+          "Controleer of software-updates zijn uitgevoerd",
+          "Laat vóór aankoop een onafhankelijke AccuCheck doen"
+        ]
+      };
+
+      if (key.includes("TESLA")) {
+        data.batterySize = "60–82 kWh";
+        data.degradation = "8–12%";
+        data.riskLevel = "Laag";
+        data.replacementCost = "€9.000 – €16.000";
+        data.knownIssues = "Controleer laadgeschiedenis, softwaremeldingen, accugezondheid en afwijkingen in praktijkverbruik.";
+        data.buyAdvice = "Technisch vaak sterk, maar koop een gebruikte Tesla alleen als de accustatus en praktijkprestaties logisch zijn voor leeftijd en kilometerstand.";
+        data.coreConclusion = "In veel gevallen een interessante keuze, mits batterijconditie objectief wordt bevestigd.";
+      } else if (key.includes("LEAF")) {
+        data.summaryScore = "C";
+        data.summaryText = "Extra voorzichtigheid nodig";
+        data.summaryClass = "high";
+        data.verdictLabel = "Alleen kopen na accutest";
+        data.verdictClass = "danger";
+        data.batterySize = "24–62 kWh";
+        data.degradation = "15–25%";
+        data.riskLevel = "Hoog";
+        data.replacementCost = "€5.000 – €9.000";
+        data.knownIssues = "Versnelde degradatie komt relatief vaker voor, vooral bij oudere Leafs zonder actieve accukoeling.";
+        data.buyAdvice = "Alleen interessant als de prijs echt klopt bij de batterijconditie en de accustatus objectief goed is.";
+      } else if (key.includes("KONA")) {
+        data.batterySize = "39–64 kWh";
+        data.degradation = "10–14%";
+        data.riskLevel = "Laag";
+        data.replacementCost = "€7.000 – €12.000";
+        data.knownIssues = "Let op batterijhistorie, eventuele terugroepacties en de werkelijke laadprestaties in praktijkgebruik.";
+      } else if (key.includes("NIRO")) {
+        data.batterySize = "39–64 kWh";
+        data.degradation = "10–15%";
+        data.riskLevel = "Laag";
+        data.replacementCost = "€7.000 – €12.000";
+        data.knownIssues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
+      } else if (key.includes("CLA250+") || key.includes("CLA250PLUS")) {
+        data.summaryScore = "B";
+        data.summaryText = "Interessant, maar nog jong model";
+        data.summaryClass = "medium";
+        data.verdictLabel = "Interessant met extra aandacht";
+        data.verdictClass = "warn";
+        data.batterySize = "ca. 85 kWh";
+        data.degradation = "Nog beperkt praktijkverleden";
+        data.riskLevel = "Gemiddeld";
+        data.replacementCost = "Nog beperkt bekend";
+        data.knownIssues = "Controleer softwareversie, laadprestaties, praktijkverbruik en eventuele vroege kinderziektes van dit nieuwe model.";
+        data.buyAdvice = "Veelbelovend model, maar bij jong gebruikte exemplaren blijft extra aandacht voor batterijconditie, software en laadgedrag verstandig.";
+        data.coreConclusion = "Modern elektrisch model met potentieel, maar nog beperkt langetermijnverleden in de markt.";
+      }
+
+      return data;
+    }
+
+    function buildPHEVReport(merk, model) {
+      const key = normalizeText(merk + " " + model);
+
+      let data = {
+        driveTypeLabel: "Plug-in hybride",
+        verdictLabel: "Technisch checken vóór koop",
+        verdictClass: "warn",
+        summaryScore: "B",
+        summaryText: "Gemiddeld risico, sterk afhankelijk van gebruik",
+        summaryClass: "medium",
+        batterySize: "8–25 kWh",
+        degradation: "Modelafhankelijk",
+        riskLevel: "Gemiddeld",
+        replacementCost: "€3.000 – €9.000",
+        knownIssues: "Controleer accuprestaties, laadfunctie, elektrisch rijbereik en de samenwerking met de verbrandingsmotor.",
+        buyAdvice: "Bij plug-in hybrides is een gecombineerde controle van batterij, laadsysteem en aandrijflijn essentieel vóór aankoop.",
+        coreConclusion: "Een plug-in hybride kan een verstandige aankoop zijn, maar alleen als het elektrische deel aantoonbaar goed functioneert en de auto correct is gebruikt en onderhouden.",
+        batteryInfoText: "Bij een plug-in hybride is de batterij kleiner dan bij een volledige EV, maar nog steeds cruciaal. Slechte batterijconditie maakt het model direct minder aantrekkelijk, omdat juist het elektrische gebruiksvoordeel verdwijnt.",
+        chargingText: "Veel plug-in hybrides worden in de praktijk weinig geladen. Daardoor rijdt de auto vooral als zwaardere benzineauto, terwijl de koper wel betaalt voor techniek die mogelijk niet optimaal benut of onderhouden is.",
+        riskAnalysisText: "Het grootste risico bij een gebruikte plug-in hybride is dat het systeem op papier interessant lijkt, maar in de praktijk tegenvalt op elektrisch rijbereik, laadfunctie of samenwerking tussen elektromotor, automaat en verbrandingsmotor.",
+        batteryChecklist: [
+          "Controleer werkelijk elektrisch rijbereik",
+          "Controleer of de auto daadwerkelijk is geladen en gebruikt als PHEV",
+          "Let op laadpoort, boordlader en foutmeldingen"
+        ],
+        chargingChecklist: [
+          "Vraag hoe vaak de auto thuis of op werk werd geladen",
+          "Controleer of AC-laden probleemloos werkt",
+          "Let op afwijkingen tussen opgegeven en werkelijke elektrische inzet"
+        ],
+        buyerBlindspots: [
+          "Veel PHEV’s zijn structureel te weinig geladen",
+          "Een goede benzinemotor zegt niets over de staat van het plug-in systeem",
+          "Elektrisch rijbereik kan in praktijk flink afwijken"
+        ],
+        riskChecklist: [
+          "Verwaarloosd laadsysteem",
+          "Tegenvallend elektrisch rijbereik",
+          "Storingen in hybride samenwerking of transmissie"
+        ],
+        purchaseTips: [
+          "Controleer laadfunctie op locatie",
+          "Vraag naar onderhoud en software-updates",
+          "Laat batterij én hybride aandrijflijn objectief beoordelen"
+        ]
+      };
+
+      if (key.includes("330E")) {
+        data.batterySize = "ca. 7–12 kWh";
+        data.replacementCost = "€4.000 – €8.000";
+        data.knownIssues = "Controleer laadfunctie, werkelijk elektrisch rijbereik, boordlader en foutmeldingen in het hybridesysteem.";
+        data.buyAdvice = "Sterk concept, maar alleen verstandig als accuprestaties en laadsysteem aantoonbaar goed functioneren.";
+      } else if (key.includes("OCTAVIA") && (key.includes("IV") || key.includes("RS"))) {
+        data.batterySize = "13 kWh bruto / ca. 10,4 kWh netto";
+        data.replacementCost = "€3.500 – €7.000";
+        data.knownIssues = "Controleer bruikbaar elektrisch rijbereik, laadfunctie, DSG-gedrag en foutmeldingen in het hybridesysteem.";
+        data.buyAdvice = "Alleen interessant als het plug-in systeem technisch gezond is en correct is onderhouden.";
+      } else if (key.includes("CLA250E")) {
+        data.batterySize = "ca. 15,6 kWh";
+        data.replacementCost = "€4.000 – €8.000";
+        data.knownIssues = "Controleer laadfunctie, elektrisch rijbereik, onderhoudshistorie en de samenwerking tussen elektromotor en benzinemotor.";
+        data.buyAdvice = "Interessant als premium plug-in hybride, mits accuprestaties en laadsysteem aantoonbaar goed functioneren.";
+      }
+
+      return data;
+    }
+
+    function buildHEVReport() {
+      return {
+        driveTypeLabel: "Hybride",
+        verdictLabel: "Technische check aanbevolen",
+        verdictClass: "warn",
+        summaryScore: "B",
+        summaryText: "Gemiddeld risico, focus op aandrijflijn",
+        summaryClass: "medium",
+        batterySize: "Hybride tractiebatterij",
+        degradation: "Modelafhankelijk",
+        riskLevel: "Gemiddeld",
+        replacementCost: "€2.000 – €5.000",
+        knownIssues: "Controleer foutcodes, accukoeling, laad- en ontlaadgedrag en de algemene staat van de hybride aandrijflijn.",
+        buyAdvice: "Bij hybrides is vooral de technische staat van het volledige hybridesysteem bepalend voor een verstandige aankoop.",
+        coreConclusion: "Bij een hybride voertuig draait een goede aankoop niet alleen om de batterij, maar vooral om het samenspel van accupakket, elektronica en aandrijflijn.",
+        batteryInfoText: "De tractiebatterij in een hybride is kleiner dan bij een EV of plug-in hybride, maar blijft relevant voor efficiëntie, storingsgevoeligheid en rijgedrag.",
+        chargingText: "De batterij wordt tijdens het rijden geladen. Daarom zijn foutcodes, accukoeling en stabiel ontlaad- en laadgedrag belangrijker dan een extern laadprofiel.",
+        riskAnalysisText: "Het grootste risico zit vaak in een hybride systeem dat nog wel werkt, maar niet meer optimaal presteert. Dat merkt een koper niet altijd direct tijdens een korte proefrit.",
+        batteryChecklist: [
+          "Controleer foutcodes en hybride prestaties",
+          "Let op accukoeling en waarschuwingen",
+          "Vraag naar historie van storingen of vervangingen"
+        ],
+        chargingChecklist: [
+          "Geen externe laadtest nodig, wel systeemdiagnose",
+          "Let op onrustig rijgedrag of rare overgangsmomenten",
+          "Vraag naar gebruikspatroon en onderhoud"
+        ],
+        buyerBlindspots: [
+          "Een stille proefrit betekent niet automatisch een gezond hybridesysteem",
+          "Veel kopers onderschatten de invloed van foutcodes en accukoeling"
+        ],
+        riskChecklist: [
+          "Verborgen hybridesysteemstoringen",
+          "Verminderde efficiëntie of laad-/ontlaadproblemen",
+          "Hogere toekomstige reparatiekosten dan verwacht"
+        ],
+        purchaseTips: [
+          "Controleer onderhoud en foutcodes",
+          "Vraag naar eerdere storingen of accuproblemen",
+          "Laat een technische hybridecheck uitvoeren"
+        ]
+      };
+    }
+
+    function isBEV(key) {
       const bevPatterns = [
         "TESLA",
         "MODELS",
@@ -191,6 +1119,9 @@
         "EQC",
         "EQE",
         "EQS",
+        "CLA250+",
+        "CLA250PLUS",
+        "CLAWITHEQTECHNOLOGY",
         "ETRON",
         "Q4ETRON",
         "Q8ETRON",
@@ -205,9 +1136,11 @@
         "ARIYA",
         "ZOE",
         "ENYAQ",
+        "ELROQ",
         "EX30",
         "EX40",
         "EC40",
+        "C40",
         "IX",
         "I4",
         "I5",
@@ -225,15 +1158,10 @@
         "SPRING"
       ];
 
-      return bevPatterns.some(pattern => normalized.includes(pattern));
+      return bevPatterns.some(pattern => key.includes(pattern));
     }
 
     function isPHEV(key) {
-      const normalized = key
-        .replace(/\s+/g, "")
-        .replace(/-/g, "")
-        .replace(/\./g, "");
-
       const phevPatterns = [
         "PHEV",
         "PLUGIN",
@@ -264,20 +1192,18 @@
         "GLC300E",
         "GLE350DE",
         "RSIV",
-        "IV",
+        "OCTAVIAIV",
+        "OCTAVIARSIV",
         "ETENSE",
         "HYBRID4"
       ];
 
-      return phevPatterns.some(pattern => normalized.includes(pattern));
+      if (key.includes("OCTAVIARS")) return true;
+
+      return phevPatterns.some(pattern => key.includes(pattern));
     }
 
     function isHEV(key) {
-      const normalized = key
-        .replace(/\s+/g, "")
-        .replace(/-/g, "")
-        .replace(/\./g, "");
-
       const hevPatterns = [
         "HYBRID",
         "PRIUS",
@@ -291,129 +1217,29 @@
         "CRVHYBRID"
       ];
 
-      return hevPatterns.some(pattern => normalized.includes(pattern));
-    }
-
-    function analyzeBEV(merk, model) {
-      let battery = "30–90 kWh";
-      let degradation = "8–18%";
-      let risk = "Gemiddeld";
-      let issues = "Controleer laadgeschiedenis, accugezondheid en praktijkrange.";
-      let replacementCost = "€6.000 – €15.000";
-      let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
-
-      const key = (merk + " " + model).toUpperCase();
-
-      if (key.includes("TESLA")) {
-        battery = "60–82 kWh";
-        degradation = "8–12%";
-        risk = "Laag";
-        issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
-        replacementCost = "€9.000 – €16.000";
-        advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
-      } else if (key.includes("LEAF")) {
-        battery = "24–62 kWh";
-        degradation = "15–25%";
-        risk = "Hoog";
-        issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
-        replacementCost = "€5.000 – €9.000";
-        advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
-      } else if (key.includes("KONA")) {
-        battery = "39–64 kWh";
-        degradation = "10–14%";
-        risk = "Laag";
-        issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
-        replacementCost = "€7.000 – €12.000";
-        advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
-      } else if (key.includes("NIRO")) {
-        battery = "39–64 kWh";
-        degradation = "10–14%";
-        risk = "Laag";
-        issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
-        replacementCost = "€7.000 – €12.000";
-        advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
-      } else if (key.includes("ZOE")) {
-        battery = "22–52 kWh";
-        degradation = "12–20%";
-        risk = "Gemiddeld";
-        issues = "Controleer accuhuur of accueigendom, laadgedrag en werkelijke resterende capaciteit.";
-        replacementCost = "€6.000 – €10.000";
-        advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
-      }
-
-      renderReport(battery, degradation, risk, issues, replacementCost, advice);
-    }
-
-    function analyzePHEV(merk, model) {
-      let battery = "8–25 kWh";
-      let degradation = "Modelafhankelijk";
-      let risk = "Gemiddeld";
-      let issues = "Controleer accuprestaties, laadfunctie, elektrisch rijbereik en samenwerking met de verbrandingsmotor.";
-      let replacementCost = "€3.000 – €9.000";
-      let advice = "Bij plug-in hybrides is een gecombineerde controle van batterij, laadsysteem en aandrijflijn essentieel vóór aankoop.";
-
-      const key = (merk + " " + model).toUpperCase();
-      const normalized = key.replace(/\s+/g, "").replace(/-/g, "").replace(/\./g, "");
-
-      if (normalized.includes("OCTAVIA") && normalized.includes("IV")) {
-        battery = "ca. 13 kWh";
-        issues = "Controleer bruikbaar elektrisch rijbereik, laadfunctie, DSG-gedrag en foutmeldingen in het hybridesysteem.";
-        replacementCost = "€3.500 – €7.000";
-        advice = "Alleen interessant als het plug-in systeem technisch gezond is en correct is onderhouden.";
-      } else if (normalized.includes("330E")) {
-        battery = "ca. 7–12 kWh";
-        issues = "Controleer laadfunctie, werkelijk elektrisch rijbereik, boordlader en foutmeldingen in het hybridesysteem.";
-        replacementCost = "€4.000 – €8.000";
-        advice = "Sterk concept, maar alleen verstandig als accuprestaties en laadsysteem aantoonbaar goed functioneren.";
-      } else if (normalized.includes("CLA250E")) {
-        battery = "ca. 15,6 kWh";
-        issues = "Controleer laadfunctie, elektrisch rijbereik, onderhoudshistorie en de samenwerking tussen elektromotor en benzinemotor.";
-        replacementCost = "€4.000 – €8.000";
-        advice = "Interessant als premium plug-in hybride, mits accuprestaties en laadsysteem aantoonbaar goed functioneren.";
-      }
-
-      renderReport(battery, degradation, risk, issues, replacementCost, advice);
-    }
-
-    function analyzeHEV() {
-      renderReport(
-        "Hybride tractiebatterij",
-        "Modelafhankelijk",
-        "Gemiddeld",
-        "Controleer foutcodes, accukoeling, laad- en ontlaadgedrag en de algemene staat van de hybride aandrijflijn.",
-        "€2.000 – €5.000",
-        "Bij hybrides is vooral de technische staat van het volledige hybridesysteem bepalend voor een verstandige aankoop."
-      );
+      return hevPatterns.some(pattern => key.includes(pattern));
     }
 
     function detectAndAnalyzeVehicle(merk, model) {
-      const key = (merk + " " + model).toUpperCase();
+      const key = normalizeText(merk + " " + model);
 
-      if (isPHEV(key)) {
-        analyzePHEV(merk, model);
-        return;
-      }
+      if (isPHEV(key)) return buildPHEVReport(merk, model);
+      if (isBEV(key)) return buildBEVReport(merk, model);
+      if (isHEV(key)) return buildHEVReport();
 
-      if (isBEV(key)) {
-        analyzeBEV(merk, model);
-        return;
-      }
-
-      if (isHEV(key)) {
-        analyzeHEV();
-        return;
-      }
-
-      analyzeUnsupported();
+      return buildUnsupportedReport();
     }
 
     async function loadVehicle() {
+      setToday();
+
       const kenteken = getKenteken();
       const vehicleEl = document.getElementById("vehicleName");
 
       if (!kenteken) {
         vehicleEl.innerText = "Geen kenteken in URL";
-        analyzeUnsupported();
+        setVehicleHeaders("Onbekend voertuig");
+        renderReport(buildUnsupportedReport());
         return;
       }
 
@@ -426,21 +1252,26 @@
 
         if (!data || !data.length) {
           vehicleEl.innerText = "Kenteken niet gevonden";
-          analyzeUnsupported();
+          setVehicleHeaders("Onbekend voertuig");
+          renderReport(buildUnsupportedReport());
           return;
         }
 
         const voertuig = data[0];
         const merk = (voertuig.merk || "").trim();
         const model = (voertuig.handelsbenaming || "").trim();
+        const fullName = (merk + " " + model).trim() || "Onbekend voertuig";
 
-        vehicleEl.innerText = (merk + " " + model).trim() || "Onbekend voertuig";
+        vehicleEl.innerText = fullName;
+        setVehicleHeaders(fullName);
 
-        detectAndAnalyzeVehicle(merk, model);
+        const reportData = detectAndAnalyzeVehicle(merk, model);
+        renderReport(reportData);
       } catch (e) {
         console.error(e);
         document.getElementById("vehicleName").innerText = "Fout bij laden voertuigdata";
-        analyzeUnsupported();
+        setVehicleHeaders("Onbekend voertuig");
+        renderReport(buildUnsupportedReport());
       }
     }
 
