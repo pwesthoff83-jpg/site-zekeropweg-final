@@ -551,6 +551,35 @@
         print-color-adjust:exact;
       }
     }
+
+  .risk-index-box {
+  border: 1px solid #d6d9de;
+  border-radius: 14px;
+  padding: 18px;
+  background: linear-gradient(180deg, #fcfcfd 0%, #f7f8fa 100%);
+}
+
+.risk-grade {
+  font-size: 34px;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.risk-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.risk-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+    
   </style>
 </head>
 <body>
@@ -629,6 +658,196 @@
             </div>
           </div>
 
+            function getBrandSpecificText(merk, model, driveType) {
+
+  const brand = normalizeText(merk);
+
+  if (brand.includes("MERCEDES")) {
+    if (driveType === "BEV") {
+      return "Mercedes-Benz heeft batterijtechniek en elektrische aandrijflijnen doorgaans goed ontwikkeld. Het is verstandig om extra aandacht te besteden aan software-updates, laadfunctionaliteit en de correcte werking van sensoren en hulpsystemen.";
+    }
+
+    if (driveType === "PHEV") {
+      return "Mercedes-Benz plug-in hybrides maken vaak een verfijnde en technisch sterke indruk. Extra controle blijft verstandig op laadfunctie, elektrisch rijbereik en de samenwerking tussen elektromotor, verbrandingsmotor en transmissie.";
+    }
+  }
+
+  if (brand.includes("BMW")) {
+    return "BMW staat bekend om sterke aandrijflijnen en goede rijeigenschappen. Controle blijft verstandig op laadfunctie, foutmeldingen en de samenwerking tussen hybride aandrijving en transmissie.";
+  }
+
+  if (
+    brand.includes("AUDI") ||
+    brand.includes("VOLKSWAGEN") ||
+    brand.includes("SKODA") ||
+    brand.includes("SEAT") ||
+    brand.includes("CUPRA")
+  ) {
+    return "Binnen deze groep is elektrische en plug-in techniek vaak interessant. Extra aandacht is verstandig voor softwarestatus, laadfunctie, DSG-werking en de praktische prestaties van het hybride of elektrische systeem.";
+  }
+
+  if (brand.includes("TESLA")) {
+    return "Tesla scoort doorgaans sterk op batterijmanagement en efficiëntie. Controle blijft verstandig op laadverleden, onderstelbelasting, carrosserie-afwerking en eventuele softwarematige bijzonderheden.";
+  }
+
+  if (brand.includes("HYUNDAI") || brand.includes("KIA")) {
+    return "Hyundai en Kia hebben zich sterk ontwikkeld op EV-gebied. Controle blijft verstandig op accuhistorie, laadsnelheid en terugroepacties.";
+  }
+
+  if (brand.includes("NISSAN")) {
+    return "Bij Nissan elektrische modellen is het verstandig extra aandacht te besteden aan batterijconditie en praktijkrange.";
+  }
+
+  if (brand.includes("VOLVO")) {
+    return "Volvo elektrische en plug-in modellen staan bekend om comfort en veiligheid. Controle blijft verstandig op software-updates, laadfunctionaliteit en sensoren.";
+  }
+
+  if (brand.includes("TOYOTA")) {
+    return "Toyota heeft veel ervaring met hybride systemen. Controle blijft verstandig op accukoeling, foutcodes en onderhoudshistorie.";
+  }
+
+  return "Bij dit merk is het verstandig om vóór aankoop extra aandacht te besteden aan batterijconditie, laadfunctie, foutcodes en onderhoudshistorie.";
+}
+
+   function getBatteryRiskIndex(batteryScore, fastChargeCount, mileage, ageYears) {
+  if (batteryScore >= 96 && fastChargeCount < 80 && mileage < 80000) {
+    return {
+      grade: "A+",
+      label: "Zeer laag accurisico",
+      description: "De beschikbare data wijzen op een bovengemiddeld gunstige batterijconditie met een laag verwacht risicoprofiel."
+    };
+  }
+
+  if (batteryScore >= 92 && fastChargeCount < 150 && mileage < 140000) {
+    return {
+      grade: "A",
+      label: "Laag accurisico",
+      description: "De batterij-indicatoren ogen gezond. Er zijn op basis van de beschikbare gegevens geen directe signalen voor verhoogd accurisico."
+    };
+  }
+
+  if (batteryScore >= 88) {
+    return {
+      grade: "B",
+      label: "Gemiddeld accurisico",
+      description: "De beschikbare gegevens passen bij normaal gebruikt voertuiggedrag. Extra aandacht voor laadverleden en praktijkgebruik blijft verstandig."
+    };
+  }
+
+  if (batteryScore >= 82) {
+    return {
+      grade: "C",
+      label: "Verhoogd accurisico",
+      description: "De batterijdata vragen om extra zorgvuldigheid. Een aanvullende accutest of verdiepende technische controle is nadrukkelijk aan te raden."
+    };
+  }
+
+  return {
+    grade: "D",
+    label: "Duidelijk verhoogd accurisico",
+    description: "De beschikbare indicatoren geven aanleiding voor serieuze voorzichtigheid. Aankoop zonder aanvullende accutest is in deze situatie niet verstandig."
+  };
+}       
+    function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
+      const key = normalizeText(merk + " " + model);
+
+      if (isPHEV(key)) return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+      if (isBEV(key)) return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+
+      return buildUnsupportedReport(mileageText, mileageAssessment);
+    }
+
+    async function fetchVehicleData(kenteken) {
+      const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+      const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
+      const res = await fetch(url);
+      return await res.json();
+    }
+
+    async function fetchMileageData(kenteken) {
+      const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+      const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
+      const res = await fetch(url);
+      return await res.json();
+    }
+
+    async function loadVehicle() {
+      setToday();
+
+      const kenteken = getKenteken();
+      const vehicleEl = document.getElementById("vehicleName");
+
+      if (!kenteken) {
+        vehicleEl.innerText = "Geen kenteken in URL";
+        setVehicleHeaders("Onbekend voertuig");
+        renderReport(buildUnsupportedReport("Onbekend", "Geen oordeel"));
+        return;
+      }
+
+      try {
+        const [vehicleData, mileageData] = await Promise.all([
+          fetchVehicleData(kenteken),
+          fetchMileageData(kenteken)
+        ]);
+
+        if (!vehicleData || !vehicleData.length) {
+          vehicleEl.innerText = "Kenteken niet gevonden";
+          setVehicleHeaders("Onbekend voertuig");
+          renderReport(buildUnsupportedReport("Onbekend", "Geen oordeel"));
+          return;
+        }
+
+        const voertuig = vehicleData[0];
+        const merk = (voertuig.merk || "").trim();
+        const model = (voertuig.handelsbenaming || "").trim();
+        const bouwjaar =
+          (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) ||
+          (voertuig.datum_tenaamstelling || "").toString().slice(0, 4) ||
+          "";
+        const fullName = (merk + " " + model).trim() || "Onbekend voertuig";
+
+        let rawMileage = null;
+        if (mileageData && mileageData.length) {
+          const record = mileageData[0];
+          rawMileage =
+            record.tellerstand ||
+            record.gerapporteerde_tellerstand ||
+            null;
+        }
+
+        if (rawMileage && isNaN(Number(rawMileage))) {
+          const cleaned = String(rawMileage).replace(/[^\d]/g, "");
+          rawMileage = cleaned ? Number(cleaned) : null;
+        }
+
+        const mileageText = formatMileage(rawMileage);
+        const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
+        const mileageComment = getMileageComment(rawMileage, bouwjaar);
+
+        vehicleEl.innerText = fullName;
+        setVehicleHeaders(fullName);
+
+        const reportData = detectAndAnalyzeVehicle(
+          merk,
+          model,
+          bouwjaar,
+          mileageText,
+          mileageAssessment,
+          mileageComment
+        );
+
+        renderReport(reportData);
+      } catch (e) {
+        console.error(e);
+        document.getElementById("vehicleName").innerText = "Fout bij laden voertuigdata";
+        setVehicleHeaders("Onbekend voertuig");
+        renderReport(buildUnsupportedReport("Onbekend", "Geen oordeel"));
+      }
+    }
+
+    loadVehicle();
+  </script>
+          
           <div class="summary-score">
             <div class="summary-score-label">ZekerOpWeg eindoordeel</div>
             <div id="summaryScore" class="summary-score-value">—</div>
@@ -736,6 +955,19 @@
           </div>
         </div>
 
+       <div class="panel">
+  <h2 class="section-title">Merkspecifieke aandachtspunten</h2>
+
+  <div id="brandSpecificText" class="text-block">
+    Wordt geladen...
+  </div>
+
+  <div class="small-note" style="margin-top:12px;color:#6b7280;">
+    De genoemde aandachtspunten zijn algemene controlepunten op basis van merk- en modelervaring.
+    Zij betekenen niet automatisch dat deze punten bij dit voertuig aanwezig zijn.
+  </div>
+</div>
+        
         <div class="panel soft" style="margin-top:22px;">
           <h2 class="section-title">Wat een koper vaak onderschat</h2>
           <ul id="buyerBlindspots" class="warning-list">
@@ -977,6 +1209,7 @@
       document.getElementById("degradation").innerText = data.degradation;
       document.getElementById("replacementCost").innerText = data.replacementCost;
       document.getElementById("knownIssues").innerText = data.knownIssues;
+      document.getElementById("brandSpecificText").innerText = data.brandSpecificText; 
       document.getElementById("buyAdvice").innerText = data.buyAdvice;
       document.getElementById("coreConclusion").innerText = data.coreConclusion;
       document.getElementById("batteryInfoText").innerText = data.batteryInfoText;
@@ -1407,6 +1640,57 @@
       return phevPatterns.some(pattern => key.includes(pattern));
     }
 
+   function getBrandSpecificText(merk, model, driveType) {
+
+  const brand = normalizeText(merk);
+
+  if (brand.includes("MERCEDES")) {
+    if (driveType === "BEV") {
+      return "Mercedes-Benz heeft batterijtechniek en elektrische aandrijflijnen doorgaans goed ontwikkeld. Het is verstandig om extra aandacht te besteden aan software-updates, laadfunctionaliteit en de correcte werking van sensoren en hulpsystemen.";
+    }
+
+    if (driveType === "PHEV") {
+      return "Mercedes-Benz plug-in hybrides maken vaak een verfijnde en technisch sterke indruk. Extra controle blijft verstandig op laadfunctie, elektrisch rijbereik en de samenwerking tussen elektromotor, verbrandingsmotor en transmissie.";
+    }
+  }
+
+  if (brand.includes("BMW")) {
+    return "BMW staat bekend om sterke aandrijflijnen en goede rijeigenschappen. Controle blijft verstandig op laadfunctie, foutmeldingen en de samenwerking tussen hybride aandrijving en transmissie.";
+  }
+
+  if (
+    brand.includes("AUDI") ||
+    brand.includes("VOLKSWAGEN") ||
+    brand.includes("SKODA") ||
+    brand.includes("SEAT") ||
+    brand.includes("CUPRA")
+  ) {
+    return "Binnen deze groep is elektrische en plug-in techniek vaak interessant. Extra aandacht is verstandig voor softwarestatus, laadfunctie, DSG-werking en de praktische prestaties van het hybride of elektrische systeem.";
+  }
+
+  if (brand.includes("TESLA")) {
+    return "Tesla scoort doorgaans sterk op batterijmanagement en efficiëntie. Controle blijft verstandig op laadverleden, onderstelbelasting, carrosserie-afwerking en eventuele softwarematige bijzonderheden.";
+  }
+
+  if (brand.includes("HYUNDAI") || brand.includes("KIA")) {
+    return "Hyundai en Kia hebben zich sterk ontwikkeld op EV-gebied. Controle blijft verstandig op accuhistorie, laadsnelheid en terugroepacties.";
+  }
+
+  if (brand.includes("NISSAN")) {
+    return "Bij Nissan elektrische modellen is het verstandig extra aandacht te besteden aan batterijconditie en praktijkrange.";
+  }
+
+  if (brand.includes("VOLVO")) {
+    return "Volvo elektrische en plug-in modellen staan bekend om comfort en veiligheid. Controle blijft verstandig op software-updates, laadfunctionaliteit en sensoren.";
+  }
+
+  if (brand.includes("TOYOTA")) {
+    return "Toyota heeft veel ervaring met hybride systemen. Controle blijft verstandig op accukoeling, foutcodes en onderhoudshistorie.";
+  }
+
+  return "Bij dit merk is het verstandig om vóór aankoop extra aandacht te besteden aan batterijconditie, laadfunctie, foutcodes en onderhoudshistorie.";
+}
+    
     function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
       const key = normalizeText(merk + " " + model);
 
