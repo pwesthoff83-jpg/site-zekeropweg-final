@@ -1,317 +1,361 @@
-<script>
-function getKenteken() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("kenteken");
-}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batterij- en aankooprapport | ZekerOpWeg</title>
 
-async function loadVehicle() {
-  const kenteken = getKenteken();
-  const vehicleEl = document.getElementById("vehicleName");
-
-  if (!kenteken) {
-    vehicleEl.innerText = "Geen kenteken in URL";
-    analyzeUnsupported();
-    return;
-  }
-
-  try {
-    const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-    const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
-
-    const res = await fetch(url);
-    if (!res.ok) {
-      vehicleEl.innerText = "RDW fout: " + res.status;
-      analyzeUnsupported();
-      return;
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #f6f7f9;
+      margin: 0;
+      padding: 40px 20px;
+      color: #0e1116;
     }
 
-    const data = await res.json();
-
-    if (!data.length) {
-      vehicleEl.innerText = "Kenteken niet gevonden: " + cleanKenteken;
-      analyzeUnsupported();
-      return;
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
 
-    const voertuig = data[0];
-    const merk = (voertuig.merk || "").trim();
-    const model = (voertuig.handelsbenaming || "").trim();
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #0b1c2d;
+    }
 
-    const fullName = (merk + " " + model).trim();
-    vehicleEl.innerText = fullName || "Onbekend voertuig";
+    .logo span {
+      color: #c6a15b;
+    }
 
-    detectAndAnalyzeVehicle(merk, model);
-  } catch (error) {
-    vehicleEl.innerText = "Fout bij laden voertuigdata";
-    console.error(error);
-    analyzeUnsupported();
-  }
-}
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-function detectAndAnalyzeVehicle(merk, model) {
-  const key = (merk + " " + model).toUpperCase();
+    .sub {
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
 
-  if (isPHEV(key)) {
-    analyzePHEV(merk, model);
-    return;
-  }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
 
-  if (isBEV(key)) {
-    analyzeBEV(merk, model);
-    return;
-  }
+    .card-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
 
-  if (isHEV(key)) {
-    analyzeHEV(merk, model);
-    return;
-  }
+    .metric {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0b1c2d;
+    }
 
-  analyzeUnsupported();
-}
+    .risk {
+      font-weight: 800;
+    }
 
-function isBEV(key) {
-  const bevPatterns = [
-    "TESLA",
-    "MODEL S",
-    "MODEL 3",
-    "MODEL X",
-    "MODEL Y",
-    "EQA",
-    "EQB",
-    "EQC",
-    "EQE",
-    "EQS",
-    "EQV",
-    "E-TRON",
-    "ETRON",
-    "Q4 E-TRON",
-    "Q8 E-TRON",
-    "IONIQ 5",
-    "IONIQ 6",
-    "KONA ELECTRIC",
-    "EV6",
-    "EV9",
-    "NIRO EV",
-    "NIRO ELECTRIC",
-    "LEAF",
-    "ARIYA",
-    "ZOE",
-    "MEGANE E-TECH ELECTRIC",
-    "SCENIC E-TECH ELECTRIC",
-    "ENYAQ",
-    "ELROQ",
-    "EX30",
-    "EX40",
-    "EC40",
-    "C40",
-    "XC40 RECHARGE ELECTRIC",
-    "IX",
-    "I4",
-    "I5",
-    "I7",
-    "ID.3",
-    "ID.4",
-    "ID.5",
-    "ID.7",
-    "BORN",
-    "MUSTANG MACH-E",
-    "MG4",
-    "MG5",
-    "ZS EV",
-    "4 ELECTRIC",
-    "500E",
-    "500 E",
-    "SPRING"
-  ];
+    .low { color: #166534; }
+    .medium { color: #b45309; }
+    .high { color: #b91c1c; }
 
-  return bevPatterns.some(pattern => key.includes(pattern));
-}
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #0b1c2d;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+    }
 
-function isPHEV(key) {
-  const phevPatterns = [
-    "PHEV",
-    "PLUG-IN",
-    "PLUGIN",
-    "E-HYBRID",
-    "EHYBRID",
-    "TFSI E",
-    "TSI E",
-    "RECHARGE TWIN",
-    "RECHARGE",
-    "4XE",
-    "XDRIVE25E",
-    "XDRIVE30E",
-    "XDRIVE45E",
-    "225XE",
-    "230E",
-    "250E",
-    "300E",
-    "350E",
-    "400E",
-    "450E",
-    "500E",
-    "530E",
-    "545E",
-    "550E",
-    "745E",
-    "A250E",
-    "B250E",
-    "C300E",
-    "CLA250E",
-    "E300E",
-    "GLA250E",
-    "GLC300E",
-    "GLE350DE",
-    "RS IV",
-    "IV",
-    "E-TENSE",
-    "HYBRID4",
-    "C5 X HYBRID",
-    "AMG E PERFORMANCE"
-  ];
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
 
-  return phevPatterns.some(pattern => key.includes(pattern));
-}
+  <div class="container">
+    <div class="logo">Zeker<span>Op</span>Weg</div>
 
-function isHEV(key) {
-  const hevPatterns = [
-    "HYBRID",
-    "FULL HYBRID",
-    "SELF CHARGING HYBRID",
-    "PRIUS",
-    "YARIS HYBRID",
-    "COROLLA HYBRID",
-    "C-HR HYBRID",
-    "RAV4 HYBRID",
-    "AURIS HYBRID",
-    "JAZZ HYBRID",
-    "HR-V HYBRID",
-    "CR-V HYBRID",
-    "CLIO HYBRID",
-    "CAPTUR HYBRID"
-  ];
+    <h1>Batterij- en aankooprapport</h1>
+    <p class="sub">Analyse van batterij, aandrijflijn en aankooprisico op basis van voertuigdata.</p>
 
-  return hevPatterns.some(pattern => key.includes(pattern));
-}
+    <div id="reportContent">
+      <div class="card">
+        <div class="card-title">Voertuig</div>
+        <div id="vehicleName" class="metric">Laden...</div>
+      </div>
 
-function analyzeBEV(merk, model) {
-  let battery = "Onbekend";
-  let degradation = "10–18%";
-  let risk = "Gemiddeld";
-  let issues = "Geen specifieke modelinformatie beschikbaar.";
-  let replacementCost = "€6.000 – €12.000";
-  let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
+      <div class="card">
+        <div class="card-title">Geschatte batterijcapaciteit</div>
+        <div id="batterySize" class="metric">—</div>
+      </div>
 
-  const key = (merk + " " + model).toUpperCase();
+      <div class="card">
+        <div class="card-title">Gemiddelde batterijdegradatie</div>
+        <div id="degradation" class="metric">—</div>
+      </div>
 
-  if (key.includes("TESLA")) {
-    battery = "60–82 kWh";
-    degradation = "8–12%";
-    risk = "Laag";
-    issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
-    replacementCost = "€9.000 – €16.000";
-    advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
-  } else if (key.includes("LEAF")) {
-    battery = "24–62 kWh";
-    degradation = "15–25%";
-    risk = "Hoog";
-    issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
-    replacementCost = "€5.000 – €9.000";
-    advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
-  } else if (key.includes("KONA")) {
-    battery = "39–64 kWh";
-    degradation = "10–14%";
-    risk = "Laag";
-    issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
-    replacementCost = "€7.000 – €12.000";
-    advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
-  } else if (key.includes("NIRO")) {
-    battery = "39–64 kWh";
-    degradation = "10–14%";
-    risk = "Laag";
-    issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
-    replacementCost = "€7.000 – €12.000";
-    advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
-  } else if (key.includes("ZOE")) {
-    battery = "22–52 kWh";
-    degradation = "12–20%";
-    risk = "Gemiddeld";
-    issues = "Controleer accuhuur of accueigendom, laadgedrag en werkelijke resterende capaciteit.";
-    replacementCost = "€6.000 – €10.000";
-    advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
-  }
+      <div class="card">
+        <div class="card-title">Risico-inschatting</div>
+        <div id="riskLevel" class="metric risk">—</div>
+      </div>
 
-  renderReport(battery, degradation, risk, issues, replacementCost, advice);
-}
+      <div class="card">
+        <div class="card-title">Bekende aandachtspunten</div>
+        <div id="knownIssues">—</div>
+      </div>
 
-function analyzePHEV(merk, model) {
-  let battery = "10–25 kWh";
-  let degradation = "Modelafhankelijk";
-  let risk = "Gemiddeld";
-  let issues = "Controleer accuprestaties, laadfunctie, elektrisch rijbereik en de samenwerking met de verbrandingsmotor.";
-  let replacementCost = "€3.000 – €9.000";
-  let advice = "Bij plug-in hybrides is een gecombineerde controle van batterij, laadsysteem en aandrijflijn essentieel vóór aankoop.";
+      <div class="card">
+        <div class="card-title">Indicatie vervangingskosten batterij</div>
+        <div id="replacementCost" class="metric">—</div>
+      </div>
 
-  const key = (merk + " " + model).toUpperCase();
+      <div class="card">
+        <div class="card-title">Aankoopadvies ZekerOpWeg</div>
+        <div id="buyAdvice">—</div>
+      </div>
+    </div>
 
-  if (key.includes("CLA") && key.includes("250")) {
-    battery = "ca. 15,6 kWh";
-    degradation = "Modelafhankelijk";
-    risk = "Gemiddeld";
-    issues = "Controleer AC-laadfunctie, werkelijk elektrisch rijbereik, onderhoudshistorie en soepel samenspel tussen elektromotor en benzinemotor.";
-    replacementCost = "€4.000 – €8.000";
-    advice = "Interessant als premium plug-in hybride, mits accuprestaties en laadsysteem aantoonbaar goed functioneren.";
-  }
+    <button class="btn" onclick="window.print()">Download PDF</button>
 
-  if (key.includes("OCTAVIA") && (key.includes("IV") || key.includes("RS"))) {
-    battery = "ca. 13 kWh";
-    degradation = "Modelafhankelijk";
-    risk = "Gemiddeld";
-    issues = "Controleer bruikbaar elektrisch rijbereik, laadfunctie, DSG-gedrag en foutmeldingen in hybride systeem.";
-    replacementCost = "€3.500 – €7.000";
-    advice = "Alleen echt interessant als het plug-in systeem technisch gezond is en de auto aantoonbaar correct is onderhouden.";
-  }
+    <div class="footer">ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
+  </div>
 
-  renderReport(battery, degradation, risk, issues, replacementCost, advice);
-}
+  <script>
+    function getKenteken() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get("kenteken");
+    }
 
-function analyzeHEV(merk, model) {
-  let battery = "Hybride tractiebatterij";
-  let degradation = "Modelafhankelijk";
-  let risk = "Gemiddeld";
-  let issues = "Controleer foutcodes, accukoeling, laad- en ontlaadgedrag en de algemene staat van de hybride aandrijflijn.";
-  let replacementCost = "€2.000 – €5.000";
-  let advice = "Bij hybrides is vooral de technische staat van het volledige hybridesysteem bepalend voor een verstandige aankoop.";
+    function renderReport(battery, degradation, risk, issues, replacementCost, advice) {
+      document.getElementById("batterySize").innerText = battery;
+      document.getElementById("degradation").innerText = degradation;
+      document.getElementById("knownIssues").innerText = issues;
+      document.getElementById("replacementCost").innerText = replacementCost;
+      document.getElementById("buyAdvice").innerText = advice;
 
-  renderReport(battery, degradation, risk, issues, replacementCost, advice);
-}
+      const riskEl = document.getElementById("riskLevel");
+      riskEl.innerText = risk;
+      riskEl.classList.remove("low", "medium", "high");
 
-function analyzeUnsupported() {
-  renderReport(
-    "Niet van toepassing",
-    "Niet van toepassing",
-    "Buiten scope",
-    "Dit rapport is bedoeld voor elektrische en hybride voertuigen met een tractiebatterij.",
-    "Niet van toepassing",
-    "Vul een elektrisch of hybride voertuig in voor een relevante batterij- en aankoopanalyse."
-  );
-}
+      if (risk === "Laag") riskEl.classList.add("low");
+      if (risk === "Gemiddeld") riskEl.classList.add("medium");
+      if (risk === "Hoog") riskEl.classList.add("high");
+    }
 
-function renderReport(battery, degradation, risk, issues, replacementCost, advice) {
-  document.getElementById("batterySize").innerText = battery;
-  document.getElementById("degradation").innerText = degradation;
-  document.getElementById("knownIssues").innerText = issues;
-  document.getElementById("replacementCost").innerText = replacementCost;
-  document.getElementById("buyAdvice").innerText = advice;
+    function analyzeUnsupported() {
+      renderReport(
+        "Niet van toepassing",
+        "Niet van toepassing",
+        "Buiten scope",
+        "Dit rapport is bedoeld voor elektrische en hybride voertuigen met een tractiebatterij.",
+        "Niet van toepassing",
+        "Vul een elektrisch of hybride voertuig in voor een relevante batterij- en aankoopanalyse."
+      );
+    }
 
-  const riskEl = document.getElementById("riskLevel");
-  riskEl.innerText = risk;
-  riskEl.classList.remove("low", "medium", "high");
+    function isBEV(key) {
+      const bevPatterns = [
+        "TESLA","MODEL S","MODEL 3","MODEL X","MODEL Y",
+        "EQA","EQB","EQC","EQE","EQS",
+        "E-TRON","ETRON","Q4 E-TRON","Q8 E-TRON",
+        "IONIQ 5","IONIQ 6","KONA ELECTRIC","EV6","EV9",
+        "NIRO EV","NIRO ELECTRIC","LEAF","ARIYA","ZOE",
+        "ENYAQ","EX30","EX40","EC40","IX","I4","I5","I7",
+        "ID.3","ID.4","ID.5","ID.7","BORN","MUSTANG MACH-E",
+        "MG4","MG5","ZS EV","500E","SPRING"
+      ];
+      return bevPatterns.some(pattern => key.includes(pattern));
+    }
 
-  if (risk === "Laag") riskEl.classList.add("low");
-  if (risk === "Gemiddeld") riskEl.classList.add("medium");
-  if (risk === "Hoog") riskEl.classList.add("high");
-}
+    function isPHEV(key) {
+      const phevPatterns = [
+        "PHEV","PLUG-IN","PLUGIN","E-HYBRID","EHYBRID",
+        "TFSI E","TSI E","RECHARGE","4XE","225XE",
+        "250E","300E","350E","400E","450E","530E",
+        "A250E","B250E","C300E","CLA250E","E300E",
+        "GLA250E","GLC300E","GLE350DE","RS IV","IV",
+        "E-TENSE","HYBRID4"
+      ];
+      return phevPatterns.some(pattern => key.includes(pattern));
+    }
 
-loadVehicle();
-</script>
+    function isHEV(key) {
+      const hevPatterns = [
+        "HYBRID","PRIUS","YARIS HYBRID","COROLLA HYBRID",
+        "C-HR HYBRID","RAV4 HYBRID","AURIS HYBRID",
+        "JAZZ HYBRID","HR-V HYBRID","CR-V HYBRID"
+      ];
+      return hevPatterns.some(pattern => key.includes(pattern));
+    }
+
+    function analyzeBEV(merk, model) {
+      let battery = "30–90 kWh";
+      let degradation = "8–18%";
+      let risk = "Gemiddeld";
+      let issues = "Controleer laadgeschiedenis, accugezondheid en praktijkrange.";
+      let replacementCost = "€6.000 – €15.000";
+      let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
+
+      const key = (merk + " " + model).toUpperCase();
+
+      if (key.includes("TESLA")) {
+        battery = "60–82 kWh";
+        degradation = "8–12%";
+        risk = "Laag";
+        issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
+        replacementCost = "€9.000 – €16.000";
+        advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
+      } else if (key.includes("LEAF")) {
+        battery = "24–62 kWh";
+        degradation = "15–25%";
+        risk = "Hoog";
+        issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
+        replacementCost = "€5.000 – €9.000";
+        advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
+      } else if (key.includes("KONA")) {
+        battery = "39–64 kWh";
+        degradation = "10–14%";
+        risk = "Laag";
+        issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
+        replacementCost = "€7.000 – €12.000";
+        advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
+      } else if (key.includes("NIRO")) {
+        battery = "39–64 kWh";
+        degradation = "10–14%";
+        risk = "Laag";
+        issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
+        replacementCost = "€7.000 – €12.000";
+        advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
+      } else if (key.includes("ZOE")) {
+        battery = "22–52 kWh";
+        degradation = "12–20%";
+        risk = "Gemiddeld";
+        issues = "Controleer accuhuur of accueigendom, laadgedrag en werkelijke resterende capaciteit.";
+        replacementCost = "€6.000 – €10.000";
+        advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
+      }
+
+      renderReport(battery, degradation, risk, issues, replacementCost, advice);
+    }
+
+    function analyzePHEV(merk, model) {
+      let battery = "8–25 kWh";
+      let degradation = "Modelafhankelijk";
+      let risk = "Gemiddeld";
+      let issues = "Controleer accuprestaties, laadfunctie, elektrisch rijbereik en samenwerking met de verbrandingsmotor.";
+      let replacementCost = "€3.000 – €9.000";
+      let advice = "Bij plug-in hybrides is een gecombineerde controle van batterij, laadsysteem en aandrijflijn essentieel vóór aankoop.";
+
+      const key = (merk + " " + model).toUpperCase();
+
+      if (key.includes("OCTAVIA") && key.includes("IV")) {
+        battery = "ca. 13 kWh";
+        issues = "Controleer bruikbaar elektrisch rijbereik, laadfunctie, DSG-gedrag en foutmeldingen in het hybridesysteem.";
+        replacementCost = "€3.500 – €7.000";
+        advice = "Alleen interessant als het plug-in systeem technisch gezond is en correct is onderhouden.";
+      }
+
+      if (key.includes("CLA") && key.includes("250E")) {
+        battery = "ca. 15,6 kWh";
+        issues = "Controleer laadfunctie, elektrisch rijbereik, onderhoudshistorie en de samenwerking tussen elektromotor en benzinemotor.";
+        replacementCost = "€4.000 – €8.000";
+        advice = "Interessant als premium plug-in hybride, mits accuprestaties en laadsysteem aantoonbaar goed functioneren.";
+      }
+
+      renderReport(battery, degradation, risk, issues, replacementCost, advice);
+    }
+
+    function analyzeHEV() {
+      renderReport(
+        "Hybride tractiebatterij",
+        "Modelafhankelijk",
+        "Gemiddeld",
+        "Controleer foutcodes, accukoeling, laad- en ontlaadgedrag en de algemene staat van de hybride aandrijflijn.",
+        "€2.000 – €5.000",
+        "Bij hybrides is vooral de technische staat van het volledige hybridesysteem bepalend voor een verstandige aankoop."
+      );
+    }
+
+    function detectAndAnalyzeVehicle(merk, model) {
+      const key = (merk + " " + model).toUpperCase();
+
+      if (isPHEV(key)) {
+        analyzePHEV(merk, model);
+        return;
+      }
+
+      if (isBEV(key)) {
+        analyzeBEV(merk, model);
+        return;
+      }
+
+      if (isHEV(key)) {
+        analyzeHEV();
+        return;
+      }
+
+      analyzeUnsupported();
+    }
+
+    async function loadVehicle() {
+      const kenteken = getKenteken();
+      const vehicleEl = document.getElementById("vehicleName");
+
+      if (!kenteken) {
+        vehicleEl.innerText = "Geen kenteken in URL";
+        analyzeUnsupported();
+        return;
+      }
+
+      try {
+        const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+        const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!data || !data.length) {
+          vehicleEl.innerText = "Kenteken niet gevonden";
+          analyzeUnsupported();
+          return;
+        }
+
+        const voertuig = data[0];
+        const merk = (voertuig.merk || "").trim();
+        const model = (voertuig.handelsbenaming || "").trim();
+
+        vehicleEl.innerText = (merk + " " + model).trim() || "Onbekend voertuig";
+
+        detectAndAnalyzeVehicle(merk, model);
+      } catch (e) {
+        console.error(e);
+        document.getElementById("vehicleName").innerText = "Fout bij laden voertuigdata";
+        analyzeUnsupported();
+      }
+    }
+
+    loadVehicle();
+  </script>
+</body>
+</html>
