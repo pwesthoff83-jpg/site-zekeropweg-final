@@ -1,431 +1,339 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>EV Aankooprapport | ZekerOpWeg</title>
-
-<style>
-
-body{
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-background:#f6f7f9;
-margin:0;
-padding:40px 20px;
-color:#0e1116;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-background:white;
-padding:40px;
-border-radius:14px;
-box-shadow:0 20px 40px rgba(0,0,0,.08);
-}
-
-.logo{
-font-size:22px;
-font-weight:700;
-margin-bottom:20px;
-color:#0b1c2d;
-}
-
-.logo span{
-color:#c6a15b;
-}
-
-h1{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.sub{
-color:#6b7280;
-margin-bottom:30px;
-}
-
-.card{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:12px;
-padding:20px;
-margin-bottom:20px;
-}
-
-.card-title{
-font-weight:800;
-margin-bottom:8px;
-}
-
-.metric{
-font-size:24px;
-font-weight:900;
-color:#0b1c2d;
-}
-
-.risk{
-font-weight:800;
-}
-
-.low{color:#166534}
-.medium{color:#b45309}
-.high{color:#b91c1c}
-
-.btn{
-display:inline-block;
-margin-top:20px;
-background:#0b1c2d;
-color:white;
-padding:12px 22px;
-border-radius:999px;
-font-weight:700;
-text-decoration:none;
-}
-
-.footer{
-margin-top:30px;
-font-size:13px;
-color:#6b7280;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="logo">Zeker<span>Op</span>Weg</div>
-
-<h1>EV aankooprapport</h1>
-
-<p class="sub">
-Analyse van batterij en aankooprisico op basis van voertuigdata.
-</p>
-
-<div id="reportContent">
-
-<div class="card">
-<div class="card-title">Voertuig</div>
-<div id="vehicleName" class="metric">Laden...</div>
-</div>
-
-<div class="card">
-<div class="card-title">Geschatte batterijcapaciteit</div>
-<div id="batterySize" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Gemiddelde batterijdegradatie</div>
-<div id="degradation" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Risico-inschatting</div>
-<div id="riskLevel" class="metric risk">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Bekende aandachtspunten</div>
-<div id="knownIssues">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Indicatie vervangingskosten batterij</div>
-<div id="replacementCost" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Aankoopadvies ZekerOpWeg</div>
-<div id="buyAdvice">—</div>
-</div>
-  
-</div>
-
-<a class="btn" onclick="window.print()">Download PDF</a>
-
-<div class="footer">
-ZekerOpWeg · Onafhankelijke EV analyse
-</div>
-
-</div>
-
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>EV Aankooprapport | ZekerOpWeg</title>
-
-<style>
-
-body{
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-background:#f6f7f9;
-margin:0;
-padding:40px 20px;
-color:#0e1116;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-background:white;
-padding:40px;
-border-radius:14px;
-box-shadow:0 20px 40px rgba(0,0,0,.08);
-}
-
-.logo{
-font-size:22px;
-font-weight:700;
-margin-bottom:20px;
-color:#0b1c2d;
-}
-
-.logo span{
-color:#c6a15b;
-}
-
-h1{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.sub{
-color:#6b7280;
-margin-bottom:30px;
-}
-
-.card{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:12px;
-padding:20px;
-margin-bottom:20px;
-}
-
-.card-title{
-font-weight:800;
-margin-bottom:8px;
-}
-
-.metric{
-font-size:24px;
-font-weight:900;
-color:#0b1c2d;
-}
-
-.risk{
-font-weight:800;
-}
-
-.low{color:#166534}
-.medium{color:#b45309}
-.high{color:#b91c1c}
-
-.btn{
-display:inline-block;
-margin-top:20px;
-background:#0b1c2d;
-color:white;
-padding:12px 22px;
-border-radius:999px;
-font-weight:700;
-text-decoration:none;
-}
-
-.footer{
-margin-top:30px;
-font-size:13px;
-color:#6b7280;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="logo">Zeker<span>Op</span>Weg</div>
-
-<h1>EV aankooprapport</h1>
-
-<p class="sub">
-Analyse van batterij en aankooprisico op basis van voertuigdata.
-</p>
-
-<div id="reportContent">
-
-<div class="card">
-<div class="card-title">Voertuig</div>
-<div id="vehicleName" class="metric">Laden...</div>
-</div>
-
-<div class="card">
-<div class="card-title">Geschatte batterijcapaciteit</div>
-<div id="batterySize" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Gemiddelde batterijdegradatie</div>
-<div id="degradation" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Risico-inschatting</div>
-<div id="riskLevel" class="metric risk">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Bekende aandachtspunten</div>
-<div id="knownIssues">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Indicatie vervangingskosten batterij</div>
-<div id="replacementCost" class="metric">—</div>
-</div>
-
-<div class="card">
-<div class="card-title">Aankoopadvies ZekerOpWeg</div>
-<div id="buyAdvice">—</div>
-</div>
-  
-</div>
-
-<a class="btn" onclick="window.print()">Download PDF</a>
-
-<div class="footer">
-ZekerOpWeg · Onafhankelijke EV analyse
-</div>
-
-</div>
-
-<script>
-function getKenteken() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("kenteken");
-}
-
-async function loadVehicle() {
-  const kenteken = getKenteken();
-  const vehicleEl = document.getElementById("vehicleName");
-
-  if (!kenteken) {
-    vehicleEl.innerText = "Geen kenteken in URL";
-    return;
-  }
-
-  vehicleEl.innerText = "Zoeken op kenteken: " + kenteken;
-
-  try {
-    const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-    const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
-
-    const res = await fetch(url);
-    if (!res.ok) {
-      vehicleEl.innerText = "RDW fout: " + res.status;
-      return;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batterij- en aankooprapport | ZekerOpWeg</title>
+
+  <style>
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f7f9;
+      margin:0;
+      padding:40px 20px;
+      color:#0e1116;
     }
 
-    const data = await res.json();
-
-    if (!data.length) {
-      vehicleEl.innerText = "Kenteken niet gevonden: " + cleanKenteken;
-      return;
+    .container{
+      max-width:900px;
+      margin:auto;
+      background:white;
+      padding:40px;
+      border-radius:14px;
+      box-shadow:0 20px 40px rgba(0,0,0,.08);
     }
 
-    const voertuig = data[0];
-    const merk = voertuig.merk || "";
-    const model = voertuig.handelsbenaming || "";
+    .logo{
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:20px;
+      color:#0b1c2d;
+    }
 
-    vehicleEl.innerText = merk + " " + model;
+    .logo span{
+      color:#c6a15b;
+    }
 
-    analyzeVehicle(merk, model);
-  } catch (error) {
-    vehicleEl.innerText = "Fout bij laden voertuigdata";
-    console.error(error);
-  }
-}
+    h1{
+      font-size:32px;
+      margin:0 0 10px;
+      color:#0b1c2d;
+    }
 
-function analyzeVehicle(merk, model) {
-  let battery = "Onbekend";
-  let degradation = "10–18%";
-  let risk = "Gemiddeld";
-  let issues = "Geen specifieke modelinformatie beschikbaar.";
-  let replacementCost = "€6.000 – €12.000";
-  let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
+    .sub{
+      color:#6b7280;
+      margin-bottom:30px;
+      line-height:1.5;
+    }
 
-  let key = (merk + " " + model).toUpperCase();
+    .card{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:20px;
+      margin-bottom:20px;
+    }
 
-  if (key.includes("TESLA")) {
-    battery = "60–82 kWh";
-    degradation = "8–12%";
-    risk = "Laag";
-    issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
-    replacementCost = "€9.000 – €16.000";
-    advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
-  } else if (key.includes("LEAF")) {
-    battery = "24–62 kWh";
-    degradation = "15–25%";
-    risk = "Hoog";
-    issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
-    replacementCost = "€5.000 – €9.000";
-    advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
-  } else if (key.includes("KONA")) {
-    battery = "39–64 kWh";
-    degradation = "10–14%";
-    risk = "Laag";
-    issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
-    replacementCost = "€7.000 – €12.000";
-    advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
-  } else if (key.includes("NIRO")) {
-    battery = "39–64 kWh";
-    degradation = "10–14%";
-    risk = "Laag";
-    issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
-    replacementCost = "€7.000 – €12.000";
-    advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
-  } else if (key.includes("ZOE")) {
-    battery = "22–52 kWh";
-    degradation = "12–20%";
-    risk = "Gemiddeld";
-    issues = "Controleer accuhuur/accueigendom, laadgedrag en werkelijke resterende capaciteit.";
-    replacementCost = "€6.000 – €10.000";
-    advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
-  }
+    .card-title{
+      font-weight:800;
+      margin-bottom:8px;
+      color:#111827;
+    }
 
-  document.getElementById("batterySize").innerText = battery;
-  document.getElementById("degradation").innerText = degradation;
-  document.getElementById("knownIssues").innerText = issues;
-  document.getElementById("replacementCost").innerText = replacementCost;
-  document.getElementById("buyAdvice").innerText = advice;
+    .metric{
+      font-size:24px;
+      font-weight:900;
+      color:#0b1c2d;
+      line-height:1.3;
+    }
 
-  const riskEl = document.getElementById("riskLevel");
-  riskEl.innerText = risk;
-  riskEl.classList.remove("low", "medium", "high");
+    .risk{
+      font-weight:800;
+    }
 
-  if (risk === "Laag") riskEl.classList.add("low");
-  if (risk === "Gemiddeld") riskEl.classList.add("medium");
-  if (risk === "Hoog") riskEl.classList.add("high");
-}
+    .low{color:#166534;}
+    .medium{color:#b45309;}
+    .high{color:#b91c1c;}
 
-loadVehicle();
-</script>
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      background:#0b1c2d;
+      color:white;
+      padding:12px 22px;
+      border-radius:999px;
+      font-weight:700;
+      text-decoration:none;
+      cursor:pointer;
+      border:none;
+    }
 
+    .footer{
+      margin-top:30px;
+      font-size:13px;
+      color:#6b7280;
+    }
 
-</body>
-</html>
+    @media print{
+      body{
+        background:white;
+        padding:0;
+      }
 
+      .container{
+        box-shadow:none;
+        border-radius:0;
+        max-width:100%;
+        padding:20px;
+      }
+
+      .btn{
+        display:none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">Zeker<span>Op</span>Weg</div>
+
+    <h1>Batterij- en aankooprapport</h1>
+
+    <p class="sub">
+      Analyse van batterij, aandrijflijn en aankooprisico op basis van voertuigdata.
+    </p>
+
+    <div id="reportContent">
+      <div class="card">
+        <div class="card-title">Voertuig</div>
+        <div id="vehicleName" class="metric">Laden...</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Geschatte batterijcapaciteit</div>
+        <div id="batterySize" class="metric">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Gemiddelde batterijdegradatie</div>
+        <div id="degradation" class="metric">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Risico-inschatting</div>
+        <div id="riskLevel" class="metric risk">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Bekende aandachtspunten</div>
+        <div id="knownIssues">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Indicatie vervangingskosten batterij</div>
+        <div id="replacementCost" class="metric">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Aankoopadvies ZekerOpWeg</div>
+        <div id="buyAdvice">—</div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.print()">Download PDF</button>
+
+    <div class="footer">
+      ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse
+    </div>
+  </div>
+
+  <script>
+    function getKenteken() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get("kenteken");
+    }
+
+    async function loadVehicle() {
+      const kenteken = getKenteken();
+      const vehicleEl = document.getElementById("vehicleName");
+
+      if (!kenteken) {
+        vehicleEl.innerText = "Geen kenteken in URL";
+        return;
+      }
+
+      try {
+        const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+        const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
+
+        const res = await fetch(url);
+        if (!res.ok) {
+          vehicleEl.innerText = "RDW fout: " + res.status;
+          return;
+        }
+
+        const data = await res.json();
+
+        if (!data.length) {
+          vehicleEl.innerText = "Kenteken niet gevonden: " + cleanKenteken;
+          return;
+        }
+
+        const voertuig = data[0];
+        const merk = voertuig.merk || "";
+        const model = voertuig.handelsbenaming || "";
+        const brandstof = (voertuig.brandstof_omschrijving || "").toUpperCase();
+
+        vehicleEl.innerText = (merk + " " + model).trim();
+
+        const isElectric = brandstof.includes("ELEKTR");
+        const isFuel = brandstof.includes("BENZINE") || brandstof.includes("DIESEL");
+        const isHybrid = brandstof.includes("HYBRID");
+
+        if (isElectric && isFuel) {
+          analyzePHEV(merk, model);
+          return;
+        }
+
+        if (isElectric && !isFuel) {
+          analyzeBEV(merk, model);
+          return;
+        }
+
+        if (isHybrid || (!isElectric && isFuel && brandstof.includes("HYBR"))) {
+          analyzeHEV(merk, model);
+          return;
+        }
+
+        analyzeUnsupported();
+      } catch (error) {
+        document.getElementById("vehicleName").innerText = "Fout bij laden voertuigdata";
+        console.error(error);
+      }
+    }
+
+    function analyzeBEV(merk, model) {
+      let battery = "Onbekend";
+      let degradation = "10–18%";
+      let risk = "Gemiddeld";
+      let issues = "Geen specifieke modelinformatie beschikbaar.";
+      let replacementCost = "€6.000 – €12.000";
+      let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
+
+      const key = (merk + " " + model).toUpperCase();
+
+      if (key.includes("TESLA")) {
+        battery = "60–82 kWh";
+        degradation = "8–12%";
+        risk = "Laag";
+        issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
+        replacementCost = "€9.000 – €16.000";
+        advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
+      } else if (key.includes("LEAF")) {
+        battery = "24–62 kWh";
+        degradation = "15–25%";
+        risk = "Hoog";
+        issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
+        replacementCost = "€5.000 – €9.000";
+        advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
+      } else if (key.includes("KONA")) {
+        battery = "39–64 kWh";
+        degradation = "10–14%";
+        risk = "Laag";
+        issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
+        replacementCost = "€7.000 – €12.000";
+        advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
+      } else if (key.includes("NIRO")) {
+        battery = "39–64 kWh";
+        degradation = "10–14%";
+        risk = "Laag";
+        issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
+        replacementCost = "€7.000 – €12.000";
+        advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
+      } else if (key.includes("ZOE")) {
+        battery = "22–52 kWh";
+        degradation = "12–20%";
+        risk = "Gemiddeld";
+        issues = "Controleer accuhuur of accueigendom, laadgedrag en werkelijke resterende capaciteit.";
+        replacementCost = "€6.000 – €10.000";
+        advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
+      }
+
+      renderReport(battery, degradation, risk, issues, replacementCost, advice);
+    }
+
+    function analyzePHEV(merk, model) {
+      const battery = "Compact accupakket (plug-in hybride)";
+      const degradation = "Modelafhankelijk";
+      const risk = "Gemiddeld";
+      const issues = "Controleer accuprestaties, laadfunctie, elektrisch rijbereik en de samenwerking met de verbrandingsmotor.";
+      const replacementCost = "Sterk modelafhankelijk";
+      const advice = "Bij plug-in hybrides is een gecombineerde controle van batterij, laadsysteem en aandrijflijn essentieel vóór aankoop.";
+
+      renderReport(battery, degradation, risk, issues, replacementCost, advice);
+    }
+
+    function analyzeHEV(merk, model) {
+      const battery = "Hybride tractiebatterij";
+      const degradation = "Modelafhankelijk";
+      const risk = "Gemiddeld";
+      const issues = "Controleer foutcodes, accukoeling, laad- en ontlaadgedrag en de algemene staat van de hybride aandrijflijn.";
+      const replacementCost = "Sterk modelafhankelijk";
+      const advice = "Bij hybrides is vooral de technische staat van het volledige hybridesysteem bepalend voor een verstandige aankoop.";
+
+      renderReport(battery, degradation, risk, issues, replacementCost, advice);
+    }
+
+    function analyzeUnsupported() {
+      renderReport(
+        "Niet van toepassing",
+        "Niet van toepassing",
+        "Buiten scope",
+        "Dit rapport is bedoeld voor elektrische en hybride voertuigen met een tractiebatterij.",
+        "Niet van toepassing",
+        "Vul een elektrisch of hybride voertuig in voor een relevante batterij- en aankoopanalyse."
+      );
+    }
+
+    function renderReport(battery, degradation, risk, issues, replacementCost, advice) {
+      document.getElementById("batterySize").innerText = battery;
+      document.getElementById("degradation").innerText = degradation;
+      document.getElementById("knownIssues").innerText = issues;
+      document.getElementById("replacementCost").innerText = replacementCost;
+      document.getElementById("buyAdvice").innerText = advice;
+
+      const riskEl = document.getElementById("riskLevel");
+      riskEl.innerText = risk;
+      riskEl.classList.remove("low", "medium", "high");
+
+      if (risk === "Laag") riskEl.classList.add("low");
+      if (risk === "Gemiddeld") riskEl.classList.add("medium");
+      if (risk === "Hoog") riskEl.classList.add("high");
+    }
+
+    loadVehicle();
+  </script>
 
 </body>
 </html>
