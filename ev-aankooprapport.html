@@ -1,1 +1,1076 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Batterij- en aankooprapport EV kopen | ZekerOpWeg</title>
+  <meta name="description" content="Voorkom een miskoop bij een gebruikte elektrische auto of plug-in hybride. Ontvang voor €19,95 een onafhankelijk batterij- en aankooprapport van ZekerOpWeg." />
+
+  <style>
+    :root{
+      --navy:#0b1c2d;
+      --navy-deep:#071423;
+      --gold:#c6a15b;
+      --gold-soft:#e7d3ab;
+      --text:#111827;
+      --muted:#667085;
+      --soft:#f7f8fa;
+      --line:#e6e8ec;
+      --white:#ffffff;
+      --success:#166534;
+      --danger:#991b1b;
+      --shadow:0 18px 50px rgba(10,20,35,.08);
+      --shadow-strong:0 28px 80px rgba(7,20,35,.22);
+      --radius-xl:24px;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --radius-sm:10px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:#fff;
+      line-height:1.6;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:800;
+      color:var(--navy);
+      letter-spacing:-.4px;
+    }
+
+    .logo span{color:var(--gold)}
+
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .mini-proof{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:linear-gradient(180deg,#132b45,#071423);
+      color:#fff;
+      box-shadow:0 14px 34px rgba(7,20,35,.18);
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    .hero{
+      background:
+        radial-gradient(900px 340px at 12% 8%, rgba(198,161,91,.16), transparent 60%),
+        linear-gradient(135deg,var(--navy),var(--navy-deep));
+      color:#fff;
+      padding:72px 0 90px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(198,161,91,.16);
+    }
+
+    h1{
+      font-size:56px;
+      line-height:1.02;
+      letter-spacing:-1px;
+      margin:16px 0 16px;
+    }
+
+    .hero-lead{
+      max-width:58ch;
+      font-size:19px;
+      color:rgba(255,255,255,.86);
+      margin:0 0 24px;
+    }
+
+    .hero-points{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:0 0 22px;
+    }
+
+    .hero-points span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 13px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.13);
+    }
+
+    .hero-note{
+      font-size:14px;
+      color:rgba(255,255,255,.82);
+      font-weight:650;
+      margin-top:14px;
+      max-width:58ch;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .hero-card{
+      background:#fff;
+      color:var(--text);
+      border-radius:26px;
+      box-shadow:var(--shadow-strong);
+      overflow:hidden;
+    }
+
+    .hero-card-top{
+      padding:24px 24px 12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero-card-label{
+      font-size:12px;
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .hero-card h3{
+      margin:0;
+      font-size:24px;
+      line-height:1.15;
+      color:var(--navy);
+    }
+
+    .hero-card-sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-weight:600;
+      font-size:15px;
+    }
+
+    .hero-card-body{
+      padding:20px 24px 24px;
+    }
+
+    .price-line{
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+      margin-bottom:16px;
+    }
+
+    .price{
+      font-size:46px;
+      line-height:1;
+      font-weight:900;
+      color:var(--navy);
+    }
+
+    .price-sub{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .report-list{
+      list-style:none;
+      padding:0;
+      margin:0 0 18px;
+      display:grid;
+      gap:10px;
+    }
+
+    .report-list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-weight:700;
+      color:#1f2937;
+    }
+
+    .report-list li::before{
+      content:"✓";
+      color:var(--success);
+      font-weight:900;
+      margin-top:1px;
+    }
+
+    .card-helper{
+      margin-top:12px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .section{
+      padding:88px 0;
+    }
+
+    .section.soft{background:var(--soft)}
+
+    h2{
+      font-size:38px;
+      line-height:1.1;
+      letter-spacing:-.6px;
+      margin:0 0 12px;
+      color:var(--navy);
+    }
+
+    .section-lead{
+      max-width:76ch;
+      margin:0 0 26px;
+      color:var(--muted);
+      font-weight:600;
+      font-size:17px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:20px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:var(--navy);
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .problem-card{
+      background:linear-gradient(180deg,#fff,#fcfcfd);
+    }
+
+    .problem-card strong{
+      color:var(--navy);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .step{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .step-number{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(198,161,91,.16);
+      color:#7a5c20;
+      border:1px solid rgba(198,161,91,.34);
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .step h3{
+      margin:0 0 8px;
+      font-size:21px;
+      color:var(--navy);
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .report-preview{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .preview-paper{
+      background:#fff;
+      border:1px solid #e9ebef;
+      border-radius:22px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .paper-brand{
+      font-size:20px;
+      font-weight:800;
+      color:var(--navy);
+      margin-bottom:6px;
+    }
+
+    .paper-title{
+      font-size:28px;
+      line-height:1.15;
+      font-weight:900;
+      color:#111827;
+      margin-bottom:10px;
+    }
+
+    .paper-meta{
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .score-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .score-box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:#fafbfc;
+    }
+
+    .score-label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    .score-value{
+      font-size:24px;
+      font-weight:900;
+      color:var(--navy);
+      line-height:1.1;
+    }
+
+    .score-small{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .preview-list{
+      list-style:none;
+      padding:0;
+      margin:16px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .preview-list li{
+      color:#374151;
+      font-weight:700;
+    }
+
+    .audience-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .audience{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .audience.good{
+      border-color:rgba(22,101,52,.18);
+      background:linear-gradient(180deg,#f8fffb,#fff);
+    }
+
+    .audience.bad{
+      border-color:rgba(185,28,28,.14);
+      background:linear-gradient(180deg,#fffafa,#fff);
+    }
+
+    .audience h3{
+      margin:0 0 12px;
+      font-size:22px;
+      color:var(--navy);
+    }
+
+    .audience ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .audience li{
+      font-weight:700;
+      color:#334155;
+    }
+
+    .audience.good li::before{
+      content:"✓ ";
+      color:var(--success);
+      font-weight:900;
+    }
+
+    .audience.bad li::before{
+      content:"– ";
+      color:var(--danger);
+      font-weight:900;
+    }
+
+    .pricing-box{
+      background:linear-gradient(180deg,#fff,#fdfcf9);
+      border:1px solid rgba(198,161,91,.28);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      max-width:760px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .pricing-box .price{
+      font-size:58px;
+      margin:8px 0;
+    }
+
+    .pricing-box p{
+      color:var(--muted);
+      font-weight:600;
+      margin:0 auto 18px;
+      max-width:56ch;
+    }
+
+    .mini-list{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:18px 0 0;
+    }
+
+    .mini-list span{
+      padding:9px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      font-size:13px;
+      font-weight:800;
+      color:#334155;
+    }
+
+    .faq{
+      display:grid;
+      gap:12px;
+      max-width:920px;
+    }
+
+    details{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:850;
+      color:var(--navy);
+    }
+
+    summary::-webkit-details-marker{display:none}
+
+    details p{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .final-cta{
+      background:
+        radial-gradient(500px 180px at 18% 20%, rgba(198,161,91,.18), transparent 65%),
+        linear-gradient(135deg,var(--navy),var(--navy-deep));
+      color:#fff;
+      border-radius:28px;
+      padding:34px;
+      box-shadow:var(--shadow-strong);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .final-cta h2{
+      color:#fff;
+      margin:0 0 6px;
+      font-size:34px;
+    }
+
+    .final-cta p{
+      margin:0;
+      color:rgba(255,255,255,.84);
+      font-weight:650;
+      max-width:58ch;
+    }
+
+    .footer{
+      padding:32px 0 60px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .sticky-mobile{
+      display:none;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .report-preview,
+      .grid-2,
+      .grid-3,
+      .steps,
+      .audience-grid{
+        grid-template-columns:1fr;
+      }
+
+      h1{font-size:42px}
+      h2{font-size:32px}
+    }
+
+    @media (max-width: 700px){
+      .header-inner{
+        min-height:68px;
+      }
+
+      .mini-proof{
+        display:none;
+      }
+
+      .header-right .btn-secondary{
+        display:none;
+      }
+
+      h1{
+        font-size:36px;
+        letter-spacing:-.6px;
+      }
+
+      .hero{
+        padding:54px 0 74px;
+      }
+
+      .pricing-box .price{
+        font-size:48px;
+      }
+
+      .sticky-mobile{
+        display:block;
+        position:fixed;
+        left:14px;
+        right:14px;
+        bottom:14px;
+        z-index:60;
+      }
+
+      .sticky-mobile a{
+        width:100%;
+        min-height:56px;
+        border-radius:999px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:linear-gradient(180deg,#132b45,#071423);
+        color:#fff;
+        font-weight:900;
+        box-shadow:0 18px 40px rgba(7,20,35,.28);
+      }
+
+      body{
+        padding-bottom:86px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="logo">Zeker<span>Op</span>Weg</a>
+
+      <div class="header-right">
+        <div class="mini-proof">Onafhankelijk batterij- en aankooprapport voor gebruikte EV’s en plug-in hybrides</div>
+        <a href="#voorbeeld" class="btn btn-secondary">Bekijk voorbeeld</a>
+        <a href="rapport-bestellen.html" class="btn btn-primary">Bestel rapport €19,95</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Voor gebruikte EV’s en plug-in hybrides vóór aankoop</div>
+
+        <h1>Voorkom een dure miskoop met een batterij- en aankooprapport</h1>
+
+        <p class="hero-lead">
+          Krijg vóór aankoop direct een onafhankelijke eerste risicoanalyse van de batterij, laadtechniek en bekende aandachtspunten van het voertuig. Helder, snel en zonder technisch gedoe.
+        </p>
+
+        <div class="hero-points">
+          <span>✓ Direct online beschikbaar</span>
+          <span>✓ Onafhankelijke eerste risicoanalyse</span>
+          <span>✓ Voor EV en plug-in hybride</span>
+          <span>✓ Slechts €19,95</span>
+        </div>
+
+        <div class="cta-row">
+          <a href="rapport-bestellen.html" class="btn btn-primary">Bestel rapport voor €19,95</a>
+          <a href="#wat-u-krijgt" class="btn btn-secondary">Bekijk wat u ontvangt</a>
+        </div>
+
+        <div class="hero-note">
+          Ideaal als u een elektrische auto of plug-in hybride op het oog heeft en eerst meer rust en richting wilt vóór u verder gaat met onderhandelen, bezichtigen of kopen.
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="hero-card-label">ZekerOpWeg Premium</div>
+          <h3>Wat u ontvangt na betaling</h3>
+          <p class="hero-card-sub">
+            Een helder batterij- en aankooprapport dat direct aansluit op uw aankoopbeslissing.
+          </p>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="price-line">
+            <div class="price">€19,95</div>
+            <div class="price-sub">eenmalig per rapport</div>
+          </div>
+
+          <ul class="report-list">
+            <li>Voertuigprofiel en eerste risicobeeld</li>
+            <li>Indicatie van batterijcontext en degradatie</li>
+            <li>Bekende aandachtspunten per merk/modeltype</li>
+            <li>Praktische controlepunten vóór aankoop</li>
+            <li>Kooptips en proefrit-aandachtspunten</li>
+            <li>PDF-download onderaan het rapport</li>
+          </ul>
+
+          <a href="rapport-bestellen.html" class="btn btn-primary" style="width:100%;">Start rapport aanvraag</a>
+
+          <div class="card-helper">
+            Dit is een digitale vooranalyse en geeft deskundige richting vóór aankoop. Voor maximale zekerheid kunt u daarna aanvullend een ZekerOpWeg AccuCheck plannen.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <h2>Waarom dit rapport waardevol is vóór aankoop</h2>
+      <p class="section-lead">
+        Bij een gebruikte EV of plug-in hybride ziet een auto er tijdens een proefrit vaak prima uit, terwijl batterijconditie, laadgedrag of modelspecifieke risico’s minder zichtbaar zijn. Dit rapport helpt u sneller zien waar vertrouwen ligt en waar extra alertheid nodig is.
+      </p>
+
+      <div class="grid-3">
+        <div class="card problem-card">
+          <h3>Meer rust vóór u beslist</h3>
+          <p>
+            U krijgt direct een duidelijker beeld van het voertuig, zonder eerst diep in technische forums of losse advertentieteksten te hoeven duiken.
+          </p>
+        </div>
+
+        <div class="card problem-card">
+          <h3>Voorkom verborgen risico’s</h3>
+          <p>
+            Denk aan batterijdegradatie, laadproblemen, software-aandachtspunten of risico’s die u tijdens een korte proefrit eenvoudig mist.
+          </p>
+        </div>
+
+        <div class="card problem-card">
+          <h3>Sterker de aankoop in</h3>
+          <p>
+            U weet beter waar u op moet letten, welke vragen u moet stellen en wanneer een aanvullende AccuCheck verstandig is.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="wat-u-krijgt">
+    <div class="wrap">
+      <h2>Wat u precies ontvangt</h2>
+      <p class="section-lead">
+        Geen vaag algemeen blogartikel, maar een rapport in de stijl van ZekerOpWeg: rustig, duidelijk en gericht op echte aankoopbeslissingen.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. Duidelijk eindoordeel</h3>
+          <p>
+            U ziet in één oogopslag het algemene aankoopbeeld, inclusief nuance. Dus niet alleen positief of negatief, maar ook waarom.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>2. Batterij- en techniekcontext</h3>
+          <p>
+            U krijgt inzicht in accucapaciteit, verwachte context, laadgedrag en technische aandachtspunten die relevant zijn bij gebruikte EV’s en plug-in hybrides.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>3. Controlepunten vóór aankoop</h3>
+          <p>
+            Het rapport benoemt concreet waar u op moet letten bij bezichtiging, proefrit en beoordeling van laadkabel, laadpoort, foutmeldingen en onderhoudshistorie.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>4. Praktische kooptips</h3>
+          <p>
+            U ontvangt aandachtspunten die direct bruikbaar zijn bij onderhandelen, vergelijken en beslissen of u verder wilt met dit specifieke voertuig.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="voorbeeld">
+    <div class="wrap report-preview">
+      <div class="preview-paper">
+        <div class="paper-brand">ZekerOpWeg</div>
+        <div class="paper-title">Premium batterij- en aankooprapport</div>
+        <div class="paper-meta">Digitale vooranalyse • direct te bekijken • PDF-download beschikbaar</div>
+
+        <div class="score-row">
+          <div class="score-box">
+            <div class="score-label">Conclusie</div>
+            <div class="score-value">Positief met nuance</div>
+            <div class="score-small">Rustige eerste richting vóór aankoop</div>
+          </div>
+
+          <div class="score-box">
+            <div class="score-label">Risico-inschatting</div>
+            <div class="score-value">Laag tot gemiddeld</div>
+            <div class="score-small">Afhankelijk van model, historie en gebruik</div>
+          </div>
+        </div>
+
+        <ul class="preview-list">
+          <li>• Voertuigprofiel en kernconclusie</li>
+          <li>• 3-pijler beoordeling</li>
+          <li>• Accu, laden en techniek</li>
+          <li>• Bekende aandachtspunten</li>
+          <li>• Proefrit- en aankoopadvies</li>
+          <li>• CTA naar aanvullende AccuCheck</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Het rapport sluit inhoudelijk aan op uw echte aankoopmoment</h2>
+        <p class="section-lead">
+          De opbouw van het rapport is gemaakt voor mensen die niet zitten te wachten op onduidelijk technisch jargon, maar wel een deskundige eerste inschatting willen voordat ze verder gaan met kopen.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Direct online inzicht</h3>
+            <p>
+              Na betaling krijgt de klant het rapport direct te zien op de rapportpagina en kan het onderaan ook meteen als PDF worden gedownload.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Logische vervolgstap</h3>
+            <p>
+              Is extra zekerheid nodig over de echte batterijconditie? Dan sluit de ZekerOpWeg AccuCheck logisch aan als vervolgstap op het rapport.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Hoe het werkt</h2>
+      <p class="section-lead">
+        De drempel is bewust laag gehouden: eerst snelle richting, daarna pas eventueel verdiepen.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Voer kenteken en kilometerstand in</h3>
+          <p>
+            U vult de voertuiggegevens in van de EV of plug-in hybride die u op het oog heeft.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Betaal €19,95</h3>
+          <p>
+            Na betaling krijgt u direct toegang tot het batterij- en aankooprapport op de rapportpagina.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Bekijk en download het rapport</h3>
+          <p>
+            U leest direct de analyse, aandachtspunten en kooptips en kunt het rapport ook als PDF downloaden.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <h2>Voor wie dit rapport geschikt is</h2>
+      <p class="section-lead">
+        Dit product werkt het best als eerste filter vóór aankoop. Het is bedoeld om sneller richting en rust te geven.
+      </p>
+
+      <div class="audience-grid">
+        <div class="audience good">
+          <h3>Wel geschikt</h3>
+          <ul>
+            <li>U heeft een gebruikte EV of plug-in hybride op het oog</li>
+            <li>U wilt eerst richting vóór bezichtiging of onderhandeling</li>
+            <li>U wilt weten waar extra risico kan zitten</li>
+            <li>U wilt voorkomen dat u iets belangrijks over het hoofd ziet</li>
+            <li>U zoekt een laagdrempelige eerste stap vóór een AccuCheck</li>
+          </ul>
+        </div>
+
+        <div class="audience bad">
+          <h3>Minder geschikt</h3>
+          <ul>
+            <li>U zoekt direct een fysieke accutest op locatie</li>
+            <li>U wilt volledige technische uitsluiting van alle risico’s</li>
+            <li>U verwacht een fysieke inspectie van het voertuig</li>
+            <li>U wilt een vervanging voor een onafhankelijke AccuCheck</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="pricing-box">
+        <h2>Laagdrempelig beginnen, zonder grote stap</h2>
+        <div class="price">€19,95</div>
+        <p>
+          Voor veel kopers is dit de slimste eerste stap: eerst onafhankelijke richting en aandachtspunten, daarna pas beslissen of een uitgebreide AccuCheck nodig is.
+        </p>
+        <a href="rapport-bestellen.html" class="btn btn-primary">Bestel batterij- en aankooprapport</a>
+
+        <div class="mini-list">
+          <span>Direct rapport bekijken</span>
+          <span>PDF-download</span>
+          <span>Voor EV en PHEV</span>
+          <span>Onafhankelijke eerste analyse</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <h2>Veelgestelde vragen</h2>
+
+      <div class="faq">
+        <details>
+          <summary>Is dit rapport een fysieke accutest?</summary>
+          <p>
+            Nee. Dit product is een digitale batterij- en aankoopvooranalyse. Het geeft deskundige richting en aandachtspunten vóór aankoop, maar vervangt geen fysieke AccuCheck op locatie.
+          </p>
+        </details>
+
+        <details>
+          <summary>Wanneer is dit rapport het meest waardevol?</summary>
+          <p>
+            Vooral vóór bezichtiging, proefrit, onderhandeling of aankoop. U weet dan sneller waar vertrouwen zit en waar u extra alert moet zijn.
+          </p>
+        </details>
+
+        <details>
+          <summary>Krijg ik het rapport direct te zien?</summary>
+          <p>
+            Ja. Na betaling komt de klant direct op de rapportpagina terecht en kan het rapport onderaan ook als PDF downloaden.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is dit rapport geschikt voor plug-in hybrides?</summary>
+          <p>
+            Ja. Het batterij- en aankooprapport is bedoeld voor gebruikte elektrische auto’s én plug-in hybrides.
+          </p>
+        </details>
+
+        <details>
+          <summary>Wat als ik daarna meer zekerheid wil?</summary>
+          <p>
+            Dan is een aanvullende ZekerOpWeg AccuCheck de logische vervolgstap. Daarmee krijgt u meer zekerheid over de werkelijke batterijconditie van het specifieke voertuig.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="final-cta">
+        <div>
+          <h2>Wilt u eerst richting vóór u verder gaat met kopen?</h2>
+          <p>
+            Begin dan met het batterij- en aankooprapport van ZekerOpWeg. Snel, helder en gemaakt om miskopen bij gebruikte EV’s en plug-in hybrides te helpen voorkomen.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="rapport-bestellen.html" class="btn btn-primary">Bestel rapport €19,95</a>
+          <a href="accucheck.html" class="btn btn-secondary">Bekijk AccuCheck</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      © 2026 ZekerOpWeg · Onafhankelijke batterij- en aankoopbegeleiding voor gebruikte EV’s en plug-in hybrides
+    </div>
+  </footer>
+
+  <div class="sticky-mobile">
+    <a href="rapport-bestellen.html">Bestel rapport voor €19,95</a>
+  </div>
+
+</body>
+</html>
