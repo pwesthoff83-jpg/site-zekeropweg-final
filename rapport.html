@@ -310,125 +310,118 @@ ZekerOpWeg · Onafhankelijke EV analyse
 
 </div>
 
-
 <script>
-
-function getKenteken(){
-
-const urlParams = new URLSearchParams(window.location.search);
-
-return urlParams.get("kenteken");
-
+function getKenteken() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("kenteken");
 }
 
-async function loadVehicle(){
+async function loadVehicle() {
+  const kenteken = getKenteken();
+  const vehicleEl = document.getElementById("vehicleName");
 
-const kenteken = getKenteken();
+  if (!kenteken) {
+    vehicleEl.innerText = "Geen kenteken in URL";
+    return;
+  }
 
-if(!kenteken){
+  vehicleEl.innerText = "Zoeken op kenteken: " + kenteken;
 
-document.getElementById("vehicleName").innerText="Geen kenteken";
+  try {
+    const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+    const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
 
-return;
+    const res = await fetch(url);
+    if (!res.ok) {
+      vehicleEl.innerText = "RDW fout: " + res.status;
+      return;
+    }
 
+    const data = await res.json();
+
+    if (!data.length) {
+      vehicleEl.innerText = "Kenteken niet gevonden: " + cleanKenteken;
+      return;
+    }
+
+    const voertuig = data[0];
+    const merk = voertuig.merk || "";
+    const model = voertuig.handelsbenaming || "";
+
+    vehicleEl.innerText = merk + " " + model;
+
+    analyzeVehicle(merk, model);
+  } catch (error) {
+    vehicleEl.innerText = "Fout bij laden voertuigdata";
+    console.error(error);
+  }
 }
 
-const url="https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken="+kenteken;
+function analyzeVehicle(merk, model) {
+  let battery = "Onbekend";
+  let degradation = "10–18%";
+  let risk = "Gemiddeld";
+  let issues = "Geen specifieke modelinformatie beschikbaar.";
+  let replacementCost = "€6.000 – €12.000";
+  let advice = "Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
 
-const res=await fetch(url);
-const data=await res.json();
+  let key = (merk + " " + model).toUpperCase();
 
-if(!data.length){
+  if (key.includes("TESLA")) {
+    battery = "60–82 kWh";
+    degradation = "8–12%";
+    risk = "Laag";
+    issues = "Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
+    replacementCost = "€9.000 – €16.000";
+    advice = "Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
+  } else if (key.includes("LEAF")) {
+    battery = "24–62 kWh";
+    degradation = "15–25%";
+    risk = "Hoog";
+    issues = "Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
+    replacementCost = "€5.000 – €9.000";
+    advice = "Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
+  } else if (key.includes("KONA")) {
+    battery = "39–64 kWh";
+    degradation = "10–14%";
+    risk = "Laag";
+    issues = "Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
+    replacementCost = "€7.000 – €12.000";
+    advice = "Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
+  } else if (key.includes("NIRO")) {
+    battery = "39–64 kWh";
+    degradation = "10–14%";
+    risk = "Laag";
+    issues = "Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
+    replacementCost = "€7.000 – €12.000";
+    advice = "Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
+  } else if (key.includes("ZOE")) {
+    battery = "22–52 kWh";
+    degradation = "12–20%";
+    risk = "Gemiddeld";
+    issues = "Controleer accuhuur/accueigendom, laadgedrag en werkelijke resterende capaciteit.";
+    replacementCost = "€6.000 – €10.000";
+    advice = "Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
+  }
 
-document.getElementById("vehicleName").innerText="Kenteken niet gevonden";
+  document.getElementById("batterySize").innerText = battery;
+  document.getElementById("degradation").innerText = degradation;
+  document.getElementById("knownIssues").innerText = issues;
+  document.getElementById("replacementCost").innerText = replacementCost;
+  document.getElementById("buyAdvice").innerText = advice;
 
-return;
+  const riskEl = document.getElementById("riskLevel");
+  riskEl.innerText = risk;
+  riskEl.classList.remove("low", "medium", "high");
 
+  if (risk === "Laag") riskEl.classList.add("low");
+  if (risk === "Gemiddeld") riskEl.classList.add("medium");
+  if (risk === "Hoog") riskEl.classList.add("high");
 }
 
-const voertuig=data[0];
-
-const merk=voertuig.merk || "";
-const model=voertuig.handelsbenaming || "";
-
-document.getElementById("vehicleName").innerText=merk+" "+model;
-
-analyzeVehicle(merk,model);
-
-}
-
-<script>
-function analyzeVehicle(merk,model){
-
-let battery="Onbekend";
-let degradation="10–18%";
-let risk="Gemiddeld";
-let issues="Geen specifieke modelinformatie beschikbaar.";
-let replacementCost="€6.000 – €12.000";
-let advice="Laat vóór aankoop altijd een onafhankelijke batterijcheck uitvoeren.";
-
-let key=(merk+" "+model).toUpperCase();
-
-if(key.includes("TESLA")){
-battery="60–82 kWh";
-degradation="8–12%";
-risk="Laag";
-issues="Controleer laadgeschiedenis, softwaremeldingen en algemene accugezondheid.";
-replacementCost="€9.000 – €16.000";
-advice="Technisch vaak sterk, maar aankoop blijft alleen verstandig met onafhankelijke accudiagnose.";
-}
-
-else if(key.includes("LEAF")){
-battery="24–62 kWh";
-degradation="15–25%";
-risk="Hoog";
-issues="Versnelde degradatie komt relatief vaak voor, vooral bij oudere generaties zonder actieve koeling.";
-replacementCost="€5.000 – €9.000";
-advice="Alleen interessant als accustaat aantoonbaar goed is en prijs daar echt op is aangepast.";
-}
-
-else if(key.includes("KONA")){
-battery="39–64 kWh";
-degradation="10–14%";
-risk="Laag";
-issues="Let op batterijhistorie, eventuele terugroepacties en laadprestaties in praktijkgebruik.";
-replacementCost="€7.000 – €12.000";
-advice="Interessant model, maar controle van batterijconditie blijft essentieel vóór aankoop.";
-}
-
-else if(key.includes("NIRO")){
-battery="39–64 kWh";
-degradation="10–14%";
-risk="Laag";
-issues="Controleer laadsnelheid, praktijkrange en onderhoudshistorie.";
-replacementCost="€7.000 – €12.000";
-advice="Vaak een verstandige keuze, mits batterijconditie onafhankelijk bevestigd is.";
-}
-
-else if(key.includes("ZOE")){
-battery="22–52 kWh";
-degradation="12–20%";
-risk="Gemiddeld";
-issues="Controleer accuhuur/accueigendom, laadgedrag en werkelijke resterende capaciteit.";
-replacementCost="€6.000 – €10.000";
-advice="Interessant als stads-EV, maar koop alleen bij duidelijke accuhistorie.";
-}
-
-document.getElementById("batterySize").innerText=battery;
-document.getElementById("degradation").innerText=degradation;
-document.getElementById("knownIssues").innerText=issues;
-document.getElementById("replacementCost").innerText=replacementCost;
-document.getElementById("buyAdvice").innerText=advice;
-
-const riskEl=document.getElementById("riskLevel");
-riskEl.innerText=risk;
-riskEl.classList.remove("low","medium","high");
-
-if(risk==="Laag") riskEl.classList.add("low");
-if(risk==="Gemiddeld") riskEl.classList.add("medium");
-if(risk==="Hoog") riskEl.classList.add("high");
-}
+loadVehicle();
 </script>
+
 
 </body>
 </html>
