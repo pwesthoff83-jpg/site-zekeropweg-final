@@ -743,9 +743,13 @@ transform:scale(1.03);
   <div class="lp-header-inner">
     
   <a href="index.html" class="lp-logo">Zeker<span>Op</span>Weg</a>
+
+  <p style="font-weight:800;color:#0b1c2d;">
+    Eén verkeerde aankoop kan €10.000+ kosten. Deze check kost €95.
+  </p> 
     
   <a href="#prijzen" class="hero-cta" id="heroCTA">
-   Plan AccuCheck €95
+   Plan mijn AccuCheck
   </a>
   
   </div>
@@ -754,54 +758,70 @@ transform:scale(1.03);
 <!-- HERO -->
 <section class="hero">
   <div class="wrap hero-grid">
+    
     <div>
       <div class="badge">Voor EV & plug-in hybride vóór aankoop</div>
 
-      <h1>EV kopen?<br>Controleer eerst de accustatus</h1>
+      <h1>Voorkom een miskoop van €10.000+ bij een EV aankoop</h1>
 
       <p class="hero-lead">
-        De batterij is het duurste onderdeel van een elektrische auto.
-        Binnen ±15 minuten weet u hoe gezond de batterij werkelijk is.
-        Inclusief TÜV accucertificaat.
+        Binnen 15 minuten weet u of de batterij écht in orde is — vóór u koopt.
+        Inclusief TÜV accucertificaat en persoonlijk advies.
       </p>
 
-      <a href="#prijzen" class="hero-cta">
-       Plan AccuCheck €95
-      </a>
+      <div class="cta-row" style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#prijzen" class="hero-cta">
+          Check deze auto vóór aankoop (€95)
+        </a>
 
-      <div class="trust">
+        <a href="https://wa.me/31623452349" class="btn btn-secondary">
+          Stel eerst een vraag
+        </a>
+      </div>
+
+      <div style="margin-top:14px;font-size:13px;font-weight:700;color:rgba(255,255,255,.9);">
+        Beperkte beschikbaarheid per dag • vaak binnen 24 uur mogelijk
+      </div>
+
+      <div class="trust" style="margin-top:18px;">
         <span>✔ TÜV accucertificaat</span>
-        <span>✔ Test ±15 minuten</span>
+        <span>✔ ±15 min test</span>
         <span>✔ Vanaf €95</span>
         <span>✔ Regio Rotterdam</span>
       </div>
 
       <div class="personal-line">
-        De meting wordt persoonlijk uitgevoerd door Pepijn —
-        met 16 jaar ervaring in automotive dealerbedrijven.
+        Persoonlijk uitgevoerd door Pepijn — 16 jaar ervaring in automotive.
+        Geen verkooppraat, wel duidelijkheid.
       </div>
 
+      <!-- KENTEKEN TOOL (OPTIONEEL) -->
       <div class="kenteken-tool">
         <h3>Check of deze EV getest kan worden</h3>
-        <p>Gebruik deze check tijdens bezichtiging of proefrit.</p>
+        
+        <p style="font-weight:700;">
+          Geen kenteken bij de hand? Geen probleem — u kunt ook direct plannen.
+        </p>
 
         <input
-  id="kentekenInput"
-  type="text"
-  placeholder="Bijv: AB123C"
-  oninput="autoCheckKenteken()"
-/>
+          id="kentekenInput"
+          type="text"
+          placeholder="Bijv: AB123C"
+          oninput="autoCheckKenteken()"
+        />
 
-<button type="button" onclick="CheckKenteken()">Check voertuig</button>
+        <button type="button" onclick="checkKenteken()">
+          Check voertuig
+        </button>
 
-<div id="kentekenResult" style="margin-top:14px;"></div>
+        <div id="kentekenResult" style="margin-top:14px;"></div>
 
-<div class="risk-box">
-  <div class="risk-item">
-    <div class="risk-title">Batterij vervangen</div>
-    <div class="risk-price">€8.000 tot €20.000</div>
-  </div>
-       
+        <div class="risk-box">
+          <div class="risk-item">
+            <div class="risk-title">Batterij vervangen</div>
+            <div class="risk-price">€8.000 – €20.000</div>
+          </div>
+
           <div class="risk-item">
             <div class="risk-title">AccuCheck</div>
             <div class="risk-price gold">€95</div>
@@ -810,149 +830,36 @@ transform:scale(1.03);
       </div>
     </div>
 
+    <!-- VISUAL -->
     <div class="hero-visual">
       <div class="hero-visual-image">
-        <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg" alt="EV AccuCheck op locatie" />
+        <img src="/assets/images/ev-accucheck-aviloo-elektrische-auto-barendrecht-zekeropweg.jpeg" alt="EV AccuCheck" />
       </div>
 
       <div class="hero-visual-content">
         <div class="hero-visual-top">
-          <img class="hero-cert" src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png" alt="Voorbeeld accucertificaat" />
+          <img class="hero-cert" src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png" />
           <div>
-            <h3>Onafhankelijke EV AccuCheck</h3>
-            <div class="hero-note">Persoonlijk uitgevoerd door Pepijn</div>
+            <h3>Onafhankelijke AccuCheck</h3>
+            <div class="hero-note">Direct duidelijkheid vóór aankoop</div>
           </div>
         </div>
 
         <ul>
-          <li>✓ Meting ±15 minuten</li>
-          <li>✓ TÜV accucertificaat</li>
-          <li>✓ Bij dealer of particulier</li>
-          <li>✓ Vanaf €95</li>
+          <li>✓ Werkelijke accugezondheid</li>
+          <li>✓ TÜV gecertificeerd rapport</li>
+          <li>✓ Binnen ±15 minuten resultaat</li>
+          <li>✓ Inzicht voor aankoopbeslissing</li>
         </ul>
 
         <a class="btn" href="#prijzen">Plan AccuCheck</a>
 
         <div class="hero-note">
-          16 jaar automotive ervaring bij dealerbedrijven. Geen verkooppraat — wel duidelijk advies.
+          Ideaal vóór bezichtiging, proefrit of onderhandeling
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- TRUSTBAR -->
-<section class="trustbar">
-  <div class="wrap trust-row">
-    <div>✔ Onafhankelijke accudiagnose</div>
-    <div>✔ TÜV accucertificaat</div>
-    <div>✔ Meting ±15 minuten</div>
-    <div>✔ 95% van EV’s testbaar</div>
-    <div>✔ Regio Rotterdam</div>
-  </div>
-</section>
-
-
-<!-- WAAROM ZEKEROPWEG -->
-<section class="section soft">
-  <div class="wrap">
-    <h2>Waarom ZekerOpWeg</h2>
-    <p class="section-lead">
-      ZekerOpWeg helpt particulieren en ondernemers om miskopen te voorkomen bij gebruikte auto’s en EV’s.
-      Persoonlijk, onafhankelijk en deskundig.
-    </p>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>Onafhankelijk advies</h3>
-        <p>
-          Geen belang bij verkoop van de auto. U krijgt alleen objectieve informatie over de batterijconditie
-          en wat dat betekent voor uw aankoopbeslissing.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Voorkom een dure miskoop</h3>
-        <p>
-          De batterij is het duurste onderdeel van een EV. Een accutest voorkomt verrassingen
-          en helpt u sterker te onderhandelen als de uitkomst tegenvalt.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Snel duidelijkheid</h3>
-        <p>
-          De meting duurt gemiddeld ±15 minuten. U krijgt snel inzicht, zonder technisch gedoe
-          of onduidelijke rapporten.
-        </p>
-      </div>
-
-      <div class="card personal-card">
-        <h3>Persoonlijk uitgevoerd door Pepijn</h3>
-        <p>
-          De AccuCheck wordt persoonlijk uitgevoerd door Pepijn.
-          Met 16 jaar ervaring in automotive dealerbedrijven weet hij precies waar op gelet moet worden
-          bij aankoop van een elektrische auto.
-          U krijgt geen verkooppraat, maar een onafhankelijk technisch oordeel over de accugezondheid.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRAKTIJK / CERTIFICAAT -->
-<section class="section">
-  <div class="wrap proof-grid">
-    <div>
-      <div class="img-frame">
-        <img src="/assets/images/onafhankelijk-ev-accucheck-mercedes-cla-barendrecht-zekeropweg.jpg" alt="EV AccuCheck op locatie" />
-      </div>
-      <div class="img-note">Meting op locatie bij dealer of particulier.</div>
-    </div>
-
-    <div>
-      <h2>Zo ziet het er in de praktijk uit</h2>
-      <p class="section-lead">
-        Elke meting wordt persoonlijk uitgevoerd door Pepijn, met professionele diagnoseapparatuur.
-        U ontvangt direct een duidelijk accucertificaat en uitleg over de accugezondheid.
-      </p>
-
-      <div class="card">
-        <h3>Officieel accucertificaat</h3>
-        <p style="margin-bottom:14px;">
-          U ontvangt een duidelijk certificaat met de gemeten State of Health en onderbouwing.
-          Dat geeft rust bij uw aankoopbeslissing en bewijs richting verkoper.
-        </p>
-        <img src="/assets/images/aviloo-tuv-accucertificaat-ev-zekeropweg-barendrecht.png" alt="Voorbeeld EV accucertificaat" style="max-width:220px;border-radius:10px;box-shadow:0 12px 28px rgba(0,0,0,.12);" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WAT ONTVANGT U -->
-<section class="section soft">
-  <div class="wrap">
-    <h2>Wat u ontvangt na de AccuCheck</h2>
-    <p class="section-lead">
-      Geen vaag technisch verhaal, maar duidelijke informatie waarmee u direct een beslissing kunt nemen.
-    </p>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Accugezondheid (SOH)</h3>
-        <p>Het percentage batterijgezondheid ten opzichte van de oorspronkelijke capaciteit.</p>
-      </div>
-
-      <div class="card">
-        <h3>TÜV accucertificaat</h3>
-        <p>Een professioneel document met de gemeten State of Health en analyse van de batterij.</p>
-      </div>
-
-      <div class="card">
-        <h3>Duidelijke uitleg</h3>
-        <p>U krijgt toelichting op de uitkomst en advies wat verstandig is voor uw aankoopbeslissing.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1024,6 +931,10 @@ transform:scale(1.03);
       Kies voor de voordeligste optie in Barendrecht of voor maximale gemak op locatie bij de auto.
     </p>
 
+   <p style="font-weight:800;color:#0b1c2d;">
+    Eén verkeerde aankoop kan €10.000+ kosten. Deze check kost €95.
+   </p>
+    
     <div class="pricing">
       <div class="price-card">
         <h3>Instap AccuCheck</h3>
@@ -1093,7 +1004,7 @@ transform:scale(1.03);
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <h2 style="margin:0;font-size:30px;color:#fff;">Plan uw EV AccuCheck</h2>
+        <h2 style="margin:0;font-size:30px;color:#fff;">Voorkom miskoop</h2>
         <p>Voorkom een miskoop van duizenden euro’s. Persoonlijk uitgevoerd door Pepijn.</p>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
