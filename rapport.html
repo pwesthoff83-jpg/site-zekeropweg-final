@@ -1579,6 +1579,11 @@
       return bevPatterns.some(pattern => key.includes(pattern));
     }
 
+   
+     function matchAny(key, patterns) {
+      return patterns.some(p => key.includes(p));
+    }
+    
       function isPHEV(key) {
   const phevIndicators = [
     "E", "E-", "EHYBRID", "TFSIE", "TSIE",
