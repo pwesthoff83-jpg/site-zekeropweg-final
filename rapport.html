@@ -1605,13 +1605,14 @@
 }
    
 
-    function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
-      const key = normalizeText(merk + " " + model);
+  function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
+  const key = normalizeText(merk + " " + model);
 
-      if (isPHEV(key)) return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
-      if (isBEV(key)) return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+  if (isPHEV(key)) return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+  if (isBEV(key)) return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
 
-   return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+  return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+}
 
     async function fetchVehicleData(kenteken) {
       const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
