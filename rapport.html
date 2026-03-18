@@ -1579,16 +1579,35 @@
       return bevPatterns.some(pattern => key.includes(pattern));
     }
 
-    function isPHEV(key) {
-      const phevPatterns = [
-        "PHEV","PLUGIN","PLUGINHYBRID","EHYBRID","TFSIE","TSIE","RECHARGE","4XE","225XE","230E","250E",
-        "300E","330E","350E","400E","450E","500E","530E","545E","745E","A250E","B250E","C300E","CLA250E",
-        "E300E","GLA250E","GLC300E","GLE350DE","RSIV","OCTAVIAIV","OCTAVIARSIV","ETENSE","HYBRID4"
-      ];
+    function matchAny(key, patterns) {
+  return patterns.some(p => key.includes(p));
+}
 
-      if (key.includes("OCTAVIARS") || key.includes("OCTAVIAIV") || key.includes("OCTAVIARSIV")) return true;
-      return phevPatterns.some(pattern => key.includes(pattern));
-    }
+    function isPHEV(key) {
+  const phevIndicators = [
+    "E", "E-", "EHYBRID", "TFSIE", "TSIE",
+    "PLUGIN", "PHEV", "HYBRID",
+    "RECHARGE", "4XE",
+    "GTE", "IV"
+  ];
+
+  const strongMatches = [
+    "330E","530E","545E","745E",
+    "X1","X3","X5",
+    "A3","A6","Q3","Q5","Q7","Q8",
+    "C300E","E300E","GLC300E",
+    "PASSATGTE","GOLFGTE",
+    "OCTAVIAIV","SUPERBIV",
+    "V60","XC60","XC90",
+    "RAV4","NX","RX"
+  ];
+
+  return (
+    matchAny(key, phevIndicators) ||
+    matchAny(key, strongMatches)
+  );
+}
+   
 
     function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
       const key = normalizeText(merk + " " + model);
@@ -1596,8 +1615,7 @@
       if (isPHEV(key)) return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
       if (isBEV(key)) return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
 
-      return buildUnsupportedReport(mileageText, mileageAssessment);
-    }
+   return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
 
     async function fetchVehicleData(kenteken) {
       const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
