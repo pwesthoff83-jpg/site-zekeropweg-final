@@ -1913,7 +1913,7 @@ X RWD - 69 kWh*
 `
   ;
 
-// ===============================
+    // ===============================
 // 🔥 PARSER (STAP 2)
 // ===============================
 function parseBatteryData(rawText) {
@@ -1949,14 +1949,14 @@ function parseBatteryData(rawText) {
   });
 
   return db;
-}    
+}
 
 // ===============================
 // 🔥 DATABASE ACTIVEREN (STAP 3)
 // ===============================
 const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 
- // ===============================
+// ===============================
 // 🔥 MATCH ENGINE (STAP 4)
 // ===============================
 function findBatteryMatchSmart(merk, model) {
@@ -1983,14 +1983,17 @@ function findBatteryMatchSmart(merk, model) {
   }
 
   return null;
-}   
-    
+}
+
+// ===============================
+// 🔥 HELPERS
+// ===============================
 function normalizeText(text) {
-  return text
+  return (text || "")
     .toUpperCase()
-    .replace(/[^A-Z0-9]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/\s+/g, "")
+    .replace(/-/g, "")
+    .replace(/\./g, "");
 }
 
 function similarityScore(a, b) {
@@ -2005,854 +2008,51 @@ function similarityScore(a, b) {
 
   return matches / Math.max(aWords.length, bWords.length);
 }
-    
 
-  const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
-  
-  function parseBatteryData(rawText) {
-  const lines = rawText.split("\n");
+// ===============================
+// 🔥 BASIS FUNCTIES
+// ===============================
+function getKenteken() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("kenteken");
+}
 
-  let currentBrand = "";
-  const db = {};
-
-  lines.forEach(line => {
-    line = line.trim();
-    if (!line) return;
-
-    // merk detectie
-    if (!line.includes("-")) {
-      currentBrand = normalizeText(line);
-      db[currentBrand] = [];
-      return;
-    }
-
-    // model + capaciteit
-    if (line.includes("-")) {
-      const [modelRaw, capacityRaw] = line.split("-");
-
-      const model = normalizeText(modelRaw);
-      const capacity = parseFloat(
-        capacityRaw.replace(",", ".").replace("kWh", "")
-      );
-
-      const type = capacity > 25 ? "BEV" : "PHEV";
-
-      db[currentBrand].push({
-        raw: model,
-        capacity,
-        type
-      });
-    }
+function setToday() {
+  const d = new Date();
+  const formatted = d.toLocaleDateString("nl-NL", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
   });
-
-  return db;
+  document.getElementById("reportDate").innerText = "Datum: " + formatted;
 }
 
-    
-    function getKenteken() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get("kenteken");
-    }
-
-    function normalizeText(text) {
-      return (text || "")
-        .toUpperCase()
-        .replace(/\s+/g, "")
-        .replace(/-/g, "")
-        .replace(/\./g, "");
-    }
-
-    function setToday() {
-      const d = new Date();
-      const formatted = d.toLocaleDateString("nl-NL", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-      });
-      document.getElementById("reportDate").innerText = "Datum: " + formatted;
-    }
-
-    function setVehicleHeaders(name) {
-      document.getElementById("vehicleNameHeader2").innerText = "Voertuig: " + name;
-      document.getElementById("vehicleNameHeader3").innerText = "Voertuig: " + name;
-    }
-
-    function setVerdictBadge(text, type) {
-      const badge = document.getElementById("verdictBadge");
-      badge.className = "badge";
-      if (type === "success") badge.classList.add("success");
-      if (type === "warn") badge.classList.add("warn");
-      if (type === "danger") badge.classList.add("danger");
-      badge.innerText = text;
-    }
-
-    function setDriveTypeBadge(text) {
-      document.getElementById("driveTypeBadge").innerText = text;
-    }
-
-    function setSummary(score, text, riskClass) {
-      document.getElementById("summaryScore").innerText = score;
-      const el = document.getElementById("summaryScoreText");
-      el.innerText = text;
-      el.className = "summary-score-text " + riskClass;
-    }
-
-    function renderList(id, items, mode = "check") {
-      const el = document.getElementById(id);
-      el.className = mode === "warning" ? "warning-list" : "checklist";
-      el.innerHTML = items.map(item => `<li>${item}</li>`).join("");
-    }
-
-    function setPillar(idScore, idText, score, text, level) {
-      const scoreEl = document.getElementById(idScore);
-      const textEl = document.getElementById(idText);
-      scoreEl.innerText = score;
-      scoreEl.className = "pillar-score " + level;
-      textEl.innerText = text;
-    }
-
-    function formatMileage(km) {
-      if (km === null || km === undefined || km === "" || isNaN(Number(km))) return "Onbekend";
-      return Number(km).toLocaleString("nl-NL") + " km";
-    }
-
-    function getVehicleAge(year) {
-      const currentYear = new Date().getFullYear();
-      if (!year || isNaN(Number(year))) return null;
-      return Math.max(0, currentYear - Number(year));
-    }
-
-    function getMileageAssessment(km, year) {
-      if (km === null || km === undefined || km === "" || isNaN(Number(km))) return "Geen tellerdata";
-
-      const mileage = Number(km);
-      const age = getVehicleAge(year);
-
-      if (age === null) {
-        if (mileage < 40000) return "Relatief laag";
-        if (mileage < 120000) return "Gebruikelijk";
-        if (mileage < 180000) return "Bovengemiddeld";
-        return "Extra aandacht";
-      }
-
-      const avgPerYear = mileage / Math.max(age, 1);
-
-      if (age <= 1 && mileage < 25000) return "Logisch voor jong model";
-      if (age <= 2 && mileage < 50000) return "Passend voor leeftijd";
-      if (avgPerYear < 8000) return "Relatief laag";
-      if (avgPerYear <= 25000) return "Logisch voor leeftijd";
-      if (avgPerYear <= 35000) return "Bovengemiddeld";
-      return "Extra technisch opletten";
-    }
-
-    function getMileageComment(km, year) {
-      if (km === null || km === undefined || km === "" || isNaN(Number(km))) {
-        return "Er is geen bruikbare kilometerstand beschikbaar. Daardoor is extra aandacht voor onderhoudshistorie, algemene staat en technische controle verstandig.";
-      }
-
-      const mileage = Number(km);
-      const age = getVehicleAge(year);
-
-      if (age !== null && age <= 2) {
-        return "Bij een relatief jong voertuig is kilometerstand vooral relevant als context voor gebruik, eerste slijtage en hoe intensief het exemplaar al is ingezet.";
-      }
-
-      if (mileage < 40000) {
-        return "De kilometerstand is relatief laag. Dat is positief, maar lage kilometerstand alleen is geen garantie voor goede batterijconditie of technisch gezonde laadcomponenten.";
-      }
-
-      if (mileage < 120000) {
-        return "De kilometerstand valt binnen een gebruikelijk bereik voor een gebruikte EV of plug-in hybride. Belangrijker dan alleen de tellerstand zijn onderhoud, laadgedrag, softwarestatus en accuprestaties.";
-      }
-
-      if (mileage < 180000) {
-        return "De kilometerstand is bovengemiddeld. Dat hoeft geen probleem te zijn, maar maakt extra aandacht voor batterijprestaties, laadcomponenten, onderstel en algemene slijtage verstandig.";
-      }
-
-      return "De kilometerstand is hoog. Dit hoeft een goede aankoop niet uit te sluiten, maar maakt aantoonbaar onderhoud, stabiele accuprestaties en technische controle vóór aankoop extra belangrijk.";
-    }
-
-    function getCableCostText(driveTypeLabel) {
-      if (driveTypeLabel === "Volledig elektrisch") return "Gemiddeld €200 – €450";
-      if (driveTypeLabel === "Plug-in hybride") return "Gemiddeld €180 – €350";
-      return "Gemiddeld €150 – €300";
-    }
-
-    function getBatteryRiskIndex(batteryScore, fastChargeCount, mileage, ageYears) {
-      if (batteryScore >= 96 && fastChargeCount < 80 && mileage < 80000) {
-        return {
-          grade: "A+",
-          label: "Zeer laag accurisico",
-          description: "De beschikbare data wijzen op een bovengemiddeld gunstige batterijconditie met een laag verwacht risicoprofiel."
-        };
-      }
-
-      if (batteryScore >= 92 && fastChargeCount < 150 && mileage < 140000) {
-        return {
-          grade: "A",
-          label: "Laag accurisico",
-          description: "De batterij-indicatoren ogen gezond. Er zijn op basis van de beschikbare gegevens geen directe signalen voor verhoogd accurisico."
-        };
-      }
-
-      if (batteryScore >= 88) {
-        return {
-          grade: "B",
-          label: "Gemiddeld accurisico",
-          description: "De beschikbare gegevens passen bij normaal gebruikt voertuiggedrag. Extra aandacht voor laadverleden en praktijkgebruik blijft verstandig."
-        };
-      }
-
-      if (batteryScore >= 82) {
-        return {
-          grade: "C",
-          label: "Verhoogd accurisico",
-          description: "De batterijdata vragen om extra zorgvuldigheid. Een aanvullende accutest of verdiepende technische controle is nadrukkelijk aan te raden."
-        };
-      }
-
-      return {
-        grade: "D",
-        label: "Duidelijk verhoogd accurisico",
-        description: "De beschikbare indicatoren geven aanleiding voor serieuze voorzichtigheid. Aankoop zonder aanvullende accutest is in deze situatie niet verstandig."
-      };
-    }
-
-    function renderReport(data) {
-      document.getElementById("mileage").innerText = data.mileage;
-      document.getElementById("mileageAssessment").innerText = data.mileageAssessment;
-      document.getElementById("batterySize").innerText = data.batterySize;
-      document.getElementById("degradation").innerText = data.degradation;
-      document.getElementById("replacementCost").innerText = data.replacementCost;
-      document.getElementById("knownIssues").innerText = data.knownIssues;
-      document.getElementById("brandSpecificText").innerText = data.brandSpecificText;
-      document.getElementById("buyAdvice").innerText = data.buyAdvice;
-      document.getElementById("coreConclusion").innerText = data.coreConclusion;
-      document.getElementById("batteryInfoText").innerText = data.batteryInfoText;
-      document.getElementById("chargingText").innerText = data.chargingText;
-      document.getElementById("riskAnalysisText").innerText = data.riskAnalysisText;
-      document.getElementById("quickSummary").innerText = data.quickSummary;
-      document.getElementById("cableReplacementCost").innerText = "Laadkabel vervangingskosten: " + data.cableCost;
-
-      const riskIndex = getBatteryRiskIndex(
-        data.batteryScore || 88,
-        data.fastChargeCount || 0,
-        data.rawMileage || 0,
-        data.ageYears || 0
-      );
-
-      document.getElementById("batteryRiskGrade").innerText = riskIndex.grade;
-      document.getElementById("batteryRiskLabel").innerText = riskIndex.label;
-      document.getElementById("batteryRiskDescription").innerText = riskIndex.description;
-
-      setDriveTypeBadge("Voertuigtype: " + data.driveTypeLabel);
-      setVerdictBadge("Conclusie: " + data.verdictLabel, data.verdictClass);
-      setSummary(data.summaryScore, data.summaryText, data.summaryClass);
-
-      const riskEl = document.getElementById("riskLevel");
-      riskEl.innerText = data.riskLevel;
-      riskEl.className = "metric-value";
-      if (data.summaryClass === "low") riskEl.classList.add("low");
-      if (data.summaryClass === "medium") riskEl.classList.add("medium");
-      if (data.summaryClass === "high") riskEl.classList.add("high");
-
-      setPillar("pillarBrandScore", "pillarBrandText", data.pillarBrandScore, data.pillarBrandText, data.pillarBrandLevel);
-      setPillar("pillarDataScore", "pillarDataText", data.pillarDataScore, data.pillarDataText, data.pillarDataLevel);
-      setPillar("pillarTechScore", "pillarTechText", data.pillarTechScore, data.pillarTechText, data.pillarTechLevel);
-
-      renderList("batteryChecklist", data.batteryChecklist, "check");
-      renderList("chargingChecklist", data.chargingChecklist, "check");
-      renderList("positivePoints", data.positivePoints, "check");
-      renderList("buyerBlindspots", data.buyerBlindspots, "warning");
-      renderList("riskChecklist", data.riskChecklist, "warning");
-      renderList("purchaseTips", data.purchaseTips, "check");
-      renderList("testDriveTips", data.testDriveTips, "check");
-    }
-
-    function getCommonBuyerBlindspots() {
-      return [
-        "Een nette proefrit zegt niet automatisch iets over de echte batterijconditie.",
-        "Een ontbrekende of beschadigde laadkabel zorgt direct voor extra kosten na aankoop.",
-        "Veel kopers controleren de LED-status of fysieke staat van de laadkabel niet.",
-        "Een plug-in hybride die weinig is geladen, rijdt in praktijk vaak minder aantrekkelijk dan verwacht.",
-        "Het werkelijke elektrische rijbereik kan duidelijk afwijken van de verwachtingen van de koper.",
-        "Schade aan de onderzijde kan bij elektrische voertuigen extra relevant zijn door de positie van het accupakket."
-      ];
-    }
-
-    function getCommonPurchaseTips() {
-      return [
-        "Controleer of de laadkabel compleet, origineel en onbeschadigd aanwezig is.",
-        "Controleer of de LED-indicatie op de laadkabel normaal reageert indien van toepassing.",
-        "Controleer op scheurtjes, verkleuring, beschadigde stekkers of speling op de laadkabel.",
-        "Controleer of de laadpoort goed opent, sluit en geen zichtbare schade of corrosie heeft.",
-        "Test of de auto zonder foutmelding normaal laadt.",
-        "Controleer onderhoudshistorie, software-updates en eventuele terugroepacties.",
-        "Controleer of er storingen, waarschuwingen of foutmeldingen aanwezig zijn in het batterij- of hybridesysteem.",
-        "Controleer of het voertuig schade heeft gehad aan onderzijde, accubehuizing of laadzijde.",
-        "Laat vóór aankoop altijd een onafhankelijke ZekerOpWeg AccuCheck uitvoeren."
-      ];
-    }
-
-    function getCommonTestDriveTips(driveTypeLabel) {
-      const tips = [
-        "Start bij voorkeur met een koude auto; juist dan vallen afwijkingen vaak beter op.",
-        "Let op waarschuwingen, storingsmeldingen of ongebruikelijke symbolen in het dashboard.",
-        "Controleer of accupercentage, verbruik en actieradius logisch veranderen tijdens het rijden.",
-        "Luister naar bijgeluiden van onderstel, aandrijving, wiellagers en remmen.",
-        "Let op trillingen, trekken in het stuur of onrustig remgedrag.",
-        "Test rustig én steviger accelereren om te voelen of de aandrijving vloeiend en krachtig reageert.",
-        "Controleer of regeneratief remmen natuurlijk aanvoelt en geen rare onderbrekingen geeft.",
-        "Probeer ook langzaam rijden, stadsverkeer en een stukje hogere snelheid.",
-        "Controleer na de rit opnieuw op foutmeldingen of waarschuwingslampjes."
-      ];
-
-      if (driveTypeLabel === "Plug-in hybride") {
-        tips.push("Rijd minimaal 10–15 minuten volledig elektrisch en let op of de benzinemotor niet onnodig vroeg inschakelt.");
-        tips.push("Controleer of de overgang tussen elektromotor en verbrandingsmotor soepel en zonder schokken verloopt.");
-      }
-
-      if (driveTypeLabel === "Volledig elektrisch") {
-        tips.push("Let op of de auto ook bij steviger accelereren stabiel vermogen levert zonder waarschuwingen.");
-        tips.push("Controleer na de proefrit indien mogelijk of laden probleemloos start.");
-      }
-
-      return tips;
-    }
-
-    function applyMileageToReport(data, mileageText, mileageAssessment, mileageComment) {
-      data.mileage = mileageText;
-      data.mileageAssessment = mileageAssessment;
-      data.cableCost = getCableCostText(data.driveTypeLabel);
-      data.testDriveTips = getCommonTestDriveTips(data.driveTypeLabel);
-      if (mileageComment) data.coreConclusion += " " + mileageComment;
-      return data;
-    }
-
-    function basePillars() {
-      return {
-        pillarBrandScore: "Positief",
-        pillarBrandText: "Het merk geeft in de basis vertrouwen voor een serieuze overweging.",
-        pillarBrandLevel: "low",
-        pillarDataScore: "Voldoende",
-        pillarDataText: "Er is bruikbare praktijkervaring of logische merkinformatie beschikbaar.",
-        pillarDataLevel: "low",
-        pillarTechScore: "Verstandig",
-        pillarTechText: "Een controle vóór aankoop blijft slim, vooral voor batterij en laadfunctie.",
-        pillarTechLevel: "medium"
-      };
-    }
-
-    function getBrandSpecificText(merk, model, driveType) {
-      const brand = normalizeText(merk);
-
-      if (brand.includes("MERCEDES")) {
-        if (driveType === "BEV") {
-          return "Mercedes-Benz heeft batterijtechniek en elektrische aandrijflijnen doorgaans goed ontwikkeld. Het is verstandig om extra aandacht te besteden aan software-updates, laadfunctionaliteit en de correcte werking van sensoren en hulpsystemen.";
-        }
-
-        if (driveType === "PHEV") {
-          return "Mercedes-Benz plug-in hybrides maken vaak een verfijnde en technisch sterke indruk. Extra controle blijft verstandig op laadfunctie, elektrisch rijbereik en de samenwerking tussen elektromotor, verbrandingsmotor en transmissie.";
-        }
-      }
-
-      if (brand.includes("BMW")) {
-        return "BMW staat bekend om sterke aandrijflijnen en goede rijeigenschappen. Controle blijft verstandig op laadfunctie, foutmeldingen en de samenwerking tussen hybride aandrijving en transmissie.";
-      }
-
-      if (
-        brand.includes("AUDI") ||
-        brand.includes("VOLKSWAGEN") ||
-        brand.includes("SKODA") ||
-        brand.includes("SEAT") ||
-        brand.includes("CUPRA")
-      ) {
-        return "Binnen deze groep is elektrische en plug-in techniek vaak interessant. Extra aandacht is verstandig voor softwarestatus, laadfunctie, DSG-werking en de praktische prestaties van het hybride of elektrische systeem.";
-      }
-
-      if (brand.includes("TESLA")) {
-        return "Tesla scoort doorgaans sterk op batterijmanagement en efficiëntie. Controle blijft verstandig op laadverleden, onderstelbelasting, carrosserie-afwerking en eventuele softwarematige bijzonderheden.";
-      }
-
-      if (brand.includes("HYUNDAI") || brand.includes("KIA")) {
-        return "Hyundai en Kia hebben zich sterk ontwikkeld op EV-gebied. Controle blijft verstandig op accuhistorie, laadsnelheid en terugroepacties.";
-      }
-
-      if (brand.includes("NISSAN")) {
-        return "Bij Nissan elektrische modellen is het verstandig extra aandacht te besteden aan batterijconditie en praktijkrange.";
-      }
-
-      if (brand.includes("VOLVO")) {
-        return "Volvo elektrische en plug-in modellen staan bekend om comfort en veiligheid. Controle blijft verstandig op software-updates, laadfunctionaliteit en sensoren.";
-      }
-
-      if (brand.includes("TOYOTA")) {
-        return "Toyota heeft veel ervaring met hybride systemen. Controle blijft verstandig op accukoeling, foutcodes en onderhoudshistorie.";
-      }
-
-      return "Bij dit merk is het verstandig om vóór aankoop extra aandacht te besteden aan batterijconditie, laadfunctie, foutcodes en onderhoudshistorie.";
-    }
-
-    function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
-      const key = normalizeText(merk + " " + model);
-      const age = getVehicleAge(bouwjaar);
-
-      let data = {
-        brandSpecificText: getBrandSpecificText(merk, model, "BEV"),
-        batteryScore: 90,
-        fastChargeCount: 120,
-        rawMileage: parseInt(String(mileageText).replace(/[^\d]/g, "")) || 0,
-        ageYears: age || 0,
-        driveTypeLabel: "Volledig elektrisch",
-        verdictLabel: "Positief, mits gecontroleerd",
-        verdictClass: "success",
-        summaryScore: "A",
-        summaryText: "Sterke basis voor aankoop",
-        summaryClass: "low",
-        quickSummary: "Dit voertuigtype biedt in de basis een positief uitgangspunt voor aankoop, mits batterijconditie, laadfunctie en praktijkprestaties logisch zijn voor leeftijd en kilometerstand.",
-        batterySize: "30–90 kWh",
-        degradation: "8–18%",
-        riskLevel: "Laag tot gemiddeld",
-        replacementCost: "€6.000 – €15.000",
-        knownIssues: "Controleer laadgeschiedenis, praktijkrange, foutcodes, laadkabel, laadpoort en algemene batterijconditie.",
-        buyAdvice: "Bij de aankoop van een gebruikte elektrische auto draait het om de combinatie van batterijconditie, laadprestaties, kilometercontext en technische historie. Veel EV’s zijn in de basis sterk. De beste aankoop is het exemplaar waarvan accustatus, laadfunctie en gebruik logisch en controleerbaar zijn. Een onafhankelijke ZekerOpWeg AccuCheck geeft daarbij de meeste rust.",
-        coreConclusion: "Veel volledig elektrische modellen zijn technisch aantrekkelijk en prettig in gebruik, mits batterij en laadzijde objectief goed functioneren.",
-        batteryInfoText: "De tractiebatterij is bij een elektrische auto één van de meest bepalende onderdelen voor gebruikswaarde, comfort en restwaarde. Niet alleen de capaciteit op papier telt, maar vooral hoe de batterij in de praktijk presteert. De werkelijke conditie van het accupakket bepaalt mede het elektrische rijbereik, het laadgedrag en het financiële risico op langere termijn.",
-        chargingText: "Bij gebruikte elektrische auto’s zegt niet alleen het model iets, maar vooral ook het gebruiksverleden. Veel snelladen, langdurig stilstaan op hoge lading of onregelmatig gebruik kunnen invloed hebben op prestaties, efficiëntie en toekomstige betrouwbaarheid. Daarom is het verstandig om niet alleen naar de advertentie of proefrit te kijken, maar ook naar laadgedrag, laadkabel, laadpoort, praktijkprestaties en technische gezondheid van het systeem.",
-        riskAnalysisText: "Het grootste risico bij de aankoop van een gebruikte elektrische auto is niet altijd zichtbaar tijdens een korte proefrit. Een voertuig kan verzorgd ogen en toch een tegenvallende batterijconditie, laadafwijking of verborgen storing hebben. Juist daarom helpt onafhankelijke controle om met meer rust en vertrouwen te beslissen.",
-        batteryChecklist: [
-          "Controleer praktijkrange, accupercentage en laadprestaties.",
-          "Vraag naar laadgedrag, software-updates en terugroepacties.",
-          "Let op foutcodes, laadonderbrekingen en batterijwaarschuwingen."
-        ],
-        chargingChecklist: [
-          "Controleer of AC-laden normaal werkt en test indien mogelijk ook DC-snelladen.",
-          "Controleer of laadkabel en laadpoort compleet en onbeschadigd zijn.",
-          "Let expliciet op LED-indicatie of statuslampje op de laadkabel indien aanwezig.",
-          "Beoordeel of actieradius, verbruik en accupercentage logisch reageren tijdens de proefrit."
-        ],
-        positivePoints: [
-          "Elektrische auto’s hebben vaak een rustig en verfijnd rijgedrag.",
-          "Bij een gezond accupakket zijn gebruikskosten doorgaans aantrekkelijk.",
-          "Veel EV’s zijn technisch efficiënt en prettig in dagelijks gebruik."
-        ],
-        buyerBlindspots: getCommonBuyerBlindspots(),
-        riskChecklist: [
-          "Verborgen batterijdegradatie.",
-          "Lagere praktijkrange dan verwacht.",
-          "Storingen in laadmodule, boordlader of hoogvoltsysteem.",
-          "Onvoldoende inzicht in laad- en gebruiksgeschiedenis."
-        ],
-        purchaseTips: [
-          ...getCommonPurchaseTips(),
-          "Controleer of AC-laden normaal werkt en test indien mogelijk ook DC-snelladen.",
-          "Beoordeel of actieradius, verbruik en accupercentage logisch reageren tijdens de proefrit."
-        ],
-        ...basePillars()
-      };
-
-      if (age !== null && age <= 2) {
-        data.degradation = "Nog beperkt praktijkverleden beschikbaar";
-        data.quickSummary = "Dit is een relatief jong elektrisch model. Het voorlopige beeld kan positief zijn, maar brede praktijkdata is nog beperkter. Juist daarom is het individuele exemplaar extra belangrijk.";
-        data.pillarDataScore = "Beperkt";
-        data.pillarDataText = "Bij een jong model is vaak nog minder brede praktijkdata beschikbaar.";
-        data.pillarDataLevel = "medium";
-      }
-
-      if (
-        key.includes("CLA250+") ||
-        key.includes("CLA250PLUS") ||
-        key.includes("CLAWITHEQTECHNOLOGY") ||
-        key.includes("CLAEQ")
-      ) {
-        data.batteryScore = 95;
-        data.fastChargeCount = 40;
-        data.summaryScore = "A";
-        data.summaryText = "Veelbelovend premium EV";
-        data.summaryClass = "low";
-        data.verdictLabel = "Positief met nuance";
-        data.verdictClass = "success";
-        data.quickSummary = "De Mercedes-Benz CLA 250+ geeft op basis van merk, accutechniek en positionering een positief eerste beeld. Omdat het model nog jong is, blijft het verstandig om extra te letten op software, laadprestaties en vroege praktijkervaringen.";
-        data.batterySize = "ca. 85 kWh";
-        data.degradation = "Nog beperkt praktijkverleden beschikbaar";
-        data.riskLevel = "Laag tot gemiddeld";
-        data.replacementCost = "Nog beperkt bekend";
-        data.knownIssues = "Controleer softwareversie, laadprestaties, laadkabel, LED-status bij laden, praktijkverbruik en eventuele vroege kinderziektes van dit nieuwe model.";
-        data.buyAdvice = "De Mercedes-Benz CLA 250+ oogt als een veelbelovende elektrische keuze. Mercedes heeft hoogvolttechniek en batterij-integratie doorgaans degelijk op orde. Omdat het model nog jong is, blijft het verstandig om extra te letten op accuprestaties, softwarestatus, laadgedrag en de eerste praktijkervaringen van dit specifieke exemplaar.";
-        data.coreConclusion = "Dit is een jong elektrisch model met nog beperkt praktijkverleden. Op basis van merk, accutechniek en segmentpositionering is het voorlopige beeld positief. Mercedes heeft dit soort techniek doorgaans ruim voldoende op orde, maar extra aandacht voor software, laadprestaties en vroege praktijkervaringen blijft verstandig.";
-        data.batteryInfoText = "Bij een jong elektrisch model als de Mercedes-Benz CLA 250+ is nog niet veel langetermijndata beschikbaar. Dat betekent niet automatisch meer risico, maar wel dat merkervaring, accutechniek en de kwaliteit van het individuele exemplaar zwaarder meewegen in het voorlopige aankoopadvies.";
-        data.positivePoints = [
-          "Mercedes heeft hoogvolttechniek en batterij-integratie doorgaans goed op orde.",
-          "De CLA 250+ oogt als een modern en efficiënt premium EV-concept.",
-          "Bij een goed exemplaar is het basisbeeld voor comfort, afwerking en techniek positief."
-        ];
-        data.pillarBrandScore = "Sterk";
-        data.pillarBrandText = "Mercedes geeft in dit segment bovengemiddeld vertrouwen in techniek en afwerking.";
-        data.pillarBrandLevel = "low";
-        data.pillarDataScore = "Jong model";
-        data.pillarDataText = "Praktijkdata bouwt nog op, maar het voorlopige beeld is positief.";
-        data.pillarDataLevel = "medium";
-        data.pillarTechScore = "Slim";
-        data.pillarTechText = "Een gerichte controle op software, laden en accuprestaties is verstandig.";
-        data.pillarTechLevel = "medium";
-      }
-
-      if (key.includes("TESLA")) {
-        data.positivePoints = [
-          "Tesla scoort vaak sterk op efficiëntie en softwarebeleving.",
-          "In veel gevallen is het laadnetwerk en dagelijks gebruik een pluspunt.",
-          "Bij een goed exemplaar is het totaalplaatje vaak aantrekkelijk."
-        ];
-      }
-
-      if (key.includes("LEAF")) {
-        data.batteryScore = 82;
-        data.fastChargeCount = 180;
-        data.summaryScore = "C";
-        data.summaryText = "Selectief beoordelen";
-        data.summaryClass = "high";
-        data.verdictLabel = "Alleen kopen na accutest";
-        data.verdictClass = "danger";
-        data.quickSummary = "Een Nissan Leaf kan nog steeds interessant zijn, maar batterijconditie weegt hier zwaarder mee dan bij veel andere EV’s.";
-        data.batterySize = "24–62 kWh";
-        data.degradation = "15–25%";
-        data.riskLevel = "Gemiddeld tot hoog";
-        data.replacementCost = "€5.000 – €9.000";
-        data.knownIssues = "Versnelde degradatie komt relatief vaker voor, vooral bij oudere Leafs zonder actieve accukoeling.";
-        data.buyAdvice = "Interessant als prijs, gebruiksdoel en batterijconditie goed op elkaar aansluiten. Een objectieve accutest is hier extra belangrijk.";
-        data.pillarBrandScore = "Voldoende";
-        data.pillarBrandText = "Het model is bekend, maar batterijveroudering vraagt meer waakzaamheid.";
-        data.pillarBrandLevel = "medium";
-        data.pillarDataScore = "Ruim";
-        data.pillarDataText = "Er is veel praktijkervaring beschikbaar, inclusief duidelijke aandachtspunten.";
-        data.pillarDataLevel = "low";
-        data.pillarTechScore = "Belangrijk";
-        data.pillarTechText = "Accudegradatie en batterijconditie verdienen bovengemiddelde aandacht.";
-        data.pillarTechLevel = "high";
-      }
-
-      return applyMileageToReport(data, mileageText, mileageAssessment, mileageComment);
-    }
-
-    function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
-      const key = normalizeText(merk + " " + model);
-      const age = getVehicleAge(bouwjaar);
-
-      let data = {
-        brandSpecificText: getBrandSpecificText(merk, model, "PHEV"),
-        batteryScore: 88,
-        fastChargeCount: 60,
-        rawMileage: parseInt(String(mileageText).replace(/[^\d]/g, "")) || 0,
-        ageYears: age || 0,
-        driveTypeLabel: "Plug-in hybride",
-        verdictLabel: "Positief, mits goed gecontroleerd",
-        verdictClass: "warn",
-        summaryScore: "B",
-        summaryText: "Sterk concept met aandachtspunten",
-        summaryClass: "medium",
-        quickSummary: "Een plug-in hybride kan een slimme aankoop zijn, mits batterij, laadfunctie en hybride samenwerking in de praktijk goed functioneren.",
-        batterySize: "8–25 kWh",
-        degradation: "Modelafhankelijk",
-        riskLevel: "Gemiddeld",
-        replacementCost: "€3.000 – €9.000",
-        knownIssues: "Controleer accuprestaties, laadfunctie, elektrisch rijbereik, laadkabel en de samenwerking met de verbrandingsmotor.",
-        buyAdvice: "Een gebruikte plug-in hybride kan een slimme keuze zijn voor wie elektrisch wil rijden zonder volledig afhankelijk te zijn van laden onderweg. De beste aankoop is wel het exemplaar waarbij batterij, laadfunctie, software, kilometercontext en hybride samenwerking logisch en controleerbaar zijn.",
-        coreConclusion: "Een plug-in hybride kan een verstandige aankoop zijn, zeker als het model goed past bij uw gebruik. Doorslaggevend is wel of het elektrische deel aantoonbaar goed functioneert en het voertuig correct is gebruikt en onderhouden.",
-        batteryInfoText: "De tractiebatterij is bij een plug-in hybride kleiner dan bij een volledige EV, maar nog steeds bepalend voor gebruikswaarde, comfort en efficiëntie. Zodra de accuprestaties teruglopen, verdwijnt juist het voordeel waarvoor veel kopers een plug-in hybride kiezen.",
-        chargingText: "Bij gebruikte plug-in hybrides zegt niet alleen het model iets, maar vooral ook het gebruiksverleden. Veel exemplaren zijn in de praktijk te weinig geladen en rijden daardoor grotendeels als zwaardere benzineauto. Daarom is het verstandig om niet alleen naar de advertentie of proefrit te kijken, maar ook naar laadgedrag, laadkabel, laadpoort, werkelijk elektrisch rijbereik en technische gezondheid van het systeem.",
-        riskAnalysisText: "Het grootste risico bij de aankoop van een gebruikte plug-in hybride is dat de technische indruk beter lijkt dan de werkelijke staat van batterij, laadsysteem en hybride samenwerking. Met een goede proefrit en een gerichte controle zijn veel onzekerheden vooraf al beter in te schatten.",
-        batteryChecklist: [
-          "Controleer werkelijk elektrisch rijbereik.",
-          "Controleer of de auto daadwerkelijk is geladen en gebruikt als plug-in hybride.",
-          "Let op laadpoort, boordlader en foutmeldingen in het hybridesysteem."
-        ],
-        chargingChecklist: [
-          "Vraag hoe vaak de auto thuis of op werk werd geladen.",
-          "Controleer of AC-laden probleemloos werkt.",
-          "Controleer LED-indicatie of statuslamp op de laadkabel indien aanwezig.",
-          "Rijd bij een plug-in hybride minimaal 10–15 minuten volledig elektrisch tijdens de proefrit."
-        ],
-        positivePoints: [
-          "Een goede plug-in hybride biedt flexibiliteit tussen elektrisch en brandstofgebruik.",
-          "Voor veel rijders is dit een comfortabele tussenstap naar volledig elektrisch.",
-          "Bij goed gebruik kan een plug-in hybride zeer aantrekkelijk zijn in dagelijks gebruik."
-        ],
-        buyerBlindspots: getCommonBuyerBlindspots(),
-        riskChecklist: [
-          "Verwaarloosd laadsysteem.",
-          "Tegenvallend elektrisch rijbereik.",
-          "Storingen in hybride samenwerking, boordlader of transmissie.",
-          "Verbrandingsmotor schakelt onnodig vroeg in."
-        ],
-        purchaseTips: [
-          ...getCommonPurchaseTips(),
-          "Rijd bij een plug-in hybride minimaal 10–15 minuten volledig elektrisch tijdens de proefrit.",
-          "Controleer of de verbrandingsmotor niet onnodig vroeg inschakelt bij een plug-in hybride.",
-          "Beoordeel of het werkelijke elektrische rijbereik logisch is voor leeftijd, model en kilometerstand."
-        ],
-        ...basePillars()
-      };
-
-      if (age !== null && age <= 2) {
-        data.degradation = "Nog beperkt praktijkverleden beschikbaar";
-        data.pillarDataScore = "Jong model";
-        data.pillarDataText = "Praktijkdata is beperkter, maar dat hoeft geen negatief signaal te zijn.";
-        data.pillarDataLevel = "medium";
-      }
-
-      if (
-        key.includes("OCTAVIAIV") ||
-        key.includes("OCTAVIARSIV") ||
-        (key.includes("OCTAVIA") && key.includes("RS")) ||
-        (key.includes("OCTAVIA") && key.includes("IV"))
-      ) {
-        data.batteryScore = 89;
-        data.fastChargeCount = 70;
-        data.summaryScore = "B";
-        data.summaryText = "Praktisch en kansrijk concept";
-        data.summaryClass = "medium";
-        data.quickSummary = "De Skoda Octavia iV of RS iV is in potentie een aantrekkelijke en praktische plug-in hybride, mits laadfunctie en hybride samenwerking technisch gezond zijn.";
-        data.batterySize = "13 kWh bruto / ca. 10,4 kWh netto";
-        data.replacementCost = "€3.500 – €7.000";
-        data.knownIssues = "Controleer bruikbaar elektrisch rijbereik, laadfunctie, DSG-gedrag, laadkabel en foutmeldingen in het hybridesysteem.";
-        data.buyAdvice = "De Skoda Octavia iV of RS iV kan een aantrekkelijke en praktische plug-in hybride zijn. Let vooral op technisch gezond laadgedrag, logisch elektrisch rijbereik en rustig, foutvrij samenspel tussen batterij, elektromotor en DSG-transmissie.";
-        data.coreConclusion = "De Octavia plug-in hybride combineert praktische bruikbaarheid met elektrische inzetbaarheid. Dat maakt het in potentie een sterke keuze, mits het plug-in systeem technisch gezond is en tijdens de proefrit ook overtuigend elektrisch functioneert.";
-        data.positivePoints = [
-          "De Octavia iV en RS iV combineren ruimte, bruikbaarheid en plug-in functionaliteit aantrekkelijk.",
-          "Voor zakelijke en particuliere rijders is dit vaak een logisch allround concept.",
-          "Bij een gezond exemplaar is het totaalbeeld praktisch én overtuigend."
-        ];
-        data.pillarBrandScore = "Goed";
-        data.pillarBrandText = "Skoda en de onderliggende techniek geven in de basis voldoende vertrouwen.";
-        data.pillarBrandLevel = "low";
-        data.pillarDataScore = "Goed";
-        data.pillarDataText = "Er is bruikbare praktijkervaring beschikbaar om gericht op aandachtspunten te letten.";
-        data.pillarDataLevel = "low";
-        data.pillarTechScore = "Verstandig";
-        data.pillarTechText = "Vooral laadfunctie, DSG-gedrag en elektrisch rijbereik verdienen controle.";
-        data.pillarTechLevel = "medium";
-      }
-
-      if (key.includes("330E")) {
-        data.batteryScore = 90;
-        data.fastChargeCount = 65;
-        data.summaryScore = "B";
-        data.summaryText = "Premium plug-in met potentie";
-        data.summaryClass = "medium";
-        data.quickSummary = "De BMW 330e is vaak een aantrekkelijke premium plug-in hybride, mits laadsysteem en elektrisch rijbereik logisch functioneren.";
-        data.batterySize = "ca. 7–12 kWh";
-        data.replacementCost = "€4.000 – €8.000";
-        data.knownIssues = "Controleer laadfunctie, werkelijk elektrisch rijbereik, boordlader en foutmeldingen in het hybridesysteem.";
-        data.buyAdvice = "De BMW 330e is in de basis een aantrekkelijke plug-in hybride, mits accuprestaties, laadsysteem en elektrisch rijbereik aantoonbaar goed functioneren. Vooral bij hogere kilometerstanden is controle van laadgedrag en systeemwerking verstandig.";
-        data.coreConclusion = "De BMW 330e is vaak een interessante premium plug-in hybride met een sterk totaalconcept. Doorslaggevend is wel of het elektrische deel nog overtuigend functioneert en logisch presteert voor leeftijd en kilometerstand.";
-        data.positivePoints = [
-          "De BMW 330e heeft in de basis een aantrekkelijk premium totaalconcept.",
-          "Bij een goed exemplaar zijn comfort, prestaties en hybride inzetbaarheid sterk.",
-          "Voor veel kopers is dit een overtuigende plug-in hybride combinatie."
-        ];
-        data.pillarBrandScore = "Sterk";
-        data.pillarBrandText = "BMW geeft in dit segment bovengemiddeld vertrouwen in product en positionering.";
-        data.pillarBrandLevel = "low";
-        data.pillarDataScore = "Goed";
-        data.pillarDataText = "Er is voldoende praktijkervaring beschikbaar om gericht te beoordelen.";
-        data.pillarDataLevel = "low";
-        data.pillarTechScore = "Verstandig";
-        data.pillarTechText = "Controle van laadfunctie en elektrisch rijbereik blijft slim.";
-        data.pillarTechLevel = "medium";
-      }
-
-      if (key.includes("CLA250E")) {
-        data.positivePoints = [
-          "De CLA 250e heeft een premium uitstraling en verfijnd karakter.",
-          "Mercedes heeft dit type plug-in techniek doorgaans degelijk geïntegreerd.",
-          "Bij goed onderhoud kan dit een aantrekkelijke premium plug-in hybride zijn."
-        ];
-      }
-
-      return applyMileageToReport(data, mileageText, mileageAssessment, mileageComment);
-    }
-
-    function buildUnsupportedReport(mileageText, mileageAssessment) {
-      return {
-        brandSpecificText: "Niet van toepassing voor dit voertuigtype.",
-        batteryScore: 0,
-        fastChargeCount: 0,
-        rawMileage: 0,
-        ageYears: 0,
-        driveTypeLabel: "Buiten scope",
-        verdictLabel: "Niet geschikt",
-        verdictClass: "danger",
-        summaryScore: "—",
-        summaryText: "Niet van toepassing",
-        summaryClass: "high",
-        quickSummary: "Voor dit voertuigtype is dit batterijgerichte aankooprapport niet de juiste analysemethode.",
-        mileage: mileageText || "Onbekend",
-        mileageAssessment: mileageAssessment || "Geen oordeel",
-        batterySize: "Niet van toepassing",
-        degradation: "Niet van toepassing",
-        riskLevel: "Buiten scope",
-        replacementCost: "Niet van toepassing",
-        knownIssues: "Dit rapport is bedoeld voor elektrische voertuigen en plug-in hybrides met een relevante tractiebatterij.",
-        buyAdvice: "Vul een elektrisch of plug-in hybride voertuig in voor een relevante batterij- en aankoopanalyse.",
-        coreConclusion: "Voor dit voertuigtype geeft dit rapport geen bruikbare batterijgerichte aankoopanalyse.",
-        batteryInfoText: "Voor conventionele brandstofauto’s is een batterijgericht aankooprapport niet de juiste analysemethode.",
-        chargingText: "Er is geen relevant elektrisch laadprofiel beschikbaar voor dit voertuig.",
-        riskAnalysisText: "De grootste risico’s bij dit voertuig zitten waarschijnlijk niet in een tractiebatterij, maar in reguliere mechanische en onderhoudstechnische punten.",
-        batteryChecklist: ["Geen relevant tractiebatterijprofiel beschikbaar."],
-        chargingChecklist: ["Geen laadprofiel beschikbaar."],
-        positivePoints: ["Gebruik hiervoor liever een algemene aankoopkeuring."],
-        buyerBlindspots: ["Bij niet-elektrische modellen liggen de grootste risico’s vaak elders."],
-        riskChecklist: ["Gebruik een reguliere aankoopinspectie."],
-        purchaseTips: ["Controleer onderhoudshistorie en technische staat."],
-        testDriveTips: ["Let op motor, transmissie, remmen en onderstel."],
-        pillarBrandScore: "—",
-        pillarBrandText: "Niet van toepassing.",
-        pillarBrandLevel: "medium",
-        pillarDataScore: "—",
-        pillarDataText: "Niet van toepassing.",
-        pillarDataLevel: "medium",
-        pillarTechScore: "—",
-        pillarTechText: "Niet van toepassing.",
-        pillarTechLevel: "medium",
-        cableCost: "Niet van toepassing"
-      };
-    }
-
-    function isBEV(key) {
-      const bevPatterns = [
-        "TESLA","MODELS","MODEL3","MODELX","MODELY","EQA","EQB","EQC","EQE","EQS",
-        "CLA250+","CLA250PLUS","CLAWITHEQTECHNOLOGY","CLAEQ","ETRON","Q4ETRON","Q8ETRON",
-        "IONIQ5","IONIQ6","KONAELECTRIC","EV6","EV9","NIROEV","NIROELECTRIC","LEAF","ARIYA",
-        "ZOE","ENYAQ","ELROQ","EX30","EX40","EC40","C40","IX","I4","I5","I7","ID3","ID4","ID5","ID7",
-        "BORN","MUSTANGMACHE","MG4","MG5","ZSEV","500E","SPRING"
-      ];
-      return bevPatterns.some(pattern => key.includes(pattern));
-    }
-
-   
-     function matchAny(key, patterns) {
-      return patterns.some(p => key.includes(p));
-    }
-    
-      function isPHEV(key) {
-  const phevIndicators = [
-    "EHYBRID", "TFSIE", "TSIE",
-    "PLUGIN", "PHEV", "HYBRID",
-    "RECHARGE", "4XE",
-    "GTE", "IV"
-  ];
-
-         
-  const strongMatches = [
-    "330E","530E","545E","745E",
-    "X1","X3","X5",
-    "A3","A6","Q3","Q5","Q7","Q8",
-    "C300E","E300E","GLC300E",
-    "PASSATGTE","GOLFGTE",
-    "OCTAVIAIV","SUPERBIV",
-    "V60","XC60","XC90",
-    "RAV4","NX","RX"
-  ];
-
-  return (
-    matchAny(key, phevIndicators) ||
-    matchAny(key, strongMatches)
-  );
+function setVehicleHeaders(name) {
+  document.getElementById("vehicleNameHeader2").innerText = "Voertuig: " + name;
+  document.getElementById("vehicleNameHeader3").innerText = "Voertuig: " + name;
 }
-   
 
- function detectAndAnalyzeVehicle(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment) {
-  const key = normalizeText(merk + " " + model);
+// ===============================
+// 🔥 MAIN DETECTIE (NIEUWE ENGINE)
+// ===============================
+function detectAndAnalyzeVehicle(
+  merk,
+  model,
+  bouwjaar,
+  mileageText,
+  mileageAssessment,
+  mileageComment
+) {
+  const match = findBatteryMatchSmart(merk, model);
 
-  if (isBEV(key)) {
-    return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+  if (!match) {
+    return buildUnsupportedReport(mileageText, mileageAssessment);
   }
 
-  if (isPHEV(key)) {
-    return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
-  }
-
-  return buildUnsupportedReport(mileageText, mileageAssessment);
-}
- 
-     async function fetchVehicleData(kenteken) {
-      const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-      const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
-      const res = await fetch(url);
-      return await res.json();
-    }
-
-    async function fetchMileageData(kenteken) {
-      const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-      const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
-      const res = await fetch(url);
-      return await res.json();
-    }
-
-    async function loadVehicle() {
-      setToday();
-
-      const kenteken = getKenteken();
-      const vehicleEl = document.getElementById("vehicleName");
-
-      if (!kenteken) {
-        vehicleEl.innerText = "Geen kenteken in URL";
-        setVehicleHeaders("Onbekend voertuig");
-        renderReport(buildUnsupportedReport("Onbekend", "Geen oordeel"));
-        return;
-      }
-
-      try {
-        const [vehicleData, mileageData] = await Promise.all([
-          fetchVehicleData(kenteken),
-          fetchMileageData(kenteken)
-        ]);
-
-        if (!vehicleData || !vehicleData.length) {
-          vehicleEl.innerText = "Kenteken niet gevonden";
-          setVehicleHeaders("Onbekend voertuig");
-          renderReport(buildUnsupportedReport("Onbekend", "Geen oordeel"));
-          return;
-        }
-
-        const voertuig = vehicleData[0];
-        const merk = (voertuig.merk || "").trim();
-        const model = (voertuig.handelsbenaming || "").trim();
-        const bouwjaar =
-          (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) ||
-          (voertuig.datum_tenaamstelling || "").toString().slice(0, 4) ||
-          "";
-        const fullName = (merk + " " + model).trim() || "Onbekend voertuig";
-
-        let rawMileage = null;
-        if (mileageData && mileageData.length) {
-          const record = mileageData[0];
-          rawMileage =
-            record.tellerstand ||
-            record.gerapporteerde_tellerstand ||
-            null;
-        }
-
-        if (rawMileage && isNaN(Number(rawMileage))) {
-          const cleaned = String(rawMileage).replace(/[^\d]/g, "");
-          rawMileage = cleaned ? Number(cleaned) : null;
-        }
-
-        const mileageText = formatMileage(rawMileage);
-        const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
-        const mileageComment = getMileageComment(rawMileage, bouwjaar);
-
-        vehicleEl.innerText = fullName;
-        setVehicleHeaders(fullName);
-
-   const match = findBatteryMatchSmart(merk, model);
-
-if (match) {
-
-  let reportData;
+  let report;
 
   if (match.type === "BEV") {
-    reportData = buildBEVReport(
+    report = buildBEVReport(
       merk,
       model,
       bouwjaar,
@@ -2861,7 +2061,7 @@ if (match) {
       mileageComment
     );
   } else {
-    reportData = buildPHEVReport(
+    report = buildPHEVReport(
       merk,
       model,
       bouwjaar,
@@ -2871,26 +2071,91 @@ if (match) {
     );
   }
 
-  // batterij toevoegen
-  reportData.batterySize = match.capacity + " kWh";
+  report.batterySize = match.capacity + " kWh";
 
-  renderReport(reportData);
-
-} else {
-
-  console.log("GEEN MATCH:", merk, model);
-
-  // fallback (belangrijk!)
-  const reportData = buildUnsupportedReport(
-    mileageText,
-    mileageAssessment
-  );
-
-  renderReport(reportData);
+  return report;
 }
 
+// ===============================
+// 🔥 START
+// ===============================
 
-    loadVehicle();
-  </script>
+async function fetchVehicleData(kenteken) {
+  const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+  const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
+  const res = await fetch(url);
+  return await res.json();
+}
+
+async function fetchMileageData(kenteken) {
+  const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+  const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
+  const res = await fetch(url);
+  return await res.json();
+}
+
+async function loadVehicle() {
+  setToday();
+
+  const kenteken = getKenteken();
+  const vehicleEl = document.getElementById("vehicleName");
+
+  if (!kenteken) {
+    vehicleEl.innerText = "Geen kenteken in URL";
+    return;
+  }
+
+  try {
+    const [vehicleData, mileageData] = await Promise.all([
+      fetchVehicleData(kenteken),
+      fetchMileageData(kenteken)
+    ]);
+
+    if (!vehicleData || !vehicleData.length) {
+      vehicleEl.innerText = "Kenteken niet gevonden";
+      return;
+    }
+
+    const voertuig = vehicleData[0];
+    const merk = (voertuig.merk || "").trim();
+    const model = (voertuig.handelsbenaming || "").trim();
+    const bouwjaar =
+      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) ||
+      "";
+
+    const fullName = (merk + " " + model).trim();
+
+    let rawMileage = null;
+
+    if (mileageData && mileageData.length) {
+      rawMileage = mileageData[0].tellerstand || null;
+    }
+
+    const mileageText = formatMileage(rawMileage);
+    const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
+    const mileageComment = getMileageComment(rawMileage, bouwjaar);
+
+    vehicleEl.innerText = fullName;
+    setVehicleHeaders(fullName);
+
+    const reportData = detectAndAnalyzeVehicle(
+      merk,
+      model,
+      bouwjaar,
+      mileageText,
+      mileageAssessment,
+      mileageComment
+    );
+
+    renderReport(reportData);
+
+  } catch (e) {
+    console.error(e);
+    vehicleEl.innerText = "Fout bij laden";
+  }
+}    
+loadVehicle();
+    
+</script>
 </body>
 </html>
