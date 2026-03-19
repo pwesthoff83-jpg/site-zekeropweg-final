@@ -2087,13 +2087,53 @@ async function fetchVehicleData(kenteken) {
   return await res.json();
 }
 
+
 async function fetchMileageData(kenteken) {
-  const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-  const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
-  const res = await fetch(url);
-  return await res.json();
+  try {
+    const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
+    const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
+
+    const res = await fetch(url);
+    if (!res.ok) return null;
+
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+    
+function formatMileage(km) {
+  if (!km || isNaN(Number(km))) return "Onbekend";
+  return Number(km).toLocaleString("nl-NL") + " km";
 }
 
+function getVehicleAge(year) {
+  const currentYear = new Date().getFullYear();
+  if (!year) return null;
+  return currentYear - Number(year);
+}
+
+function getMileageAssessment(km, year) {
+  if (!km) return "Geen data";
+
+  const age = getVehicleAge(year);
+  const perYear = km / Math.max(age, 1);
+
+  if (perYear < 10000) return "Laag";
+  if (perYear < 25000) return "Normaal";
+  if (perYear < 35000) return "Hoog";
+  return "Zeer hoog";
+}
+
+function getMileageComment() {
+  return "";
+} 
+
+function formatMileage(km) {
+  if (!km || isNaN(Number(km))) return "Onbekend";
+  return Number(km).toLocaleString("nl-NL") + " km";
+}
+    
 async function loadVehicle() {
   setToday();
 
@@ -2127,7 +2167,7 @@ async function loadVehicle() {
 
     let rawMileage = null;
 
-    if (mileageData && mileageData.length) {
+    if (mileageData && mileageData.length > 0)
       rawMileage = mileageData[0].tellerstand || null;
     }
 
