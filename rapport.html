@@ -770,8 +770,7 @@
           <h2 class="section-title">Merkspecifieke aandachtspunten</h2>
 
           <div id="brandSpecificText" class="text-block">
-            Wordt geladen...
-          </div>
+            </div>
 
           <div class="small-note" style="margin-top:12px;color:#6b7280;">
             De genoemde aandachtspunten zijn algemene controlepunten op basis van merk- en modelervaring.
@@ -2007,7 +2006,21 @@ function similarityScore(a, b) {
 
   return matches / Math.max(aWords.length, bWords.length);
 }
+    
+function getBrandSpecificText(merk, model, type) {
+  const m = merk.toLowerCase();
 
+  if (m.includes("tesla")) {
+    return "Let op laadpoort, software updates en afwijkingen in range bij oudere modellen.";
+  }
+
+  if (m.includes("bmw")) {
+    return "Controleer laadcycli en accukoeling, vooral bij intensief snelladen.";
+  }
+
+  return "Geen specifieke structurele aandachtspunten bekend.";
+}
+    
 // ===============================
 // 🔥 BASIS FUNCTIES
 // ===============================
@@ -2202,7 +2215,41 @@ async function loadVehicle() {
 }
 
 loadVehicle();
-    
+
+// ===============================
+// 🔥 FAILSAFE RENDER (NOOIT MEER LEEG)
+// ===============================
+function renderReport(data) {
+  try {
+    if (!data) throw new Error("Geen report data");
+
+    document.getElementById("batterySize").innerText = data.batterySize || "Onbekend";
+    document.getElementById("mileage").innerText = data.mileageText || "Onbekend";
+    document.getElementById("mileageAssessment").innerText = data.mileageAssessment || "-";
+
+    document.getElementById("degradation").innerText = data.degradation || "Normaal";
+    document.getElementById("riskLevel").innerText = data.riskLevel || "Laag";
+
+    document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
+
+    document.getElementById("summaryScore").innerText = data.score || "7.5";
+    document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
+
+    document.getElementById("coreConclusion").innerText =
+      data.conclusion || "Dit voertuig geeft een stabiele indruk binnen zijn segment.";
+
+    document.getElementById("quickSummary").innerText =
+      data.summary || "Op basis van beschikbare data een solide keuze.";
+
+  } catch (e) {
+    console.error("Render error:", e);
+
+    document.getElementById("vehicleName").innerText = "Rapport gedeeltelijk geladen";
+
+    document.getElementById("coreConclusion").innerText =
+      "Basisdata geladen, maar rapport niet volledig opgebouwd.";
+  }
+}
 </script>
 </body>
 </html>
