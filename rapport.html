@@ -2246,17 +2246,18 @@ async function loadVehicle() {
       fetchMileageData(kenteken)
     ]);
 
-   if (!vehicleData || !vehicleData.length) {
-  console.warn("Geen RDW data, fallback actief");
+    // fallback als geen RDW data
+    if (!vehicleData || !vehicleData.length) {
+      console.warn("Geen RDW data, fallback actief");
 
-  const fallbackReport = buildFallbackReport(kenteken);
+      const fallbackReport = buildFallbackReport(kenteken);
 
-  document.getElementById("vehicleName").innerText = "Onbekend voertuig";
-  setVehicleHeaders("Onbekend voertuig");
+      vehicleEl.innerText = "Onbekend voertuig";
+      setVehicleHeaders("Onbekend voertuig");
 
-  renderReport(fallbackReport);
-  return;
-}
+      renderReport(fallbackReport);
+      return;
+    }
 
     const voertuig = vehicleData[0];
     const merk = (voertuig.merk || "").trim();
@@ -2266,52 +2267,45 @@ async function loadVehicle() {
 
     const fullName = (merk + " " + model).trim();
 
+    // ===============================
+    // ✅ JUISTE VOLGORDE (DIT WAS JE BUG)
+    // ===============================
+
     let rawMileage = null;
 
-    const rawMileageNumber = Number(rawMileage) || 0;
-
-    const reportData = detectAndAnalyzeVehicle(
-       merk,
-       model,
-       bouwjaar,
-       mileageText,
-       mileageAssessment,
-       mileageComment,
-       rawMileageNumber
-   );
-
-    
-    // ✅ FIX: correcte brackets
     if (mileageData && mileageData.length > 0) {
       rawMileage = mileageData[0].tellerstand || null;
     }
+
+    const rawMileageNumber = Number(rawMileage) || 0;
 
     const mileageText = formatMileage(rawMileage);
     const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
     const mileageComment = getMileageComment(rawMileage, bouwjaar);
 
+    // UI eerst vullen
     vehicleEl.innerText = fullName;
     setVehicleHeaders(fullName);
 
+    // 🔥 EN PAS HIER ANALYSE
     const reportData = detectAndAnalyzeVehicle(
       merk,
       model,
       bouwjaar,
       mileageText,
       mileageAssessment,
-      mileageComment
+      mileageComment,
+      rawMileageNumber
     );
 
     renderReport(reportData);
 
   } catch (e) {
     console.error(e);
-    vehicleEl.innerText = "Rapport wordt geladen";
+    vehicleEl.innerText = "Rapport wordt geladen...";
   }
 }
-
-loadVehicle();
-
+    
 // ===============================
 // 🔥 FAILSAFE RENDER (NOOIT MEER LEEG)
 // ===============================
