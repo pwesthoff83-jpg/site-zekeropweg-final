@@ -625,22 +625,7 @@
                 <div class="metric-sub">Laatste bekende tellerstand</div>
               </div>
 
-              </div> <!-- einde metric-grid -->
-
-
-            <div class="panel" style="margin-top:16px; border:2px solid #fecaca;">
-             <h3 style="margin-top:0;">Mogelijk financieel risico</h3>
-
-            <div style="font-size:18px; font-weight:800; color:#b91c1c;">
-               €8.000 – €15.000 accuschade mogelijk
-           </div>
-
-          <div style="margin-top:8px;">
-              Dit is wat kopers vaak pas ontdekken ná aankoop.
-           </div>
-         </div>
-              
-              <div class="metric-card">
+               <div class="metric-card">
                 <div class="metric-label">Kilometeroordeel</div>
                 <div id="mileageAssessment" class="metric-value">—</div>
                 <div class="metric-sub">In context van leeftijd en gebruik</div>
@@ -671,7 +656,23 @@
               </div>
             </div>
           </div>
+              
+              </div> <!-- einde metric-grid -->
 
+
+            <div class="panel" style="margin-top:16px; border:2px solid #fecaca;">
+             <h3 style="margin-top:0;">Mogelijk financieel risico</h3>
+
+            <div style="font-size:18px; font-weight:800; color:#b91c1c;">
+               €8.000 – €15.000 accuschade mogelijk
+           </div>
+
+          <div style="margin-top:8px;">
+              Dit is wat kopers vaak pas ontdekken ná aankoop.
+           </div>
+         </div>
+              
+             
           <div class="panel">
             <div class="summary-score">
               <div class="summary-score-label">ZekerOpWeg eindoordeel</div>
@@ -2118,8 +2119,9 @@ function detectAndAnalyzeVehicle(
     );
   }
 
-  if (match) {
+  if (match && match.capacity) {
     report.batterySize = match.capacity + " kWh";
+    report.driveType = match.type || report.driveType;
   }
 
   return report;
@@ -2132,6 +2134,7 @@ async function fetchVehicleData(kenteken) {
   const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
   const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
   const res = await fetch(url);
+  if (!res.ok) throw new Error("RDW voertuigdata kon niet geladen worden");
   return await res.json();
 }
 
@@ -2180,29 +2183,26 @@ function getMileageComment() {
 }
 
 function calculateRisk({ km, year, type }) {
-  const age = new Date().getFullYear() - year;
+  const safeYear = Number(year) || 2018;
+  const age = new Date().getFullYear() - safeYear;
 
   let score = 100;
 
-  // Leeftijd impact
   score -= age * 5;
 
-  // Kilometer impact
   if (km > 200000) score -= 25;
   else if (km > 150000) score -= 15;
   else if (km > 100000) score -= 10;
   else if (km > 50000) score -= 5;
 
-  // Type impact
   if (type === "PHEV") score -= 5;
 
-  // Clamp
   score = Math.max(20, Math.min(100, score));
 
   return score;
-}    
+}
 
- function interpretRisk(score) {
+function interpretRisk(score) {
   if (score > 75) {
     return {
       label: "Laag risico",
@@ -2225,12 +2225,9 @@ function calculateRisk({ km, year, type }) {
     advice: "Sterk advies: accutest uitvoeren vóór aankoop."
   };
 }
-    
+
 // ===============================
-// 🔥 MAIN LOADER (FIXED)
-// ===============================
-    // ===============================
-// 🔥 MAIN LOADER (FIXED)
+// 🔥 MAIN LOADER
 // ===============================
 async function loadVehicle() {
   setToday();
@@ -2250,8 +2247,6 @@ async function loadVehicle() {
     ]);
 
     if (!vehicleData || !vehicleData.length) {
-      console.warn("Geen RDW data, fallback actief");
-
       const fallbackReport = buildFallbackReport(kenteken);
 
       vehicleEl.innerText = "Onbekend voertuig";
@@ -2292,62 +2287,16 @@ async function loadVehicle() {
     );
 
     renderReport(reportData);
-
   } catch (e) {
-    console.error(e);
+    console.error("loadVehicle error:", e);
     vehicleEl.innerText = "Rapport kon niet geladen worden";
   }
 }
-    
-    const voertuig = vehicleData[0];
-    const merk = (voertuig.merk || "").trim();
-    const model = (voertuig.handelsbenaming || "").trim();
-    const bouwjaar =
-      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) || "";
 
-    const fullName = (merk + " " + model).trim();
+loadVehicle();
 
-    // ===============================
-    // ✅ JUISTE VOLGORDE (DIT WAS JE BUG)
-    // ===============================
-
-    let rawMileage = null;
-
-    if (mileageData && mileageData.length > 0) {
-      rawMileage = mileageData[0].tellerstand || null;
-    }
-
-    const rawMileageNumber = Number(rawMileage) || 0;
-
-    const mileageText = formatMileage(rawMileage);
-    const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
-    const mileageComment = getMileageComment(rawMileage, bouwjaar);
-
-    // UI eerst vullen
-    vehicleEl.innerText = fullName;
-    setVehicleHeaders(fullName);
-
-    // 🔥 EN PAS HIER ANALYSE
-    const reportData = detectAndAnalyzeVehicle(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      mileageComment,
-      rawMileageNumber
-    );
-
-    renderReport(reportData);
-
-  } catch (e) {
-    console.error(e);
-    vehicleEl.innerText = "Rapport wordt geladen...";
-  }
-}
-    
 // ===============================
-// 🔥 FAILSAFE RENDER (NOOIT MEER LEEG)
+// 🔥 FAILSAFE RENDER
 // ===============================
 function renderReport(data) {
   try {
@@ -2356,82 +2305,396 @@ function renderReport(data) {
     document.getElementById("batterySize").innerText = data.batterySize || "Onbekend";
     document.getElementById("mileage").innerText = data.mileageText || "Onbekend";
     document.getElementById("mileageAssessment").innerText = data.mileageAssessment || "-";
-
     document.getElementById("degradation").innerText = data.degradation || "Normaal";
     document.getElementById("riskLevel").innerText = data.riskLevel || "Laag";
-
     document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
-
     document.getElementById("summaryScore").innerText = data.score || "7.5";
     document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
-
     document.getElementById("coreConclusion").innerText =
       data.conclusion || "Dit voertuig geeft een stabiele indruk binnen zijn segment.";
-
     document.getElementById("quickSummary").innerText =
       data.summary || "Op basis van beschikbare data een solide keuze.";
 
+    const driveTypeBadge = document.getElementById("driveTypeBadge");
+    if (driveTypeBadge) {
+      driveTypeBadge.innerText = "Voertuigtype: " + (data.driveType || "BEV");
+    }
+
+    const verdictBadge = document.getElementById("verdictBadge");
+    if (verdictBadge) {
+      verdictBadge.innerText = "Conclusie: " + (data.scoreText || "Analyse gereed");
+    }
+
+    const summaryScoreText = document.getElementById("summaryScoreText");
+    if (summaryScoreText) {
+      summaryScoreText.classList.remove("low", "medium", "high");
+      if (data.riskClass) summaryScoreText.classList.add(data.riskClass);
+    }
+
+    const riskLevelEl = document.getElementById("riskLevel");
+    if (riskLevelEl) {
+      riskLevelEl.classList.remove("low", "medium", "high");
+      if (data.riskClass) riskLevelEl.classList.add(data.riskClass);
+    }
+
+    const degradationEl = document.getElementById("degradation");
+    if (degradationEl) {
+      degradationEl.classList.remove("low", "medium", "high");
+      if (data.degradationClass) degradationEl.classList.add(data.degradationClass);
+    }
+
+    const batteryRiskGrade = document.getElementById("batteryRiskGrade");
+    const batteryRiskLabel = document.getElementById("batteryRiskLabel");
+    const batteryRiskDescription = document.getElementById("batteryRiskDescription");
+
+    if (batteryRiskGrade) batteryRiskGrade.innerText = data.riskShort || "B";
+    if (batteryRiskLabel) batteryRiskLabel.innerText = data.riskLevel || "Gemiddeld risico";
+    if (batteryRiskDescription) {
+      batteryRiskDescription.innerText =
+        data.riskDescription || "Indicatieve accurisico-inschatting op basis van leeftijd, kilometerstand en voertuigtype.";
+    }
+
+    const buyAdvice = document.getElementById("buyAdvice");
+    if (buyAdvice) {
+      buyAdvice.innerText =
+        data.buyAdvice || data.conclusion || "Aanvullende controle aanbevolen vóór aankoop.";
+    }
+
+    const riskAnalysisText = document.getElementById("riskAnalysisText");
+    if (riskAnalysisText) {
+      riskAnalysisText.innerText =
+        data.riskAnalysisText || "Deze analyse combineert voertuigleeftijd, kilometerstand en batterijtype tot een eerste praktijkinschatting.";
+    }
+
+    const batteryInfoText = document.getElementById("batteryInfoText");
+    if (batteryInfoText) {
+      batteryInfoText.innerText =
+        data.batteryInfoText || "De opgegeven batterijcapaciteit is een indicatieve modelwaarde en geen gemeten accutest.";
+    }
+
+    const chargingText = document.getElementById("chargingText");
+    if (chargingText) {
+      chargingText.innerText =
+        data.chargingText || "Laadgedrag uit het verleden is niet zichtbaar in deze vooranalyse. Een fysieke accutest geeft daar meer zekerheid over.";
+    }
+
+    const cableReplacementCost = document.getElementById("cableReplacementCost");
+    if (cableReplacementCost) {
+      cableReplacementCost.innerText = data.cableReplacementCost || "Laadkabel vervangingskosten: €250 – €450";
+    }
+
+    const knownIssues = document.getElementById("knownIssues");
+    if (knownIssues) {
+      knownIssues.innerText =
+        data.knownIssues || "Algemene aandachtspunten kunnen per merk en model verschillen. Laat bij twijfel een fysieke controle uitvoeren.";
+    }
+
+    const brandSpecificText = document.getElementById("brandSpecificText");
+    if (brandSpecificText) {
+      brandSpecificText.innerText =
+        data.brandSpecificText || "Geen specifieke structurele aandachtspunten bekend.";
+    }
+
+    const pillarBrandScore = document.getElementById("pillarBrandScore");
+    const pillarBrandText = document.getElementById("pillarBrandText");
+    const pillarDataScore = document.getElementById("pillarDataScore");
+    const pillarDataText = document.getElementById("pillarDataText");
+    const pillarTechScore = document.getElementById("pillarTechScore");
+    const pillarTechText = document.getElementById("pillarTechText");
+
+    if (pillarBrandScore) pillarBrandScore.innerText = data.pillarBrandScore || "7.5";
+    if (pillarBrandText) pillarBrandText.innerText = data.pillarBrandText || "Modelbasis oogt stabiel";
+    if (pillarDataScore) pillarDataScore.innerText = data.pillarDataScore || "7.0";
+    if (pillarDataText) pillarDataText.innerText = data.pillarDataText || "Gebruik past redelijk bij leeftijd";
+    if (pillarTechScore) pillarTechScore.innerText = data.pillarTechScore || "8.0";
+    if (pillarTechText) pillarTechText.innerText = data.pillarTechText || "Extra accutest geeft doorslag";
+
+    fillList("batteryChecklist", data.batteryChecklist || [
+      "Batterijcapaciteit gebaseerd op modelinformatie",
+      "Werkelijke accustatus niet fysiek gemeten",
+      "Accutest aanbevolen bij twijfel"
+    ]);
+
+    fillList("chargingChecklist", data.chargingChecklist || [
+      "Controleer laadkabel en laadpoort",
+      "Vraag naar laadgeschiedenis indien beschikbaar",
+      "Let op afwijkend laadgedrag"
+    ]);
+
+    fillList("positivePoints", data.positivePoints || [
+      "Geeft snelle eerste richting vóór aankoop",
+      "Maakt accurisico financieel concreet",
+      "Helpt bij onderhandelen en doorvragen"
+    ]);
+
+    fillList("buyerBlindspots", data.buyerBlindspots || [
+      "Kopers onderschatten vaak batterijdegradatie",
+      "Hoge reparatiekosten komen vaak pas later aan het licht",
+      "Een nette auto is niet automatisch technisch veilig"
+    ], true);
+
+    fillList("riskChecklist", data.riskChecklist || [
+      "Controleer onderhouds- en laadverleden",
+      "Vraag door op gebruikspatroon",
+      "Laat bij twijfel een onafhankelijke accutest uitvoeren"
+    ], true);
+
+    fillList("purchaseTips", data.purchaseTips || [
+      "Controleer laadpoort, kabels en storingsmeldingen",
+      "Vraag naar onderhouds- en gebruikshistorie",
+      "Laat twijfelgevallen onafhankelijk testen"
+    ]);
+
+    fillList("testDriveTips", data.testDriveTips || [
+      "Let op foutmeldingen en waarschuwingslampjes",
+      "Controleer laadgedrag en recuperatie",
+      "Let op onverwachte range-schommelingen"
+    ]);
   } catch (e) {
     console.error("Render error:", e);
 
     document.getElementById("vehicleName").innerText = "Rapport gedeeltelijk geladen";
-
     document.getElementById("coreConclusion").innerText =
       "Basisdata geladen, maar rapport niet volledig opgebouwd.";
   }
 }
 
-function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
+function fillList(id, items, warning = false) {
+  const el = document.getElementById(id);
+  if (!el) return;
 
-  const score = calculateRisk({
+  el.innerHTML = "";
+  items.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    el.appendChild(li);
+  });
+
+  if (warning) {
+    el.classList.add("warning-list");
+  } else {
+    el.classList.add("checklist");
+  }
+}
+
+function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
+  const scoreRaw = calculateRisk({
     km: rawKm || 100000,
     year: Number(bouwjaar) || 2018,
     type: "BEV"
   });
 
-  const risk = interpretRisk(score);
+  const risk = interpretRisk(scoreRaw);
+
+  let degradation = "Laag";
+  let degradationClass = "low";
+  let riskShort = "A";
+
+  if (scoreRaw <= 75 && scoreRaw > 55) {
+    degradation = "Normaal";
+    degradationClass = "medium";
+    riskShort = "B";
+  } else if (scoreRaw <= 55) {
+    degradation = "Hoog";
+    degradationClass = "high";
+    riskShort = "C";
+  }
 
   return {
+    driveType: "BEV",
     batterySize: "± 60 – 80 kWh",
     mileageText,
     mileageAssessment,
-    degradation: score > 70 ? "Laag" : score > 50 ? "Normaal" : "Hoog",
+    degradation,
+    degradationClass,
     riskLevel: risk.label,
+    riskClass: risk.color,
     replacementCost: "€8.000 – €15.000",
-    score: (score / 10).toFixed(1),
+    score: (scoreRaw / 10).toFixed(1),
     scoreText: risk.label,
     conclusion: risk.advice,
-    summary: "Analyse op basis van leeftijd en gebruik."
+    summary: "Analyse op basis van leeftijd, kilometerstand en voertuigtype.",
+    riskShort,
+    riskDescription: "Deze score is gebaseerd op leeftijd, kilometerstand en voertuigtype. Het blijft een indicatie en geen fysieke accumeting.",
+    buyAdvice: risk.advice,
+    riskAnalysisText: "Bij volledig elektrische auto’s is batterijconditie cruciaal voor restwaarde en toekomstig gebruik.",
+    batteryInfoText: "De batterijcapaciteit is gekoppeld aan modelinformatie. De werkelijke accustatus kan afwijken.",
+    chargingText: "Veel snelladen, intensief gebruik en leeftijd kunnen invloed hebben op de batterijconditie.",
+    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
+    knownIssues: "Controleer op laadproblemen, storingsmeldingen, afwijkend verbruik en merk/model-specifieke aandachtspunten.",
+    brandSpecificText: getBrandSpecificText(merk, model, "BEV"),
+    pillarBrandScore: "7.5",
+    pillarBrandText: "Modelinformatie geeft redelijke basis",
+    pillarDataScore: (scoreRaw / 10).toFixed(1),
+    pillarDataText: "Leeftijd en kilometrage bepalen het praktijkbeeld",
+    pillarTechScore: riskShort === "A" ? "8.0" : riskShort === "B" ? "7.0" : "6.0",
+    pillarTechText: riskShort === "A"
+      ? "Extra controle blijft verstandig"
+      : riskShort === "B"
+      ? "Accutest aanbevolen"
+      : "Accutest sterk aanbevolen",
+    batteryChecklist: [
+      "Batterijcapaciteit gebaseerd op modelinformatie",
+      "Werkelijke accustatus niet fysiek gemeten",
+      "Degradatie-inschatting is indicatief"
+    ],
+    chargingChecklist: [
+      "Controleer laadpoort en laadkabel",
+      "Vraag naar laadgedrag en snellaadgebruik",
+      "Let op afwijkende laadtijden"
+    ],
+    positivePoints: [
+      "Snelle eerste risico-inschatting",
+      "Financieel risico direct zichtbaar",
+      "Handig vóór aankoop of onderhandeling"
+    ],
+    buyerBlindspots: [
+      "Batterijdegradatie is vaak onzichtbaar zonder meting",
+      "Een mooie auto kan technisch toch risico dragen",
+      "Laadgeschiedenis ontbreekt vaak bij verkoop"
+    ],
+    riskChecklist: [
+      "Controleer onderhouds- en foutgeschiedenis",
+      "Vraag naar laadverleden",
+      "Laat bij twijfel een onafhankelijke accutest uitvoeren"
+    ],
+    purchaseTips: [
+      "Controleer foutcodes en waarschuwingen",
+      "Vraag naar laad- en onderhoudsverleden",
+      "Check de auto ook koud en na proefrit"
+    ],
+    testDriveTips: [
+      "Let op foutmeldingen in dashboard",
+      "Check of range logisch reageert",
+      "Let op afwijkingen bij regeneratie of laden"
+    ]
   };
-}  
+}
 
-function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment) {
+function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
+  const scoreRaw = calculateRisk({
+    km: rawKm || 100000,
+    year: Number(bouwjaar) || 2018,
+    type: "PHEV"
+  });
+
+  const risk = interpretRisk(scoreRaw);
+
+  let degradation = "Laag";
+  let degradationClass = "low";
+  let riskShort = "A";
+
+  if (scoreRaw <= 75 && scoreRaw > 55) {
+    degradation = "Normaal";
+    degradationClass = "medium";
+    riskShort = "B";
+  } else if (scoreRaw <= 55) {
+    degradation = "Hoog";
+    degradationClass = "high";
+    riskShort = "C";
+  }
+
   return {
+    driveType: "PHEV",
     batterySize: "± 10 – 25 kWh",
     mileageText,
     mileageAssessment,
-    degradation: "Normaal",
-    riskLevel: "Gemiddeld",
+    degradation,
+    degradationClass,
+    riskLevel: risk.label,
+    riskClass: risk.color,
     replacementCost: "€3.000 – €8.000",
-    score: "7.0",
-    scoreText: "Controle aanbevolen",
-    conclusion: "Plug-in hybride batterijen vertonen vaak variatie in gebruik.",
-    summary: "Extra controle voorkomt verrassingen."
+    score: (scoreRaw / 10).toFixed(1),
+    scoreText: risk.label,
+    conclusion: risk.advice,
+    summary: "Analyse op basis van leeftijd, kilometerstand en plug-in hybride profiel.",
+    riskShort,
+    riskDescription: "Bij plug-in hybrides speelt zowel elektrisch als brandstofgebruik mee in de uiteindelijke batterijconditie.",
+    buyAdvice: risk.advice,
+    riskAnalysisText: "Plug-in hybrides hebben vaak wisselend laadgedrag, wat extra onzekerheid geeft zonder fysieke meting.",
+    batteryInfoText: "De accucapaciteit is indicatief. De feitelijke bruikbare capaciteit kan afwijken.",
+    chargingText: "Veel PHEV’s worden weinig geladen. Dat zegt iets over gebruik, maar niet alles over technische staat.",
+    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
+    knownIssues: "Controleer accuprestaties, laadfunctie en of het elektrische deel nog consistent werkt.",
+    brandSpecificText: getBrandSpecificText(merk, model, "PHEV"),
+    pillarBrandScore: "7.0",
+    pillarBrandText: "Modelinformatie geeft basisrichting",
+    pillarDataScore: (scoreRaw / 10).toFixed(1),
+    pillarDataText: "Gebruik en leeftijd geven gemengd beeld",
+    pillarTechScore: riskShort === "A" ? "7.5" : riskShort === "B" ? "6.8" : "5.8",
+    pillarTechText: riskShort === "A"
+      ? "Controle blijft slim"
+      : riskShort === "B"
+      ? "Extra accutest aanbevolen"
+      : "Fysieke accutest sterk aanbevolen",
+    batteryChecklist: [
+      "Capaciteit gebaseerd op modelinformatie",
+      "Werkelijke elektrische actieradius kan afwijken",
+      "Accustatus niet fysiek gemeten"
+    ],
+    chargingChecklist: [
+      "Controleer laadpoort en laadsessiegedrag",
+      "Vraag hoe vaak er daadwerkelijk geladen is",
+      "Let op wisselende EV-prestaties"
+    ],
+    positivePoints: [
+      "Geeft snel eerste richting",
+      "Maakt risico en kosten zichtbaar",
+      "Sterk als voorselectie vóór aankoop"
+    ],
+    buyerBlindspots: [
+      "Veel kopers testen het elektrische deel te oppervlakkig",
+      "PHEV-gebruik verschilt enorm per eigenaar",
+      "Lage km-stand betekent niet automatisch gezonde accu"
+    ],
+    riskChecklist: [
+      "Controleer of elektrisch rijden nog logisch functioneert",
+      "Vraag naar laadgedrag en onderhoud",
+      "Laat bij twijfel onafhankelijk testen"
+    ],
+    purchaseTips: [
+      "Test laden en elektrisch rijden apart",
+      "Vraag naar werkelijk EV-gebruik",
+      "Laat twijfelgevallen altijd extra controleren"
+    ],
+    testDriveTips: [
+      "Controleer of EV-modus goed werkt",
+      "Let op schakelmomenten en storingen",
+      "Kijk of het accugedeelte logisch reageert"
+    ]
   };
 }
 
 function buildFallbackReport(kenteken) {
   return {
+    driveType: "Onbekend",
     batterySize: "Onbekend",
     mileageText: "Onbekend",
     mileageAssessment: "Onbekend",
     degradation: "Onbekend",
+    degradationClass: "medium",
     riskLevel: "Onbekend",
+    riskClass: "medium",
     replacementCost: "€8.000 – €15.000",
     score: "6.5",
     scoreText: "Onzeker",
     conclusion: "Onvoldoende data beschikbaar – verhoogd risico.",
-    summary: "Zonder data is een accutest sterk aan te raden."
+    summary: "Zonder data is een accutest sterk aan te raden.",
+    riskShort: "B",
+    riskDescription: "Er was onvoldoende voertuigdata beschikbaar om een betrouwbaarder profiel op te bouwen.",
+    buyAdvice: "Laat bij onbekende data altijd aanvullend controleren vóór aankoop.",
+    riskAnalysisText: "Door ontbrekende data blijft dit voertuig een onzeker dossier.",
+    batteryInfoText: "Voertuigdata kon niet volledig worden geladen.",
+    chargingText: "Laad- en gebruiksinformatie ontbreekt.",
+    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
+    knownIssues: "Door ontbrekende data zijn bekende aandachtspunten niet goed te koppelen.",
+    brandSpecificText: "Geen specifieke structurele aandachtspunten bekend.",
+    pillarBrandScore: "6.5",
+    pillarBrandText: "Te weinig data",
+    pillarDataScore: "6.0",
+    pillarDataText: "Geen betrouwbare kilometerrichting",
+    pillarTechScore: "7.0",
+    pillarTechText: "Controle sterk aanbevolen"
   };
 }
     
