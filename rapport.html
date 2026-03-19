@@ -1913,7 +1913,7 @@ X RWD - 69 kWh*
 `
   ;
 
-    // ===============================
+// ===============================
 // 🔥 PARSER (STAP 2)
 // ===============================
 function parseBatteryData(rawText) {
@@ -1952,12 +1952,10 @@ function parseBatteryData(rawText) {
 }
 
 // ===============================
-// 🔥 DATABASE ACTIVEREN (STAP 3)
-// ===============================
 const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 
 // ===============================
-// 🔥 MATCH ENGINE (STAP 4)
+// 🔥 MATCH ENGINE
 // ===============================
 function findBatteryMatchSmart(merk, model) {
   const brandKey = normalizeText(merk);
@@ -1996,9 +1994,10 @@ function normalizeText(text) {
     .replace(/\./g, "");
 }
 
+// ✅ FIX: betere matching
 function similarityScore(a, b) {
-  const aWords = a.split(" ");
-  const bWords = b.split(" ");
+  const aWords = a.match(/[A-Z]+|\d+/g) || [];
+  const bWords = b.match(/[A-Z]+|\d+/g) || [];
 
   let matches = 0;
 
@@ -2033,7 +2032,7 @@ function setVehicleHeaders(name) {
 }
 
 // ===============================
-// 🔥 MAIN DETECTIE (NIEUWE ENGINE)
+// 🔥 MAIN DETECTIE
 // ===============================
 function detectAndAnalyzeVehicle(
   merk,
@@ -2045,13 +2044,19 @@ function detectAndAnalyzeVehicle(
 ) {
   const match = findBatteryMatchSmart(merk, model);
 
-  if (!match) {
-    return buildUnsupportedReport(mileageText, mileageAssessment);
-  }
-
   let report;
 
-  if (match.type === "BEV") {
+  // ✅ FIX: fallback naar BEV (geen "niet van toepassing" meer)
+  if (!match) {
+    report = buildBEVReport(
+      merk,
+      model,
+      bouwjaar,
+      mileageText,
+      mileageAssessment,
+      mileageComment
+    );
+  } else if (match.type === "BEV") {
     report = buildBEVReport(
       merk,
       model,
@@ -2071,22 +2076,22 @@ function detectAndAnalyzeVehicle(
     );
   }
 
-  report.batterySize = match.capacity + " kWh";
+  if (match) {
+    report.batterySize = match.capacity + " kWh";
+  }
 
   return report;
 }
 
 // ===============================
-// 🔥 START
+// 🔥 API CALLS
 // ===============================
-
 async function fetchVehicleData(kenteken) {
   const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
   const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
   const res = await fetch(url);
   return await res.json();
 }
-
 
 async function fetchMileageData(kenteken) {
   try {
@@ -2101,7 +2106,10 @@ async function fetchMileageData(kenteken) {
     return null;
   }
 }
-    
+
+// ===============================
+// 🔥 UTIL
+// ===============================
 function formatMileage(km) {
   if (!km || isNaN(Number(km))) return "Onbekend";
   return Number(km).toLocaleString("nl-NL") + " km";
@@ -2127,13 +2135,11 @@ function getMileageAssessment(km, year) {
 
 function getMileageComment() {
   return "";
-} 
-
-function formatMileage(km) {
-  if (!km || isNaN(Number(km))) return "Onbekend";
-  return Number(km).toLocaleString("nl-NL") + " km";
 }
-    
+
+// ===============================
+// 🔥 MAIN LOADER (FIXED)
+// ===============================
 async function loadVehicle() {
   setToday();
 
@@ -2160,14 +2166,14 @@ async function loadVehicle() {
     const merk = (voertuig.merk || "").trim();
     const model = (voertuig.handelsbenaming || "").trim();
     const bouwjaar =
-      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) ||
-      "";
+      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) || "";
 
     const fullName = (merk + " " + model).trim();
 
     let rawMileage = null;
 
-    if (mileageData && mileageData.length > 0)
+    // ✅ FIX: correcte brackets
+    if (mileageData && mileageData.length > 0) {
       rawMileage = mileageData[0].tellerstand || null;
     }
 
@@ -2193,7 +2199,8 @@ async function loadVehicle() {
     console.error(e);
     vehicleEl.innerText = "Fout bij laden";
   }
-}    
+}
+
 loadVehicle();
     
 </script>
