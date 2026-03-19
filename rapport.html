@@ -1586,12 +1586,17 @@
     
       function isPHEV(key) {
   const phevIndicators = [
-    "E", "E-", "EHYBRID", "TFSIE", "TSIE",
+    "EHYBRID", "TFSIE", "TSIE",
     "PLUGIN", "PHEV", "HYBRID",
     "RECHARGE", "4XE",
     "GTE", "IV"
   ];
 
+  if (data.summaryScore === "B") {
+  data.summaryClass = "low"; // ipv medium
+ }
+
+        
   const strongMatches = [
     "330E","530E","545E","745E",
     "X1","X3","X5",
@@ -1615,7 +1620,24 @@
 
   if (isPHEV(key)) return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
   if (isBEV(key)) return buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
+  if (age !== null && age <= 1 && data.rawMileage < 10000) {
+  data.summaryScore = "A";
+  data.summaryText = "Vrijwel nieuw voertuig";
+  data.summaryClass = "low";
 
+  data.verdictLabel = "Zeer positieve basis";
+  data.verdictClass = "success";
+
+  data.quickSummary = "Dit betreft een vrijwel nieuw elektrisch voertuig. Het risico op batterijproblemen is laag. Controle blijft verstandig bij aankoop, maar de uitgangspositie is sterk.";
+
+  data.riskLevel = "Laag";
+
+  data.degradation = "Verwaarloosbaar";
+
+  data.buyAdvice = "Dit voertuig bevindt zich in een vrijwel nieuwe staat. De kans op batterijproblemen is klein. Toch blijft een korte controle verstandig om volledige zekerheid te krijgen over accustatus en gebruik.";
+
+  data.coreConclusion = "Bij een vrijwel nieuw elektrisch voertuig ligt het risico significant lager dan bij oudere modellen. De belangrijkste controlepunten zijn gebruik, laadgedrag en eventuele schade.";
+}
   return buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, mileageComment);
 }
 
