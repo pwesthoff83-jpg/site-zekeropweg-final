@@ -919,7 +919,8 @@ function similarityScore(a, b) {
 
   return matches / Math.max(aWords.length, bWords.length);
 }
-
+    
+const RAW_BATTERY_DATA = `
 Acura
 
 ZDX - 107,6 kWh
@@ -1930,7 +1931,10 @@ Zeekr
 
 X AWD - 69 kWh*
 X RWD - 69 kWh*
-
+`
+  ;
+  const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
+  
   function parseBatteryData(rawText) {
   const lines = rawText.split("\n");
 
