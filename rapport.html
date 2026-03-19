@@ -899,27 +899,6 @@
   </div>
 
   <script>
-function normalizeText(text) {
-  return text
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function similarityScore(a, b) {
-  const aWords = a.split(" ");
-  const bWords = b.split(" ");
-
-  let matches = 0;
-
-  aWords.forEach(word => {
-    if (bWords.includes(word)) matches++;
-  });
-
-  return matches / Math.max(aWords.length, bWords.length);
-}
-    
 const RAW_BATTERY_DATA = `
 Acura
 
@@ -1933,6 +1912,101 @@ X AWD - 69 kWh*
 X RWD - 69 kWh*
 `
   ;
+
+// ===============================
+// 🔥 PARSER (STAP 2)
+// ===============================
+function parseBatteryData(rawText) {
+  const lines = rawText.split("\n");
+
+  let currentBrand = "";
+  const db = {};
+
+  lines.forEach(line => {
+    line = line.trim();
+    if (!line) return;
+
+    if (!line.includes("-")) {
+      currentBrand = normalizeText(line);
+      db[currentBrand] = [];
+      return;
+    }
+
+    const [modelRaw, capacityRaw] = line.split("-");
+
+    const model = normalizeText(modelRaw);
+    const capacity = parseFloat(
+      capacityRaw.replace(",", ".").replace("kWh", "")
+    );
+
+    const type = capacity > 25 ? "BEV" : "PHEV";
+
+    db[currentBrand].push({
+      raw: model,
+      capacity,
+      type
+    });
+  });
+
+  return db;
+}    
+
+// ===============================
+// 🔥 DATABASE ACTIVEREN (STAP 3)
+// ===============================
+const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
+
+ // ===============================
+// 🔥 MATCH ENGINE (STAP 4)
+// ===============================
+function findBatteryMatchSmart(merk, model) {
+  const brandKey = normalizeText(merk);
+  const modelKey = normalizeText(model);
+
+  const brandData = batteryDB[brandKey];
+  if (!brandData) return null;
+
+  let bestMatch = null;
+  let bestScore = 0;
+
+  brandData.forEach(entry => {
+    const score = similarityScore(modelKey, entry.raw);
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = entry;
+    }
+  });
+
+  if (bestScore > 0.3) {
+    return bestMatch;
+  }
+
+  return null;
+}   
+    
+function normalizeText(text) {
+  return text
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function similarityScore(a, b) {
+  const aWords = a.split(" ");
+  const bWords = b.split(" ");
+
+  let matches = 0;
+
+  aWords.forEach(word => {
+    if (bWords.includes(word)) matches++;
+  });
+
+  return matches / Math.max(aWords.length, bWords.length);
+}
+    
+
   const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
   
   function parseBatteryData(rawText) {
