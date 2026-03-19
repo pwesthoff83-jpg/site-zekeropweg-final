@@ -2229,6 +2229,9 @@ function calculateRisk({ km, year, type }) {
 // ===============================
 // 🔥 MAIN LOADER (FIXED)
 // ===============================
+    // ===============================
+// 🔥 MAIN LOADER (FIXED)
+// ===============================
 async function loadVehicle() {
   setToday();
 
@@ -2246,7 +2249,6 @@ async function loadVehicle() {
       fetchMileageData(kenteken)
     ]);
 
-    // fallback als geen RDW data
     if (!vehicleData || !vehicleData.length) {
       console.warn("Geen RDW data, fallback actief");
 
@@ -2254,11 +2256,49 @@ async function loadVehicle() {
 
       vehicleEl.innerText = "Onbekend voertuig";
       setVehicleHeaders("Onbekend voertuig");
-
       renderReport(fallbackReport);
       return;
     }
 
+    const voertuig = vehicleData[0];
+    const merk = (voertuig.merk || "").trim();
+    const model = (voertuig.handelsbenaming || "").trim();
+    const bouwjaar =
+      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) || "";
+
+    const fullName = (merk + " " + model).trim();
+
+    let rawMileage = null;
+    if (mileageData && mileageData.length > 0) {
+      rawMileage = mileageData[0].tellerstand || null;
+    }
+
+    const rawMileageNumber = Number(rawMileage) || 0;
+    const mileageText = formatMileage(rawMileage);
+    const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
+    const mileageComment = getMileageComment(rawMileage, bouwjaar);
+
+    vehicleEl.innerText = fullName;
+    setVehicleHeaders(fullName);
+
+    const reportData = detectAndAnalyzeVehicle(
+      merk,
+      model,
+      bouwjaar,
+      mileageText,
+      mileageAssessment,
+      mileageComment,
+      rawMileageNumber
+    );
+
+    renderReport(reportData);
+
+  } catch (e) {
+    console.error(e);
+    vehicleEl.innerText = "Rapport kon niet geladen worden";
+  }
+}
+    
     const voertuig = vehicleData[0];
     const merk = (voertuig.merk || "").trim();
     const model = (voertuig.handelsbenaming || "").trim();
