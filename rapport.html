@@ -2082,13 +2082,13 @@ function detectAndAnalyzeVehicle(
   bouwjaar,
   mileageText,
   mileageAssessment,
-  mileageComment
+  mileageComment,
+  rawKm
 ) {
   const match = findBatteryMatchSmart(merk, model);
 
   let report;
 
-  // ✅ FIX: fallback naar BEV (geen "niet van toepassing" meer)
   if (!match) {
     report = buildBEVReport(
       merk,
@@ -2096,7 +2096,7 @@ function detectAndAnalyzeVehicle(
       bouwjaar,
       mileageText,
       mileageAssessment,
-      mileageComment
+      rawKm
     );
   } else if (match.type === "BEV") {
     report = buildBEVReport(
@@ -2105,7 +2105,7 @@ function detectAndAnalyzeVehicle(
       bouwjaar,
       mileageText,
       mileageAssessment,
-      mileageComment
+      rawKm
     );
   } else {
     report = buildPHEVReport(
@@ -2114,7 +2114,7 @@ function detectAndAnalyzeVehicle(
       bouwjaar,
       mileageText,
       mileageAssessment,
-      mileageComment
+      rawKm
     );
   }
 
@@ -2179,6 +2179,53 @@ function getMileageComment() {
   return "";
 }
 
+function calculateRisk({ km, year, type }) {
+  const age = new Date().getFullYear() - year;
+
+  let score = 100;
+
+  // Leeftijd impact
+  score -= age * 5;
+
+  // Kilometer impact
+  if (km > 200000) score -= 25;
+  else if (km > 150000) score -= 15;
+  else if (km > 100000) score -= 10;
+  else if (km > 50000) score -= 5;
+
+  // Type impact
+  if (type === "PHEV") score -= 5;
+
+  // Clamp
+  score = Math.max(20, Math.min(100, score));
+
+  return score;
+}    
+
+ function interpretRisk(score) {
+  if (score > 75) {
+    return {
+      label: "Laag risico",
+      color: "low",
+      advice: "Goede indicatie, beperkte risico’s."
+    };
+  }
+
+  if (score > 55) {
+    return {
+      label: "Gemiddeld risico",
+      color: "medium",
+      advice: "Extra controle aanbevolen."
+    };
+  }
+
+  return {
+    label: "Hoog risico",
+    color: "high",
+    advice: "Sterk advies: accutest uitvoeren vóór aankoop."
+  };
+}
+    
 // ===============================
 // 🔥 MAIN LOADER (FIXED)
 // ===============================
@@ -2199,10 +2246,17 @@ async function loadVehicle() {
       fetchMileageData(kenteken)
     ]);
 
-    if (!vehicleData || !vehicleData.length) {
-      vehicleEl.innerText = "Kenteken niet gevonden";
-      return;
-    }
+   if (!vehicleData || !vehicleData.length) {
+  console.warn("Geen RDW data, fallback actief");
+
+  const fallbackReport = buildFallbackReport(kenteken);
+
+  document.getElementById("vehicleName").innerText = "Onbekend voertuig";
+  setVehicleHeaders("Onbekend voertuig");
+
+  renderReport(fallbackReport);
+  return;
+}
 
     const voertuig = vehicleData[0];
     const merk = (voertuig.merk || "").trim();
@@ -2214,6 +2268,19 @@ async function loadVehicle() {
 
     let rawMileage = null;
 
+    const rawMileageNumber = Number(rawMileage) || 0;
+
+    const reportData = detectAndAnalyzeVehicle(
+       merk,
+       model,
+       bouwjaar,
+       mileageText,
+       mileageAssessment,
+       mileageComment,
+       rawMileageNumber
+   );
+
+    
     // ✅ FIX: correcte brackets
     if (mileageData && mileageData.length > 0) {
       rawMileage = mileageData[0].tellerstand || null;
@@ -2239,7 +2306,7 @@ async function loadVehicle() {
 
   } catch (e) {
     console.error(e);
-    vehicleEl.innerText = "Fout bij laden";
+    vehicleEl.innerText = "Rapport wordt geladen";
   }
 }
 
@@ -2279,6 +2346,61 @@ function renderReport(data) {
       "Basisdata geladen, maar rapport niet volledig opgebouwd.";
   }
 }
+
+function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
+
+  const score = calculateRisk({
+    km: rawKm || 100000,
+    year: Number(bouwjaar) || 2018,
+    type: "BEV"
+  });
+
+  const risk = interpretRisk(score);
+
+  return {
+    batterySize: "± 60 – 80 kWh",
+    mileageText,
+    mileageAssessment,
+    degradation: score > 70 ? "Laag" : score > 50 ? "Normaal" : "Hoog",
+    riskLevel: risk.label,
+    replacementCost: "€8.000 – €15.000",
+    score: (score / 10).toFixed(1),
+    scoreText: risk.label,
+    conclusion: risk.advice,
+    summary: "Analyse op basis van leeftijd en gebruik."
+  };
+}  
+
+function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment) {
+  return {
+    batterySize: "± 10 – 25 kWh",
+    mileageText,
+    mileageAssessment,
+    degradation: "Normaal",
+    riskLevel: "Gemiddeld",
+    replacementCost: "€3.000 – €8.000",
+    score: "7.0",
+    scoreText: "Controle aanbevolen",
+    conclusion: "Plug-in hybride batterijen vertonen vaak variatie in gebruik.",
+    summary: "Extra controle voorkomt verrassingen."
+  };
+}
+
+function buildFallbackReport(kenteken) {
+  return {
+    batterySize: "Onbekend",
+    mileageText: "Onbekend",
+    mileageAssessment: "Onbekend",
+    degradation: "Onbekend",
+    riskLevel: "Onbekend",
+    replacementCost: "€8.000 – €15.000",
+    score: "6.5",
+    scoreText: "Onzeker",
+    conclusion: "Onvoldoende data beschikbaar – verhoogd risico.",
+    summary: "Zonder data is een accutest sterk aan te raden."
+  };
+}
+    
 </script>
 </body>
 </html>
