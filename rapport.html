@@ -702,36 +702,73 @@
         </div>
 
         <div class="panel gold-soft" style="margin-top:22px;">
-          <h3>ZekerOpWeg samenvatting</h3>
-          <div id="quickSummary" class="lead-text">Samenvatting wordt geladen...</div>
-          <div class="text-block">
-            Dit rapport is bedoeld om u sneller richting te geven bij aankoop: waar ligt vertrouwen, waar vraagt het voertuig extra aandacht en waar is een onafhankelijke accutest de verstandigste vervolgstap.
-          </div>
-        </div>
+  <h3>ZekerOpWeg samenvatting</h3>
+  <div id="quickSummary" class="lead-text">Samenvatting wordt geladen...</div>
+  <div class="text-block">
+    Dit rapport is bedoeld om u sneller richting te geven bij aankoop: waar ligt vertrouwen, waar vraagt het voertuig extra aandacht en waar is een onafhankelijke accutest de verstandigste vervolgstap.
+  </div>
+</div>
 
-        <div class="panel" style="margin-top:22px;">
-          <h2 class="section-title">3-pijler beoordeling</h2>
-          <div class="grid-3">
-            <div class="pillar-card">
-              <div class="pillar-title">Merkbasis</div>
-              <div id="pillarBrandScore" class="pillar-score">—</div>
-              <div id="pillarBrandText" class="pillar-text">—</div>
-            </div>
+<!-- 🔥 PAYWALL (HIER KOMT GELD) -->
+<div class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
+  
+  <h3>Twijfel je over deze auto?</h3>
 
-            <div class="pillar-card">
-              <div class="pillar-title">Praktijkbeeld</div>
-              <div id="pillarDataScore" class="pillar-score">—</div>
-              <div id="pillarDataText" class="pillar-text">—</div>
-            </div>
+  <p style="font-weight:600;">
+    Dit is precies waar de meeste kopers de fout ingaan.<br><br>
+    De grootste risico’s en aankoopadvies zitten in het volledige rapport.
+  </p>
 
-            <div class="pillar-card">
-              <div class="pillar-title">Controleadvies</div>
-              <div id="pillarTechScore" class="pillar-score">—</div>
-              <div id="pillarTechText" class="pillar-text">—</div>
-            </div>
-          </div>
-        </div>
+  <div style="font-size:28px; font-weight:900; margin:10px 0;">
+    €19,95
+  </div>
 
+  <a 
+    href="https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00"
+    target="_blank"
+    style="
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:999px;
+      background:#0b1c2d;
+      color:#fff;
+      font-weight:800;
+      text-decoration:none;
+    "
+  >
+    Bekijk volledig rapport
+  </a>
+
+</div>
+
+<!-- 🔒 ALLES HIERONDER = PREMIUM -->
+<div id="premiumContent">
+
+  <div class="panel" style="margin-top:22px;">
+    <h2 class="section-title">3-pijler beoordeling</h2>
+    <div class="grid-3">
+      <div class="pillar-card">
+        <div class="pillar-title">Merkbasis</div>
+        <div id="pillarBrandScore" class="pillar-score">—</div>
+        <div id="pillarBrandText" class="pillar-text">—</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">Praktijkbeeld</div>
+        <div id="pillarDataScore" class="pillar-score">—</div>
+        <div id="pillarDataText" class="pillar-text">—</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">Controleadvies</div>
+        <div id="pillarTechScore" class="pillar-score">—</div>
+        <div id="pillarTechText" class="pillar-text">—</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+        
         <div class="page-footer">
           <div>ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
           <div class="page-number">Pagina 1 van 3</div>
@@ -2698,7 +2735,16 @@ function buildFallbackReport(kenteken) {
     pillarTechText: "Controle sterk aanbevolen"
   };
 }
+
+
+     document.addEventListener("DOMContentLoaded", function () {
+  const premium = document.getElementById("premiumContent");
+  if (premium) {
+    premium.style.display = "none";
+  }
+});   
     
 </script>
-</body>
+
+ </body>
 </html>
