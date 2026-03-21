@@ -43,13 +43,16 @@
       gap:24px;
     }
 
-    .page{
-      background:var(--white);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.05);
-    }
+   .page{
+  width:100%;
+  max-width:1020px;
+  margin:0 auto;
+  background:var(--white);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.05);
+}
 
     .page-header{
       padding:28px 34px;
@@ -124,13 +127,14 @@
 
     .page-body{
       padding:30px 34px 34px;
+      max-width:100%;
     }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:22px;
-    }
+   .grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
 
     .grid-3{
       display:grid;
@@ -618,60 +622,57 @@
               <div id="verdictBadge" class="badge">Conclusie: —</div>
             </div>
 
-            <div class="metric-grid">
-              <div class="metric-card">
-                <div class="metric-label">Kilometerstand</div>
-                <div id="mileage" class="metric-value">—</div>
-                <div class="metric-sub">Laatste bekende tellerstand</div>
-              </div>
+          <div class="metric-grid">
+  <div class="metric-card">
+    <div class="metric-label">Kilometerstand</div>
+    <div id="mileage" class="metric-value">—</div>
+    <div class="metric-sub">Laatste bekende tellerstand</div>
+  </div>
 
-               <div class="metric-card">
-                <div class="metric-label">Kilometeroordeel</div>
-                <div id="mileageAssessment" class="metric-value">—</div>
-                <div class="metric-sub">In context van leeftijd en gebruik</div>
-              </div>
+  <div class="metric-card">
+    <div class="metric-label">Kilometeroordeel</div>
+    <div id="mileageAssessment" class="metric-value">—</div>
+    <div class="metric-sub">In context van leeftijd en gebruik</div>
+  </div>
 
-              <div class="metric-card">
-                <div class="metric-label">Geschatte batterijcapaciteit</div>
-                <div id="batterySize" class="metric-value">—</div>
-                <div class="metric-sub">Indicatieve modelinformatie</div>
-              </div>
+  <div class="metric-card">
+    <div class="metric-label">Geschatte batterijcapaciteit</div>
+    <div id="batterySize" class="metric-value">—</div>
+    <div class="metric-sub">Indicatieve modelinformatie</div>
+  </div>
 
-              <div class="metric-card">
-                <div class="metric-label">Gemiddelde degradatie</div>
-                <div id="degradation" class="metric-value">—</div>
-                <div class="metric-sub">Praktijkindicatie, modelafhankelijk</div>
-              </div>
+  <div class="metric-card">
+    <div class="metric-label">Gemiddelde degradatie</div>
+    <div id="degradation" class="metric-value">—</div>
+    <div class="metric-sub">Praktijkindicatie, modelafhankelijk</div>
+  </div>
 
-              <div class="metric-card">
-                <div class="metric-label">Risico-inschatting</div>
-                <div id="riskLevel" class="metric-value">—</div>
-                <div class="metric-sub">In balans met model, leeftijd en context</div>
-              </div>
+  <div class="metric-card">
+    <div class="metric-label">Risico-inschatting</div>
+    <div id="riskLevel" class="metric-value">—</div>
+    <div class="metric-sub">In balans met model, leeftijd en context</div>
+  </div>
 
-              <div class="metric-card">
-                <div class="metric-label">Vervangingskosten batterij</div>
-                <div id="replacementCost" class="metric-value">—</div>
-                <div class="metric-sub">Indicatie, geen offerte</div>
-              </div>
-            </div>
-          </div>
-              
-              </div> <!-- einde metric-grid -->
+  <div class="metric-card">
+    <div class="metric-label">Vervangingskosten batterij</div>
+    <div id="replacementCost" class="metric-value">—</div>
+    <div class="metric-sub">Indicatie, geen offerte</div>
+  </div>
+</div> <!-- einde metric-grid -->
 
+</div> <!-- 🔥 SLUIT DE VOERTUIG PANEL (DIT WAS JE BUG) -->
 
-            <div class="panel" style="margin-top:16px; border:2px solid #fecaca;">
-             <h3 style="margin-top:0;">Mogelijk financieel risico</h3>
+<div class="panel" style="margin-top:16px; border:2px solid #fecaca;">
+  <h3 style="margin-top:0;">Mogelijk financieel risico</h3>
 
-            <div style="font-size:18px; font-weight:800; color:#b91c1c;">
-               €8.000 – €15.000 accuschade mogelijk
-           </div>
+  <div style="font-size:18px; font-weight:800; color:#b91c1c;">
+    €8.000 – €15.000 accuschade mogelijk
+  </div>
 
-          <div style="margin-top:8px;">
-              Dit is wat kopers vaak pas ontdekken ná aankoop.
-           </div>
-         </div>
-              
+  <div style="margin-top:8px;">
+    Dit is wat kopers vaak pas ontdekken ná aankoop.
+  </div>
+</div>  
              
           <div class="panel">
             <div class="summary-score">
