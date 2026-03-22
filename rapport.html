@@ -2015,10 +2015,37 @@ const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 // ===============================
 // 🔥 MATCH ENGINE
 // ===============================
+    brandData.forEach(entry => {
+
+  // 🔥 NIEUW: filter eerst
+  if (!isValidMatch(modelKey, entry.raw)) return;
+
+  const score = similarityScore(modelKey, entry.raw);
+
+  if (score > bestScore) {
+    bestScore = score;
+    bestMatch = entry;
+  }
+});
 function findBatteryMatchSmart(merk, model) {
   const brandKey = normalizeText(merk);
   const modelKey = normalizeText(model);
 
+  function isValidMatch(modelKey, entryRaw) {
+  const hasRS = modelKey.includes("RS");
+  const hasIV = modelKey.includes("IV");
+
+  const entryHasIV = entryRaw.includes("IV");
+
+  // ✅ RS iV → toestaan
+  if (hasRS && hasIV && entryHasIV) return true;
+
+  // ❌ RS zonder iV → geen PHEV match
+  if (hasRS && !hasIV && entryHasIV) return false;
+
+  return true;
+}
+  
   const brandData = batteryDB[brandKey];
   if (!brandData) return null;
 
@@ -2034,7 +2061,7 @@ function findBatteryMatchSmart(merk, model) {
     }
   });
 
-  if (bestScore > 0.3) {
+  if (bestScore > 0.2) {
     return bestMatch;
   }
 
@@ -2047,6 +2074,10 @@ function findBatteryMatchSmart(merk, model) {
 function normalizeText(text) {
   return (text || "")
     .toUpperCase()
+    .replace(/\bRS\b/g, "")
+    .replace(/\bGT\b/g, "")
+    .replace(/\bSPORT\b/g, "")
+    .replace(/\bLINE\b/g, "")
     .replace(/\s+/g, "")
     .replace(/-/g, "")
     .replace(/\./g, "");
@@ -2078,6 +2109,16 @@ function getBrandSpecificText(merk, model, type) {
   }
 
   return "Geen specifieke structurele aandachtspunten bekend.";
+}
+
+function enrichModelWithHybridHint(model) {
+  const m = model.toLowerCase();
+
+  if (m.includes("phev") || m.includes("plug-in") || m.includes("hybride")) {
+    return model + " iV";
+  }
+
+  return model;
 }
     
 // ===============================
@@ -2115,7 +2156,8 @@ function detectAndAnalyzeVehicle(
   mileageComment,
   rawKm
 ) {
-  const match = findBatteryMatchSmart(merk, model);
+const enrichedModel = enrichModelWithHybridHint(model);
+const match = findBatteryMatchSmart(merk, enrichedModel);
 
   let report;
 
@@ -2292,7 +2334,8 @@ async function loadVehicle() {
 
     let fullName = (merk + " " + model).trim();
 
-const match = findBatteryMatchSmart(merk, model);
+    const enrichedModel = enrichModelWithHybridHint(model);
+    const match = findBatteryMatchSmart(merk, enrichedModel);
 
 
     let rawMileage = null;
