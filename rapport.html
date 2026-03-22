@@ -2288,7 +2288,13 @@ async function loadVehicle() {
     const bouwjaar =
       (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) || "";
 
-    const fullName = (merk + " " + model).trim();
+    let fullName = (merk + " " + model).trim();
+
+const match = findBatteryMatchSmart(merk, model);
+
+if (match && match.capacity) {
+  fullName += " " + match.capacity + " kWh";
+}
 
     let rawMileage = null;
     if (mileageData && mileageData.length > 0) {
@@ -2300,8 +2306,8 @@ async function loadVehicle() {
     const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
     const mileageComment = getMileageComment(rawMileage, bouwjaar);
 
-    vehicleEl.innerText = fullName;
-    setVehicleHeaders(fullName);
+    vehicleEl.innerText = fullNameWithBattery;
+    setVehicleHeaders(fullNameWithBattery);
 
     const reportData = detectAndAnalyzeVehicle(
       merk,
@@ -2313,6 +2319,12 @@ async function loadVehicle() {
       rawMileageNumber
     );
 
+    let fullNameWithBattery = fullName;
+
+if (reportData && reportData.batterySize && reportData.batterySize !== "Onbekend") {
+  fullNameWithBattery += " " + reportData.batterySize;
+}
+    
     renderReport(reportData);
   } catch (e) {
     console.error("loadVehicle error:", e);
@@ -2504,8 +2516,39 @@ function fillList(id, items, warning = false) {
   }
 }
 
+function estimateDegradation(age, km, type) {
+  if (!age) age = 5;
+  if (!km) km = 100000;
+
+  let min = 0;
+  let max = 0;
+
+  if (type === "BEV") {
+    if (age <= 2 && km < 50000) {
+      min = 2; max = 6;
+    } else if (age <= 5 && km < 120000) {
+      min = 5; max = 12;
+    } else {
+      min = 10; max = 25;
+    }
+  } else {
+    // PHEV
+    if (age <= 2 && km < 50000) {
+      min = 5; max = 12;
+    } else if (age <= 5 && km < 120000) {
+      min = 10; max = 20;
+    } else {
+      min = 15; max = 30;
+    }
+  }
+
+  return `${min}% – ${max}%`;
+}
+    
 function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
   const scoreRaw = calculateRisk({
+  const age = getVehicleAge(bouwjaar);
+  const degradationRange = estimateDegradation(age, rawKm, "BEV");
     km: rawKm || 100000,
     year: Number(bouwjaar) || 2018,
     type: "BEV"
@@ -2569,7 +2612,7 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     batterySize: "± 60 – 80 kWh",
     mileageText,
     mileageAssessment,
-    degradation,
+    degradation: degradationRange,
     degradationClass,
     riskLevel: risk.label,
     riskClass: risk.color,
@@ -2581,7 +2624,8 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     riskShort,
     riskDescription: "Deze score is gebaseerd op leeftijd, kilometerstand en voertuigtype. Het blijft een indicatie en geen fysieke accumeting.",
     buyAdvice: conclusionText,
-    riskAnalysisText: "Bij volledig elektrische auto’s is batterijconditie cruciaal voor restwaarde en toekomstig gebruik.",
+    riskAnalysisText: `Bij volledig elektrische auto’s is batterijconditie bepalend voor restwaarde en gebruik.
+    Bij vergelijkbare voertuigen ligt de degradatie vaak rond ${degradationRange}, afhankelijk van gebruik en laadgedrag.`,
     batteryInfoText: "De batterijcapaciteit is gekoppeld aan modelinformatie. De werkelijke accustatus kan afwijken.",
     chargingText: "Veel snelladen, intensief gebruik en leeftijd kunnen invloed hebben op de batterijconditie.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
@@ -2639,6 +2683,8 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     
 function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
   const scoreRaw = calculateRisk({
+  const age = getVehicleAge(bouwjaar);
+  const degradationRange = estimateDegradation(age, rawKm, "PHEV");  
     km: rawKm || 100000,
     year: Number(bouwjaar) || 2018,
     type: "PHEV"
@@ -2705,7 +2751,7 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     batterySize: "± 10 – 25 kWh",
     mileageText,
     mileageAssessment,
-    degradation,
+    degradation: degradationRange,
     degradationClass,
     riskLevel: risk.label,
     riskClass: risk.color,
@@ -2717,7 +2763,8 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     riskShort,
     riskDescription: "Bij plug-in hybrides speelt zowel elektrisch als brandstofgebruik mee in de uiteindelijke batterijconditie.",
     buyAdvice: conclusionText,
-    riskAnalysisText: "Plug-in hybrides hebben vaak wisselend laadgedrag, wat extra onzekerheid geeft zonder fysieke meting.",
+    riskAnalysisText: `Bij plug-in hybrides is batterijgebruik sterk afhankelijk van rijgedrag.
+    Bij vergelijkbare voertuigen ligt de degradatie vaak rond ${degradationRange}.`,
     batteryInfoText: "De accucapaciteit is indicatief. De feitelijke bruikbare capaciteit kan afwijken.",
     chargingText: "Veel PHEV’s worden niet consistent geladen. Dat zegt iets over gebruik, maar niet alles over technische staat.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
