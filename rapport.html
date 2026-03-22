@@ -2013,7 +2013,7 @@ function parseBatteryData(rawText) {
 const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 
 // ===============================
-// 🔥 MATCH ENGINE
+// 🔥 MATCH ENGINE (FIXED)
 // ===============================
 function findBatteryMatchSmart(merk, model) {
   const brandKey = normalizeText(merk);
@@ -2027,7 +2027,7 @@ function findBatteryMatchSmart(merk, model) {
 
   brandData.forEach(entry => {
 
-    // 🔥 FILTER
+    // ✅ eerst filteren
     if (!isValidMatch(modelKey, entry.raw)) return;
 
     const score = similarityScore(modelKey, entry.raw);
@@ -2046,7 +2046,25 @@ function findBatteryMatchSmart(merk, model) {
 }
 
 // ===============================
-// 🔥 HELPERS
+// 🔥 VALIDATIE
+// ===============================
+function isValidMatch(modelKey, entryRaw) {
+  const hasRS = modelKey.includes("RS");
+  const hasIV = modelKey.includes("IV");
+
+  const entryHasIV = entryRaw.includes("IV");
+
+  // ✅ RS iV → match toegestaan
+  if (hasRS && hasIV && entryHasIV) return true;
+
+  // ❌ RS zonder iV → geen PHEV match
+  if (hasRS && !hasIV && entryHasIV) return false;
+
+  return true;
+}
+
+// ===============================
+// 🔥 NORMALIZE
 // ===============================
 function normalizeText(text) {
   return (text || "")
@@ -2060,12 +2078,9 @@ function normalizeText(text) {
     .replace(/\./g, "");
 }
 
-function isValidMatch(modelKey, entryRaw) {
-  const hasRS = modelKey.includes("RS");
-  const hasIV = modelKey.includes("IV");
-
-     
-// ✅ FIX: betere matching
+// ===============================
+// 🔥 MATCH SCORE
+// ===============================
 function similarityScore(a, b) {
   const aWords = a.match(/[A-Z]+|\d+/g) || [];
   const bWords = b.match(/[A-Z]+|\d+/g) || [];
@@ -2078,31 +2093,24 @@ function similarityScore(a, b) {
 
   return matches / Math.max(aWords.length, bWords.length);
 }
-    
-function getBrandSpecificText(merk, model, type) {
-  const m = merk.toLowerCase();
 
-  if (m.includes("tesla")) {
-    return "Let op laadpoort, software updates en afwijkingen in range bij oudere modellen.";
-  }
-
-  if (m.includes("bmw")) {
-    return "Controleer laadcycli en accukoeling, vooral bij intensief snelladen.";
-  }
-
-  return "Geen specifieke structurele aandachtspunten bekend.";
-}
-
+// ===============================
+// 🔥 HYBRIDE HINT (BELANGRIJK)
+// ===============================
 function enrichModelWithHybridHint(model) {
   const m = model.toLowerCase();
 
-  if (m.includes("phev") || m.includes("plug-in") || m.includes("hybride")) {
+  if (
+    m.includes("phev") ||
+    m.includes("plug-in") ||
+    m.includes("hybride") ||
+    m.includes("hybrid")
+  ) {
     return model + " iV";
   }
 
   return model;
 }
-    
 // ===============================
 // 🔥 BASIS FUNCTIES
 // ===============================
