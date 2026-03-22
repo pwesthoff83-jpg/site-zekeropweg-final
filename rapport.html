@@ -1976,26 +1976,35 @@ X RWD - 69 kWh*
 // ===============================
 function parseBatteryData(rawText) {
   const lines = rawText.split("\n");
-
   let currentBrand = "";
   const db = {};
 
   lines.forEach(line => {
-    line = line.trim();
+    line = (line || "").trim();
     if (!line) return;
 
     if (!line.includes("-")) {
       currentBrand = normalizeText(line);
-      db[currentBrand] = [];
+      if (!db[currentBrand]) db[currentBrand] = [];
       return;
     }
 
-    const [modelRaw, capacityRaw] = line.split("-");
+    const parts = line.split("-");
+    if (parts.length < 2 || !currentBrand) return;
+
+    const modelRaw = parts[0].trim();
+    const capacityRaw = parts.slice(1).join("-").trim();
 
     const model = normalizeText(modelRaw);
+
     const capacity = parseFloat(
-      capacityRaw.replace(",", ".").replace("kWh", "")
+      capacityRaw
+        .replace(",", ".")
+        .replace(/kwh/gi, "")
+        .replace(/[^\d.]/g, "")
     );
+
+    if (isNaN(capacity)) return;
 
     const type = capacity > 25 ? "BEV" : "PHEV";
 
@@ -2013,22 +2022,115 @@ function parseBatteryData(rawText) {
 const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 
 // ===============================
-// 🔥 MATCH ENGINE (FIXED)
+// 🔥 HELPERS
 // ===============================
-function findBatteryMatchSmart(merk, model) {
+function normalizeText(text) {
+  return (text || "")
+    .toUpperCase()
+    .replace(/\s+/g, "")
+    .replace(/-/g, "")
+    .replace(/\./g, "")
+    .replace(/É/g, "E");
+}
+
+function similarityScore(a, b) {
+  const aWords = a.match(/[A-Z]+|\d+/g) || [];
+  const bWords = b.match(/[A-Z]+|\d+/g) || [];
+
+  let matches = 0;
+  aWords.forEach(word => {
+    if (bWords.includes(word)) matches++;
+  });
+
+  return matches / Math.max(aWords.length, bWords.length, 1);
+}
+
+function getBrandSpecificText(merk, model, type) {
+  const m = (merk || "").toLowerCase();
+
+  if (m.includes("tesla")) {
+    return "Let op laadpoort, software updates en afwijkingen in range bij oudere modellen.";
+  }
+
+  if (m.includes("bmw")) {
+    return "Controleer laadcycli en accukoeling, vooral bij intensief snelladen.";
+  }
+
+  return "Geen specifieke structurele aandachtspunten bekend.";
+}
+
+function enrichModelWithHybridHint(merk, model, bouwjaar) {
+  let enriched = (model || "").trim();
+  const merkLower = (merk || "").toLowerCase();
+  const modelLower = enriched.toLowerCase();
+  const year = Number(bouwjaar) || 0;
+
+  if (
+    modelLower.includes("phev") ||
+    modelLower.includes("plug-in") ||
+    modelLower.includes("hybride") ||
+    modelLower.includes("hybrid")
+  ) {
+    if (!modelLower.includes("iv")) {
+      enriched += " iV";
+    }
+  }
+
+  // Skoda Octavia RS vanaf 2020 in EV/PHEV-context = meestal RS iV
+  if (
+    merkLower.includes("skoda") &&
+    modelLower.includes("octavia") &&
+    modelLower.includes("rs") &&
+    year >= 2020 &&
+    !modelLower.includes("iv")
+  ) {
+    enriched += " iV";
+  }
+
+  return enriched.trim();
+}
+
+function isValidMatch(merk, originalModel, normalizedModelKey, entryRaw) {
+  const merkLower = (merk || "").toLowerCase();
+  const modelLower = (originalModel || "").toLowerCase();
+
+  const modelHasRS = modelLower.includes("rs");
+  const modelHasIV = modelLower.includes("iv");
+  const entryHasIV = entryRaw.includes("IV");
+
+  // Skoda Octavia RS iV toestaan
+  if (
+    merkLower.includes("skoda") &&
+    modelLower.includes("octavia") &&
+    modelHasRS &&
+    entryHasIV
+  ) {
+    return true;
+  }
+
+  // RS zonder iV niet koppelen aan iV-entry
+  if (modelHasRS && !modelHasIV && entryHasIV) {
+    return false;
+  }
+
+  return true;
+}
+
+// ===============================
+// 🔥 MATCH ENGINE
+// ===============================
+function findBatteryMatchSmart(merk, model, bouwjaar) {
   const brandKey = normalizeText(merk);
   const modelKey = normalizeText(model);
 
   const brandData = batteryDB[brandKey];
-  if (!brandData) return null;
+  if (!brandData || !brandData.length) return null;
 
   let bestMatch = null;
   let bestScore = 0;
 
   brandData.forEach(entry => {
-
-    // ✅ eerst filteren
-    if (!isValidMatch(modelKey, entry.raw)) return;
+    if (!isValidMatch(merk, model, modelKey, entry.raw)) return;
 
     const score = similarityScore(modelKey, entry.raw);
 
@@ -2046,82 +2148,6 @@ function findBatteryMatchSmart(merk, model) {
 }
 
 // ===============================
-// 🔥 VALIDATIE
-// ===============================
-function isValidMatch(modelKey, entryRaw) {
-  const hasRS = modelKey.includes("RS");
-  const hasIV = modelKey.includes("IV");
-  const entryHasIV = entryRaw.includes("IV");
-
-  // ✅ RS iV → match toegestaan
-  if (hasRS && hasIV && entryHasIV) return true;
-
-  // ❌ RS zonder iV → geen PHEV match
-  if (hasRS && !hasIV && entryHasIV) return false;
-
-  return true;
-}
-
-  const entryHasIV = entryRaw.includes("IV");
-
-  // ✅ RS iV → match toegestaan
-  if (hasRS && hasIV && entryHasIV) return true;
-
-  // ❌ RS zonder iV → geen PHEV match
-  if (hasRS && !hasIV && entryHasIV) return false;
-
-  return true;
-}
-
-// ===============================
-// 🔥 NORMALIZE
-// ===============================
-function normalizeText(text) {
-  return (text || "")
-    .toUpperCase()
-    .replace(/\bRS\b/g, "")
-    .replace(/\bGT\b/g, "")
-    .replace(/\bSPORT\b/g, "")
-    .replace(/\bLINE\b/g, "")
-    .replace(/\s+/g, "")
-    .replace(/-/g, "")
-    .replace(/\./g, "");
-}
-
-// ===============================
-// 🔥 MATCH SCORE
-// ===============================
-function similarityScore(a, b) {
-  const aWords = a.match(/[A-Z]+|\d+/g) || [];
-  const bWords = b.match(/[A-Z]+|\d+/g) || [];
-
-  let matches = 0;
-
-  aWords.forEach(word => {
-    if (bWords.includes(word)) matches++;
-  });
-
-  return matches / Math.max(aWords.length, bWords.length);
-}
-
-// ===============================
-// 🔥 HYBRIDE HINT (BELANGRIJK)
-// ===============================
-function enrichModelWithHybridHint(model) {
-  const m = model.toLowerCase();
-
-  if (
-    m.includes("phev") ||
-    m.includes("plug-in") ||
-    m.includes("hybride") ||
-    m.includes("hybrid")
-  ) {
-    return model + " iV";
-  }
-
-  return model;
-}
-// ===============================
 // 🔥 BASIS FUNCTIES
 // ===============================
 function getKenteken() {
@@ -2136,12 +2162,90 @@ function setToday() {
     month: "2-digit",
     year: "numeric"
   });
-  document.getElementById("reportDate").innerText = "Datum: " + formatted;
+
+  const el = document.getElementById("reportDate");
+  if (el) el.innerText = "Datum: " + formatted;
 }
 
 function setVehicleHeaders(name) {
-  document.getElementById("vehicleNameHeader2").innerText = "Voertuig: " + name;
-  document.getElementById("vehicleNameHeader3").innerText = "Voertuig: " + name;
+  const el2 = document.getElementById("vehicleNameHeader2");
+  const el3 = document.getElementById("vehicleNameHeader3");
+
+  if (el2) el2.innerText = "Voertuig: " + name;
+  if (el3) el3.innerText = "Voertuig: " + name;
+}
+
+// ===============================
+// 🔥 UTIL
+// ===============================
+function formatMileage(km) {
+  if (!km || isNaN(Number(km))) return "Onbekend";
+  return Number(km).toLocaleString("nl-NL") + " km";
+}
+
+function getVehicleAge(year) {
+  const currentYear = new Date().getFullYear();
+  if (!year) return null;
+  return currentYear - Number(year);
+}
+
+function getMileageAssessment(km, year) {
+  if (!km) return "Geen data";
+
+  const age = getVehicleAge(year);
+  const perYear = Number(km) / Math.max(age || 1, 1);
+
+  if (perYear < 10000) return "Laag";
+  if (perYear < 25000) return "Normaal";
+  if (perYear < 35000) return "Hoog";
+  return "Zeer hoog";
+}
+
+function getMileageComment() {
+  return "";
+}
+
+function calculateRisk({ km, year, type }) {
+  const safeYear = Number(year) || 2018;
+  const age = new Date().getFullYear() - safeYear;
+
+  let score = 100;
+
+  score -= age * 5;
+
+  if (km > 200000) score -= 25;
+  else if (km > 150000) score -= 15;
+  else if (km > 100000) score -= 10;
+  else if (km > 50000) score -= 5;
+
+  if (type === "PHEV") score -= 5;
+
+  score = Math.max(20, Math.min(100, score));
+  return score;
+}
+
+function interpretRisk(score) {
+  if (score > 75) {
+    return {
+      label: "Laag risico",
+      color: "low",
+      advice: "Goede indicatie, beperkte risico’s."
+    };
+  }
+
+  if (score > 55) {
+    return {
+      label: "Gemiddeld risico",
+      color: "medium",
+      advice: "Extra controle aanbevolen."
+    };
+  }
+
+  return {
+    label: "Hoog risico",
+    color: "high",
+    advice: "Sterk advies: accutest uitvoeren vóór aankoop."
+  };
 }
 
 // ===============================
@@ -2156,8 +2260,8 @@ function detectAndAnalyzeVehicle(
   mileageComment,
   rawKm
 ) {
-const enrichedModel = enrichModelWithHybridHint(model);
-const match = findBatteryMatchSmart(merk, enrichedModel);
+  const enrichedModel = enrichModelWithHybridHint(merk, model, bouwjaar);
+  const match = findBatteryMatchSmart(merk, enrichedModel, bouwjaar);
 
   let report;
 
@@ -2213,88 +2317,12 @@ async function fetchMileageData(kenteken) {
   try {
     const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
     const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
-
     const res = await fetch(url);
     if (!res.ok) return null;
-
     return await res.json();
   } catch {
     return null;
   }
-}
-
-// ===============================
-// 🔥 UTIL
-// ===============================
-function formatMileage(km) {
-  if (!km || isNaN(Number(km))) return "Onbekend";
-  return Number(km).toLocaleString("nl-NL") + " km";
-}
-
-function getVehicleAge(year) {
-  const currentYear = new Date().getFullYear();
-  if (!year) return null;
-  return currentYear - Number(year);
-}
-
-function getMileageAssessment(km, year) {
-  if (!km) return "Geen data";
-
-  const age = getVehicleAge(year);
-  const perYear = km / Math.max(age, 1);
-
-  if (perYear < 10000) return "Laag";
-  if (perYear < 25000) return "Normaal";
-  if (perYear < 35000) return "Hoog";
-  return "Zeer hoog";
-}
-
-function getMileageComment() {
-  return "";
-}
-
-function calculateRisk({ km, year, type }) {
-  const safeYear = Number(year) || 2018;
-  const age = new Date().getFullYear() - safeYear;
-
-  let score = 100;
-
-  score -= age * 5;
-
-  if (km > 200000) score -= 25;
-  else if (km > 150000) score -= 15;
-  else if (km > 100000) score -= 10;
-  else if (km > 50000) score -= 5;
-
-  if (type === "PHEV") score -= 5;
-
-  score = Math.max(20, Math.min(100, score));
-
-  return score;
-}
-
-function interpretRisk(score) {
-  if (score > 75) {
-    return {
-      label: "Laag risico",
-      color: "low",
-      advice: "Goede indicatie, beperkte risico’s."
-    };
-  }
-
-  if (score > 55) {
-    return {
-      label: "Gemiddeld risico",
-      color: "medium",
-      advice: "Extra controle aanbevolen."
-    };
-  }
-
-  return {
-    label: "Hoog risico",
-    color: "high",
-    advice: "Sterk advies: accutest uitvoeren vóór aankoop."
-  };
 }
 
 // ===============================
@@ -2305,6 +2333,8 @@ async function loadVehicle() {
 
   const kenteken = getKenteken();
   const vehicleEl = document.getElementById("vehicleName");
+
+  if (!vehicleEl) return;
 
   if (!kenteken) {
     vehicleEl.innerText = "Geen kenteken in URL";
@@ -2319,7 +2349,6 @@ async function loadVehicle() {
 
     if (!vehicleData || !vehicleData.length) {
       const fallbackReport = buildFallbackReport(kenteken);
-
       vehicleEl.innerText = "Onbekend voertuig";
       setVehicleHeaders("Onbekend voertuig");
       renderReport(fallbackReport);
@@ -2329,14 +2358,9 @@ async function loadVehicle() {
     const voertuig = vehicleData[0];
     const merk = (voertuig.merk || "").trim();
     const model = (voertuig.handelsbenaming || "").trim();
-    const bouwjaar =
-      (voertuig.datum_eerste_toelating || "").toString().slice(0, 4) || "";
+    const bouwjaar = ((voertuig.datum_eerste_toelating || "").toString().slice(0, 4)) || "";
 
-    let fullName = (merk + " " + model).trim();
-
-    const enrichedModel = enrichModelWithHybridHint(model);
-    const match = findBatteryMatchSmart(merk, enrichedModel);
-
+    const fullName = (merk + " " + model).trim();
 
     let rawMileage = null;
     if (mileageData && mileageData.length > 0) {
@@ -2348,26 +2372,24 @@ async function loadVehicle() {
     const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
     const mileageComment = getMileageComment(rawMileage, bouwjaar);
 
- const reportData = detectAndAnalyzeVehicle(
-  merk,
-  model,
-  bouwjaar,
-  mileageText,
-  mileageAssessment,
-  mileageComment,
-  rawMileageNumber
-);
+    const reportData = detectAndAnalyzeVehicle(
+      merk,
+      model,
+      bouwjaar,
+      mileageText,
+      mileageAssessment,
+      mileageComment,
+      rawMileageNumber
+    );
 
-let fullNameWithBattery = fullName;
+    let fullNameWithBattery = fullName;
+    if (reportData && reportData.batterySize && reportData.batterySize !== "Onbekend") {
+      fullNameWithBattery += " " + reportData.batterySize;
+    }
 
-if (reportData && reportData.batterySize && reportData.batterySize !== "Onbekend") {
-  fullNameWithBattery += " " + reportData.batterySize;
-}
+    vehicleEl.innerText = fullNameWithBattery;
+    setVehicleHeaders(fullNameWithBattery);
 
-// 🔥 NU PAS zetten
-vehicleEl.innerText = fullNameWithBattery;
-setVehicleHeaders(fullNameWithBattery);
-    
     renderReport(reportData);
   } catch (e) {
     console.error("loadVehicle error:", e);
