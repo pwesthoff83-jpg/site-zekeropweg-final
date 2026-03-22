@@ -2294,9 +2294,6 @@ async function loadVehicle() {
 
 const match = findBatteryMatchSmart(merk, model);
 
-if (match && match.capacity) {
-  fullName += " " + match.capacity + " kWh";
-}
 
     let rawMileage = null;
     if (mileageData && mileageData.length > 0) {
@@ -2308,24 +2305,25 @@ if (match && match.capacity) {
     const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
     const mileageComment = getMileageComment(rawMileage, bouwjaar);
 
-    vehicleEl.innerText = fullNameWithBattery;
-    setVehicleHeaders(fullNameWithBattery);
+ const reportData = detectAndAnalyzeVehicle(
+  merk,
+  model,
+  bouwjaar,
+  mileageText,
+  mileageAssessment,
+  mileageComment,
+  rawMileageNumber
+);
 
-    const reportData = detectAndAnalyzeVehicle(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      mileageComment,
-      rawMileageNumber
-    );
-
-    let fullNameWithBattery = fullName;
+let fullNameWithBattery = fullName;
 
 if (reportData && reportData.batterySize && reportData.batterySize !== "Onbekend") {
   fullNameWithBattery += " " + reportData.batterySize;
 }
+
+// 🔥 NU PAS zetten
+vehicleEl.innerText = fullNameWithBattery;
+setVehicleHeaders(fullNameWithBattery);
     
     renderReport(reportData);
   } catch (e) {
