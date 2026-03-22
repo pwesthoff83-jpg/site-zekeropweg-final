@@ -2051,6 +2051,16 @@ function findBatteryMatchSmart(merk, model) {
 function isValidMatch(modelKey, entryRaw) {
   const hasRS = modelKey.includes("RS");
   const hasIV = modelKey.includes("IV");
+  const entryHasIV = entryRaw.includes("IV");
+
+  // ✅ RS iV → match toegestaan
+  if (hasRS && hasIV && entryHasIV) return true;
+
+  // ❌ RS zonder iV → geen PHEV match
+  if (hasRS && !hasIV && entryHasIV) return false;
+
+  return true;
+}
 
   const entryHasIV = entryRaw.includes("IV");
 
