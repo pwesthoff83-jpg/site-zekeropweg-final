@@ -2015,25 +2015,9 @@ const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
 // ===============================
 // 🔥 MATCH ENGINE
 // ===============================
-    brandData.forEach(entry => {
-
-  // 🔥 NIEUW: filter eerst
-  if (!isValidMatch(modelKey, entry.raw)) return;
-
-  const score = similarityScore(modelKey, entry.raw);
-
-  if (score > bestScore) {
-    bestScore = score;
-    bestMatch = entry;
-  }
-});
 function findBatteryMatchSmart(merk, model) {
   const brandKey = normalizeText(merk);
   const modelKey = normalizeText(model);
-
-  function isValidMatch(modelKey, entryRaw) {
-  const hasRS = modelKey.includes("RS");
-  const hasIV = modelKey.includes("IV");
 
   const entryHasIV = entryRaw.includes("IV");
 
@@ -2052,14 +2036,18 @@ function findBatteryMatchSmart(merk, model) {
   let bestMatch = null;
   let bestScore = 0;
 
-  brandData.forEach(entry => {
-    const score = similarityScore(modelKey, entry.raw);
+ brandData.forEach(entry => {
 
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = entry;
-    }
-  });
+  // 🔥 HIER komt jouw filter
+  if (!isValidMatch(modelKey, entry.raw)) return;
+
+  const score = similarityScore(modelKey, entry.raw);
+
+  if (score > bestScore) {
+    bestScore = score;
+    bestMatch = entry;
+  }
+});   
 
   if (bestScore > 0.2) {
     return bestMatch;
@@ -2083,6 +2071,18 @@ function normalizeText(text) {
     .replace(/\./g, "");
 }
 
+function isValidMatch(modelKey, entryRaw) {
+  const hasRS = modelKey.includes("RS");
+  const hasIV = modelKey.includes("IV");
+
+  const entryHasIV = entryRaw.includes("IV");
+
+  if (hasRS && hasIV && entryHasIV) return true;
+  if (hasRS && !hasIV && entryHasIV) return false;
+
+  return true;
+}
+    
 // ✅ FIX: betere matching
 function similarityScore(a, b) {
   const aWords = a.match(/[A-Z]+|\d+/g) || [];
