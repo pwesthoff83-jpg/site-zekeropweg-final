@@ -2019,35 +2019,24 @@ function findBatteryMatchSmart(merk, model) {
   const brandKey = normalizeText(merk);
   const modelKey = normalizeText(model);
 
-  const entryHasIV = entryRaw.includes("IV");
-
-  // ✅ RS iV → toestaan
-  if (hasRS && hasIV && entryHasIV) return true;
-
-  // ❌ RS zonder iV → geen PHEV match
-  if (hasRS && !hasIV && entryHasIV) return false;
-
-  return true;
-}
-  
   const brandData = batteryDB[brandKey];
   if (!brandData) return null;
 
   let bestMatch = null;
   let bestScore = 0;
 
- brandData.forEach(entry => {
+  brandData.forEach(entry => {
 
-  // 🔥 HIER komt jouw filter
-  if (!isValidMatch(modelKey, entry.raw)) return;
+    // 🔥 FILTER
+    if (!isValidMatch(modelKey, entry.raw)) return;
 
-  const score = similarityScore(modelKey, entry.raw);
+    const score = similarityScore(modelKey, entry.raw);
 
-  if (score > bestScore) {
-    bestScore = score;
-    bestMatch = entry;
-  }
-});   
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = entry;
+    }
+  });
 
   if (bestScore > 0.2) {
     return bestMatch;
@@ -2075,14 +2064,7 @@ function isValidMatch(modelKey, entryRaw) {
   const hasRS = modelKey.includes("RS");
   const hasIV = modelKey.includes("IV");
 
-  const entryHasIV = entryRaw.includes("IV");
-
-  if (hasRS && hasIV && entryHasIV) return true;
-  if (hasRS && !hasIV && entryHasIV) return false;
-
-  return true;
-}
-    
+     
 // ✅ FIX: betere matching
 function similarityScore(a, b) {
   const aWords = a.match(/[A-Z]+|\d+/g) || [];
