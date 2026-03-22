@@ -2527,6 +2527,43 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
     riskShort = "C";
   }
 
+  // 🔥 NIEUWE CONCLUSIE LOGICA
+  let conclusionText = "";
+
+  if (scoreRaw > 75) {
+    conclusionText = `
+Gezien de leeftijd en kilometerstand geeft dit voertuig een lage risico-indruk.
+
+Binnen deze context zijn er geen directe signalen die wijzen op verhoogde batterijslijtage of afwijkend gebruik.
+
+Voor dit type auto ligt het risico voornamelijk in het uitsluiten van uitzonderingen, niet in structurele problemen.
+
+Wie maximale zekerheid wil vóór aankoop, kan dit laten bevestigen met een onafhankelijke accutest.
+`;
+  } else if (scoreRaw > 55) {
+    conclusionText = `
+Op basis van leeftijd en kilometerstand geeft dit voertuig een gemiddelde risico-indruk.
+
+Batterijdegradatie begint in deze fase een rol te spelen, afhankelijk van gebruik en laadgedrag.
+
+Er zijn geen directe aanwijzingen voor problemen, maar de werkelijke accustatus blijft onbekend.
+
+Voor kopers die zekerheid willen over restcapaciteit en toekomstig gebruik, is een accutest een logische vervolgstap.
+`;
+  } else {
+    conclusionText = `
+Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd risicoprofiel.
+
+Bij dit type gebruik ligt batterijdegradatie vaak merkbaar hoger en kan dit directe invloed hebben op actieradius en restwaarde.
+
+Bij vergelijkbare voertuigen ligt de degradatie vaak tussen de 10% en 25%, afhankelijk van gebruik.
+
+Zonder inzicht in de actuele accustatus blijft er een reëel risico op verborgen slijtage.
+
+Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
+`;
+  }
+
   return {
     driveType: "BEV",
     batterySize: "± 60 – 80 kWh",
@@ -2539,11 +2576,11 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
     replacementCost: "€8.000 – €15.000",
     score: (scoreRaw / 10).toFixed(1),
     scoreText: risk.label,
-    conclusion: risk.advice,
+    conclusion: conclusionText,
     summary: "Analyse op basis van leeftijd, kilometerstand en voertuigtype.",
     riskShort,
     riskDescription: "Deze score is gebaseerd op leeftijd, kilometerstand en voertuigtype. Het blijft een indicatie en geen fysieke accumeting.",
-    buyAdvice: risk.advice,
+    buyAdvice: conclusionText,
     riskAnalysisText: "Bij volledig elektrische auto’s is batterijconditie cruciaal voor restwaarde en toekomstig gebruik.",
     batteryInfoText: "De batterijcapaciteit is gekoppeld aan modelinformatie. De werkelijke accustatus kan afwijken.",
     chargingText: "Veel snelladen, intensief gebruik en leeftijd kunnen invloed hebben op de batterijconditie.",
@@ -2586,18 +2623,20 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
       "Laat bij twijfel een onafhankelijke accutest uitvoeren"
     ],
     purchaseTips: [
-      "Controleer foutcodes en waarschuwingen",
-      "Vraag naar laad- en onderhoudsverleden",
-      "Check de auto ook koud en na proefrit"
+      "Vraag expliciet: is er veel snelladen gebruikt?",
+      "Controleer of er foutmeldingen zichtbaar zijn",
+      "Vraag naar accutest of onderhoudsrapport",
+      "Check of de actieradius logisch is voor dit model"
     ],
     testDriveTips: [
-      "Let op foutmeldingen in dashboard",
-      "Check of range logisch reageert",
-      "Let op afwijkingen bij regeneratie of laden"
+      "Start de auto koud en check meldingen",
+      "Let op plotselinge daling van actieradius",
+      "Test regeneratief remmen",
+      "Controleer of laden direct start"
     ]
   };
 }
-
+    
 function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
   const scoreRaw = calculateRisk({
     km: rawKm || 100000,
@@ -2621,6 +2660,46 @@ function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, 
     riskShort = "C";
   }
 
+  // 🔥 NIEUWE CONCLUSIE LOGICA
+  let conclusionText = "";
+
+  if (scoreRaw > 75) {
+    // 🟢 LAAG RISICO
+    conclusionText = `
+Gezien de leeftijd en kilometerstand geeft dit voertuig een lage risico-indruk.
+
+Binnen deze context zijn er geen directe signalen dat het accupakket afwijkend presteert voor dit type voertuig.
+
+Bij plug-in hybrides ligt het risico vooral in gebruiksgedrag (wel of niet laden), niet direct in slijtage op deze leeftijd.
+
+Wie maximale zekerheid wil vóór aankoop, kan dit laten bevestigen met een onafhankelijke accutest.
+`;
+  } else if (scoreRaw > 55) {
+    // 🟠 GEMIDDELD
+    conclusionText = `
+Op basis van leeftijd en kilometerstand geeft dit voertuig een gemiddelde risico-indruk.
+
+Bij plug-in hybrides kan batterijgebruik sterk verschillen per eigenaar, wat invloed heeft op prestaties en slijtage.
+
+Er zijn geen directe aanwijzingen voor problemen, maar de werkelijke accustatus blijft onbekend.
+
+Voor kopers die zekerheid willen over elektrisch rijgedrag en batterijconditie, is een accutest een logische vervolgstap.
+`;
+  } else {
+    // 🔴 HOOG RISICO
+    conclusionText = `
+Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd risicoprofiel.
+
+Bij plug-in hybrides in deze fase wordt het verschil tussen goed en slecht gebruikte accu’s duidelijk merkbaar.
+
+Bij vergelijkbare voertuigen neemt de bruikbare accucapaciteit vaak zichtbaar af, afhankelijk van gebruik en laadgedrag.
+
+Zonder inzicht in de actuele accustatus blijft er een reëel risico op verminderde elektrische prestaties.
+
+Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
+`;
+  }
+
   return {
     driveType: "PHEV",
     batterySize: "± 10 – 25 kWh",
@@ -2633,14 +2712,14 @@ function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, 
     replacementCost: "€3.000 – €8.000",
     score: (scoreRaw / 10).toFixed(1),
     scoreText: risk.label,
-    conclusion: risk.advice,
+    conclusion: conclusionText,
     summary: "Analyse op basis van leeftijd, kilometerstand en plug-in hybride profiel.",
     riskShort,
     riskDescription: "Bij plug-in hybrides speelt zowel elektrisch als brandstofgebruik mee in de uiteindelijke batterijconditie.",
-    buyAdvice: risk.advice,
+    buyAdvice: conclusionText,
     riskAnalysisText: "Plug-in hybrides hebben vaak wisselend laadgedrag, wat extra onzekerheid geeft zonder fysieke meting.",
     batteryInfoText: "De accucapaciteit is indicatief. De feitelijke bruikbare capaciteit kan afwijken.",
-    chargingText: "Veel PHEV’s worden weinig geladen. Dat zegt iets over gebruik, maar niet alles over technische staat.",
+    chargingText: "Veel PHEV’s worden niet consistent geladen. Dat zegt iets over gebruik, maar niet alles over technische staat.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
     knownIssues: "Controleer accuprestaties, laadfunctie en of het elektrische deel nog consistent werkt.",
     brandSpecificText: getBrandSpecificText(merk, model, "PHEV"),
@@ -2680,14 +2759,16 @@ function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, 
       "Laat bij twijfel onafhankelijk testen"
     ],
     purchaseTips: [
-      "Test laden en elektrisch rijden apart",
-      "Vraag naar werkelijk EV-gebruik",
-      "Laat twijfelgevallen altijd extra controleren"
+      "Test of de auto daadwerkelijk elektrisch rijdt",
+      "Vraag hoe vaak er geladen is door vorige eigenaar",
+      "Controleer of EV-modus consistent werkt",
+      "Check of opgegeven elektrische range realistisch is"
     ],
     testDriveTips: [
-      "Controleer of EV-modus goed werkt",
-      "Let op schakelmomenten en storingen",
-      "Kijk of het accugedeelte logisch reageert"
+      "Rijd volledig elektrisch en let op prestaties",
+      "Controleer overgang tussen elektrisch en benzine",
+      "Let op schokken of afwijkend gedrag",
+      "Check of acculading logisch daalt tijdens rijden"
     ]
   };
 }
