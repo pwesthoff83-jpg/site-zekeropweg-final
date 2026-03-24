@@ -761,7 +761,9 @@
         <div class="panel gold-soft" style="margin-top:22px;">
           
           <!-- 🔥 HIER PLAATSEN -->
-  <div id="unlockBadge" class="unlock-badge">✔ Rapport ontgrendeld</div>
+ <div id="unlockBadge" class="unlock-badge" style="display:none;">
+  ✔ Rapport ontgrendeld
+</div>
           
   <h3>ZekerOpWeg samenvatting</h3>
           
@@ -812,23 +814,6 @@
 <div style="margin-top:10px; font-size:12px; color:#6b7280;">
   Eenmalig. Direct inzicht.
 </div>
-  
-<a 
-  href="https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00"
-  target="_blank"
-  
-    style="
-      display:inline-block;
-      padding:14px 22px;
-      border-radius:999px;
-      background:#0b1c2d;
-      color:#fff;
-      font-weight:800;
-      text-decoration:none;
-    "
-  >
-    Voorkom een miskoop → bekijk rapport
-  </a>
 
 </div>
 
@@ -841,7 +826,7 @@
    </section> <!-- einde pagina 1 -->
 
 <!-- 🔒 ALLES HIERONDER = PREMIUM -->
-    <div id="premiumContent">
+   <div id="premiumContent" style="display:none;">
     
       <!-- PAGINA 2 -->
     <section class="page">
@@ -2473,9 +2458,26 @@ async function loadVehicle() {
     vehicleEl.innerText = "Rapport kon niet geladen worden";
   }
 }
+</script>      
 
 loadVehicle();
 
+// 🔥 HIER PLAATSEN
+const btn = document.getElementById("checkoutBtn");
+
+if (btn) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const kenteken = urlParams.get("kenteken") || "";
+
+  const successUrl = `https://zekeropweg.nu/rapport.html?kenteken=${kenteken}&paid=true`;
+
+  const stripeLink = `https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00?success_url=${encodeURIComponent(successUrl)}`;
+
+  btn.href = stripeLink;
+}
+
+</script>
+    
 // ===============================
 // 🔥 FAILSAFE RENDER
 // ===============================
@@ -2930,6 +2932,11 @@ function applyPaywall(data) {
   if (isPaid) {
     // 🔓 PREMIUM UNLOCK
 
+  // 🔥 BADGE
+    if (badge) {
+      badge.style.display = "block";
+    }
+      
     // 1. paywall netjes weg
     if (paywall) {
       paywall.classList.add("paywall-fade-out");
@@ -2938,9 +2945,9 @@ function applyPaywall(data) {
         paywall.remove();
       }, 350);
     }
-
-    // 2. premium content zichtbaar
-    if (premium) {
+     
+      // 2. premium content zichtbaar
+      if (premium) {
       premium.style.display = "block";
       premium.classList.add("premium-reveal");
     }
