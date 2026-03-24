@@ -756,7 +756,7 @@
 
 <div style="margin-top:16px;">
   <a 
-    href="https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00"
+    href="https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00?success_url=https://zekeropweg.nu/rapport.html?paid=true"
     target="_blank"
     style="
       display:inline-block;
@@ -2693,38 +2693,23 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
     conclusionText = `
 Gezien de leeftijd en kilometerstand geeft dit voertuig een lage risico-indruk.
 
-Binnen deze context zijn er geen directe signalen die wijzen op verhoogde batterijslijtage of afwijkend gebruik.
+Binnen deze context zijn er geen directe signalen die wijzen op verhoogde batterijslijtage.
 
-Voor dit type auto ligt het risico voornamelijk in het uitsluiten van uitzonderingen, niet in structurele problemen.
-
-Wie maximale zekerheid wil vóór aankoop, kan dit laten bevestigen met een onafhankelijke accutest.
+Een accutest is optioneel voor extra zekerheid.
 `;
   } else if (riskShort === "B") {
     conclusionText = `
-Dit voertuig valt in een gemiddeld risicoprofiel — maar dit is precies het type auto waarbij verborgen accuproblemen vaak pas ná aankoop zichtbaar worden.
-
-⚠️ De werkelijke risico-inschatting en mogelijke impact zijn alleen zichtbaar in het volledige rapport.
-`;
-    
-} else if (riskShort === "B") {
-  conclusionText = `
 Dit voertuig valt in een gemiddeld risicoprofiel — en juist bij dit type auto ontstaan de meeste verborgen accuproblemen.
 
 ⚠️ Wat hier écht speelt (en wat dit je kan kosten) is niet zichtbaar zonder volledige analyse.
 `;
-}
-    
   } else {
     conclusionText = `
 Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd risicoprofiel.
 
-Bij dit type gebruik ligt batterijdegradatie vaak merkbaar hoger en kan dit directe invloed hebben op actieradius en restwaarde.
+Bij vergelijkbare voertuigen ligt de degradatie vaak rond ${degradationRange}.
 
-Bij vergelijkbare voertuigen ligt de degradatie vaak rond ${degradationRange}, afhankelijk van gebruik.
-
-Zonder inzicht in de actuele accustatus blijft er een reëel risico op verborgen slijtage.
-
-Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
+Een accutest wordt sterk aanbevolen vóór aankoop.
 `;
   }
 
@@ -2745,15 +2730,15 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     riskShort,
     riskDescription:
       riskShort === "A"
-        ? "Laag risico. Past bij jonge voertuigen met beperkte slijtage."
+        ? "Laag risico."
         : riskShort === "B"
-        ? "Gemiddeld risico. Slijtage begint een rol te spelen afhankelijk van gebruik."
-        : "Verhoogd risico. Batterijslijtage kan merkbaar invloed hebben op prestaties en waarde.",
+        ? "Gemiddeld risico."
+        : "Hoog risico.",
     buyAdvicePreview: conclusionText.split(".")[0] + ".",
     buyAdvice: conclusionText,
-    riskAnalysisText: `Batterijdegradatie ligt bij vergelijkbare voertuigen rond ${degradationRange}.`,
-    batteryInfoText: "Modelgebaseerde capaciteit. Geen fysieke meting.",
-    chargingText: "Snelladen en intensief gebruik beïnvloeden batterijconditie.",
+    riskAnalysisText: `Batterijdegradatie ligt rond ${degradationRange}.`,
+    batteryInfoText: "Modelgebaseerde capaciteit.",
+    chargingText: "Laadgedrag beïnvloedt batterijconditie.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
     knownIssues: "Controleer laadproblemen en foutmeldingen.",
     brandSpecificText: getBrandSpecificText(merk, model, "BEV")
@@ -2889,6 +2874,9 @@ function buildFallbackReport(kenteken) {
 }
 
 function applyPaywall(data) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaid = urlParams.get("paid") === "true";
+
   const previewEl = document.getElementById("coreConclusionPreview");
   const fullEl = document.getElementById("coreConclusion");
   const premium = document.getElementById("premiumContent");
@@ -2897,36 +2885,36 @@ function applyPaywall(data) {
 
   if (!data) return;
 
+  // altijd preview
   if (previewEl) {
-    previewEl.innerText = data.buyAdvicePreview || data.summary || "";
+    previewEl.innerText = data.buyAdvicePreview || "";
   }
 
-  if (fullEl) {
-    fullEl.innerText = data.conclusion || "";
-  }
+  if (isPaid) {
+    // 🔓 UNLOCK
+    if (fullEl) {
+      fullEl.innerText = data.conclusion || "";
+      fullEl.style.display = "block";
+    }
 
-  if (buyAdvice) {
-    buyAdvice.innerText = data.buyAdvice || "";
-  }
+    if (premium) premium.style.display = "block";
+    if (paywall) paywall.style.display = "none";
 
-  if (premium) {
-    premium.style.display = "none";
-  }
+    if (buyAdvice) {
+      buyAdvice.innerText = data.buyAdvice || "";
+    }
 
-  if (paywall) {
-    paywall.style.display = "block";
+  } else {
+    // 🔒 LOCK
+    if (fullEl) fullEl.style.display = "none";
+    if (premium) premium.style.display = "none";
+    if (paywall) paywall.style.display = "block";
+
+    if (buyAdvice) {
+      buyAdvice.innerText = data.buyAdvicePreview || "";
+    }
   }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const premium = document.getElementById("premiumContent");
-  const paywall = document.getElementById("paywallBlock");
-  const coreConclusion = document.getElementById("coreConclusion");
-
-  if (premium) premium.style.display = "none";
-  if (paywall) paywall.style.display = "block";
-  if (coreConclusion) coreConclusion.style.display = "none";
-});
     
 </script>
 
