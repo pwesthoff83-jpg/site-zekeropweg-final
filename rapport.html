@@ -684,10 +684,17 @@
 
               <div class="panel soft" style="margin-top:20px;text-align:left;">
                 <h3 style="margin-top:0;">Kernconclusie</h3>
-                <div id="coreConclusion" class="text-block">
-                  Rapport wordt geladen...
-                </div>
+             
+              <div id="coreConclusionPreview"></div>
 
+              <div id="coreConclusion" style="display:none;"></div>
+
+            <div class="premium-warning">
+             ⚠️ Volledige analyse inclusief accurisico, aankoopadvies en verborgen gebreken
+            </div>
+           </div>
+
+         
                 <div class="panel" style="margin-top:16px; border:2px solid #fee2e2; background:#fff5f5;">
                 <strong style="color:#b91c1c;">⚠️ Belangrijk:</strong><br>
                   Dit rapport is een eerste inschatting. 
@@ -712,7 +719,7 @@
 </div>
 
 <!-- 🔥 PAYWALL (HIER KOMT GELD) -->
-<div class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
+<div id="paywallBlock" class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
   
   <h3>Twijfel je over deze auto?</h3>
 <p style="font-weight:600;">
@@ -2414,8 +2421,6 @@ function renderReport(data) {
     document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
     document.getElementById("summaryScore").innerText = data.score || "7.5";
     document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
-    document.getElementById("coreConclusion").innerText =
-      data.conclusion || "Dit voertuig geeft een stabiele indruk binnen zijn segment.";
     document.getElementById("quickSummary").innerText =
       data.summary || "Op basis van beschikbare data een solide keuze.";
 
@@ -2466,12 +2471,14 @@ function renderReport(data) {
         data.riskDescription || "Indicatieve accurisico-inschatting op basis van leeftijd, kilometerstand en voertuigtype.";
     }
 
-    const buyAdvice = document.getElementById("buyAdvice");
-    if (buyAdvice) {
-      buyAdvice.innerText =
-        data.buyAdvice || data.conclusion || "Aanvullende controle aanbevolen vóór aankoop.";
-    }
+  const buyAdviceEl = document.getElementById("buyAdvice");
 
+   if (buyAdviceEl) {
+      buyAdviceEl.innerText =
+      data.buyAdvicePreview || "Aanvullende controle aanbevolen vóór aankoop.";
+   }
+
+  
     const riskAnalysisText = document.getElementById("riskAnalysisText");
     if (riskAnalysisText) {
       riskAnalysisText.innerText =
@@ -2562,6 +2569,9 @@ function renderReport(data) {
       "Controleer laadgedrag en recuperatie",
       "Let op onverwachte range-schommelingen"
     ]);
+
+    applyPaywall(data);
+    
   } catch (e) {
     console.error("Render error:", e);
 
@@ -2617,9 +2627,8 @@ function estimateDegradation(age, km, type) {
 
   return `${min}% – ${max}%`;
 }
-    
-function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
 
+function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
   const age = getVehicleAge(bouwjaar);
   const degradationRange = estimateDegradation(age, rawKm, "BEV");
 
@@ -2631,7 +2640,6 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
 
   const risk = interpretRisk(scoreRaw);
 
-  // 🔥 NIEUWE LOGICA
   let riskShort = "A";
 
   if (age > 6 || rawKm > 120000) {
@@ -2703,6 +2711,7 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
         : riskShort === "B"
         ? "Gemiddeld risico. Slijtage begint een rol te spelen afhankelijk van gebruik."
         : "Verhoogd risico. Batterijslijtage kan merkbaar invloed hebben op prestaties en waarde.",
+    buyAdvicePreview: conclusionText.split(".")[0] + ".",
     buyAdvice: conclusionText,
     riskAnalysisText: `Batterijdegradatie ligt bij vergelijkbare voertuigen rond ${degradationRange}.`,
     batteryInfoText: "Modelgebaseerde capaciteit. Geen fysieke meting.",
@@ -2712,9 +2721,8 @@ Een onafhankelijke accutest wordt in deze fase sterk aanbevolen vóór aankoop.
     brandSpecificText: getBrandSpecificText(merk, model, "BEV")
   };
 }
-    
-function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
 
+function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
   const age = getVehicleAge(bouwjaar);
   const degradationRange = estimateDegradation(age, rawKm, "PHEV");
 
@@ -2778,7 +2786,7 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
 
   return {
     driveType: "PHEV",
-    batterySize: "± 10 – 25 kWh",
+    batterySize: "Onbekend",
     mileageText,
     mileageAssessment,
     degradation: degradationRange,
@@ -2797,11 +2805,12 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
         : riskShort === "B"
         ? "Gemiddeld risico. Gebruik bepaalt conditie."
         : "Verhoogd risico. Slijtage beïnvloedt prestaties.",
+    buyAdvicePreview: conclusionText.split(".")[0] + ".",
     buyAdvice: conclusionText,
     riskAnalysisText: `Gemiddelde degradatie ligt rond ${degradationRange}.`,
     batteryInfoText: "Indicatieve capaciteit.",
     chargingText: "Gebruik verschilt sterk per eigenaar.",
-    cableReplacementCost: "€250 – €450",
+    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
     knownIssues: "Controleer elektrisch functioneren.",
     brandSpecificText: getBrandSpecificText(merk, model, "PHEV")
   };
@@ -2824,6 +2833,7 @@ function buildFallbackReport(kenteken) {
     summary: "Zonder data is een accutest sterk aan te raden.",
     riskShort: "B",
     riskDescription: "Er was onvoldoende voertuigdata beschikbaar om een betrouwbaarder profiel op te bouwen.",
+    buyAdvicePreview: "Onvoldoende data beschikbaar – verhoogd risico.",
     buyAdvice: "Laat bij onbekende data altijd aanvullend controleren vóór aankoop.",
     riskAnalysisText: "Door ontbrekende data blijft dit voertuig een onzeker dossier.",
     batteryInfoText: "Voertuigdata kon niet volledig worden geladen.",
@@ -2840,15 +2850,47 @@ function buildFallbackReport(kenteken) {
   };
 }
 
-
-     document.addEventListener("DOMContentLoaded", function () {
+function applyPaywall(data) {
+  const previewEl = document.getElementById("coreConclusionPreview");
+  const fullEl = document.getElementById("coreConclusion");
   const premium = document.getElementById("premiumContent");
+  const paywall = document.getElementById("paywallBlock");
+  const buyAdvice = document.getElementById("buyAdvice");
+
+  if (!data) return;
+
+  if (previewEl) {
+    previewEl.innerText = data.buyAdvicePreview || data.summary || "";
+  }
+
+  if (fullEl) {
+    fullEl.innerText = data.conclusion || "";
+  }
+
+  if (buyAdvice) {
+    buyAdvice.innerText = data.buyAdvice || "";
+  }
+
   if (premium) {
     premium.style.display = "none";
   }
-});   
+
+  if (paywall) {
+    paywall.style.display = "block";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const premium = document.getElementById("premiumContent");
+  const paywall = document.getElementById("paywallBlock");
+  const coreConclusion = document.getElementById("coreConclusion");
+
+  if (premium) premium.style.display = "none";
+  if (paywall) paywall.style.display = "block";
+  if (coreConclusion) coreConclusion.style.display = "none";
+});
     
 </script>
 
- </body>
-</html>
+</body>
+</html>    
