@@ -674,6 +674,10 @@
   <div style="margin-top:8px;">
     Dit is wat kopers vaak pas ontdekken ná aankoop.
   </div>
+  
+  <div style="margin-top:6px; font-weight:700; color:#b91c1c;">
+  Dit bedrag zie je niet vooraf — tenzij je dit rapport bekijkt
+</div>
 </div>  
              
           <div class="panel">
@@ -687,10 +691,15 @@
              
               <div id="coreConclusionPreview"></div>
 
+              <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
+                → Dit is exact het type situatie waar kopers achteraf duizenden euro’s verliezen
+              </div>
+                
               <div id="coreConclusion" style="display:none;"></div>
-
+               🔒 De werkelijke accustatus, verborgen risico’s en aankoopadvies zijn afgeschermd
+              </div>
             <div class="premium-warning">
-             ⚠️ Volledige analyse inclusief accurisico, aankoopadvies en verborgen gebreken
+            
             </div>
            </div>
 
@@ -721,26 +730,50 @@
 <!-- 🔥 PAYWALL (HIER KOMT GELD) -->
 <div id="paywallBlock" class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
   
-  <h3>Twijfel je over deze auto?</h3>
+ <h3>Twijfel je over deze auto?</h3>
+
 <p style="font-weight:600;">
-  Dit is precies waar de meeste kopers de fout ingaan.<br><br>
-  De grootste risico’s en aankoopadvies zitten in het volledige rapport.
+  Dan zit je precies op het punt waar de meeste kopers de fout ingaan.
 </p>
 
 <div style="font-size:28px; font-weight:900; margin:10px 0;">
- Slechts €19,95
-</div>
-
-<div style="font-weight:700; margin-bottom:6px;">
-  Dit rapport laat zien of jij een miskoop doet.
+  Slechts €19,95
 </div>
 
 <div style="font-weight:800; color:#b91c1c; margin-bottom:14px;">
-  90% van de kopers ontdekt accuproblemen pas ná aankoop.
+  Accuproblemen kosten gemiddeld €8.000 – €15.000
 </div>
 
-<div style="font-size:13px; color:#6b7280;">
-  Gemiddelde schade bij accuproblemen: €8.000 – €15.000
+<div style="font-weight:700; margin-bottom:10px;">
+  Dit rapport laat zien of jij een miskoop doet.
+</div>
+
+<div style="text-align:left; display:inline-block;">
+  ✔ Exact accurisico en slijtage-inschatting<br>
+  ✔ Wat verkopers vaak niet vertellen<br>
+  ✔ Of deze auto financieel slim is of juist niet
+</div>
+
+<div style="margin-top:16px;">
+  <a 
+    href="https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00"
+    target="_blank"
+    style="
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:999px;
+      background:#0b1c2d;
+      color:#fff;
+      font-weight:900;
+      text-decoration:none;
+    "
+  >
+    👉 Voorkom een miskoop
+  </a>
+</div>
+
+<div style="margin-top:10px; font-size:12px; color:#6b7280;">
+  Eenmalig. Direct inzicht.
 </div>
   
 <a 
@@ -2673,11 +2706,13 @@ Dit voertuig valt in een gemiddeld risicoprofiel — maar dit is precies het typ
 ⚠️ De werkelijke risico-inschatting en mogelijke impact zijn alleen zichtbaar in het volledige rapport.
 `;
     
- <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
-  → Dit is exact het type voertuig waar kopers vaak achteraf spijt van krijgen
-</div>
+} else if (riskShort === "B") {
+  conclusionText = `
+Dit voertuig valt in een gemiddeld risicoprofiel — en juist bij dit type auto ontstaan de meeste verborgen accuproblemen.
 
-  ⚠️ De echte accustatus, verborgen risico’s en aankoopadvies zijn verborgen
+⚠️ Wat hier écht speelt (en wat dit je kan kosten) is niet zichtbaar zonder volledige analyse.
+`;
+}
     
   } else {
     conclusionText = `
