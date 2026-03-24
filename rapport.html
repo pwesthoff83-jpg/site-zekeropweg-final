@@ -2456,19 +2456,24 @@ async function loadVehicle() {
 // ===============================
 // 🔥 START APP
 // ===============================
-loadVehicle();
+document.addEventListener("DOMContentLoaded", () => {
+  // 🚗 laad voertuig
+  loadVehicle();
 
-// 🔥 STRIPE CHECKOUT LINK
-const btn = document.getElementById("checkoutBtn");
+  // 💳 stripe link
+  const btn = document.getElementById("checkoutBtn");
 
-if (btn) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const kenteken = urlParams.get("kenteken") || "";
-  const successUrl = `https://zekeropweg.nu/rapport.html?kenteken=${kenteken}&paid=true`;
-  const stripeLink = `https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00?success_url=${encodeURIComponent(successUrl)}`;
-  btn.href = stripeLink;
-}
-    
+  if (btn) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const kenteken = urlParams.get("kenteken") || "";
+
+    const successUrl = `https://zekeropweg.nu/rapport.html?kenteken=${kenteken}&paid=true`;
+
+    const stripeLink = `https://buy.stripe.com/test_4gMaEY5XD7Z445p7k18og00?success_url=${encodeURIComponent(successUrl)}`;
+
+    btn.href = stripeLink;
+  }
+});
 // ===============================
 // 🔥 FAILSAFE RENDER
 // ===============================
