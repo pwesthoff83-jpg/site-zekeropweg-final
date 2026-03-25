@@ -2429,7 +2429,7 @@ async function loadVehicle() {
       rawMileage = mileageData[0].tellerstand || null;
     }
 
-    const rawMileageNumber = Number(rawMileage) || 0;
+    const rawMileageNumber = rawMileage ? Number(rawMileage) : null;
     const mileageText = formatMileage(rawMileage);
     const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
     const mileageComment = getMileageComment(rawMileage, bouwjaar);
