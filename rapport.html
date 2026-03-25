@@ -723,7 +723,7 @@
 
 </div> <!-- 🔥 SLUIT DE VOERTUIG PANEL (DIT WAS JE BUG) -->
 
-  <div class="panel" style="margin-top:16px; border:2px solid #fecaca; display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+ <div id="riskPanel" class="panel" style="margin-top:16px;">
 
   <div>
     <h3 style="margin-top:0;">Mogelijk financieel risico</h3>
@@ -2507,6 +2507,36 @@ console.log("REPORT DATA:", reportData);
 }
 }
 
+const riskPanel = document.getElementById("riskPanel");
+
+if (riskPanel) {
+  if (data.riskClass === "low") {
+    riskPanel.innerHTML = `
+      <h3>Financieel inzicht</h3>
+
+      <div style="font-size:18px; font-weight:800; color:#065f46;">
+        Lage risico-inschatting
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        Op basis van leeftijd en gebruik geeft dit voertuig een stabiele indruk.
+      </div>
+
+      <div style="margin-top:12px;">
+        → Dit rapport bevestigt dat u in de juiste richting kijkt
+      </div>
+
+      <div style="margin-top:12px; font-weight:700;">
+        U staat op het punt een grote investering te doen.
+      </div>
+
+      <div style="margin-top:8px;">
+        Een ZekerOpWeg AccuCheck geeft u de zekerheid om deze keuze volledig onderbouwd te maken.
+      </div>
+    `;
+  }
+}
+    
 // ===============================
 // 🔥 START APP
 // ===============================
@@ -2777,15 +2807,18 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
   if (riskShort === "C") degradationClass = "high";
 
   let conclusionText = "";
+if (riskShort === "A") {
+  conclusionText = `
+U staat op het punt een grote investering te doen.
 
-  if (riskShort === "A") {
-    conclusionText = `
-Gezien de leeftijd en kilometerstand geeft dit voertuig een lage risico-indruk.
+Op basis van leeftijd, kilometerstand en model geeft dit voertuig een lage risico-indruk.
 
-Binnen deze context zijn er geen directe signalen die wijzen op verhoogde batterijslijtage.
+Dit betekent dat er geen directe signalen zijn van verhoogde batterijslijtage.
 
-Een accutest is optioneel voor extra zekerheid.
+Voor maximale zekerheid kan een accutest dit beeld bevestigen en u volledig onderbouwd laten beslissen.
 `;
+}
+ 
   } else if (riskShort === "B") {
     conclusionText = `
 Dit voertuig valt in een gemiddeld risicoprofiel — en juist bij dit type auto ontstaan de meeste verborgen accuproblemen.
