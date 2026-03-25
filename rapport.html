@@ -778,7 +778,7 @@
               <div id="coreConclusionPreview"></div>
 
               <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
-                → Dit is exact het type situatie waar kopers achteraf duizenden euro’s verliezen
+               <span id="dynamicWarning"></span>
               </div>
                 
               <div id="coreConclusion" style="display:none;"></div>
@@ -2510,28 +2510,84 @@ console.log("REPORT DATA:", reportData);
 const riskPanel = document.getElementById("riskPanel");
 
 if (riskPanel) {
+
+  // 🟢 LAAG RISICO
   if (data.riskClass === "low") {
     riskPanel.innerHTML = `
       <h3>Financieel inzicht</h3>
 
-      <div style="font-size:18px; font-weight:800; color:#065f46;">
+      <div style="font-size:18px; font-weight:900; color:#065f46;">
         Lage risico-inschatting
       </div>
 
       <div style="margin-top:10px; font-weight:600;">
-        Op basis van leeftijd en gebruik geeft dit voertuig een stabiele indruk.
+        Dit voertuig laat geen directe signalen zien van verhoogde accuproblemen.
       </div>
 
       <div style="margin-top:12px;">
-        → Dit rapport bevestigt dat u in de juiste richting kijkt
+        → U bevindt zich in een veilige uitgangspositie
       </div>
 
-      <div style="margin-top:12px; font-weight:700;">
+      <div style="margin-top:14px; font-weight:700;">
         U staat op het punt een grote investering te doen.
       </div>
 
       <div style="margin-top:8px;">
-        Een ZekerOpWeg AccuCheck geeft u de zekerheid om deze keuze volledig onderbouwd te maken.
+        Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
+      </div>
+    `;
+  }
+
+  // 🟡 MIDDEL RISICO
+  else if (data.riskClass === "medium") {
+    riskPanel.innerHTML = `
+      <h3>Mogelijk financieel risico</h3>
+
+      <div style="font-size:18px; font-weight:900; color:#b45309;">
+        Let op mogelijke accukosten
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        In deze categorie ontstaan de meeste verborgen accuproblemen.
+      </div>
+
+      <div style="margin-top:10px;">
+        → Zonder inzicht vooraf blijft dit een financieel risico
+      </div>
+
+      <div style="margin-top:14px; font-weight:800;">
+        Dit is precies het moment waarop kopers twijfelen
+      </div>
+
+      <div style="margin-top:8px;">
+        Een accutest geeft duidelijkheid vóór aankoop.
+      </div>
+    `;
+  }
+
+  // 🔴 HOOG RISICO
+  else {
+    riskPanel.innerHTML = `
+      <h3>Hoog financieel risico</h3>
+
+      <div style="font-size:18px; font-weight:900; color:#b91c1c;">
+        €8.000 – €15.000 mogelijke accukosten
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        Bij vergelijkbare voertuigen komen deze kosten regelmatig voor.
+      </div>
+
+      <div style="margin-top:10px; font-weight:800;">
+        → Zonder controle betaalt u dit risico zelf
+      </div>
+
+      <div style="margin-top:14px; font-weight:800;">
+        Dit is exact waar miskopen ontstaan
+      </div>
+
+      <div style="margin-top:8px;">
+        Laat dit voertuig controleren vóór aankoop.
       </div>
     `;
   }
@@ -2806,7 +2862,8 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
   if (riskShort === "B") degradationClass = "medium";
   if (riskShort === "C") degradationClass = "high";
 
-  let conclusionText = "";
+ let conclusionText = "";
+
 if (riskShort === "A") {
   conclusionText = `
 U staat op het punt een grote investering te doen.
@@ -2815,25 +2872,33 @@ Op basis van leeftijd, kilometerstand en model geeft dit voertuig een lage risic
 
 Dit betekent dat er geen directe signalen zijn van verhoogde batterijslijtage.
 
-Voor maximale zekerheid kan een accutest dit beeld bevestigen en u volledig onderbouwd laten beslissen.
+Met een accutest bevestigt u deze goede uitgangspositie en neemt u een volledig onderbouwde beslissing.
 `;
 }
- 
-  } else if (riskShort === "B") {
-    conclusionText = `
-Dit voertuig valt in een gemiddeld risicoprofiel — en juist bij dit type auto ontstaan de meeste verborgen accuproblemen.
 
-⚠️ Wat hier écht speelt (en wat dit je kan kosten) is niet zichtbaar zonder volledige analyse.
+else if (riskShort === "B") {
+  conclusionText = `
+Dit voertuig valt in een gemiddeld risicoprofiel.
+
+In deze categorie ontstaan de meeste verborgen accuproblemen — niet direct zichtbaar bij aankoop.
+
+De werkelijke accustatus kan alleen bevestigd worden met een meting.
+
+Zonder die zekerheid blijft er financieel risico aanwezig.
 `;
-  } else {
-    conclusionText = `
-Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd risicoprofiel.
+}
 
-Bij vergelijkbare voertuigen ligt de degradatie vaak rond ${degradationRange}.
+else {
+  conclusionText = `
+Dit voertuig valt in een verhoogd risicoprofiel.
 
-Een accutest wordt sterk aanbevolen vóór aankoop.
+Bij vergelijkbare auto's zien we vaak duidelijke batterijslijtage of aankomende kosten.
+
+Zonder aanvullende controle is de kans op onverwachte kosten aanzienlijk.
+
+Een accutest vóór aankoop is hier sterk aan te raden.
 `;
-  }
+}
 
   return {
     driveType: "BEV",
@@ -3044,9 +3109,15 @@ function applyPaywall(data) {
     }
 
     // 4. volledige advies
-    if (buyAdvice) {
-      buyAdvice.innerText = data.buyAdvice || "";
-    }
+   if (buyAdvice) {
+  if (data.riskClass === "low") {
+    buyAdvice.innerText = "Bevestig deze goede keuze met een accutest.";
+  } else if (data.riskClass === "medium") {
+    buyAdvice.innerText = "Extra controle voorkomt onzekerheid.";
+  } else {
+    buyAdvice.innerText = "Sterk advies: controleer vóór aankoop.";
+  }
+}
 
     // 5. subtiele focus op score (geen flashy glow!)
     const scoreBox = document.querySelector(".summary-score");
