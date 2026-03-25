@@ -2449,11 +2449,15 @@ async function loadVehicle() {
       fullNameWithBattery += " " + reportData.batterySize;
     }
 
-  vehicleEl.innerText = fullNameWithBattery;
+if (vehicleEl) {
+  vehicleEl.innerText = fullNameWithBattery || "Onbekend voertuig";
+}
+
 setVehicleHeaders(fullNameWithBattery);
 
 renderReport(reportData);
-
+console.log("REPORT DATA:", reportData);
+    
 } catch (e) {
   console.error("loadVehicle error:", e);
   vehicleEl.innerText = "Rapport kon niet geladen worden";
