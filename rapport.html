@@ -2507,92 +2507,7 @@ console.log("REPORT DATA:", reportData);
 }
 }
 
-const riskPanel = document.getElementById("riskPanel");
 
-if (riskPanel) {
-
-  // 🟢 LAAG RISICO
-  if (data.riskClass === "low") {
-    riskPanel.innerHTML = `
-      <h3>Financieel inzicht</h3>
-
-      <div style="font-size:18px; font-weight:900; color:#065f46;">
-        Lage risico-inschatting
-      </div>
-
-      <div style="margin-top:10px; font-weight:600;">
-        Dit voertuig laat geen directe signalen zien van verhoogde accuproblemen.
-      </div>
-
-      <div style="margin-top:12px;">
-        → U bevindt zich in een veilige uitgangspositie
-      </div>
-
-      <div style="margin-top:14px; font-weight:700;">
-        U staat op het punt een grote investering te doen.
-      </div>
-
-      <div style="margin-top:8px;">
-        Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
-      </div>
-    `;
-  }
-
-  // 🟡 MIDDEL RISICO
-  else if (data.riskClass === "medium") {
-    riskPanel.innerHTML = `
-      <h3>Mogelijk financieel risico</h3>
-
-      <div style="font-size:18px; font-weight:900; color:#b45309;">
-        Let op mogelijke accukosten
-      </div>
-
-      <div style="margin-top:10px; font-weight:600;">
-        In deze categorie ontstaan de meeste verborgen accuproblemen.
-      </div>
-
-      <div style="margin-top:10px;">
-        → Zonder inzicht vooraf blijft dit een financieel risico
-      </div>
-
-      <div style="margin-top:14px; font-weight:800;">
-        Dit is precies het moment waarop kopers twijfelen
-      </div>
-
-      <div style="margin-top:8px;">
-        Een accutest geeft duidelijkheid vóór aankoop.
-      </div>
-    `;
-  }
-
-  // 🔴 HOOG RISICO
-  else {
-    riskPanel.innerHTML = `
-      <h3>Hoog financieel risico</h3>
-
-      <div style="font-size:18px; font-weight:900; color:#b91c1c;">
-        €8.000 – €15.000 mogelijke accukosten
-      </div>
-
-      <div style="margin-top:10px; font-weight:600;">
-        Bij vergelijkbare voertuigen komen deze kosten regelmatig voor.
-      </div>
-
-      <div style="margin-top:10px; font-weight:800;">
-        → Zonder controle betaalt u dit risico zelf
-      </div>
-
-      <div style="margin-top:14px; font-weight:800;">
-        Dit is exact waar miskopen ontstaan
-      </div>
-
-      <div style="margin-top:8px;">
-        Laat dit voertuig controleren vóór aankoop.
-      </div>
-    `;
-  }
-}
-    
 // ===============================
 // 🔥 START APP
 // ===============================
@@ -3146,7 +3061,92 @@ function applyPaywall(data) {
   }
 }
   
-    
+ const riskPanel = document.getElementById("riskPanel");
+
+if (riskPanel) {
+
+  // 🟢 LAAG RISICO
+  if (data.riskClass === "low") {
+    riskPanel.innerHTML = `
+      <h3>Financieel inzicht</h3>
+
+      <div style="font-size:18px; font-weight:900; color:#065f46;">
+        Lage risico-inschatting
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        Dit voertuig laat geen directe signalen zien van verhoogde accuproblemen.
+      </div>
+
+      <div style="margin-top:12px;">
+        → U bevindt zich in een veilige uitgangspositie
+      </div>
+
+      <div style="margin-top:14px; font-weight:700;">
+        U staat op het punt een grote investering te doen.
+      </div>
+
+      <div style="margin-top:8px;">
+        Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
+      </div>
+    `;
+  }
+
+  // 🟡 MIDDEL RISICO
+  else if (data.riskClass === "medium") {
+    riskPanel.innerHTML = `
+      <h3>Mogelijk financieel risico</h3>
+
+      <div style="font-size:18px; font-weight:900; color:#b45309;">
+        Let op mogelijke accukosten
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        In deze categorie ontstaan de meeste verborgen accuproblemen.
+      </div>
+
+      <div style="margin-top:10px;">
+        → Zonder inzicht vooraf blijft dit een financieel risico
+      </div>
+
+      <div style="margin-top:14px; font-weight:800;">
+        Dit is precies het moment waarop kopers twijfelen
+      </div>
+
+      <div style="margin-top:8px;">
+        Een accutest geeft duidelijkheid vóór aankoop.
+      </div>
+    `;
+  }
+
+  // 🔴 HOOG RISICO
+  else {
+    riskPanel.innerHTML = `
+      <h3>Hoog financieel risico</h3>
+
+      <div style="font-size:18px; font-weight:900; color:#b91c1c;">
+        €8.000 – €15.000 mogelijke accukosten
+      </div>
+
+      <div style="margin-top:10px; font-weight:600;">
+        Bij vergelijkbare voertuigen komen deze kosten regelmatig voor.
+      </div>
+
+      <div style="margin-top:10px; font-weight:800;">
+        → Zonder controle betaalt u dit risico zelf
+      </div>
+
+      <div style="margin-top:14px; font-weight:800;">
+        Dit is exact waar miskopen ontstaan
+      </div>
+
+      <div style="margin-top:8px;">
+        Laat dit voertuig controleren vóór aankoop.
+      </div>
+    `;
+  }
+}
+       
 </script>
 
 </body>
