@@ -2299,11 +2299,6 @@ function getBrandSpecificText(merk, model, type) {
     return "Nieuwe EV-merken ontwikkelen snel. Batterijtechniek is modern, maar lange termijn data is nog beperkt.";
   }
 
-  // ===============================
-  // 🔵 DEFAULT
-  // ===============================
-  return "Geen specifieke structurele aandachtspunten bekend voor dit model.";
-}
 
    // 🔵 MAZDA
 if (m.includes("mazda")) {
@@ -2354,6 +2349,12 @@ if (m.includes("polestar")) {
 if (m.includes("xpeng") || m.includes("nio")) {
   return "Nieuwe premium EV-merken met geavanceerde technologie. Lange termijn accudata is nog in ontwikkeling.";
 } 
+
+    // ===============================
+  // 🔵 DEFAULT
+  // ===============================
+  return "Geen specifieke structurele aandachtspunten bekend voor dit model.";
+}
     
 function enrichModelWithHybridHint(merk, model, bouwjaar) {
   let enriched = (model || "").trim();
