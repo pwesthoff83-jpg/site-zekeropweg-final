@@ -697,9 +697,10 @@
   </div>
 
   <div class="metric-card">
-    <div class="metric-label">Geschatte batterijcapaciteit</div>
+    <div class="metric-label">Batterijcapaciteit (fabriek)</div>
     <div id="batterySize" class="metric-value">—</div>
-    <div class="metric-sub">Indicatieve modelinformatie</div>
+    <div class="Originele capaciteit bij nieuwstaat  
+      → Werkelijke capaciteit kan afwijken door gebruik en slijtage</div>
   </div>
 
   <div class="metric-card">
@@ -745,6 +746,29 @@
     </div>
   </div>
 
+   <!-- 🔥 ACCUCHECK VALUE BLOCK -->
+<div class="panel gold-soft" style="margin-top:16px;">
+
+  <h3>Wat een AccuCheck wél laat zien</h3>
+
+  <div style="font-weight:700; margin-bottom:10px;">
+    Dit rapport is een sterke eerste analyse — maar geen meting.
+  </div>
+
+  <ul class="checklist">
+    <li>Werkelijke accustatus (geen schatting)</li>
+    <li>Analyse op celniveau (geen BMS uitlezing)</li>
+    <li>Reëel rijbereik in praktijk</li>
+    <li>Accudegradatie exact zichtbaar</li>
+    <li>Verborgen risico’s vóór aankoop uitgesloten</li>
+  </ul>
+
+  <div style="margin-top:14px; font-weight:800;">
+    👉 Dit is het verschil tussen inschatten en zeker weten
+  </div>
+
+</div>
+   
   <!-- 🔥 NIEUW BLOK ONDERIN -->
   <div style="margin-top:20px; padding-top:16px; border-top:1px solid #fee2e2;">
     
@@ -846,6 +870,14 @@
 
 <div style="margin-top:16px;">
  
+</div>
+
+ <div style="margin-top:16px; font-weight:800; font-size:15px;">
+  ✔ Dit is exact het moment waarop kopers beslissen
+</div>
+
+<div style="margin-top:6px; color:#b91c1c; font-weight:800;">
+  → Zonder zekerheid neem je hier het risico
 </div>
   
 <a 
@@ -2754,6 +2786,17 @@ function renderReport(data) {
     document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
     document.getElementById("summaryScore").innerText = data.score || "7.5";
     document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
+    const warningEl = document.getElementById("dynamicWarning");
+
+    if (warningEl && data) {
+    if (data.riskClass === "low") {
+    warningEl.innerText = "Bevestig deze goede keuze vóór aankoop.";
+  } else if (data.riskClass === "medium") {
+    warningEl.innerText = "Hier ontstaan de meeste miskopen.";
+  } else {
+    warningEl.innerText = "Hoog risico — controle vóór aankoop is cruciaal.";
+  }
+}
     document.getElementById("quickSummary").innerText =
       data.summary || "Op basis van beschikbare data een solide keuze.";
 
