@@ -847,6 +847,7 @@
 <div style="margin-top:16px;">
  
 </div>
+  
 <a 
   id="checkoutBtn"
   href="#"
@@ -854,6 +855,7 @@
 >
 👉 Voorkom een miskoop
 </a>
+<div id="conversionTrigger" style="margin-top:12px; font-weight:700;"></div>
 <div style="margin-top:10px; font-size:12px; color:#6b7280;">
   Eenmalig. Direct inzicht.
 </div>
@@ -2152,18 +2154,207 @@ function similarityScore(a, b) {
 
 function getBrandSpecificText(merk, model, type) {
   const m = (merk || "").toLowerCase();
+  const mdl = (model || "").toLowerCase();
 
-  if (m.includes("tesla")) {
-    return "Let op laadpoort, software updates en afwijkingen in range bij oudere modellen.";
-  }
-
+  // ===============================
+  // 🔵 BMW SPECIFIEK
+  // ===============================
   if (m.includes("bmw")) {
-    return "Controleer laadcycli en accukoeling, vooral bij intensief snelladen.";
+
+    if (mdl.includes("330e") || mdl.includes("530e")) {
+      return "Dit BMW plug-in model wordt vaak zakelijk gereden. Hierdoor is accugebruik sterk afhankelijk van laaddiscipline — dit bepaalt de werkelijke conditie.";
+    }
+
+    return "BMW plug-in hybrides zijn technisch sterk, maar accugebruik verschilt sterk per eigenaar. Controle op laadcycli is hier extra relevant.";
   }
 
-  return "Geen specifieke structurele aandachtspunten bekend.";
+  // ===============================
+  // 🔵 PORSCHE
+  // ===============================
+  if (m.includes("porsche")) {
+
+    if (mdl.includes("cayenne")) {
+      return "De Cayenne plug-in hybride combineert prestaties met gewicht. Hierdoor wordt de batterij relatief zwaar belast bij intensief gebruik.";
+    }
+
+    if (mdl.includes("taycan")) {
+      return "De Taycan heeft geavanceerde accutechniek. Snelladen en rijstijl hebben directe invloed op batterijprestaties.";
+    }
+
+    return "Porsche combineert prestaties met geavanceerde accutechniek. Consistent laadgedrag is essentieel.";
+  }
+
+  // ===============================
+  // 🔵 TESLA
+  // ===============================
+  if (m.includes("tesla")) {
+
+    if (mdl.includes("model 3") || mdl.includes("model y")) {
+      return "Deze Tesla modellen staan bekend om stabiele accuprestaties. Intensief snelladen kan echter invloed hebben op degradatie.";
+    }
+
+    if (mdl.includes("model s") || mdl.includes("model x")) {
+      return "Bij oudere Tesla modellen is accudegradatie een bekend aandachtspunt, vooral bij hoge kilometerstanden.";
+    }
+
+    return "Tesla staat bekend om sterk accubeheer, maar gebruik en laadgedrag blijven bepalend.";
+  }
+
+  // ===============================
+  // 🔵 VOLVO
+  // ===============================
+  if (m.includes("volvo")) {
+
+    if (mdl.includes("xc90") || mdl.includes("xc60")) {
+      return "Deze Volvo modellen zijn zwaar en krachtig. Hierdoor wordt de batterij intensiever gebruikt dan gemiddeld.";
+    }
+
+    return "Volvo plug-in hybrides combineren kracht met gewicht. Dit heeft invloed op batterijgebruik.";
+  }
+
+  // ===============================
+  // 🔵 MERCEDES
+  // ===============================
+  if (m.includes("mercedes")) {
+
+    if (mdl.includes("c300e") || mdl.includes("e300e")) {
+      return "Deze Mercedes plug-in hybrides hebben een relatief grote batterij. Werkelijke prestaties hangen sterk af van laadgedrag.";
+    }
+
+    return "Mercedes focust op comfort en accubeheer. Bij hogere kilometerstanden kan capaciteit afnemen.";
+  }
+
+  // ===============================
+  // 🔵 VAG GROEP (VW / AUDI / SKODA / SEAT)
+  // ===============================
+  if (
+    m.includes("volkswagen") ||
+    m.includes("vw") ||
+    m.includes("audi") ||
+    m.includes("skoda") ||
+    m.includes("seat") ||
+    m.includes("cupra")
+  ) {
+
+    if (mdl.includes("golf") || mdl.includes("passat") || mdl.includes("a3") || mdl.includes("octavia")) {
+      return "Deze plug-in modellen zijn veel zakelijk gebruikt. Accustatus hangt sterk af van laadgedrag en gebruikspatroon.";
+    }
+
+    return "VAG plug-in hybrides zijn breed ingezet. Gebruik en laadfrequentie bepalen de werkelijke batterijconditie.";
+  }
+
+  // ===============================
+  // 🔵 HYUNDAI / KIA
+  // ===============================
+  if (m.includes("hyundai") || m.includes("kia")) {
+
+    if (mdl.includes("kona") || mdl.includes("niro")) {
+      return "Deze modellen staan bekend om stabiele accuprestaties en relatief lage degradatie in de praktijk.";
+    }
+
+    return "Dit merk heeft een sterke reputatie op batterijgebied met voorspelbare prestaties.";
+  }
+
+  // ===============================
+  // 🔵 TOYOTA
+  // ===============================
+  if (m.includes("toyota")) {
+    return "Toyota heeft veel ervaring met hybride systemen. Betrouwbaarheid is hoog, maar accucapaciteit is vaak beperkt.";
+  }
+
+  // ===============================
+  // 🔵 FORD
+  // ===============================
+  if (m.includes("ford")) {
+
+    if (mdl.includes("kuga")) {
+      return "De Ford Kuga PHEV wordt vaak gebruikt als gezinsauto. Laadgedrag verschilt sterk per eigenaar.";
+    }
+
+    return "Ford plug-in hybrides verschillen per model. Gebruik bepaalt hier de batterijconditie.";
+  }
+
+  // ===============================
+  // 🔵 FRANSE MERKEN
+  // ===============================
+  if (m.includes("peugeot") || m.includes("citroen") || m.includes("ds")) {
+    return "Franse plug-in hybrides zijn efficiënt, maar prestaties hangen sterk af van gebruik en laadfrequentie.";
+  }
+
+  // ===============================
+  // 🔵 NISSAN / RENAULT
+  // ===============================
+  if (m.includes("nissan")) {
+    return "Nissan EV’s hebben ruime praktijkervaring. Bij oudere modellen is accudegradatie een bekend aandachtspunt.";
+  }
+
+  if (m.includes("renault")) {
+    return "Renault EV’s zijn efficiënt, maar accucapaciteit kan bij intensief gebruik sneller teruglopen.";
+  }
+
+  // ===============================
+  // 🔵 NIEUWE MERKEN
+  // ===============================
+  if (m.includes("byd") || m.includes("mg")) {
+    return "Nieuwe EV-merken ontwikkelen snel. Batterijtechniek is modern, maar lange termijn data is nog beperkt.";
+  }
+
+  // ===============================
+  // 🔵 DEFAULT
+  // ===============================
+  return "Geen specifieke structurele aandachtspunten bekend voor dit model.";
 }
 
+   // 🔵 MAZDA
+if (m.includes("mazda")) {
+  return "Mazda plug-in hybrides zijn relatief nieuw. Praktijkdata over lange termijn batterijgedrag is nog beperkt.";
+}
+
+// 🔵 HONDA
+if (m.includes("honda")) {
+  return "Honda hybride systemen zijn betrouwbaar, maar minder gericht op volledig elektrisch rijden.";
+}
+
+// 🔵 SUZUKI
+if (m.includes("suzuki")) {
+  return "Suzuki focust vooral op lichte hybride systemen. Batterij speelt een kleinere rol in prestaties.";
+}
+
+// 🔵 MITSUBISHI
+if (m.includes("mitsubishi")) {
+  return "Mitsubishi Outlander PHEV is veel gebruikt. Accustatus varieert sterk per gebruik en laadgedrag.";
+}
+
+// 🔵 FIAT
+if (m.includes("fiat")) {
+  return "Fiat EV-modellen zijn compact en efficiënt, met relatief kleine accupakketten.";
+}
+
+// 🔵 ALFA ROMEO
+if (m.includes("alfa")) {
+  return "Alfa Romeo plug-in hybrides combineren prestaties met design. Accugebruik is sterk afhankelijk van rijstijl.";
+}
+
+// 🔵 JEEP
+if (m.includes("jeep")) {
+  return "Jeep plug-in hybrides zijn krachtig en zwaar. Dit heeft directe impact op batterijgebruik.";
+}
+
+// 🔵 LEXUS
+if (m.includes("lexus")) {
+  return "Lexus staat bekend om betrouwbare hybride systemen met stabiele batterijprestaties.";
+}
+
+// 🔵 POLESTAR
+if (m.includes("polestar")) {
+  return "Polestar gebruikt moderne EV-techniek. Batterijprestaties zijn doorgaans stabiel, met focus op rijervaring.";
+}
+
+// 🔵 XPENG / NIO
+if (m.includes("xpeng") || m.includes("nio")) {
+  return "Nieuwe premium EV-merken met geavanceerde technologie. Lange termijn accudata is nog in ontwikkeling.";
+} 
+    
 function enrichModelWithHybridHint(merk, model, bouwjaar) {
   let enriched = (model || "").trim();
   const merkLower = (merk || "").toLowerCase();
@@ -2407,6 +2598,24 @@ function detectAndAnalyzeVehicle(
   return report;
 }
 
+function getConversionTrigger(data) {
+
+  if (!data) return "";
+
+  // 🟢 LAAG RISICO → CONFIRMATION SELL
+  if (data.riskClass === "low") {
+    return "U staat op het punt een goede aankoop te doen. Slimme kopers bevestigen dit vóórdat ze beslissen.";
+  }
+
+  // 🟡 MIDDEL RISICO → TWIJFEL TRIGGER
+  if (data.riskClass === "medium") {
+    return "Dit is exact het moment waarop kopers €10.000 fouten maken.";
+  }
+
+  // 🔴 HOOG RISICO → ANGST / VERLIES
+  return "Zonder controle neemt u hier een financieel risico dat kan oplopen tot duizenden euro’s.";
+}
+    
 // ===============================
 // 🔥 API CALLS
 // ===============================
@@ -2804,6 +3013,7 @@ function fillList(id, items, warning = false) {
     el.appendChild(li);
   });
 
+   
   if (warning) {
     el.classList.add("warning-list");
   } else {
@@ -3073,7 +3283,8 @@ function applyPaywall(data) {
   const premium = document.getElementById("premiumContent");
   const paywall = document.getElementById("paywallBlock");
   const buyAdvice = document.getElementById("buyAdvice");
-
+  const trigger = document.getElementById("conversionTrigger");
+  
   if (!data) return;
 
   // preview altijd zichtbaar
@@ -3147,8 +3358,11 @@ function applyPaywall(data) {
     if (buyAdvice) {
       buyAdvice.innerText = data.buyAdvicePreview || "";
     }
-  }
-}
+    if (trigger && !isPaid) {
+       trigger.innerText = getConversionTrigger(data);
+     } 
+    }
+   }
   
 
 </script>
