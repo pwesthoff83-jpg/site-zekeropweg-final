@@ -2480,7 +2480,7 @@ function findBatteryMatchSmart(merk, model, bouwjaar) {
 // ===============================
 function getKenteken() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("kenteken");
+  return (urlParams.get("kenteken") || "").toUpperCase();
 }
 
 function setToday() {
