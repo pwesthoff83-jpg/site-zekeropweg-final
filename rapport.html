@@ -2748,7 +2748,6 @@ console.log("REPORT DATA:", reportData);
 }
 }
 
-
 // ===============================
 // 🔥 START APP
 // ===============================
@@ -2760,17 +2759,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("checkoutBtn");
 
   if (btn) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const kenteken = urlParams.get("kenteken") || "";
-
-    if (btn) {
-  const stripeLink = "https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00";
-  btn.href = stripeLink;
-}
-
+    const stripeLink = "https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00";
     btn.href = stripeLink;
   }
 });
+
 // ===============================
 // 🔥 FAILSAFE RENDER
 // ===============================
