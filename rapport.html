@@ -3359,10 +3359,11 @@ function applyPaywall(data) {
     if (buyAdvice) {
       buyAdvice.innerText = data.buyAdvicePreview || "";
     }
-    if (trigger && !isPaid) {
+    if (trigger) {
        trigger.innerText = getConversionTrigger(data);
-     } 
+     }
     }
+  
    }
   
 
