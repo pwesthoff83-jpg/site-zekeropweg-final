@@ -2601,7 +2601,8 @@ function detectAndAnalyzeVehicle(
   mileageText,
   mileageAssessment,
   mileageComment,
-  rawKm
+  rawKm,
+  kenteken
 ) {
   const enrichedModel = enrichModelWithHybridHint(merk, model, bouwjaar);
   const match = findBatteryMatchSmart(merk, enrichedModel, bouwjaar);
@@ -2609,14 +2610,7 @@ function detectAndAnalyzeVehicle(
   let report;
 
   if (!match) {
-    report = buildBEVReport(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      rawKm
-    );
+    report = buildFallbackReport(kenteken);
   } else if (match.type === "BEV") {
     report = buildBEVReport(
       merk,
@@ -2644,7 +2638,7 @@ function detectAndAnalyzeVehicle(
 
   return report;
 }
-
+    
 function getConversionTrigger(data) {
 
   if (!data) return "";
@@ -2740,7 +2734,8 @@ async function loadVehicle() {
       mileageText,
       mileageAssessment,
       mileageComment,
-      rawMileageNumber
+      rawMileageNumber,
+      kenteken
     );
 
     let fullNameWithBattery = fullName;
