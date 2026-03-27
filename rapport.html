@@ -798,7 +798,7 @@
     </div>
 
     <div style="margin-top:14px; font-weight:800;">
-      👉 Dit is exact het moment waarop een miskoop ontstaat
+      👉 Dit is precies het punt waarop slimme kopers extra zekerheid nemen
     </div>
 
   </div>
@@ -825,7 +825,7 @@
 <!-- 🔥 PAYWALL (HIER KOMT GELD) -->
 <div id="paywallBlock" class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
   
- <h3>Twijfel je over deze auto?</h3>
+ <h3>Voorkom dat je €8.000 teveel betaalt</h3>
 
 <p style="font-weight:600;">
   Dan zit je precies op het punt waar de meeste kopers de fout ingaan.
@@ -862,7 +862,18 @@
 </div>
   
 
-<a id="checkoutBtn" href="#" target="_blank">
+<a id="checkoutBtn" href="#" target="_blank" style="
+  display:inline-block;
+  margin-top:16px;
+  padding:16px 22px;
+  background:#0b1c2d;
+  color:#fff;
+  font-weight:900;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+">
 🚀 Voorkom een miskoop – €19,95
 </a>
   
@@ -2659,6 +2670,11 @@ function detectAndAnalyzeVehicle(
 if (bouwjaar >= 2021) {
   report.score = Math.min((report.score || 7) + 1.5, 9);
 }
+  
+ if (bouwjaar >= 2022 && report.score < 8) {
+  report.score = 8;
+}
+   
  if (rawKm && rawKm < 80000 && bouwjaar >= 2020) {
   report.score = Math.min((report.score || 7) + 0.5, 9);
 } 
@@ -2822,9 +2838,9 @@ function renderReport(data) {
     if (data.riskClass === "low") {
     warningEl.innerText = "Bevestig deze goede keuze vóór aankoop.";
   } else if (data.riskClass === "medium") {
-    warningEl.innerText = Goede auto — controle geeft extra zekerheid".";
+    warningEl.innerText = "Goede auto, controle geeft extra zekerheid.";
   } else {
-    warningEl.innerText = "Hoog risico — controle vóór aankoop is cruciaal.";
+    warningEl.innerText = "Hoog risico, controle vóór aankoop is cruciaal.";
   }
 }
     document.getElementById("quickSummary").innerText =
@@ -3292,7 +3308,7 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
     riskLevel: risk.label,
     riskClass: risk.color,
     replacementCost: "€3.000 – €8.000",
-    score: (scoreRaw / 10).toFixed(1),
+    score: Math.round((scoreRaw / 10) * 10) / 10,
     scoreText: risk.label,
     conclusion: conclusionText,
     summary: "Analyse op basis van leeftijd en gebruik.",
