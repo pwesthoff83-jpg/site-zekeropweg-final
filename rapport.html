@@ -737,27 +737,29 @@
 
 </div> <!-- 🔥 SLUIT DE VOERTUIG PANEL (DIT WAS JE BUG) -->
 
- <div id="riskPanel" class="panel" style="margin-top:16px;">
+ <div class="panel">
+  <div class="summary-score">
+    <div class="summary-score-label">ZekerOpWeg eindoordeel</div>
+    <div id="summaryScore" class="summary-score-value">—</div>
+    <div id="summaryScoreText" class="summary-score-text">Laden...</div>
 
-  <div>
-    <h3 style="margin-top:0;">Wat dit betekent voor jou als koper</h3>
+    <div class="panel soft" style="margin-top:20px;text-align:left;">
+      <h3>Kernconclusie</h3>
 
-    <div style="font-size:18px; font-weight:900; color:#b91c1c;">
-      €8.000 – €15.000 onverwachte accukosten
-    </div>
+      <div id="coreConclusionPreview"></div>
 
-    <div style="margin-top:10px; font-weight:600;">
-      Dit is het risico dat bij dit type voertuig vaak pas zichtbaar wordt ná aankoop.
-    </div>
+      <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
+        <span id="dynamicWarning"></span>
+      </div>
 
-    <div style="margin-top:10px; font-weight:800;">
-      → Zonder inzicht vooraf betaal je dit volledig zelf
-    </div>
+      <div id="coreConclusion" style="display:none;"></div>
 
-    <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
-      → Dit rapport laat zien of dit risico bij deze auto speelt
+      <div class="premium-warning">
+        🔒 De werkelijke accustatus en risico’s zijn afgeschermd
+      </div>
     </div>
   </div>
+</div>
 
    <!-- 🔥 ACCUCHECK VALUE BLOCK -->
 <div class="panel gold-soft" style="margin-top:16px;">
@@ -802,29 +804,7 @@
   </div>
 </div>
 
-          
-          <div class="panel">
-            <div class="summary-score">
-              <div class="summary-score-label">ZekerOpWeg eindoordeel</div>
-              <div id="summaryScore" class="summary-score-value">—</div>
-              <div id="summaryScoreText" class="summary-score-text">Laden...</div>
-
-              <div class="panel soft" style="margin-top:20px;text-align:left;">
-                <h3 style="margin-top:0;">Kernconclusie</h3>
-             
-              <div id="coreConclusionPreview"></div>
-
-              <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
-               <span id="dynamicWarning"></span>
-              </div>
-                
-             <div id="coreConclusion" style="display:none;"></div>
-
-             <div class="premium-warning">
-                🔒 De werkelijke accustatus, verborgen risico’s en aankoopadvies zijn afgeschermd
-              </div>  
-            </div>
-              
+                       
                  
                 <div class="panel" style="margin-top:16px; border:2px solid #fee2e2; background:#fff5f5;">
                 <strong style="color:#b91c1c;">⚠️ Belangrijk:</strong><br>
@@ -2675,6 +2655,14 @@ function detectAndAnalyzeVehicle(
     report.driveType = match.type || report.driveType;
   }
 
+  // 🔥 BOOST NIEUWE AUTO'S
+if (bouwjaar >= 2021) {
+  report.score = Math.min((report.score || 7) + 1.5, 9);
+}
+ if (rawKm && rawKm < 80000 && bouwjaar >= 2020) {
+  report.score = Math.min((report.score || 7) + 0.5, 9);
+} 
+  
   return report;
 }
     
@@ -2834,7 +2822,7 @@ function renderReport(data) {
     if (data.riskClass === "low") {
     warningEl.innerText = "Bevestig deze goede keuze vóór aankoop.";
   } else if (data.riskClass === "medium") {
-    warningEl.innerText = "Hier ontstaan de meeste miskopen.";
+    warningEl.innerText = Goede auto — controle geeft extra zekerheid".";
   } else {
     warningEl.innerText = "Hoog risico — controle vóór aankoop is cruciaal.";
   }
@@ -3025,7 +3013,7 @@ if (riskPanel) {
   // 🟡 MIDDEL RISICO
   else if (data.riskClass === "medium") {
     riskPanel.innerHTML = `
-      <h3>Mogelijk financieel risico</h3>
+      <h3>Wat dit betekent voor jou</h3>
 
       <div style="font-size:18px; font-weight:900; color:#b45309;">
         Goede basis, maar controle geeft zekerheid
@@ -3210,7 +3198,7 @@ Een accutest vóór aankoop is hier sterk aan te raden.
     riskLevel: risk.label,
     riskClass: risk.color,
     replacementCost: "€8.000 – €15.000",
-    score: (scoreRaw / 10).toFixed(1),
+    score: Math.round((scoreRaw / 10) * 10) / 10,
     scoreText: risk.label,
     conclusion: conclusionText,
     summary: "Analyse op basis van leeftijd en kilometerstand.",
