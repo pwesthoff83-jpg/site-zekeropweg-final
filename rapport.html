@@ -632,6 +632,17 @@
   transition: all 0.35s ease;
 }
 
+.paywall-lock {
+  font-weight:800;
+  color:#b91c1c;
+  margin-top:6px;
+}
+
+.paid-user .summary-score {
+  border:2px solid #22c55e;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+    
   </style>
 </head>
 <body>
@@ -778,7 +789,10 @@
           <div id="summaryScore" class="summary-score-value">?</div>
 
           <div style="font-weight:800;color:#b91c1c;margin-top:6px;">
-             🔒 Exacte score zichtbaar na ontgrendeling
+             <div class="paywall-lock">
+               🔒 Exacte score zichtbaar na ontgrendeling
+            </div>
+            
           </div>
           <div id="summaryScoreText" class="summary-score-text">Laden...</div>
 
@@ -793,7 +807,7 @@
 
             <div id="coreConclusion" style="display:none;"></div>
 
-            <div class="premium-warning">
+            <div class="paywall-lock premium-warning">
               🔒 De werkelijke accustatus en risico’s zijn afgeschermd
             </div>
           </div>
@@ -2558,7 +2572,7 @@ function setVehicleHeaders(name) {
 // 🔥 UTIL
 // ===============================
 function formatMileage(km) {
-  if (!km || isNaN(Number(km))) return "Onbekend";
+  if (!km || isNaN(Number(km))) return "Niet beschikbaar op basis van kenteken";
   return Number(km).toLocaleString("nl-NL") + " km";
 }
 
@@ -2753,8 +2767,8 @@ async function loadVehicle() {
 
     if (!vehicleData || !vehicleData.length) {
       const fallbackReport = buildFallbackReport(kenteken);
-      vehicleEl.innerText = "Onbekend voertuig";
-      setVehicleHeaders("Onbekend voertuig");
+      vehicleEl.innerText = "Niet beschikbaar op basis van kenteken";
+      setVehicleHeaders("Niet beschikbaar op basis van kenteken");
       renderReport(fallbackReport);
       return;
     }
@@ -2788,12 +2802,12 @@ async function loadVehicle() {
     );
 
     let fullNameWithBattery = fullName;
-    if (reportData && reportData.batterySize && reportData.batterySize !== "Onbekend") {
+    if (reportData && reportData.batterySize && reportData.batterySize !== "Niet beschikbaar op basis van kenteken") {
       fullNameWithBattery += " " + reportData.batterySize;
     }
 
 if (vehicleEl) {
-  vehicleEl.innerText = fullNameWithBattery || "Onbekend voertuig";
+  vehicleEl.innerText = fullNameWithBattery || "Niet beschikbaar op basis van kenteken";
 }
 
 setVehicleHeaders(fullNameWithBattery);
@@ -2830,8 +2844,8 @@ function renderReport(data) {
   try {
     if (!data) throw new Error("Geen report data");
 
-    document.getElementById("batterySize").innerText = data.batterySize || "Onbekend";
-    document.getElementById("mileage").innerText = data.mileageText || "Onbekend";
+    document.getElementById("batterySize").innerText = data.batterySize || "Niet beschikbaar op basis van kenteken";
+    document.getElementById("mileage").innerText = data.mileageText || "Niet beschikbaar op basis van kenteken";
     document.getElementById("mileageAssessment").innerText = data.mileageAssessment || "-";
     document.getElementById("degradation").innerText = data.degradation || "Normaal";
     document.getElementById("riskLevel").innerText = "Wordt berekend...";
@@ -3212,7 +3226,7 @@ Een accutest vóór aankoop is hier sterk aan te raden.
 
   return {
     driveType: "BEV",
-    batterySize: "Onbekend",
+    batterySize: "Niet beschikbaar op basis van kenteken",
     mileageText,
     mileageAssessment,
     degradation: degradationRange,
@@ -3306,7 +3320,7 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
 
   return {
     driveType: "PHEV",
-    batterySize: "Onbekend",
+    batterySize: "Niet beschikbaar op basis van kenteken",
     mileageText,
     mileageAssessment,
     degradation: degradationRange,
@@ -3338,13 +3352,13 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
 
 function buildFallbackReport(kenteken) {
   return {
-    driveType: "Onbekend",
-    batterySize: "Onbekend",
-    mileageText: "Onbekend",
-    mileageAssessment: "Onbekend",
-    degradation: "Onbekend",
+    driveType: "Niet beschikbaar op basis van kenteken",
+    batterySize: "Niet beschikbaar op basis van kenteken",
+    mileageText: "Niet beschikbaar op basis van kenteken",
+    mileageAssessment: "Niet beschikbaar op basis van kenteken",
+    degradation: "Niet beschikbaar op basis van kenteken",
     degradationClass: "medium",
-    riskLevel: "Onbekend",
+    riskLevel: "Niet beschikbaar op basis van kenteken",
     riskClass: "medium",
     replacementCost: "€8.000 – €15.000",
     score: "6.5",
@@ -3370,96 +3384,75 @@ function buildFallbackReport(kenteken) {
   };
 }
 
-function applyPaywall(data) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const isPaid = urlParams.get("paid") === "true";
 
-  const previewEl = document.getElementById("coreConclusionPreview");
-  const fullEl = document.getElementById("coreConclusion");
-  const premium = document.getElementById("premiumContent");
+function applyPaywall(data) {
+  const isPaid = new URLSearchParams(window.location.search).get("paid") === "true";
+
   const paywall = document.getElementById("paywallBlock");
+  const premium = document.getElementById("premiumContent");
+  const fullEl = document.getElementById("coreConclusion");
+  const previewEl = document.getElementById("coreConclusionPreview");
   const buyAdvice = document.getElementById("buyAdvice");
   const trigger = document.getElementById("conversionTrigger");
-  
+  const badge = document.getElementById("unlockBadge");
+
   if (!data) return;
 
-  // preview altijd zichtbaar
+  // preview altijd tonen
   if (previewEl) {
     previewEl.innerText = data.buyAdvicePreview || "";
   }
 
-    if (isPaid) {
-  // 🔓 PREMIUM UNLOCK
-  const badge = document.getElementById("unlockBadge");
+  // =========================
+  // 🔓 PAID STATE
+  // =========================
+  if (isPaid) {
 
-  // 🔥 BADGE
-  if (badge) {
-    badge.style.display = "block";
-  }
-      
-    // 1. paywall netjes weg
-    if (paywall) {
-      paywall.classList.add("paywall-fade-out");
+    // 🔥 1. REMOVE PAYWALL BLOCK
+    if (paywall) paywall.remove();
 
-      setTimeout(() => {
-        paywall.remove();
-      }, 350);
-    }
-     
-      // 2. premium content zichtbaar
-      if (premium) {
-      premium.style.display = "block";
-      premium.classList.add("premium-reveal");
-    }
+    // 🔥 2. SHOW PREMIUM CONTENT
+    if (premium) premium.style.display = "block";
 
-    // 3. kernconclusie
+    // 🔥 3. SHOW FULL CONCLUSION
     if (fullEl) {
       fullEl.innerText = data.conclusion || "";
       fullEl.style.display = "block";
-      fullEl.classList.add("premium-reveal");
     }
 
-    // 4. volledige advies
-   if (buyAdvice) {
-  if (data.riskClass === "low") {
-    buyAdvice.innerText = "Bevestig deze goede keuze met een accutest.";
-  } else if (data.riskClass === "medium") {
-    buyAdvice.innerText = "Extra controle voorkomt onzekerheid.";
-  } else {
-    buyAdvice.innerText = "Sterk advies: controleer vóór aankoop.";
+    // 🔥 4. REMOVE ALL LOCK ELEMENTS
+    document.querySelectorAll(".paywall-lock").forEach(el => el.remove());
+
+    // 🔥 5. SHOW UNLOCK BADGE
+    if (badge) badge.style.display = "block";
+
+    // 🔥 6. CLEAN BUY ADVICE
+    if (buyAdvice) {
+      buyAdvice.innerText = data.buyAdvice || data.conclusion || "";
+    }
+
+    // 🔥 7. VISUAL UPGRADE
+    document.body.classList.add("paid-user");
+
   }
-}
 
-    // 5. subtiele focus op score (geen flashy glow!)
-    const scoreBox = document.querySelector(".summary-score");
-    if (scoreBox) {
-      scoreBox.classList.add("premium-focus");
+  // =========================
+  // 🔒 LOCKED STATE
+  // =========================
+  else {
 
-      setTimeout(() => {
-        scoreBox.classList.add("premium-focus-active");
-      }, 150);
-    }
-
-  } else {
-    // 🔒 LOCK
-
-    if (fullEl) fullEl.style.display = "none";
     if (premium) premium.style.display = "none";
-
-    if (paywall) {
-      paywall.style.display = "block";
-      paywall.style.opacity = "1";
-    }
+    if (fullEl) fullEl.style.display = "none";
 
     if (buyAdvice) {
       buyAdvice.innerText = data.buyAdvicePreview || "";
     }
+
     if (trigger) {
-       trigger.innerText = getConversionTrigger(data);
-     }
+      trigger.innerText = getConversionTrigger(data);
     }
-  
-   }
+  }
+}
   
 
 </script>
