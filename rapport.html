@@ -2858,6 +2858,7 @@ function renderReport(data) {
     document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
     document.getElementById("summaryScore").innerText = data.score || "7.5";
     document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
+    
     const warningEl = document.getElementById("dynamicWarning");
 
   if (warningEl) {
@@ -2868,6 +2869,7 @@ function renderReport(data) {
     } else {
       warningEl.innerText = "Bij dit voertuig is aanvullende controle verstandig vóór u beslist.";
     }
+  }
   
     document.getElementById("quickSummary").innerText =
       data.summary || "Op basis van beschikbare data een solide keuze.";
