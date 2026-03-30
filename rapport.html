@@ -642,11 +642,19 @@
   border:2px solid #22c55e;
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
     
   </style>
 </head>
 <body>
 
+ 
   <div class="report-shell">
 
     <!-- PAGINA 1 -->
@@ -709,14 +717,59 @@
     margin-bottom:20px;
     ">
 
-    <strong>⚠️ Wat u hier echt wilt weten</strong><br><br>
+   <div style="
+   background: linear-gradient(135deg, #0f172a, #1e293b);
+   color:white;
+   padding:22px;
+   border-radius:16px;
+   margin-bottom:20px;
+   ">
 
-    Deze auto kan een goede keuze zijn.<br>
-    Maar de accustatus bepaalt of dat ook écht zo is.<br><br>
+   <div style="font-size:13px; font-weight:800; opacity:0.8; margin-bottom:6px;">
+   ⚠️ BESLISMOMENT
+   </div>
 
-    Bij vergelijkbare auto's zien we dat dit verschil kan oplopen tot duizenden euro’s.<br><br>
+   <div style="font-size:20px; font-weight:900; line-height:1.3; margin-bottom:10px;">
+   Is deze auto een goede aankoop — of een financieel risico?
+   </div>
 
-  👉 Dit rapport laat zien of dat bij deze auto speelt
+   <div style="font-size:14px; line-height:1.6; opacity:0.9;">
+   Op papier kan deze auto kloppen.<br>
+   Maar bij EV’s bepaalt de accustatus de werkelijke waarde.
+   </div>
+
+   <div style="
+   margin-top:14px;
+   padding:12px;
+   background: rgba(255,255,255,0.06);
+   border-radius:10px;
+   font-weight:700;
+   ">
+   👉 Zonder accuinzicht blijft dit een aanname
+  </div>
+
+</div>
+
+    <div id="riskIndicator" style="
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:14px;
+font-weight:800;
+">
+
+<div style="
+width:12px;
+height:12px;
+border-radius:50%;
+background:#f59e0b;
+"></div>
+
+<div style="font-size:14px;">
+Gemiddeld risico – accustatus onbekend
+</div>
+
+</div>
       
       <div class="panel">
         <div class="muted">Voertuigprofiel</div>
@@ -863,32 +916,46 @@
     
 <!-- 🔥 PAYWALL (HIER KOMT GELD) -->
 <div id="paywallBlock" class="panel" style="margin-top:20px; border:2px solid #e5e7eb; text-align:center;">
-  <h3>De belangrijkste vraag is nog niet beantwoord</h3>
+<h3>U mist nog één cruciaal onderdeel</h3>
 
 <p style="font-weight:600;">
-Deze auto ziet er op papier goed uit.
+Deze auto lijkt op papier een goede keuze.
 </p>
 
 <p style="font-weight:600;">
-Maar de werkelijke accustatus is nog onbekend.
+Maar de werkelijke accustatus bepaalt of dat ook zo is.
 </p>
 
-<div style="margin-top:12px; font-weight:800;">
-→ Dit is waar het verschil ontstaat tussen een goede deal en een miskoop
+<div style="
+margin-top:14px;
+padding:14px;
+background:#fff7ed;
+border-radius:10px;
+font-weight:800;
+">
+👉 Dit verschil kan oplopen tot €3.000 – €8.000
 </div>
 
 <div style="margin-top:14px; text-align:left; display:inline-block;">
-✔ Hoe de accu er écht aan toe is<br>
-✔ Of er verborgen slijtage aanwezig is<br>
-✔ Of deze auto financieel slim is
+✔ Werkelijke accustatus (geen schatting)<br>
+✔ Verborgen slijtage zichtbaar<br>
+✔ Direct aankoopadvies: kopen of niet
 </div>
 
-<div style="margin-top:16px; font-weight:800;">
-U staat op het punt een beslissing te nemen
+<div style="
+margin-top:16px;
+font-weight:900;
+font-size:16px;
+">
+U staat op het punt een beslissing te nemen.
 </div>
 
-<div style="margin-top:6px; color:#b91c1c; font-weight:800;">
-→ Zonder zekerheid neemt u hier het risico
+<div style="
+margin-top:6px;
+color:#b91c1c;
+font-weight:900;
+">
+→ Zonder deze informatie neemt u een risico
 </div>
 
 <a id="checkoutBtn" href="#" target="_blank" style="
