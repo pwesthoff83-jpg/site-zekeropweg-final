@@ -2913,9 +2913,11 @@ function renderReport(data) {
 
   if (data.riskShort) {
     batteryRiskGrade.classList.add(data.riskShort);
-  }
+   }
+  }    
 
     if (batteryRiskLabel) batteryRiskLabel.innerText = data.riskLevel || "Gemiddeld risico";
+    
     if (batteryRiskDescription) {
       batteryRiskDescription.innerText =
         data.riskDescription || "Indicatieve accurisico-inschatting op basis van leeftijd, kilometerstand en voertuigtype.";
