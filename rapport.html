@@ -882,6 +882,10 @@ De basis oogt goed.
 Maar zonder accumeting blijft het grootste financiële risico onbekend.
 </div>
 
+<div style="margin-top:14px;padding:12px;background:#fff8e8;border-radius:10px;font-weight:800;">
+👉 Bij vergelijkbare auto's wijkt de accustatus in 1 op de 3 gevallen af van verwachting
+</div>  
+
 </div>
 
 <!-- ACCUCHECK -->
@@ -915,7 +919,10 @@ ZekerOpWeg eindoordeel
 </div>
 
 <!-- GAUGE -->
-<div class="gauge-wrapper" style="margin:0 auto;">
+<div class="gauge-wrapper">
+  <div class="gauge"></div>
+  <div class="needle" id="needle"></div>
+</div>
 
 <div style="
 width:180px;
@@ -981,7 +988,9 @@ font-weight:800;">
 ✔ Aankoopadvies
 </div>
 
-<a href="#" style="
+<a id="checkoutBtn"
+   href="https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00"
+   style="
 display:inline-block;
 margin-top:16px;
 padding:16px 22px;
@@ -2692,22 +2701,32 @@ function getMileageComment() {
 }
 
 function calculateRisk({ km, year, type }) {
-  const safeYear = Number(year) || 2018;
-  const age = new Date().getFullYear() - safeYear;
 
-  let score = 100;
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - (Number(year) || currentYear);
 
-  score -= age * 5;
+  let score = 9.2; // start hoog (premium gevoel)
 
-  if (km > 200000) score -= 25;
-  else if (km > 150000) score -= 15;
-  else if (km > 100000) score -= 10;
-  else if (km > 50000) score -= 5;
+  // 🔻 leeftijd impact
+  if (age > 8) score -= 2.5;
+  else if (age > 5) score -= 1.8;
+  else if (age > 3) score -= 1.0;
+  else if (age > 1) score -= 0.4;
 
-  if (type === "PHEV") score -= 5;
+  // 🔻 km impact
+  if (km > 200000) score -= 2.5;
+  else if (km > 150000) score -= 1.8;
+  else if (km > 100000) score -= 1.2;
+  else if (km > 60000) score -= 0.6;
+  else if (km > 30000) score -= 0.3;
 
-  score = Math.max(20, Math.min(100, score));
-  return score;
+  // 🔻 PHEV iets gevoeliger
+  if (type === "PHEV") score -= 0.3;
+
+  // clamp
+  score = Math.max(4.5, Math.min(9.5, score));
+
+  return Math.round(score * 10) / 10;
 }
 
 function interpretRisk(score) {
@@ -2784,8 +2803,8 @@ if (bouwjaar >= 2021) {
   report.score = Math.min((report.score || 7) + 1.5, 9);
 }
   
- if (bouwjaar >= 2022 && report.score < 8) {
-  report.score = 8;
+if (bouwjaar >= 2022 && report.score < 8.2) {
+  report.score = 8.2;
 }
    
  if (rawKm && rawKm < 80000 && bouwjaar >= 2020) {
@@ -3008,6 +3027,9 @@ function renderReport(data) {
 
   if (data.riskShort) {
     batteryRiskGrade.classList.add(data.riskShort);
+
+    setGauge(data.score || 7.5);
+    
    }
   }    
 
@@ -3558,15 +3580,30 @@ function applyPaywall(data) {
     }
   }
 }
-
+    
 function setGauge(score) {
-  // score 1–10 → 0–180 graden
-  const angle = (score / 10) * 180;
-  document.getElementById("needle").style.transform =
-    `rotate(${angle}deg)`;
+
+  const needle = document.getElementById("needle");
+  if (!needle) return;
+
+  const targetAngle = (score / 10) * 180;
+
+  let current = 0;
+
+  const interval = setInterval(() => {
+    current += 3;
+
+    if (current >= targetAngle) {
+      current = targetAngle;
+      clearInterval(interval);
+    }
+
+    needle.style.transform = `rotate(${current}deg)`;
+
+  }, 10);
 }
 
-setGauge(8.5);
+
 
 </script>
 
