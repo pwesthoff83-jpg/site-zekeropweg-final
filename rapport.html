@@ -1250,33 +1250,39 @@
   </section>
 
 </div>
-
 <script>
 // ===============================
-// 🔥 COMPLETE STABIELE RENDER ENGINE
+// 🔧 HELPERS
+// ===============================
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerText = value;
+}
+
+function fillList(id, items, warning = false) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.innerHTML = "";
+
+  (items || []).forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    el.appendChild(li);
+  });
+
+  el.classList.remove("warning-list", "checklist");
+  el.classList.add(warning ? "warning-list" : "checklist");
+}
+
+// ===============================
+// 📊 MAIN RENDER
 // ===============================
 
 function renderReport(data) {
   try {
     if (!data) throw new Error("Geen report data");
-
-    const setText = (id, value) => {
-      const el = document.getElementById(id);
-      if (el) el.innerText = value;
-    };
-
-    const fillList = (id, items, warning = false) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      el.innerHTML = "";
-      (items || []).forEach(item => {
-        const li = document.createElement("li");
-        li.innerText = item;
-        if (warning) li.style.color = "#b91c1c";
-        el.appendChild(li);
-      });
-    };
 
     // ===============================
     // 🔹 BASIS DATA
@@ -1329,79 +1335,83 @@ function renderReport(data) {
       scoreEl.className = data.riskClass || "";
     }
 
-    // ===============================
-    // 🔹 GAUGE SAFE
-    // ===============================
     if (typeof setGauge === "function") {
       setGauge(data.score || 7.5);
     }
 
     // ===============================
-    // 🔹 RISICO BLOK
+    // 🔹 RISICO BLOK (RECHTS)
     // ===============================
-    setText("batteryRiskGrade", data.riskShort || "B");
-    setText("batteryRiskLabel", data.riskLevel || "Gemiddeld risico");
-    setText(
-      "batteryRiskDescription",
-      data.riskDescription || "Indicatieve analyse op basis van leeftijd en gebruik"
-    );
+    const riskPanel = document.getElementById("riskPanel");
+
+    if (riskPanel) {
+      if (data.riskClass === "low") {
+        riskPanel.innerHTML = `
+          <h3>Financieel inzicht</h3>
+          <div style="font-size:18px;font-weight:900;color:#065f46;">
+            Sterke basis – logische keuze
+          </div>
+          <div style="margin-top:10px;font-weight:600;">
+            Dit voertuig past binnen een gezond eerste risicoprofiel.
+          </div>
+        `;
+      } else if (data.riskClass === "medium") {
+        riskPanel.innerHTML = `
+          <h3>Wat dit betekent voor u</h3>
+          <div style="font-size:18px;font-weight:900;color:#b45309;">
+            Goede basis – extra bevestiging verstandig
+          </div>
+          <div style="margin-top:10px;font-weight:600;">
+            De werkelijke accustatus is nog niet vastgesteld.
+          </div>
+        `;
+      } else {
+        riskPanel.innerHTML = `
+          <h3>Wat dit betekent voor u</h3>
+          <div style="font-size:18px;font-weight:900;color:#b91c1c;">
+            Verhoogd aandachtspunt
+          </div>
+          <div style="margin-top:10px;font-weight:600;">
+            Zonder meting blijft dit een financieel risico.
+          </div>
+        `;
+      }
+    }
 
     // ===============================
     // 🔹 CONTENT BLOKKEN
     // ===============================
-    setText("quickSummary", data.summary || "Goede eerste indicatie van dit voertuig.");
-    setText("buyAdvice", data.buyAdvicePreview || "Laat bij twijfel een accutest uitvoeren.");
-    setText("riskAnalysisText", data.riskAnalysisText || "Analyse op basis van voertuigdata.");
-    setText("batteryInfoText", data.batteryInfoText || "Batterijcapaciteit is model-gebaseerd.");
-    setText("chargingText", data.chargingText || "Laadgedrag onbekend zonder test.");
+    setText("quickSummary", data.summary || "");
+    setText("buyAdvice", data.buyAdvicePreview || "");
+    setText("riskAnalysisText", data.riskAnalysisText || "");
+    setText("batteryInfoText", data.batteryInfoText || "");
+    setText("chargingText", data.chargingText || "");
     setText("cableReplacementCost", data.cableReplacementCost || "€250 – €450");
-    setText("knownIssues", data.knownIssues || "Geen specifieke issues bekend.");
-    setText("brandSpecificText", data.brandSpecificText || "Geen specifieke aandachtspunten.");
+    setText("knownIssues", data.knownIssues || "");
+    setText("brandSpecificText", data.brandSpecificText || "");
 
     // ===============================
     // 🔹 LIJSTEN
     // ===============================
-    fillList("batteryChecklist", data.batteryChecklist || [
-      "Batterij gebaseerd op modeldata",
-      "Geen fysieke accutest uitgevoerd",
-      "Controle aanbevolen bij twijfel"
-    ]);
+    fillList("batteryChecklist", data.batteryChecklist);
+    fillList("chargingChecklist", data.chargingChecklist);
+    fillList("positivePoints", data.positivePoints);
+    fillList("buyerBlindspots", data.buyerBlindspots, true);
+    fillList("riskChecklist", data.riskChecklist, true);
+    fillList("purchaseTips", data.purchaseTips);
+    fillList("testDriveTips", data.testDriveTips);
 
-    fillList("chargingChecklist", data.chargingChecklist || [
-      "Controleer laadkabel",
-      "Vraag laadgeschiedenis",
-      "Let op afwijkingen"
-    ]);
+    // ===============================
+    // 🔹 RISICO INDEX
+    // ===============================
+    setText("batteryRiskGrade", data.riskShort || "B");
+    setText("batteryRiskLabel", data.riskLevel || "");
+    setText("batteryRiskDescription", data.riskDescription || "");
 
-    fillList("positivePoints", data.positivePoints || [
-      "Geeft snelle eerste richting",
-      "Helpt bij aankoopbeslissing",
-      "Maakt risico inzichtelijk"
-    ]);
-
-    fillList("buyerBlindspots", data.buyerBlindspots || [
-      "Degradatie wordt vaak onderschat",
-      "Kosten komen later pas",
-      "Uiterlijk zegt niets over techniek"
-    ], true);
-
-    fillList("riskChecklist", data.riskChecklist || [
-      "Controleer historie",
-      "Check gebruikspatroon",
-      "Overweeg accutest"
-    ], true);
-
-    fillList("purchaseTips", data.purchaseTips || [
-      "Controleer laadpoort",
-      "Check onderhoud",
-      "Laat inspectie doen"
-    ]);
-
-    fillList("testDriveTips", data.testDriveTips || [
-      "Let op foutmeldingen",
-      "Check rijbereik",
-      "Let op gedrag"
-    ]);
+    // ===============================
+    // 🔹 PAYWALL
+    // ===============================
+    applyPaywall(data);
 
   } catch (e) {
     console.error("RENDER ERROR:", e);
@@ -1409,384 +1419,16 @@ function renderReport(data) {
 }
 
 // ===============================
-// 🔥 RISK PANEL (RECHTER KOLOM)
+// 💰 PAYWALL
 // ===============================
-    const riskPanel = document.getElementById("riskPanel");
-
-    if (riskPanel) {
-      if (data.riskClass === "low") {
-        riskPanel.innerHTML = `
-          <h3>Financieel inzicht</h3>
-
-          <div style="font-size:18px;font-weight:900;color:#065f46;">
-            Sterke basis – logische keuze
-          </div>
-
-          <div style="margin-top:10px;font-weight:600;">
-            Dit voertuig past binnen een gezond eerste risicoprofiel.
-          </div>
-
-          <div style="margin-top:12px;">
-            → Er zijn geen directe signalen van verhoogde accuproblematiek
-          </div>
-
-          <div style="margin-top:14px;font-weight:700;">
-            U staat op het punt een grote investering te doen.
-          </div>
-
-          <div style="margin-top:8px;">
-            Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
-          </div>
-        `;
-      } else if (data.riskClass === "medium") {
-        riskPanel.innerHTML = `
-          <h3>Wat dit betekent voor u</h3>
-
-          <div style="font-size:18px;font-weight:900;color:#b45309;">
-            Goede basis – extra bevestiging verstandig
-          </div>
-
-          <div style="margin-top:10px;font-weight:600;">
-            De auto oogt in de basis goed, maar de werkelijke accustatus is nog niet vastgesteld.
-          </div>
-
-          <div style="margin-top:10px;">
-            → Zonder meting blijft dit een onzeker onderdeel van de aankoop
-          </div>
-
-          <div style="margin-top:14px;font-weight:800;">
-            Dit is precies het moment waarop zekerheid waarde toevoegt
-          </div>
-
-          <div style="margin-top:8px;">
-            Een accutest geeft duidelijkheid vóór aankoop.
-          </div>
-        `;
-      } else {
-        riskPanel.innerHTML = `
-          <h3>Wat dit betekent voor u</h3>
-
-          <div style="font-size:18px;font-weight:900;color:#b91c1c;">
-            Verhoogd aandachtspunt
-          </div>
-
-          <div style="margin-top:10px;font-weight:600;">
-            Bij vergelijkbare voertuigen zien we vaker afwijkingen in accuprestaties.
-          </div>
-
-          <div style="margin-top:10px;">
-            → Zonder meting blijft dit een reëel financieel risico
-          </div>
-
-          <div style="margin-top:14px;font-weight:800;">
-            Zekerheid is hier geen luxe maar logisch
-          </div>
-
-          <div style="margin-top:8px;">
-            Een accutest geeft direct duidelijkheid vóór aankoop.
-          </div>
-        `;
-      }
-    }
-
-    applyPaywall(data);
-
-  } catch (e) {
-    console.error("Render error:", e);
-
-    const vehicleNameEl = document.getElementById("vehicleName");
-    if (vehicleNameEl) {
-      vehicleNameEl.innerText = "Rapport gedeeltelijk geladen";
-    }
-
-    const coreConclusionEl = document.getElementById("coreConclusion");
-    if (coreConclusionEl) {
-      coreConclusionEl.innerText =
-        "Basisdata geladen, maar rapport niet volledig opgebouwd.";
-    }
-  }
-}
-
-function fillList(id, items, warning = false) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  el.innerHTML = "";
-  items.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    el.appendChild(li);
-  });
-
-  el.classList.remove("warning-list", "checklist");
-  el.classList.add(warning ? "warning-list" : "checklist");
-}
-
-function estimateDegradation(age, km, type) {
-  if (!age) age = 5;
-  if (!km) km = 100000;
-
-  let min = 0;
-  let max = 0;
-
-  if (type === "BEV") {
-    if (age <= 2 && km < 50000) {
-      min = 2; max = 6;
-    } else if (age <= 5 && km < 120000) {
-      min = 5; max = 12;
-    } else {
-      min = 10; max = 25;
-    }
-  } else {
-    if (age <= 2 && km < 50000) {
-      min = 5; max = 12;
-    } else if (age <= 5 && km < 120000) {
-      min = 10; max = 20;
-    } else {
-      min = 15; max = 30;
-    }
-  }
-
-  return `${min}% – ${max}%`;
-}
-
-function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
-  const age = getVehicleAge(bouwjaar);
-  const degradationRange = estimateDegradation(age, rawKm, "BEV");
-
-  const scoreRaw = calculateRisk({
-    km: rawKm || 100000,
-    year: Number(bouwjaar) || 2018,
-    type: "BEV"
-  });
-
-  const risk = interpretRisk(scoreRaw);
-
-  let riskShort = "A";
-  if (age > 6 || rawKm > 120000) {
-    riskShort = "C";
-  } else if (age > 3 || rawKm > 60000) {
-    riskShort = "B";
-  }
-
-  let degradationClass = "low";
-  if (riskShort === "B") degradationClass = "medium";
-  if (riskShort === "C") degradationClass = "high";
-
-  let conclusionText = "";
-
-  if (riskShort === "A") {
-    conclusionText = `
-U staat op het punt een grote investering te doen.
-
-Op basis van leeftijd, kilometerstand en model geeft dit voertuig een sterke basis.
-
-Er zijn geen directe signalen van verhoogde batterijslijtage.
-
-Met een accutest bevestigt u deze goede uitgangspositie en neemt u een volledig onderbouwde beslissing.
-`;
-  } else if (riskShort === "B") {
-    conclusionText = `
-Dit voertuig laat in de basis een logische indruk zien.
-
-In deze categorie ontstaan de meeste verborgen accuproblemen — niet direct zichtbaar bij aankoop.
-
-De werkelijke accustatus kan alleen bevestigd worden met een meting.
-
-Een accutest is hier een verstandige vervolgstap.
-`;
-  } else {
-    conclusionText = `
-Dit voertuig valt in een verhoogd aandachtspuntprofiel.
-
-Bij vergelijkbare auto's zien we vaker duidelijke batterijslijtage of aankomende kosten.
-
-Zonder aanvullende controle is de kans op onverwachte kosten aanzienlijk.
-
-Een accutest vóór aankoop is hier sterk aan te raden.
-`;
-  }
-
-  return {
-    driveType: "BEV",
-    batterySize: "Niet beschikbaar op basis van kenteken",
-    mileageText,
-    mileageAssessment,
-    degradation: degradationRange,
-    degradationClass,
-    riskLevel: risk.label,
-    riskClass: risk.color,
-    replacementCost: "€8.000 – €15.000",
-    score: Math.round(scoreRaw * 10) / 10,
-    scoreText: risk.label,
-    conclusion: conclusionText,
-    summary: "Analyse op basis van leeftijd, kilometerstand en modelinformatie.",
-    riskShort,
-    riskDescription:
-      riskShort === "A"
-        ? "Sterke basis. Geen directe signalen van verhoogd risico."
-        : riskShort === "B"
-        ? "Goede basis. Extra bevestiging is verstandig."
-        : "Verhoogd risico. Aanvullende controle sterk aanbevolen.",
-    buyAdvicePreview:
-      riskShort === "A"
-        ? "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
-        : riskShort === "B"
-        ? "De basis oogt goed, maar een AccuCheck geeft extra zekerheid vóór aankoop."
-        : "Bij dit voertuig is aanvullende controle vóór aankoop sterk aan te raden.",
-    buyAdvice: conclusionText,
-    riskAnalysisText: `De indicatieve batterijdegradatie ligt rond ${degradationRange}.`,
-    batteryInfoText: "De batterijcapaciteit is gebaseerd op modelinformatie en niet op een fysieke meting.",
-    chargingText: "Laadgedrag uit het verleden beïnvloedt de batterijconditie, maar is in deze vooranalyse niet zichtbaar.",
-    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
-    knownIssues: "Controleer laadgedrag, foutmeldingen en algemene accuprestaties.",
-    brandSpecificText: getBrandSpecificText(merk, model, "BEV")
-  };
-}
-
-function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, rawKm) {
-  const age = getVehicleAge(bouwjaar);
-  const degradationRange = estimateDegradation(age, rawKm, "PHEV");
-
-  const scoreRaw = calculateRisk({
-    km: rawKm || 100000,
-    year: Number(bouwjaar) || 2018,
-    type: "PHEV"
-  });
-
-  const risk = interpretRisk(scoreRaw);
-
-  let riskShort = "A";
-  if (age > 6 || rawKm > 120000) {
-    riskShort = "C";
-  } else if (age > 3 || rawKm > 60000) {
-    riskShort = "B";
-  }
-
-  let degradationClass = "low";
-  if (riskShort === "B") degradationClass = "medium";
-  if (riskShort === "C") degradationClass = "high";
-
-  let conclusionText = "";
-
-  if (riskShort === "A") {
-    conclusionText = `
-Gezien de leeftijd en kilometerstand geeft dit voertuig een sterke basis.
-
-Binnen deze context zijn er geen directe signalen dat het accupakket afwijkend presteert.
-
-Bij plug-in hybrides ligt het risico vooral in gebruik en laadgedrag, niet alleen in leeftijd.
-
-Wie maximale zekerheid wil, laat dit bevestigen met een accutest.
-`;
-  } else if (riskShort === "B") {
-    conclusionText = `
-Dit voertuig geeft op basis van leeftijd en gebruik een goede basis.
-
-Gebruik en laadgedrag bepalen hier sterk de werkelijke batterijconditie.
-
-De accustatus blijft onbekend zonder meting.
-
-Een accutest is hier een logische vervolgstap vóór aankoop.
-`;
-  } else {
-    conclusionText = `
-Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd aandachtspuntprofiel.
-
-Bij plug-in hybrides in deze fase is slijtage vaker merkbaar.
-
-Bij vergelijkbare voertuigen ligt de indicatieve degradatie rond ${degradationRange}.
-
-Een accutest wordt sterk aanbevolen vóór aankoop.
-`;
-  }
-
-  return {
-    driveType: "PHEV",
-    batterySize: "Niet beschikbaar op basis van kenteken",
-    mileageText,
-    mileageAssessment,
-    degradation: degradationRange,
-    degradationClass,
-    riskLevel: risk.label,
-    riskClass: risk.color,
-    replacementCost: "€3.000 – €8.000",
-    score: Math.round(scoreRaw * 10) / 10,
-    scoreText: risk.label,
-    conclusion: conclusionText,
-    summary: "Analyse op basis van leeftijd, gebruik en modelinformatie.",
-    riskShort,
-    riskDescription:
-      riskShort === "A"
-        ? "Sterke basis. Past bij een jonger of logisch gebruikt voertuig."
-        : riskShort === "B"
-        ? "Goede basis. Gebruik bepaalt hier sterk de conditie."
-        : "Verhoogd risico. Slijtage kan prestaties beïnvloeden.",
-    buyAdvicePreview:
-      riskShort === "A"
-        ? "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
-        : riskShort === "B"
-        ? "De basis oogt goed, maar een AccuCheck geeft extra zekerheid vóór aankoop."
-        : "Bij dit voertuig is aanvullende controle vóór aankoop sterk aan te raden.",
-    buyAdvice: conclusionText,
-    riskAnalysisText: `De indicatieve batterijdegradatie ligt rond ${degradationRange}.`,
-    batteryInfoText: "De batterijcapaciteit is indicatief op basis van modelinformatie.",
-    chargingText: "Gebruik en laadgedrag verschillen sterk per eigenaar en zijn niet zichtbaar in deze vooranalyse.",
-    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
-    knownIssues: "Controleer elektrisch functioneren, laadgedrag en foutmeldingen.",
-    brandSpecificText: getBrandSpecificText(merk, model, "PHEV")
-  };
-}
-
-function buildFallbackReport(kenteken) {
-  return {
-    driveType: "Niet beschikbaar op basis van kenteken",
-    batterySize: "Niet beschikbaar op basis van kenteken",
-    mileageText: "Niet beschikbaar op basis van kenteken",
-    mileageAssessment: "Niet beschikbaar op basis van kenteken",
-    degradation: "Niet beschikbaar op basis van kenteken",
-    degradationClass: "medium",
-    riskLevel: "Goede basis – data onvolledig",
-    riskClass: "medium",
-    replacementCost: "€8.000 – €15.000",
-    score: 6.5,
-    scoreText: "Extra controle aanbevolen",
-    conclusion: "Er is onvoldoende voertuigdata beschikbaar om een volledig risicoprofiel op te bouwen.",
-    summary: "De beschikbare data is onvolledig. Aanvullende controle is verstandig.",
-    riskShort: "B",
-    riskDescription: "Er was onvoldoende voertuigdata beschikbaar om een betrouwbaarder profiel op te bouwen.",
-    buyAdvicePreview: "De basisdata is onvolledig. Een AccuCheck geeft duidelijkheid vóór aankoop.",
-    buyAdvice: "Bij onvolledige voertuigdata is aanvullende controle vóór aankoop verstandig.",
-    riskAnalysisText: "Door ontbrekende data blijft dit voertuig een onvolledig dossier.",
-    batteryInfoText: "Voertuigdata kon niet volledig worden geladen.",
-    chargingText: "Laad- en gebruiksinformatie ontbreekt.",
-    cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
-    knownIssues: "Door ontbrekende data zijn bekende aandachtspunten niet goed te koppelen.",
-    brandSpecificText: "Geen specifieke structurele aandachtspunten bekend.",
-    pillarBrandScore: "6.5",
-    pillarBrandText: "Te weinig data",
-    pillarDataScore: "6.0",
-    pillarDataText: "Onvoldoende voertuigdata beschikbaar",
-    pillarTechScore: "7.0",
-    pillarTechText: "Aanvullende controle aanbevolen"
-  };
-}
 
 function applyPaywall(data) {
   const isPaid = new URLSearchParams(window.location.search).get("paid") === "true";
 
-  const paywall =
-    document.getElementById("paywallBlock") ||
-    (document.getElementById("checkoutBtn") ? document.getElementById("checkoutBtn").closest(".panel") : null);
-
+  const paywall = document.getElementById("paywallBlock");
   const premium = document.getElementById("premiumContent");
-  const fullEl = document.getElementById("coreConclusion");
   const previewEl = document.getElementById("coreConclusionPreview");
   const buyAdvice = document.getElementById("buyAdvice");
-  const trigger = document.getElementById("conversionTrigger");
-  const badge = document.getElementById("unlockBadge");
-
-  if (!data) return;
 
   if (previewEl) {
     previewEl.innerText = data.buyAdvicePreview || "";
@@ -1796,45 +1438,36 @@ function applyPaywall(data) {
     if (paywall) paywall.remove();
     if (premium) premium.style.display = "block";
 
-    if (fullEl) {
-      fullEl.innerText = data.conclusion || "";
-      fullEl.style.display = "block";
-    }
-
-    document.querySelectorAll(".paywall-lock").forEach(el => el.remove());
-
-    if (badge) badge.style.display = "block";
-
     if (buyAdvice) {
-      buyAdvice.innerText = data.buyAdvice || data.conclusion || "";
+      buyAdvice.innerText = data.buyAdvice || "";
     }
 
     document.body.classList.add("paid-user");
   } else {
     if (premium) premium.style.display = "none";
-    if (fullEl) fullEl.style.display = "none";
 
     if (buyAdvice) {
       buyAdvice.innerText = data.buyAdvicePreview || "";
     }
-
-    if (trigger) {
-      trigger.innerText = getConversionTrigger(data);
-    }
   }
 }
+
+// ===============================
+// 🎯 GAUGE
+// ===============================
 
 function setGauge(score) {
   const needle = document.getElementById("needle");
   if (!needle) return;
 
   const safeScore = Math.max(0, Math.min(Number(score) || 0, 10));
-  const targetAngle = (safeScore / 10) * 180;
+  const angle = (safeScore / 10) * 180;
 
-  needle.style.transform = `rotate(${targetAngle}deg)`;
+  needle.style.transform = `rotate(${angle}deg)`;
 }
 
 </script>
+
 
 </body>
 </html>
