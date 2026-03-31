@@ -2957,7 +2957,7 @@ function renderReport(data) {
   try {
     if (!data) throw new Error("Geen report data");
 
-    document.getElementById("batterySize").innerText = data.batterySize || "Niet beschikbaar op basis van kenteken";
+   
     const vehicleMeta = document.getElementById("vehicleMeta");
     if (vehicleMeta) {
       vehicleMeta.innerHTML = `
@@ -2966,25 +2966,31 @@ function renderReport(data) {
         <strong>Aandrijving:</strong> ${data.driveType || "Wordt bepaald"}
      `;
    }
-    document.getElementById("mileage").innerText = data.mileageText || "Niet beschikbaar op basis van kenteken";
-    document.getElementById("mileageAssessment").innerText = data.mileageAssessment || "-";
-    document.getElementById("degradation").innerText = data.degradation || "Normaal";
-    document.getElementById("riskLevel").innerText = "Wordt berekend...";
-    document.getElementById("replacementCost").innerText = data.replacementCost || "€8.000 - €15.000";
-    document.getElementById("summaryScore").innerText = data.score || "7.5";
-    document.getElementById("summaryScoreText").innerText = data.scoreText || "Goede keuze";
-    
-    const warningEl = document.getElementById("dynamicWarning");
+   function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerText = value;
+}
 
-  if (warningEl) {
-    if (data.riskClass === "low") {
-      warningEl.innerText = "Dit lijkt een logische keuze. Een accutest bevestigt dit vóór aankoop.";
-    } else if (data.riskClass === "medium") {
-      warningEl.innerText = "De basis oogt goed, maar de werkelijke accustatus is nog niet vastgesteld.";
-    } else {
-      warningEl.innerText = "Bij dit voertuig is aanvullende controle verstandig vóór u beslist.";
-    }
-  }
+setText("batterySize", data.batterySize || "Niet beschikbaar op basis van kenteken");
+setText("mileage", data.mileageText || "Niet beschikbaar op basis van kenteken");
+setText("mileageAssessment", data.mileageAssessment || "-");
+setText("degradation", data.degradation || "Normaal");
+setText("riskLevel", "Wordt berekend...");
+setText("replacementCost", data.replacementCost || "€8.000 - €15.000");
+setText("summaryScore", data.score || "7.5");
+setText("summaryScoreText", data.scoreText || "Goede keuze");
+    
+   let warningText = "";
+
+if (data.riskClass === "low") {
+  warningText = "Dit lijkt een logische keuze. Een accutest bevestigt dit vóór aankoop.";
+} else if (data.riskClass === "medium") {
+  warningText = "De basis oogt goed, maar de werkelijke accustatus is nog niet vastgesteld.";
+} else {
+  warningText = "Bij dit voertuig is aanvullende controle verstandig vóór u beslist.";
+}
+
+setText("dynamicWarning", warningText);
   
     document.getElementById("quickSummary").innerText =
       data.summary || "Op basis van beschikbare data een solide keuze.";
