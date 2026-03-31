@@ -3015,10 +3015,15 @@ setText("dynamicWarning", warningText);
       driveTypeBadge.innerText = "Voertuigtype: " + (data.driveType || "BEV");
     }
 
-    const verdictBadge = document.getElementById("verdictBadge");
-    if (verdictBadge) {
-      verdictBadge.innerText = "Conclusie: " + (data.scoreText || "Analyse gereed");
-    }
+   if (verdictBadge) {
+  verdictBadge.innerText = "Conclusie: " + (
+    data.score >= 8.5
+      ? "Sterke basis"
+      : data.score >= 7
+      ? "Goede basis"
+      : "Verhoogd risico"
+  );
+}
 
     const summaryScoreText = document.getElementById("summaryScoreText");
     if (summaryScoreText) {
