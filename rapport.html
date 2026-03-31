@@ -937,8 +937,8 @@ border-radius:180px 180px 0 0;">
 8.5
 </div>
 
-<div style="font-weight:700;color:#6b7280;">
-Gemiddeld risico
+<div id="scoreLabel" style="font-weight:700;color:#6b7280;">
+Analyse wordt geladen...
 </div>
 
 <div style="margin-top:16px;font-weight:800;color:#b91c1c;">
@@ -2730,26 +2730,27 @@ function calculateRisk({ km, year, type }) {
 }
 
 function interpretRisk(score) {
-  if (score > 75) {
+
+  if (score >= 8.5) {
     return {
-      label: "Laag risico",
+      label: "Sterke basis",
       color: "low",
-      advice: "Goede indicatie, beperkte risico’s."
+      advice: "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
     };
   }
 
-  if (score > 55) {
+  if (score >= 7) {
     return {
-      label: "Gemiddeld risico",
+      label: "Goede basis met aandachtspunt",
       color: "medium",
-      advice: "Extra controle aanbevolen."
+      advice: "De basis oogt goed, maar extra controle is verstandig."
     };
   }
 
   return {
-    label: "Hoog risico",
+    label: "Verhoogd risico",
     color: "high",
-    advice: "Verhoogd risico – accutest sterk aanbevolen"
+    advice: "Accutest sterk aanbevolen vóór aankoop."
   };
 }
 
@@ -2986,6 +2987,7 @@ function renderReport(data) {
 
 setText("batterySize", data.batterySize || "Niet beschikbaar op basis van kenteken");
 setText("mileage", data.mileageText || "Niet beschikbaar op basis van kenteken");
+setText("scoreLabel", data.scoreText || "Analyse gereed");    
 setText("mileageAssessment", data.mileageAssessment || "-");
 setText("degradation", data.degradation || "Normaal");
 setText("riskLevel", "Wordt berekend...");
