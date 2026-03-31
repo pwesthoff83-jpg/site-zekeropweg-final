@@ -40,6 +40,7 @@ p{color:#6b675f;line-height:1.6;}
   padding:14px 24px;
   border-radius:999px;
   border:none;
+  cursor:pointer;
 }
 
 input{
@@ -47,13 +48,7 @@ input{
   padding:16px;
   border-radius:12px;
   border:1px solid #ddd;
-}
-
-.pill{
-  background:#eef2ef;
-  color:#1c2b26;
-  padding:6px 14px;
-  border-radius:999px;
+  margin-top:10px;
 }
 
 .small{
@@ -61,7 +56,7 @@ input{
   color:#8a867d;
 }
 
-  .report-header{
+.report-header{
   border-bottom:1px solid #e5e1d8;
   margin-bottom:30px;
   padding-bottom:20px;
@@ -77,7 +72,6 @@ input{
   padding:24px;
   border-radius:14px;
   border:1px solid #e8e6df;
-  margin-bottom:20px;
 }
 
 .big-score{
@@ -85,13 +79,6 @@ input{
   font-weight:500;
   color:#1c2b26;
 }
-
-.section-divider{
-  margin:30px 0;
-  height:1px;
-  background:#eee;
-}
-  
 </style>
 </head>
 
@@ -99,278 +86,128 @@ input{
 
 <!-- HERO -->
 <section class="container">
-<div class="card">
-<h1>Voorkom een miskoop bij een hybride of EV</h1>
-<p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
+  <div class="card">
+    <h1>Voorkom een miskoop bij een hybride of EV</h1>
+    <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
 
-<input type="text" id="plate" placeholder="Kenteken">
-<input type="text" id="name" placeholder="Jouw naam (optioneel)" style="margin-top:10px">
+    <input type="text" id="plate" placeholder="Kenteken">
+    <input type="text" id="name" placeholder="Jouw naam (optioneel)">
 
-<br><br>
-<button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
+    <br>
+    <button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
 
-<p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
-</div>
+    <p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
+  </div>
 </section>
 
 <!-- PREVIEW -->
-<section class="container" id="preview">
-<div class="card">
-<h2 id="car"></h2>
-<p id="meta"></p>
-</div>
+<section class="container">
+  <div class="card">
+    <h2 id="car"></h2>
+    <p id="meta"></p>
+  </div>
 </section>
 
 <!-- PAYWALL -->
 <section class="container">
-<div class="card">
-<h2>Volledig AccuRisico Rapport</h2>
-<p>Voor wie niet wil gokken bij aankoop</p>
+  <div class="card">
+    <h2>Volledig AccuRisico Rapport</h2>
+    <p>Voor wie niet wil gokken bij aankoop</p>
 
-<h3>€19,95</h3>
-<p class="small">Eenmalig • Direct beschikbaar</p>
-<button class="cta" onclick="startFlow()">
-Bekijk volledig rapport
-</button>
+    <h3>€19,95</h3>
+    <p class="small">Eenmalig • Direct beschikbaar</p>
 
-</div>
+    <button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
+  </div>
 </section>
 
-  <section class="container" id="report" style="display:none">
+<!-- RAPPORT -->
+<section class="container" id="report" style="display:none">
 
-<div class="card report-header">
+  <div class="card report-header">
+    <div class="report-title">AccuRisico Rapport</div>
 
-  <div class="report-title">AccuRisico Rapport</div>
+    <p class="small">
+      <span id="make_model"></span> • 
+      <span id="build_year"></span> • 
+      <span id="powertrain"></span>
+    </p>
 
-  <p class="small">
-    <span id="make_model"></span> • 
-    <span id="build_year"></span> • 
-    <span id="powertrain"></span>
-  </p>
+    <p class="small">
+      Opgesteld voor: <span id="r_name"></span><br>
+      Datum: <span id="r_date"></span> • Kenteken: <span id="r_plate"></span>
+    </p>
+  </div>
 
-  <p class="small">
-    Opgesteld voor: <span id="r_name"></span><br>
-    Datum: <span id="r_date"></span> • Kenteken: <span id="r_plate"></span>
-  </p>
+  <div class="card highlight-box">
+    <div class="big-score" id="buying_profile"></div>
 
-</div>
+    <p>
+      <strong>Accuprofiel:</strong> 
+      <span id="battery_profile"></span>
+    </p>
 
+    <p id="profile_description"></p>
+  </div>
 
-<div class="card highlight-box">
+  <div class="card">
+    <h3>Samenvatting</h3>
+    <p id="summary"></p>
+  </div>
 
-  <div class="big-score" id="buying_profile"></div>
-
-  <p>
-    <strong>Accuprofiel:</strong> 
-    <span id="battery_profile"></span>
-  </p>
-
-  <p id="profile_description"></p>
-
-</div>
+  <div class="card">
+    <h3>Accu</h3>
+    <p>Batterij: <strong><span id="battery_kwh"></span> kWh</strong></p>
+  </div>
 
 </section>
 
-<!-- SAMENVATTING -->
-<div class="card">
-
-<h3>Samenvatting</h3>
-
-<p>
-{{summary}}
-</p>
-
-<p>
-Er zijn geen directe aanwijzingen voor afwijkend accugedrag, maar controle vóór aankoop blijft belangrijk.
-</p>
-
-</div>
-
-
-<div class="section-divider"></div>
-
-
-<!-- ACCU -->
-<div class="card">
-
-<h3>Accu en technisch profiel</h3>
-
-<p>
-Dit model beschikt over een batterij van circa <strong>{{battery_kwh}} kWh</strong>.
-</p>
-
-<p>
-Binnen dit segment valt dit onder een <strong>{{battery_class}}</strong>, wat doorgaans zorgt voor {{battery_behavior}}.
-</p>
-
-<p>
-In de praktijk zien we dat prestaties vooral worden beïnvloed door gebruik, laadgedrag en onderhoud.
-</p>
-
-</div>
-
-
-<!-- MERK -->
-<div class="card">
-
-<h3>Gedrag van dit merk en model</h3>
-
-<p>
-Binnen dit segment staat dit model bekend om {{brand_behavior}}.
-</p>
-
-<p>
-Prestaties blijven doorgaans {{performance_expectation}}, mits normaal gebruikt.
-</p>
-
-</div>
-
-
-<!-- USP -->
-<div class="card highlight-box">
-
-<h3>Wat je niet direct ziet</h3>
-
-<p>
-Het laadverleden van een auto is meestal niet inzichtelijk.
-</p>
-
-<p>
-Factoren zoals snelladen, laadgedrag en gebruik hebben invloed op de batterijconditie — maar zijn vaak niet aantoonbaar via de verkoper.
-</p>
-
-<p>
-Daarom is extra controle in sommige gevallen verstandig.
-</p>
-
-</div>
-
-
-<!-- AANKOOP -->
-<div class="card">
-
-<h3>Waar je op moet letten bij aankoop</h3>
-
-<ul>
-<li>Is de originele laadkabel aanwezig?</li>
-<li>Is de laadpoort in goede staat?</li>
-<li>Is onderhoudshistorie beschikbaar?</li>
-<li>Is er garantie op het accupakket?</li>
-<li>Zijn software-updates uitgevoerd?</li>
-</ul>
-
-</div>
-
-
-<!-- PROEFRIT -->
-<div class="card">
-
-<h3>Wat je tijdens de proefrit kunt controleren</h3>
-
-<ul>
-<li>Geen foutmeldingen bij starten</li>
-<li>Soepel elektrisch rijden</li>
-<li>Logische actieradius</li>
-<li>Geen vermogensverlies</li>
-</ul>
-
-</div>
-
-
-<!-- CONCLUSIE -->
-<div class="card highlight-box">
-
-<h3>Ons advies</h3>
-
-<p>
-Deze auto vormt op basis van de beschikbare gegevens een <strong>{{buying_profile}}</strong>.
-</p>
-
-<p>
-Wil je maximale zekerheid, dan is een aanvullende AccuCheck of aankoopadvies een logische volgende stap.
-</p>
-
-</div>
-
-<!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+<!-- SCRIPT -->
 <script>
 
-// SIMULATIE DATA
 function startFlow(){
 
-let profile_type = "normaal"; // dynamisch maken later
+let plate = document.getElementById("plate").value;
+let name = document.getElementById("name").value || "Onbekend";
 
-let data = {};
+// TEST DATA (later vervangen door API)
+let make = "Tesla";
+let model = "Model 3";
+let year = "2021";
+let powertrain = "EV";
+let battery_kwh = 78;
 
-if(profile_type === "gunstig"){
-  data = {
-    buying:"Goede basis",
-    battery:"Stabiel",
-    summary:"Deze auto heeft een stabiel profiel met voorspelbare prestaties.",
-    battery_text:"Grote batterij met stabiele prestaties.",
-    brand:"Merk staat bekend om betrouwbaarheid."
-  }
-}
+let data = {
+  buying:"Goede basis",
+  battery:"Stabiel",
+  summary:"Deze auto heeft een stabiel accuprofiel met voorspelbare prestaties.",
+  description:"Deze auto laat een stabiel profiel zien op basis van leeftijd en gebruik."
+};
 
-if(profile_type === "normaal"){
-  data = {
-    buying:"Goede basis met aandacht",
-    battery:"Normaal",
-    summary:"Deze auto heeft een normaal profiel. Extra controle is verstandig.",
-    battery_text:"Gemiddelde batterijprestaties afhankelijk van gebruik.",
-    brand:"Gemiddeld accuprofiel binnen segment."
-  }
-}
+// preview
+document.getElementById("car").innerText = make + " " + model;
+document.getElementById("meta").innerText = year + " • " + powertrain;
 
-if(profile_type === "aandacht"){
-  data = {
-    buying:"Extra controle aanbevolen",
-    battery:"Aandachtspunt",
-    summary:"Deze auto vraagt extra aandacht bij aankoop.",
-    battery_text:"Meer variatie in prestaties mogelijk.",
-    brand:"Variatie afhankelijk van gebruik."
-  }
-}
-
-// inject
-document.getElementById("car").innerText = "Voorbeeld auto";
-document.getElementById("meta").innerText = "2021 • EV";
+// rapport
+document.getElementById("make_model").innerText = make + " " + model;
+document.getElementById("build_year").innerText = year;
+document.getElementById("powertrain").innerText = powertrain;
 
 document.getElementById("buying_profile").innerText = data.buying;
 document.getElementById("battery_profile").innerText = data.battery;
 document.getElementById("summary").innerText = data.summary;
-document.getElementById("battery").innerText = data.battery_text;
-document.getElementById("brand").innerText = data.brand;
+document.getElementById("profile_description").innerText = data.description;
 
-}
+document.getElementById("battery_kwh").innerText = battery_kwh;
 
-// unlock + personalisatie
-function unlockReport(){
-document.getElementById('report').style.display='block';
-
-let name = document.getElementById("name").value || "Onbekend";
-let plate = document.getElementById("plate").value;
-let date = new Date().toLocaleDateString();
-
+// personalisatie
 document.getElementById("r_name").innerText = name;
 document.getElementById("r_plate").innerText = plate;
-document.getElementById("r_date").innerText = date;
-}
+document.getElementById("r_date").innerText = new Date().toLocaleDateString();
 
-// PDF
-async function downloadPDF(){
-const { jsPDF } = window.jspdf;
-const element = document.getElementById('report');
+// tonen
+document.getElementById("report").style.display = "block";
 
-const canvas = await html2canvas(element);
-const imgData = canvas.toDataURL('image/png');
-
-const pdf = new jsPDF('p','mm','a4');
-pdf.addImage(imgData,'PNG',0,0,210,290);
-pdf.save('ZekerOpWeg-rapport.pdf');
 }
 
 </script>
