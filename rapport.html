@@ -1254,7 +1254,1020 @@
 // ===============================
 // 🔧 HELPERS
 // ===============================
+const RAW_VEHICLE_DATA = `
+Acura
 
+ZDX - 107,6 kWh
+Alpine
+
+A290 - 52 kWh
+Audi
+
+A3 40 SB TFSIe - 13,0 kWh
+A3 40 TFSIe - 25,7 kWh
+A3 45 SB TFSIe - 13,0 kWh
+A3 45 TFSIe - 25,7 kWh
+A3 SB 40TFSIe - 8,8 kWh
+A3 e-tron - 8,8 kWh
+A6 Avant e-tron AWD - 100 kWh
+A6 Avant e-tron RWD - 100 kWh
+A6 TFSIe - 14,1 kWh
+A6 TFSIe - 17,9 kWh
+A6 e-tron AWD - 100 kWh
+A6 e-tron RWD - 100 kWh
+A8 60 TFSIe - 14,1 kWh
+A8 60 TFSIe - 17,9 kWh
+A8L 60 TFSIe - 14,1 kWh
+A8L 60 TFSIe - 17,9 kWh
+Q3 45 TFSIe - 13,0 kWh
+Q3 SB 45 TFSIe - 13,0 kWh
+Q4 35 e-tron - 52 kWh
+Q4 40 e-tron - 77 kWh
+Q4 45 e-tron - 77 kWh
+Q4 45 e-tron quattro - 77 kWh
+Q4 50 e-tron quattro - 77 kWh
+Q4 55 e-tron quattro - 77 kWh
+Q4 Sportback 35 e-tron - 52 kWh
+Q4 Sportback 40 e-tron - 77 kWh
+Q4 Sportback 45 e-tron - 77 kWh
+Q4 Sportback 45 e-tron quattro - 77 kWh
+Q4 Sportback 50 e-tron quattro - 77 kWh
+Q4 Sportback 55 e-tron quattro - 77 kWh
+Q5 TFSIe - 17,9 kWh
+Q5 e-Tron - 14,1 kWh
+Q6 e-tron RWD - 100 kWh
+Q7 55 TFSI e - 17,3 kWh
+Q7 55 TFSI e Quattro - 17,9 kWh
+Q7 55 TFSI e Quattro - 25,9 kWh
+Q7 60 TFSI e - 17,3 kWh
+Q7 60 TFSI e Quattro - 17,9 kWh
+Q7 60 TFSI e Quattro - 25,9 kWh
+Q7 e-tron - 17,3 kWh
+Q8 50 e-tron - 95 kWh
+Q8 55 TFSI e Quattro - 17,9 kWh
+Q8 55 TFSI e Quattro - 25,9 kWh
+Q8 55 e-tron - 114 kWh
+Q8 60 TFSI e Quattro - 17,9 kWh
+Q8 60 TFSI e Quattro - 25,9 kWh
+Q8 Sportback 50 e-tron - 95 kWh
+Q8 Sportback 55 e-tron - 114 kWh
+RS e-tron GT - 83,7 kWh
+RS e-tron GT - 97 kWh
+RS e-tron GT Performance - 97 kWh
+S e-tron GT - 97 kWh
+S6 Avant e-tron AWD - 100 kWh
+S6 e-tron AWD - 100 kWh
+SQ6 e-tron AWD - 100 kWh
+SQ8 Sportback e-tron - 114 kWh
+SQ8 e-tron - 114 kWh
+e-tron 50 quattro - 71 kWh
+e-tron 55 quattro - 95 kWh
+e-tron GT - 83,7 kWh
+e-tron S quattro - 95 kWh
+e-tron Sportback 50 quattro - 71 kWh
+e-tron Sportback 55 quattro - 95 kWh
+e-tron Sportback S quattro - 95 kWh
+Bestune
+
+NAT - 54 kWh
+Pony - 14 kWh
+BMW
+
+225xe - 10 kWh
+225xe - 16,3 kWh
+225xe - 7,6 kWh
+230xe - 16,3 kWh
+320e - 11,15 kWh
+320e xDrive - 11,15 kWh
+330e - 11,15 kWh
+330e - 7,6 kWh
+330e Touring - 22,3 kWh
+330e xDrive - 11,15 kWh
+330e xDrive - 22,3 kWh
+330e xDrive Touring - 22,3 kWh
+520e - 12 kWh
+530e - 12 kWh
+530e - 22,1 kWh
+530e - 9,2 kWh
+530e Touring - 22,1 kWh
+530e xDrive - 12 kWh
+530e xDrive - 22,1 kWh
+530e xDrive Touring - 22,1 kWh
+545e xDrive - 12 kWh
+550e xDrive - 22,1 kWh
+550e xDrive Touring - 22,1 kWh
+740Le iPerf. - 9,2 kWh
+740Le xDrive - 9,2 kWh
+740e - 9,2 kWh
+745Le - 12 kWh
+745Le xDrive - 12 kWh
+745e - 12 kWh
+750e xDrive - 22,1 kWh
+M5 - 22,1 kWh
+M5 Touring - 22,1 kWh
+M760e xDrive - 22,1 kWh
+X1 xDrive 25e - 10 kWh
+X1 xDrive 25e - 16,3 kWh
+X1 xDrive 30e - 16,3 kWh
+X2 xDrive 25e - 10 kWh
+X3 xDrive 30e - 12 kWh
+X3 xDrive 30e - 22,7 kWh
+X5 40e - 9,2 kWh
+X5 xDrive45e - 24,0 kWh
+X5 xDrive50 - 29,5 kWh
+XM - 29,5 kWh
+XM 50e - 29,5 kWh
+XM Label - 29,5 kWh
+i3 - 120 Ah
+i3 - 120 Ah REX
+i3 - 60 Ah
+i3 - 60 Ah REX
+i3 - 94 Ah
+i3 - 94 Ah REX
+i3s - 120 Ah
+i3s - 94 Ah
+i3s - 94 Ah REX
+i4 M50 Drive - 83,9 kWh
+i4 M50 xDrive - 83,9 kWh
+i4 M60 xDrive - 83,9 kWh
+i4 eDrive35 - 70,3 kWh
+i4 eDrive40 - 83,9 kWh
+i4 xDrive40 - 83,9 kWh
+i5 M60 - 83,9 kWh
+i5 M60 xDrive Touring - 83,9 kWh
+i5 eDrive40 - 83,9 kWh
+i5 eDrive40 Touring - 83,9 kWh
+i5 xDrive40 - 83,9 kWh
+i5 xDrive40 Touring - 83,9 kWh
+i7 M70 - 105 kWh
+i7 eDrive50 - 105 kWh
+i7 xDrive60 - 105 kWh
+i8 - 5,18 kWh
+i8 - 9,4 kWh
+iX M60 - 111,5 kWh
+iX M70 - 111,5 kWh
+iX xDrive 40 - 76,6 kWh
+iX xDrive 45 - 100,6 kWh
+iX xDrive 50 - 111,5 kWh
+iX xDrive 60 - 111,5 kWh
+iX1 eDrive20 - 66,5 kWh
+iX1 xDrive30 - 66,5 kWh
+iX2 eDrive20 - 66,5 kWh
+iX2 eDrive30 - 66,5 kWh
+iX3 - 80 kWh
+BYD
+
+Atto 3 - 49,92 kWh
+Atto 3 - 58,56 kWh
+Atto 3 - 60,48 kWh
+Dolphin - 44,9 kWh
+Dolphin - 58,56 kWh
+Dolphin - 60,48 kWh
+Dolphin Mini / Seagull - 38,88 kWh
+ETP 3 - 44,9 kWh
+Han - 85,4 kWh
+King DM-i - 18,3 kWh
+Seal - 64 kWh
+Seal - 82,56 kWh
+Seal U - 71,8 kWh
+Seal U - 87 kWh
+Seal U DM-i - 18,3 kWh
+Sealion 6 - 18,3 kWh
+Sealion 6 - 8,3 kWh
+Song Plus DM-i - 18,3 kWh
+Song Plus DM-i - 8,3 kWh
+Tang - 108,8 kWh
+Yuan - 45,1 kWh
+Cadillac
+
+Escalade IQ - 215 kWh
+Lyriq - 107,6 kWh
+Optiq - 89 kWh
+Vistiq - 107,6 kWh
+Chevrolet
+
+Equinox EV - 85 kWh
+Silverado EV - 215 kWh
+Citroën
+
+Berlingo Electric - 22 kWh
+C-Zero - 16 kWh
+C5 Airc. 1,6i Hybrid - 13,2 kWh
+C5X 1,6i Hybrid - 12,4 kWh
+e-Berlingo M - 50 kWh
+e-Berlingo XL - 50 kWh
+e-Jumpy Kasten - 50 kWh
+e-Jumpy Kasten - 75 kWh
+e-Jumpy Kombi - 50 kWh
+e-Jumpy Kombi - 75 kWh
+e-Spacetourer - 50 kWh
+e-Spacetourer - 75 kWh
+ë-C3 - 44 kWh
+ë-C4 - 50 kWh
+ë-C4 - 54 kWh
+ë-C4 X - 50 kWh
+ë-C4 X - 54 kWh
+Cupra
+
+Born - 58 kWh
+Born - 60 kWh
+Born - 77 kWh
+Born VZ - 79 kWh
+Born e-boost - 58 kWh
+Formentor e-Hybrid - 13,0 kWh
+Formentor e-Hybrid - 25,8 kWh
+Tavascan Endurance - 77 kWh
+Tavascan VZ - 77 kWh
+Terramar e-Hybrid - 25,7 kWh
+Dacia
+
+Spring Electric - 27,4 kWh
+Spring FL Electric - 27,4 kWh
+DS Automobiles
+
+3 Crossback E-Tense - 50 kWh
+3 Crossback E-Tense - 54 kWh
+4 E-Tense - 12,4 kWh
+7 E-Tense - 14,2 kWh
+7 Hybrid - 13,2 kWh
+Fiat
+
+500e - 23,8 kWh
+500e - 42 kWh
+600e - 54 kWh
+Abarth 500e - 42 kWh
+Scudo BV Pro - 75 kWh
+e-Doblo - 50 kWh
+e-Ulysse - 75 kWh
+e-Ulysse Living XL- 75 kWh
+eScudo BV Business - 50 kWh
+eScudo BV Business - 75 kWh
+eScudo BV Pro - 50 kWh
+eScudo KW Business - 50 kWh
+eScudo KW Business - 75 kWh
+eScudo KW Pro - 50 kWh
+eScudo KW Pro - 75 kWh
+Ford
+
+Capri AWD - 79 kWh
+Capri RWD - 52 kWh
+Capri RWD - 77 kWh
+Explorer 4x4 - 13,6 kWh
+Explorer AWD - 79 kWh
+Explorer RWD - 52 kWh
+Explorer RWD - 77 kWh
+Explorer RWD - 79 kWh
+F-150 Lightning ER - 131 kWh
+F-150 Lightning SR - 98 kWh
+Kuga 2.5 PHEV - 14,4 kWh
+Mustang Mach-E - 70 kWh
+Mustang Mach-E AWD - 70 kWh
+Mustang Mach-E AWD - 72,6 kWh
+Mustang Mach-E AWD - 98,7 kWh
+Mustang Mach-E GT - 98,7 kWh
+Mustang Mach-E RWD - 72,6 kWh
+Mustang Mach-E RWD - 98,7 kWh
+e-Transit - 68 kWh
+Genesis
+
+G80 EV - 87,2 kWh
+GV60 AWD - 77,4 kWh
+GV60 Performance AWD - 77,4 kWh
+GV60 RWD - 77,4 kWh
+GV70 AWD - 77,4 kWh
+GMC
+
+Hummer EV 2X - 179 kWh
+Hummer EV 3X - 179 kWh
+Hummer SUV EV 2X - 179 kWh
+Hummer SUV EV 3X - 179 kWh
+Sierra EV - 215 kWh
+GWM
+
+Haval H6 GT - 35,4 kWh
+Ora 3 - 47,8 kWh
+Ora 3 - 63,1 kWh
+Wey 05 - 39,67 kWh
+Honda
+
+Prologue - 85 kWh
+eNy1 - 68,8 kWh
+Hongqi
+
+E-HS7 - 111 kWh
+Hyundai
+
+Inster - 42 kWh
+Inster - 49 kWh
+Ioniq - 28 kWh
+Ioniq - 38,3 kWh
+Ioniq 5 2WD - 63 kWh
+Ioniq 5 2WD - 84 kWh
+Ioniq 5 4WD - 84 kWh
+Ioniq 5 AWD - 58,2 kWh
+Ioniq 5 AWD - 72,6 kWh
+Ioniq 5 AWD - 77,4 kWh
+Ioniq 5 N AWD - 84 kWh
+Ioniq 5 RWD - 58,2 kWh
+Ioniq 5 RWD - 72,6 kWh
+Ioniq 5 RWD - 77,4 kWh
+Ioniq 6 - 53 kWh
+Ioniq 6 AWD - 77,4 kWh
+Ioniq 6 RWD - 77,4 kWh
+Ioniq 9 AWD - 110,3 kWh
+Ioniq 9 AWD Performance - 110,3 kWh
+Ioniq 9 RWD - 110,3 kWh
+Kona - 39,2 kWh
+Kona - 64 kWh
+Kona EV - 48,4 kWh
+Kona EV - 48,6 kWh
+Kona EV - 64,8 kWh
+Kona EV - 65,4 kWh
+Santa Fe PHEV - 13,8 kWh
+Tucson PHEV - 13,8 kWh
+Jaguar
+
+E-Pace - 15,0 kWh
+I-Pace EV400 - 90,2 kWh
+Jeep
+
+Avenger - 54 kWh
+Compass 4xe - 11,4 kWh
+Renegade 4xe - 11,4 kWh
+Kia
+
+EV3 LR - 81,4 kWh
+EV3 SR - 58,3 kWh
+EV6 AWD - 58 kWh
+EV6 AWD - 77,4 kWh
+EV6 AWD - 84 kWh
+EV6 AWD GT - 77,4 kWh
+EV6 GT AWD - 84 kWh
+EV6 RWD - 58 kWh
+EV6 RWD - 77,4 kWh
+EV6 RWD - 84 kWh
+EV9 AWD - 99,8 kWh
+EV9 RWD - 99,8 kWh
+Niro EV - 64,8 kWh
+Niro PHEV - 11,1 kWh
+Sorento PHEV - 13,8 kWh
+Soul - 27 kWh
+Soul - 30 kWh
+Soul - 39,2 kWh
+Soul - 64 kWh
+Sportage PHEV - 13,8 kWh
+e-Niro - 39,2 kWh
+e-Niro - 64 kWh
+Land Rover
+
+Defender 110 - 19,2 kWh
+Discovery Sport P300e - 15,0 kWh
+Evoque - 15,0 kWh
+Range Rover - 38,2 kWh
+Velar - 17,1 kWh
+Velar - 19,2 kWh
+Lexus
+
+NX 450h+ - 18,1 kWh
+RX 450h+ - 18,1 kWh
+RZ300e - 71,4 kWh
+RZ450e - 71,4 kWh
+UX 300e - 54,3 kWh
+UX 300e - 72,8 kWh
+Lynk & Co
+
+01 1.5 PHEV - 17,72 kWh*
+MAN
+
+eTGE - 35,8 kWh
+Maxus
+
+Maxus eDeliver 9 77 kWh
+T90 - 89 kWh
+eDeliver 3 - 52,5 kWh
+eDeliver 5 - 64 kWh
+eDeliver 7 - 88 kWh AWD
+eDeliver 7 - 88 kWh FWD
+eDeliver 9 - 88 kWh
+Mazda
+
+CX-60 - 17,8 kWh
+CX-80 - 17,8 kWh
+MX-30 - 35,5 kWh
+Mercedes-Benz
+
+A 250e Compact Limousine - 15,6 kWh
+A 250e Limousine - 15,6 kWh
+AMG EQE 43 4MATIC - 90,56 kWh*
+AMG EQE 43 4MATIC SUV - 90,56 kWh*
+AMG EQE 53 4MATIC SUV - 90,56 kWh*
+AMG EQE 53 4MATIC+ - 90,56 kWh*
+AMG EQS 53 4MATIC+ - 107,8 kWh*
+AMG EQS 53 4MATIC+ - 108,4 kWh*
+AMG EQS 53 4MATIC+ - 118 kWh*
+AMG EQS 53 4MATIC+ Dynamic Plus - 108,4 kWh*
+AMG EQS 53 4MATIC+ Dynamic Plus - 118 kWh*
+AMG GLE 53 - 31,2 kWh
+AMG GLE 53 Coupe - 31,2 kWh
+B 250e Sports Tourer - 15,6 kWh
+C 300de - 25,4 kWh*
+C 300de 4MATIC - 25,4 kWh*
+C 300de 4MATIC T - 25,4 kWh*
+C 300de Limousine - 13,5 kWh
+C 300de T - 13,5 kWh
+C 300de T - 25,4 kWh*
+C 300e - 25,4 kWh*
+C 300e 4MATIC - 25,4 kWh*
+C 300e 4MATIC Limousine - 13,5 kWh
+C 300e Limousine - 13,5 kWh
+C 300e T - 13,5 kWh
+C 300e T - 25,4 kWh*
+C 350e Limousine - 6,38 kWh
+C 350e T - 6,38 kWh
+C 400e 4MATIC - 25,4 kWh*
+CLA 250e Coupe EQ Power - 15,6 kWh
+CLA 250e Shooting Brake EQ Power - 15,6 kWh
+CLE 300e EQ Hybrid - 25,4 kWh*
+E 300 de 4MATIC Limousine - 13,5 kWh
+E 300 de 4MATIC T - 13,5 kWh
+E 300 de Limousine - 13,5 kWh
+E 300 de T - 13,5 kWh
+E 300 e 4MATIC Limousine - 13,5 kWh
+E 300 e Limousine - 13,5 kWh
+E 300 e T - 13,5 kWh
+E 300de - 25,4 kWh*
+E 300de 4MATIC - 25,4 kWh*
+E 300de 4MATIC T - 25,4 kWh*
+E 300de T - 25,4 kWh*
+E 300e - 25,4 kWh*
+E 300e 4MATIC - 25,4 kWh*
+E 300e T - 25,4 kWh*
+E 350e - 6,38 kWh
+E 400e 4MATIC - 25,4 kWh*
+EQA 250 - 66,5 kWh
+EQA 250+ - 70,5 kWh
+EQA 300 4MATIC - 66,5 kWh
+EQA 350 4MATIC - 66,5 kWh
+EQA 350 4MATIC - 70,5 kWh
+EQB 250 - 66,5 kWh
+EQB 250+ - 70,5 kWh
+EQB 300 4MATIC - 66,5 kWh
+EQB 300 4MATIC - 70,5 kWh
+EQB 350 - 70,5 kWh
+EQB 350 4MATIC - 66,5 kWh
+EQC 400 - 85 kWh
+EQE 280 - 90,56 kWh*
+EQE 300 - 89 kWh*
+EQE 300 - 90,56 kWh*
+EQE 300 SUV - 90,56 kWh*
+EQE 350 - 89 kWh*
+EQE 350 - 90,56 kWh*
+EQE 350 4MATIC - 89 kWh*
+EQE 350 4MATIC - 90,56 kWh*
+EQE 350 4MATIC SUV - 89 kWh*
+EQE 350 4MATIC SUV - 90,56 kWh*
+EQE 350+ - 90,56 kWh*
+EQE 350+ - 96 kWh*
+EQE 350+ SUV - 90,56 kWh*
+EQE 350+ SUV - 96 kWh*
+EQE 500 4MATIC - 90,56 kWh*
+EQE 500 4MATIC SUV*
+EQE 500 4MATIC SUV - 96 kWh*
+EQS 350 - 90,56 kWh*
+EQS 450 4MATIC - 108,4 kWh*
+EQS 450 4MATIC - 118 kWh*
+EQS 450 4MATIC SUV - 108,4 kWh*
+EQS 450 4MATIC SUV - 118 kWh*
+EQS 450+ - 107,8 kWh*
+EQS 450+ - 108,4 kWh*
+EQS 450+ - 118 kWh*
+EQS 450+ SUV - 108,4 kWh*
+EQS 450+ SUV - 118 kWh*
+EQS 500 4MATIC - 108,4 kWh*
+EQS 500 4MATIC - 118 kWh*
+EQS 500 4MATIC SUV - 108,4 kWh*
+EQS 500 4MATIC SUV - 118 kWh*
+EQS 580 4MATIC - 107,8 kWh*
+EQS 580 4MATIC - 108,4 kWh*
+EQS 580 4MATIC - 118 kWh*
+EQS 580 4MATIC SUV - 108,4 kWh*
+EQS 580 4MATIC SUV - 118 kWh*
+EQT - 45 kWh
+EQV 250 - 60 kWh
+EQV 300 - 100 kWh
+GLA 250e - 15,6 kWh
+GLC 300de 4MATIC - 13,5 kWh
+GLC 300de 4MATIC - 24,82 kWh*
+GLC 300de 4MATIC Coupe - 13,5 kWh
+GLC 300de 4MATIC Coupé - 24,82 kWh*
+GLC 300e 4MATIC - 13,5 kWh
+GLC 300e 4MATIC - 24,82 kWh*
+GLC 300e 4MATIC Coupé - 24,82 kWh*
+GLC 350e 4MATIC - 24,82 kWh*
+GLC 350e 4MATIC - 8,7 kWh
+GLC 400e 4MATIC - 24,82 kWh*
+GLC 400e 4MATIC Coupé - 24,82 kWh*
+GLE 350de 4MATIC - 31,2 kWh
+GLE 350de 4MATIC Coupe - 31,2 kWh
+GLE 350e 4MATIC - 31,2 kWh
+GLE 350e 4MATIC Coupe - 31,2 kWh
+GLE 400e 4MATIC - 31,2 kWh
+GLE 400e 4MATIC Coupe - 31,2 kWh
+GLE 450e 4MATIC - 31,5 kWh
+GLE 500e - 8,7 kWh
+GLE 53 HYBRID 4MATIC+ - 31,2 kWh
+GLE 550e - 8,7 kWh
+Maybach EQS 680 4MATIC+ SUV - 118 kWh*
+S 560e - 13,5 kWh
+S 580e - 28,6 kWh*
+S 580e 4MATIC - 28,6 kWh*
+eCitan - 45 kWh
+eCitan Tourer - 45 kWh
+eSprinter - 55 kWh
+eVito 112 extra long - 66 kWh
+eVito 112 long - 66 kWh
+eVito 126 Tourer pro extralong - 66 kWh
+eVito 126 Tourer pro long - 66 kWh
+eVito 129 Tourer pro extra long - 100 kWh
+eVito 129 Tourer pro long - 100 kWh
+eVito Tourer - 41 kwh
+eVito extra long - 41 kWh
+eVito long - 41 kWh
+MG Automotive
+
+Cyberster - 77,0 kWh
+EHS - 16,6 kWh
+MG4 Electric - 51,0 kWh
+MG4 Electric - 64,0 kWh
+MG4 Electric - 77,0 kWh
+MG5 Electric LR - 61,1 kWh
+MG5 Electric SR - 50,3 kWh
+Marvel R - 69,9 kWh
+Marvel R Performance - 69,9 kWh
+ZS EV - 44,5 kWh
+ZS EV - 51,1 kWh
+ZS EV - 72,6 kWh
+Mini
+
+Aceman E - 42,5 kWh
+Aceman SE - 54,2 kWh
+Cooper E - 40,7 kWh
+Cooper SE - 32,6 kWh
+Cooper SE - 54,2 kWh
+Countryman - 10 kWh
+Countryman - 7,6 kWh
+Countryman E - 66,5 kWh
+Countryman SE - 66,5 kWh
+Mitsubishi
+
+Outlander PHEV - 12,0 kWh
+Outlander PHEV - 13,8 kWh
+Nissan
+
+Ariya - 63 kWh
+Ariya - 87 kWh
+Ariya AWD - 87 kWh
+Leaf ZE0 - 24 kWh
+Leaf ZE0 - 30 kWh
+Leaf ZE1 - 40 kWh
+Leaf ZE1 - 62 kWh
+Sakura - 20 kWh
+Townstar - 45 kWh
+e-NV200 - 24 kWh
+e-NV200 - 40 kWh
+e-NV200 Evalia - 24 kWh
+e-NV200 Evalia - 40 kWh
+e-NV200 Japan
+e-NV200 Japan - 40 kWh
+Omoda
+
+E5 - 58,9 kWh
+E5 - 61 kWh
+Opel
+
+Astra - 12,4 kWh
+Astra Electric - 54 kWh
+Astra Electric Sports Tourer - 54 kWh
+Astra Sports Tourer - 12,4 kWh
+Combo-e Cargo - 50 kWh
+Combo-e Life - 50 kWh
+Corsa Electric - 50 kWh
+Corsa Electric - 54 kWh
+Corsa-e - 50 kWh
+Frontera - 44 kWh
+Grandland - 13,2 kWh
+Mokka-e - 50 kWh
+Vivaro-e Cargo - 50 kWh
+Vivaro-e Cargo - 75 kWh
+Vivaro-e Kombi - 50 kWh
+Vivaro-e Kombi - 75 kWh
+Peugeot
+
+3008 1.6i Hybride 2 - 13,2 kWh
+3008 1.6i Hybride 4 - 13,2 kWh
+308 - 12,4 kWh
+308 Limousine - 12,4 kWh
+408 Limosiene - 12,4 kWh
+508 Hybrid - 11,5 kWh
+508 Hybrid SW - 11,5 kWh
+508 Hybrid4 - 11,5 kWh
+508 Hybrid4 SW - 11,5 kWh
+Partner Electric - 22 kWh
+e-2008 - 50 kWh
+e-2008 - 54 kWh
+e-2008 GT - 54 kWh
+e-208 - 50 kWh
+e-208 - 54 kWh
+e-3008 - 77 kWh
+e-308 - 54 kWh
+e-308 Limousine - 54 kWh
+e-Expert Doppelkabine L2 - 50 kWh
+e-Expert Doppelkabine L2 - 75 kWh
+e-Expert Doppelkabine L3 - 50 kWh
+e-Expert Doppelkabine L3 - 75 kWh
+e-Expert Kastenwagen L1 - 50 kWh
+e-Expert Kastenwagen L2 - 50 kWh
+e-Expert Kastenwagen L2 - 75 kWh
+e-Expert Kastenwagen L3 - 50 kWh
+e-Expert Kastenwagen L3 - 75 kWh
+e-Partner - 50 kWh
+e-Rifter - 50 kWh
+e-Traveller - 50 kWh
+e-Traveller - 75 kWh
+iOn - 14,5 kWh
+iOn - 16 kWh
+Polestar
+
+2 Long Range Dual Motor - 78 kWh
+2 Long Range Dual Motor - 82 kWh
+2 Long Range Dual Motor Performance - 78 kWh
+2 Long Range Dual Motor Performance - 82 kWh
+2 Long Range Single Motor - 78 kWh
+2 Long Range Single Motor - 82 kWh
+2 Standard Range - 64 kWh
+2 Standard Range - 69 kWh
+2 Standard Range - 70 kWh
+4 Long Range Dual Motor - 100 kWh*
+4 Long Range Single Motor - 100 kWh*
+Porsche
+
+Cayenne Turbo S e-Hybrid - 14,1 kWh
+Cayenne e-Hybrid - 14,1 kWh
+Cayenne e-Hybrid - 17,9 kWh
+Cayenne e-Hybrid - 25,9 kWh
+Macan - 100 kWh
+Macan 4 - 100 kWh
+Macan 4S - 100 kWh
+Macan Turbo - 100 kWh
+Panamera 4 Hybrid - 17,9 kWh
+Panamera 4 Hybrid Sport Turismo - 17,9 kWh
+Panamera 4 e-Hybrid - 14,1 kWh
+Panamera 4 e-Hybrid Executive - 14,1 kWh
+Panamera 4 e-Hybrid Sport Turismo - 14,1 kWh
+Panamera 4S Hybrid - 17,9 kWh
+Panamera 4S Hybrid Sport Turismo - 17,9 kWh
+Panamera Turbo S Hybrid - 17,9 kWh
+Panamera Turbo S Hybrid Sport Turismo - 17,9 kWh
+Panamera Turbo S e-Hybrid - 14,1 kWh
+Panamera Turbo S e-Hybrid Executive - 14,1 kWh
+Panamera Turbo S e-Hybrid Sport Turismo - 14,1 kWh
+Taycan - 71 kWh
+Taycan - 83,7 kWh
+Taycan - 97 kWh
+Taycan 4 Cross Turismo - 83,7 kWh
+Taycan 4 Cross Turismo - 97 kWh
+Taycan 4S - 71 kWh
+Taycan 4S - 83,7 kWh
+Taycan 4S - 97 kWh
+Taycan 4S Cross Turismo - 83,7 kWh
+Taycan 4S Cross Turismo - 97 kWh
+Taycan 4S Sport Turismo - 71 kWh
+Taycan 4S Sport Turismo - 83,7 kWh
+Taycan 4S Sport Turismo - 97 kWh
+Taycan GTS - 83,7 kWh
+Taycan GTS Sport Turismo - 83,7 kWh
+Taycan Sport Turismo - 71 kWh
+Taycan Sport Turismo - 83,7 kWh
+Taycan Sport Turismo - 97 kWh
+Taycan Turbo - 83,7 kWh
+Taycan Turbo - 97 kWh
+Taycan Turbo Cross Turismo - 83,7 kWh
+Taycan Turbo Cross Turismo - 97 kWh
+Taycan Turbo GT - 97 kWh
+Taycan Turbo S - 83,7 kWh
+Taycan Turbo S - 97 kWh
+Taycan Turbo S Cross Turismo - 83,7 kWh
+Taycan Turbo S Cross Turismo - 97 kWh
+Taycan Turbo S Sport Turismo - 83,7 kWh
+Taycan Turbo S Sport Turismo - 97 kWh
+Taycan Turbo Sport Turismo - 83,7 kWh
+Taycan Turbo Sport Turismo - 97 kWh
+Renault
+
+5 E-Tech - 40 kWh
+5 E-Tech - 52 kWh
+Capture E-Tech - 9,8 kWh
+Kangoo E-Tech - 45 kWh
+Kangoo Maxi Z.E. - 33 kWh
+Kangoo Z.E. - 22 kWh
+Kangoo Z.E. - 33 kWh
+Master Z.E. - 33 kWh
+Megane E-Tech - 40 kWh*
+Megane E-Tech - 60 kWh*
+Megane E-Tech - 9,8 kWh
+Rafale E-Tech - 22 kWh
+Scenic E-Tech - 60 kWh
+Scenic E-Tech - 87 kWh
+Trafic E-Tech - 52 kWh
+Twingo Electric ZE - 21,4 kWh
+Zoe Q90 - 40 kWh
+Zoe R110 - 41 kWh
+Zoe R110 Z.E. 40 - 41 kWh
+Zoe R110 Z.E. 50 - 52 kWh
+Zoe R135 Z.E. 50 - 52 kWh
+Zoe R210/Q210 - 22 kWh
+Zoe R240 - 23,3 kWh
+Zoe R75 - 23,3 kWh
+Zoe R75 - 40 kWh
+Zoe R90 - 23,3 kWh
+Zoe R90 - 40 kWh
+Seat
+
+Leon e-Hybrid - 13,0 kWh
+Mii electric - 36,8 kWh
+Tarraco e-Hybrid - 13,0 kWh
+Skoda
+
+Citigo-e IV - 36,8 kWh
+Elroq 50 - 52 kWh
+Elroq 85 - 77 kWh
+Elroq 85x - 77 kWh
+Enyaq 85 - 77 kWh
+Enyaq 85 Coupe - 77 kWh
+Enyaq 85x - 77 kWh
+Enyaq 85x Coupe - 77 kWh
+Enyaq iV 50 - 52 kWh
+Enyaq iV 50 Coupe - 52 kWh
+Enyaq iV 60 - 58 kWh
+Enyaq iV 60 Coupe - 58 kWh
+Enyaq iV 80 - 77 kWh
+Enyaq iV 80 Coupe - 77 kWh
+Enyaq iV 80x - 77 kWh
+Enyaq iV 85 - 77 kWh
+Enyaq iV 85 Coupe - 77 kWh
+Enyaq iV 85x - 77 kWh
+Enyaq iV 85x Coupe - 77 kWh
+Enyaq iV RS - 77 kWh
+Kodiaq iV - 25,7 kWh
+Octavia iV - 13,0 kWh
+Superb iV - 13 kWh
+Superb iV - 25,7 kWh
+Smart
+
+#1 AWD - 66 kWh*
+#1 RWD - 49 kWh*
+#1 RWD - 66 kWh*
+#3 AWD - 66 kWh*
+#3 RWD - 49 kWh*
+#3 RWD - 66 kWh*
+EQ forfour - 17,7 kWh
+EQ fortwo cabrio - 17,7 kWh
+EQ fortwo coupé - 17,7 kWh
+forfour ed - 17,7 kWh
+fortwo cabrio Brabus ed - 17,6 kWh
+fortwo cabrio ed - 17,6 kWh
+fortwo cabrio ed - 17,7 kWh
+fortwo coupé Brabus ed - 17,6 kWh
+fortwo coupé ed - 17,6 kWh
+fortwo coupé ed - 17,7 kWh
+Subaru
+
+Solterra - 71,4 kWh
+Suzuki
+
+Across 2.5 PHEV - 18,1 kWh
+Tesla
+
+Model 3 - 60,5 kWh
+Model 3 Highland - 60,5 kWh
+Model 3 Long Range - 74,5 kWh
+Model 3 Long Range - 78,8 kWh
+Model 3 Long Range - 82 kWh
+Model 3 Long Range AWD - 78 kWh
+Model 3 Long Range AWD Highland - 78,8 kWh
+Model 3 Long Range Highland - 78,8 kWh
+Model 3 Long Range RWD - 78 kWh
+Model 3 Performance - 78 kWh
+Model 3 Performance - 78,8 kWh
+Model 3 Performance - 82 kWh
+Model 3 Performance Highland - 78,8 kWh
+Model 3 SR+ - 54,1 kWh
+Model 3 SR+ - 55 kWh
+Model 3 Standard Range plus - 52 kWh
+Model S - 100D
+Model S - 60
+Model S - 60D
+Model S - 70
+Model S - 70D
+Model S - 75
+Model S - 75D
+Model S - 85
+Model S - 85D
+Model S - 90
+Model S - 90D
+Model S - Long Range
+Model S - Long Range Plus
+Model S - P100D
+Model S - P60
+Model S - P70
+Model S - P75
+Model S - P85
+Model S - P85D
+Model S - P90D
+Model S - Performance
+Model S - Standard Range
+Model X - 100D
+Model X - 60D
+Model X - 70D
+Model X - 75D
+Model X - 90D
+Model X - Long Range
+Model X - Long Range Plus
+Model X - P100D
+Model X - P90D
+Model X - Performance
+Model X - Standard Range
+Model Y Long Range - 74,5 kWh
+Model Y Long Range - 78,8 kWh
+Model Y Long Range - 82 kWh
+Model Y Long Range AWD - 78 kWh
+Model Y Long Range AWD Juniper - 78,8 kWh
+Model Y Long Range Juniper - 78,8 kWh
+Model Y Long Range RWD - 78 kWh
+Model Y Performance - 74,5 kWh
+Model Y Performance - 78 kWh
+Model Y Performance - 78,8 kWh
+Model Y Performance - 82 kWh
+Model Y Performance Juniper - 78,8 kWh
+Model Y SR+ - 55 kWh
+Model Y Standard Range - 60,5 kWh
+Model Y Standard Range - 60,7 kWh
+Model Y Standard Range Juniper - 60,5 kWh
+Toyota
+
+C-HR - 13,6 kWh
+Prius - 13,6 kWh
+Proace City - 50 kWh
+Proace City Verso - 50 kWh
+Proace Electric - 50 kWh
+Proace Electric - 75 kWh
+Proace Verso Electric - 50 kWh
+Proace Verso Kombi - 75 kWh
+Rav4 2.5 PHEV - 18,1 kWh
+bZ4X - 71,4 kWh
+bZ4X AWD - 71,4 kWh
+Volkswagen
+
+Arteon eHybrid - 13 kWh
+Caddy e-Hybrid - 25,7 kWh
+Golf 7 GTE - 8,7 kWh
+Golf 8 1.4 GTE - 13 kWh
+Golf 8 eHybrid - 13 kWh
+Golf GTE - 25,7 kWh
+Golf e-Hybrid - 25,7 kWh
+ID.3 GTX - 79 kWh
+ID.3 GTX Performance - 79 kWh
+ID.3 Pro - 58 kWh
+ID.3 Pro - 59 kWh
+ID.3 Pro Performance - 58 kWh
+ID.3 Pro S - 77 kWh
+ID.3 Pure - 45 kWh
+ID.3 Pure - 52 kWh
+ID.3 Pure Performance - 45 kWh
+ID.4 AWD - 77 kWh
+ID.4 GTX - 77 kWh
+ID.4 Pro - 77 kWh
+ID.4 Pro 4M - 77 kWh
+ID.4 Pro Performance - 77 kWh
+ID.4 Pro S - 77 kWh
+ID.4 Pure - 52 kWh
+ID.4 Pure Performance - 52 kWh
+ID.4 RWD - 77 kWh
+ID.5 GTX - 77 kWh
+ID.5 GTX 4M - 77 kWh
+ID.5 GTX 4M - 79 kWh
+ID.5 Pro - 77 kWh
+ID.5 Pro Performance - 77 kWh
+ID.5 Pure - 52 kWh
+ID.7 GTX 4Motion - 86 kWh
+ID.7 GTX 4Motion Tourer - 86 kWh
+ID.7 Pro - 77 kWh
+ID.7 Pro S - 86 kWh
+ID.7 Pro S Tourer - 86 kWh
+ID.7 Pro Tourer - 77 kWh
+ID.BUZZ - 77 kWh
+ID.BUZZ AWD - 86 kWh
+ID.BUZZ Cargo - 77 kWh
+ID.BUZZ Cargo Pro - 79 kWh
+ID.BUZZ Cargo Pro 4M - 79 kWh
+ID.BUZZ GTX - 79 kWh
+ID.BUZZ GTX - 86 kWh
+ID.BUZZ Pro - 79 kWh
+ID.BUZZ Pro - 86 kWh
+ID.BUZZ RWD - 86 kWh
+Multivan e-Hybrid - 13 kWh
+Multivan e-Hybrid - 25,7 kWh
+Passat GTE - 13 kWh
+Passat GTE - 13 kWh battery upgrade
+Passat GTE - 9,9 kWh
+Passat e-Hybrid - 25,7 kWh
+Tayron e-Hybrid - 25,7 kWh
+Tiguan e-Hybrid - 25,7 kWh
+Tiguan eHybrid - 13,0 kWh
+Touareg e-Hybrid - 17,9 kWh
+e-Crafter 35 - 35,8 kWh
+e-Golf - 24,2 kWh
+e-Golf - 35,8 kWh
+e-Up - 18,7 kWh
+e-Up - 36,8 kWh
+Volvo
+
+C40 Recharge - 69 kWh
+C40 Recharge AWD - 78 kWh
+C40 Recharge AWD - 82 kWh
+C40 Recharge RWD - 82 kWh
+EC40 Recharge - 69 kWh
+EC40 Recharge AWD - 82 kWh
+EC40 Recharge RWD - 82 kWh
+EC40 Recharge RWD Performance - 82 kWh
+ES 90 LRSM - 92 kWh*
+EX 30 AWD - 69 kWh*
+EX 30 Cross Country AWD - 69 kWh*
+EX 30 RWD - 51 kWh*
+EX 30 RWD - 69 kWh*
+EX40 Recharge - 69 kWh
+EX40 Recharge - 70 kWh
+EX40 Recharge AWD - 82 kWh
+EX40 Recharge AWD Performance - 82 kWh
+EX40 Recharge RWD - 82 kWh
+S60 Recharge T6 - 18,8 kWh
+S60 Recharge T8 - 18,8 kWh
+S60 T6 TE - 11,6 kWh
+S60 T8 TE - 11,6 kWh
+S60 T8 Twin Engine PSE - 11,6 kWh
+S90 Excellence 10,4 kWh
+S90 Recharge T8 - 18,8 kWh
+S90 T8 Twin Engine 11,6 kWh
+S90 Twin Engine 10,4 kWh
+V60 Recharge T6 - 18,8 kWh
+V60 Recharge T8 - 18,8 kWh
+V60 T6 Twin Engine - 10,4 kWh
+V60 T6 Twin Engine - 11,6 kWh
+V60 T8 Twin Engine - 10,4 kWh
+V60 T8 Twin Engine - 11,6 kWh
+V60 T8 Twin Engine PSE - 11,6 kWh
+V90 Recharge T6 - 18,8 kWh
+V90 Recharge T8 - 18,8 kWh
+V90 T6 Twin Engine - 11,6 kWh
+V90 T8 Twin Engine - 11,6 kWh
+V90 Twin Engine - 10,4 kWh
+V90 Twin Engine - 9,2 kWh
+XC40 Recharge - 69 kWh
+XC40 Recharge AWD - 78 kWh
+XC40 Recharge AWD - 82 kWh
+XC40 Recharge RWD - 82 kWh
+XC40 Recharge T4 - 10,7 kWh
+XC40 Recharge T5 - 10,7 kWh
+XC60 Recharge T6 - 18,8 kWh
+XC60 Recharge T8 - 18,8 kWh
+XC60 T6 Twin Engine - 11,6 kWh
+XC60 T8 Twin Engine - 11,6 kWh
+XC60 T8 Twin Engine PSE - 11,6 kWh
+XC60 Twin Engine - 10,4 kWh
+XC90 Excellence - 10,4 kWh
+XC90 Excellence - 11,6 kWh
+XC90 Excellence - 9,2 kWh
+XC90 Recharge T8 - 18,8 kWh
+XC90 T8 Twin Engine - 11,6 kWh
+XC90 Twin Engine - 10,4 kWh
+XC90 Twin Engine - 9,2 kWh
+Xpeng
+
+G6 - 66 kWh
+G6 RWD LR - 87,5 kWh
+G6 RWD Performance - 87,5 kWh
+G9 AWD Performance - 98 kWh
+G9 RWD LR - 98 kWh
+G9 SR - 78,2 kWh
+P7 AWD Performance - 86,2 kWh
+P7 RWD LR - 86,2 kWh
+Zeekr
+
+X AWD - 69 kWh*
+X RWD - 69 kWh*
+
+`;
+  
 function setText(id, value) {
   const el = document.getElementById(id);
   if (el) el.innerText = value;
