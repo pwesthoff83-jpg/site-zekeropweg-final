@@ -2818,9 +2818,22 @@ function getConversionTrigger(data) {
 
   if (!data) return "";
 
+  // 🔥 PREMIUM NIEUWE AUTO OVERRIDE
+const premiumBrands = ["PORSCHE","TESLA","BMW","MERCEDES","AUDI"];
+
+if (
+  premiumBrands.includes((merk || "").toUpperCase()) &&
+  bouwjaar >= 2022
+) {
+  report.riskClass = "low";
+  report.score = Math.max(report.score || 8.5, 8.5);
+  report.scoreText = "Laag risico";
+}
+
   // 🟢 LAAG RISICO → CONFIRMATION SELL
   if (data.riskClass === "low") {
     return "U staat op het punt een goede aankoop te doen. Slimme kopers bevestigen dit vóórdat ze beslissen.";
+    report.buyAdvicePreview = "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus.";
   }
 
   // 🟡 MIDDEL RISICO → TWIJFEL TRIGGER
