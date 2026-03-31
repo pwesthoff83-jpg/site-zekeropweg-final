@@ -827,7 +827,7 @@
 
                 <div class="metric-card">
                   <div class="metric-label">Degradatie (indicatie)</div>
-                  <div id="degradation" class="metric-value">10% – 20%</div>
+                  <div id="degradationMetric" class="metric-value">10% – 20%</div>
                 </div>
 
                 <div class="metric-card">
@@ -1251,7 +1251,8 @@
 
 </div>
 
-  // ===============================
+<script>
+// ===============================
 // 🔥 COMPLETE STABIELE RENDER ENGINE
 // ===============================
 
@@ -1283,6 +1284,7 @@ function renderReport(data) {
     setText("batterySize", data.batterySize || "Niet beschikbaar");
     setText("mileage", data.mileageText || "Niet beschikbaar");
     setText("mileageAssessment", data.mileageAssessment || "-");
+    setText("degradationMetric", data.degradation || "Normaal");
     setText("degradation", data.degradation || "Normaal");
     setText("replacementCost", data.replacementCost || "€8.000 - €15.000");
     setText("summaryScore", data.score || "7.5");
