@@ -2267,6 +2267,79 @@ X AWD - 69 kWh*
 X RWD - 69 kWh*
 
 `;
+
+// ===============================
+// 🔋 DATABASE BUILDER
+// ===============================
+
+function buildVehicleDatabase(raw) {
+
+  const db = {};
+  let currentBrand = "";
+
+  const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
+
+  lines.forEach(line => {
+
+    // merk detectie (geen "-")
+    if (!line.includes("-")) {
+      currentBrand = line;
+      return;
+    }
+
+    const parts = line.split("-");
+    if (parts.length < 2) return;
+
+    const model = parts[0].trim();
+    let battery = parts[1].trim();
+
+    battery = battery
+      .replace("*", "")
+      .replace(",", ".")
+      .replace("kwh", "kWh")
+      .replace("KWH", "kWh");
+
+    let type = "BEV";
+
+    const num = parseFloat(battery);
+
+    if (!isNaN(num) && num < 30) {
+      type = "PHEV";
+    }
+
+    const key = `${currentBrand} ${model}`;
+
+    db[key] = {
+      battery,
+      type
+    };
+
+  });
+
+  return db;
+}
+
+// 👉 database maken
+const VEHICLE_DB = buildVehicleDatabase(RAW_VEHICLE_DATA);
+
+// ===============================
+// 🔍 VEHICLE DETECTIE
+// ===============================
+
+function detectVehicleData(vehicleName) {
+
+  if (!vehicleName) return null;
+
+  const normalized = vehicleName.toLowerCase();
+
+  for (const key in VEHICLE_DB) {
+    if (normalized.includes(key.toLowerCase())) {
+      return VEHICLE_DB[key];
+    }
+  }
+
+  return null;
+}  
   
 function setText(id, value) {
   const el = document.getElementById(id);
@@ -2300,6 +2373,16 @@ function renderReport(data) {
     // ===============================
     // 🔹 BASIS DATA
     // ===============================
+    // ===============================
+// 🔋 AUTO DATABASE KOPPELING
+// ===============================
+
+const detected = detectVehicleData(data.vehicleName);
+
+if (detected) {
+  data.batterySize = detected.battery;
+  data.driveType = detected.type;
+}
     setText("batterySize", data.batterySize || "Niet beschikbaar");
     setText("mileage", data.mileageText || "Niet beschikbaar");
     setText("mileageAssessment", data.mileageAssessment || "-");
