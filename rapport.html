@@ -1,1 +1,784 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZekerOpWeg – AccuRisico Rapport</title>
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --surface: #ffffff;
+      --surface-alt: #f1efe9;
+      --text: #1f1f1c;
+      --muted: #6f6b62;
+      --line: #ddd7cc;
+      --brand: #1e2f2a;
+      --brand-soft: #304640;
+      --accent: #8b7355;
+      --success: #516b5c;
+      --warning: #8a6a3c;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow: 0 10px 30px rgba(24, 24, 20, 0.06);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    h1 { font-size: clamp(34px, 5vw, 56px); }
+    h2 { font-size: clamp(26px, 4vw, 40px); }
+    h3 { font-size: 20px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid,
+    .split-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .card.alt {
+      background: var(--surface-alt);
+      box-shadow: none;
+    }
+
+    .lead {
+      font-size: 18px;
+      max-width: 760px;
+    }
+
+    .trust-row,
+    .chip-row,
+    .meta-grid,
+    .report-grid,
+    .check-grid,
+    .integration-grid,
+    .flow-grid,
+    .upsell-grid,
+    .footer-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .trust-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+
+    .chip-row {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 18px;
+    }
+
+    .chip,
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .pill.good {
+      background: rgba(81,107,92,0.08);
+      border-color: rgba(81,107,92,0.25);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .pill.warn {
+      background: rgba(138,106,60,0.08);
+      border-color: rgba(138,106,60,0.25);
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    .cta,
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .cta {
+      background: var(--brand);
+      color: #fff;
+      border: 1px solid var(--brand);
+    }
+
+    .cta:hover { background: var(--brand-soft); }
+
+    .secondary-btn {
+      background: transparent;
+      color: var(--brand);
+      border: 1px solid var(--line);
+    }
+
+    .form-card {
+      position: sticky;
+      top: 24px;
+    }
+
+    .input-wrap {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0 14px;
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 0 16px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .meta-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+
+    .meta-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: #fff;
+    }
+
+    .meta-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .report-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+
+    .report-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    ul.clean li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    ul.clean li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 9px;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      margin: 18px 0 12px;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .price-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .flow-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 22px;
+    }
+
+    .flow-step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--surface-alt);
+      color: var(--brand);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .check-grid,
+    .integration-grid,
+    .upsell-grid,
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 14px 0 14px 18px;
+      margin-top: 14px;
+    }
+
+    .muted-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .status-table th,
+    .status-table td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .status-table th {
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .status-table tr:last-child td { border-bottom: 0; }
+
+    footer {
+      padding: 48px 0 70px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .split-grid,
+      .flow-grid,
+      .report-grid,
+      .check-grid,
+      .integration-grid,
+      .upsell-grid,
+      .footer-grid,
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        position: static;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">ZekerOpWeg · Premium instapproduct</div>
+          <h1>AccuRisico Rapport voor gebruikte hybride en EV’s</h1>
+          <p class="lead">
+            Een rustige, deskundige en conversiegerichte opzet voor een laagdrempelig instapproduct.
+            De gebruiker voert een kenteken in, ziet direct een eerste analyse en ontgrendelt na betaling
+            het volledige rapport met aankoopinzichten, proefrittips en logische vervolgstappen.
+          </p>
+
+          <div class="trust-row">
+            <div class="card alt">
+              <h3>Doel</h3>
+              <p>Minder onzekerheid bij aankoop en een natuurlijke brug naar AccuCheck of Aankoopadvies.</p>
+            </div>
+            <div class="card alt">
+              <h3>Tone of voice</h3>
+              <p>Warm premium, adviserend, onafhankelijk en nooit onnodig negatief.</p>
+            </div>
+            <div class="card alt">
+              <h3>Belangrijk</h3>
+              <p>Geen chaos, geen scorepaniek, wel duidelijke stappen en geloofwaardige context.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card form-card">
+          <div class="eyebrow">Scherm 1 · Kentekeninvoer</div>
+          <h3>Ontdek in 1 minuut het accuprofiel van jouw toekomstige hybride of EV</h3>
+          <p>Voer het kenteken in en ontvang direct een eerste deskundige beoordeling, inclusief belangrijke aandachtspunten vóór aankoop.</p>
+
+          <div class="input-wrap">
+            <label for="plate">Kenteken</label>
+            <input id="plate" name="plate" type="text" placeholder="Voer kenteken in" aria-label="Voer kenteken in" />
+            <a href="#preview" class="cta">Bekijk eerste analyse</a>
+          </div>
+
+          <div class="chip-row">
+            <span class="chip">Onafhankelijk</span>
+            <span class="chip">Geen verkooppraat</span>
+            <span class="chip">Gericht op zekerheid</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Flow-overzicht</div>
+        <h2>De aanbevolen gebruikersflow</h2>
+        <p>Deze flow is bewust eenvoudig gehouden. Eerst vertrouwen, daarna inzicht, daarna betaling, daarna het volledige rapport en pas dan de upsell.</p>
+
+        <div class="flow-grid">
+          <div class="flow-step">
+            <div class="step-number">1</div>
+            <h3>Kenteken invoeren</h3>
+            <p>Laagdrempelige start met een rustige premium indruk.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">2</div>
+            <h3>Auto herkennen</h3>
+            <p>Merk, model, bouwjaar en aandrijving tonen voor direct vertrouwen.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">3</div>
+            <h3>Gratis preview</h3>
+            <p>Een eerste accuprofiel, drie inzichten en een praktisch aandachtspunt.</p>
+          </div>
+          <div class="flow-step">
+            <div class="step-number">4</div>
+            <h3>Betalen & ontgrendelen</h3>
+            <p>Volledig rapport, daarna pas AccuCheck of Aankoopadvies als zachte vervolgstap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="preview">
+      <div class="container split-grid">
+        <div class="card">
+          <div class="eyebrow">Scherm 2 · Herkenning & preview</div>
+          <h2>Gratis preview met precies genoeg waarde</h2>
+          <p>De preview moet vertrouwen opbouwen en laten voelen dat het rapport inhoud heeft, zonder alles weg te geven.</p>
+
+          <div class="meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Kenteken</span>
+              <span class="meta-value">XX-999-X</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Model</span>
+              <span class="meta-value">Volvo XC60 Recharge</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Bouwjaar</span>
+              <span class="meta-value">2023</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Aandrijving</span>
+              <span class="meta-value">Plug-in hybride</span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <p><strong>Wij hebben deze auto herkend en een eerste analyse voorbereid.</strong></p>
+            <p>Op basis van bouwjaar, type aandrijving en kilometrage lijkt dit model in de basis een stabiel accuprofiel te hebben, mits normaal gebruikt en onderhouden.</p>
+            <span class="pill good">Voorlopige inschatting: gunstig</span>
+          </div>
+
+          <h3>Eerste inzichten</h3>
+          <ul class="clean">
+            <li>Dit type batterij staat bekend om relatief stabiel gedrag bij normaal gebruik.</li>
+            <li>Leeftijd en kilometrage passen binnen een gebruikelijke bandbreedte.</li>
+            <li>Laadgedrag en onderhoud hebben bij dit model relatief veel invloed op de beleving op langere termijn.</li>
+          </ul>
+
+          <div class="muted-box" style="margin-top: 22px;">
+            <h3>Goed om te controleren</h3>
+            <p>Controleer bij deze auto of de originele laadkabel en laadset aanwezig zijn. Ontbrekende accessoires kunnen onverwacht extra kosten met zich meebrengen.</p>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="eyebrow">Betaalblok</div>
+          <h3>Volledig AccuRisico Rapport</h3>
+          <p>Voor wie met meer zekerheid en minder risico een hybride of EV wil kopen.</p>
+
+          <div class="price-box">
+            <div class="price">€19,95</div>
+            <div class="price-note">eenmalig</div>
+          </div>
+
+          <ul class="clean">
+            <li>Uitgebreide accu-inschatting</li>
+            <li>Merk- en modelcontext</li>
+            <li>Aankooptips en proefritchecklist</li>
+            <li>Praktische kostenwaarschuwingen</li>
+            <li>Advies of aanvullende AccuCheck slim is</li>
+          </ul>
+
+          <div style="margin-top: 22px; display: grid; gap: 12px;">
+            <a href="#rapport" class="cta">Ontgrendel volledig rapport</a>
+            <span class="small">Direct beschikbaar · Eenmalige betaling · Onafhankelijk advies</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="rapport">
+      <div class="container">
+        <div class="eyebrow">Scherm 3 · Volledig rapport</div>
+        <h2>Opbouw van het premium rapport</h2>
+        <p>Dit deel begint na betaling. Het doel is niet meer tekst, maar meer rust, meer context en direct toepasbare houvast bij aankoop.</p>
+
+        <div class="report-grid">
+          <article class="report-card">
+            <h3>1. Samenvatting</h3>
+            <p><span class="pill good">Koopbeeld: goede basis</span></p>
+            <p>Deze auto laat op basis van leeftijd, aandrijving en kilometrage een stabiel en gebruikelijk profiel zien.</p>
+          </article>
+          <article class="report-card">
+            <h3>2. Voertuigprofiel</h3>
+            <p>Merk, model, bouwjaar, aandrijving, kilometrage en batterijcategorie in een rustig overzicht.</p>
+          </article>
+          <article class="report-card">
+            <h3>3. Accu & techniek</h3>
+            <p>Begrijpelijke uitleg over leeftijd, gebruik, kilometrage en accuprofiel zonder technische overload.</p>
+          </article>
+          <article class="report-card">
+            <h3>4. Merk- en modelcontext</h3>
+            <p>De echte waarde: hoe dit merk en model zich doorgaans gedragen en wat daarin normaal is.</p>
+          </article>
+          <article class="report-card">
+            <h3>5. Aankoopcheck</h3>
+            <p>Concreet en praktisch: laadkabel, laadpoort, historie, software, garantie en compleetheid.</p>
+          </article>
+          <article class="report-card">
+            <h3>6. Proefrit-checklist</h3>
+            <p>Wat je tijdens de proefrit moet voelen, zien en controleren om verrassingen te voorkomen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-grid">
+        <div class="card">
+          <div class="eyebrow">Inhoudssectie</div>
+          <h2>Voorbeeld van rapportcopy</h2>
+
+          <h3>Samenvatting van deze auto</h3>
+          <p><strong>Koopbeeld: goede basis</strong></p>
+          <p>Deze auto laat op basis van leeftijd, aandrijving en kilometrage een stabiel en gebruikelijk profiel zien. Er zijn geen directe aanwijzingen voor verhoogd accurisico, mits de auto normaal is gebruikt en onderhouden.</p>
+          <p>Wel zijn er enkele punten die je vóór aankoop slim kunt controleren, zodat je niet voor verrassingen komt te staan.</p>
+
+          <h3 style="margin-top: 26px;">Accu en technisch profiel</h3>
+          <p>Voor dit bouwjaar is het normaal dat de batterij zich nog in een stabiele fase bevindt, mits de auto regulier is gebruikt.</p>
+          <p>De huidige kilometrage past binnen wat we bij dit type auto verwachten. Dit wijst doorgaans op normaal gebruik.</p>
+          <p>Dit type batterij staat bekend om een geleidelijke degradatie, waarbij gebruik en laadgedrag een belangrijke rol spelen.</p>
+
+          <h3 style="margin-top: 26px;">Hoe dit merk en model zich doorgaans gedragen</h3>
+          <p>Binnen dit segment staat dit merk bekend om een relatief stabiele batterijontwikkeling. Bij normaal gebruik en correct laden blijven prestaties doorgaans goed voorspelbaar.</p>
+          <p>Afwijkingen ontstaan meestal niet door leeftijd alleen, maar door gebruikspatronen zoals frequent snelladen of onregelmatig laden.</p>
+        </div>
+
+        <div class="card alt">
+          <div class="eyebrow">Aandachtspunt</div>
+          <h2>Wat je niet direct ziet, maar wel belangrijk is</h2>
+          <p>Het laadverleden van een auto is meestal niet volledig inzichtelijk. Terwijl factoren zoals frequent snelladen of langdurig volledig laden invloed kunnen hebben op de batterijconditie op langere termijn.</p>
+          <p>In de praktijk kan een verkoper dit vaak niet volledig onderbouwen. Daarom is het verstandig om dit mee te nemen in je beoordeling.</p>
+          <p>Wil je vóór aankoop maximale zekerheid over de werkelijke conditie van de batterij, dan is een aanvullende AccuCheck de meest zekere vervolgstap.</p>
+          <span class="pill warn">Gebruik dit als zachte brug naar upsell</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Praktische inhoud</div>
+        <h2>Aankoopcheck en proefritchecklist</h2>
+        <p>Deze onderdelen geven het gevoel dat het rapport echt helpt bij de aankoopbeslissing. Hier zit veel van de ervaren waarde.</p>
+
+        <div class="check-grid">
+          <div class="card">
+            <h3>Waar je op moet letten bij aankoop</h3>
+            <ul class="clean">
+              <li>Is de originele laadkabel aanwezig?</li>
+              <li>Zit er een thuislaadkabel of laadset bij?</li>
+              <li>Werkt de laadpoort zonder schade of speling?</li>
+              <li>Is onderhoudshistorie aanwezig?</li>
+              <li>Zijn software-updates uitgevoerd?</li>
+              <li>Is er nog garantie op het accupakket?</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Wat je tijdens de proefrit kunt controleren</h3>
+            <ul class="clean">
+              <li>Start de auto zonder waarschuwingen?</li>
+              <li>Rijdt de auto soepel in elektrische modus?</li>
+              <li>Is acceleratie vloeiend en zonder haperingen?</li>
+              <li>Blijft het vermogen stabiel?</li>
+              <li>Verandert de actieradius logisch?</li>
+              <li>Werkt laden zonder foutmelding?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Scorelogica</div>
+        <h2>Geen harde afrekenscore, wel geloofwaardige beoordeling</h2>
+        <p>Voor premium positionering is een contextmodel beter dan een strafmodel. Jonge premium auto’s met logische kilometrage mogen niet onnodig laag uitkomen.</p>
+
+        <table class="status-table">
+          <thead>
+            <tr>
+              <th>Onderdeel</th>
+              <th>Aanpak</th>
+              <th>Waarom</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Koopbeeld</td>
+              <td>Goede basis / Goede basis met aandacht / Extra controle aanbevolen</td>
+              <td>Rustig, begrijpelijk en adviserend.</td>
+            </tr>
+            <tr>
+              <td>Accuprofiel</td>
+              <td>Stabiel / Normaal / Aandachtspunt</td>
+              <td>Voorkomt schoolrapportgevoel en voelt premium.</td>
+            </tr>
+            <tr>
+              <td>Bandbreedte</td>
+              <td>Scoren vanuit context: bouwjaar, km, merk, model, generatie</td>
+              <td>Voorkomt dat goede auto’s te laag uitkomen.</td>
+            </tr>
+            <tr>
+              <td>Taalgebruik</td>
+              <td>Genuanceerd, niet alarmistisch</td>
+              <td>Past bij ZekerOpWeg en versterkt vertrouwen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Wat nog gebouwd en geïntegreerd moet worden</div>
+        <h2>Technische en productmatige vervolgstappen</h2>
+        <p>Onderstaande lijst is bewust opgenomen in de HTML-opzet, zodat je nu al ontwerpt met de toekomstige integraties in gedachten.</p>
+
+        <div class="integration-grid">
+          <div class="card">
+            <h3>1. Databronnen en voertuigherkenning</h3>
+            <ul class="clean">
+              <li>Kenteken-lookup koppelen voor merk, model, bouwjaar, aandrijving en eventueel kilometrage.</li>
+              <li>Datamapping voor hybride, plug-in hybride en volledig elektrische modellen.</li>
+              <li>Logica voor batterijcategorie en modelgeneratie.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>2. Rapportengine en beslislogica</h3>
+            <ul class="clean">
+              <li>Rules engine voor koopbeeld, accuprofiel en aandachtspunten.</li>
+              <li>Modelspecifieke copyblokken en merknuance.</li>
+              <li>Bandbreedte-logica voor geloofwaardige beoordeling.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>3. Betaling en paywall</h3>
+            <ul class="clean">
+              <li>Checkout-integratie voor €19,95.</li>
+              <li>Na betaling direct toegang tot volledig rapport.</li>
+              <li>E-mailbevestiging en eventueel PDF-generatie.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>4. CRM en leadopvolging</h3>
+            <ul class="clean">
+              <li>Opslaan van kenteken, rapportstatus en contactgegevens.</li>
+              <li>Doorstroom naar AccuCheck of Aankoopadvies.</li>
+              <li>Segmentatie op interesse, modeltype en koopfase.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>5. Upsell en vervolgflow</h3>
+            <ul class="clean">
+              <li>Logische CTA’s naar AccuCheck en Aankoopadvies.</li>
+              <li>Variatie op basis van profiel: laag, normaal of verhoogd aandachtspunt.</li>
+              <li>Geen harde salesdruk, wel duidelijke vervolgrichting.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>6. Vertrouwen en legal</h3>
+            <ul class="clean">
+              <li>Heldere disclaimer: rapport is adviserend, geen fysieke accutest.</li>
+              <li>AVG-proof opslag en verwerking van gegevens.</li>
+              <li>Transparante uitleg over hoe het oordeel tot stand komt.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="eyebrow">Upsell-architectuur</div>
+        <h2>Zo laat je de vervolgstappen landen zonder salesdruk</h2>
+        <div class="upsell-grid">
+          <div class="card">
+            <h3>AccuCheck</h3>
+            <p>Voor klanten die vóór aankoop maximale zekerheid willen over de werkelijke batterijconditie.</p>
+            <a href="#" class="secondary-btn">Meer over AccuCheck</a>
+          </div>
+          <div class="card">
+            <h3>Aankoopadvies</h3>
+            <p>Voor klanten die niet alleen de accu, maar de hele auto zorgvuldig willen laten beoordelen.</p>
+            <a href="#" class="secondary-btn">Meer over Aankoopadvies</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="eyebrow">Conclusie</div>
+        <h2>Dit is een HTML-wireframe, nog geen eindproduct</h2>
+        <p>De opzet hierboven is bedoeld als premium fundament voor design, development en content. De echte waarde ontstaat pas wanneer voertuigdata, beslislogica, checkout en rapportgeneratie goed worden geïntegreerd.</p>
+      </div>
+      <div class="card alt">
+        <h3>Volgende logische stap</h3>
+        <p>Werk nu eerst de datavelden, beslisregels en rapportvariabelen uit. Pas daarna is het slim om dit wireframe om te zetten naar een live funnel of componenten in jouw website.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
 
