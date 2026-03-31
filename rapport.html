@@ -129,42 +129,47 @@ input{
 
 <h3>€19,95</h3>
 <p class="small">Eenmalig • Direct beschikbaar</p>
+<button class="cta" onclick="startFlow()">
+Bekijk volledig rapport
+</button>
 
-<button class="cta" onclick="unlockReport()">Bekijk volledig rapport</button>
 </div>
 </section>
+
+  <section class="container" id="report" style="display:none">
 
 <div class="card report-header">
 
   <div class="report-title">AccuRisico Rapport</div>
 
   <p class="small">
-  {{make_model}} • {{build_year}} • {{powertrain}}
+    <span id="make_model"></span> • 
+    <span id="build_year"></span> • 
+    <span id="powertrain"></span>
   </p>
 
   <p class="small">
-  Opgesteld voor: {{name}} <br>
-  Datum: {{date}} • Kenteken: {{plate}}
+    Opgesteld voor: <span id="r_name"></span><br>
+    Datum: <span id="r_date"></span> • Kenteken: <span id="r_plate"></span>
   </p>
 
 </div>
 
 
-<!-- KERNBEOORDELING -->
 <div class="card highlight-box">
 
-  <div class="big-score">
-    {{buying_profile}}
-  </div>
-
-  <p><strong>Accuprofiel:</strong> {{battery_profile}}</p>
+  <div class="big-score" id="buying_profile"></div>
 
   <p>
-  Deze auto laat een {{profile_description}} zien op basis van leeftijd, type aandrijving en gebruik.
+    <strong>Accuprofiel:</strong> 
+    <span id="battery_profile"></span>
   </p>
+
+  <p id="profile_description"></p>
 
 </div>
 
+</section>
 
 <!-- SAMENVATTING -->
 <div class="card">
