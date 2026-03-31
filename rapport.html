@@ -2374,15 +2374,53 @@ function renderReport(data) {
     // 🔹 BASIS DATA
     // ===============================
     // ===============================
-// 🔋 AUTO DATABASE KOPPELING
-// ===============================
+    // 🔋 AUTO DATABASE KOPPELING
+    // ===============================
+    // ===============================
+    // 🔋 AUTO DATABASE KOPPELING (FIX)
+    // ===============================
 
-const detected = detectVehicleData(data.vehicleName);
+// 1. bouw altijd een sterke naam
+let vehicleName = data.vehicleName;
 
+if (!vehicleName) {
+  vehicleName = `${data.brand || ""} ${data.modelName || ""}`.trim();
+}
+
+// 2. fallback als nog leeg
+if (!vehicleName || vehicleName.length < 3) {
+  vehicleName = data.modelName || "";
+}
+
+// 3. detectie
+function detectVehicleData(vehicleName) {
+
+  if (!vehicleName) return null;
+
+  const normalized = vehicleName.toLowerCase();
+
+  let bestMatch = null;
+  let bestLength = 0;
+
+  for (const key in VEHICLE_DB) {
+    const keyLower = key.toLowerCase();
+
+    if (normalized.includes(keyLower)) {
+      if (keyLower.length > bestLength) {
+        bestMatch = VEHICLE_DB[key];
+        bestLength = keyLower.length;
+      }
+    }
+  }
+
+  return bestMatch;
+
+// 4. apply
 if (detected) {
   data.batterySize = detected.battery;
   data.driveType = detected.type;
 }
+
     setText("batterySize", data.batterySize || "Niet beschikbaar");
     setText("mileage", data.mileageText || "Niet beschikbaar");
     setText("mileageAssessment", data.mileageAssessment || "-");
