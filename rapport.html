@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZekerOpWeg – AccuRisico Rapport</title>
 
-  <!--
-  DEV READY
-  - {{ }} = dynamische variabelen
-  - Koppelen aan: kenteken API + Aviloo + rules engine + payment
-  -->
-
   <style>
     body{font-family:Inter,sans-serif;background:#f7f6f3;color:#1f1f1c;margin:0}
     .container{max-width:1000px;margin:auto;padding:40px 20px}
@@ -77,14 +71,13 @@
   </div>
 </section>
 
+<!-- PREVIEW VISUAL -->
+<section class="container">
 <div class="card" style="overflow:hidden; position:relative;">
-
   <h3>Voorbeeld van het volledige rapport</h3>
   <p class="small">Dit ontvang je direct na ontgrendelen</p>
 
-  <!-- Fake rapport inhoud -->
   <div style="opacity:0.9">
-
     <p><strong>Samenvatting</strong></p>
     <p>Deze auto laat op basis van leeftijd en gebruik een stabiel profiel zien...</p>
 
@@ -97,31 +90,16 @@
       <li>Onderhoudshistorie batterij</li>
       <li>Gedrag tijdens proefrit</li>
     </ul>
-
   </div>
 
-  <!-- Blur overlay -->
-  <div style="
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:120px;
-    background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 80%);
-    display:flex;
-    align-items:end;
-    justify-content:center;
-    padding-bottom:10px;
-  ">
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 80%);display:flex;align-items:end;justify-content:center;padding-bottom:10px;">
     <span class="pill">Ontgrendel om volledig te bekijken</span>
   </div>
-
 </div>
 
-<p class="small" style="margin-top:10px;">
-Gebruikt door kopers die vooraf zekerheid willen en onverwachte kosten willen voorkomen.
-</p>
-  
+<p class="small">Gebruikt door kopers die vooraf zekerheid willen en onverwachte kosten willen voorkomen.</p>
+</section>
+
 <!-- PAYWALL -->
 <section class="container">
   <div class="card">
@@ -146,47 +124,90 @@ Gebruikt door kopers die vooraf zekerheid willen en onverwachte kosten willen vo
 <section class="container" id="report" style="display:none">
 
   <div class="card">
-    <h2>Samenvatting</h2>
-    <p><strong>{{buying_profile}}</strong></p>
-    <p>{{summary_text}}</p>
+    <h2>Samenvatting van deze auto</h2>
+
+    <p><strong>Koopbeeld: {{buying_profile}}</strong></p>
+    <p><strong>Accuprofiel: {{battery_profile}}</strong></p>
+
+    <p>
+    Deze auto laat op basis van leeftijd, aandrijving en kilometrage een {{profile_description}} zien.
+    Er zijn geen directe aanwijzingen voor afwijkend accugedrag, mits de auto normaal is gebruikt en onderhouden.
+    </p>
+
+    <p>
+    Wel zijn er enkele punten die je vóór aankoop slim kunt controleren, zodat je niet voor onverwachte kosten komt te staan.
+    </p>
   </div>
 
   <div class="card">
-    <h3>Accu en techniek</h3>
-    <p>{{battery_analysis}}</p>
+    <h3>Accu en technisch profiel</h3>
+
+    <p>
+    Dit model is uitgerust met een batterij van circa {{battery_kwh}} kWh. Binnen dit segment valt dit onder een {{battery_class}} batterij, wat doorgaans zorgt voor {{battery_behavior}}.
+    </p>
+
+    <p>
+    Bij dit type batterij zien we in de praktijk een geleidelijke degradatie, waarbij gebruik, laadgedrag en onderhoud een belangrijke rol spelen.
+    </p>
   </div>
 
   <div class="card">
-    <h3>Merk en model context</h3>
-    <p>{{brand_context}}</p>
+    <h3>Hoe dit merk en model zich doorgaans gedraagt</h3>
+
+    <p>
+    Binnen dit segment staat dit merk bekend om {{brand_behavior}}. Bij normaal gebruik blijven prestaties doorgaans {{performance_expectation}}.
+    </p>
+
+    <p>
+    Afwijkingen ontstaan meestal niet door leeftijd alleen, maar door gebruikspatronen zoals frequent snelladen of onregelmatig laden.
+    </p>
   </div>
 
   <div class="card">
-    <h3>Wat je niet direct ziet</h3>
-    <p>Het laadverleden is meestal niet inzichtelijk. Dit kan invloed hebben op de batterijconditie.</p>
+    <h3>Wat je niet direct ziet, maar wel belangrijk is</h3>
+
+    <p>
+    Het laadverleden van een auto is meestal niet volledig inzichtelijk. Terwijl factoren zoals frequent snelladen, langdurig volledig laden of diep ontladen invloed kunnen hebben op de batterijconditie op langere termijn.
+    </p>
+
+    <p>
+    In de praktijk kan een verkoper dit vaak niet volledig onderbouwen. Daarom is het verstandig om dit mee te nemen in je beoordeling van de auto.
+    </p>
   </div>
 
   <div class="card">
-    <h3>Aankoopcheck</h3>
+    <h3>Waar je op moet letten bij aankoop</h3>
     <ul>
-      <li>Laadkabel aanwezig</li>
-      <li>Onderhoudshistorie</li>
-      <li>Garantie accu</li>
+      <li>Is de originele laadkabel aanwezig?</li>
+      <li>Werkt de laadpoort zonder schade of speling?</li>
+      <li>Is onderhoudshistorie aanwezig?</li>
+      <li>Zijn er foutmeldingen geweest?</li>
+      <li>Is er garantie op het accupakket?</li>
+      <li>Zijn software-updates uitgevoerd?</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Proefrit checklist</h3>
+    <h3>Wat je tijdens de proefrit kunt controleren</h3>
     <ul>
-      <li>Geen foutmeldingen</li>
-      <li>Soepel rijden</li>
-      <li>Normale actieradius</li>
+      <li>Start de auto zonder foutmeldingen?</li>
+      <li>Rijdt de auto soepel in elektrische modus?</li>
+      <li>Blijft het vermogen stabiel?</li>
+      <li>Verandert de actieradius logisch?</li>
+      <li>Werkt laden zonder problemen?</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Meer zekerheid</h3>
-    <p>Overweeg AccuCheck of Aankoopadvies voor maximale zekerheid.</p>
+    <h3>Ons advies</h3>
+
+    <p>
+    Deze auto vormt op basis van de beschikbare gegevens een {{buying_profile}}.
+    </p>
+
+    <p>
+    Wil je vóór aankoop maximale zekerheid over de batterijconditie en technische staat, dan is een aanvullende controle zoals een AccuCheck een verstandige volgende stap.
+    </p>
   </div>
 
 </section>
