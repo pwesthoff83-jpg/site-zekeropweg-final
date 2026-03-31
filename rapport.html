@@ -1,226 +1,249 @@
 <!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZekerOpWeg – AccuRisico Rapport</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg – AccuRisico Rapport</title>
 
-  <style>
-    body{font-family:Inter,sans-serif;background:#f7f6f3;color:#1f1f1c;margin:0}
-    .container{max-width:1000px;margin:auto;padding:40px 20px}
-    .card{background:#fff;padding:28px;border-radius:16px;border:1px solid #e5e1d8;margin-bottom:20px}
-    h1{font-size:36px;margin-bottom:10px}
-    h2{margin-bottom:10px}
-    p{color:#6f6b62}
-    .cta{display:inline-block;padding:14px 22px;background:#1e2f2a;color:#fff;border-radius:999px;text-decoration:none;border:none}
-    input{width:100%;padding:16px;border-radius:12px;border:1px solid #ddd;font-size:16px}
-    ul{padding-left:18px;color:#6f6b62}
-    .pill{display:inline-block;padding:6px 12px;border-radius:999px;background:#eef2ef;color:#1e2f2a;font-weight:600;margin-top:10px}
-    .small{font-size:14px;color:#6f6b62}
-  </style>
+<style>
+body{
+  font-family: Inter, sans-serif;
+  background:#f5f4f1;
+  color:#1c1c1a;
+  margin:0;
+}
+
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+.card{
+  background:#ffffff;
+  padding:32px;
+  border-radius:18px;
+  border:1px solid #e8e6df;
+  margin-bottom:24px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.03);
+}
+
+h1{font-size:38px;font-weight:500;}
+h2{font-size:24px;}
+h3{font-size:18px;}
+
+p{color:#6b675f;line-height:1.6;}
+
+.cta{
+  background:#1c2b26;
+  color:#fff;
+  padding:14px 24px;
+  border-radius:999px;
+  border:none;
+}
+
+input{
+  width:100%;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid #ddd;
+}
+
+.pill{
+  background:#eef2ef;
+  color:#1c2b26;
+  padding:6px 14px;
+  border-radius:999px;
+}
+
+.small{
+  font-size:13px;
+  color:#8a867d;
+}
+</style>
 </head>
+
 <body>
 
 <!-- HERO -->
 <section class="container">
-  <div class="card">
-    <h1>Voorkom een miskoop bij een hybride of EV</h1>
-    <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken — inclusief belangrijke aandachtspunten vóór aankoop.</p>
+<div class="card">
+<h1>Voorkom een miskoop bij een hybride of EV</h1>
+<p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
 
-    <input type="text" placeholder="Voer kenteken in" id="plate" />
-    <br><br>
-    <button class="cta" onclick="fetchVehicle()">Bekijk eerste analyse</button>
+<input type="text" id="plate" placeholder="Kenteken">
+<input type="text" id="name" placeholder="Jouw naam (optioneel)" style="margin-top:10px">
 
-    <p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid vóór aankoop</p>
-    <p class="small">Gebaseerd op voertuigdata, batterijcontext en praktijkervaring</p>
-  </div>
+<br><br>
+<button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
+
+<p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
+</div>
 </section>
 
 <!-- PREVIEW -->
 <section class="container" id="preview">
-  <div class="card">
-    <h2>{{make_model}}</h2>
-    <p>{{build_year}} • {{powertrain}}</p>
-    <p>Wij hebben deze auto herkend en een eerste analyse voorbereid.</p>
-  </div>
-
-  <div class="card">
-    <h3>Eerste accuprofiel</h3>
-    <span class="pill">{{preview_status}}</span>
-    <p>{{preview_summary}}</p>
-
-    <p><strong>Waarom dit belangrijk is</strong><br>
-    Bij gebruikte hybride en elektrische auto’s is de batterij één van de belangrijkste en minst zichtbare onderdelen bij aankoop.</p>
-
-    <p>Dit model heeft een batterij van circa <strong>{{battery_kwh}} kWh</strong>, wat valt onder een <strong>{{battery_class}}</strong>.</p>
-  </div>
-
-  <div class="card">
-    <h3>Eerste inzichten</h3>
-    <ul>
-      <li>{{insight_1}}</li>
-      <li>{{insight_2}}</li>
-      <li>{{insight_3}}</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Goed om te controleren</h3>
-    <p>Controleer of de laadkabel aanwezig is. Ontbrekende accessoires kunnen onverwacht extra kosten veroorzaken.</p>
-    <p class="small">Gebaseerd op voertuigdata en accupatronen</p>
-  </div>
-</section>
-
-<!-- PREVIEW VISUAL -->
-<section class="container">
-<div class="card" style="overflow:hidden; position:relative;">
-  <h3>Voorbeeld van het volledige rapport</h3>
-  <p class="small">Dit ontvang je direct na ontgrendelen</p>
-
-  <div style="opacity:0.9">
-    <p><strong>Samenvatting</strong></p>
-    <p>Deze auto laat op basis van leeftijd en gebruik een stabiel profiel zien...</p>
-
-    <p><strong>Accu en techniek</strong></p>
-    <p>Dit model staat bekend om een geleidelijke degradatie bij normaal gebruik...</p>
-
-    <p><strong>Waar je op moet letten</strong></p>
-    <ul>
-      <li>Controle laadkabel en laadpoort</li>
-      <li>Onderhoudshistorie batterij</li>
-      <li>Gedrag tijdens proefrit</li>
-    </ul>
-  </div>
-
-  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 80%);display:flex;align-items:end;justify-content:center;padding-bottom:10px;">
-    <span class="pill">Ontgrendel om volledig te bekijken</span>
-  </div>
+<div class="card">
+<h2 id="car"></h2>
+<p id="meta"></p>
 </div>
-
-<p class="small">Gebruikt door kopers die vooraf zekerheid willen en onverwachte kosten willen voorkomen.</p>
 </section>
 
 <!-- PAYWALL -->
 <section class="container">
-  <div class="card">
-    <h2>Volledig AccuRisico Rapport</h2>
-    <p>Voor wie niet wil gokken bij aankoop van een hybride of EV</p>
+<div class="card">
+<h2>Volledig AccuRisico Rapport</h2>
+<p>Voor wie niet wil gokken bij aankoop</p>
 
-    <ul>
-      <li>Inzicht in accuprofiel en risico</li>
-      <li>Aankooptips en aandachtspunten</li>
-      <li>Wat verkopers vaak niet vertellen</li>
-      <li>Advies voor vervolgcontrole</li>
-    </ul>
+<h3>€19,95</h3>
+<p class="small">Eenmalig • Direct beschikbaar</p>
 
-    <h3>€19,95</h3>
-    <p class="small">Eenmalig • Direct beschikbaar • Geen abonnement</p>
-
-    <button class="cta" onclick="unlockReport()">Bekijk volledig rapport</button>
-  </div>
+<button class="cta" onclick="unlockReport()">Bekijk volledig rapport</button>
+</div>
 </section>
 
 <!-- FULL REPORT -->
 <section class="container" id="report" style="display:none">
 
-  <div class="card">
-    <h2>Samenvatting van deze auto</h2>
+<div class="card">
+<h2>Persoonlijk rapport</h2>
+<p><strong>Naam:</strong> <span id="r_name"></span></p>
+<p><strong>Kenteken:</strong> <span id="r_plate"></span></p>
+<p><strong>Datum:</strong> <span id="r_date"></span></p>
+</div>
 
-    <p><strong>Koopbeeld: {{buying_profile}}</strong></p>
-    <p><strong>Accuprofiel: {{battery_profile}}</strong></p>
+<div class="card">
+<h2>Samenvatting</h2>
 
-    <p>
-    Deze auto laat op basis van leeftijd, aandrijving en kilometrage een {{profile_description}} zien.
-    Er zijn geen directe aanwijzingen voor afwijkend accugedrag, mits de auto normaal is gebruikt en onderhouden.
-    </p>
+<p><strong>Koopbeeld: <span id="buying_profile"></span></strong></p>
+<p><strong>Accuprofiel: <span id="battery_profile"></span></strong></p>
 
-    <p>
-    Wel zijn er enkele punten die je vóór aankoop slim kunt controleren, zodat je niet voor onverwachte kosten komt te staan.
-    </p>
-  </div>
+<p id="summary"></p>
+</div>
 
-  <div class="card">
-    <h3>Accu en technisch profiel</h3>
+<div class="card">
+<h3>Accu en technisch profiel</h3>
+<p id="battery"></p>
+</div>
 
-    <p>
-    Dit model is uitgerust met een batterij van circa {{battery_kwh}} kWh. Binnen dit segment valt dit onder een {{battery_class}} batterij, wat doorgaans zorgt voor {{battery_behavior}}.
-    </p>
+<div class="card">
+<h3>Merkgedrag</h3>
+<p id="brand"></p>
+</div>
 
-    <p>
-    Bij dit type batterij zien we in de praktijk een geleidelijke degradatie, waarbij gebruik, laadgedrag en onderhoud een belangrijke rol spelen.
-    </p>
-  </div>
+<div class="card">
+<h3>Wat je niet ziet</h3>
+<p>
+Het laadverleden is meestal niet inzichtelijk. Snelladen en gebruik beïnvloeden de batterijconditie.
+</p>
+</div>
 
-  <div class="card">
-    <h3>Hoe dit merk en model zich doorgaans gedraagt</h3>
+<div class="card">
+<h3>Aankoopcheck</h3>
+<ul>
+<li>Laadkabel aanwezig?</li>
+<li>Onderhoudshistorie</li>
+<li>Garantie accu</li>
+<li>Software updates</li>
+</ul>
+</div>
 
-    <p>
-    Binnen dit segment staat dit merk bekend om {{brand_behavior}}. Bij normaal gebruik blijven prestaties doorgaans {{performance_expectation}}.
-    </p>
+<div class="card">
+<h3>Proefrit</h3>
+<ul>
+<li>Geen foutmeldingen</li>
+<li>Soepel rijden</li>
+<li>Logische actieradius</li>
+</ul>
+</div>
 
-    <p>
-    Afwijkingen ontstaan meestal niet door leeftijd alleen, maar door gebruikspatronen zoals frequent snelladen of onregelmatig laden.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Wat je niet direct ziet, maar wel belangrijk is</h3>
-
-    <p>
-    Het laadverleden van een auto is meestal niet volledig inzichtelijk. Terwijl factoren zoals frequent snelladen, langdurig volledig laden of diep ontladen invloed kunnen hebben op de batterijconditie op langere termijn.
-    </p>
-
-    <p>
-    In de praktijk kan een verkoper dit vaak niet volledig onderbouwen. Daarom is het verstandig om dit mee te nemen in je beoordeling van de auto.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Waar je op moet letten bij aankoop</h3>
-    <ul>
-      <li>Is de originele laadkabel aanwezig?</li>
-      <li>Werkt de laadpoort zonder schade of speling?</li>
-      <li>Is onderhoudshistorie aanwezig?</li>
-      <li>Zijn er foutmeldingen geweest?</li>
-      <li>Is er garantie op het accupakket?</li>
-      <li>Zijn software-updates uitgevoerd?</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Wat je tijdens de proefrit kunt controleren</h3>
-    <ul>
-      <li>Start de auto zonder foutmeldingen?</li>
-      <li>Rijdt de auto soepel in elektrische modus?</li>
-      <li>Blijft het vermogen stabiel?</li>
-      <li>Verandert de actieradius logisch?</li>
-      <li>Werkt laden zonder problemen?</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Ons advies</h3>
-
-    <p>
-    Deze auto vormt op basis van de beschikbare gegevens een {{buying_profile}}.
-    </p>
-
-    <p>
-    Wil je vóór aankoop maximale zekerheid over de batterijconditie en technische staat, dan is een aanvullende controle zoals een AccuCheck een verstandige volgende stap.
-    </p>
-  </div>
+<div class="card">
+<button class="cta" onclick="downloadPDF()">Download als PDF</button>
+</div>
 
 </section>
 
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-function fetchVehicle(){
-  document.getElementById('preview').scrollIntoView({behavior:'smooth'});
+
+// SIMULATIE DATA
+function startFlow(){
+
+let profile_type = "normaal"; // dynamisch maken later
+
+let data = {};
+
+if(profile_type === "gunstig"){
+  data = {
+    buying:"Goede basis",
+    battery:"Stabiel",
+    summary:"Deze auto heeft een stabiel profiel met voorspelbare prestaties.",
+    battery_text:"Grote batterij met stabiele prestaties.",
+    brand:"Merk staat bekend om betrouwbaarheid."
+  }
 }
 
-function unlockReport(){
-  document.getElementById('report').style.display='block';
-  document.getElementById('report').scrollIntoView({behavior:'smooth'});
+if(profile_type === "normaal"){
+  data = {
+    buying:"Goede basis met aandacht",
+    battery:"Normaal",
+    summary:"Deze auto heeft een normaal profiel. Extra controle is verstandig.",
+    battery_text:"Gemiddelde batterijprestaties afhankelijk van gebruik.",
+    brand:"Gemiddeld accuprofiel binnen segment."
+  }
 }
+
+if(profile_type === "aandacht"){
+  data = {
+    buying:"Extra controle aanbevolen",
+    battery:"Aandachtspunt",
+    summary:"Deze auto vraagt extra aandacht bij aankoop.",
+    battery_text:"Meer variatie in prestaties mogelijk.",
+    brand:"Variatie afhankelijk van gebruik."
+  }
+}
+
+// inject
+document.getElementById("car").innerText = "Voorbeeld auto";
+document.getElementById("meta").innerText = "2021 • EV";
+
+document.getElementById("buying_profile").innerText = data.buying;
+document.getElementById("battery_profile").innerText = data.battery;
+document.getElementById("summary").innerText = data.summary;
+document.getElementById("battery").innerText = data.battery_text;
+document.getElementById("brand").innerText = data.brand;
+
+}
+
+// unlock + personalisatie
+function unlockReport(){
+document.getElementById('report').style.display='block';
+
+let name = document.getElementById("name").value || "Onbekend";
+let plate = document.getElementById("plate").value;
+let date = new Date().toLocaleDateString();
+
+document.getElementById("r_name").innerText = name;
+document.getElementById("r_plate").innerText = plate;
+document.getElementById("r_date").innerText = date;
+}
+
+// PDF
+async function downloadPDF(){
+const { jsPDF } = window.jspdf;
+const element = document.getElementById('report');
+
+const canvas = await html2canvas(element);
+const imgData = canvas.toDataURL('image/png');
+
+const pdf = new jsPDF('p','mm','a4');
+pdf.addImage(imgData,'PNG',0,0,210,290);
+pdf.save('ZekerOpWeg-rapport.pdf');
+}
+
 </script>
 
 </body>
