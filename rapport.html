@@ -60,6 +60,38 @@ input{
   font-size:13px;
   color:#8a867d;
 }
+
+  .report-header{
+  border-bottom:1px solid #e5e1d8;
+  margin-bottom:30px;
+  padding-bottom:20px;
+}
+
+.report-title{
+  font-size:28px;
+  font-weight:500;
+}
+
+.highlight-box{
+  background:#f8f7f3;
+  padding:24px;
+  border-radius:14px;
+  border:1px solid #e8e6df;
+  margin-bottom:20px;
+}
+
+.big-score{
+  font-size:22px;
+  font-weight:500;
+  color:#1c2b26;
+}
+
+.section-divider{
+  margin:30px 0;
+  height:1px;
+  background:#eee;
+}
+  
 </style>
 </head>
 
@@ -102,66 +134,158 @@ input{
 </div>
 </section>
 
-<!-- FULL REPORT -->
-<section class="container" id="report" style="display:none">
+<div class="card report-header">
 
-<div class="card">
-<h2>Persoonlijk rapport</h2>
-<p><strong>Naam:</strong> <span id="r_name"></span></p>
-<p><strong>Kenteken:</strong> <span id="r_plate"></span></p>
-<p><strong>Datum:</strong> <span id="r_date"></span></p>
+  <div class="report-title">AccuRisico Rapport</div>
+
+  <p class="small">
+  {{make_model}} • {{build_year}} • {{powertrain}}
+  </p>
+
+  <p class="small">
+  Opgesteld voor: {{name}} <br>
+  Datum: {{date}} • Kenteken: {{plate}}
+  </p>
+
 </div>
 
-<div class="card">
-<h2>Samenvatting</h2>
 
-<p><strong>Koopbeeld: <span id="buying_profile"></span></strong></p>
-<p><strong>Accuprofiel: <span id="battery_profile"></span></strong></p>
+<!-- KERNBEOORDELING -->
+<div class="card highlight-box">
 
-<p id="summary"></p>
+  <div class="big-score">
+    {{buying_profile}}
+  </div>
+
+  <p><strong>Accuprofiel:</strong> {{battery_profile}}</p>
+
+  <p>
+  Deze auto laat een {{profile_description}} zien op basis van leeftijd, type aandrijving en gebruik.
+  </p>
+
 </div>
 
-<div class="card">
-<h3>Accu en technisch profiel</h3>
-<p id="battery"></p>
-</div>
 
+<!-- SAMENVATTING -->
 <div class="card">
-<h3>Merkgedrag</h3>
-<p id="brand"></p>
-</div>
 
-<div class="card">
-<h3>Wat je niet ziet</h3>
+<h3>Samenvatting</h3>
+
 <p>
-Het laadverleden is meestal niet inzichtelijk. Snelladen en gebruik beïnvloeden de batterijconditie.
+{{summary}}
 </p>
+
+<p>
+Er zijn geen directe aanwijzingen voor afwijkend accugedrag, maar controle vóór aankoop blijft belangrijk.
+</p>
+
 </div>
 
+
+<div class="section-divider"></div>
+
+
+<!-- ACCU -->
 <div class="card">
-<h3>Aankoopcheck</h3>
+
+<h3>Accu en technisch profiel</h3>
+
+<p>
+Dit model beschikt over een batterij van circa <strong>{{battery_kwh}} kWh</strong>.
+</p>
+
+<p>
+Binnen dit segment valt dit onder een <strong>{{battery_class}}</strong>, wat doorgaans zorgt voor {{battery_behavior}}.
+</p>
+
+<p>
+In de praktijk zien we dat prestaties vooral worden beïnvloed door gebruik, laadgedrag en onderhoud.
+</p>
+
+</div>
+
+
+<!-- MERK -->
+<div class="card">
+
+<h3>Gedrag van dit merk en model</h3>
+
+<p>
+Binnen dit segment staat dit model bekend om {{brand_behavior}}.
+</p>
+
+<p>
+Prestaties blijven doorgaans {{performance_expectation}}, mits normaal gebruikt.
+</p>
+
+</div>
+
+
+<!-- USP -->
+<div class="card highlight-box">
+
+<h3>Wat je niet direct ziet</h3>
+
+<p>
+Het laadverleden van een auto is meestal niet inzichtelijk.
+</p>
+
+<p>
+Factoren zoals snelladen, laadgedrag en gebruik hebben invloed op de batterijconditie — maar zijn vaak niet aantoonbaar via de verkoper.
+</p>
+
+<p>
+Daarom is extra controle in sommige gevallen verstandig.
+</p>
+
+</div>
+
+
+<!-- AANKOOP -->
+<div class="card">
+
+<h3>Waar je op moet letten bij aankoop</h3>
+
 <ul>
-<li>Laadkabel aanwezig?</li>
-<li>Onderhoudshistorie</li>
-<li>Garantie accu</li>
-<li>Software updates</li>
+<li>Is de originele laadkabel aanwezig?</li>
+<li>Is de laadpoort in goede staat?</li>
+<li>Is onderhoudshistorie beschikbaar?</li>
+<li>Is er garantie op het accupakket?</li>
+<li>Zijn software-updates uitgevoerd?</li>
 </ul>
+
 </div>
 
+
+<!-- PROEFRIT -->
 <div class="card">
-<h3>Proefrit</h3>
+
+<h3>Wat je tijdens de proefrit kunt controleren</h3>
+
 <ul>
-<li>Geen foutmeldingen</li>
-<li>Soepel rijden</li>
+<li>Geen foutmeldingen bij starten</li>
+<li>Soepel elektrisch rijden</li>
 <li>Logische actieradius</li>
+<li>Geen vermogensverlies</li>
 </ul>
+
 </div>
 
-<div class="card">
-<button class="cta" onclick="downloadPDF()">Download als PDF</button>
-</div>
 
-</section>
+<!-- CONCLUSIE -->
+<div class="card highlight-box">
+
+<h3>Ons advies</h3>
+
+<p>
+Deze auto vormt op basis van de beschikbare gegevens een <strong>{{buying_profile}}</strong>.
+</p>
+
+<p>
+Wil je maximale zekerheid, dan is een aanvullende AccuCheck of aankoopadvies een logische volgende stap.
+</p>
+
+</div>
 
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
