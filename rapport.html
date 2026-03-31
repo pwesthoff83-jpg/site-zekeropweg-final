@@ -2886,6 +2886,7 @@ async function loadVehicle() {
     }
 
     const voertuig = vehicleData[0];
+    console.log("VOERTUIG DATA:", voertuig);
     const merk = (voertuig.merk || "").trim();
     const model = (voertuig.handelsbenaming || "").trim();
     const bouwjaar = ((voertuig.datum_eerste_toelating || "").toString().slice(0, 4)) || "";
