@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -30,10 +31,10 @@
     body{
       margin:0;
       padding:32px 18px 60px;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:linear-gradient(180deg,#f5f7fa 0%, #eef2f7 100%);
-      line-height:1.6;
+      line-height:1.5;
     }
 
     .report-shell{
@@ -43,16 +44,16 @@
       gap:24px;
     }
 
-   .page{
-  width:100%;
-  max-width:1020px;
-  margin:0 auto;
-  background:var(--white);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  border:1px solid rgba(0,0,0,.05);
-}
+    .page{
+      width:100%;
+      max-width:1020px;
+      margin:0 auto;
+      background:var(--white);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.05);
+    }
 
     .page-header{
       padding:28px 34px;
@@ -115,27 +116,28 @@
       line-height:1.04;
       letter-spacing:-.7px;
       margin:0 0 12px;
+      font-weight:900;
     }
 
     .hero-sub{
       max-width:68ch;
       color:rgba(255,255,255,.88);
-      font-size:17px;
+      font-size:15px;
       margin:0;
       font-weight:500;
     }
 
     .page-body{
-      padding:30px 34px 34px;
+      padding:10px 34px 34px;
       max-width:100%;
     }
 
-   .grid-2 {
-  display:grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap:28px;
-  align-items:start;
-}
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:28px;
+      align-items:start;
+    }
 
     .grid-3{
       display:grid;
@@ -143,25 +145,13 @@
       gap:16px;
     }
 
-    @media(max-width:900px){
-      .grid-2,.grid-3{
-        grid-template-columns:1fr;
-      }
-
-      h1{font-size:33px}
-
-      .page-header,.page-body{
-        padding-left:22px;
-        padding-right:22px;
-      }
-    }
-
     .panel{
       background:#fff;
       border:1px solid rgba(0,0,0,.06);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:var(--shadow-soft);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      page-break-inside:avoid;
     }
 
     .panel.soft{background:#f8fafc}
@@ -169,6 +159,7 @@
     .panel.gold-soft{
       background:linear-gradient(180deg,#fffdf8,#ffffff);
       border:1px solid rgba(198,161,91,.35);
+      margin-top:0 !important;
     }
 
     .panel h2,
@@ -533,15 +524,15 @@
       background:linear-gradient(180deg,#fcfcfd 0%, #f7f8fa 100%);
     }
 
-   .risk-grade {
-  font-size: 48px;
-  font-weight: 900;
-  text-align: center;
-}
+    .risk-grade{
+      font-size:48px;
+      font-weight:900;
+      text-align:center;
+    }
 
-.risk-grade.A { color: #059669; }
-.risk-grade.B { color: #d97706; }
-.risk-grade.C { color: #b91c1c; }
+    .risk-grade.A{color:#059669;}
+    .risk-grade.B{color:#d97706;}
+    .risk-grade.C{color:#b91c1c;}
 
     .risk-label{
       font-size:16px;
@@ -554,6 +545,130 @@
       font-size:14px;
       line-height:1.6;
       color:#4b5563;
+    }
+
+    .premium-reveal{
+      opacity:0;
+      transform:translateY(6px);
+      filter:blur(4px);
+      animation:premiumFade .6s ease forwards;
+    }
+
+    @keyframes premiumFade{
+      to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+      }
+    }
+
+    .premium-focus{
+      transition:all .4s ease;
+    }
+
+    .premium-focus-active{
+      box-shadow:0 8px 30px rgba(0,0,0,.08);
+      transform:scale(1.01);
+    }
+
+    .paywall-fade-out{
+      opacity:0;
+      transform:translateY(-6px);
+      transition:all .35s ease;
+    }
+
+    .paywall-lock{
+      font-weight:800;
+      color:#b91c1c;
+      margin-top:6px;
+    }
+
+    .paid-user .summary-score{
+      border:2px solid #22c55e;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .gauge-wrapper{
+      width:220px;
+      height:126px;
+      margin:0 auto 8px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .gauge{
+      position:absolute;
+      left:50%;
+      bottom:-94px;
+      transform:translateX(-50%);
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:conic-gradient(
+        from 180deg,
+        #dc2626 0deg 60deg,
+        #f59e0b 60deg 120deg,
+        #16a34a 120deg 180deg
+      );
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+
+    .gauge::after{
+      content:"";
+      position:absolute;
+      inset:22px;
+      border-radius:50%;
+      background:#fff;
+    }
+
+    .needle{
+      width:4px;
+      height:86px;
+      background:#0f172a;
+      border-radius:999px;
+      position:absolute;
+      left:50%;
+      bottom:16px;
+      transform-origin:bottom center;
+      transform:translateX(-50%) rotate(-90deg);
+      z-index:3;
+      box-shadow:0 2px 6px rgba(0,0,0,.18);
+    }
+
+    .needle::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-8px;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:#0f172a;
+      transform:translateX(-50%);
+    }
+
+    .score-value{
+      font-size:28px;
+      font-weight:900;
+      margin-top:10px;
+    }
+
+    .score-label{
+      font-weight:700;
+      color:#6b7280;
+    }
+
+    @media(max-width:900px){
+      .grid-2,.grid-3{
+        grid-template-columns:1fr;
+      }
+
+      h1{font-size:33px}
+
+      .page-header,.page-body{
+        padding-left:22px;
+        padding-right:22px;
+      }
     }
 
     @media print{
@@ -586,2683 +701,801 @@
         print-color-adjust:exact;
       }
     }
-
-   .page-body {
-  padding-top: 10px !important;
-}
-
-.panel {
-  page-break-inside: avoid;
-}
-
-.panel.gold-soft {
-  margin-top: 0 !important;
-}
-    
-  /* ===== ZEKEROPWEG PREMIUM UNLOCK ===== */
-
-.premium-reveal {
-  opacity: 0;
-  transform: translateY(6px);
-  filter: blur(4px);
-  animation: premiumFade 0.6s ease forwards;
-}
-
-@keyframes premiumFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* subtiele focus op score */
-.premium-focus {
-  transition: all 0.4s ease;
-}
-
-.premium-focus-active {
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  transform: scale(1.01);
-}
-
-/* paywall fade-out (clean) */
-.paywall-fade-out {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: all 0.35s ease;
-}
-
-.paywall-lock {
-  font-weight:800;
-  color:#b91c1c;
-  margin-top:6px;
-}
-
-.paid-user .summary-score {
-  border:2px solid #22c55e;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-.container {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
- body {
-  font-family: Inter, system-ui, sans-serif;
-  line-height: 1.5;
-  color: #0f172a;
-}
-
-h1 {
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-}
-
-.hero-sub {
-  font-size: 15px;
-  color: rgba(255,255,255,0.75);
-  margin-top: 10px;
-  max-width: 520px;
-}
-
-.panel {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-    .score-gauge {
-  text-align:center;
-  padding:20px;
-}
-
-.gauge-wrapper {
-  width:180px;
-  height:100px;
-  margin:0 auto;
-  position:relative;
-  overflow:hidden;
-}
-
-.gauge {
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background: conic-gradient(
-    #16a34a 0deg 60deg,
-    #f59e0b 60deg 120deg,
-    #dc2626 120deg 180deg
-  );
-  position:absolute;
-  bottom:-80px;
-}
-
-.needle {
-  width:2px;
-  height:90px;
-  background:#111;
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform-origin:bottom;
-  transform: rotate(90deg);
-}
-
-.score-value {
-  font-size:28px;
-  font-weight:900;
-  margin-top:10px;
-}
-
-.score-label {
-  font-weight:700;
-  color:#6b7280;
-}
-    
   </style>
 </head>
 <body>
 
- <div class="report-shell">
+  <div class="report-shell">
 
-<section class="page">
-
-<!-- HEADER -->
-<div class="page-header">
-
-<div id="unlockBadge" style="
-display:none;
-margin-top:10px;
-font-size:13px;
-font-weight:800;
-color:#065f46;
-background:#ecfdf5;
-border:1px solid #bbf7d0;
-padding:8px 12px;
-border-radius:999px;
-width:fit-content;">
-✔ Rapport ontgrendeld
-</div>
-
-<div class="page-header-inner">
-
-<div class="brand">Zeker<span>Op</span>Weg</div>
-<div class="eyebrow">ZekerOpWeg Accu Risico Rapport</div>
-
-<h1>Accu Risico Rapport</h1>
-
-<div style="margin-top:10px;font-size:15px;font-weight:700;color:rgba(255,255,255,0.85);">
-Inzicht in het werkelijke risico vóór aankoop.
-</div>
-
-<p class="hero-sub">
-Onafhankelijke analyse voor gebruikte elektrische auto’s en plug-in hybrides.
-Duidelijkheid vóór u beslist.
-</p>
-
-<div class="doc-meta">
-<div>Rapporttype: Digitale vooranalyse</div>
-<div id="reportDate">Datum: —</div>
-<div>Merkstijl: ZekerOpWeg Premium</div>
-</div>
-
-</div>
-</div>
-
-<!-- BODY -->
-<div class="page-body">
-
-<div class="grid-2">
-
-<!-- LINKS -->
-<div>
-
-<!-- BESLIS BLOK -->
-<div style="
-background: linear-gradient(135deg, #0f172a, #1e293b);
-color:white;
-padding:22px;
-border-radius:16px;
-margin-bottom:20px;">
-
-<div style="font-size:13px;font-weight:800;opacity:0.8;margin-bottom:6px;">
-⚠️ BESLISMOMENT
-</div>
-
-<div style="font-size:20px;font-weight:900;margin-bottom:10px;">
-Is deze auto een goede aankoop — of een financieel risico?
-</div>
-
-<div style="font-size:14px;opacity:0.9;">
-Bij EV’s bepaalt de accustatus de werkelijke waarde.
-</div>
-
-<div style="
-margin-top:14px;
-padding:12px;
-background:rgba(255,255,255,0.08);
-border-radius:10px;
-font-weight:700;">
-👉 Zonder accuinzicht blijft dit een aanname
-</div>
-
-</div>
-
-<!-- RISICO INDICATOR -->
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:800;">
-<div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
-<div>Sterke basis – accustatus nog niet bevestigd</div>
-</div>
-
-<!-- VOERTUIG -->
-<div class="panel">
-
-<div class="muted">Voertuigprofiel</div>
-<div id="vehicleName" class="vehicle-title">BMW 330E 11.15 kWh</div>
-
-<div id="vehicleMeta" style="margin-top:8px;">
-Model: —<br>
-Accupakket: 11.15 kWh<br>
-Aandrijving: PHEV
-</div>
-
-<div class="badge-row">
-<div class="badge gold">Voertuigtype: PHEV</div>
-<div class="badge">Conclusie: Gemiddeld risico</div>
-</div>
-
-<div class="metric-grid">
-
-<div class="metric-card">
-<div class="metric-label">Kilometerstand</div>
-<div class="metric-value">Niet beschikbaar</div>
-</div>
-
-<div class="metric-card">
-<div class="metric-label">Kilometeroordeel</div>
-<div class="metric-value">Geen data</div>
-</div>
-
-<div class="metric-card">
-<div class="metric-label">Batterijcapaciteit</div>
-<div class="metric-value">11.15 kWh</div>
-</div>
-
-<div class="metric-card">
-<div class="metric-label">Degradatie (indicatie)</div>
-<div class="metric-value">10% – 20%</div>
-</div>
-
-<div class="metric-card">
-<div class="metric-label">Risico</div>
-<div class="metric-value">Accustatus niet gemeten</div>
-</div>
-
-<div class="metric-card">
-<div class="metric-label">Vervangingskosten</div>
-<div class="metric-value">€3.000 – €8.000</div>
-</div>
-
-</div>
-</div>
-
-<!-- CONCLUSIE -->
-<div class="panel" style="margin-top:16px;">
-
-<div style="font-weight:900;font-size:18px;">
-Sterke basis – accustatus nog niet bevestigd
-</div>
-
-<div style="margin-top:6px;">
-Maar zonder accumeting blijft het grootste financiële risico onbekend.
-</div>
-
-<div style="margin-top:14px;padding:12px;background:#fff8e8;border-radius:10px;font-weight:800;">
-👉 Bij vergelijkbare auto's wijkt de accustatus in 1 op de 3 gevallen af van verwachting
-</div>  
-
-</div>
-
-<!-- ACCUCHECK -->
-<div class="panel gold-soft" style="margin-top:16px;">
-
-<h3>Wat een AccuCheck wél laat zien</h3>
-
-<ul class="checklist">
-<li>Werkelijke accustatus (geen schatting)</li>
-<li>Verborgen slijtage zichtbaar</li>
-<li>Exacte degradatie</li>
-<li>Realistisch rijbereik</li>
-<li>Direct aankoopadvies</li>
-</ul>
-
-<div style="margin-top:12px;font-weight:800;">
-👉 Dit is het verschil tussen inschatten en zeker weten
-</div>
-
-</div>
-
-</div>
-
-<!-- RECHTS -->
-<div>
-
-<div class="panel" style="text-align:center;">
-
-<div style="font-weight:800;margin-bottom:10px;">
-ZekerOpWeg eindoordeel
-</div>
-
-<!-- GAUGE -->
-<div class="gauge-wrapper">
-  <div class="gauge"></div>
-  <div class="needle" id="needle"></div>
-</div>
-
-<div style="
-width:180px;
-height:90px;
-background:conic-gradient(#16a34a 0deg 60deg,#f59e0b 60deg 120deg,#dc2626 120deg 180deg);
-border-radius:180px 180px 0 0;">
-</div>
-
-</div>
-
-<div style="font-size:32px;font-weight:900;margin-top:10px;">
-8.5
-</div>
-
-<div id="scoreLabel" style="font-weight:700;color:#6b7280;">
-Analyse wordt geladen...
-</div>
-
-<div style="margin-top:16px;font-weight:800;color:#b91c1c;">
-🔒 Exacte accustatus zichtbaar na ontgrendeling
-</div>
-
-</div>
-
-<div class="panel" style="margin-top:16px;">
-
-<h3>Kernconclusie</h3>
-
-<div style="font-weight:800;margin-top:8px;">
-Deze auto lijkt technisch in orde.
-</div>
-
-<div style="margin-top:6px;">
-Maar zonder accumeting blijft het grootste risico onbekend.
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-<!-- PAYWALL -->
-<div class="panel" style="margin-top:20px;text-align:center;">
-
-<h3>U mist nog één cruciaal onderdeel</h3>
-
-<p>De werkelijke accustatus bepaalt of dit een goede aankoop is.</p>
-
-<div style="
-margin-top:12px;
-background:#fff7ed;
-padding:12px;
-border-radius:10px;
-font-weight:800;">
-👉 Verschil kan oplopen tot €3.000 – €8.000
-</div>
-
-<div style="margin-top:14px;text-align:left;display:inline-block;">
-✔ Werkelijke accustatus<br>
-✔ Verborgen risico’s<br>
-✔ Aankoopadvies
-</div>
-
-<a id="checkoutBtn"
-   href="https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00"
-   style="
-display:inline-block;
-margin-top:16px;
-padding:16px 22px;
-background:#0b1c2d;
-color:#fff;
-font-weight:900;
-border-radius:999px;
-text-decoration:none;">
-Ontgrendel volledige analyse – €19,95
-</a>
-
-</div>
-
-<!-- FOOTER -->
-<div class="page-footer">
-<div>ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
-<div>Pagina 1 van 3</div>
-</div>
-
-</section>
-</div>
-  
-
-<!-- 🔒 ALLES HIERONDER = PREMIUM -->
-   <div id="premiumContent" style="display:none;">
-    
-      <!-- PAGINA 2 -->
     <section class="page">
+
+      <!-- HEADER -->
       <div class="page-header">
-  <div class="page-header-inner">
 
-    <div>
-      <div class="brand">Zeker<span>Op</span>Weg</div>
-      <div class="eyebrow">Accu, laden en techniek</div>
-      <h1>Accu-informatie en laadgedrag</h1>
-      <p class="hero-sub">
-        Wat betekent dit voertuigtype voor batterijslijtage, laadgedrag en toekomstig gebruik?
-      </p>
-    </div>
+        <div id="unlockBadge" style="
+          display:none;
+          margin-top:10px;
+          font-size:13px;
+          font-weight:800;
+          color:#065f46;
+          background:#ecfdf5;
+          border:1px solid #bbf7d0;
+          padding:8px 12px;
+          border-radius:999px;
+          width:fit-content;">
+          ✔ Rapport ontgrendeld
+        </div>
 
-    <div class="doc-meta">
-      <div id="vehicleNameHeader2">Voertuig: —</div>
-    </div>
+        <div class="page-header-inner">
+          <div>
+            <div class="brand">Zeker<span>Op</span>Weg</div>
+            <div class="eyebrow">ZekerOpWeg Accu Risico Rapport</div>
 
-  </div>
-</div>
+            <h1>Accu Risico Rapport</h1>
 
+            <div style="margin-top:10px;font-size:15px;font-weight:700;color:rgba(255,255,255,0.85);">
+              Inzicht in het werkelijke risico vóór aankoop.
+            </div>
+
+            <p class="hero-sub">
+              Onafhankelijke analyse voor gebruikte elektrische auto’s en plug-in hybrides.
+              Duidelijkheid vóór u beslist.
+            </p>
+          </div>
+
+          <div class="doc-meta">
+            <div>Rapporttype: Digitale vooranalyse</div>
+            <div id="reportDate">Datum: —</div>
+            <div>Merkstijl: ZekerOpWeg Premium</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BODY -->
       <div class="page-body">
-           <div class="panel gold-soft" style="margin-top:0;">
-          
-             <h3>ZekerOpWeg samenvatting</h3>
-           
-             <div id="quickSummary" class="lead-text">Samenvatting wordt geladen...</div>
-          
-             <div class="text-block">
-               Dit rapport is bedoeld om u sneller richting te geven bij aankoop: waar ligt vertrouwen, waar vraagt het voertuig extra aandacht en waar is een onafhankelijke accutest de verstandigste vervolgstap.
-            </div>
-             
-          </div>
-        
         <div class="grid-2">
-          <div class="panel">
-            <h2 class="section-title">Accu-informatie</h2>
-            <div id="batteryInfoText" class="text-block">—</div>
 
-            <ul id="batteryChecklist" class="checklist">
-              <li>Accugegevens worden geladen</li>
-            </ul>
-          </div>
+          <!-- LINKS -->
+          <div>
 
-          <div class="panel">
-            <h2 class="section-title">Laden en gebruik</h2>
-            <div id="chargingText" class="text-block">—</div>
+            <!-- BESLIS BLOK -->
+            <div style="
+              background:linear-gradient(135deg, #0f172a, #1e293b);
+              color:white;
+              padding:22px;
+              border-radius:16px;
+              margin-bottom:20px;">
 
-            <div id="cableReplacementCost" class="price-chip">Laadkabel vervangingskosten: —</div>
+              <div style="font-size:13px;font-weight:800;opacity:0.8;margin-bottom:6px;">
+                ⚠️ BESLISMOMENT
+              </div>
 
-            <ul id="chargingChecklist" class="checklist">
-              <li>Laadgedrag wordt geladen</li>
-            </ul>
-          </div>
-        </div>
+              <div style="font-size:20px;font-weight:900;margin-bottom:10px;">
+                Is deze auto een goede aankoop — of een financieel risico?
+              </div>
 
-        <div class="grid-2" style="margin-top:22px;">
-          <div class="panel">
-            <h2 class="section-title">Positieve punten</h2>
-            <ul id="positivePoints" class="checklist">
-              <li>Positieve punten worden geladen</li>
-            </ul>
-          </div>
+              <div style="font-size:14px;opacity:0.9;">
+                Bij EV’s bepaalt de accustatus de werkelijke waarde.
+              </div>
 
-          <div class="panel">
-            <h2 class="section-title">Bekende aandachtspunten</h2>
-            <div id="knownIssues" class="text-block">—</div>
-          </div>
-        </div>
-
-        <div class="panel" style="margin-top:22px;">
-          <h2 class="section-title">Merkspecifieke aandachtspunten</h2>
-
-          <div id="brandSpecificText" class="text-block">
+              <div id="dynamicWarning" style="
+                margin-top:14px;
+                padding:12px;
+                background:rgba(255,255,255,0.08);
+                border-radius:10px;
+                font-weight:700;">
+                👉 Zonder accuinzicht blijft dit een aanname
+              </div>
             </div>
 
-          <div class="small-note" style="margin-top:12px;color:#6b7280;">
-            De genoemde aandachtspunten zijn algemene controlepunten op basis van merk- en modelervaring.
-            Zij betekenen niet automatisch dat deze punten bij dit voertuig aanwezig zijn.
+            <!-- RISICO INDICATOR -->
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:800;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
+              <div id="topRiskLine">Sterke basis – accustatus nog niet bevestigd</div>
+            </div>
+
+            <!-- VOERTUIG -->
+            <div class="panel">
+              <div class="muted">Voertuigprofiel</div>
+              <div id="vehicleName" class="vehicle-title">BMW 330E 11.15 kWh</div>
+
+              <div id="vehicleMeta" style="margin-top:8px;">
+                <strong>Model:</strong> —<br>
+                <strong>Accupakket:</strong> 11.15 kWh<br>
+                <strong>Aandrijving:</strong> PHEV
+              </div>
+
+              <div class="badge-row">
+                <div id="driveTypeBadge" class="badge gold">Voertuigtype: PHEV</div>
+                <div id="verdictBadge" class="badge">Conclusie: Analyse gereed</div>
+              </div>
+
+              <div class="metric-grid">
+                <div class="metric-card">
+                  <div class="metric-label">Kilometerstand</div>
+                  <div id="mileage" class="metric-value">Niet beschikbaar</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Kilometeroordeel</div>
+                  <div id="mileageAssessment" class="metric-value">Geen data</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Batterijcapaciteit</div>
+                  <div id="batterySize" class="metric-value">11.15 kWh</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Degradatie (indicatie)</div>
+                  <div id="degradation" class="metric-value">10% – 20%</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Risico</div>
+                  <div id="riskLevel" class="metric-value">Accustatus niet gemeten</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Vervangingskosten</div>
+                  <div id="replacementCost" class="metric-value">€3.000 – €8.000</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONCLUSIE -->
+            <div class="panel" style="margin-top:16px;">
+              <div id="coreConclusionPreview" style="font-weight:900;font-size:18px;">
+                Sterke basis – accustatus nog niet bevestigd
+              </div>
+
+              <div style="margin-top:6px;">
+                Dit rapport geeft een eerste richting. Een fysieke AccuCheck geeft pas volledige zekerheid over de werkelijke accustatus.
+              </div>
+
+              <div id="coreConclusion" style="display:none;margin-top:14px;font-weight:700;"></div>
+
+              <div id="conversionTrigger" style="margin-top:14px;padding:12px;background:#fff8e8;border-radius:10px;font-weight:800;">
+                👉 Slimme kopers gebruiken dit rapport als eerste filter vóór een echte AccuCheck
+              </div>
+            </div>
+
+            <!-- ACCUCHECK -->
+            <div class="panel gold-soft" style="margin-top:16px;">
+              <h3>Wat een AccuCheck wél laat zien</h3>
+
+              <ul class="checklist">
+                <li>Werkelijke accustatus (geen schatting)</li>
+                <li>Verborgen slijtage zichtbaar</li>
+                <li>Exacte degradatie</li>
+                <li>Realistisch rijbereik</li>
+                <li>Direct aankoopadvies</li>
+              </ul>
+
+              <div style="margin-top:12px;font-weight:800;">
+                👉 Dit is het verschil tussen inschatten en zeker weten
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RECHTS -->
+          <div>
+
+            <div class="panel summary-score premium-focus">
+              <div class="summary-score-label">ZekerOpWeg eindoordeel</div>
+
+              <div class="gauge-wrapper">
+                <div class="gauge"></div>
+                <div class="needle" id="needle"></div>
+              </div>
+
+              <div id="summaryScore" class="summary-score-value">8.5</div>
+
+              <div id="summaryScoreText" class="summary-score-text medium">
+                Analyse wordt geladen...
+              </div>
+
+              <div id="scoreLabel" style="margin-top:10px;font-weight:700;color:#6b7280;">
+                Analyse wordt geladen...
+              </div>
+
+              <div class="paywall-lock" style="margin-top:16px;">
+                🔒 Exacte accustatus zichtbaar na ontgrendeling
+              </div>
+            </div>
+
+            <div class="panel" style="margin-top:16px;">
+              <h3>Kernconclusie</h3>
+
+              <div style="font-weight:800;margin-top:8px;">
+                Deze auto lijkt technisch interessant.
+              </div>
+
+              <div style="margin-top:6px;">
+                Dit rapport geeft eerste richting. De AccuCheck geeft pas echte zekerheid vóór aankoop.
+              </div>
+            </div>
+
+            <div id="riskPanel" class="panel soft" style="margin-top:16px;">
+              <h3>Wat dit betekent voor u</h3>
+              <div style="margin-top:8px;">
+                Dit blok wordt gevuld op basis van score, bouwjaar en voertuigtype.
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
 
-        <div class="panel soft" style="margin-top:22px;">
-          <h2 class="section-title">Wat een koper vaak onderschat</h2>
-          <ul id="buyerBlindspots" class="warning-list">
+      <!-- PAYWALL -->
+      <div id="paywallBlock" class="panel" style="margin:20px 34px 0;text-align:center;">
+        <h3>U mist nog één cruciaal onderdeel</h3>
+
+        <p>De werkelijke accustatus bepaalt of dit een goede aankoop is.</p>
+
+        <div style="
+          margin-top:12px;
+          background:#fff7ed;
+          padding:12px;
+          border-radius:10px;
+          font-weight:800;">
+          👉 Verschil kan oplopen tot €3.000 – €8.000
+        </div>
+
+        <div style="margin-top:14px;text-align:left;display:inline-block;">
+          ✔ Werkelijke accustatus<br>
+          ✔ Verborgen risico’s<br>
+          ✔ Aankoopadvies
+        </div>
+
+        <a id="checkoutBtn"
+           href="https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00"
+           style="
+             display:inline-block;
+             margin-top:16px;
+             padding:16px 22px;
+             background:#0b1c2d;
+             color:#fff;
+             font-weight:900;
+             border-radius:999px;
+             text-decoration:none;">
+          Ontgrendel volledige analyse – €19,95
+        </a>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="page-footer" style="padding:0 34px 24px;">
+        <div>ZekerOpWeg · Onafhankelijke batterij- en aankoopanalyse</div>
+        <div>Pagina 1 van 3</div>
+      </div>
+
+    </section>
+  </div>
+  
+<!-- 🔒 ALLES HIERONDER = PREMIUM -->
+<div id="premiumContent" style="display:none;">
+
+  <!-- PAGINA 2 -->
+  <section class="page">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+
+        <div>
+          <div class="brand">Zeker<span>Op</span>Weg</div>
+          <div class="eyebrow">Accu, laden en techniek</div>
+          <h1>Accu-informatie en laadgedrag</h1>
+          <p class="hero-sub">
+            Wat betekent dit voertuigtype voor batterijslijtage, laadgedrag en toekomstig gebruik?
+          </p>
+        </div>
+
+        <div class="doc-meta">
+          <div id="vehicleNameHeader2">Voertuig: —</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- SAMENVATTING -->
+      <div class="panel gold-soft">
+        <h3>ZekerOpWeg samenvatting</h3>
+
+        <div id="quickSummary" class="lead-text">
+          Samenvatting wordt geladen...
+        </div>
+
+        <div class="text-block">
+          Dit rapport geeft richting bij aankoop: waar ligt vertrouwen, waar vraagt het voertuig extra aandacht en waar is een accutest de logische vervolgstap.
+        </div>
+      </div>
+
+      <!-- ACCU + LADEN -->
+      <div class="grid-2">
+
+        <div class="panel">
+          <h2 class="section-title">Accu-informatie</h2>
+
+          <div id="batteryInfoText" class="text-block">—</div>
+
+          <ul id="batteryChecklist" class="checklist">
+            <li>Accugegevens worden geladen</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h2 class="section-title">Laden en gebruik</h2>
+
+          <div id="chargingText" class="text-block">—</div>
+
+          <div id="cableReplacementCost" class="price-chip">
+            Laadkabel vervangingskosten: —
+          </div>
+
+          <ul id="chargingChecklist" class="checklist">
+            <li>Laadgedrag wordt geladen</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- POSITIEF + RISICO -->
+      <div class="grid-2" style="margin-top:22px;">
+
+        <div class="panel">
+          <h2 class="section-title">Positieve punten</h2>
+
+          <ul id="positivePoints" class="checklist">
             <li>Wordt geladen...</li>
           </ul>
         </div>
 
-           <div class="panel soft" style="margin-top:22px;">
-     <h2 class="section-title">Wat goed en slecht is voor de accu</h2>
+        <div class="panel">
+          <h2 class="section-title">Bekende aandachtspunten</h2>
 
-     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px;">
+          <div id="knownIssues" class="text-block">—</div>
+        </div>
 
-       <div>
-         <div style="font-weight:800; color:#166534; margin-bottom:6px;">
-           ✔ Goed voor de accu
-         </div>
-         <ul class="checklist">
-           <li>Regelmatig laden tussen 20% en 80%</li>
-           <li>Rustig laden (AC) waar mogelijk</li>
-           <li>Gelijkmatig rijgedrag</li>
-           <li>Niet langdurig volledig leeg of vol laten staan</li>
-         </ul>
-       </div>
-
-       <div>
-         <div style="font-weight:800; color:#b91c1c; margin-bottom:6px;">
-           ⚠️ Slecht voor de accu
-         </div>
-         <ul class="warning-list">
-           <li>Veelvuldig snelladen (DC)</li>
-           <li>Lang op 100% laten staan</li>
-           <li>Altijd volledig leeg rijden</li>
-           <li>Extreem rijgedrag (veel piekbelasting)</li>
-         </ul>
-       </div>
-
-      <div style="margin-top:10px; font-weight:800; color:#b91c1c;">
-        → Dit is precies waarom een accutest het verschil maakt
       </div>
-    </div>
 
-  <div style="margin-top:14px; font-weight:700;">
-    👉 Zonder inzicht weet u niet hoe deze auto behandeld is
-  </div>
-</div>
-        
-        <div class="page-footer">
-          <div>ZekerOpWeg · Premium rapport voor gebruikte EV’s en plug-in hybrides</div>
-          <div class="page-number">Pagina 2 van 3</div>
+      <!-- MERK -->
+      <div class="panel" style="margin-top:22px;">
+        <h2 class="section-title">Merkspecifieke aandachtspunten</h2>
+
+        <div id="brandSpecificText" class="text-block"></div>
+
+        <div class="small-note" style="margin-top:12px;color:#6b7280;">
+          Dit zijn algemene aandachtspunten op basis van modelervaring. Ze zijn niet per definitie van toepassing op dit specifieke voertuig.
         </div>
       </div>
-    </section>
 
-    <!-- PAGINA 3 -->
-    <section class="page">
-      <div class="page-header">
-        <div class="page-header-inner">
+      <!-- BLINDSPOTS -->
+      <div class="panel soft" style="margin-top:22px;">
+        <h2 class="section-title">Wat een koper vaak onderschat</h2>
+
+        <ul id="buyerBlindspots" class="warning-list">
+          <li>Wordt geladen...</li>
+        </ul>
+      </div>
+
+      <!-- GEDRAG -->
+      <div class="panel soft" style="margin-top:22px;">
+        <h2 class="section-title">Wat goed en slecht is voor de accu</h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;">
+
           <div>
-            <div class="brand">Zeker<span>Op</span>Weg</div>
-            <div class="eyebrow">Risicoanalyse en kooptips</div>
-            <h1>Praktijkinschatting en aankoopadvies</h1>
-            <p class="hero-sub">
-              Waar moet u op letten vóór u koopt, onderhandelt of juist afhaakt?
-            </p>
+            <div style="font-weight:800;color:#166534;margin-bottom:6px;">
+              ✔ Goed voor de accu
+            </div>
+
+            <ul class="checklist">
+              <li>Regelmatig laden tussen 20% en 80%</li>
+              <li>Rustig laden (AC)</li>
+              <li>Gelijkmatig rijgedrag</li>
+              <li>Niet langdurig leeg of vol laten staan</li>
+            </ul>
           </div>
-          <div class="doc-meta">
-            <div id="vehicleNameHeader3">Voertuig: —</div>
+
+          <div>
+            <div style="font-weight:800;color:#b91c1c;margin-bottom:6px;">
+              ⚠️ Slecht voor de accu
+            </div>
+
+            <ul class="warning-list">
+              <li>Veelvuldig snelladen</li>
+              <li>Lang op 100% laten staan</li>
+              <li>Altijd leeg rijden</li>
+              <li>Extreem rijgedrag</li>
+            </ul>
           </div>
+
+        </div>
+
+        <div style="margin-top:12px;font-weight:800;color:#b91c1c;">
+          → Hier ontstaat het echte verschil tussen een goede en slechte accu
+        </div>
+
+        <div style="margin-top:10px;font-weight:700;">
+          👉 Zonder inzicht weet u niet hoe deze auto behandeld is
         </div>
       </div>
 
-      <div class="page-body">
-        <div class="grid-2">
-          <div class="panel">
-            <h2 class="section-title">Praktijkinschatting</h2>
-            <div id="riskAnalysisText" class="text-block">—</div>
+      <div class="page-footer">
+        <div>ZekerOpWeg · Premium rapport</div>
+        <div class="page-number">Pagina 2 van 3</div>
+      </div>
 
-            <ul id="riskChecklist" class="warning-list">
-              <li>Risicoanalyse wordt geladen</li>
-            </ul>
-          </div>
-
-          <div class="panel">
-            <h2 class="section-title">ZekerOpWeg Accurisico Index</h2>
-
-            <div class="risk-index-box">
-              <div id="batteryRiskGrade" class="risk-grade">—</div>
-              <div id="batteryRiskLabel" class="risk-label">Wordt geladen...</div>
-              <div id="batteryRiskDescription" class="risk-description">—</div>
-            </div>
-
-            <div class="disclaimer" style="margin-top:14px;">
-              De ZekerOpWeg Accurisico Index is een indicatieve beoordeling op basis van beschikbare voertuigdata,
-              modelkennis en technische analyse. Dit is geen fysieke accutest.
-            </div>
-          </div>
-        </div>
-
-        <div class="panel gold-soft" style="margin-top:22px;">
-          <h2 class="section-title">Aankoopadvies ZekerOpWeg</h2>
-          <div id="buyAdvice" class="text-block">—</div>
-        </div>
-
-        <div class="grid-2" style="margin-top:22px;">
-          <div class="panel">
-            <h2 class="section-title">Controlepunten vóór aankoop</h2>
-            <ul id="purchaseTips" class="checklist">
-              <li>Controlepunten worden geladen</li>
-            </ul>
-          </div>
-
-          <div class="panel soft">
-            <h2 class="section-title">Waar op letten tijdens de proefrit</h2>
-            <ul id="testDriveTips" class="checklist">
-              <li>Proefrittips worden geladen</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="disclaimer">
-          <strong>Belangrijke toelichting:</strong> dit rapport is opgesteld op basis van de voertuig- en modelinformatie die op dit moment beschikbaar is. Het geeft een deskundige eerste richting voor uw aankoopbeslissing, maar vervangt geen fysieke inspectie of onafhankelijke accutest. Wie maximale zekerheid wil over batterijconditie, laadgedrag en het uitsluiten van verborgen technische risico’s, kiest aanvullend voor een ZekerOpWeg AccuCheck.
-        </div>
-
-      <div style="margin-top:20px; font-weight:800; color:#b91c1c;">
-       Twijfel je na dit rapport? Dan is dit exact het moment waarop kopers de fout ingaan.
-     </div>
-
-   <div class="cta-band">
-  <div>
-    <h3>Wil je dit risico 100% uitsluiten?</h3>
-    <p>
-      Dit rapport geeft richting. 
-      Maar alleen een fysieke accutest laat zien of je een miskoop doet.
-    </p>
-
-    <div class="small-note">
-      9 van de 10 kopers kiezen voor een check bij twijfel
     </div>
-  </div>
+  </section>
 
-  <a
-    class="cta-btn"
-    href="https://wa.me/31623452349?text=Ik%20wil%20een%20ZekerOpWeg%20AccuCheck%20plannen"
-    target="_blank"
-  >
-    👉 Plan mijn AccuCheck
-  </a>
+  <!-- PAGINA 3 -->
+  <section class="page">
+
+    <div class="page-header">
+      <div class="page-header-inner">
+
+        <div>
+          <div class="brand">Zeker<span>Op</span>Weg</div>
+          <div class="eyebrow">Risicoanalyse en kooptips</div>
+          <h1>Praktijkinschatting en aankoopadvies</h1>
+          <p class="hero-sub">
+            Waar moet u op letten vóór u koopt?
+          </p>
+        </div>
+
+        <div class="doc-meta">
+          <div id="vehicleNameHeader3">Voertuig: —</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <div class="grid-2">
+
+        <div class="panel">
+          <h2 class="section-title">Praktijkinschatting</h2>
+
+          <div id="riskAnalysisText" class="text-block">—</div>
+
+          <ul id="riskChecklist" class="warning-list">
+            <li>Wordt geladen...</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h2 class="section-title">ZekerOpWeg Accurisico Index</h2>
+
+          <div class="risk-index-box">
+            <div id="batteryRiskGrade" class="risk-grade">—</div>
+            <div id="batteryRiskLabel" class="risk-label">Wordt geladen...</div>
+            <div id="batteryRiskDescription" class="risk-description">—</div>
+          </div>
+
+          <div class="disclaimer" style="margin-top:14px;">
+            Dit is een indicatieve analyse. Geen fysieke accutest.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel gold-soft" style="margin-top:22px;">
+        <h2 class="section-title">Aankoopadvies</h2>
+
+        <div id="buyAdvice" class="text-block">—</div>
+      </div>
+
+      <div class="grid-2" style="margin-top:22px;">
+
+        <div class="panel">
+          <h2 class="section-title">Controlepunten vóór aankoop</h2>
+
+          <ul id="purchaseTips" class="checklist">
+            <li>Wordt geladen...</li>
+          </ul>
+        </div>
+
+        <div class="panel soft">
+          <h2 class="section-title">Tijdens de proefrit</h2>
+
+          <ul id="testDriveTips" class="checklist">
+            <li>Wordt geladen...</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="disclaimer">
+        Dit rapport geeft richting. Voor zekerheid is een fysieke AccuCheck nodig.
+      </div>
+
+      <div style="margin-top:20px;font-weight:800;color:#b91c1c;">
+        Twijfel = risico.
+      </div>
+
+      <div class="cta-band">
+        <div>
+          <h3>Voorkom een miskoop</h3>
+          <p>Laat de accu professioneel testen vóór aankoop.</p>
+
+          <div class="small-note">
+            9 van de 10 kopers kiest voor zekerheid
+          </div>
+        </div>
+
+        <a class="cta-btn"
+           href="https://wa.me/31623452349?text=Ik%20wil%20een%20AccuCheck"
+           target="_blank">
+          👉 Plan AccuCheck
+        </a>
+      </div>
+
+      <div class="page-footer">
+        <div>ZekerOpWeg</div>
+        <div class="page-number">Pagina 3 van 3</div>
+      </div>
+
+    </div>
+  </section>
+
 </div>
 
-        <div class="page-footer">
-          <div>ZekerOpWeg · Bescherming tegen de verkeerde deal</div>
-          <div class="page-number">Pagina 3 van 3</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="print-btn-wrap">
-    <button class="print-btn" onclick="window.print()">Download PDF</button>
-  </div>
-
-    
-  <script>
-const RAW_BATTERY_DATA = `
-Acura
-
-ZDX - 107,6 kWh
-Alpine
-
-A290 - 52 kWh
-Audi
-
-A3 40 SB TFSIe - 13,0 kWh
-A3 40 TFSIe - 25,7 kWh
-A3 45 SB TFSIe - 13,0 kWh
-A3 45 TFSIe - 25,7 kWh
-A3 SB 40TFSIe - 8,8 kWh
-A3 e-tron - 8,8 kWh
-A6 Avant e-tron AWD - 100 kWh
-A6 Avant e-tron RWD - 100 kWh
-A6 TFSIe - 14,1 kWh
-A6 TFSIe - 17,9 kWh
-A6 e-tron AWD - 100 kWh
-A6 e-tron RWD - 100 kWh
-A8 60 TFSIe - 14,1 kWh
-A8 60 TFSIe - 17,9 kWh
-A8L 60 TFSIe - 14,1 kWh
-A8L 60 TFSIe - 17,9 kWh
-Q3 45 TFSIe - 13,0 kWh
-Q3 SB 45 TFSIe - 13,0 kWh
-Q4 35 e-tron - 52 kWh
-Q4 40 e-tron - 77 kWh
-Q4 45 e-tron - 77 kWh
-Q4 45 e-tron quattro - 77 kWh
-Q4 50 e-tron quattro - 77 kWh
-Q4 55 e-tron quattro - 77 kWh
-Q4 Sportback 35 e-tron - 52 kWh
-Q4 Sportback 40 e-tron - 77 kWh
-Q4 Sportback 45 e-tron - 77 kWh
-Q4 Sportback 45 e-tron quattro - 77 kWh
-Q4 Sportback 50 e-tron quattro - 77 kWh
-Q4 Sportback 55 e-tron quattro - 77 kWh
-Q5 TFSIe - 17,9 kWh
-Q5 e-Tron - 14,1 kWh
-Q6 e-tron RWD - 100 kWh
-Q7 55 TFSI e - 17,3 kWh
-Q7 55 TFSI e Quattro - 17,9 kWh
-Q7 55 TFSI e Quattro - 25,9 kWh
-Q7 60 TFSI e - 17,3 kWh
-Q7 60 TFSI e Quattro - 17,9 kWh
-Q7 60 TFSI e Quattro - 25,9 kWh
-Q7 e-tron - 17,3 kWh
-Q8 50 e-tron - 95 kWh
-Q8 55 TFSI e Quattro - 17,9 kWh
-Q8 55 TFSI e Quattro - 25,9 kWh
-Q8 55 e-tron - 114 kWh
-Q8 60 TFSI e Quattro - 17,9 kWh
-Q8 60 TFSI e Quattro - 25,9 kWh
-Q8 Sportback 50 e-tron - 95 kWh
-Q8 Sportback 55 e-tron - 114 kWh
-RS e-tron GT - 83,7 kWh
-RS e-tron GT - 97 kWh
-RS e-tron GT Performance - 97 kWh
-S e-tron GT - 97 kWh
-S6 Avant e-tron AWD - 100 kWh
-S6 e-tron AWD - 100 kWh
-SQ6 e-tron AWD - 100 kWh
-SQ8 Sportback e-tron - 114 kWh
-SQ8 e-tron - 114 kWh
-e-tron 50 quattro - 71 kWh
-e-tron 55 quattro - 95 kWh
-e-tron GT - 83,7 kWh
-e-tron S quattro - 95 kWh
-e-tron Sportback 50 quattro - 71 kWh
-e-tron Sportback 55 quattro - 95 kWh
-e-tron Sportback S quattro - 95 kWh
-Bestune
-
-NAT - 54 kWh
-Pony - 14 kWh
-BMW
-
-225xe - 10 kWh
-225xe - 16,3 kWh
-225xe - 7,6 kWh
-230xe - 16,3 kWh
-320e - 11,15 kWh
-320e xDrive - 11,15 kWh
-330e - 11,15 kWh
-330e - 7,6 kWh
-330e Touring - 22,3 kWh
-330e xDrive - 11,15 kWh
-330e xDrive - 22,3 kWh
-330e xDrive Touring - 22,3 kWh
-520e - 12 kWh
-530e - 12 kWh
-530e - 22,1 kWh
-530e - 9,2 kWh
-530e Touring - 22,1 kWh
-530e xDrive - 12 kWh
-530e xDrive - 22,1 kWh
-530e xDrive Touring - 22,1 kWh
-545e xDrive - 12 kWh
-550e xDrive - 22,1 kWh
-550e xDrive Touring - 22,1 kWh
-740Le iPerf. - 9,2 kWh
-740Le xDrive - 9,2 kWh
-740e - 9,2 kWh
-745Le - 12 kWh
-745Le xDrive - 12 kWh
-745e - 12 kWh
-750e xDrive - 22,1 kWh
-M5 - 22,1 kWh
-M5 Touring - 22,1 kWh
-M760e xDrive - 22,1 kWh
-X1 xDrive 25e - 10 kWh
-X1 xDrive 25e - 16,3 kWh
-X1 xDrive 30e - 16,3 kWh
-X2 xDrive 25e - 10 kWh
-X3 xDrive 30e - 12 kWh
-X3 xDrive 30e - 22,7 kWh
-X5 40e - 9,2 kWh
-X5 xDrive45e - 24,0 kWh
-X5 xDrive50 - 29,5 kWh
-XM - 29,5 kWh
-XM 50e - 29,5 kWh
-XM Label - 29,5 kWh
-i3 - 120 Ah
-i3 - 120 Ah REX
-i3 - 60 Ah
-i3 - 60 Ah REX
-i3 - 94 Ah
-i3 - 94 Ah REX
-i3s - 120 Ah
-i3s - 94 Ah
-i3s - 94 Ah REX
-i4 M50 Drive - 83,9 kWh
-i4 M50 xDrive - 83,9 kWh
-i4 M60 xDrive - 83,9 kWh
-i4 eDrive35 - 70,3 kWh
-i4 eDrive40 - 83,9 kWh
-i4 xDrive40 - 83,9 kWh
-i5 M60 - 83,9 kWh
-i5 M60 xDrive Touring - 83,9 kWh
-i5 eDrive40 - 83,9 kWh
-i5 eDrive40 Touring - 83,9 kWh
-i5 xDrive40 - 83,9 kWh
-i5 xDrive40 Touring - 83,9 kWh
-i7 M70 - 105 kWh
-i7 eDrive50 - 105 kWh
-i7 xDrive60 - 105 kWh
-i8 - 5,18 kWh
-i8 - 9,4 kWh
-iX M60 - 111,5 kWh
-iX M70 - 111,5 kWh
-iX xDrive 40 - 76,6 kWh
-iX xDrive 45 - 100,6 kWh
-iX xDrive 50 - 111,5 kWh
-iX xDrive 60 - 111,5 kWh
-iX1 eDrive20 - 66,5 kWh
-iX1 xDrive30 - 66,5 kWh
-iX2 eDrive20 - 66,5 kWh
-iX2 eDrive30 - 66,5 kWh
-iX3 - 80 kWh
-BYD
-
-Atto 3 - 49,92 kWh
-Atto 3 - 58,56 kWh
-Atto 3 - 60,48 kWh
-Dolphin - 44,9 kWh
-Dolphin - 58,56 kWh
-Dolphin - 60,48 kWh
-Dolphin Mini / Seagull - 38,88 kWh
-ETP 3 - 44,9 kWh
-Han - 85,4 kWh
-King DM-i - 18,3 kWh
-Seal - 64 kWh
-Seal - 82,56 kWh
-Seal U - 71,8 kWh
-Seal U - 87 kWh
-Seal U DM-i - 18,3 kWh
-Sealion 6 - 18,3 kWh
-Sealion 6 - 8,3 kWh
-Song Plus DM-i - 18,3 kWh
-Song Plus DM-i - 8,3 kWh
-Tang - 108,8 kWh
-Yuan - 45,1 kWh
-Cadillac
-
-Escalade IQ - 215 kWh
-Lyriq - 107,6 kWh
-Optiq - 89 kWh
-Vistiq - 107,6 kWh
-Chevrolet
-
-Equinox EV - 85 kWh
-Silverado EV - 215 kWh
-Citroën
-
-Berlingo Electric - 22 kWh
-C-Zero - 16 kWh
-C5 Airc. 1,6i Hybrid - 13,2 kWh
-C5X 1,6i Hybrid - 12,4 kWh
-e-Berlingo M - 50 kWh
-e-Berlingo XL - 50 kWh
-e-Jumpy Kasten - 50 kWh
-e-Jumpy Kasten - 75 kWh
-e-Jumpy Kombi - 50 kWh
-e-Jumpy Kombi - 75 kWh
-e-Spacetourer - 50 kWh
-e-Spacetourer - 75 kWh
-ë-C3 - 44 kWh
-ë-C4 - 50 kWh
-ë-C4 - 54 kWh
-ë-C4 X - 50 kWh
-ë-C4 X - 54 kWh
-Cupra
-
-Born - 58 kWh
-Born - 60 kWh
-Born - 77 kWh
-Born VZ - 79 kWh
-Born e-boost - 58 kWh
-Formentor e-Hybrid - 13,0 kWh
-Formentor e-Hybrid - 25,8 kWh
-Tavascan Endurance - 77 kWh
-Tavascan VZ - 77 kWh
-Terramar e-Hybrid - 25,7 kWh
-Dacia
-
-Spring Electric - 27,4 kWh
-Spring FL Electric - 27,4 kWh
-DS Automobiles
-
-3 Crossback E-Tense - 50 kWh
-3 Crossback E-Tense - 54 kWh
-4 E-Tense - 12,4 kWh
-7 E-Tense - 14,2 kWh
-7 Hybrid - 13,2 kWh
-Fiat
-
-500e - 23,8 kWh
-500e - 42 kWh
-600e - 54 kWh
-Abarth 500e - 42 kWh
-Scudo BV Pro - 75 kWh
-e-Doblo - 50 kWh
-e-Ulysse - 75 kWh
-e-Ulysse Living XL- 75 kWh
-eScudo BV Business - 50 kWh
-eScudo BV Business - 75 kWh
-eScudo BV Pro - 50 kWh
-eScudo KW Business - 50 kWh
-eScudo KW Business - 75 kWh
-eScudo KW Pro - 50 kWh
-eScudo KW Pro - 75 kWh
-Ford
-
-Capri AWD - 79 kWh
-Capri RWD - 52 kWh
-Capri RWD - 77 kWh
-Explorer 4x4 - 13,6 kWh
-Explorer AWD - 79 kWh
-Explorer RWD - 52 kWh
-Explorer RWD - 77 kWh
-Explorer RWD - 79 kWh
-F-150 Lightning ER - 131 kWh
-F-150 Lightning SR - 98 kWh
-Kuga 2.5 PHEV - 14,4 kWh
-Mustang Mach-E - 70 kWh
-Mustang Mach-E AWD - 70 kWh
-Mustang Mach-E AWD - 72,6 kWh
-Mustang Mach-E AWD - 98,7 kWh
-Mustang Mach-E GT - 98,7 kWh
-Mustang Mach-E RWD - 72,6 kWh
-Mustang Mach-E RWD - 98,7 kWh
-e-Transit - 68 kWh
-Genesis
-
-G80 EV - 87,2 kWh
-GV60 AWD - 77,4 kWh
-GV60 Performance AWD - 77,4 kWh
-GV60 RWD - 77,4 kWh
-GV70 AWD - 77,4 kWh
-GMC
-
-Hummer EV 2X - 179 kWh
-Hummer EV 3X - 179 kWh
-Hummer SUV EV 2X - 179 kWh
-Hummer SUV EV 3X - 179 kWh
-Sierra EV - 215 kWh
-GWM
-
-Haval H6 GT - 35,4 kWh
-Ora 3 - 47,8 kWh
-Ora 3 - 63,1 kWh
-Wey 05 - 39,67 kWh
-Honda
-
-Prologue - 85 kWh
-eNy1 - 68,8 kWh
-Hongqi
-
-E-HS7 - 111 kWh
-Hyundai
-
-Inster - 42 kWh
-Inster - 49 kWh
-Ioniq - 28 kWh
-Ioniq - 38,3 kWh
-Ioniq 5 2WD - 63 kWh
-Ioniq 5 2WD - 84 kWh
-Ioniq 5 4WD - 84 kWh
-Ioniq 5 AWD - 58,2 kWh
-Ioniq 5 AWD - 72,6 kWh
-Ioniq 5 AWD - 77,4 kWh
-Ioniq 5 N AWD - 84 kWh
-Ioniq 5 RWD - 58,2 kWh
-Ioniq 5 RWD - 72,6 kWh
-Ioniq 5 RWD - 77,4 kWh
-Ioniq 6 - 53 kWh
-Ioniq 6 AWD - 77,4 kWh
-Ioniq 6 RWD - 77,4 kWh
-Ioniq 9 AWD - 110,3 kWh
-Ioniq 9 AWD Performance - 110,3 kWh
-Ioniq 9 RWD - 110,3 kWh
-Kona - 39,2 kWh
-Kona - 64 kWh
-Kona EV - 48,4 kWh
-Kona EV - 48,6 kWh
-Kona EV - 64,8 kWh
-Kona EV - 65,4 kWh
-Santa Fe PHEV - 13,8 kWh
-Tucson PHEV - 13,8 kWh
-Jaguar
-
-E-Pace - 15,0 kWh
-I-Pace EV400 - 90,2 kWh
-Jeep
-
-Avenger - 54 kWh
-Compass 4xe - 11,4 kWh
-Renegade 4xe - 11,4 kWh
-Kia
-
-EV3 LR - 81,4 kWh
-EV3 SR - 58,3 kWh
-EV6 AWD - 58 kWh
-EV6 AWD - 77,4 kWh
-EV6 AWD - 84 kWh
-EV6 AWD GT - 77,4 kWh
-EV6 GT AWD - 84 kWh
-EV6 RWD - 58 kWh
-EV6 RWD - 77,4 kWh
-EV6 RWD - 84 kWh
-EV9 AWD - 99,8 kWh
-EV9 RWD - 99,8 kWh
-Niro EV - 64,8 kWh
-Niro PHEV - 11,1 kWh
-Sorento PHEV - 13,8 kWh
-Soul - 27 kWh
-Soul - 30 kWh
-Soul - 39,2 kWh
-Soul - 64 kWh
-Sportage PHEV - 13,8 kWh
-e-Niro - 39,2 kWh
-e-Niro - 64 kWh
-Land Rover
-
-Defender 110 - 19,2 kWh
-Discovery Sport P300e - 15,0 kWh
-Evoque - 15,0 kWh
-Range Rover - 38,2 kWh
-Velar - 17,1 kWh
-Velar - 19,2 kWh
-Lexus
-
-NX 450h+ - 18,1 kWh
-RX 450h+ - 18,1 kWh
-RZ300e - 71,4 kWh
-RZ450e - 71,4 kWh
-UX 300e - 54,3 kWh
-UX 300e - 72,8 kWh
-Lynk & Co
-
-01 1.5 PHEV - 17,72 kWh*
-MAN
-
-eTGE - 35,8 kWh
-Maxus
-
-Maxus eDeliver 9 77 kWh
-T90 - 89 kWh
-eDeliver 3 - 52,5 kWh
-eDeliver 5 - 64 kWh
-eDeliver 7 - 88 kWh AWD
-eDeliver 7 - 88 kWh FWD
-eDeliver 9 - 88 kWh
-Mazda
-
-CX-60 - 17,8 kWh
-CX-80 - 17,8 kWh
-MX-30 - 35,5 kWh
-Mercedes-Benz
-
-A 250e Compact Limousine - 15,6 kWh
-A 250e Limousine - 15,6 kWh
-AMG EQE 43 4MATIC - 90,56 kWh*
-AMG EQE 43 4MATIC SUV - 90,56 kWh*
-AMG EQE 53 4MATIC SUV - 90,56 kWh*
-AMG EQE 53 4MATIC+ - 90,56 kWh*
-AMG EQS 53 4MATIC+ - 107,8 kWh*
-AMG EQS 53 4MATIC+ - 108,4 kWh*
-AMG EQS 53 4MATIC+ - 118 kWh*
-AMG EQS 53 4MATIC+ Dynamic Plus - 108,4 kWh*
-AMG EQS 53 4MATIC+ Dynamic Plus - 118 kWh*
-AMG GLE 53 - 31,2 kWh
-AMG GLE 53 Coupe - 31,2 kWh
-B 250e Sports Tourer - 15,6 kWh
-C 300de - 25,4 kWh*
-C 300de 4MATIC - 25,4 kWh*
-C 300de 4MATIC T - 25,4 kWh*
-C 300de Limousine - 13,5 kWh
-C 300de T - 13,5 kWh
-C 300de T - 25,4 kWh*
-C 300e - 25,4 kWh*
-C 300e 4MATIC - 25,4 kWh*
-C 300e 4MATIC Limousine - 13,5 kWh
-C 300e Limousine - 13,5 kWh
-C 300e T - 13,5 kWh
-C 300e T - 25,4 kWh*
-C 350e Limousine - 6,38 kWh
-C 350e T - 6,38 kWh
-C 400e 4MATIC - 25,4 kWh*
-CLA 250e Coupe EQ Power - 15,6 kWh
-CLA 250e Shooting Brake EQ Power - 15,6 kWh
-CLE 300e EQ Hybrid - 25,4 kWh*
-E 300 de 4MATIC Limousine - 13,5 kWh
-E 300 de 4MATIC T - 13,5 kWh
-E 300 de Limousine - 13,5 kWh
-E 300 de T - 13,5 kWh
-E 300 e 4MATIC Limousine - 13,5 kWh
-E 300 e Limousine - 13,5 kWh
-E 300 e T - 13,5 kWh
-E 300de - 25,4 kWh*
-E 300de 4MATIC - 25,4 kWh*
-E 300de 4MATIC T - 25,4 kWh*
-E 300de T - 25,4 kWh*
-E 300e - 25,4 kWh*
-E 300e 4MATIC - 25,4 kWh*
-E 300e T - 25,4 kWh*
-E 350e - 6,38 kWh
-E 400e 4MATIC - 25,4 kWh*
-EQA 250 - 66,5 kWh
-EQA 250+ - 70,5 kWh
-EQA 300 4MATIC - 66,5 kWh
-EQA 350 4MATIC - 66,5 kWh
-EQA 350 4MATIC - 70,5 kWh
-EQB 250 - 66,5 kWh
-EQB 250+ - 70,5 kWh
-EQB 300 4MATIC - 66,5 kWh
-EQB 300 4MATIC - 70,5 kWh
-EQB 350 - 70,5 kWh
-EQB 350 4MATIC - 66,5 kWh
-EQC 400 - 85 kWh
-EQE 280 - 90,56 kWh*
-EQE 300 - 89 kWh*
-EQE 300 - 90,56 kWh*
-EQE 300 SUV - 90,56 kWh*
-EQE 350 - 89 kWh*
-EQE 350 - 90,56 kWh*
-EQE 350 4MATIC - 89 kWh*
-EQE 350 4MATIC - 90,56 kWh*
-EQE 350 4MATIC SUV - 89 kWh*
-EQE 350 4MATIC SUV - 90,56 kWh*
-EQE 350+ - 90,56 kWh*
-EQE 350+ - 96 kWh*
-EQE 350+ SUV - 90,56 kWh*
-EQE 350+ SUV - 96 kWh*
-EQE 500 4MATIC - 90,56 kWh*
-EQE 500 4MATIC SUV*
-EQE 500 4MATIC SUV - 96 kWh*
-EQS 350 - 90,56 kWh*
-EQS 450 4MATIC - 108,4 kWh*
-EQS 450 4MATIC - 118 kWh*
-EQS 450 4MATIC SUV - 108,4 kWh*
-EQS 450 4MATIC SUV - 118 kWh*
-EQS 450+ - 107,8 kWh*
-EQS 450+ - 108,4 kWh*
-EQS 450+ - 118 kWh*
-EQS 450+ SUV - 108,4 kWh*
-EQS 450+ SUV - 118 kWh*
-EQS 500 4MATIC - 108,4 kWh*
-EQS 500 4MATIC - 118 kWh*
-EQS 500 4MATIC SUV - 108,4 kWh*
-EQS 500 4MATIC SUV - 118 kWh*
-EQS 580 4MATIC - 107,8 kWh*
-EQS 580 4MATIC - 108,4 kWh*
-EQS 580 4MATIC - 118 kWh*
-EQS 580 4MATIC SUV - 108,4 kWh*
-EQS 580 4MATIC SUV - 118 kWh*
-EQT - 45 kWh
-EQV 250 - 60 kWh
-EQV 300 - 100 kWh
-GLA 250e - 15,6 kWh
-GLC 300de 4MATIC - 13,5 kWh
-GLC 300de 4MATIC - 24,82 kWh*
-GLC 300de 4MATIC Coupe - 13,5 kWh
-GLC 300de 4MATIC Coupé - 24,82 kWh*
-GLC 300e 4MATIC - 13,5 kWh
-GLC 300e 4MATIC - 24,82 kWh*
-GLC 300e 4MATIC Coupé - 24,82 kWh*
-GLC 350e 4MATIC - 24,82 kWh*
-GLC 350e 4MATIC - 8,7 kWh
-GLC 400e 4MATIC - 24,82 kWh*
-GLC 400e 4MATIC Coupé - 24,82 kWh*
-GLE 350de 4MATIC - 31,2 kWh
-GLE 350de 4MATIC Coupe - 31,2 kWh
-GLE 350e 4MATIC - 31,2 kWh
-GLE 350e 4MATIC Coupe - 31,2 kWh
-GLE 400e 4MATIC - 31,2 kWh
-GLE 400e 4MATIC Coupe - 31,2 kWh
-GLE 450e 4MATIC - 31,5 kWh
-GLE 500e - 8,7 kWh
-GLE 53 HYBRID 4MATIC+ - 31,2 kWh
-GLE 550e - 8,7 kWh
-Maybach EQS 680 4MATIC+ SUV - 118 kWh*
-S 560e - 13,5 kWh
-S 580e - 28,6 kWh*
-S 580e 4MATIC - 28,6 kWh*
-eCitan - 45 kWh
-eCitan Tourer - 45 kWh
-eSprinter - 55 kWh
-eVito 112 extra long - 66 kWh
-eVito 112 long - 66 kWh
-eVito 126 Tourer pro extralong - 66 kWh
-eVito 126 Tourer pro long - 66 kWh
-eVito 129 Tourer pro extra long - 100 kWh
-eVito 129 Tourer pro long - 100 kWh
-eVito Tourer - 41 kwh
-eVito extra long - 41 kWh
-eVito long - 41 kWh
-MG Automotive
-
-Cyberster - 77,0 kWh
-EHS - 16,6 kWh
-MG4 Electric - 51,0 kWh
-MG4 Electric - 64,0 kWh
-MG4 Electric - 77,0 kWh
-MG5 Electric LR - 61,1 kWh
-MG5 Electric SR - 50,3 kWh
-Marvel R - 69,9 kWh
-Marvel R Performance - 69,9 kWh
-ZS EV - 44,5 kWh
-ZS EV - 51,1 kWh
-ZS EV - 72,6 kWh
-Mini
-
-Aceman E - 42,5 kWh
-Aceman SE - 54,2 kWh
-Cooper E - 40,7 kWh
-Cooper SE - 32,6 kWh
-Cooper SE - 54,2 kWh
-Countryman - 10 kWh
-Countryman - 7,6 kWh
-Countryman E - 66,5 kWh
-Countryman SE - 66,5 kWh
-Mitsubishi
-
-Outlander PHEV - 12,0 kWh
-Outlander PHEV - 13,8 kWh
-Nissan
-
-Ariya - 63 kWh
-Ariya - 87 kWh
-Ariya AWD - 87 kWh
-Leaf ZE0 - 24 kWh
-Leaf ZE0 - 30 kWh
-Leaf ZE1 - 40 kWh
-Leaf ZE1 - 62 kWh
-Sakura - 20 kWh
-Townstar - 45 kWh
-e-NV200 - 24 kWh
-e-NV200 - 40 kWh
-e-NV200 Evalia - 24 kWh
-e-NV200 Evalia - 40 kWh
-e-NV200 Japan
-e-NV200 Japan - 40 kWh
-Omoda
-
-E5 - 58,9 kWh
-E5 - 61 kWh
-Opel
-
-Astra - 12,4 kWh
-Astra Electric - 54 kWh
-Astra Electric Sports Tourer - 54 kWh
-Astra Sports Tourer - 12,4 kWh
-Combo-e Cargo - 50 kWh
-Combo-e Life - 50 kWh
-Corsa Electric - 50 kWh
-Corsa Electric - 54 kWh
-Corsa-e - 50 kWh
-Frontera - 44 kWh
-Grandland - 13,2 kWh
-Mokka-e - 50 kWh
-Vivaro-e Cargo - 50 kWh
-Vivaro-e Cargo - 75 kWh
-Vivaro-e Kombi - 50 kWh
-Vivaro-e Kombi - 75 kWh
-Peugeot
-
-3008 1.6i Hybride 2 - 13,2 kWh
-3008 1.6i Hybride 4 - 13,2 kWh
-308 - 12,4 kWh
-308 Limousine - 12,4 kWh
-408 Limosiene - 12,4 kWh
-508 Hybrid - 11,5 kWh
-508 Hybrid SW - 11,5 kWh
-508 Hybrid4 - 11,5 kWh
-508 Hybrid4 SW - 11,5 kWh
-Partner Electric - 22 kWh
-e-2008 - 50 kWh
-e-2008 - 54 kWh
-e-2008 GT - 54 kWh
-e-208 - 50 kWh
-e-208 - 54 kWh
-e-3008 - 77 kWh
-e-308 - 54 kWh
-e-308 Limousine - 54 kWh
-e-Expert Doppelkabine L2 - 50 kWh
-e-Expert Doppelkabine L2 - 75 kWh
-e-Expert Doppelkabine L3 - 50 kWh
-e-Expert Doppelkabine L3 - 75 kWh
-e-Expert Kastenwagen L1 - 50 kWh
-e-Expert Kastenwagen L2 - 50 kWh
-e-Expert Kastenwagen L2 - 75 kWh
-e-Expert Kastenwagen L3 - 50 kWh
-e-Expert Kastenwagen L3 - 75 kWh
-e-Partner - 50 kWh
-e-Rifter - 50 kWh
-e-Traveller - 50 kWh
-e-Traveller - 75 kWh
-iOn - 14,5 kWh
-iOn - 16 kWh
-Polestar
-
-2 Long Range Dual Motor - 78 kWh
-2 Long Range Dual Motor - 82 kWh
-2 Long Range Dual Motor Performance - 78 kWh
-2 Long Range Dual Motor Performance - 82 kWh
-2 Long Range Single Motor - 78 kWh
-2 Long Range Single Motor - 82 kWh
-2 Standard Range - 64 kWh
-2 Standard Range - 69 kWh
-2 Standard Range - 70 kWh
-4 Long Range Dual Motor - 100 kWh*
-4 Long Range Single Motor - 100 kWh*
-Porsche
-
-Cayenne Turbo S e-Hybrid - 14,1 kWh
-Cayenne e-Hybrid - 14,1 kWh
-Cayenne e-Hybrid - 17,9 kWh
-Cayenne e-Hybrid - 25,9 kWh
-Macan - 100 kWh
-Macan 4 - 100 kWh
-Macan 4S - 100 kWh
-Macan Turbo - 100 kWh
-Panamera 4 Hybrid - 17,9 kWh
-Panamera 4 Hybrid Sport Turismo - 17,9 kWh
-Panamera 4 e-Hybrid - 14,1 kWh
-Panamera 4 e-Hybrid Executive - 14,1 kWh
-Panamera 4 e-Hybrid Sport Turismo - 14,1 kWh
-Panamera 4S Hybrid - 17,9 kWh
-Panamera 4S Hybrid Sport Turismo - 17,9 kWh
-Panamera Turbo S Hybrid - 17,9 kWh
-Panamera Turbo S Hybrid Sport Turismo - 17,9 kWh
-Panamera Turbo S e-Hybrid - 14,1 kWh
-Panamera Turbo S e-Hybrid Executive - 14,1 kWh
-Panamera Turbo S e-Hybrid Sport Turismo - 14,1 kWh
-Taycan - 71 kWh
-Taycan - 83,7 kWh
-Taycan - 97 kWh
-Taycan 4 Cross Turismo - 83,7 kWh
-Taycan 4 Cross Turismo - 97 kWh
-Taycan 4S - 71 kWh
-Taycan 4S - 83,7 kWh
-Taycan 4S - 97 kWh
-Taycan 4S Cross Turismo - 83,7 kWh
-Taycan 4S Cross Turismo - 97 kWh
-Taycan 4S Sport Turismo - 71 kWh
-Taycan 4S Sport Turismo - 83,7 kWh
-Taycan 4S Sport Turismo - 97 kWh
-Taycan GTS - 83,7 kWh
-Taycan GTS Sport Turismo - 83,7 kWh
-Taycan Sport Turismo - 71 kWh
-Taycan Sport Turismo - 83,7 kWh
-Taycan Sport Turismo - 97 kWh
-Taycan Turbo - 83,7 kWh
-Taycan Turbo - 97 kWh
-Taycan Turbo Cross Turismo - 83,7 kWh
-Taycan Turbo Cross Turismo - 97 kWh
-Taycan Turbo GT - 97 kWh
-Taycan Turbo S - 83,7 kWh
-Taycan Turbo S - 97 kWh
-Taycan Turbo S Cross Turismo - 83,7 kWh
-Taycan Turbo S Cross Turismo - 97 kWh
-Taycan Turbo S Sport Turismo - 83,7 kWh
-Taycan Turbo S Sport Turismo - 97 kWh
-Taycan Turbo Sport Turismo - 83,7 kWh
-Taycan Turbo Sport Turismo - 97 kWh
-Renault
-
-5 E-Tech - 40 kWh
-5 E-Tech - 52 kWh
-Capture E-Tech - 9,8 kWh
-Kangoo E-Tech - 45 kWh
-Kangoo Maxi Z.E. - 33 kWh
-Kangoo Z.E. - 22 kWh
-Kangoo Z.E. - 33 kWh
-Master Z.E. - 33 kWh
-Megane E-Tech - 40 kWh*
-Megane E-Tech - 60 kWh*
-Megane E-Tech - 9,8 kWh
-Rafale E-Tech - 22 kWh
-Scenic E-Tech - 60 kWh
-Scenic E-Tech - 87 kWh
-Trafic E-Tech - 52 kWh
-Twingo Electric ZE - 21,4 kWh
-Zoe Q90 - 40 kWh
-Zoe R110 - 41 kWh
-Zoe R110 Z.E. 40 - 41 kWh
-Zoe R110 Z.E. 50 - 52 kWh
-Zoe R135 Z.E. 50 - 52 kWh
-Zoe R210/Q210 - 22 kWh
-Zoe R240 - 23,3 kWh
-Zoe R75 - 23,3 kWh
-Zoe R75 - 40 kWh
-Zoe R90 - 23,3 kWh
-Zoe R90 - 40 kWh
-Seat
-
-Leon e-Hybrid - 13,0 kWh
-Mii electric - 36,8 kWh
-Tarraco e-Hybrid - 13,0 kWh
-Skoda
-
-Citigo-e IV - 36,8 kWh
-Elroq 50 - 52 kWh
-Elroq 85 - 77 kWh
-Elroq 85x - 77 kWh
-Enyaq 85 - 77 kWh
-Enyaq 85 Coupe - 77 kWh
-Enyaq 85x - 77 kWh
-Enyaq 85x Coupe - 77 kWh
-Enyaq iV 50 - 52 kWh
-Enyaq iV 50 Coupe - 52 kWh
-Enyaq iV 60 - 58 kWh
-Enyaq iV 60 Coupe - 58 kWh
-Enyaq iV 80 - 77 kWh
-Enyaq iV 80 Coupe - 77 kWh
-Enyaq iV 80x - 77 kWh
-Enyaq iV 85 - 77 kWh
-Enyaq iV 85 Coupe - 77 kWh
-Enyaq iV 85x - 77 kWh
-Enyaq iV 85x Coupe - 77 kWh
-Enyaq iV RS - 77 kWh
-Kodiaq iV - 25,7 kWh
-Octavia iV - 13,0 kWh
-Superb iV - 13 kWh
-Superb iV - 25,7 kWh
-Smart
-
-#1 AWD - 66 kWh*
-#1 RWD - 49 kWh*
-#1 RWD - 66 kWh*
-#3 AWD - 66 kWh*
-#3 RWD - 49 kWh*
-#3 RWD - 66 kWh*
-EQ forfour - 17,7 kWh
-EQ fortwo cabrio - 17,7 kWh
-EQ fortwo coupé - 17,7 kWh
-forfour ed - 17,7 kWh
-fortwo cabrio Brabus ed - 17,6 kWh
-fortwo cabrio ed - 17,6 kWh
-fortwo cabrio ed - 17,7 kWh
-fortwo coupé Brabus ed - 17,6 kWh
-fortwo coupé ed - 17,6 kWh
-fortwo coupé ed - 17,7 kWh
-Subaru
-
-Solterra - 71,4 kWh
-Suzuki
-
-Across 2.5 PHEV - 18,1 kWh
-Tesla
-
-Model 3 - 60,5 kWh
-Model 3 Highland - 60,5 kWh
-Model 3 Long Range - 74,5 kWh
-Model 3 Long Range - 78,8 kWh
-Model 3 Long Range - 82 kWh
-Model 3 Long Range AWD - 78 kWh
-Model 3 Long Range AWD Highland - 78,8 kWh
-Model 3 Long Range Highland - 78,8 kWh
-Model 3 Long Range RWD - 78 kWh
-Model 3 Performance - 78 kWh
-Model 3 Performance - 78,8 kWh
-Model 3 Performance - 82 kWh
-Model 3 Performance Highland - 78,8 kWh
-Model 3 SR+ - 54,1 kWh
-Model 3 SR+ - 55 kWh
-Model 3 Standard Range plus - 52 kWh
-Model S - 100D
-Model S - 60
-Model S - 60D
-Model S - 70
-Model S - 70D
-Model S - 75
-Model S - 75D
-Model S - 85
-Model S - 85D
-Model S - 90
-Model S - 90D
-Model S - Long Range
-Model S - Long Range Plus
-Model S - P100D
-Model S - P60
-Model S - P70
-Model S - P75
-Model S - P85
-Model S - P85D
-Model S - P90D
-Model S - Performance
-Model S - Standard Range
-Model X - 100D
-Model X - 60D
-Model X - 70D
-Model X - 75D
-Model X - 90D
-Model X - Long Range
-Model X - Long Range Plus
-Model X - P100D
-Model X - P90D
-Model X - Performance
-Model X - Standard Range
-Model Y Long Range - 74,5 kWh
-Model Y Long Range - 78,8 kWh
-Model Y Long Range - 82 kWh
-Model Y Long Range AWD - 78 kWh
-Model Y Long Range AWD Juniper - 78,8 kWh
-Model Y Long Range Juniper - 78,8 kWh
-Model Y Long Range RWD - 78 kWh
-Model Y Performance - 74,5 kWh
-Model Y Performance - 78 kWh
-Model Y Performance - 78,8 kWh
-Model Y Performance - 82 kWh
-Model Y Performance Juniper - 78,8 kWh
-Model Y SR+ - 55 kWh
-Model Y Standard Range - 60,5 kWh
-Model Y Standard Range - 60,7 kWh
-Model Y Standard Range Juniper - 60,5 kWh
-Toyota
-
-C-HR - 13,6 kWh
-Prius - 13,6 kWh
-Proace City - 50 kWh
-Proace City Verso - 50 kWh
-Proace Electric - 50 kWh
-Proace Electric - 75 kWh
-Proace Verso Electric - 50 kWh
-Proace Verso Kombi - 75 kWh
-Rav4 2.5 PHEV - 18,1 kWh
-bZ4X - 71,4 kWh
-bZ4X AWD - 71,4 kWh
-Volkswagen
-
-Arteon eHybrid - 13 kWh
-Caddy e-Hybrid - 25,7 kWh
-Golf 7 GTE - 8,7 kWh
-Golf 8 1.4 GTE - 13 kWh
-Golf 8 eHybrid - 13 kWh
-Golf GTE - 25,7 kWh
-Golf e-Hybrid - 25,7 kWh
-ID.3 GTX - 79 kWh
-ID.3 GTX Performance - 79 kWh
-ID.3 Pro - 58 kWh
-ID.3 Pro - 59 kWh
-ID.3 Pro Performance - 58 kWh
-ID.3 Pro S - 77 kWh
-ID.3 Pure - 45 kWh
-ID.3 Pure - 52 kWh
-ID.3 Pure Performance - 45 kWh
-ID.4 AWD - 77 kWh
-ID.4 GTX - 77 kWh
-ID.4 Pro - 77 kWh
-ID.4 Pro 4M - 77 kWh
-ID.4 Pro Performance - 77 kWh
-ID.4 Pro S - 77 kWh
-ID.4 Pure - 52 kWh
-ID.4 Pure Performance - 52 kWh
-ID.4 RWD - 77 kWh
-ID.5 GTX - 77 kWh
-ID.5 GTX 4M - 77 kWh
-ID.5 GTX 4M - 79 kWh
-ID.5 Pro - 77 kWh
-ID.5 Pro Performance - 77 kWh
-ID.5 Pure - 52 kWh
-ID.7 GTX 4Motion - 86 kWh
-ID.7 GTX 4Motion Tourer - 86 kWh
-ID.7 Pro - 77 kWh
-ID.7 Pro S - 86 kWh
-ID.7 Pro S Tourer - 86 kWh
-ID.7 Pro Tourer - 77 kWh
-ID.BUZZ - 77 kWh
-ID.BUZZ AWD - 86 kWh
-ID.BUZZ Cargo - 77 kWh
-ID.BUZZ Cargo Pro - 79 kWh
-ID.BUZZ Cargo Pro 4M - 79 kWh
-ID.BUZZ GTX - 79 kWh
-ID.BUZZ GTX - 86 kWh
-ID.BUZZ Pro - 79 kWh
-ID.BUZZ Pro - 86 kWh
-ID.BUZZ RWD - 86 kWh
-Multivan e-Hybrid - 13 kWh
-Multivan e-Hybrid - 25,7 kWh
-Passat GTE - 13 kWh
-Passat GTE - 13 kWh battery upgrade
-Passat GTE - 9,9 kWh
-Passat e-Hybrid - 25,7 kWh
-Tayron e-Hybrid - 25,7 kWh
-Tiguan e-Hybrid - 25,7 kWh
-Tiguan eHybrid - 13,0 kWh
-Touareg e-Hybrid - 17,9 kWh
-e-Crafter 35 - 35,8 kWh
-e-Golf - 24,2 kWh
-e-Golf - 35,8 kWh
-e-Up - 18,7 kWh
-e-Up - 36,8 kWh
-Volvo
-
-C40 Recharge - 69 kWh
-C40 Recharge AWD - 78 kWh
-C40 Recharge AWD - 82 kWh
-C40 Recharge RWD - 82 kWh
-EC40 Recharge - 69 kWh
-EC40 Recharge AWD - 82 kWh
-EC40 Recharge RWD - 82 kWh
-EC40 Recharge RWD Performance - 82 kWh
-ES 90 LRSM - 92 kWh*
-EX 30 AWD - 69 kWh*
-EX 30 Cross Country AWD - 69 kWh*
-EX 30 RWD - 51 kWh*
-EX 30 RWD - 69 kWh*
-EX40 Recharge - 69 kWh
-EX40 Recharge - 70 kWh
-EX40 Recharge AWD - 82 kWh
-EX40 Recharge AWD Performance - 82 kWh
-EX40 Recharge RWD - 82 kWh
-S60 Recharge T6 - 18,8 kWh
-S60 Recharge T8 - 18,8 kWh
-S60 T6 TE - 11,6 kWh
-S60 T8 TE - 11,6 kWh
-S60 T8 Twin Engine PSE - 11,6 kWh
-S90 Excellence 10,4 kWh
-S90 Recharge T8 - 18,8 kWh
-S90 T8 Twin Engine 11,6 kWh
-S90 Twin Engine 10,4 kWh
-V60 Recharge T6 - 18,8 kWh
-V60 Recharge T8 - 18,8 kWh
-V60 T6 Twin Engine - 10,4 kWh
-V60 T6 Twin Engine - 11,6 kWh
-V60 T8 Twin Engine - 10,4 kWh
-V60 T8 Twin Engine - 11,6 kWh
-V60 T8 Twin Engine PSE - 11,6 kWh
-V90 Recharge T6 - 18,8 kWh
-V90 Recharge T8 - 18,8 kWh
-V90 T6 Twin Engine - 11,6 kWh
-V90 T8 Twin Engine - 11,6 kWh
-V90 Twin Engine - 10,4 kWh
-V90 Twin Engine - 9,2 kWh
-XC40 Recharge - 69 kWh
-XC40 Recharge AWD - 78 kWh
-XC40 Recharge AWD - 82 kWh
-XC40 Recharge RWD - 82 kWh
-XC40 Recharge T4 - 10,7 kWh
-XC40 Recharge T5 - 10,7 kWh
-XC60 Recharge T6 - 18,8 kWh
-XC60 Recharge T8 - 18,8 kWh
-XC60 T6 Twin Engine - 11,6 kWh
-XC60 T8 Twin Engine - 11,6 kWh
-XC60 T8 Twin Engine PSE - 11,6 kWh
-XC60 Twin Engine - 10,4 kWh
-XC90 Excellence - 10,4 kWh
-XC90 Excellence - 11,6 kWh
-XC90 Excellence - 9,2 kWh
-XC90 Recharge T8 - 18,8 kWh
-XC90 T8 Twin Engine - 11,6 kWh
-XC90 Twin Engine - 10,4 kWh
-XC90 Twin Engine - 9,2 kWh
-Xpeng
-
-G6 - 66 kWh
-G6 RWD LR - 87,5 kWh
-G6 RWD Performance - 87,5 kWh
-G9 AWD Performance - 98 kWh
-G9 RWD LR - 98 kWh
-G9 SR - 78,2 kWh
-P7 AWD Performance - 86,2 kWh
-P7 RWD LR - 86,2 kWh
-Zeekr
-
-X AWD - 69 kWh*
-X RWD - 69 kWh*
-`
-  ;
-
+  // ===============================
+// 🔥 COMPLETE STABIELE RENDER ENGINE
 // ===============================
-// 🔥 PARSER (STAP 2)
-// ===============================
-function parseBatteryData(rawText) {
-  const lines = rawText.split("\n");
-  let currentBrand = "";
-  const db = {};
 
-  lines.forEach(line => {
-    line = (line || "").trim();
-    if (!line) return;
-
-    if (!line.includes("-")) {
-      currentBrand = normalizeText(line);
-      if (!db[currentBrand]) db[currentBrand] = [];
-      return;
-    }
-
-    const parts = line.split("-");
-    if (parts.length < 2 || !currentBrand) return;
-
-    const modelRaw = parts[0].trim();
-    const capacityRaw = parts.slice(1).join("-").trim();
-
-    const model = normalizeText(modelRaw);
-
-    const capacity = parseFloat(
-      capacityRaw
-        .replace(",", ".")
-        .replace(/kwh/gi, "")
-        .replace(/[^\d.]/g, "")
-    );
-
-    if (isNaN(capacity)) return;
-
-    const type = capacity > 25 ? "BEV" : "PHEV";
-
-    db[currentBrand].push({
-      raw: model,
-      capacity,
-      type
-    });
-  });
-
-  return db;
-}
-
-// ===============================
-const batteryDB = parseBatteryData(RAW_BATTERY_DATA);
-
-// ===============================
-// 🔥 HELPERS
-// ===============================
-function normalizeText(text) {
-  return (text || "")
-    .toUpperCase()
-    .replace(/\s+/g, "")
-    .replace(/-/g, "")
-    .replace(/\./g, "")
-    .replace(/É/g, "E");
-}
-
-function similarityScore(a, b) {
-  const aWords = a.match(/[A-Z]+|\d+/g) || [];
-  const bWords = b.match(/[A-Z]+|\d+/g) || [];
-
-  let matches = 0;
-  aWords.forEach(word => {
-    if (bWords.includes(word)) matches++;
-  });
-
-  return matches / Math.max(aWords.length, bWords.length, 1);
-}
-
-function getBrandSpecificText(merk, model, type) {
-  const m = (merk || "").toLowerCase();
-  const mdl = (model || "").toLowerCase();
-
-  // ===============================
-  // 🔵 BMW SPECIFIEK
-  // ===============================
-  if (m.includes("bmw")) {
-
-    if (mdl.includes("330e") || mdl.includes("530e")) {
-      return "Dit BMW plug-in model wordt vaak zakelijk gereden. Hierdoor is accugebruik sterk afhankelijk van laaddiscipline — dit bepaalt de werkelijke conditie.";
-    }
-
-    return "BMW plug-in hybrides zijn technisch sterk, maar accugebruik verschilt sterk per eigenaar. Controle op laadcycli is hier extra relevant.";
-  }
-
-  // ===============================
-  // 🔵 PORSCHE
-  // ===============================
-  if (m.includes("porsche")) {
-
-    if (mdl.includes("cayenne")) {
-      return "De Cayenne plug-in hybride combineert prestaties met gewicht. Hierdoor wordt de batterij relatief zwaar belast bij intensief gebruik.";
-    }
-
-    if (mdl.includes("taycan")) {
-      return "De Taycan heeft geavanceerde accutechniek. Snelladen en rijstijl hebben directe invloed op batterijprestaties.";
-    }
-
-    return "Porsche combineert prestaties met geavanceerde accutechniek. Consistent laadgedrag is essentieel.";
-  }
-
-  // ===============================
-  // 🔵 TESLA
-  // ===============================
-  if (m.includes("tesla")) {
-
-    if (mdl.includes("model 3") || mdl.includes("model y")) {
-      return "Deze Tesla modellen staan bekend om stabiele accuprestaties. Intensief snelladen kan echter invloed hebben op degradatie.";
-    }
-
-    if (mdl.includes("model s") || mdl.includes("model x")) {
-      return "Bij oudere Tesla modellen is accudegradatie een bekend aandachtspunt, vooral bij hoge kilometerstanden.";
-    }
-
-    return "Tesla staat bekend om sterk accubeheer, maar gebruik en laadgedrag blijven bepalend.";
-  }
-
-  // ===============================
-  // 🔵 VOLVO
-  // ===============================
-  if (m.includes("volvo")) {
-
-    if (mdl.includes("xc90") || mdl.includes("xc60")) {
-      return "Deze Volvo modellen zijn zwaar en krachtig. Hierdoor wordt de batterij intensiever gebruikt dan gemiddeld.";
-    }
-
-    return "Volvo plug-in hybrides combineren kracht met gewicht. Dit heeft invloed op batterijgebruik.";
-  }
-
-  // ===============================
-  // 🔵 MERCEDES
-  // ===============================
-  if (m.includes("mercedes")) {
-
-    if (mdl.includes("c300e") || mdl.includes("e300e")) {
-      return "Deze Mercedes plug-in hybrides hebben een relatief grote batterij. Werkelijke prestaties hangen sterk af van laadgedrag.";
-    }
-
-    return "Mercedes focust op comfort en accubeheer. Bij hogere kilometerstanden kan capaciteit afnemen.";
-  }
-
-  // ===============================
-  // 🔵 VAG GROEP (VW / AUDI / SKODA / SEAT)
-  // ===============================
-  if (
-    m.includes("volkswagen") ||
-    m.includes("vw") ||
-    m.includes("audi") ||
-    m.includes("skoda") ||
-    m.includes("seat") ||
-    m.includes("cupra")
-  ) {
-
-    if (mdl.includes("golf") || mdl.includes("passat") || mdl.includes("a3") || mdl.includes("octavia")) {
-      return "Deze plug-in modellen zijn veel zakelijk gebruikt. Accustatus hangt sterk af van laadgedrag en gebruikspatroon.";
-    }
-
-    return "VAG plug-in hybrides zijn breed ingezet. Gebruik en laadfrequentie bepalen de werkelijke batterijconditie.";
-  }
-
-  // ===============================
-  // 🔵 HYUNDAI / KIA
-  // ===============================
-  if (m.includes("hyundai") || m.includes("kia")) {
-
-    if (mdl.includes("kona") || mdl.includes("niro")) {
-      return "Deze modellen staan bekend om stabiele accuprestaties en relatief lage degradatie in de praktijk.";
-    }
-
-    return "Dit merk heeft een sterke reputatie op batterijgebied met voorspelbare prestaties.";
-  }
-
-  // ===============================
-  // 🔵 TOYOTA
-  // ===============================
-  if (m.includes("toyota")) {
-    return "Toyota heeft veel ervaring met hybride systemen. Betrouwbaarheid is hoog, maar accucapaciteit is vaak beperkt.";
-  }
-
-  // ===============================
-  // 🔵 FORD
-  // ===============================
-  if (m.includes("ford")) {
-
-    if (mdl.includes("kuga")) {
-      return "De Ford Kuga PHEV wordt vaak gebruikt als gezinsauto. Laadgedrag verschilt sterk per eigenaar.";
-    }
-
-    return "Ford plug-in hybrides verschillen per model. Gebruik bepaalt hier de batterijconditie.";
-  }
-
-  // ===============================
-  // 🔵 FRANSE MERKEN
-  // ===============================
-  if (m.includes("peugeot") || m.includes("citroen") || m.includes("ds")) {
-    return "Franse plug-in hybrides zijn efficiënt, maar prestaties hangen sterk af van gebruik en laadfrequentie.";
-  }
-
-  // ===============================
-  // 🔵 NISSAN / RENAULT
-  // ===============================
-  if (m.includes("nissan")) {
-    return "Nissan EV’s hebben ruime praktijkervaring. Bij oudere modellen is accudegradatie een bekend aandachtspunt.";
-  }
-
-  if (m.includes("renault")) {
-    return "Renault EV’s zijn efficiënt, maar accucapaciteit kan bij intensief gebruik sneller teruglopen.";
-  }
-
-  // ===============================
-  // 🔵 NIEUWE MERKEN
-  // ===============================
-  if (m.includes("byd") || m.includes("mg")) {
-    return "Nieuwe EV-merken ontwikkelen snel. Batterijtechniek is modern, maar lange termijn data is nog beperkt.";
-  }
-
-
-   // 🔵 MAZDA
-if (m.includes("mazda")) {
-  return "Mazda plug-in hybrides zijn relatief nieuw. Praktijkdata over lange termijn batterijgedrag is nog beperkt.";
-}
-
-// 🔵 HONDA
-if (m.includes("honda")) {
-  return "Honda hybride systemen zijn betrouwbaar, maar minder gericht op volledig elektrisch rijden.";
-}
-
-// 🔵 SUZUKI
-if (m.includes("suzuki")) {
-  return "Suzuki focust vooral op lichte hybride systemen. Batterij speelt een kleinere rol in prestaties.";
-}
-
-// 🔵 MITSUBISHI
-if (m.includes("mitsubishi")) {
-  return "Mitsubishi Outlander PHEV is veel gebruikt. Accustatus varieert sterk per gebruik en laadgedrag.";
-}
-
-// 🔵 FIAT
-if (m.includes("fiat")) {
-  return "Fiat EV-modellen zijn compact en efficiënt, met relatief kleine accupakketten.";
-}
-
-// 🔵 ALFA ROMEO
-if (m.includes("alfa")) {
-  return "Alfa Romeo plug-in hybrides combineren prestaties met design. Accugebruik is sterk afhankelijk van rijstijl.";
-}
-
-// 🔵 JEEP
-if (m.includes("jeep")) {
-  return "Jeep plug-in hybrides zijn krachtig en zwaar. Dit heeft directe impact op batterijgebruik.";
-}
-
-// 🔵 LEXUS
-if (m.includes("lexus")) {
-  return "Lexus staat bekend om betrouwbare hybride systemen met stabiele batterijprestaties.";
-}
-
-// 🔵 POLESTAR
-if (m.includes("polestar")) {
-  return "Polestar gebruikt moderne EV-techniek. Batterijprestaties zijn doorgaans stabiel, met focus op rijervaring.";
-}
-
-// 🔵 XPENG / NIO
-if (m.includes("xpeng") || m.includes("nio")) {
-  return "Nieuwe premium EV-merken met geavanceerde technologie. Lange termijn accudata is nog in ontwikkeling.";
-} 
-
-    // ===============================
-  // 🔵 DEFAULT
-  // ===============================
-  return "Geen specifieke structurele aandachtspunten bekend voor dit model.";
-}
-    
-function enrichModelWithHybridHint(merk, model, bouwjaar) {
-  let enriched = (model || "").trim();
-  const merkLower = (merk || "").toLowerCase();
-  const modelLower = enriched.toLowerCase();
-  const year = Number(bouwjaar) || 0;
-
-  if (
-    modelLower.includes("phev") ||
-    modelLower.includes("plug-in") ||
-    modelLower.includes("hybride") ||
-    modelLower.includes("hybrid")
-  ) {
-    if (!modelLower.includes("iv")) {
-      enriched += " iV";
-    }
-  }
-
-  // Skoda Octavia RS vanaf 2020 in EV/PHEV-context = meestal RS iV
-  if (
-    merkLower.includes("skoda") &&
-    modelLower.includes("octavia") &&
-    modelLower.includes("rs") &&
-    year >= 2020 &&
-    !modelLower.includes("iv")
-  ) {
-    enriched += " iV";
-  }
-
-  return enriched.trim();
-}
-
-function isValidMatch(merk, originalModel, normalizedModelKey, entryRaw) {
-  const merkLower = (merk || "").toLowerCase();
-  const modelLower = (originalModel || "").toLowerCase();
-
-  const modelHasRS = modelLower.includes("rs");
-  const modelHasIV = modelLower.includes("iv");
-  const entryHasIV = entryRaw.includes("IV");
-
-  // Skoda Octavia RS iV toestaan
-  if (
-    merkLower.includes("skoda") &&
-    modelLower.includes("octavia") &&
-    modelHasRS &&
-    entryHasIV
-  ) {
-    return true;
-  }
-
-  // RS zonder iV niet koppelen aan iV-entry
-  if (modelHasRS && !modelHasIV && entryHasIV) {
-    return false;
-  }
-
-  return true;
-}
-
-// ===============================
-// 🔥 MATCH ENGINE
-// ===============================
-function findBatteryMatchSmart(merk, model, bouwjaar) {
-  const brandKey = normalizeText(merk);
-  const modelKey = normalizeText(model);
-
-  const brandData = batteryDB[brandKey];
-  if (!brandData || !brandData.length) return null;
-
-  let bestMatch = null;
-  let bestScore = 0;
-
-  brandData.forEach(entry => {
-    if (!isValidMatch(merk, model, modelKey, entry.raw)) return;
-
-    const score = similarityScore(modelKey, entry.raw);
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = entry;
-    }
-  });
-
-  if (bestScore > 0.2) {
-    return bestMatch;
-  }
-
-  return null;
-}
-
-// ===============================
-// 🔥 BASIS FUNCTIES
-// ===============================
-function getKenteken() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return (urlParams.get("kenteken") || "").toUpperCase();
-}
-
-function setToday() {
-  const d = new Date();
-  const formatted = d.toLocaleDateString("nl-NL", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-  });
-
-  const el = document.getElementById("reportDate");
-  if (el) el.innerText = "Datum: " + formatted;
-}
-
-function setVehicleHeaders(name) {
-  const el2 = document.getElementById("vehicleNameHeader2");
-  const el3 = document.getElementById("vehicleNameHeader3");
-
-  if (el2) el2.innerText = "Voertuig: " + name;
-  if (el3) el3.innerText = "Voertuig: " + name;
-}
-
-// ===============================
-// 🔥 UTIL
-// ===============================
-function formatMileage(km) {
-  if (!km || isNaN(Number(km))) return "Niet beschikbaar op basis van kenteken";
-  return Number(km).toLocaleString("nl-NL") + " km";
-}
-
-function getVehicleAge(year) {
-  const currentYear = new Date().getFullYear();
-  if (!year) return null;
-  return currentYear - Number(year);
-}
-
-function getMileageAssessment(km, year) {
-  if (!km) return "Geen data";
-
-  const age = getVehicleAge(year);
-  const perYear = Number(km) / Math.max(age || 1, 1);
-
-  if (perYear < 10000) return "Laag";
-  if (perYear < 25000) return "Normaal";
-  if (perYear < 35000) return "Hoog";
-  return "Zeer hoog";
-}
-
-function getMileageComment() {
-  return "";
-}
-
-function calculateRisk({ km, year, type }) {
-
-  const currentYear = new Date().getFullYear();
-  const age = currentYear - (Number(year) || currentYear);
-
-  let score = 9.2; // start hoog (premium gevoel)
-
-  // 🔻 leeftijd impact
-  if (age > 8) score -= 2.5;
-  else if (age > 5) score -= 1.8;
-  else if (age > 3) score -= 1.0;
-  else if (age > 1) score -= 0.4;
-
-  // 🔻 km impact
-  if (km > 200000) score -= 2.5;
-  else if (km > 150000) score -= 1.8;
-  else if (km > 100000) score -= 1.2;
-  else if (km > 60000) score -= 0.6;
-  else if (km > 30000) score -= 0.3;
-
-  // 🔻 PHEV iets gevoeliger
-  if (type === "PHEV") score -= 0.3;
-
-  // clamp
-  score = Math.max(4.5, Math.min(9.5, score));
-
-  return Math.round(score * 10) / 10;
-}
-
-function interpretRisk(score) {
-
-  if (score >= 8.5) {
-    return {
-      label: "Sterke basis",
-      color: "low",
-      advice: "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
-    };
-  }
-
-  if (score >= 7) {
-    return {
-      label: "Goede basis met aandachtspunt",
-      color: "medium",
-      advice: "De basis oogt goed, maar extra controle is verstandig."
-    };
-  }
-
-  return {
-    label: "Verhoogd risico",
-    color: "high",
-    advice: "Accutest sterk aanbevolen vóór aankoop."
-  };
-}
-
-// ===============================
-// 🔥 MAIN DETECTIE
-// ===============================
-function detectAndAnalyzeVehicle(
-  merk,
-  model,
-  bouwjaar,
-  mileageText,
-  mileageAssessment,
-  mileageComment,
-  rawKm,
-  kenteken
-) {
-  const enrichedModel = enrichModelWithHybridHint(merk, model, bouwjaar);
-  const match = findBatteryMatchSmart(merk, enrichedModel, bouwjaar);
-
-  let report;
-
-  if (!match) {
-    report = buildFallbackReport(kenteken);
-  } else if (match.type === "BEV") {
-    report = buildBEVReport(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      rawKm
-    );
-  } else {
-    report = buildPHEVReport(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      rawKm
-    );
-  }
-
-  if (match && match.capacity) {
-    report.batterySize = match.capacity + " kWh";
-    report.driveType = match.type || report.driveType;
-  }
-
-  // 🔥 BOOST NIEUWE AUTO'S
-if (bouwjaar >= 2021) {
-  report.score = Math.min((report.score || 7) + 1.5, 9);
-}
-  
-if (bouwjaar >= 2022 && report.score < 8.2) {
-  report.score = 8.2;
-}
-   
- if (rawKm && rawKm < 80000 && bouwjaar >= 2020) {
-  report.score = Math.min((report.score || 7) + 0.5, 9);
-} 
-  
-  return report;
-}
-    
-function getConversionTrigger(data) {
-
-  if (!data) return "";
-
-  // 🔥 PREMIUM NIEUWE AUTO OVERRIDE
-const premiumBrands = ["PORSCHE","TESLA","BMW","MERCEDES","AUDI"];
-
-if (
-  premiumBrands.includes((merk || "").toUpperCase()) &&
-  bouwjaar >= 2022
-) {
-  report.riskClass = "low";
-  report.score = Math.max(report.score || 8.5, 8.5);
-  report.scoreText = "Laag risico";
-}
-
-  // 🟢 LAAG RISICO → CONFIRMATION SELL
-  if (data.riskClass === "low") {
-    return "U staat op het punt een goede aankoop te doen. Slimme kopers bevestigen dit vóórdat ze beslissen.";
-    report.buyAdvicePreview = "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus.";
-  }
-
-  // 🟡 MIDDEL RISICO → TWIJFEL TRIGGER
-  if (data.riskClass === "medium") {
-    return "Dit is een goede auto, maar slimme kopers controleren dit punt vóór aankoop.";
-  }
-
-  // 🔴 HOOG RISICO → ANGST / VERLIES
-  return "Zonder controle neemt u hier een financieel risico dat kan oplopen tot duizenden euro’s.";
-}
-    
-// ===============================
-// 🔥 API CALLS
-// ===============================
-async function fetchVehicleData(kenteken) {
-  const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-  const url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + cleanKenteken;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error("RDW voertuigdata kon niet geladen worden");
-  return await res.json();
-}
-
-async function fetchMileageData(kenteken) {
-  try {
-    const cleanKenteken = kenteken.replace(/-/g, "").toUpperCase();
-    const url = "https://opendata.rdw.nl/resource/2m9d-v4mk.json?kenteken=" + cleanKenteken;
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
-
-// ===============================
-// 🔥 MAIN LOADER
-// ===============================
-async function loadVehicle() {
-  setToday();
-
-  const kenteken = getKenteken();
-  const vehicleEl = document.getElementById("vehicleName");
-
-  if (!vehicleEl) return;
-
-  if (!kenteken) {
-    vehicleEl.innerText = "Geen kenteken in URL";
-    return;
-  }
-
-  try {
-    const [vehicleData, mileageData] = await Promise.all([
-      fetchVehicleData(kenteken),
-      fetchMileageData(kenteken)
-    ]);
-
-    if (!vehicleData || !vehicleData.length) {
-      const fallbackReport = buildFallbackReport(kenteken);
-      vehicleEl.innerText = "Niet beschikbaar op basis van kenteken";
-      setVehicleHeaders("Niet beschikbaar op basis van kenteken");
-      renderReport(fallbackReport);
-      return;
-    }
-
-    const voertuig = vehicleData[0];
-    console.log("VOERTUIG DATA:", voertuig);
-    const merk = (voertuig.merk || "").trim();
-    const model = (voertuig.handelsbenaming || "").trim();
-    const bouwjaar = ((voertuig.datum_eerste_toelating || "").toString().slice(0, 4)) || "";
-
-    const fullName = (merk + " " + model).trim();
-
-    let rawMileage = null;
-    if (mileageData && mileageData.length > 0) {
-      rawMileage = mileageData[0].tellerstand || null;
-    }
-
-    const rawMileageNumber = rawMileage ? Number(rawMileage) : null;
-    const mileageText = formatMileage(rawMileage);
-    const mileageAssessment = getMileageAssessment(rawMileage, bouwjaar);
-    const mileageComment = getMileageComment(rawMileage, bouwjaar);
-
-    const reportData = detectAndAnalyzeVehicle(
-      merk,
-      model,
-      bouwjaar,
-      mileageText,
-      mileageAssessment,
-      mileageComment,
-      rawMileageNumber,
-      kenteken
-    );
-
-    let fullNameWithBattery = fullName;
-    if (reportData && reportData.batterySize && reportData.batterySize !== "Niet beschikbaar op basis van kenteken") {
-      fullNameWithBattery += " " + reportData.batterySize;
-    }
-
-if (vehicleEl) {
-  vehicleEl.innerText = fullNameWithBattery || "Niet beschikbaar op basis van kenteken";
-}
-
-setVehicleHeaders(fullNameWithBattery);
-
-renderReport(reportData);
-console.log("REPORT DATA:", reportData);
-    
-} catch (e) {
-  console.error("loadVehicle error:", e);
-  vehicleEl.innerText = "Rapport kon niet geladen worden";
-}
-}
-
-// ===============================
-// 🔥 START APP
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-  // 🚗 laad voertuig
-  loadVehicle();
-
-  // 💳 stripe link
-  const btn = document.getElementById("checkoutBtn");
-
-  if (btn) {
-    const stripeLink = "https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00";
-    btn.href = stripeLink;
-  }
-});
-
-// ===============================
-// 🔥 FAILSAFE RENDER
-// ===============================
 function renderReport(data) {
   try {
     if (!data) throw new Error("Geen report data");
 
-   
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = value;
+    };
+
+    const fillList = (id, items, warning = false) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.innerHTML = "";
+      (items || []).forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        if (warning) li.style.color = "#b91c1c";
+        el.appendChild(li);
+      });
+    };
+
+    // ===============================
+    // 🔹 BASIS DATA
+    // ===============================
+    setText("batterySize", data.batterySize || "Niet beschikbaar");
+    setText("mileage", data.mileageText || "Niet beschikbaar");
+    setText("mileageAssessment", data.mileageAssessment || "-");
+    setText("degradation", data.degradation || "Normaal");
+    setText("replacementCost", data.replacementCost || "€8.000 - €15.000");
+    setText("summaryScore", data.score || "7.5");
+    setText("summaryScoreText", data.scoreText || "Goede keuze");
+
+    // ===============================
+    // 🔹 VEHICLE META
+    // ===============================
     const vehicleMeta = document.getElementById("vehicleMeta");
     if (vehicleMeta) {
       vehicleMeta.innerHTML = `
         <strong>Model:</strong> ${data.modelName || "Modelinformatie volgt"}<br>
         <strong>Accupakket:</strong> ${data.batterySize || "Indicatie volgt"}<br>
         <strong>Aandrijving:</strong> ${data.driveType || "Wordt bepaald"}
-     `;
-   }
-   function setText(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.innerText = value;
-}
-
-setText("batterySize", data.batterySize || "Niet beschikbaar op basis van kenteken");
-setText("mileage", data.mileageText || "Niet beschikbaar op basis van kenteken");
-setText("scoreLabel", data.scoreText || "Analyse gereed");    
-setText("mileageAssessment", data.mileageAssessment || "-");
-setText("degradation", data.degradation || "Normaal");
-setText("riskLevel", "Wordt berekend...");
-setText("replacementCost", data.replacementCost || "€8.000 - €15.000");
-setText("summaryScore", data.score || "7.5");
-setText("summaryScoreText", data.scoreText || "Goede keuze");
-    
-   let warningText = "";
-
-if (data.riskClass === "low") {
-  warningText = "Dit lijkt een logische keuze. Een accutest bevestigt dit vóór aankoop.";
-} else if (data.riskClass === "medium") {
-  warningText = "De basis oogt goed, maar de werkelijke accustatus is nog niet vastgesteld.";
-} else {
-  warningText = "Bij dit voertuig is aanvullende controle verstandig vóór u beslist.";
-}
-
-setText("dynamicWarning", warningText);
-  
-    document.getElementById("quickSummary").innerText =
-      data.summary || "Op basis van beschikbare data een solide keuze.";
-
-    const driveTypeBadge = document.getElementById("driveTypeBadge");
-    if (driveTypeBadge) {
-      driveTypeBadge.innerText = "Voertuigtype: " + (data.driveType || "BEV");
+      `;
     }
 
-   if (verdictBadge) {
-  verdictBadge.innerText = "Conclusie: " + (
-    data.score >= 8.5
-      ? "Sterke basis"
-      : data.score >= 7
-      ? "Goede basis"
-      : "Verhoogd risico"
-  );
-}
+    // ===============================
+    // 🔹 WARNING
+    // ===============================
+    let warning = "Aanvullende controle aanbevolen";
 
-    const summaryScoreText = document.getElementById("summaryScoreText");
-    if (summaryScoreText) {
-      summaryScoreText.classList.remove("low", "medium", "high");
-      if (data.riskClass) summaryScoreText.classList.add(data.riskClass);
+    if (data.riskClass === "low") {
+      warning = "In de basis een goede auto. AccuCheck geeft extra zekerheid.";
+    } else if (data.riskClass === "medium") {
+      warning = "De basis oogt goed, maar controle voorkomt verrassingen.";
     }
 
+    setText("dynamicWarning", warning);
+
+    // ===============================
+    // 🔹 RISICO VISUEEL
+    // ===============================
     const riskLevelEl = document.getElementById("riskLevel");
     if (riskLevelEl) {
-      riskLevelEl.classList.remove("low", "medium", "high");
-      if (data.riskClass) riskLevelEl.classList.add(data.riskClass);
+      riskLevelEl.innerText = data.riskLevel || "Indicatie";
+      riskLevelEl.className = data.riskClass || "";
     }
 
-    const degradationEl = document.getElementById("degradation");
-    if (degradationEl) {
-      degradationEl.classList.remove("low", "medium", "high");
-      if (data.degradationClass) degradationEl.classList.add(data.degradationClass);
+    const scoreEl = document.getElementById("summaryScoreText");
+    if (scoreEl) {
+      scoreEl.className = data.riskClass || "";
     }
 
-    const batteryRiskGrade = document.getElementById("batteryRiskGrade");
-    const batteryRiskLabel = document.getElementById("batteryRiskLabel");
-    const batteryRiskDescription = document.getElementById("batteryRiskDescription");
-
-   if (batteryRiskGrade) {
-  batteryRiskGrade.innerText = data.riskShort || "B";
-
-  batteryRiskGrade.classList.remove("A", "B", "C");
-
-  if (data.riskShort) {
-    batteryRiskGrade.classList.add(data.riskShort);
-
-    setGauge(data.score || 7.5);
-    
-   }
-  }    
-
-    if (batteryRiskLabel) batteryRiskLabel.innerText = data.riskLevel || "Gemiddeld risico";
-    
-    if (batteryRiskDescription) {
-      batteryRiskDescription.innerText =
-        data.riskDescription || "Indicatieve accurisico-inschatting op basis van leeftijd, kilometerstand en voertuigtype.";
+    // ===============================
+    // 🔹 GAUGE SAFE
+    // ===============================
+    if (typeof setGauge === "function") {
+      setGauge(data.score || 7.5);
     }
 
-  const buyAdviceEl = document.getElementById("buyAdvice");
+    // ===============================
+    // 🔹 RISICO BLOK
+    // ===============================
+    setText("batteryRiskGrade", data.riskShort || "B");
+    setText("batteryRiskLabel", data.riskLevel || "Gemiddeld risico");
+    setText(
+      "batteryRiskDescription",
+      data.riskDescription || "Indicatieve analyse op basis van leeftijd en gebruik"
+    );
 
-   if (buyAdviceEl) {
-      buyAdviceEl.innerText =
-      data.buyAdvicePreview || "Aanvullende controle aanbevolen vóór aankoop.";
-   }
+    // ===============================
+    // 🔹 CONTENT BLOKKEN
+    // ===============================
+    setText("quickSummary", data.summary || "Goede eerste indicatie van dit voertuig.");
+    setText("buyAdvice", data.buyAdvicePreview || "Laat bij twijfel een accutest uitvoeren.");
+    setText("riskAnalysisText", data.riskAnalysisText || "Analyse op basis van voertuigdata.");
+    setText("batteryInfoText", data.batteryInfoText || "Batterijcapaciteit is model-gebaseerd.");
+    setText("chargingText", data.chargingText || "Laadgedrag onbekend zonder test.");
+    setText("cableReplacementCost", data.cableReplacementCost || "€250 – €450");
+    setText("knownIssues", data.knownIssues || "Geen specifieke issues bekend.");
+    setText("brandSpecificText", data.brandSpecificText || "Geen specifieke aandachtspunten.");
 
-  
-    const riskAnalysisText = document.getElementById("riskAnalysisText");
-    if (riskAnalysisText) {
-      riskAnalysisText.innerText =
-        data.riskAnalysisText || "Deze analyse combineert voertuigleeftijd, kilometerstand en batterijtype tot een eerste praktijkinschatting.";
-    }
-
-    const batteryInfoText = document.getElementById("batteryInfoText");
-    if (batteryInfoText) {
-      batteryInfoText.innerText =
-        data.batteryInfoText || "De opgegeven batterijcapaciteit is een indicatieve modelwaarde en geen gemeten accutest.";
-    }
-
-    const chargingText = document.getElementById("chargingText");
-    if (chargingText) {
-      chargingText.innerText =
-        data.chargingText || "Laadgedrag uit het verleden is niet zichtbaar in deze vooranalyse. Een fysieke accutest geeft daar meer zekerheid over.";
-    }
-
-    const cableReplacementCost = document.getElementById("cableReplacementCost");
-    if (cableReplacementCost) {
-      cableReplacementCost.innerText = data.cableReplacementCost || "Laadkabel vervangingskosten: €250 – €450";
-    }
-
-    const knownIssues = document.getElementById("knownIssues");
-    if (knownIssues) {
-      knownIssues.innerText =
-        data.knownIssues || "Algemene aandachtspunten kunnen per merk en model verschillen. Laat bij twijfel een fysieke controle uitvoeren.";
-    }
-
-    const brandSpecificText = document.getElementById("brandSpecificText");
-    if (brandSpecificText) {
-      brandSpecificText.innerText =
-        data.brandSpecificText || "Geen specifieke structurele aandachtspunten bekend.";
-    }
-
-    const pillarBrandScore = document.getElementById("pillarBrandScore");
-    const pillarBrandText = document.getElementById("pillarBrandText");
-    const pillarDataScore = document.getElementById("pillarDataScore");
-    const pillarDataText = document.getElementById("pillarDataText");
-    const pillarTechScore = document.getElementById("pillarTechScore");
-    const pillarTechText = document.getElementById("pillarTechText");
-
-    if (pillarBrandScore) pillarBrandScore.innerText = data.pillarBrandScore || "7.5";
-    if (pillarBrandText) pillarBrandText.innerText = data.pillarBrandText || "Modelbasis oogt stabiel";
-    if (pillarDataScore) pillarDataScore.innerText = data.pillarDataScore || "7.0";
-    if (pillarDataText) pillarDataText.innerText = data.pillarDataText || "Gebruik past redelijk bij leeftijd";
-    if (pillarTechScore) pillarTechScore.innerText = data.pillarTechScore || "8.0";
-    if (pillarTechText) pillarTechText.innerText = data.pillarTechText || "Extra accutest geeft doorslag";
-
+    // ===============================
+    // 🔹 LIJSTEN
+    // ===============================
     fillList("batteryChecklist", data.batteryChecklist || [
-      "Batterijcapaciteit gebaseerd op modelinformatie",
-      "Werkelijke accustatus niet fysiek gemeten",
-      "Accutest aanbevolen bij twijfel"
+      "Batterij gebaseerd op modeldata",
+      "Geen fysieke accutest uitgevoerd",
+      "Controle aanbevolen bij twijfel"
     ]);
 
     fillList("chargingChecklist", data.chargingChecklist || [
-      "Controleer laadkabel en laadpoort",
-      "Vraag naar laadgeschiedenis indien beschikbaar",
-      "Let op afwijkend laadgedrag"
+      "Controleer laadkabel",
+      "Vraag laadgeschiedenis",
+      "Let op afwijkingen"
     ]);
 
     fillList("positivePoints", data.positivePoints || [
-      "Geeft snelle eerste richting vóór aankoop",
-      "Maakt accurisico financieel concreet",
-      "Helpt bij onderhandelen en doorvragen"
+      "Geeft snelle eerste richting",
+      "Helpt bij aankoopbeslissing",
+      "Maakt risico inzichtelijk"
     ]);
 
     fillList("buyerBlindspots", data.buyerBlindspots || [
-      "Kopers onderschatten vaak batterijdegradatie",
-      "Hoge reparatiekosten komen vaak pas later aan het licht",
-      "Een nette auto is niet automatisch technisch veilig"
+      "Degradatie wordt vaak onderschat",
+      "Kosten komen later pas",
+      "Uiterlijk zegt niets over techniek"
     ], true);
 
     fillList("riskChecklist", data.riskChecklist || [
-      "Controleer onderhouds- en laadverleden",
-      "Vraag door op gebruikspatroon",
-      "Laat bij twijfel een onafhankelijke accutest uitvoeren"
+      "Controleer historie",
+      "Check gebruikspatroon",
+      "Overweeg accutest"
     ], true);
 
     fillList("purchaseTips", data.purchaseTips || [
-      "Controleer laadpoort, kabels en storingsmeldingen",
-      "Vraag naar onderhouds- en gebruikshistorie",
-      "Laat twijfelgevallen onafhankelijk testen"
+      "Controleer laadpoort",
+      "Check onderhoud",
+      "Laat inspectie doen"
     ]);
 
     fillList("testDriveTips", data.testDriveTips || [
-      "Let op foutmeldingen en waarschuwingslampjes",
-      "Controleer laadgedrag en recuperatie",
-      "Let op onverwachte range-schommelingen"
+      "Let op foutmeldingen",
+      "Check rijbereik",
+      "Let op gedrag"
     ]);
-    
+
+  } catch (e) {
+    console.error("RENDER ERROR:", e);
+  }
+}
+
 // ===============================
 // 🔥 RISK PANEL (RECHTER KOLOM)
 // ===============================
- const riskPanel = document.getElementById("riskPanel");
+    const riskPanel = document.getElementById("riskPanel");
 
-if (riskPanel) {
+    if (riskPanel) {
+      if (data.riskClass === "low") {
+        riskPanel.innerHTML = `
+          <h3>Financieel inzicht</h3>
 
-  // 🟢 LAAG RISICO
-  if (data.riskClass === "low") {
-    riskPanel.innerHTML = `
-      <h3>Financieel inzicht</h3>
+          <div style="font-size:18px;font-weight:900;color:#065f46;">
+            Sterke basis – logische keuze
+          </div>
 
-      <div style="font-size:18px; font-weight:900; color:#065f46;">
-        Lage risico-inschatting
-      </div>
+          <div style="margin-top:10px;font-weight:600;">
+            Dit voertuig past binnen een gezond eerste risicoprofiel.
+          </div>
 
-      <div style="margin-top:10px; font-weight:600;">
-        Dit voertuig laat geen directe signalen zien van verhoogde accuproblemen.
-      </div>
+          <div style="margin-top:12px;">
+            → Er zijn geen directe signalen van verhoogde accuproblematiek
+          </div>
 
-      <div style="margin-top:12px;">
-        → U bevindt zich in een veilige uitgangspositie
-      </div>
+          <div style="margin-top:14px;font-weight:700;">
+            U staat op het punt een grote investering te doen.
+          </div>
 
-      <div style="margin-top:14px; font-weight:700;">
-        U staat op het punt een grote investering te doen.
-      </div>
+          <div style="margin-top:8px;">
+            Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
+          </div>
+        `;
+      } else if (data.riskClass === "medium") {
+        riskPanel.innerHTML = `
+          <h3>Wat dit betekent voor u</h3>
 
-      <div style="margin-top:8px;">
-        Met een ZekerOpWeg AccuCheck bevestigt u deze keuze en voorkomt u onzekerheid achteraf.
-      </div>
-    `;
-  }
+          <div style="font-size:18px;font-weight:900;color:#b45309;">
+            Goede basis – extra bevestiging verstandig
+          </div>
 
-  // 🟡 MIDDEL RISICO
-  else if (data.riskClass === "medium") {
-    riskPanel.innerHTML = `
-      <h3>Wat dit betekent voor jou</h3>
+          <div style="margin-top:10px;font-weight:600;">
+            De auto oogt in de basis goed, maar de werkelijke accustatus is nog niet vastgesteld.
+          </div>
 
-      <div style="font-size:18px; font-weight:900; color:#b45309;">
-        Goede basis, maar controle geeft zekerheid
-      </div>
+          <div style="margin-top:10px;">
+            → Zonder meting blijft dit een onzeker onderdeel van de aankoop
+          </div>
 
-      <div style="margin-top:10px; font-weight:600;">
-        In deze categorie ontstaan de meeste verborgen accuproblemen.
-      </div>
+          <div style="margin-top:14px;font-weight:800;">
+            Dit is precies het moment waarop zekerheid waarde toevoegt
+          </div>
 
-      <div style="margin-top:10px;">
-        → Zonder inzicht vooraf blijft dit een financieel risico
-      </div>
+          <div style="margin-top:8px;">
+            Een accutest geeft duidelijkheid vóór aankoop.
+          </div>
+        `;
+      } else {
+        riskPanel.innerHTML = `
+          <h3>Wat dit betekent voor u</h3>
 
-      <div style="margin-top:14px; font-weight:800;">
-        Dit is precies het moment waarop kopers twijfelen
-      </div>
+          <div style="font-size:18px;font-weight:900;color:#b91c1c;">
+            Verhoogd aandachtspunt
+          </div>
 
-      <div style="margin-top:8px;">
-        Een accutest geeft duidelijkheid vóór aankoop.
-      </div>
-    `;
-  }
+          <div style="margin-top:10px;font-weight:600;">
+            Bij vergelijkbare voertuigen zien we vaker afwijkingen in accuprestaties.
+          </div>
 
-  // 🔴 HOOG RISICO
-  else {
-    riskPanel.innerHTML = `
-     <h3>Wat dit betekent voor u</h3>
+          <div style="margin-top:10px;">
+            → Zonder meting blijft dit een reëel financieel risico
+          </div>
 
-<div style="font-size:18px; font-weight:900; color:#b91c1c;">
-Er zijn duidelijke aandachtspunten bij dit voertuig
-</div>
+          <div style="margin-top:14px;font-weight:800;">
+            Zekerheid is hier geen luxe maar logisch
+          </div>
 
-<div style="margin-top:10px; font-weight:600;">
-Bij vergelijkbare auto's zien we dat de accustatus kan afwijken.
-</div>
+          <div style="margin-top:8px;">
+            Een accutest geeft direct duidelijkheid vóór aankoop.
+          </div>
+        `;
+      }
+    }
 
-<div style="margin-top:10px;">
-→ Zonder meting blijft dit een onzeker punt
-</div>
-
-<div style="margin-top:14px; font-weight:800;">
-Dit is het moment waarop kopers zekerheid kiezen
-</div>
-
-<div style="margin-top:8px;">
-Een accutest geeft direct duidelijkheid vóór aankoop.
-</div>
-    `;
-  }
-}
-       
     applyPaywall(data);
-    
+
   } catch (e) {
     console.error("Render error:", e);
 
-    document.getElementById("vehicleName").innerText = "Rapport gedeeltelijk geladen";
-    document.getElementById("coreConclusion").innerText =
-      "Basisdata geladen, maar rapport niet volledig opgebouwd.";
+    const vehicleNameEl = document.getElementById("vehicleName");
+    if (vehicleNameEl) {
+      vehicleNameEl.innerText = "Rapport gedeeltelijk geladen";
+    }
+
+    const coreConclusionEl = document.getElementById("coreConclusion");
+    if (coreConclusionEl) {
+      coreConclusionEl.innerText =
+        "Basisdata geladen, maar rapport niet volledig opgebouwd.";
+    }
   }
 }
 
@@ -3277,12 +1510,8 @@ function fillList(id, items, warning = false) {
     el.appendChild(li);
   });
 
-   
-  if (warning) {
-    el.classList.add("warning-list");
-  } else {
-    el.classList.add("checklist");
-  }
+  el.classList.remove("warning-list", "checklist");
+  el.classList.add(warning ? "warning-list" : "checklist");
 }
 
 function estimateDegradation(age, km, type) {
@@ -3301,7 +1530,6 @@ function estimateDegradation(age, km, type) {
       min = 10; max = 25;
     }
   } else {
-    // PHEV
     if (age <= 2 && km < 50000) {
       min = 5; max = 12;
     } else if (age <= 5 && km < 120000) {
@@ -3327,56 +1555,49 @@ function buildBEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, r
   const risk = interpretRisk(scoreRaw);
 
   let riskShort = "A";
-
   if (age > 6 || rawKm > 120000) {
     riskShort = "C";
   } else if (age > 3 || rawKm > 60000) {
     riskShort = "B";
-  } else {
-    riskShort = "A";
   }
 
   let degradationClass = "low";
   if (riskShort === "B") degradationClass = "medium";
   if (riskShort === "C") degradationClass = "high";
 
- let conclusionText = "";
+  let conclusionText = "";
 
-if (riskShort === "A") {
-  conclusionText = `
+  if (riskShort === "A") {
+    conclusionText = `
 U staat op het punt een grote investering te doen.
 
-Op basis van leeftijd, kilometerstand en model geeft dit voertuig een lage risico-indruk.
+Op basis van leeftijd, kilometerstand en model geeft dit voertuig een sterke basis.
 
-Dit betekent dat er geen directe signalen zijn van verhoogde batterijslijtage.
+Er zijn geen directe signalen van verhoogde batterijslijtage.
 
 Met een accutest bevestigt u deze goede uitgangspositie en neemt u een volledig onderbouwde beslissing.
 `;
-}
-
-else if (riskShort === "B") {
-  conclusionText = `
-Dit voertuig valt in een gemiddeld risicoprofiel.
+  } else if (riskShort === "B") {
+    conclusionText = `
+Dit voertuig laat in de basis een logische indruk zien.
 
 In deze categorie ontstaan de meeste verborgen accuproblemen — niet direct zichtbaar bij aankoop.
 
 De werkelijke accustatus kan alleen bevestigd worden met een meting.
 
-Zonder die zekerheid blijft er financieel risico aanwezig.
+Een accutest is hier een verstandige vervolgstap.
 `;
-}
+  } else {
+    conclusionText = `
+Dit voertuig valt in een verhoogd aandachtspuntprofiel.
 
-else {
-  conclusionText = `
-Dit voertuig valt in een verhoogd risicoprofiel.
-
-Bij vergelijkbare auto's zien we vaak duidelijke batterijslijtage of aankomende kosten.
+Bij vergelijkbare auto's zien we vaker duidelijke batterijslijtage of aankomende kosten.
 
 Zonder aanvullende controle is de kans op onverwachte kosten aanzienlijk.
 
 Een accutest vóór aankoop is hier sterk aan te raden.
 `;
-}
+  }
 
   return {
     driveType: "BEV",
@@ -3388,24 +1609,29 @@ Een accutest vóór aankoop is hier sterk aan te raden.
     riskLevel: risk.label,
     riskClass: risk.color,
     replacementCost: "€8.000 – €15.000",
-    score: Math.round((scoreRaw / 10) * 10) / 10,
+    score: Math.round(scoreRaw * 10) / 10,
     scoreText: risk.label,
     conclusion: conclusionText,
-    summary: "Analyse op basis van leeftijd en kilometerstand.",
+    summary: "Analyse op basis van leeftijd, kilometerstand en modelinformatie.",
     riskShort,
     riskDescription:
       riskShort === "A"
-        ? "Laag risico."
+        ? "Sterke basis. Geen directe signalen van verhoogd risico."
         : riskShort === "B"
-        ? "Gemiddeld risico."
-        : "Hoog risico.",
-    buyAdvicePreview: conclusionText.split(".")[0] + ".",
+        ? "Goede basis. Extra bevestiging is verstandig."
+        : "Verhoogd risico. Aanvullende controle sterk aanbevolen.",
+    buyAdvicePreview:
+      riskShort === "A"
+        ? "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
+        : riskShort === "B"
+        ? "De basis oogt goed, maar een AccuCheck geeft extra zekerheid vóór aankoop."
+        : "Bij dit voertuig is aanvullende controle vóór aankoop sterk aan te raden.",
     buyAdvice: conclusionText,
-    riskAnalysisText: `Batterijdegradatie ligt rond ${degradationRange}.`,
-    batteryInfoText: "Modelgebaseerde capaciteit.",
-    chargingText: "Laadgedrag beïnvloedt batterijconditie.",
+    riskAnalysisText: `De indicatieve batterijdegradatie ligt rond ${degradationRange}.`,
+    batteryInfoText: "De batterijcapaciteit is gebaseerd op modelinformatie en niet op een fysieke meting.",
+    chargingText: "Laadgedrag uit het verleden beïnvloedt de batterijconditie, maar is in deze vooranalyse niet zichtbaar.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
-    knownIssues: "Controleer laadproblemen en foutmeldingen.",
+    knownIssues: "Controleer laadgedrag, foutmeldingen en algemene accuprestaties.",
     brandSpecificText: getBrandSpecificText(merk, model, "BEV")
   };
 }
@@ -3423,13 +1649,10 @@ function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, 
   const risk = interpretRisk(scoreRaw);
 
   let riskShort = "A";
-
   if (age > 6 || rawKm > 120000) {
     riskShort = "C";
   } else if (age > 3 || rawKm > 60000) {
     riskShort = "B";
-  } else {
-    riskShort = "A";
   }
 
   let degradationClass = "low";
@@ -3440,33 +1663,31 @@ function buildPHEVReport(merk, model, bouwjaar, mileageText, mileageAssessment, 
 
   if (riskShort === "A") {
     conclusionText = `
-Gezien de leeftijd en kilometerstand geeft dit voertuig een lage risico-indruk.
+Gezien de leeftijd en kilometerstand geeft dit voertuig een sterke basis.
 
 Binnen deze context zijn er geen directe signalen dat het accupakket afwijkend presteert.
 
-Bij plug-in hybrides ligt het risico vooral in gebruik, niet in slijtage.
+Bij plug-in hybrides ligt het risico vooral in gebruik en laadgedrag, niet alleen in leeftijd.
 
-Wie maximale zekerheid wil, kan dit laten bevestigen met een accutest.
+Wie maximale zekerheid wil, laat dit bevestigen met een accutest.
 `;
   } else if (riskShort === "B") {
     conclusionText = `
-Dit voertuig geeft op basis van leeftijd en gebruik een solide en logische indruk.
+Dit voertuig geeft op basis van leeftijd en gebruik een goede basis.
 
-Gebruik en laadgedrag bepalen hier sterk de batterijconditie.
+Gebruik en laadgedrag bepalen hier sterk de werkelijke batterijconditie.
 
-De werkelijke accustatus blijft onbekend zonder meting.
+De accustatus blijft onbekend zonder meting.
 
-Een accutest is een logische vervolgstap.
+Een accutest is hier een logische vervolgstap vóór aankoop.
 `;
   } else {
     conclusionText = `
-Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd risicoprofiel.
+Gezien de leeftijd en kilometerstand valt dit voertuig in een verhoogd aandachtspuntprofiel.
 
-Bij plug-in hybrides in deze fase is slijtage vaak merkbaar.
+Bij plug-in hybrides in deze fase is slijtage vaker merkbaar.
 
-Bij vergelijkbare voertuigen ligt degradatie rond ${degradationRange}.
-
-Zonder meting blijft er risico op verminderde prestaties.
+Bij vergelijkbare voertuigen ligt de indicatieve degradatie rond ${degradationRange}.
 
 Een accutest wordt sterk aanbevolen vóór aankoop.
 `;
@@ -3482,24 +1703,29 @@ Een accutest wordt sterk aanbevolen vóór aankoop.
     riskLevel: risk.label,
     riskClass: risk.color,
     replacementCost: "€3.000 – €8.000",
-    score: Math.round((scoreRaw / 10) * 10) / 10,
+    score: Math.round(scoreRaw * 10) / 10,
     scoreText: risk.label,
     conclusion: conclusionText,
-    summary: "Analyse op basis van leeftijd en gebruik.",
+    summary: "Analyse op basis van leeftijd, gebruik en modelinformatie.",
     riskShort,
     riskDescription:
       riskShort === "A"
-        ? "Laag risico. Past bij jonge voertuigen."
+        ? "Sterke basis. Past bij een jonger of logisch gebruikt voertuig."
         : riskShort === "B"
-        ? "Gemiddeld risico. Gebruik bepaalt conditie."
-        : "Verhoogd risico. Slijtage beïnvloedt prestaties.",
-    buyAdvicePreview: conclusionText.split(".")[0] + ".",
+        ? "Goede basis. Gebruik bepaalt hier sterk de conditie."
+        : "Verhoogd risico. Slijtage kan prestaties beïnvloeden.",
+    buyAdvicePreview:
+      riskShort === "A"
+        ? "In de basis een goede auto. Voor volledige zekerheid geeft een AccuCheck inzicht in de werkelijke accustatus."
+        : riskShort === "B"
+        ? "De basis oogt goed, maar een AccuCheck geeft extra zekerheid vóór aankoop."
+        : "Bij dit voertuig is aanvullende controle vóór aankoop sterk aan te raden.",
     buyAdvice: conclusionText,
-    riskAnalysisText: `Gemiddelde degradatie ligt rond ${degradationRange}.`,
-    batteryInfoText: "Indicatieve capaciteit.",
-    chargingText: "Gebruik verschilt sterk per eigenaar.",
+    riskAnalysisText: `De indicatieve batterijdegradatie ligt rond ${degradationRange}.`,
+    batteryInfoText: "De batterijcapaciteit is indicatief op basis van modelinformatie.",
+    chargingText: "Gebruik en laadgedrag verschillen sterk per eigenaar en zijn niet zichtbaar in deze vooranalyse.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
-    knownIssues: "Controleer elektrisch functioneren.",
+    knownIssues: "Controleer elektrisch functioneren, laadgedrag en foutmeldingen.",
     brandSpecificText: getBrandSpecificText(merk, model, "PHEV")
   };
 }
@@ -3512,18 +1738,18 @@ function buildFallbackReport(kenteken) {
     mileageAssessment: "Niet beschikbaar op basis van kenteken",
     degradation: "Niet beschikbaar op basis van kenteken",
     degradationClass: "medium",
-    riskLevel: "Niet beschikbaar op basis van kenteken",
+    riskLevel: "Goede basis – data onvolledig",
     riskClass: "medium",
     replacementCost: "€8.000 – €15.000",
-    score: "6.5",
-    scoreText: "Controle aanbevolen vóór aankoop.",
-    conclusion: "Onvoldoende data beschikbaar – verhoogd risico.",
-    summary: "Zonder data is een accutest sterk aan te raden.",
+    score: 6.5,
+    scoreText: "Extra controle aanbevolen",
+    conclusion: "Er is onvoldoende voertuigdata beschikbaar om een volledig risicoprofiel op te bouwen.",
+    summary: "De beschikbare data is onvolledig. Aanvullende controle is verstandig.",
     riskShort: "B",
     riskDescription: "Er was onvoldoende voertuigdata beschikbaar om een betrouwbaarder profiel op te bouwen.",
-    buyAdvicePreview: "Onvoldoende data beschikbaar – verhoogd risico.",
-    buyAdvice: "Laat bij onbekende data altijd aanvullend controleren vóór aankoop.",
-    riskAnalysisText: "Door ontbrekende data blijft dit voertuig een onzeker dossier.",
+    buyAdvicePreview: "De basisdata is onvolledig. Een AccuCheck geeft duidelijkheid vóór aankoop.",
+    buyAdvice: "Bij onvolledige voertuigdata is aanvullende controle vóór aankoop verstandig.",
+    riskAnalysisText: "Door ontbrekende data blijft dit voertuig een onvolledig dossier.",
     batteryInfoText: "Voertuigdata kon niet volledig worden geladen.",
     chargingText: "Laad- en gebruiksinformatie ontbreekt.",
     cableReplacementCost: "Laadkabel vervangingskosten: €250 – €450",
@@ -3532,17 +1758,19 @@ function buildFallbackReport(kenteken) {
     pillarBrandScore: "6.5",
     pillarBrandText: "Te weinig data",
     pillarDataScore: "6.0",
-    pillarDataText: "Geen betrouwbare kilometerrichting",
+    pillarDataText: "Onvoldoende voertuigdata beschikbaar",
     pillarTechScore: "7.0",
-    pillarTechText: "Controle sterk aanbevolen"
+    pillarTechText: "Aanvullende controle aanbevolen"
   };
 }
-
 
 function applyPaywall(data) {
   const isPaid = new URLSearchParams(window.location.search).get("paid") === "true";
 
-  const paywall = document.getElementById("paywallBlock");
+  const paywall =
+    document.getElementById("paywallBlock") ||
+    (document.getElementById("checkoutBtn") ? document.getElementById("checkoutBtn").closest(".panel") : null);
+
   const premium = document.getElementById("premiumContent");
   const fullEl = document.getElementById("coreConclusion");
   const previewEl = document.getElementById("coreConclusionPreview");
@@ -3552,49 +1780,29 @@ function applyPaywall(data) {
 
   if (!data) return;
 
-  // preview altijd tonen
   if (previewEl) {
     previewEl.innerText = data.buyAdvicePreview || "";
   }
 
-  // =========================
-  // 🔓 PAID STATE
-  // =========================
   if (isPaid) {
-
-    // 🔥 1. REMOVE PAYWALL BLOCK
     if (paywall) paywall.remove();
-
-    // 🔥 2. SHOW PREMIUM CONTENT
     if (premium) premium.style.display = "block";
 
-    // 🔥 3. SHOW FULL CONCLUSION
     if (fullEl) {
       fullEl.innerText = data.conclusion || "";
       fullEl.style.display = "block";
     }
 
-    // 🔥 4. REMOVE ALL LOCK ELEMENTS
     document.querySelectorAll(".paywall-lock").forEach(el => el.remove());
 
-    // 🔥 5. SHOW UNLOCK BADGE
     if (badge) badge.style.display = "block";
 
-    // 🔥 6. CLEAN BUY ADVICE
     if (buyAdvice) {
       buyAdvice.innerText = data.buyAdvice || data.conclusion || "";
     }
 
-    // 🔥 7. VISUAL UPGRADE
     document.body.classList.add("paid-user");
-
-  }
-
-  // =========================
-  // 🔒 LOCKED STATE
-  // =========================
-  else {
-
+  } else {
     if (premium) premium.style.display = "none";
     if (fullEl) fullEl.style.display = "none";
 
@@ -3607,32 +1815,18 @@ function applyPaywall(data) {
     }
   }
 }
-    
-function setGauge(score) {
 
+function setGauge(score) {
   const needle = document.getElementById("needle");
   if (!needle) return;
 
-  const targetAngle = (score / 10) * 180;
+  const safeScore = Math.max(0, Math.min(Number(score) || 0, 10));
+  const targetAngle = (safeScore / 10) * 180;
 
-  let current = 0;
-
-  const interval = setInterval(() => {
-    current += 3;
-
-    if (current >= targetAngle) {
-      current = targetAngle;
-      clearInterval(interval);
-    }
-
-    needle.style.transform = `rotate(${current}deg)`;
-
-  }, 10);
+  needle.style.transform = `rotate(${targetAngle}deg)`;
 }
-
-
 
 </script>
 
 </body>
-</html>    
+</html>
