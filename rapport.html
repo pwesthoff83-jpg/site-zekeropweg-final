@@ -3,79 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZekerOpWeg – AccuRisico Rapport (DEV READY)</title>
+  <title>ZekerOpWeg – AccuRisico Rapport</title>
 
   <!--
-  ==========================================
-  DEV NOTES
-  ==========================================
-  - Alle {{ }} velden zijn dynamisch
-  - Sections:
-    1. INPUT
-    2. PREVIEW (FREE)
-    3. PAYWALL
-    4. FULL REPORT (LOCKED UNTIL PAYMENT)
-  - Variabelen komen uit:
-    - voertuig API
-    - Aviloo dataset
-    - rules engine
-  ==========================================
+  DEV READY
+  - {{ }} = dynamische variabelen
+  - Koppelen aan: kenteken API + Aviloo + rules engine + payment
   -->
 
   <style>
-    body {font-family: Inter, sans-serif; background:#f7f6f3; color:#1f1f1c; margin:0;}
-    .container {max-width:1100px; margin:auto; padding:40px 20px;}
-    .card {background:#fff; padding:24px; border-radius:16px; border:1px solid #ddd; margin-bottom:20px;}
-    .cta {display:inline-block; padding:14px 22px; background:#1e2f2a; color:#fff; border-radius:999px; text-decoration:none;}
-    .muted {color:#6f6b62;}
-    .pill {padding:6px 12px; border-radius:999px; background:#eee; display:inline-block; margin-top:10px;}
+    body{font-family:Inter,sans-serif;background:#f7f6f3;color:#1f1f1c;margin:0}
+    .container{max-width:1000px;margin:auto;padding:40px 20px}
+    .card{background:#fff;padding:28px;border-radius:16px;border:1px solid #e5e1d8;margin-bottom:20px}
+    h1{font-size:36px;margin-bottom:10px}
+    h2{margin-bottom:10px}
+    p{color:#6f6b62}
+    .cta{display:inline-block;padding:14px 22px;background:#1e2f2a;color:#fff;border-radius:999px;text-decoration:none;border:none}
+    input{width:100%;padding:16px;border-radius:12px;border:1px solid #ddd;font-size:16px}
+    ul{padding-left:18px;color:#6f6b62}
+    .pill{display:inline-block;padding:6px 12px;border-radius:999px;background:#eef2ef;color:#1e2f2a;font-weight:600;margin-top:10px}
+    .small{font-size:14px;color:#6f6b62}
   </style>
 </head>
-
 <body>
 
-<!-- ==========================================
-STEP 1: INPUT
-========================================== -->
+<!-- HERO -->
 <section class="container">
   <div class="card">
-    <h1>Ontdek het accuprofiel van jouw toekomstige auto</h1>
-    <p class="muted">Voer het kenteken in en ontvang direct een eerste analyse.</p>
+    <h1>Voorkom een miskoop bij een hybride of EV</h1>
+    <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken — inclusief belangrijke aandachtspunten vóór aankoop.</p>
 
-    <input type="text" placeholder="Voer kenteken in" id="plate_input" />
+    <input type="text" placeholder="Voer kenteken in" id="plate" />
     <br><br>
     <button class="cta" onclick="fetchVehicle()">Bekijk eerste analyse</button>
+
+    <p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid vóór aankoop</p>
+    <p class="small">Gebaseerd op voertuigdata, batterijcontext en praktijkervaring</p>
   </div>
 </section>
 
-<!-- ==========================================
-STEP 2: PREVIEW (FREE)
-========================================== -->
-<section class="container" id="preview_section">
-
-  <!-- AUTO DATA -->
+<!-- PREVIEW -->
+<section class="container" id="preview">
   <div class="card">
     <h2>{{make_model}}</h2>
     <p>{{build_year}} • {{powertrain}}</p>
-
-    <p class="muted">Wij hebben deze auto herkend en een eerste analyse voorbereid.</p>
+    <p>Wij hebben deze auto herkend en een eerste analyse voorbereid.</p>
   </div>
 
-  <!-- ACCU PROFIEL -->
   <div class="card">
     <h3>Eerste accuprofiel</h3>
-
     <span class="pill">{{preview_status}}</span>
-
     <p>{{preview_summary}}</p>
 
-    <!-- BATTERY CONTEXT (Aviloo) -->
-    <p class="muted">
-      Dit model is uitgerust met een batterij van circa {{battery_kwh}} kWh, wat binnen dit segment valt onder een {{battery_class}} batterij.
-    </p>
+    <p><strong>Waarom dit belangrijk is</strong><br>
+    Bij gebruikte hybride en elektrische auto’s is de batterij één van de belangrijkste en minst zichtbare onderdelen bij aankoop.</p>
+
+    <p>Dit model heeft een batterij van circa <strong>{{battery_kwh}} kWh</strong>, wat valt onder een <strong>{{battery_class}}</strong>.</p>
   </div>
 
-  <!-- INSIGHTS -->
   <div class="card">
     <h3>Eerste inzichten</h3>
     <ul>
@@ -85,110 +70,90 @@ STEP 2: PREVIEW (FREE)
     </ul>
   </div>
 
-  <!-- PRAKTISCH -->
   <div class="card">
     <h3>Goed om te controleren</h3>
-    <p>
-      Controleer of de laadkabel aanwezig is. Ontbrekende accessoires kunnen extra kosten veroorzaken.
-    </p>
+    <p>Controleer of de laadkabel aanwezig is. Ontbrekende accessoires kunnen onverwacht extra kosten veroorzaken.</p>
+    <p class="small">Gebaseerd op voertuigdata en accupatronen</p>
   </div>
-
 </section>
 
-<!-- ==========================================
-STEP 3: PAYWALL
-========================================== -->
-<section class="container" id="paywall_section">
+<!-- PAYWALL -->
+<section class="container">
   <div class="card">
     <h2>Volledig AccuRisico Rapport</h2>
-    <p class="muted">Voor meer zekerheid bij aankoop</p>
-
-    <h3>€19,95</h3>
+    <p>Voor wie niet wil gokken bij aankoop van een hybride of EV</p>
 
     <ul>
-      <li>Uitgebreide accu-analyse</li>
-      <li>Merk- en modelcontext</li>
-      <li>Aankooptips</li>
-      <li>Proefrit checklist</li>
+      <li>Inzicht in accuprofiel en risico</li>
+      <li>Aankooptips en aandachtspunten</li>
+      <li>Wat verkopers vaak niet vertellen</li>
+      <li>Advies voor vervolgcontrole</li>
     </ul>
 
-    <button class="cta" onclick="unlockReport()">Ontgrendel rapport</button>
+    <h3>€19,95</h3>
+    <p class="small">Eenmalig • Direct beschikbaar • Geen abonnement</p>
+
+    <button class="cta" onclick="unlockReport()">Bekijk volledig rapport</button>
   </div>
 </section>
 
-<!-- ==========================================
-STEP 4: FULL REPORT (LOCKED)
-========================================== -->
-<section class="container" id="report_section" style="display:none;">
+<!-- FULL REPORT -->
+<section class="container" id="report" style="display:none">
 
-  <!-- SAMENVATTING -->
   <div class="card">
     <h2>Samenvatting</h2>
     <p><strong>{{buying_profile}}</strong></p>
     <p>{{summary_text}}</p>
   </div>
 
-  <!-- ACCU -->
   <div class="card">
     <h3>Accu en techniek</h3>
     <p>{{battery_analysis}}</p>
   </div>
 
-  <!-- MERK CONTEXT -->
   <div class="card">
     <h3>Merk en model context</h3>
     <p>{{brand_context}}</p>
   </div>
 
-  <!-- LAADGEDRAG USP -->
   <div class="card">
     <h3>Wat je niet direct ziet</h3>
-    <p>
-      Het laadverleden is meestal niet volledig inzichtelijk. Daarom is extra controle soms verstandig.
-    </p>
+    <p>Het laadverleden is meestal niet inzichtelijk. Dit kan invloed hebben op de batterijconditie.</p>
   </div>
 
-  <!-- AANKOOP -->
   <div class="card">
     <h3>Aankoopcheck</h3>
     <ul>
-      <li>Laadkabel aanwezig?</li>
+      <li>Laadkabel aanwezig</li>
       <li>Onderhoudshistorie</li>
       <li>Garantie accu</li>
     </ul>
   </div>
 
-  <!-- PROEFRIT -->
   <div class="card">
     <h3>Proefrit checklist</h3>
     <ul>
       <li>Geen foutmeldingen</li>
       <li>Soepel rijden</li>
-      <li>Normaal laadgedrag</li>
+      <li>Normale actieradius</li>
     </ul>
   </div>
 
-  <!-- UPSELL -->
   <div class="card">
     <h3>Meer zekerheid</h3>
-    <p>
-      Overweeg een AccuCheck of Aankoopadvies voor maximale zekerheid.
-    </p>
+    <p>Overweeg AccuCheck of Aankoopadvies voor maximale zekerheid.</p>
   </div>
 
 </section>
 
 <script>
-// MOCK FLOW
-function fetchVehicle() {
-  // TODO: API call
-  document.getElementById('preview_section').scrollIntoView();
+function fetchVehicle(){
+  document.getElementById('preview').scrollIntoView({behavior:'smooth'});
 }
 
-function unlockReport() {
-  // TODO: payment integration
-  document.getElementById('report_section').style.display = 'block';
-  document.getElementById('report_section').scrollIntoView();
+function unlockReport(){
+  document.getElementById('report').style.display='block';
+  document.getElementById('report').scrollIntoView({behavior:'smooth'});
 }
 </script>
 
