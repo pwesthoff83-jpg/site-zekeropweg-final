@@ -195,6 +195,13 @@ input{
 
 <script>
 
+function normalizeBrand(brand){
+  return brand
+    .toLowerCase()
+    .replace("-", "")
+    .replace(" ", "");
+}
+  
 const brandDB = {
 
 "VAG":{
@@ -223,34 +230,67 @@ const brandDB = {
 };
 
 function getBrandData(make){
-let brand = brandDB[make];
 
-if(!brand){
-  return {
-    behavior:"Gemiddeld accuprofiel.",
-    risk:"gemiddeld",
-    advice:"Extra check aanbevolen."
-  };
+let normalized = normalizeBrand(make);
+
+for(let key in brandDB){
+  if(normalizeBrand(key) === normalized){
+
+    let brand = brandDB[key];
+
+    if(brand.parent === "VAG"){
+      return brandDB["VAG"];
+    }
+
+    return brand;
+  }
 }
 
-if(brand.parent === "VAG"){
-  return brandDB["VAG"];
-}
-
-return brand;
+return {
+  behavior:"Gemiddeld accuprofiel.",
+  risk:"gemiddeld",
+  advice:"Extra check aanbevolen."
+};
 }
 
 function startFlow(){
+let plate = document.getElementById("plate").value.replace(/-/g, '').toUpperCase();
+let name = document.getElementById("name").value || "Onbekend";
 
+// RDW ophalen
+fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
+.then(res => res.json())
+.then(dataRDW => {
+
+if(!dataRDW.length){
+  alert("Kenteken niet gevonden");
+  return;
+}
+
+let voertuig = dataRDW[0];
+
+// RDW data
+let make = voertuig.merk || "Onbekend";
+let model = voertuig.handelsbenaming || "Onbekend";
+let year = voertuig.datum_eerste_toelating?.substring(0,4) || "Onbekend";
+
+let powertrain = "Onbekend";
+
+if(voertuig.brandstof_omschrijving === "Elektriciteit"){
+  powertrain = "EV";
+}else if(voertuig.brandstof_omschrijving?.includes("Hybride")){
+  powertrain = "Hybride";
+}
+
+// tijdelijk
+let battery_kwh = 75;
+
+
+  
 let plate = document.getElementById("plate").value;
 let name = document.getElementById("name").value || "Onbekend";
 
-// TEST DATA
-let make = "Tesla";
-let model = "Model 3";
-let year = 2021;
-let powertrain = "EV";
-let battery_kwh = 78;
+
 
 // profiel bepalen
 let age = new Date().getFullYear() - year;
@@ -324,7 +364,7 @@ document.getElementById("r_plate").innerText = plate;
 document.getElementById("r_date").innerText = new Date().toLocaleDateString();
 
 document.getElementById("report").style.display = "block";
-
+}); // sluit fetch
 }
 
 </script>
