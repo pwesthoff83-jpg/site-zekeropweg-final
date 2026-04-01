@@ -12,13 +12,11 @@ body{
   color:#1c1c1a;
   margin:0;
 }
-
 .container{
   max-width:960px;
   margin:auto;
   padding:60px 20px;
 }
-
 .card{
   background:#ffffff;
   padding:32px;
@@ -27,13 +25,10 @@ body{
   margin-bottom:24px;
   box-shadow:0 4px 20px rgba(0,0,0,0.03);
 }
-
 h1{font-size:38px;font-weight:500;}
 h2{font-size:24px;}
 h3{font-size:18px;}
-
 p{color:#6b675f;line-height:1.6;}
-
 .cta{
   background:#1c2b26;
   color:#fff;
@@ -42,7 +37,6 @@ p{color:#6b675f;line-height:1.6;}
   border:none;
   cursor:pointer;
 }
-
 input{
   width:100%;
   padding:16px;
@@ -50,30 +44,19 @@ input{
   border:1px solid #ddd;
   margin-top:10px;
 }
-
-.small{
-  font-size:13px;
-  color:#8a867d;
-}
-
+.small{font-size:13px;color:#8a867d;}
 .report-header{
   border-bottom:1px solid #e5e1d8;
   margin-bottom:30px;
   padding-bottom:20px;
 }
-
-.report-title{
-  font-size:28px;
-  font-weight:500;
-}
-
+.report-title{font-size:28px;}
 .highlight-box{
   background:#f8f7f3;
   padding:24px;
   border-radius:14px;
   border:1px solid #e8e6df;
 }
-
 .big-score{
   font-size:22px;
   font-weight:500;
@@ -85,290 +68,205 @@ input{
 <body>
 
 <section class="container">
-  <div class="card">
-    <h1>Voorkom een miskoop bij een hybride of EV</h1>
-    <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
+<div class="card">
+<h1>Voorkom een miskoop bij een hybride of EV</h1>
+<p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
 
-    <input type="text" id="plate" placeholder="Kenteken">
-    <input type="text" id="name" placeholder="Jouw naam (optioneel)">
+<input type="text" id="plate" placeholder="Kenteken">
+<input type="text" id="name" placeholder="Jouw naam (optioneel)">
 
-    <br>
-    <button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
+<br>
+<button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
 
-    <p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
-  </div>
+<p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
+</div>
 </section>
 
 <section class="container">
-  <div class="card">
-    <h2 id="car"></h2>
-    <p id="meta"></p>
-  </div>
+<div class="card">
+<h2 id="car"></h2>
+<p id="meta"></p>
+</div>
 </section>
 
 <section class="container">
-  <div class="card">
-    <h2>Volledig AccuRisico Rapport</h2>
-    <p>Voor wie niet wil gokken bij aankoop</p>
-
-    <h3>€19,95</h3>
-    <p class="small">Eenmalig • Direct beschikbaar</p>
-
-    <button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
-  </div>
+<div class="card">
+<h2>Volledig AccuRisico Rapport</h2>
+<p>Voor wie niet wil gokken bij aankoop</p>
+<h3>€19,95</h3>
+<p class="small">Eenmalig • Direct beschikbaar</p>
+<button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
+</div>
 </section>
 
 <section class="container" id="report" style="display:none">
 
-  <div class="card report-header">
-    <div class="report-title">Persoonlijk AccuRisico Rapport</div>
+<div class="card report-header">
+<div class="report-title">Persoonlijk AccuRisico Rapport</div>
 
-    <p class="small">
-      <span id="make_model"></span> • 
-      <span id="build_year"></span> • 
-      <span id="powertrain"></span>
-    </p>
+<p class="small">
+<span id="make_model"></span> • 
+<span id="build_year"></span> • 
+<span id="powertrain"></span>
+</p>
 
-    <p class="small">
-      Aangevraagd door: <strong><span id="r_name"></span></strong><br>
-      Datum: <strong><span id="r_date"></span></strong><br>
-      Kenteken: <strong><span id="r_plate"></span></strong>
-    </p>
-  </div>
+<p class="small">
+Aangevraagd door: <strong><span id="r_name"></span></strong><br>
+Datum: <strong><span id="r_date"></span></strong><br>
+Kenteken: <strong><span id="r_plate"></span></strong>
+</p>
+</div>
 
-  <div class="card">
-    <p>
-      Dit rapport is opgesteld op basis van voertuigdata, accutype en praktijkervaring binnen dit segment.
-      Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
-    </p>
-  </div>
+<div class="card">
+<p>
+Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
+Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
+</p>
+</div>
 
-  <div class="card highlight-box">
-    <div class="big-score" id="buying_profile"></div>
+<div class="card highlight-box">
+<div class="big-score" id="buying_profile"></div>
+<p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
+<p id="profile_description"></p>
+</div>
 
-    <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
-    <p id="profile_description"></p>
-  </div>
+<div class="card">
+<h3>Samenvatting</h3>
+<p id="summary"></p>
+</div>
 
-  <div class="card">
-    <h3>Samenvatting</h3>
-    <p id="summary"></p>
-  </div>
+<div class="card">
+<h3>Accu en praktijkgedrag</h3>
+<p>Batterij: <strong><span id="battery_kwh"></span> kWh</strong></p>
+<p id="battery_behavior"></p>
+</div>
 
-  <div class="card">
-    <h3>Accu en praktijkgedrag</h3>
+<div class="card">
+<h3>Wat betekent dit concreet?</h3>
+<p id="real_world"></p>
+</div>
 
-    <p>
-      Batterijcapaciteit: 
-      <strong><span id="battery_kwh"></span> kWh</strong>
-    </p>
+<div class="card highlight-box">
+<h3>Belangrijk om te beseffen</h3>
+<p>Laadgedrag vorige eigenaar is onbekend → grootste risico.</p>
+</div>
 
-    <p id="battery_behavior"></p>
-  </div>
+<div class="card">
+<h3>Waar je op moet letten</h3>
+<ul>
+<li>Laadkabel aanwezig (kosten!)</li>
+<li>Laadpoort slijtage</li>
+<li>Software updates</li>
+<li>Actieradius afwijkingen</li>
+</ul>
+</div>
 
-  <div class="card">
-    <h3>Wat betekent dit concreet?</h3>
-    <p id="real_world"></p>
-  </div>
-
-  <div class="card highlight-box">
-    <h3>Belangrijk om te beseffen</h3>
-    <p>Laadgedrag van vorige eigenaar is onbekend → grootste risicofactor.</p>
-  </div>
-
-  <div class="card">
-    <h3>Waar je op moet letten</h3>
-    <ul>
-      <li>Laadkabel aanwezig (belangrijk!)</li>
-      <li>Laadpoort slijtage</li>
-      <li>Software updates</li>
-      <li>Actieradius afwijkingen</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Ons advies</h3>
-    <p id="final_advice"></p>
-  </div>
+<div class="card">
+<h3>Ons advies</h3>
+<p id="final_advice"></p>
+</div>
 
 </section>
 
 <script>
 
 function normalizeBrand(brand){
-  return brand
-    .toLowerCase()
-    .replace("-", "")
-    .replace(" ", "");
+  return brand.toLowerCase().replace("-", "").replace(" ", "");
 }
-  
+
 const brandDB = {
-
-"VAG":{
-  behavior:"VAG gebruikt gedeelde accutechnologie (MEB), wat zorgt voor voorspelbare prestaties.",
-  risk:"gemiddeld",
-  advice:"Let op software en gebruik."
-},
-
-"Volkswagen":{ parent:"VAG" },
-"Audi":{ parent:"VAG" },
-"Skoda":{ parent:"VAG" },
-"Cupra":{ parent:"VAG" },
-
-"Tesla":{
-  behavior:"Zeer stabiele batterijen met lage degradatie.",
-  risk:"laag",
-  advice:"Focus op gebruik en schadehistorie."
-},
-
-"BMW":{
-  behavior:"Gemiddelde prestaties met variatie afhankelijk van gebruik.",
-  risk:"gemiddeld",
-  advice:"Check gebruik goed."
-}
-
+"VAG":{behavior:"Voorspelbare prestaties.",risk:"gemiddeld",advice:"Let op gebruik."},
+"Volkswagen":{parent:"VAG"},
+"Audi":{parent:"VAG"},
+"Tesla":{behavior:"Zeer stabiel.",risk:"laag",advice:"Sterke keuze."},
+"BMW":{behavior:"Gemiddeld profiel.",risk:"gemiddeld",advice:"Check gebruik."}
 };
 
 function getBrandData(make){
-
 let normalized = normalizeBrand(make);
-
 for(let key in brandDB){
-  if(normalizeBrand(key) === normalized){
-
-    let brand = brandDB[key];
-
-    if(brand.parent === "VAG"){
-      return brandDB["VAG"];
-    }
-
-    return brand;
-  }
-}
-
-return {
-  behavior:"Gemiddeld accuprofiel.",
-  risk:"gemiddeld",
-  advice:"Extra check aanbevolen."
-};
+if(normalizeBrand(key) === normalized){
+let brand = brandDB[key];
+if(brand.parent === "VAG"){return brandDB["VAG"];}
+return brand;
+}}
+return {behavior:"Gemiddeld profiel.",risk:"gemiddeld",advice:"Extra check."};
 }
 
 function startFlow(){
-let plate = document.getElementById("plate").value.replace(/-/g, '').toUpperCase();
+
+let plate = document.getElementById("plate").value.replace(/-/g,'').toUpperCase();
 let name = document.getElementById("name").value || "Onbekend";
 
-// RDW ophalen
 fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
 .then(res => res.json())
 .then(dataRDW => {
 
-if(!dataRDW.length){
-  alert("Kenteken niet gevonden");
-  return;
-}
+if(!dataRDW.length){alert("Kenteken niet gevonden");return;}
 
-let voertuig = dataRDW[0];
+let v = dataRDW[0];
 
-// RDW data
-let make = voertuig.merk || "Onbekend";
-let model = voertuig.handelsbenaming || "Onbekend";
-let year = voertuig.datum_eerste_toelating?.substring(0,4) || "Onbekend";
+let make = v.merk;
+let model = v.handelsbenaming;
+let year = v.datum_eerste_toelating.substring(0,4);
 
-let powertrain = "Onbekend";
-if(voertuig.brandstof_omschrijving === "Elektriciteit"){
-  powertrain = "EV";
-}else if(voertuig.brandstof_omschrijving?.includes("Hybride")){
-  powertrain = "Hybride";
-}
-let brand = getBrandData(make);
+let powertrain = "EV";
+if(model.toLowerCase().includes("hybrid")){powertrain="Hybride";}
 
-// tijdelijk
 let battery_kwh = 75;
 
-
-  
-let plate = document.getElementById("plate").value;
-let name = document.getElementById("name").value || "Onbekend";
-
-
-
-// profiel bepalen
+// profiel
 let age = new Date().getFullYear() - year;
-let profile_type = "normaal";
+let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
 
-if(age <= 4){ profile_type = "gunstig"; }
-if(age >= 8){ profile_type = "aandacht"; }
-
-// merkdata
 let brand = getBrandData(make);
-let isNewGen = false;
 
-if(make.includes("MERCEDES") && year >= 2025){
-  isNewGen = true;
-}
-  
-// profieldata
-let data = {};
+// new gen detectie
+let isNewGen = make.includes("MERCEDES") && year >= 2025;
 
-if(profile_type === "gunstig"){
- let buyingText = "Goede basis";
-let batteryText = "Stabiel";
-let behaviorText = brand.behavior;
-let adviceText = brand.advice;
+let data;
 
-if(isNewGen){
-  buyingText = "Sterke keuze";
-  batteryText = "Zeer stabiel";
-  behaviorText = "Nieuwe generatie batterijtechnologie met hoge efficiëntie en snelle laadtijden.";
-  adviceText = "Dit model behoort tot de nieuwste generatie EV’s met bovengemiddelde prestaties.";
+if(profile==="gunstig"){
+data={
+buying:isNewGen?"Sterke keuze":"Goede basis",
+battery:isNewGen?"Zeer stabiel":"Stabiel",
+summary:"Sterk accuprofiel passend bij leeftijd.",
+description:"Deze auto laat een stabiel profiel zien.",
+battery_behavior:isNewGen?"Nieuwe generatie batterijtechnologie.":brand.behavior,
+real_world:`Laag risico (${brand.risk})`,
+advice:isNewGen?"Nieuwste generatie EV":"Prima keuze"
+};
 }
 
-data = {
-  buying: buyingText,
-  battery: batteryText,
-  summary:"Sterk accuprofiel passend bij leeftijd en techniek.",
-  description:"Deze auto laat een stabiel profiel zien.",
-  battery_behavior: behaviorText,
-  real_world:`Laag risico (${brand.risk}) bij normaal gebruik.`,
-  advice: adviceText
-}
-    summary:"Sterk accuprofiel passend bij leeftijd en techniek.",
-    description:"Deze auto laat een stabiel profiel zien.",
-    battery_behavior: brand.behavior,
-    real_world:`Laag risico (${brand.risk}) bij normaal gebruik.`,
-    advice: brand.advice
-  }
+if(profile==="normaal"){
+data={
+buying:"Goede basis met aandacht",
+battery:"Normaal",
+summary:"Gemiddeld profiel.",
+description:"Normaal profiel.",
+battery_behavior:brand.behavior,
+real_world:`Gemiddeld risico (${brand.risk})`,
+advice:brand.advice
+};
 }
 
-if(profile_type === "normaal"){
-  data = {
-    buying:"Goede basis met aandacht",
-    battery:"Normaal",
-    summary:"Accuprestaties passend bij leeftijd.",
-    description:"Normaal profiel.",
-    battery_behavior: brand.behavior,
-    real_world:`Gemiddeld risico (${brand.risk}).`,
-    advice: brand.advice
-  }
-}
-
-if(profile_type === "aandacht"){
-  data = {
-    buying:"Extra controle aanbevolen",
-    battery:"Aandachtspunt",
-    summary:"Verhoogd risico profiel.",
-    description:"Extra controle nodig.",
-    battery_behavior: brand.behavior,
-    real_world:`Verhoogd risico (${brand.risk}).`,
-    advice:"Accucheck aanbevolen."
-  }
+if(profile==="aandacht"){
+data={
+buying:"Extra controle aanbevolen",
+battery:"Aandachtspunt",
+summary:"Verhoogd risico.",
+description:"Extra controle nodig.",
+battery_behavior:brand.behavior,
+real_world:`Verhoogd risico (${brand.risk})`,
+advice:"Accucheck aanbevolen"
+};
 }
 
 // inject
-document.getElementById("car").innerText = make + " " + model;
-document.getElementById("meta").innerText = year + " • " + powertrain;
+document.getElementById("car").innerText = make+" "+model;
+document.getElementById("meta").innerText = year+" • "+powertrain;
 
-document.getElementById("make_model").innerText = make + " " + model;
+document.getElementById("make_model").innerText = make+" "+model;
 document.getElementById("build_year").innerText = year;
 document.getElementById("powertrain").innerText = powertrain;
 
@@ -386,10 +284,11 @@ document.getElementById("r_name").innerText = name;
 document.getElementById("r_plate").innerText = plate;
 document.getElementById("r_date").innerText = new Date().toLocaleDateString();
 
-document.getElementById("report").style.display = "block";
-}); // sluit fetch
-}
+document.getElementById("report").style.display="block";
 
+});
+
+}
 </script>
 
 </body>
