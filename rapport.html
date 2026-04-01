@@ -178,10 +178,25 @@ input{
     <p>Laadgedrag van de vorige eigenaar is meestal niet inzichtelijk en blijft daarom een belangrijke risicofactor.</p>
   </div>
 
-  <div class="card">
-    <h3>Waar je op moet letten</h3>
-    <ul id="battery_check" class="checklist"></ul>
-  </div>
+ <div class="card">
+  <h3>Wat is goed voor de accu</h3>
+  <ul id="battery_good" class="checklist"></ul>
+</div>
+
+<div class="card">
+  <h3>Wat is slecht voor de accu</h3>
+  <ul id="battery_bad" class="checklist"></ul>
+</div>
+
+<div class="card">
+  <h3>Waar op letten bij proefrit</h3>
+  <ul id="battery_drive" class="checklist"></ul>
+</div>
+
+<div class="card">
+  <h3>Waar op letten bij aankoop</h3>
+  <ul id="battery_check" class="checklist"></ul>
+</div>
 
   <div class="card">
     <h3>Ons advies</h3>
@@ -393,14 +408,65 @@ Risico-inschatting: ${brand.risk}.
         };
       }
 
-      let check = [
-        "Controleer of de actieradius logisch is bij volle lading",
-        "Let op afwijkingen in laadtempo of laadtijd",
-        "Controleer of snelladen goed werkt",
-        "Vraag naar laadgedrag van de vorige eigenaar",
-        "Let op snel dalende batterijpercentage tijdens rijden"
-      ];
+    // 🔥 GOED VOOR ACCU
+let good = [
+"Rustig laden (AC) verlengt levensduur",
+"Niet constant tot 100% laden",
+"Regelmatig rijden i.p.v. lang stil laten staan",
+"Accu tussen 20% en 80% houden bij dagelijks gebruik"
+];
 
+// 🔥 SLECHT VOOR ACCU
+let bad = [
+"Vaak snelladen (DC) kan op termijn degradatie versnellen",
+"Lang stilstaan met volle of lege accu",
+"Veel rijden met 0–5% batterij",
+"Extreme hitte of kou zonder preconditioning"
+];
+
+// 🔥 PROEFRIT
+let drive = [
+"Controleer of actieradius logisch afneemt tijdens rijden",
+"Let op plotselinge daling van batterijpercentage",
+"Test snelladen indien mogelijk",
+"Controleer of regeneratief remmen goed werkt"
+];
+
+// 🔥 AANKOOP CHECK
+let check = [
+"Controleer of de actieradius overeenkomt met verwachting",
+"Vraag naar laadgedrag vorige eigenaar",
+"Controleer laadkabel en laadpoort",
+"Check software updates en foutmeldingen"
+];
+
+// PROFIEL INVLOED
+if(profile === "aandacht"){
+  check.push("Laat een accutest uitvoeren vóór aankoop (sterk aanbevolen)");
+}
+
+if(profile === "gunstig"){
+  good.push("Relatief laag risico door jonge leeftijd van het voertuig");
+}
+
+// MERK SPECIFIEK
+if(make.includes("TESLA")){
+  drive.push("Controleer Supercharging snelheid en consistentie");
+}
+
+if(make.includes("MERCEDES") || make.includes("BMW") || make.includes("AUDI")){
+  check.push("Controleer software en batterijmanagement updates");
+}
+
+if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
+  good.push("Bekend om stabiele batterijprestaties bij normaal gebruik");
+}
+
+      fillList("battery_good", good);
+      fillList("battery_bad", bad);
+      fillList("battery_drive", drive);
+      fillList("battery_check", check);
+           
       if(profile === "gunstig"){
         check.push("Algemeen laag risico, maar controle blijft verstandig");
       }
