@@ -84,7 +84,6 @@ input{
 
 <body>
 
-<!-- HERO -->
 <section class="container">
   <div class="card">
     <h1>Voorkom een miskoop bij een hybride of EV</h1>
@@ -100,7 +99,6 @@ input{
   </div>
 </section>
 
-<!-- PREVIEW -->
 <section class="container">
   <div class="card">
     <h2 id="car"></h2>
@@ -108,7 +106,6 @@ input{
   </div>
 </section>
 
-<!-- PAYWALL -->
 <section class="container">
   <div class="card">
     <h2>Volledig AccuRisico Rapport</h2>
@@ -121,7 +118,6 @@ input{
   </div>
 </section>
 
-<!-- RAPPORT -->
 <section class="container" id="report" style="display:none">
 
   <div class="card report-header">
@@ -134,253 +130,150 @@ input{
     </p>
 
     <p class="small">
-      Aangevraagd door: <strong><span id="r_name"></span></strong>
-      Datum: <strong><span id="r_date"></span></strong> 
+      Aangevraagd door: <strong><span id="r_name"></span></strong><br>
+      Datum: <strong><span id="r_date"></span></strong><br>
+      Kenteken: <strong><span id="r_plate"></span></strong>
+    </p>
   </div>
 
-<div class="card">
+  <div class="card">
+    <p>
+      Dit rapport is opgesteld op basis van voertuigdata, accutype en praktijkervaring binnen dit segment.
+      Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
+    </p>
+  </div>
 
-  <p>
-    Dit persoonlijke rapport is aangevraagd op basis van het kenteken 
-    <strong><span id="r_plate"></span></strong>.
-  </p>
-
-  <p>
-    Wij hebben deze auto geanalyseerd op basis van voertuigdata, accutype en gebruikspatronen binnen dit segment.
-  </p>
-
-  <p>
-    Omdat het laadverleden van een auto meestal niet inzichtelijk is, geeft dit rapport een realistisch en onafhankelijk beeld van wat je kunt verwachten. Vóórdat je tot aankoop overgaat.
-  </p>
-
-</div>
-  
   <div class="card highlight-box">
     <div class="big-score" id="buying_profile"></div>
 
-    <p>
-      <strong>Accuprofiel:</strong> 
-      <span id="battery_profile"></span>
-    </p>
-
+    <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
     <p id="profile_description"></p>
   </div>
 
   <div class="card">
+    <h3>Samenvatting</h3>
+    <p id="summary"></p>
+  </div>
 
-  <h3>Samenvatting</h3>
+  <div class="card">
+    <h3>Accu en praktijkgedrag</h3>
 
-  <p id="summary"></p>
+    <p>
+      Batterijcapaciteit: 
+      <strong><span id="battery_kwh"></span> kWh</strong>
+    </p>
 
-  <p>
-    Op basis van leeftijd, type aandrijving en segment laat deze auto een profiel zien dat past binnen de verwachtingen — maar zonder inzicht in het laadverleden blijft een deel van de batterijconditie altijd onbekend.
-  </p>
+    <p id="battery_behavior"></p>
+  </div>
 
-</div>
+  <div class="card">
+    <h3>Wat betekent dit concreet?</h3>
+    <p id="real_world"></p>
+  </div>
 
+  <div class="card highlight-box">
+    <h3>Belangrijk om te beseffen</h3>
+    <p>Laadgedrag van vorige eigenaar is onbekend → grootste risicofactor.</p>
+  </div>
 
-<div class="card">
+  <div class="card">
+    <h3>Waar je op moet letten</h3>
+    <ul>
+      <li>Laadkabel aanwezig (belangrijk!)</li>
+      <li>Laadpoort slijtage</li>
+      <li>Software updates</li>
+      <li>Actieradius afwijkingen</li>
+    </ul>
+  </div>
 
-  <h3>Accu en praktijkgedrag</h3>
+  <div class="card">
+    <h3>Ons advies</h3>
+    <p id="final_advice"></p>
+  </div>
 
-  <p>
-    Deze auto is uitgerust met een batterij van circa 
-    <strong><span id="battery_kwh"></span> kWh</strong>.
-  </p>
-
-  <p id="battery_behavior"></p>
-
-  <p>
-    In de praktijk wordt batterijprestatie niet alleen bepaald door leeftijd, maar vooral door gebruik:
-  </p>
-
-  <ul>
-    <li>Veelvuldig snelladen kan extra slijtage veroorzaken</li>
-    <li>Lange stilstand met volle of lege accu beïnvloedt conditie</li>
-    <li>Rijstijl en temperatuur hebben directe impact op prestaties</li>
-  </ul>
-
-</div>
-
-
-<div class="card">
-
-  <h3>Wat betekent dit concreet bij aankoop?</h3>
-
-  <p id="real_world"></p>
-
-  <p>
-    Dit betekent dat twee identieke auto’s in de praktijk een andere batterijconditie kunnen hebben — zonder dat dit direct zichtbaar is.
-  </p>
-
-</div>
-
-
-<div class="card highlight-box">
-
-  <h3>Belangrijk om te beseffen</h3>
-
-  <p>
-    Verkopers hebben meestal geen volledig inzicht in hoe een auto geladen en gebruikt is.
-  </p>
-
-  <p>
-    Daardoor blijft de werkelijke accustatus deels een inschatting — tenzij je deze actief laat controleren.
-  </p>
-
-</div>
-
-
-<div class="card">
-
-  <h3>Waar je extra op moet letten</h3>
-
-  <ul>
-    <li>Controleer of de originele laadkabel aanwezig is (kan honderden euro’s kosten)</li>
-    <li>Controleer laadpoort en aansluiting op slijtage</li>
-    <li>Vraag naar onderhoud en software-updates</li>
-    <li>Let op afwijkingen in actieradius tijdens gebruik</li>
-  </ul>
-
-</div>
-
-
-<div class="card">
-
-  <h3>Ons advies</h3>
-
-  <p id="final_advice"></p>
-
-  <p>
-    Wil je maximale zekerheid vóór aankoop, dan is een aanvullende AccuCheck of aankoopadvies sterk aan te raden.
-  </p>
-
-</div>
-  
 </section>
 
-<!-- SCRIPT -->
 <script>
 
 const brandDB = {
 
 "VAG":{
-  degradation:"gemiddeld",
-  behavior:"Binnen de Volkswagen Group wordt veel gebruikgemaakt van gedeelde accutechnologie (MEB-platform), wat zorgt voor consistente basisprestaties.",
+  behavior:"VAG gebruikt gedeelde accutechnologie (MEB), wat zorgt voor voorspelbare prestaties.",
   risk:"gemiddeld",
-  nuance:"Hoewel de techniek vergelijkbaar is, verschilt de afstelling per merk en model.",
-  advice:"Let vooral op software, gebruik en uitvoering van het specifieke model."
+  advice:"Let op software en gebruik."
 },
 
-"Volkswagen":{
-  parent:"VAG",
-  nuance:"Volkswagen modellen zijn vaak de meest neutrale uitvoering binnen het VAG-platform."
-},
-
-"Audi":{
-  parent:"VAG",
-  nuance:"Audi modellen zijn zwaarder en krachtiger, wat invloed kan hebben op batterijbelasting en verbruik."
-},
-
-"Skoda":{
-  parent:"VAG",
-  nuance:"Skoda modellen zijn vaak efficiënter en iets lichter, wat gunstig kan zijn voor bereik en accubelasting."
-},
-
-"Cupra":{
-  parent:"VAG",
-  nuance:"Cupra modellen zijn sportiever afgesteld, wat kan leiden tot hogere belasting van de batterij."
-},
+"Volkswagen":{ parent:"VAG" },
+"Audi":{ parent:"VAG" },
+"Skoda":{ parent:"VAG" },
+"Cupra":{ parent:"VAG" },
 
 "Tesla":{
-  degradation:"zeer laag",
-  behavior:"Tesla batterijen behoren tot de meest stabiele in de markt, mede door actieve thermische controle en software-optimalisatie.",
+  behavior:"Zeer stabiele batterijen met lage degradatie.",
   risk:"laag",
-  nuance:"Degradatie blijft meestal beperkt, zelfs bij hogere kilometerstanden.",
-  advice:"Focus minder op degradatie, meer op gebruik en schadehistorie."
-},
-
-"Hyundai":{
-  degradation:"laag",
-  behavior:"Hyundai EV’s staan bekend om consistente prestaties en beperkte degradatie.",
-  risk:"laag",
-  nuance:"Zelfs bij intensief gebruik blijven prestaties vaak stabiel.",
-  advice:"Over het algemeen een veilige keuze."
-},
-
-"Kia":{
-  degradation:"laag",
-  behavior:"Kia deelt veel techniek met Hyundai en laat vergelijkbare accuprestaties zien.",
-  risk:"laag",
-  nuance:"Batterijen behouden doorgaans goed hun capaciteit.",
-  advice:"Betrouwbare keuze."
+  advice:"Focus op gebruik en schadehistorie."
 },
 
 "BMW":{
-  degradation:"gemiddeld",
-  behavior:"BMW hybride en EV-systemen zijn technisch sterk, maar prestaties variëren afhankelijk van gebruik.",
+  behavior:"Gemiddelde prestaties met variatie afhankelijk van gebruik.",
   risk:"gemiddeld",
-  nuance:"Plug-in hybrides worden niet altijd optimaal gebruikt.",
-  advice:"Controleer hoe de auto daadwerkelijk gebruikt is."
-},
-
-"Mercedes-Benz":{
-  degradation:"generatie-afhankelijk",
-  behavior:"Mercedes accuprestaties verschillen sterk per generatie. Nieuwere modellen laten duidelijke verbeteringen zien in efficiëntie en batterijgebruik.",
-  risk:"gemiddeld",
-  nuance:"Met name de nieuwste generatie EV’s (vanaf ±2024/2025) zijn aanzienlijk efficiënter en moderner dan eerdere modellen.",
-  advice:"Let goed op bouwjaar en generatie: nieuwere modellen presteren duidelijk beter."
-},
-
-"Renault":{
-  degradation:"gevoeliger",
-  behavior:"Met name oudere modellen zijn gevoeliger voor accudegradatie.",
-  risk:"verhoogd",
-  nuance:"Variatie tussen voertuigen kan groot zijn.",
-  advice:"Accucheck sterk aan te raden."
-},
-
-"Nissan":{
-  degradation:"gevoeliger",
-  behavior:"Vooral oudere Leaf modellen zijn gevoeliger door gebrek aan actieve koeling.",
-  risk:"verhoogd",
-  nuance:"Temperatuur heeft grote invloed.",
-  advice:"Extra voorzichtig bij oudere bouwjaren."
-},
-
-"BYD":{
-  degradation:"laag",
-  behavior:"BYD gebruikt LFP technologie die zeer stabiel is.",
-  risk:"laag",
-  nuance:"Degradatie is vaak minimaal.",
-  advice:"Sterke keuze voor lange termijn."
+  advice:"Check gebruik goed."
 }
 
-};  
-  
+};
+
+function getBrandData(make){
+let brand = brandDB[make];
+
+if(!brand){
+  return {
+    behavior:"Gemiddeld accuprofiel.",
+    risk:"gemiddeld",
+    advice:"Extra check aanbevolen."
+  };
+}
+
+if(brand.parent === "VAG"){
+  return brandDB["VAG"];
+}
+
+return brand;
+}
+
 function startFlow(){
 
 let plate = document.getElementById("plate").value;
 let name = document.getElementById("name").value || "Onbekend";
 
-// TEST DATA (later vervangen door API)
+// TEST DATA
 let make = "Tesla";
 let model = "Model 3";
-let year = "2021";
+let year = 2021;
 let powertrain = "EV";
 let battery_kwh = 78;
 
+// profiel bepalen
+let age = new Date().getFullYear() - year;
+let profile_type = "normaal";
+
+if(age <= 4){ profile_type = "gunstig"; }
+if(age >= 8){ profile_type = "aandacht"; }
+
+// merkdata
+let brand = getBrandData(make);
+
+// profieldata
 let data = {};
 
 if(profile_type === "gunstig"){
   data = {
     buying:"Goede basis",
     battery:"Stabiel",
-    summary:"Deze auto heeft een modern en stabiel accuprofiel met voorspelbare prestaties.",
-    description:"Deze auto laat een stabiel profiel zien op basis van leeftijd en gebruik.",
-    battery_behavior:"Binnen dit segment staat dit type batterij bekend om een geleidelijke en voorspelbare degradatie.",
-    real_world:"Bij normaal gebruik mag je consistente prestaties verwachten zonder directe aanwijzingen voor versnelde slijtage.",
-    advice:"Een logische keuze, mits de auto technisch en historisch klopt."
+    summary:"Sterk accuprofiel passend bij leeftijd en techniek.",
+    description:"Deze auto laat een stabiel profiel zien.",
+    battery_behavior: brand.behavior,
+    real_world:`Laag risico (${brand.risk}) bij normaal gebruik.`,
+    advice: brand.advice
   }
 }
 
@@ -388,11 +281,11 @@ if(profile_type === "normaal"){
   data = {
     buying:"Goede basis met aandacht",
     battery:"Normaal",
-    summary:"Deze auto heeft een accuprofiel dat past bij leeftijd en gebruik.",
-    description:"Deze auto laat een normaal profiel zien.",
-    battery_behavior:"De batterijprestaties liggen gemiddeld binnen dit segment, met variatie afhankelijk van gebruik.",
-    real_world:"Extra controle is verstandig om verrassingen op langere termijn te voorkomen.",
-    advice:"Geschikt, maar een aanvullende check geeft meer zekerheid."
+    summary:"Accuprestaties passend bij leeftijd.",
+    description:"Normaal profiel.",
+    battery_behavior: brand.behavior,
+    real_world:`Gemiddeld risico (${brand.risk}).`,
+    advice: brand.advice
   }
 }
 
@@ -400,19 +293,18 @@ if(profile_type === "aandacht"){
   data = {
     buying:"Extra controle aanbevolen",
     battery:"Aandachtspunt",
-    summary:"Deze auto vraagt extra aandacht bij aankoop vanwege leeftijd of gebruik.",
-    description:"Deze auto laat een profiel zien dat extra controle vereist.",
-    battery_behavior:"Binnen dit segment zien we meer variatie en mogelijk snellere degradatie.",
-    real_world:"Zonder extra controle loop je meer risico op afwijkende prestaties.",
-    advice:"Sterk aan te raden om een AccuCheck uit te voeren vóór aankoop."
+    summary:"Verhoogd risico profiel.",
+    description:"Extra controle nodig.",
+    battery_behavior: brand.behavior,
+    real_world:`Verhoogd risico (${brand.risk}).`,
+    advice:"Accucheck aanbevolen."
   }
 }
 
-// preview
+// inject
 document.getElementById("car").innerText = make + " " + model;
 document.getElementById("meta").innerText = year + " • " + powertrain;
 
-// rapport
 document.getElementById("make_model").innerText = make + " " + model;
 document.getElementById("build_year").innerText = year;
 document.getElementById("powertrain").innerText = powertrain;
@@ -423,17 +315,14 @@ document.getElementById("summary").innerText = data.summary;
 document.getElementById("profile_description").innerText = data.description;
 
 document.getElementById("battery_kwh").innerText = battery_kwh;
-
 document.getElementById("battery_behavior").innerText = data.battery_behavior;
 document.getElementById("real_world").innerText = data.real_world;
 document.getElementById("final_advice").innerText = data.advice;
-  
-// personalisatie
+
 document.getElementById("r_name").innerText = name;
 document.getElementById("r_plate").innerText = plate;
 document.getElementById("r_date").innerText = new Date().toLocaleDateString();
 
-// tonen
 document.getElementById("report").style.display = "block";
 
 }
