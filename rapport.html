@@ -154,9 +154,8 @@ Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatt
 
 <div class="card">
 <h3>Waar je op moet letten</h3>
-
-</div>
 <ul id="battery_check"></ul>
+ </div> 
 <div class="card">
 <h3>Ons advies</h3>
 <p id="final_advice"></p>
@@ -226,7 +225,10 @@ let model = v.handelsbenaming;
 let year = v.datum_eerste_toelating.substring(0,4);
 
 let powertrain = "EV";
-if(model.toLowerCase().includes("hybrid")){powertrain="Hybride";}
+
+if(v.brandstof_omschrijving?.toLowerCase().includes("hybride")){
+  powertrain = "Hybride";
+}
 
 let lookupKey = (make + " " + model).toLowerCase();
 let batteryData = batteryDB[lookupKey];
@@ -324,6 +326,19 @@ Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedra
 Risico-inschatting: ${brand.risk}.
 `,
 advice:"Accucheck aanbevolen"
+};
+}
+
+
+// 🔥 CHECK LIJST DYNAMISCH
+
+let check = [
+"Controleer of de actieradius logisch is bij volle lading",
+"Let op afwijkingen in laadtempo of laadtijd",
+"Controleer of snelladen goed werkt",
+"Vraag naar laadgedrag van vorige eigenaar",
+"Let op snel dalende batterijpercentage tijdens rijden"
+];
 
 if(profile === "gunstig"){
   check.push("Algemeen laag risico, maar controle blijft verstandig");
@@ -338,16 +353,6 @@ if(profile === "aandacht"){
 }
 };
 }
-
-// 🔥 CHECK LIJST DYNAMISCH
-
-let check = [
-"Controleer of de actieradius logisch is bij volle lading",
-"Let op afwijkingen in laadtempo of laadtijd",
-"Controleer of snelladen goed werkt",
-"Vraag naar laadgedrag van vorige eigenaar",
-"Let op snel dalende batterijpercentage tijdens rijden"
-];
 
 // 🔥 MERK SPECIFIEK (DIT WOU JE)
 // 🔥 PREMIUM MERKEN
@@ -383,8 +388,10 @@ if(
   make.includes("BYD")
 ){
   check.push("Let op consistent laadgedrag en batterijbalans");
-  check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
 }
+
+// 🔥 ALTIJD TONEN (EXPERT POSITIONERING)
+check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
 
 // inject
 document.getElementById("car").innerText = make+" "+model;
