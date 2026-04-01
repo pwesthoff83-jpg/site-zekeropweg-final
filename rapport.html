@@ -68,7 +68,6 @@ input{
   padding:0;
   margin-top:10px;
 }
-
 .check-item{
   display:flex;
   align-items:flex-start;
@@ -76,402 +75,188 @@ input{
   padding:10px 0;
   border-bottom:1px solid #f0eee9;
 }
-
 .check-icon{
   font-size:16px;
   margin-top:2px;
 }
-
 .check-good{
   color:#1c7c54;
 }
-
 .check-warning{
   color:#b7791f;
 }
-
 .check-neutral{
   color:#6b675f;
-}  
-  
+}
 </style>
 </head>
 
 <body>
 
 <section class="container">
-<div class="card">
-<h1>Voorkom een miskoop bij een hybride of EV</h1>
-<p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
+  <div class="card">
+    <h1>Voorkom een miskoop bij een hybride of EV</h1>
+    <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
 
-<input type="text" id="plate" placeholder="Kenteken">
-<input type="text" id="name" placeholder="Jouw naam (optioneel)">
+    <input type="text" id="plate" placeholder="Kenteken">
+    <input type="text" id="name" placeholder="Jouw naam (optioneel)">
 
-<br>
-<button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
+    <br>
+    <button class="cta" onclick="startFlow()">Bekijk eerste analyse</button>
 
-<p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
-</div>
+    <p class="small">Onafhankelijk • Geen verkooppraat • Gericht op zekerheid</p>
+  </div>
 </section>
 
 <section class="container">
-<div class="card">
-<h2 id="car"></h2>
-<p id="meta"></p>
-</div>
+  <div class="card">
+    <h2 id="car"></h2>
+    <p id="meta"></p>
+  </div>
 </section>
 
 <section class="container">
-<div class="card">
-<h2>Volledig AccuRisico Rapport</h2>
-<p>Voor wie niet wil gokken bij aankoop</p>
-<h3>€19,95</h3>
-<p class="small">Eenmalig • Direct beschikbaar</p>
-<button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
-</div>
+  <div class="card">
+    <h2>Volledig AccuRisico Rapport</h2>
+    <p>Voor wie niet wil gokken bij aankoop</p>
+    <h3>€19,95</h3>
+    <p class="small">Eenmalig • Direct beschikbaar</p>
+    <button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
+  </div>
 </section>
 
 <section class="container" id="report" style="display:none">
 
-<div class="card report-header">
-<div class="report-title">Persoonlijk AccuRisico Rapport</div>
+  <div class="card report-header">
+    <div class="report-title">Persoonlijk AccuRisico Rapport</div>
 
-<p class="small">
-<span id="make_model"></span> • 
-<span id="build_year"></span> • 
-<span id="powertrain"></span>
-</p>
+    <p class="small">
+      <span id="make_model"></span> • 
+      <span id="build_year"></span> • 
+      <span id="powertrain"></span>
+    </p>
 
-<p class="small">
-Aangevraagd door: <strong><span id="r_name"></span></strong><br>
-Datum: <strong><span id="r_date"></span></strong><br>
-Kenteken: <strong><span id="r_plate"></span></strong>
-</p>
-</div>
+    <p class="small">
+      Aangevraagd door: <strong><span id="r_name"></span></strong><br>
+      Datum: <strong><span id="r_date"></span></strong><br>
+      Kenteken: <strong><span id="r_plate"></span></strong>
+    </p>
+  </div>
 
-<div class="card">
-<p>
-Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
-Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
-</p>
-</div>
+  <div class="card">
+    <p>
+      Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
+      Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
+    </p>
+  </div>
 
-<div class="card highlight-box">
-<div class="big-score" id="buying_profile"></div>
-<p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
-<p id="profile_description"></p>
-</div>
+  <div class="card highlight-box">
+    <div class="big-score" id="buying_profile"></div>
+    <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
+    <p id="profile_description"></p>
+  </div>
 
-<div class="card">
-<h3>Samenvatting</h3>
-<p id="summary"></p>
-</div>
+  <div class="card">
+    <h3>Samenvatting</h3>
+    <p id="summary"></p>
+  </div>
 
-<div class="card">
-<h3>Accu en praktijkgedrag</h3>
-<p>Batterij: <strong><span id="battery_kwh"></span> kWh</strong></p>
-<p id="battery_behavior"></p>
-<p id="battery_extra"></p>  
-</div>
+  <div class="card">
+    <h3>Accu en praktijkgedrag</h3>
+    <p>Batterij: <strong><span id="battery_kwh"></span></strong></p>
+    <p id="battery_behavior"></p>
+    <p id="battery_extra"></p>  
+  </div>
 
-<div class="card">
-<h3>Wat betekent dit concreet?</h3>
-<p id="real_world"></p>
-</div>
+  <div class="card">
+    <h3>Wat betekent dit concreet?</h3>
+    <p id="real_world"></p>
+  </div>
 
-<div class="card highlight-box">
-<h3>Belangrijk om te beseffen</h3>
-<p>Laadgedrag vorige eigenaar is onbekend → grootste risico.</p>
-</div>
+  <div class="card highlight-box">
+    <h3>Belangrijk om te beseffen</h3>
+    <p>Laadgedrag van de vorige eigenaar is meestal niet inzichtelijk en blijft daarom een belangrijke risicofactor.</p>
+  </div>
 
-<div class="card">
-  <h3>Waar je op moet letten</h3>
-  <ul id="battery_check" class="checklist"></ul>
-</div>
-  
-<div class="card">
-<h3>Ons advies</h3>
-<p id="final_advice"></p>
-</div>
+  <div class="card">
+    <h3>Waar je op moet letten</h3>
+    <ul id="battery_check" class="checklist"></ul>
+  </div>
+
+  <div class="card">
+    <h3>Ons advies</h3>
+    <p id="final_advice"></p>
+  </div>
 
 </section>
 
 <script>
-
 function normalizeBrand(brand){
-  return brand.toLowerCase().replace("-", "").replace(" ", "");
+  return String(brand || "")
+    .toLowerCase()
+    .replace(/-/g, "")
+    .replace(/\s+/g, "");
 }
 
 const brandDB = {
-"VAG":{behavior:"Voorspelbare prestaties.",risk:"gemiddeld",advice:"Let op gebruik."},
-"Volkswagen":{parent:"VAG"},
-"Audi":{parent:"VAG"},
-"Tesla":{behavior:"Zeer stabiel.",risk:"laag",advice:"Sterke keuze."},
-"BMW":{behavior:"Gemiddeld profiel.",risk:"gemiddeld",advice:"Check gebruik."}
+  "VAG": { behavior:"Voorspelbare prestaties.", risk:"gemiddeld", advice:"Let op gebruik." },
+  "Volkswagen": { parent:"VAG" },
+  "Audi": { parent:"VAG" },
+  "Tesla": { behavior:"Zeer stabiel.", risk:"laag", advice:"Sterke keuze." },
+  "BMW": { behavior:"Gemiddeld profiel.", risk:"gemiddeld", advice:"Check gebruik." }
 };
 
 function getBrandData(make){
-let normalized = normalizeBrand(make);
-for(let key in brandDB){
-if(normalizeBrand(key) === normalized){
-let brand = brandDB[key];
-if(brand.parent === "VAG"){return brandDB["VAG"];}
-return brand;
-}}
-return {behavior:"Gemiddeld profiel.",risk:"gemiddeld",advice:"Extra check."};
+  let normalized = normalizeBrand(make);
+
+  for(let key in brandDB){
+    if(normalizeBrand(key) === normalized){
+      let brand = brandDB[key];
+      if(brand.parent === "VAG"){
+        return brandDB["VAG"];
+      }
+      return brand;
+    }
+  }
+
+  return {
+    behavior:"Gemiddeld profiel.",
+    risk:"gemiddeld",
+    advice:"Extra check aanbevolen."
+  };
 }
 
 const batteryDB = {
-
-"tesla model 3": {kwh:78, type:"NMC", range:500},
-"tesla model y": {kwh:75, type:"NMC", range:505},
-
-"mercedes-benz cla 250+": {kwh:85, type:"NMC", range:740},
-
-"volkswagen id.3": {kwh:58, type:"NMC", range:420},
-"volkswagen id.4": {kwh:77, type:"NMC", range:520},
-
-"bmw i4": {kwh:83, type:"NMC", range:590},
-
-"hyundai kona": {kwh:64, type:"NMC", range:480},
-"kia ev6": {kwh:77, type:"NMC", range:528},
-
-"byd atto 3": {kwh:60, type:"LFP", range:420}
-
+  "tesla model 3": {kwh:78, type:"NMC", range:500},
+  "tesla model y": {kwh:75, type:"NMC", range:505},
+  "mercedes-benz cla 250+": {kwh:85, type:"NMC", range:740},
+  "volkswagen id.3": {kwh:58, type:"NMC", range:420},
+  "volkswagen id.4": {kwh:77, type:"NMC", range:520},
+  "bmw i4": {kwh:83, type:"NMC", range:590},
+  "hyundai kona": {kwh:64, type:"NMC", range:480},
+  "kia ev6": {kwh:77, type:"NMC", range:528},
+  "byd atto 3": {kwh:60, type:"LFP", range:420}
 };
-  
-function startFlow(){
-
-let plate = document.getElementById("plate").value.replace(/-/g,'').toUpperCase();
-let name = document.getElementById("name").value || "Onbekend";
-
-fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
-.then(res => res.json())
-.then(dataRDW => {
-
-if(!dataRDW.length){alert("Kenteken niet gevonden");return;}
-
-let v = dataRDW[0];
-
-let make = v.merk;
-let model = v.handelsbenaming;
-let year = v.datum_eerste_toelating.substring(0,4);
-
-let powertrain = "EV";
-
-if(v.brandstof_omschrijving?.toLowerCase().includes("hybride")){
-  powertrain = "Hybride";
-}
-
-let lookupKey = (make + " " + model).toLowerCase();
-let batteryData = batteryDB[lookupKey];
-
-let battery_kwh = batteryData ? batteryData.kwh : "Onbekend";
-let battery_type = batteryData ? batteryData.type : "Onbekend";
-let real_range = batteryData ? batteryData.range : "Onbekend";
-
-// profiel
-let age = new Date().getFullYear() - year;
-let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
-
-let brand = getBrandData(make);
-
-// new gen detectie
-let isNewGen = make.includes("MERCEDES") && year >= 2025;
-
-let data;
-// 🔥 RISICO AFHANKELIJK
-
-if(profile==="gunstig"){
-data={
-buying:isNewGen?"Sterke keuze":"Goede basis",
-battery:isNewGen?"Zeer stabiel":"Stabiel",
-summary:"Sterk accuprofiel passend bij leeftijd.",
-description:"Deze auto laat een stabiel profiel zien.",
-battery_behavior: `
-Deze uitvoering is uitgerust met een batterij van circa ${battery_kwh} kWh (NMC-technologie).
-
-Binnen dit segment behoort dit tot de grotere en efficiëntere accupakketten, wat zorgt voor een hoge actieradius en stabiele prestaties.
-
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van rijstijl, temperatuur en gebruik.
-
-Dit type batterij staat bekend om sterke prestaties en goede laadcapaciteit, maar is gevoeliger voor intensief snelladen op lange termijn.
-`,
-  
-real_world: `
-Voor dit type en bouwjaar mag je stabiele prestaties verwachten met een relatief laag risico op versnelde degradatie.
-
-Omdat dit model tot de nieuwste generatie EV’s behoort, is de batterijtechnologie efficiënter en beter beschermd dan oudere modellen.
-
-Let wel: zonder inzicht in het laadgedrag van de vorige eigenaar blijft er altijd onzekerheid bestaan.
-
-Risico-inschatting: laag tot gemiddeld.
-`,
-advice: `
-Dit model is technisch een sterke keuze binnen het huidige EV-segment.
-
-Wil je maximale zekerheid, laat dan de accustatus controleren vóór aankoop — vooral bij hogere kilometerstanden of intensief gebruik.
-};
-}
-
-if(profile==="normaal"){
-data={
-buying:"Goede basis met aandacht",
-battery:"Normaal",
-summary:"Gemiddeld profiel.",
-description:"Normaal profiel.",
-battery_behavior: `
-Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh} kWh.
-
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
-
-${brand.behavior}
-`,
-real_world: `
-Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
-
-Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
-
-Risico-inschatting: ${brand.risk}.
-`,
-advice:brand.advice
-};
-}
-
-if(profile==="aandacht"){
-data={
-buying:"Extra controle aanbevolen",
-battery:"Aandachtspunt",
-summary:"Verhoogd risico.",
-description:"Extra controle nodig.",
-battery_behavior: `
-Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh} kWh.
-
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
-
-${brand.behavior}
-`,
-real_world: `
-Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
-
-Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
-
-Risico-inschatting: ${brand.risk}.
-`,
-advice:"Accucheck aanbevolen"
-};
-}
-
-
-// 🔥 CHECK LIJST DYNAMISCH
-
-let check = [
-"Controleer of de actieradius logisch is bij volle lading",
-"Let op afwijkingen in laadtempo of laadtijd",
-"Controleer of snelladen goed werkt",
-"Vraag naar laadgedrag van vorige eigenaar",
-"Let op snel dalende batterijpercentage tijdens rijden"
-];
-
-if(profile === "gunstig"){
-  check.push("Algemeen laag risico, maar controle blijft verstandig");
-}
-
-if(profile === "normaal"){
-  check.push("Extra controle aanbevolen voor zekerheid");
-}
-
-if(profile === "aandacht"){
-  check.push("Sterk aanbevolen: laat een accucheck uitvoeren vóór aankoop");
-}
-};
-}
-
-// 🔥 MERK SPECIFIEK (DIT WOU JE)
-// 🔥 PREMIUM MERKEN
-if(
-  make.includes("MERCEDES") ||
-  make.includes("BMW") ||
-  make.includes("AUDI")
-){
-  check.push("Controleer of snelladen consistent werkt (belangrijk bij premium EV’s)");
-  check.push("Let op software en batterijmanagement updates");
-}
-
-// 🔥 VAG GROEP
-if(
-  make.includes("VOLKSWAGEN") ||
-  make.includes("AUDI") ||
-  make.includes("SKODA") ||
-  make.includes("CUPRA")
-){
-  check.push("Let op software updates (belangrijk bij VAG EV’s)");
-}
-
-// 🔥 TESLA
-if(make.includes("TESLA")){
-  check.push("Controleer batterijrange in verhouding tot kilometerstand");
-  check.push("Check of Supercharging normaal functioneert");
-}
-
-// 🔥 AZIATISCHE MERKEN
-if(
-  make.includes("HYUNDAI") ||
-  make.includes("KIA") ||
-  make.includes("BYD")
-){
-  check.push("Let op consistent laadgedrag en batterijbalans");
-}
-
-// 🔥 ALTIJD TONEN (EXPERT POSITIONERING)
-check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
-
-// inject
-document.getElementById("car").innerText = make+" "+model;
-document.getElementById("meta").innerText = year+" • "+powertrain;
-
-document.getElementById("make_model").innerText = make+" "+model;
-document.getElementById("build_year").innerText = year;
-document.getElementById("powertrain").innerText = powertrain;
-
-document.getElementById("buying_profile").innerText = data.buying;
-document.getElementById("battery_profile").innerText = data.battery;
-document.getElementById("summary").innerText = data.summary;
-document.getElementById("profile_description").innerText = data.description;
-
-document.getElementById("battery_kwh").innerText = battery_kwh;
-document.getElementById("battery_behavior").innerText = data.battery_behavior;
-document.getElementById("real_world").innerText = data.real_world;
-document.getElementById("final_advice").innerText = data.advice;
-
-document.getElementById("r_name").innerText = name;
-document.getElementById("r_plate").innerText = plate;
-document.getElementById("r_date").innerText = new Date().toLocaleDateString();
-
-document.getElementById("report").style.display="block";
-
-document.getElementById("battery_extra").innerText = 
-battery_type === "LFP"
-? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
-: "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
 
 function fillList(id, items){
   let el = document.getElementById(id);
   el.innerHTML = "";
 
-  items.forEach(item=>{
+  items.forEach(item => {
     let li = document.createElement("li");
     li.className = "check-item";
 
     let icon = "✔️";
     let className = "check-icon check-good";
 
-    if(item.toLowerCase().includes("let op") || item.toLowerCase().includes("controleer")){
+    let lower = item.toLowerCase();
+
+    if(lower.includes("let op") || lower.includes("controleer") || lower.includes("aanbevolen")){
       icon = "⚠️";
       className = "check-icon check-warning";
     }
 
-    if(item.toLowerCase().includes("afhankelijk")){
+    if(lower.includes("afhankelijk")){
       icon = "ℹ️";
       className = "check-icon check-neutral";
     }
@@ -485,10 +270,216 @@ function fillList(id, items){
   });
 }
 
-fillList("battery_check", check);
+function startFlow(){
+  let plate = document.getElementById("plate").value.replace(/-/g, "").toUpperCase();
+  let name = document.getElementById("name").value || "Onbekend";
 
-});
+  if(!plate){
+    alert("Voer eerst een kenteken in.");
+    return;
+  }
 
+  fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
+    .then(res => res.json())
+    .then(dataRDW => {
+      if(!dataRDW.length){
+        alert("Kenteken niet gevonden");
+        return;
+      }
+
+      let v = dataRDW[0];
+
+      let make = v.merk || "Onbekend";
+      let model = v.handelsbenaming || "Onbekend";
+      let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
+
+      let powertrain = "EV";
+      if(v.brandstof_omschrijving?.toLowerCase().includes("hybride")){
+        powertrain = "Hybride";
+      }
+
+      let lookupKey = (make + " " + model).toLowerCase();
+      let batteryData = batteryDB[lookupKey];
+
+      let battery_kwh = batteryData ? `${batteryData.kwh} kWh` : "Onbekend";
+      let battery_type = batteryData ? batteryData.type : "Onbekend";
+      let real_range = batteryData ? batteryData.range : "Onbekend";
+
+      let age = new Date().getFullYear() - Number(year);
+      let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
+
+      let brand = getBrandData(make);
+      let isNewGen = make.includes("MERCEDES") && Number(year) >= 2025;
+
+      let data;
+
+      if(profile === "gunstig"){
+        data = {
+          buying: isNewGen ? "Sterke keuze" : "Goede basis",
+          battery: isNewGen ? "Zeer stabiel" : "Stabiel",
+          summary: "Sterk accuprofiel passend bij leeftijd.",
+          description: "Deze auto laat een stabiel profiel zien.",
+          battery_behavior: `
+Deze uitvoering is uitgerust met een batterij van circa ${battery_kwh} (${battery_type}-technologie).
+
+Binnen dit segment behoort dit tot de grotere en efficiëntere accupakketten, wat zorgt voor een hoge actieradius en stabiele prestaties.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van rijstijl, temperatuur en gebruik.
+
+Dit type batterij staat bekend om sterke prestaties en goede laadcapaciteit, maar is gevoeliger voor intensief snelladen op lange termijn.
+`,
+          real_world: `
+Voor dit type en bouwjaar mag je stabiele prestaties verwachten met een relatief laag risico op versnelde degradatie.
+
+Omdat dit model tot de nieuwste generatie EV’s behoort, is de batterijtechnologie efficiënter en beter beschermd dan oudere modellen.
+
+Let wel: zonder inzicht in het laadgedrag van de vorige eigenaar blijft er altijd onzekerheid bestaan.
+
+Risico-inschatting: laag tot gemiddeld.
+`,
+          advice: `
+Dit model is technisch een sterke keuze binnen het huidige EV-segment.
+
+Wil je maximale zekerheid, laat dan de accustatus controleren vóór aankoop — vooral bij hogere kilometerstanden of intensief gebruik.
+`
+        };
+      }
+
+      if(profile === "normaal"){
+        data = {
+          buying: "Goede basis met aandacht",
+          battery: "Normaal",
+          summary: "Gemiddeld profiel.",
+          description: "Normaal profiel.",
+          battery_behavior: `
+Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+
+${brand.behavior}
+`,
+          real_world: `
+Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
+
+Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
+
+Risico-inschatting: ${brand.risk}.
+`,
+          advice: brand.advice
+        };
+      }
+
+      if(profile === "aandacht"){
+        data = {
+          buying: "Extra controle aanbevolen",
+          battery: "Aandachtspunt",
+          summary: "Verhoogd risico.",
+          description: "Extra controle nodig.",
+          battery_behavior: `
+Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+
+${brand.behavior}
+`,
+          real_world: `
+Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
+
+Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
+
+Risico-inschatting: ${brand.risk}.
+`,
+          advice: "Accucheck aanbevolen"
+        };
+      }
+
+      let check = [
+        "Controleer of de actieradius logisch is bij volle lading",
+        "Let op afwijkingen in laadtempo of laadtijd",
+        "Controleer of snelladen goed werkt",
+        "Vraag naar laadgedrag van de vorige eigenaar",
+        "Let op snel dalende batterijpercentage tijdens rijden"
+      ];
+
+      if(profile === "gunstig"){
+        check.push("Algemeen laag risico, maar controle blijft verstandig");
+      }
+
+      if(profile === "normaal"){
+        check.push("Extra controle aanbevolen voor zekerheid");
+      }
+
+      if(profile === "aandacht"){
+        check.push("Sterk aanbevolen: laat een accucheck uitvoeren vóór aankoop");
+      }
+
+      if(
+        make.includes("MERCEDES") ||
+        make.includes("BMW") ||
+        make.includes("AUDI")
+      ){
+        check.push("Controleer of snelladen consistent werkt (belangrijk bij premium EV’s)");
+        check.push("Let op software en batterijmanagement updates");
+      }
+
+      if(
+        make.includes("VOLKSWAGEN") ||
+        make.includes("AUDI") ||
+        make.includes("SKODA") ||
+        make.includes("CUPRA")
+      ){
+        check.push("Let op software updates (belangrijk bij VAG EV’s)");
+      }
+
+      if(make.includes("TESLA")){
+        check.push("Controleer batterijrange in verhouding tot kilometerstand");
+        check.push("Check of Supercharging normaal functioneert");
+      }
+
+      if(
+        make.includes("HYUNDAI") ||
+        make.includes("KIA") ||
+        make.includes("BYD")
+      ){
+        check.push("Let op consistent laadgedrag en batterijbalans");
+      }
+
+      check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
+
+      document.getElementById("car").innerText = make + " " + model;
+      document.getElementById("meta").innerText = year + " • " + powertrain;
+
+      document.getElementById("make_model").innerText = make + " " + model;
+      document.getElementById("build_year").innerText = year;
+      document.getElementById("powertrain").innerText = powertrain;
+
+      document.getElementById("buying_profile").innerText = data.buying;
+      document.getElementById("battery_profile").innerText = data.battery;
+      document.getElementById("summary").innerText = data.summary;
+      document.getElementById("profile_description").innerText = data.description;
+
+      document.getElementById("battery_kwh").innerText = battery_kwh;
+      document.getElementById("battery_behavior").innerText = data.battery_behavior;
+      document.getElementById("real_world").innerText = data.real_world;
+      document.getElementById("final_advice").innerText = data.advice;
+
+      document.getElementById("r_name").innerText = name;
+      document.getElementById("r_plate").innerText = plate;
+      document.getElementById("r_date").innerText = new Date().toLocaleDateString();
+
+      document.getElementById("battery_extra").innerText = 
+        battery_type === "LFP"
+          ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
+          : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
+
+      fillList("battery_check", check);
+
+      document.getElementById("report").style.display = "block";
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Er ging iets mis bij het ophalen van voertuigdata.");
+    });
 }
 </script>
 
