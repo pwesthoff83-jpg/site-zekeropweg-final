@@ -139,6 +139,7 @@ Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatt
 <h3>Accu en praktijkgedrag</h3>
 <p>Batterij: <strong><span id="battery_kwh"></span> kWh</strong></p>
 <p id="battery_behavior"></p>
+<p id="battery_extra"></p>  
 </div>
 
 <div class="card">
@@ -193,6 +194,25 @@ return brand;
 return {behavior:"Gemiddeld profiel.",risk:"gemiddeld",advice:"Extra check."};
 }
 
+const batteryDB = {
+
+"tesla model 3": {kwh:78, type:"NMC", range:500},
+"tesla model y": {kwh:75, type:"NMC", range:505},
+
+"mercedes-benz cla 250+": {kwh:85, type:"NMC", range:740},
+
+"volkswagen id.3": {kwh:58, type:"NMC", range:420},
+"volkswagen id.4": {kwh:77, type:"NMC", range:520},
+
+"bmw i4": {kwh:83, type:"NMC", range:590},
+
+"hyundai kona": {kwh:64, type:"NMC", range:480},
+"kia ev6": {kwh:77, type:"NMC", range:528},
+
+"byd atto 3": {kwh:60, type:"LFP", range:420}
+
+};
+  
 function startFlow(){
 
 let plate = document.getElementById("plate").value.replace(/-/g,'').toUpperCase();
@@ -213,7 +233,12 @@ let year = v.datum_eerste_toelating.substring(0,4);
 let powertrain = "EV";
 if(model.toLowerCase().includes("hybrid")){powertrain="Hybride";}
 
-let battery_kwh = 75;
+let lookupKey = (make + " " + model).toLowerCase();
+let batteryData = batteryDB[lookupKey];
+
+let battery_kwh = batteryData ? batteryData.kwh : "Onbekend";
+let battery_type = batteryData ? batteryData.type : "Onbekend";
+let real_range = batteryData ? batteryData.range : "Onbekend";
 
 // profiel
 let age = new Date().getFullYear() - year;
@@ -232,8 +257,20 @@ buying:isNewGen?"Sterke keuze":"Goede basis",
 battery:isNewGen?"Zeer stabiel":"Stabiel",
 summary:"Sterk accuprofiel passend bij leeftijd.",
 description:"Deze auto laat een stabiel profiel zien.",
-battery_behavior:isNewGen?"Nieuwe generatie batterijtechnologie.":brand.behavior,
-real_world:`Laag risico (${brand.risk})`,
+battery_behavior: `
+Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh} kWh.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+
+${brand.behavior}
+`,
+real_world: `
+Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
+
+Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
+
+Risico-inschatting: ${brand.risk}.
+`,
 advice:isNewGen?"Nieuwste generatie EV":"Prima keuze"
 };
 }
@@ -244,8 +281,20 @@ buying:"Goede basis met aandacht",
 battery:"Normaal",
 summary:"Gemiddeld profiel.",
 description:"Normaal profiel.",
-battery_behavior:brand.behavior,
-real_world:`Gemiddeld risico (${brand.risk})`,
+battery_behavior: `
+Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh} kWh.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+
+${brand.behavior}
+`,
+real_world: `
+Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
+
+Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
+
+Risico-inschatting: ${brand.risk}.
+`,
 advice:brand.advice
 };
 }
@@ -256,8 +305,20 @@ buying:"Extra controle aanbevolen",
 battery:"Aandachtspunt",
 summary:"Verhoogd risico.",
 description:"Extra controle nodig.",
-battery_behavior:brand.behavior,
-real_world:`Verhoogd risico (${brand.risk})`,
+battery_behavior: `
+Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh} kWh.
+
+In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+
+${brand.behavior}
+`,
+real_world: `
+Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
+
+Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
+
+Risico-inschatting: ${brand.risk}.
+`,
 advice:"Accucheck aanbevolen"
 };
 }
@@ -285,6 +346,11 @@ document.getElementById("r_plate").innerText = plate;
 document.getElementById("r_date").innerText = new Date().toLocaleDateString();
 
 document.getElementById("report").style.display="block";
+
+document.getElementById("battery_extra").innerText = 
+battery_type === "LFP"
+? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
+: "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
 
 });
 
