@@ -378,25 +378,8 @@ function startFlow(){
       let age = new Date().getFullYear() - Number(year);
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
 
-      let score = 75; // basis
-      let scoreLabel = "Gemiddeld";
-
-      if(score >= 85){ scoreLabel = "Zeer sterk accuprofiel"; }
-      else if(score >= 70){ scoreLabel = "Goede basis"; }
-      else if(score >= 55){ scoreLabel = "Gemiddeld profiel"; }
-      else { scoreLabel = "Verhoogd risico"; }
-
-      // kleur aanpassen
-      let color = "#1c7c54"; // groen
-
-      if(score < 70){ color = "#b7791f"; } // oranje
-      if(score < 55){ color = "#c53030"; } // rood
-
-      document.getElementById("score_value").innerText = score + "/100";
-      document.getElementById("score_bar").style.width = score + "%";
-      document.getElementById("score_bar").style.background = color;
-      document.getElementById("score_label").innerText = scoreLabel;
-      
+      let score = 75; 
+           
       // leeftijd impact
      if(profile === "gunstig"){ score += 10; }
      if(profile === "aandacht"){ score -= 15; }
@@ -412,6 +395,22 @@ function startFlow(){
      // grenzen
      if(score > 95) score = 95;
      if(score < 40) score = 40;
+
+     let scoreLabel = "Gemiddeld";
+
+     if(score >= 85){ scoreLabel = "Zeer sterk accuprofiel"; }
+     else if(score >= 70){ scoreLabel = "Goede basis"; }
+     else if(score >= 55){ scoreLabel = "Gemiddeld profiel"; }
+     else { scoreLabel = "Verhoogd risico"; }
+
+     let color = "#1c7c54";
+     if(score < 70){ color = "#b7791f"; }
+     if(score < 55){ color = "#c53030"; }
+
+     document.getElementById("score_value").innerText = score + "/100";
+     document.getElementById("score_bar").style.width = score + "%";
+     document.getElementById("score_bar").style.background = color;
+     document.getElementById("score_label").innerText = scoreLabel;
       
       let brand = getBrandData(make);
       let isNewGen = make.includes("MERCEDES") && Number(year) >= 2025;
