@@ -179,36 +179,32 @@ input{
       <span id="powertrain"></span>
     </p>
 
-<div class="card highlight-box">
-  <h3>Accu Score</h3>
-  
-  <div id="score_value" style="font-size:32px;font-weight:600;margin-bottom:10px;"></div>
-  
-  <div style="background:#e9e6dd;border-radius:999px;height:12px;overflow:hidden;">
-    <div id="score_bar" style="height:100%;width:0%;background:#1c7c54;"></div>
-  </div>
-
-  <p id="score_label" class="small" style="margin-top:10px;"></p>
-</div>
-    
+   
     <p class="small">
       Aangevraagd door: <strong><span id="r_name"></span></strong><br>
       Datum: <strong><span id="r_date"></span></strong><br>
       Kenteken: <strong><span id="r_plate"></span></strong>
     </p>
   </div>
+  
+<!-- ✅ HIER STAAT HIJ GOED -->
+<div class="card highlight-box">
+  <h3>Accu Score</h3>
+  
+  <div id="score_value"></div>
+
+  <div>
+    <div id="score_bar"></div>
+  </div>
+
+  <p id="score_label"></p>
+</div>
 
   <div class="card">
     <p>
       Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
       Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatting vóór aankoop.
     </p>
-  </div>
-
-  <div class="card highlight-box">
-    <div class="big-score" id="buying_profile"></div>
-    <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
-    <p id="profile_description"></p>
   </div>
 
   <div class="card">
@@ -385,9 +381,11 @@ function startFlow(){
      if(profile === "aandacht"){ score -= 15; }
 
      // merk impact
-     if(make.includes("TESLA")){ score += 5; }
-     if(make.includes("BYD") || make.includes("HYUNDAI") || make.includes("KIA")){ score += 3; }
-     if(make.includes("BMW")){ score -= 2; }
+    let makeUpper = make.toUpperCase();
+
+    if(makeUpper.includes("TESLA")){ score += 5; }
+    if(makeUpper.includes("BYD") || makeUpper.includes("HYUNDAI") || makeUpper.includes("KIA")){ score += 3; }
+    if(makeUpper.includes("BMW")){ score -= 2; }
 
      // onbekende batterij = onzekerheid
      if(battery_kwh === "Onbekend"){ score -= 10; }
@@ -556,51 +554,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       fillList("battery_drive", drive);
       fillList("battery_check", check);
            
-      if(profile === "gunstig"){
-        check.push("Algemeen laag risico, maar controle blijft verstandig");
-      }
-
-      if(profile === "normaal"){
-        check.push("Extra controle aanbevolen voor zekerheid");
-      }
-
-      if(profile === "aandacht"){
-        check.push("Sterk aanbevolen: laat een accucheck uitvoeren vóór aankoop");
-      }
-
-      if(
-        make.includes("MERCEDES") ||
-        make.includes("BMW") ||
-        make.includes("AUDI")
-      ){
-        check.push("Controleer of snelladen consistent werkt (belangrijk bij premium EV’s)");
-        check.push("Let op software en batterijmanagement updates");
-      }
-
-      if(
-        make.includes("VOLKSWAGEN") ||
-        make.includes("AUDI") ||
-        make.includes("SKODA") ||
-        make.includes("CUPRA")
-      ){
-        check.push("Let op software updates (belangrijk bij VAG EV’s)");
-      }
-
-      if(make.includes("TESLA")){
-        check.push("Controleer batterijrange in verhouding tot kilometerstand");
-        check.push("Check of Supercharging normaal functioneert");
-      }
-
-      if(
-        make.includes("HYUNDAI") ||
-        make.includes("KIA") ||
-        make.includes("BYD")
-      ){
-        check.push("Let op consistent laadgedrag en batterijbalans");
-      }
-
-      check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
-
+    
       document.getElementById("car").innerText = make + " " + model;
       document.getElementById("meta").innerText = year + " • " + powertrain;
 
@@ -627,8 +581,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
           ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
           : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
 
-      fillList("battery_check", check);
-
+    
       document.getElementById("report").style.display = "block";
     })
     .catch(err => {
