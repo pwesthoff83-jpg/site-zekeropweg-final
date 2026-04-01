@@ -88,6 +88,45 @@ input{
 .check-neutral{
   color:#6b675f;
 }
+
+  .block-good{
+  background:#eef8f3;
+  border:1px solid #ccebdc;
+}
+
+.block-bad{
+  background:#fff3f3;
+  border:1px solid #f2caca;
+}
+
+.block-drive{
+  background:#fff8ec;
+  border:1px solid #f3ddc2;
+}
+
+.block-check{
+  background:#f4f6fb;
+  border:1px solid #dbe3f3;
+}
+
+.block-title{
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.card h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.check-item:hover{
+  background:rgba(0,0,0,0.02);
+  border-radius:8px;
+  padding-left:8px;
+  transition:0.2s ease;
+}
+  
 </style>
 </head>
 
@@ -178,23 +217,23 @@ input{
     <p>Laadgedrag van de vorige eigenaar is meestal niet inzichtelijk en blijft daarom een belangrijke risicofactor.</p>
   </div>
 
- <div class="card">
-  <h3>Wat is goed voor de accu</h3>
+<div class="card block-good">
+  <h3>✅ Wat is goed voor de accu</h3>
   <ul id="battery_good" class="checklist"></ul>
 </div>
 
-<div class="card">
-  <h3>Wat is slecht voor de accu</h3>
+<div class="card block-bad">
+  <h3>❌ Wat is slecht voor de accu</h3>
   <ul id="battery_bad" class="checklist"></ul>
 </div>
 
-<div class="card">
-  <h3>Waar op letten bij proefrit</h3>
+<div class="card block-drive">
+  <h3>🚗 Waar op letten bij proefrit</h3>
   <ul id="battery_drive" class="checklist"></ul>
 </div>
 
-<div class="card">
-  <h3>Waar op letten bij aankoop</h3>
+<div class="card block-check">
+  <h3>🔍 Waar op letten bij aankoop</h3>
   <ul id="battery_check" class="checklist"></ul>
 </div>
 
