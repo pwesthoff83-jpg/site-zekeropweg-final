@@ -245,6 +245,7 @@ let brand = getBrandData(make);
 let isNewGen = make.includes("MERCEDES") && year >= 2025;
 
 let data;
+// 🔥 RISICO AFHANKELIJK
 
 if(profile==="gunstig"){
 data={
@@ -323,6 +324,18 @@ Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedra
 Risico-inschatting: ${brand.risk}.
 `,
 advice:"Accucheck aanbevolen"
+
+if(profile === "gunstig"){
+  check.push("Algemeen laag risico, maar controle blijft verstandig");
+}
+
+if(profile === "normaal"){
+  check.push("Extra controle aanbevolen voor zekerheid");
+}
+
+if(profile === "aandacht"){
+  check.push("Sterk aanbevolen: laat een accucheck uitvoeren vóór aankoop");
+}
 };
 }
 
@@ -337,9 +350,40 @@ let check = [
 ];
 
 // 🔥 MERK SPECIFIEK (DIT WOU JE)
-if(make.includes("MERCEDES")){
-check.push("Controleer of snelladen consistent werkt (belangrijk bij luxe EV’s)");
-check.push("Let op software updates en batterijmanagement (Mercedes-specifiek)");
+// 🔥 PREMIUM MERKEN
+if(
+  make.includes("MERCEDES") ||
+  make.includes("BMW") ||
+  make.includes("AUDI")
+){
+  check.push("Controleer of snelladen consistent werkt (belangrijk bij premium EV’s)");
+  check.push("Let op software en batterijmanagement updates");
+}
+
+// 🔥 VAG GROEP
+if(
+  make.includes("VOLKSWAGEN") ||
+  make.includes("AUDI") ||
+  make.includes("SKODA") ||
+  make.includes("CUPRA")
+){
+  check.push("Let op software updates (belangrijk bij VAG EV’s)");
+}
+
+// 🔥 TESLA
+if(make.includes("TESLA")){
+  check.push("Controleer batterijrange in verhouding tot kilometerstand");
+  check.push("Check of Supercharging normaal functioneert");
+}
+
+// 🔥 AZIATISCHE MERKEN
+if(
+  make.includes("HYUNDAI") ||
+  make.includes("KIA") ||
+  make.includes("BYD")
+){
+  check.push("Let op consistent laadgedrag en batterijbalans");
+  check.push("Elke batterij is afhankelijk van gebruik — laat je niet alleen leiden door specificaties");
 }
 
 // inject
