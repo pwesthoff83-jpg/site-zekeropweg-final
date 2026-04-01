@@ -275,12 +275,12 @@ let model = voertuig.handelsbenaming || "Onbekend";
 let year = voertuig.datum_eerste_toelating?.substring(0,4) || "Onbekend";
 
 let powertrain = "Onbekend";
-
 if(voertuig.brandstof_omschrijving === "Elektriciteit"){
   powertrain = "EV";
 }else if(voertuig.brandstof_omschrijving?.includes("Hybride")){
   powertrain = "Hybride";
 }
+let brand = getBrandData(make);
 
 // tijdelijk
 let battery_kwh = 75;
@@ -301,14 +301,37 @@ if(age >= 8){ profile_type = "aandacht"; }
 
 // merkdata
 let brand = getBrandData(make);
+let isNewGen = false;
 
+if(make.includes("MERCEDES") && year >= 2025){
+  isNewGen = true;
+}
+  
 // profieldata
 let data = {};
 
 if(profile_type === "gunstig"){
-  data = {
-    buying:"Goede basis",
-    battery:"Stabiel",
+ let buyingText = "Goede basis";
+let batteryText = "Stabiel";
+let behaviorText = brand.behavior;
+let adviceText = brand.advice;
+
+if(isNewGen){
+  buyingText = "Sterke keuze";
+  batteryText = "Zeer stabiel";
+  behaviorText = "Nieuwe generatie batterijtechnologie met hoge efficiëntie en snelle laadtijden.";
+  adviceText = "Dit model behoort tot de nieuwste generatie EV’s met bovengemiddelde prestaties.";
+}
+
+data = {
+  buying: buyingText,
+  battery: batteryText,
+  summary:"Sterk accuprofiel passend bij leeftijd en techniek.",
+  description:"Deze auto laat een stabiel profiel zien.",
+  battery_behavior: behaviorText,
+  real_world:`Laag risico (${brand.risk}) bij normaal gebruik.`,
+  advice: adviceText
+}
     summary:"Sterk accuprofiel passend bij leeftijd en techniek.",
     description:"Deze auto laat een stabiel profiel zien.",
     battery_behavior: brand.behavior,
