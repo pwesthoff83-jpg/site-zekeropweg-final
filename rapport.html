@@ -154,14 +154,9 @@ Omdat het laadverleden niet inzichtelijk is, geeft dit een realistische inschatt
 
 <div class="card">
 <h3>Waar je op moet letten</h3>
-<ul>
-<li>Laadkabel aanwezig (kosten!)</li>
-<li>Laadpoort slijtage</li>
-<li>Software updates</li>
-<li>Actieradius afwijkingen</li>
-</ul>
-</div>
 
+</div>
+<ul id="battery_check"></ul>
 <div class="card">
 <h3>Ons advies</h3>
 <p id="final_advice"></p>
@@ -331,6 +326,22 @@ advice:"Accucheck aanbevolen"
 };
 }
 
+// 🔥 CHECK LIJST DYNAMISCH
+
+let check = [
+"Controleer of de actieradius logisch is bij volle lading",
+"Let op afwijkingen in laadtempo of laadtijd",
+"Controleer of snelladen goed werkt",
+"Vraag naar laadgedrag van vorige eigenaar",
+"Let op snel dalende batterijpercentage tijdens rijden"
+];
+
+// 🔥 MERK SPECIFIEK (DIT WOU JE)
+if(make.includes("MERCEDES")){
+check.push("Controleer of snelladen consistent werkt (belangrijk bij luxe EV’s)");
+check.push("Let op software updates en batterijmanagement (Mercedes-specifiek)");
+}
+
 // inject
 document.getElementById("car").innerText = make+" "+model;
 document.getElementById("meta").innerText = year+" • "+powertrain;
@@ -359,6 +370,18 @@ document.getElementById("battery_extra").innerText =
 battery_type === "LFP"
 ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
 : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
+
+function fillList(id, items){
+let el = document.getElementById(id);
+el.innerHTML = "";
+items.forEach(item=>{
+let li = document.createElement("li");
+li.innerText = item;
+el.appendChild(li);
+});
+}
+
+fillList("battery_check", check);
 
 });
 
