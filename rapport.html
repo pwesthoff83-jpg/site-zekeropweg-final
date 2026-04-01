@@ -191,11 +191,11 @@ input{
 <div class="card highlight-box">
   <h3>Accu Score</h3>
   
-  <div id="score_value"></div>
+ <div id="score_value" style="font-size:32px;font-weight:600;margin-bottom:10px;"></div>
 
-  <div>
-    <div id="score_bar"></div>
-  </div>
+ <div style="background:#e9e6dd;border-radius:999px;height:12px;overflow:hidden;">
+  <div id="score_bar" style="height:100%;width:0%;background:#1c7c54;"></div>
+</div>
 
   <p id="score_label"></p>
 </div>
@@ -537,7 +537,7 @@ if(profile === "gunstig"){
 }
 
 // MERK SPECIFIEK
-if(make.includes("TESLA")){
+if(makeUpper.includes("TESLA"))
   drive.push("Controleer Supercharging snelheid en consistentie");
 }
 
