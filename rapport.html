@@ -200,6 +200,12 @@ input{
   <p id="score_label"></p>
 </div>
 
+  <div class="card highlight-box">
+  <div class="big-score" id="buying_profile"></div>
+  <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
+  <p id="profile_description"></p>
+</div>
+  
   <div class="card">
     <p>
       Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
@@ -207,6 +213,7 @@ input{
     </p>
   </div>
 
+  
   <div class="card">
     <h3>Samenvatting</h3>
     <p id="summary"></p>
@@ -359,9 +366,18 @@ function startFlow(){
       let model = v.handelsbenaming || "Onbekend";
       let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
 
-      let powertrain = "EV";
-      if(v.brandstof_omschrijving?.toLowerCase().includes("hybride")){
+      let powertrain = "Onbekend";
+
+      let brandstof = (v.brandstof_omschrijving || "").toLowerCase();
+
+      if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
+         powertrain = "Hybride";
+      }
+      else if(brandstof.includes("hybride")){
         powertrain = "Hybride";
+      }
+      else if(brandstof.includes("elektriciteit")){
+        powertrain = "EV";
       }
 
       let lookupKey = (make + " " + model).toLowerCase();
@@ -613,7 +629,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       document.getElementById("battery_kwh").innerText = battery_kwh;
       document.getElementById("battery_behavior").innerText = data.battery_behavior;
       document.getElementById("real_world").innerText = data.real_world;
-      document.getElementById("final_advice").innerText = data.advice;
+
 
       document.getElementById("r_name").innerText = name;
       document.getElementById("r_plate").innerText = plate;
