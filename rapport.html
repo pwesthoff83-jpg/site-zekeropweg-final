@@ -176,6 +176,7 @@ input{
     <p class="small">
       <span id="make_model"></span> • 
       <span id="build_year"></span> • 
+      <span id="km"></span> km • 
       <span id="powertrain"></span>
     </p>
 
@@ -204,6 +205,11 @@ input{
   <div class="big-score" id="buying_profile"></div>
   <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
   <p id="profile_description"></p>
+</div>
+
+<div class="card">
+  <h3>Waarom deze score?</h3>
+  <ul id="score_explanation" class="checklist"></ul>
 </div>
   
   <div class="card">
@@ -361,7 +367,8 @@ function startFlow(){
       }
 
       let v = dataRDW[0];
-
+      let km = Number(v.tellerstand) || 0;
+      
       let make = v.merk || "Onbekend";
       let model = v.handelsbenaming || "Onbekend";
       let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
@@ -389,22 +396,63 @@ function startFlow(){
 
       let age = new Date().getFullYear() - Number(year);
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
-
+      let ageYears = age || 1;
+      let kmPerYear = km / ageYears;
+      
       let score = 75; 
+      let scoreDetails = [];
            
       // leeftijd impact
-     if(profile === "gunstig"){ score += 10; }
-     if(profile === "aandacht"){ score -= 15; }
+    if(profile === "gunstig"){
+  score += 10;
+  scoreDetails.push("Jonge auto (+10)");
+}
+
+if(profile === "aandacht"){
+  score -= 15;
+  scoreDetails.push("Oudere auto (-15)");
+}
+
 
      // merk impact
-    let makeUpper = make.toUpperCase();
+    if(makeUpper.includes("TESLA")){
+  score += 5;
+  scoreDetails.push("Sterk accumerk (+5)");
+}
 
-    if(makeUpper.includes("TESLA")){ score += 5; }
-    if(makeUpper.includes("BYD") || makeUpper.includes("HYUNDAI") || makeUpper.includes("KIA")){ score += 3; }
-    if(makeUpper.includes("BMW")){ score -= 2; }
+if(makeUpper.includes("BYD") || makeUpper.includes("HYUNDAI") || makeUpper.includes("KIA")){
+  score += 3;
+  scoreDetails.push("Goede accureputatie (+3)");
+}
 
+if(makeUpper.includes("BMW")){
+  score -= 2;
+  scoreDetails.push("Gemiddeld accuprofiel (-2)");
+}
+
+
+// 🔥 kilometer gebruik
+if(kmPerYear > 25000){
+  score -= 12;
+  scoreDetails.push("Zeer intensief gebruikt (-12)");
+}
+else if(kmPerYear > 20000){
+  score -= 8;
+  scoreDetails.push("Intensief gebruikt (-8)");
+}
+else if(kmPerYear > 15000){
+  score -= 5;
+  scoreDetails.push("Bovengemiddeld gebruik (-5)");
+}
+else{
+  scoreDetails.push("Normaal gebruik (0)");
+}
+      
      // onbekende batterij = onzekerheid
-     if(battery_kwh === "Onbekend"){ score -= 10; }
+    if(battery_kwh === "Onbekend"){
+    score -= 10;
+    scoreDetails.push("Geen batterijdata beschikbaar (-10)");
+  }
 
      // grenzen
      if(score > 95) score = 95;
@@ -652,13 +700,14 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       fillList("battery_bad", bad);
       fillList("battery_drive", drive);
       fillList("battery_check", check);
-           
+      fillList("score_explanation", scoreDetails);     
     
       document.getElementById("car").innerText = make + " " + model;
       document.getElementById("meta").innerText = year + " • " + powertrain;
-
+      document.getElementById("km").innerText = km;
       document.getElementById("make_model").innerText = make + " " + model;
       document.getElementById("build_year").innerText = year;
+      
       document.getElementById("powertrain").innerText = powertrain;
 
       document.getElementById("buying_profile").innerText = data.buying;
