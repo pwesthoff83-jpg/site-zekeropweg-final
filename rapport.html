@@ -426,47 +426,87 @@ function startFlow(){
      document.getElementById("score_bar").style.background = color;
      document.getElementById("score_label").innerText = scoreLabel;
      
-      let finalAdvice = "";
+   let finalAdvice = "";
 
-     if(score >= 85){
-       finalAdvice = `
-     Sterke keuze. Dit model heeft een betrouwbaar accuprofiel.
+// 🔥 HYBRIDE (PHEV)
+if(powertrain === "Hybride"){
 
-     👉 Als de prijs marktconform is, kun je deze auto met vertrouwen kopen.
+  if(score >= 70){
+    finalAdvice = `
+Goede keuze.
 
-     Voor maximale zekerheid kun je een accutest overwegen, maar dit is geen must.
-    `;
-    }
+👉 Bij plug-in hybrides is de batterij minder kritisch dan bij volledige EV’s.
 
-     else if(score >= 70){
-       finalAdvice = `
-     Goede basis, maar let op details.
+Controleer vooral of de elektrische actieradius logisch is en of laden goed werkt.
+`;
+  }
 
-     👉 Deze auto is interessant, mits de batterijprestaties in lijn liggen met verwachting.
+  else if(score >= 55){
+    finalAdvice = `
+Goede basis, maar check gebruik.
 
-     Controleer vooral actieradius en laadgedrag tijdens proefrit.
-     `;
-     }
+👉 Bij dit type auto is het belangrijk hoe de vorige eigenaar ermee omging.
 
-     else if(score >= 55){
-       finalAdvice = `
-     Twijfelgeval.
+Controleer of de auto regelmatig geladen is en test de elektrische modus tijdens proefrit.
+`;
+  }
 
-     👉 Alleen kopen als prijs scherp is én batterij goed presteert.
+  else{
+    finalAdvice = `
+Aandachtspunt.
 
-     Een accutest wordt hier sterk aanbevolen vóór aankoop.
-     `;
-     }
+👉 De auto is bruikbaar, maar controle van de hybride batterij is verstandig.
 
-     else{
-       finalAdvice = `
-     Verhoogd risico.
+Laat bij twijfel een diagnose uitvoeren vóór aankoop.
+`;
+  }
 
-     👉 Alleen kopen met volledige accudiagnose.
+}
 
-     Zonder accutest is dit geen verstandige aankoop.
-     `;
-     }
+// 🔥 EV / OVERIG
+else{
+
+  if(score >= 85){
+    finalAdvice = `
+Sterke keuze.
+
+👉 Dit model heeft een betrouwbaar accuprofiel.
+
+Je kunt deze auto met vertrouwen kopen.
+`;
+  }
+
+  else if(score >= 70){
+    finalAdvice = `
+Goede basis, maar let op details.
+
+Controleer actieradius en laadgedrag tijdens proefrit.
+`;
+  }
+
+  else if(score >= 55){
+    finalAdvice = `
+Twijfelgeval.
+
+👉 Alleen kopen als batterijprestaties goed zijn.
+
+Accutest aanbevolen.
+`;
+  }
+
+  else{
+    finalAdvice = `
+Verhoogd risico.
+
+👉 Alleen kopen met accudiagnose.
+
+Zonder test geen verstandige aankoop.
+`;
+  }
+
+}
+
+document.getElementById("final_advice").innerText = finalAdvice;
 
 document.getElementById("final_advice").innerText = finalAdvice;
       let brand = getBrandData(make);
