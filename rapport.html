@@ -242,6 +242,11 @@ input{
     <p id="real_world"></p>
   </div>
 
+  <div class="card">
+  <h3>Verwachte batterij degradatie</h3>
+  <p id="battery_degradation"></p>
+</div>
+  
   <div class="card highlight-box">
     <h3>Belangrijk om te beseffen</h3>
     <p>Laadgedrag van de vorige eigenaar is meestal niet inzichtelijk en blijft daarom een belangrijke risicofactor.</p>
@@ -405,7 +410,51 @@ function startFlow(){
       let ageYears = age || 1;
       let kmPerYear = km / ageYears;
       let kmAnalysis = "";
+      let degradationText = "";
 
+      if(powertrain === "EV"){
+
+        if(kmPerYear > 25000){
+          degradationText = `
+      Hogere dan gemiddelde slijtage verwacht.
+
+      👉 Door intensief gebruik kan de batterij sneller capaciteit verliezen dan gemiddeld.
+
+      Controle van de accustatus is hier sterk aan te raden.
+      `;
+        }
+        else if(kmPerYear > 15000){
+          degradationText = `
+      Normale slijtage verwacht.
+
+      👉 Dit gebruik past binnen wat we gemiddeld zien bij EV’s.
+
+      Beperkte degradatie aannemelijk, afhankelijk van laadgedrag.
+      `;
+        }
+        else{
+          degradationText = `
+      Lage slijtage verwacht.
+
+      👉 Bij dit gebruik blijft de batterij doorgaans in goede conditie.
+
+       Relatief laag risico op merkbare degradatie.
+      `;
+        }
+
+      }
+
+// 🔥 HYBRIDE (belangrijk verschil!)
+else if(powertrain === "Hybride"){
+
+  degradationText = `
+Beperkte slijtage verwacht.
+
+👉 Bij plug-in hybrides is de batterij kleiner en minder zwaar belast dan bij EV’s.
+
+Degradatie speelt hier een kleinere rol, maar controle blijft verstandig.
+`;
+}
 if(kmPerYear > 25000){
   kmAnalysis = `
 Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
@@ -508,7 +557,8 @@ else{
      document.getElementById("score_bar").style.width = score + "%";
      document.getElementById("score_bar").style.background = color;
      document.getElementById("score_label").innerText = scoreLabel;
-     
+     document.getElementById("battery_degradation").innerText = degradationText;
+      
    let finalAdvice = "";
 
 // 🔥 HYBRIDE (PHEV)
@@ -549,24 +599,38 @@ Laat bij twijfel een diagnose uitvoeren vóór aankoop.
 // 🔥 EV / OVERIG
 else{
 
-  if(score >= 85){
-    finalAdvice = `
+if(score >= 85){
+  finalAdvice = `
 Sterke keuze.
 
-👉 Dit model heeft een betrouwbaar accuprofiel.
+👉 Dit model heeft een betrouwbaar accuprofiel en geeft weinig reden tot zorgen.
 
 Je kunt deze auto met vertrouwen kopen.
-`;
-  }
 
-  else if(score >= 70){
-    finalAdvice = `
+---
+
+Toch volledige zekerheid?
+
+👉 Laat een AccuCheck uitvoeren en krijg inzicht in de werkelijke batterijconditie.
+`;
+}
+
+else if(score >= 70){
+  finalAdvice = `
 Goede basis, maar let op details.
 
-Controleer actieradius en laadgedrag tijdens proefrit.
-`;
-  }
+👉 Deze auto is interessant, mits de batterijprestaties in lijn liggen met verwachting.
 
+Controleer actieradius en laadgedrag tijdens proefrit.
+
+---
+
+Zeker weten?
+
+👉 Een AccuCheck geeft direct inzicht en voorkomt verrassingen achteraf.
+`;
+}
+ 
   else if(score >= 55){
     finalAdvice = `
 Twijfelgeval.
