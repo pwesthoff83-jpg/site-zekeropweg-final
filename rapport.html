@@ -211,6 +211,11 @@ input{
   <h3>Waarom deze score?</h3>
   <ul id="score_explanation" class="checklist"></ul>
 </div>
+
+  <div class="card">
+  <h3>Kilometergebruik analyse</h3>
+  <p id="km_analysis"></p>
+</div>
   
   <div class="card">
     <p>
@@ -370,6 +375,7 @@ function startFlow(){
       let km = Number(v.tellerstand) || 0;
       
       let make = v.merk || "Onbekend";
+      let makeUpper = make.toUpperCase();
       let model = v.handelsbenaming || "Onbekend";
       let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
 
@@ -398,7 +404,36 @@ function startFlow(){
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
       let ageYears = age || 1;
       let kmPerYear = km / ageYears;
-      
+      let kmAnalysis = "";
+
+if(kmPerYear > 25000){
+  kmAnalysis = `
+Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen — vooral bij batterijgebruik.
+`;
+}
+else if(kmPerYear > 20000){
+  kmAnalysis = `
+Intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Hoger dan gemiddeld, extra controle aanbevolen.
+`;
+}
+else if(kmPerYear > 15000){
+  kmAnalysis = `
+Bovengemiddeld gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Nog acceptabel, maar let op gebruik en laadgedrag.
+`;
+}
+else{
+  kmAnalysis = `
+Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Dit valt binnen verwachting en geeft geen extra risico.
+`;
+}
       let score = 75; 
       let scoreDetails = [];
            
@@ -554,7 +589,6 @@ Zonder test geen verstandige aankoop.
 
 }
 
-document.getElementById("final_advice").innerText = finalAdvice;
 
 document.getElementById("final_advice").innerText = finalAdvice;
       let brand = getBrandData(make);
@@ -705,6 +739,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       document.getElementById("car").innerText = make + " " + model;
       document.getElementById("meta").innerText = year + " • " + powertrain;
       document.getElementById("km").innerText = km;
+      document.getElementById("km_analysis").innerText = kmAnalysis;
       document.getElementById("make_model").innerText = make + " " + model;
       document.getElementById("build_year").innerText = year;
       
