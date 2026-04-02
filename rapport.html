@@ -250,7 +250,7 @@ input{
 </div>
 
   <div class="card">
-    <h3>Ons advies</h3>
+    <h3>Conclusie & aankoopadvies</h3>
     <p id="final_advice"></p>
   </div>
 
@@ -409,7 +409,50 @@ function startFlow(){
      document.getElementById("score_bar").style.width = score + "%";
      document.getElementById("score_bar").style.background = color;
      document.getElementById("score_label").innerText = scoreLabel;
-      
+     
+      let finalAdvice = "";
+
+     if(score >= 85){
+       finalAdvice = `
+     Sterke keuze. Dit model heeft een betrouwbaar accuprofiel.
+
+     👉 Als de prijs marktconform is, kun je deze auto met vertrouwen kopen.
+
+     Voor maximale zekerheid kun je een accutest overwegen, maar dit is geen must.
+    `;
+    }
+
+     else if(score >= 70){
+       finalAdvice = `
+     Goede basis, maar let op details.
+
+     👉 Deze auto is interessant, mits de batterijprestaties in lijn liggen met verwachting.
+
+     Controleer vooral actieradius en laadgedrag tijdens proefrit.
+     `;
+     }
+
+     else if(score >= 55){
+       finalAdvice = `
+     Twijfelgeval.
+
+     👉 Alleen kopen als prijs scherp is én batterij goed presteert.
+
+     Een accutest wordt hier sterk aanbevolen vóór aankoop.
+     `;
+     }
+
+     else{
+       finalAdvice = `
+     Verhoogd risico.
+
+     👉 Alleen kopen met volledige accudiagnose.
+
+     Zonder accutest is dit geen verstandige aankoop.
+     `;
+     }
+
+document.getElementById("final_advice").innerText = finalAdvice;
       let brand = getBrandData(make);
       let isNewGen = make.includes("MERCEDES") && Number(year) >= 2025;
 
