@@ -348,22 +348,7 @@ function getBrandData(make){
 }
 
 const batteryDB = {
-  "tesla model 3": {kwh:78, type:"NMC", range:500},
-  "tesla model y": {kwh:75, type:"NMC", range:505},
-  "mercedes-benz cla 250+": {kwh:85, type:"NMC", range:740},
-  "volkswagen id.3": {kwh:58, type:"NMC", range:420},
-  "volkswagen id.4": {kwh:77, type:"NMC", range:520},
-  "bmw i4": {kwh:83, type:"NMC", range:590},
-  "hyundai kona": {kwh:64, type:"NMC", range:480},
-  "kia ev6": {kwh:77, type:"NMC", range:528},
-  "byd atto 3": {kwh:60, type:"LFP", range:420}
-  "bmw 330e": {kwh:12, type:"NMC", range:60},
-  "audi a3 sportback e-tron": {kwh:13, type:"NMC", range:55},
-  "mercedes c300e": {kwh:25, type:"NMC", range:100},
-  "volvo xc60 recharge": {kwh:18, type:"NMC", range:80},
-  "kia niro phev": {kwh:9, type:"NMC", range:50},
-  "toyota prius plug-in": {kwh:13, type:"NMC", range:60}
-// 🔋 PHEV DATABASE (TOP 100 EUROPA)
+ // 🔋 PHEV DATABASE (TOP 100 EUROPA)
 
 // BMW
 "bmw 225xe": {kwh:10, type:"NMC", range:45},
@@ -497,11 +482,6 @@ function fillList(id, items){
       className = "check-icon check-warning";
     }
 
-    if(!batteryData && powertrain === "Hybride"){
-    battery_kwh = "±10–25 kWh";
-    battery_type = "Lithium-ion (NMC)";
-    real_range = "40–100 km elektrisch";
-   }
     
     if(lower.includes("afhankelijk")){
       icon = "ℹ️";
@@ -561,12 +541,22 @@ function startFlow(){
         powertrain = "EV";
       }
 
-      let lookupKey = (make + " " + model).toLowerCase();
+     let lookupKey = (make + " " + model)
+     .toLowerCase()
+     .replace(/xdrive|4matic|quattro|awd/g, "")
+     .replace(/\s+/g, " ")
+     .trim();
       let batteryData = batteryDB[lookupKey];
 
       let battery_kwh = batteryData ? `${batteryData.kwh} kWh` : "Onbekend";
       let battery_type = batteryData ? batteryData.type : "Onbekend";
       let real_range = batteryData ? batteryData.range : "Onbekend";
+      
+     if(!batteryData && powertrain === "Hybride"){
+       battery_kwh = "±10–25 kWh";
+       battery_type = "Lithium-ion";
+       real_range = "40–100 km elektrisch";
+     }
 
       let age = new Date().getFullYear() - Number(year);
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
@@ -698,7 +688,7 @@ else{
      // onbekende batterij = onzekerheid
     if(battery_kwh === "Onbekend"){
     score -= 10;
-    scoreDetails.push("Geen batterijdata beschikbaar (-10)");
+    scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
   }
 
      // grenzen
