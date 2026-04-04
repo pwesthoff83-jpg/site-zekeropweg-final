@@ -143,6 +143,8 @@ input{
     <p>Ontvang in 1 minuut een eerste accubeoordeling op basis van kenteken.</p>
 
     <input type="text" id="plate" placeholder="Kenteken">
+    <input type="number" id="manual_km" placeholder="Kilometerstand (optioneel)">
+    <p class="small">Gebruik actuele kilometerstand voor betere analyse</p>
     <input type="text" id="name" placeholder="Jouw naam (optioneel)">
 
     <br>
@@ -407,8 +409,13 @@ function startFlow(){
       }
 
       let v = dataRDW[0];
-      let km = Number(v.tellerstand) || 0;
-      
+      let rdwKm = Number(v.tellerstand) || 0;
+      let manualKm = Number(document.getElementById("manual_km").value);
+
+      let km = manualKm > 0 ? manualKm : rdwKm;
+      if(manualKm > 0 && rdwKm > 0 && Math.abs(manualKm - rdwKm) > 20000){
+       alert("Let op: ingevoerde km wijkt sterk af van RDW");
+      }
       let make = v.merk || "Onbekend";
       let makeUpper = make.toUpperCase();
       let model = v.handelsbenaming || "Onbekend";
