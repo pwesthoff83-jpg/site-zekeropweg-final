@@ -577,17 +577,33 @@ if(powertrain === "Onbekend"){
       let kmPerYear = km / ageYears;
       let kmAnalysis = "";
       let degradationText = "";
-
+      let degradationPercent = "";
+      
       if(powertrain === "EV"){
 
-        if(kmPerYear > 25000){
-          degradationText = `
-      Hogere dan gemiddelde slijtage verwacht.
+     let baseDeg = age * 2; // 2% per jaar basis
 
-      👉 Door intensief gebruik kan de batterij sneller capaciteit verliezen dan gemiddeld.
+     if(kmPerYear > 25000){
+       baseDeg += 5;
+     }
+     else if(kmPerYear > 15000){
+       baseDeg += 2;
+     }
 
-      Controle van de accustatus is hier sterk aan te raden.
-      `;
+     let minDeg = Math.round(baseDeg - 2);
+     let maxDeg = Math.round(baseDeg + 3);
+
+     degradationPercent = `${minDeg}% – ${maxDeg}%`;
+
+     degradationText = `
+   Verwachte degradatie: ${degradationPercent}
+
+   👉 Gebaseerd op leeftijd en gebruikspatroon.
+
+   Controle van de accustatus geeft definitieve zekerheid.
+   `;
+   }
+
         }
         else if(kmPerYear > 15000){
           degradationText = `
@@ -613,19 +629,31 @@ if(powertrain === "Onbekend"){
 // 🔥 HYBRIDE (belangrijk verschil!)
 else if(powertrain === "Hybride"){
 
+  let baseDeg = age * 1; // minder impact dan EV
+
+  let minDeg = Math.round(baseDeg - 1);
+  let maxDeg = Math.round(baseDeg + 2);
+
+  degradationPercent = `${minDeg}% – ${maxDeg}%`;
+
   degradationText = `
-Beperkte slijtage verwacht.
+Verwachte degradatie: ${degradationPercent}
+  degradationText += `
 
-👉 Bij plug-in hybrides is de batterij kleiner en minder zwaar belast dan bij EV’s.
+ ⚠️ Werkelijke batterijconditie kan afwijken door laadgedrag en snelladen.
+ `;
 
-Degradatie speelt hier een kleinere rol, maar controle blijft verstandig.
+👉 Bij plug-in hybrides is degradatie meestal beperkt door kleinere accupakketten.
+
+Controle blijft aanbevolen voor zekerheid.
 `;
 }
+
 if(kmPerYear > 25000){
   kmAnalysis = `
 Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
 
-👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen — vooral bij batterijgebruik.
+👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen, vooral bij batterijgebruik.
 `;
 }
 else if(kmPerYear > 20000){
