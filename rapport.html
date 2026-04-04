@@ -548,11 +548,16 @@ function startFlow(){
      .trim();
       let batteryData = batteryDB[lookupKey];
 
-      let battery_kwh = batteryData ? `${batteryData.kwh} kWh` : "Onbekend";
-      let battery_type = batteryData ? batteryData.type : "Onbekend";
-      let real_range = batteryData ? batteryData.range : "Onbekend";
-      
-     if(!batteryData && powertrain === "Hybride"){
+     let battery_kwh = "Onbekend";
+     let battery_type = "Onbekend";
+     let real_range = "Onbekend";
+
+     if(batteryData){
+       battery_kwh = `${batteryData.kwh} kWh`;
+       battery_type = batteryData.type;
+       real_range = batteryData.range;
+     }
+     else if(powertrain === "Hybride"){
        battery_kwh = "±10–25 kWh";
        battery_type = "Lithium-ion";
        real_range = "40–100 km elektrisch";
