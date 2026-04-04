@@ -527,19 +527,27 @@ function startFlow(){
       let model = v.handelsbenaming || "Onbekend";
       let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
 
-      let powertrain = "Onbekend";
+     let powertrain = "Onbekend";
 
-      let brandstof = (v.brandstof_omschrijving || "").toLowerCase();
+     let brandstof = (v.brandstof_omschrijving || "").toLowerCase();
+     let modelLower = model.toLowerCase();
 
-      if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
-         powertrain = "Hybride";
-      }
-      else if(brandstof.includes("hybride")){
-        powertrain = "Hybride";
-      }
-      else if(brandstof.includes("elektriciteit")){
-        powertrain = "EV";
-      }
+     if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
+       powertrain = "Hybride";
+     }
+     else if(brandstof.includes("hybride")){
+       powertrain = "Hybride";
+     }
+     else if(brandstof.includes("elektriciteit")){
+       powertrain = "EV";
+     }
+
+// 🔥 fallback op modelnaam (HEEL BELANGRIJK)
+if(powertrain === "Onbekend"){
+  if(modelLower.includes("e") || modelLower.includes("phev") || modelLower.includes("hybrid")){
+    powertrain = "Hybride";
+  }
+}
 
      let lookupKey = (make + " " + model)
      .toLowerCase()
@@ -716,6 +724,16 @@ else{
      document.getElementById("score_bar").style.background = color;
      document.getElementById("score_label").innerText = scoreLabel;
      document.getElementById("battery_degradation").innerText = degradationText;
+     
+     if(!degradationText){
+      degradationText = `
+     Normale slijtage verwacht.
+
+     👉 Zonder extreme belasting blijft batterij degradatie meestal beperkt.
+
+     Controle van de accustatus blijft aanbevolen voor zekerheid.
+     `;
+    }
       
    let finalAdvice = "";
 
@@ -958,7 +976,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       fillList("score_explanation", scoreDetails);     
     
       document.getElementById("car").innerText = make + " " + model;
-      document.getElementById("meta").innerText = year + " • " + powertrain;
+      document.getElementById("meta").innerText = year + " • " + (powertrain === "Onbekend" ? "Aandrijving onbekend" : powertrain);
       document.getElementById("km").innerText = km;
       document.getElementById("km_analysis").innerText = kmAnalysis;
       document.getElementById("make_model").innerText = make + " " + model;
@@ -984,7 +1002,16 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
         battery_type === "LFP"
           ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
           : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
+      document.getElementById("battery_extra").innerText = 
+      battery_type === "LFP"
+        ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
+        : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
 
+    // 🔥 HIER TOEVOEGEN
+    if(powertrain === "Hybride" && battery_kwh !== "Onbekend"){
+      document.getElementById("battery_extra").innerText += 
+      "\n\n👉 Plug-in hybrides hebben kleinere accupakketten, waardoor slijtage minder impact heeft dan bij EV’s.";
+    }
     
       document.getElementById("report").style.display = "block";
     })
