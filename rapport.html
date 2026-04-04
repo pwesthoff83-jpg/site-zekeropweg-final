@@ -159,15 +159,23 @@ input{
   </div>
 </section>
 
-<section class="container">
-  <div class="card">
-    <h2>Volledig AccuRisico Rapport</h2>
-    <p>Voor wie niet wil gokken bij aankoop</p>
-    <h3>€19,95</h3>
-    <p class="small">Eenmalig • Direct beschikbaar</p>
-    <button class="cta" onclick="startFlow()">Bekijk volledig rapport</button>
-  </div>
-</section>
+<div class="card" style="text-align:center; border:2px solid #1c2b26; background:#f8f7f3;">
+
+  <h3>Volledig AccuRisico Rapport ontgrendelen</h3>
+  
+  <p>
+    Ontvang direct de volledige analyse van deze auto, inclusief score-uitleg, batterij-inschatting, aankoopadvies en aandachtspunten bij proefrit en aankoop.
+  </p>
+
+  <a href="https://buy.stripe.com/bJebJ22Ek8sG0pq2bn9IQ00" target="_blank">
+    <button class="cta" style="font-size:18px;padding:18px 32px;">
+      Ontgrendel volledig rapport voor €19,95
+    </button>
+  </a>
+
+  <p class="small">Eenmalig • Direct beschikbaar • Geen abonnement</p>
+
+</div>
 
 <section class="container" id="report" style="display:none">
 
@@ -654,8 +662,27 @@ Zonder test geen verstandige aankoop.
 
 }
 
+<div class="card" style="text-align:center; background:#eef8f3; border:1px solid #ccebdc;">
 
-document.getElementById("final_advice").innerText = finalAdvice;
+  <h3>Meer zekerheid vóór aankoop?</h3>
+
+  <p>
+    Wil je niet alleen een risico-inschatting, maar de werkelijke accugezondheid laten controleren?
+  </p>
+
+  <p>
+    Kies dan voor een fysieke AccuCheck:
+    <br>€95 in Barendrecht
+    <br>€129 op locatie
+  </p>
+
+  <button class="cta" style="font-size:18px;padding:18px 32px;">
+    Vraag AccuCheck aan
+  </button>
+
+</div>
+
+document.getElementById("final_advice").innerHTML = finalAdvice;
       let brand = getBrandData(make);
       let isNewGen = make.includes("MERCEDES") && Number(year) >= 2025;
 
