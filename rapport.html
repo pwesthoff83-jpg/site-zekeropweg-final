@@ -586,29 +586,44 @@ if(powertrain === "Onbekend"){
       let kmAnalysis = "";
       let degradationText = "";
       let degradationPercent = "";
-      
-      if(!degradationText){
-       if(kmPerYear > 15000){
-         degradationText = `
-     Normale slijtage verwacht.
+     
+      // 🔋 DEGRADATIE (SIMPel en stabiel)
 
-     👉 Dit gebruik past binnen wat we gemiddeld zien bij EV’s.
+      if(powertrain === "Hybride"){
 
-     Beperkte degradatie aannemelijk, afhankelijk van laadgedrag.
-    `;
-       } else {
-        degradationText = `
-    Lage slijtage verwacht.
+        let baseDeg = age * 1;
 
-    👉 Bij dit gebruik blijft de batterij doorgaans in goede conditie.
+        let minDeg = Math.round(baseDeg - 1);
+        let maxDeg = Math.round(baseDeg + 2);
 
-    Relatief laag risico op merkbare degradatie.
-    `;
+        degradationPercent = `${minDeg}% – ${maxDeg}%`;
+
+              degradationText = `
+      Verwachte degradatie: ${degradationPercent}
+
+      ⚠️ Werkelijke batterijconditie kan afwijken door laadgedrag.
+
+      Controle blijft aanbevolen voor zekerheid.
+      `;
+
+      } else {
+
+        if(kmPerYear > 15000){
+          degradationText = `
+      Normale slijtage verwacht.
+
+      👉 Bovengemiddeld gebruik.
+      `;
+        } else {
+          degradationText = `
+      Lage slijtage verwacht.
+
+      👉 Normaal gebruik.
+      `;
      }
-   }
 
-        }
-        else if(kmPerYear > 15000){
+  }
+    
           degradationText = `
       Normale slijtage verwacht.
 
