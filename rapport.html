@@ -559,7 +559,36 @@ if(powertrain === "Onbekend"){
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
       let ageYears = age || 1;
       let kmPerYear = km / ageYears;
-      let kmAnalysis = "Geen analyse beschikbaar";
+      let kmAnalysis = "";
+
+if(kmPerYear > 25000){
+  kmAnalysis = `
+Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen.
+`;
+}
+else if(kmPerYear > 20000){
+  kmAnalysis = `
+Intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Hoger dan gemiddeld, extra controle aanbevolen.
+`;
+}
+else if(kmPerYear > 15000){
+  kmAnalysis = `
+Bovengemiddeld gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Nog acceptabel, maar let op gebruik en laadgedrag.
+`;
+}
+else{
+  kmAnalysis = `
+Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Dit valt binnen verwachting en geeft geen extra risico.
+`;
+}
       
       // 🔋 SIMPELE DEGRADATIE (100% SAFE)
 
@@ -569,7 +598,10 @@ if(powertrain === "Onbekend"){
 
        let minDeg = Math.round(baseDeg - 1);
        let maxDeg = Math.round(baseDeg + 2);
-
+      
+       let degradationText = "";
+       let degradationPercent = "";
+       
        degradationPercent = ${minDeg}% – ${maxDeg}%;
 
        degradationText = 
