@@ -599,44 +599,56 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
 `;
 }
       
-      // 🔋 SIMPELE DEGRADATIE (100% SAFE)
-     let degradationText = "";
-     let degradationPercent = "";
-     
-      if(powertrain === "Hybride"){
+   let degradationText = "";
+let degradationPercent = "";
 
-       let baseDeg = age * 1;
+if(powertrain === "Hybride"){
 
-       let minDeg = Math.round(baseDeg - 1);
-       let maxDeg = Math.round(baseDeg + 2);
-      
-       let degradationText = "";
-       let degradationPercent = "";
-       
-       degradationPercent = ${minDeg}% – ${maxDeg}%;
+  let baseDeg = age * 1;
 
-       degradationText = 
-     Verwachte degradatie: ${degradationPercent}
+  let minDeg = Math.round(baseDeg - 1);
+  let maxDeg = Math.round(baseDeg + 2);
 
-     ⚠️ Werkelijke batterijconditie kan afwijken door laadgedrag.
+  degradationPercent = `${minDeg}% - ${maxDeg}%`;
 
-     Controle blijft aanbevolen voor zekerheid.
-     ;
+  degradationText = `
+Verwachte degradatie: ${degradationPercent}
 
-     } else {
+Werkelijke batterijconditie kan afwijken door laadgedrag.
+
+Controle blijft aanbevolen voor zekerheid.
+`;
+
+} else {
+
+  if(kmPerYear > 15000){
+    degradationText = `
+Normale slijtage verwacht.
+
+👉 Bovengemiddeld gebruik.
+`;
+  } else {
+    degradationText = `
+Lage slijtage verwacht.
+
+👉 Normaal gebruik.
+`;
+  }
+
+}
 
        if(kmPerYear > 15000){
-         degradationText = 
+         degradationText = `
      Normale slijtage verwacht.
 
      👉 Bovengemiddeld gebruik.
-     ;
+     `;
        } else {
-         degradationText = 
+         degradationText = `
      Lage slijtage verwacht.
 
      👉 Normaal gebruik.
-     ;
+    `;
       }
 
      }
@@ -719,13 +731,13 @@ else{
      document.getElementById("battery_degradation").innerText = degradationText;
      
      if(!degradationText){
-      degradationText = 
+      degradationText = `
      Normale slijtage verwacht.
 
      👉 Zonder extreme belasting blijft batterij degradatie meestal beperkt.
 
      Controle van de accustatus blijft aanbevolen voor zekerheid.
-     ;
+     `;
     }
       
    let finalAdvice = "";
@@ -744,23 +756,23 @@ Controleer vooral of de elektrische actieradius logisch is en of laden goed werk
   }
 
   else if(score >= 55){
-    finalAdvice = 
+    finalAdvice = `
 Goede basis, maar check gebruik.
 
 👉 Bij dit type auto is het belangrijk hoe de vorige eigenaar ermee omging.
 
 Controleer of de auto regelmatig geladen is en test de elektrische modus tijdens proefrit.
-;
+`;
   }
 
   else{
-    finalAdvice = 
+    finalAdvice = `
 Aandachtspunt.
 
 👉 De auto is bruikbaar, maar controle van de hybride batterij is verstandig.
 
 Laat bij twijfel een diagnose uitvoeren vóór aankoop.
-;
+`;
   }
 
 }
@@ -769,7 +781,7 @@ Laat bij twijfel een diagnose uitvoeren vóór aankoop.
 else{
 
 if(score >= 85){
-  finalAdvice = 
+  finalAdvice = `
 Sterke keuze.
 
 👉 Dit model heeft een betrouwbaar accuprofiel en geeft weinig reden tot zorgen.
@@ -781,11 +793,11 @@ Je kunt deze auto met vertrouwen kopen.
 Toch volledige zekerheid?
 
 👉 Laat een AccuCheck uitvoeren en krijg inzicht in de werkelijke batterijconditie.
-;
+`;
 }
 
 else if(score >= 70){
-  finalAdvice = 
+  finalAdvice = `
 Goede basis, maar let op details.
 
 👉 Deze auto is interessant, mits de batterijprestaties in lijn liggen met verwachting.
@@ -797,27 +809,27 @@ Controleer actieradius en laadgedrag tijdens proefrit.
 Zeker weten?
 
 👉 Een AccuCheck geeft direct inzicht en voorkomt verrassingen achteraf.
-;
+`;
 }
  
   else if(score >= 55){
-    finalAdvice = 
+    finalAdvice = `
 Twijfelgeval.
 
 👉 Alleen kopen als batterijprestaties goed zijn.
 
 Accutest aanbevolen.
-;
+`;
   }
 
   else{
-    finalAdvice = 
+    finalAdvice = `
 Verhoogd risico.
 
 👉 Alleen kopen met accudiagnose.
 
 Zonder test geen verstandige aankoop.
-;
+`;
   }
 
 }
@@ -834,7 +846,7 @@ document.getElementById("final_advice").innerHTML = finalAdvice;
           battery: isNewGen ? "Zeer stabiel" : "Stabiel",
           summary: "Sterk accuprofiel passend bij leeftijd.",
           description: "Deze auto laat een stabiel profiel zien.",
-          battery_behavior: 
+          battery_behavior:` 
 Deze uitvoering is uitgerust met een batterij van circa ${battery_kwh} (${battery_type}-technologie).
 
 Binnen dit segment behoort dit tot de grotere en efficiëntere accupakketten, wat zorgt voor een hoge actieradius en stabiele prestaties.
@@ -842,8 +854,8 @@ Binnen dit segment behoort dit tot de grotere en efficiëntere accupakketten, wa
 In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van rijstijl, temperatuur en gebruik.
 
 Dit type batterij staat bekend om sterke prestaties en goede laadcapaciteit, maar is gevoeliger voor intensief snelladen op lange termijn.
-,
-          real_world: 
+`,
+          real_world: `
 Voor dit type en bouwjaar mag je stabiele prestaties verwachten met een relatief laag risico op versnelde degradatie.
 
 Omdat dit model tot de nieuwste generatie EV’s behoort, is de batterijtechnologie efficiënter en beter beschermd dan oudere modellen.
@@ -851,13 +863,13 @@ Omdat dit model tot de nieuwste generatie EV’s behoort, is de batterijtechnolo
 Let wel: zonder inzicht in het laadgedrag van de vorige eigenaar blijft er altijd onzekerheid bestaan.
 
 Risico-inschatting: laag tot gemiddeld.
-,
-          advice: 
+`,
+          advice: ` 
 Dit model is technisch een sterke keuze binnen het huidige EV-segment.
 
 Wil je maximale zekerheid, laat dan de accustatus controleren vóór aankoop — vooral bij hogere kilometerstanden of intensief gebruik.
 
-        };
+       ` };
       }
 
       if(profile === "normaal"){
@@ -866,20 +878,20 @@ Wil je maximale zekerheid, laat dan de accustatus controleren vóór aankoop —
           battery: "Normaal",
           summary: "Gemiddeld profiel.",
           description: "Normaal profiel.",
-          battery_behavior: 
+          battery_behavior:` 
 Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
 
 In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
 
 ${brand.behavior}
-,
-          real_world: 
+`,
+          real_world: `
 Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
 
 Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
 
 Risico-inschatting: ${brand.risk}.
-,
+`,
           advice: brand.advice
         };
       }
@@ -890,20 +902,20 @@ Risico-inschatting: ${brand.risk}.
           battery: "Aandachtspunt",
           summary: "Verhoogd risico.",
           description: "Extra controle nodig.",
-          battery_behavior: 
+          battery_behavior: `
 Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
 
 In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
 
 ${brand.behavior}
-,
-          real_world: 
+`,
+          real_world: `
 Bij normaal gebruik mag je bij dit model stabiele prestaties verwachten.
 
 Let op: twee identieke auto’s kunnen in de praktijk verschillen door laadgedrag en gebruik.
 
 Risico-inschatting: ${brand.risk}.
-,
+`,
           advice: "Accucheck aanbevolen"
         };
       }
