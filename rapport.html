@@ -690,9 +690,15 @@ else{
       
      // onbekende batterij = onzekerheid
     if(battery_kwh === "Onbekend"){
+  if(age <= 3){
+    scoreDetails.push("Nieuwe auto, batterijdata minder kritisch (0)");
+  }
+  else{
     score -= 10;
     scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
   }
+
+}
 
      // grenzen
      if(score > 95) score = 95;
