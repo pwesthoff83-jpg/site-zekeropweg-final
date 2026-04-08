@@ -665,6 +665,10 @@ if(profile === "aandacht"){
 
 
      // merk impact
+      if(makeUpper.includes("MERCEDES")){
+  score += 3;
+  scoreDetails.push("Premium merk (+3)");
+}
     if(makeUpper.includes("TESLA")){
   score += 5;
   scoreDetails.push("Sterk accumerk (+5)");
@@ -712,6 +716,36 @@ if(battery_kwh === "Onbekend"){
     battery_type = "Lithium-ion";
     real_range = "300–500 km";
   }
+
+  // 🔥 EXTRA SLIMME HERKENNING
+
+if(powertrain === "Onbekend"){
+
+  // AMG / performance hybrides
+  if(modelLower.includes("amg") && modelLower.includes("e")){
+    powertrain = "Hybride";
+  }
+
+  // algemene fallback
+  else if(modelLower.includes("e performance")){
+    powertrain = "Hybride";
+  }
+
+  // EV herkenning
+  else if(
+    modelLower.includes("tesla") ||
+    modelLower.includes("eq") ||
+    modelLower.includes("ioniq") ||
+    modelLower.includes("ev")
+  ){
+    powertrain = "EV";
+  }
+
+  // laatste fallback
+  else{
+    powertrain = "Brandstof";
+  }
+}
 
 }
 💥 Resultaat
