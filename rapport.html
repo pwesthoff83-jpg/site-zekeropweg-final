@@ -621,21 +621,6 @@ Controle blijft aanbevolen voor zekerheid.
 
 } else {
 
-  if(kmPerYear > 15000){
-    degradationText = `
-Normale slijtage verwacht.
-
-👉 Bovengemiddeld gebruik.
-`;
-  } else {
-    degradationText = `
-Lage slijtage verwacht.
-
-👉 Normaal gebruik.
-`;
-  }
-
-}
 
        if(kmPerYear > 15000){
          degradationText = `
@@ -1007,10 +992,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
         battery_type === "LFP"
           ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
           : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
-      document.getElementById("battery_extra").innerText = 
-      battery_type === "LFP"
-        ? "Deze batterijtechnologie staat bekend om hoge levensduur en stabiliteit."
-        : "Deze batterijtechnologie biedt hoge energiedichtheid en prestaties.";
+    
 
     // 🔥 HIER TOEVOEGEN
     if(powertrain === "Hybride" && battery_kwh !== "Onbekend"){
