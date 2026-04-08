@@ -472,10 +472,10 @@ function fillList(id, items){
       className = "check-icon check-neutral";
     }
 
-    li.innerHTML = 
-      <span class="${className}">${icon}</span>
-      <span>${item}</span>
-    ;
+   li.innerHTML = `
+  <span class="${className}">${icon}</span>
+  <span>${item}</span>
+`;
 
     el.appendChild(li);
   });
@@ -490,7 +490,7 @@ function startFlow(){
     return;
   }
 
-  fetch(https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate})
+ fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
     .then(res => res.json())
     .then(dataRDW => {
       if(!dataRDW.length){
@@ -527,11 +527,20 @@ function startFlow(){
      }
 
 // 🔥 fallback op modelnaam (HEEL BELANGRIJK)
-if(powertrain === "Onbekend"){
-  if(modelLower.includes("e") || modelLower.includes("phev") || modelLower.includes("hybrid")){
-    powertrain = "Hybride";
-  }
-}
+     if(powertrain === "Onbekend"){
+        if(
+         modelLower.includes("phev") ||
+         modelLower.includes("hybrid") ||
+         modelLower.includes("plug-in") ||
+         modelLower.includes("recharge") ||
+         modelLower.includes("gte") ||
+         modelLower.includes("e-tron") ||
+         modelLower.includes("e-hybrid")
+       ){
+         powertrain = "Hybride";
+       }
+     }
+
 
      let lookupKey = (make + " " + model)
      .toLowerCase()
@@ -545,7 +554,7 @@ if(powertrain === "Onbekend"){
      let real_range = "Onbekend";
 
      if(batteryData){
-       battery_kwh = ${batteryData.kwh} kWh;
+       battery_kwh = `${batteryData.kwh} kWh`;
        battery_type = batteryData.type;
        real_range = batteryData.range;
      }
@@ -591,8 +600,10 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
 }
       
       // 🔋 SIMPELE DEGRADATIE (100% SAFE)
-
-     if(powertrain === "Hybride"){
+     let degradationText = "";
+     let degradationPercent = "";
+     
+      if(powertrain === "Hybride"){
 
        let baseDeg = age * 1;
 
@@ -723,13 +734,13 @@ else{
 if(powertrain === "Hybride"){
 
   if(score >= 70){
-    finalAdvice = 
+    finalAdvice = `
 Goede keuze.
 
 👉 Bij plug-in hybrides is de batterij minder kritisch dan bij volledige EV’s.
 
 Controleer vooral of de elektrische actieradius logisch is en of laden goed werkt.
-;
+`;
   }
 
   else if(score >= 55){
