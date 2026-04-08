@@ -527,20 +527,29 @@ function startFlow(){
      }
 
 // 🔥 fallback op modelnaam (HEEL BELANGRIJK)
-     if(powertrain === "Onbekend"){
-        if(
-         modelLower.includes("phev") ||
-         modelLower.includes("hybrid") ||
-         modelLower.includes("plug-in") ||
-         modelLower.includes("recharge") ||
-         modelLower.includes("gte") ||
-         modelLower.includes("e-tron") ||
-         modelLower.includes("e-hybrid")
-       ){
-         powertrain = "Hybride";
-       }
-     }
-
+  
+if(powertrain === "Onbekend"){
+  if(
+    modelLower.includes("phev") ||
+    modelLower.includes("hybrid") ||
+    modelLower.includes("plug-in") ||
+    modelLower.includes("recharge") ||
+    modelLower.includes("gte") ||
+    modelLower.includes("e-tron") ||
+    modelLower.includes("e-hybrid") ||
+    modelLower.includes("e performance")
+  ){
+    powertrain = "Hybride";
+  }
+  else if(
+    modelLower.includes("eq") ||
+    modelLower.includes("tesla") ||
+    modelLower.includes("ioniq") ||
+    modelLower.includes("ev")
+  ){
+    powertrain = "EV";
+  }
+}
 
      let lookupKey = (make + " " + model)
      .toLowerCase()
@@ -643,19 +652,19 @@ Controle blijft aanbevolen voor zekerheid.
       let scoreDetails = [];
            
       // leeftijd impact
-    if(profile === "gunstig"){
+  if(profile === "gunstig"){
   score += 10;
   scoreDetails.push("Jonge auto (+10)");
 }
-      
-// 🔥 NIEUWE AUTO BOOST (zeer belangrijk)
+
+// extra boost voor echt nieuwe auto's
 if(age <= 1){
-  score += 15;
-  scoreDetails.push("Vrijwel nieuw voertuig (+15)");
+  score += 10;
+  scoreDetails.push("Vrijwel nieuw voertuig (+10)");
 }
 else if(age <= 3){
-  score += 8;
-  scoreDetails.push("Nieuwe generatie voertuig (+8)");
+  score += 5;
+  scoreDetails.push("Nieuwe generatie voertuig (+5)");
 }
       
 if(profile === "aandacht"){
@@ -669,6 +678,12 @@ if(profile === "aandacht"){
   score += 3;
   scoreDetails.push("Premium merk (+3)");
 }
+
+   if(makeUpper.includes("MERCEDES") && modelLower.includes("e performance")){
+  score += 7;
+  scoreDetails.push("Recente performance hybride (+7)");
+}
+      
     if(makeUpper.includes("TESLA")){
   score += 5;
   scoreDetails.push("Sterk accumerk (+5)");
@@ -702,97 +717,51 @@ else{
   scoreDetails.push("Normaal gebruik (0)");
 }
       
-     // onbekende batterij = onzekerheid
+  // onbekende batterij = onzekerheid
 if(battery_kwh === "Onbekend"){
 
+  // slimme fallback voor batterijdata
   if(powertrain === "Hybride"){
     battery_kwh = "±10–25 kWh";
     battery_type = "Lithium-ion";
     real_range = "40–100 km elektrisch";
   }
-
-  if(powertrain === "EV"){
+  else if(powertrain === "EV"){
     battery_kwh = "Geschat 60–100 kWh";
     battery_type = "Lithium-ion";
     real_range = "300–500 km";
   }
 
-  // 🔥 EXTRA SLIMME HERKENNING
+  // extra slimme herkenning als aandrijving nog onbekend is
+  if(powertrain === "Onbekend"){
 
-if(powertrain === "Onbekend"){
-
-  // AMG / performance hybrides
-  if(modelLower.includes("amg") && modelLower.includes("e")){
-    powertrain = "Hybride";
+    if(modelLower.includes("amg") && modelLower.includes("e")){
+      powertrain = "Hybride";
+      battery_kwh = "±10–25 kWh";
+      battery_type = "Lithium-ion";
+      real_range = "40–100 km elektrisch";
+    }
+    else if(modelLower.includes("e performance")){
+      powertrain = "Hybride";
+      battery_kwh = "±10–25 kWh";
+      battery_type = "Lithium-ion";
+      real_range = "40–100 km elektrisch";
+    }
+    else if(
+      modelLower.includes("tesla") ||
+      modelLower.includes("eq") ||
+      modelLower.includes("ioniq") ||
+      modelLower.includes("ev")
+    ){
+      powertrain = "EV";
+      battery_kwh = "Geschat 60–100 kWh";
+      battery_type = "Lithium-ion";
+      real_range = "300–500 km";
+    }
+    else{
+      powertrain = "Brandstof";
+    }
   }
-
-  // algemene fallback
-  else if(modelLower.includes("e performance")){
-    powertrain = "Hybride";
-  }
-
-  // EV herkenning
-  else if(
-    modelLower.includes("tesla") ||
-    modelLower.includes("eq") ||
-    modelLower.includes("ioniq") ||
-    modelLower.includes("ev")
-  ){
-    powertrain = "EV";
-  }
-
-  // laatste fallback
-  else{
-    powertrain = "Brandstof";
-  }
-}
-
-}
-💥 Resultaat
-In plaats van:
-
-❌ “Onbekend”
-krijg je:
-
-✅ “±10–25 kWh”
-✅ voelt slim
-✅ voelt als waarde
-✅ GEEN vertrouwen kill
-
-⚠️ Belangrijk inzicht (dit is groot)
-Je tool moet:
-
-👉 NOOIT dom lijken
-👉 ALTIJD iets zinnigs zeggen
-
-Want:
-
-Twijfel = geen betaling
-
-🎯 Samenvatting
-Je zat fout op 1 punt:
-
-👉 “geen data = risico”
-
-Maar moet zijn:
-
-👉 “context bepaalt risico”
-
-👉 Doe dit nu
-Pas score logica aan
-
-Pas fallback batterijdata aan
-
-Test opnieuw met AMG
-
-Als je wil, volgende stap pakken we:
-
-👉 dat je AMG-case 95/100 premium gevoel geeft
-👉 zodat mensen denken: “dit rapport is legit”
-
-Zeg gewoon:
-“score optimaliseren”
-
 
   if(age <= 3){
     scoreDetails.push("Nieuwe auto, batterijdata minder kritisch (0)");
@@ -801,8 +770,7 @@ Zeg gewoon:
     score -= 10;
     scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
   }
-
-}
+}    
 
      // grenzen
      if(score > 95) score = 95;
