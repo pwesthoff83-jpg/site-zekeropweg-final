@@ -520,6 +520,16 @@ function startFlow(){
      if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
         powertrain = "Hybride";
      }
+
+       // 🔥 FIXES HIER
+      if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
+       powertrain = "Hybride";
+     }
+
+     if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
+       powertrain = "Hybride";
+     }
+       
      else if(brandstof.includes("hybride")){
        powertrain = "Hybride";
      }
@@ -539,7 +549,7 @@ function startFlow(){
        else if(modelLower.includes("e performance")){
         powertrain = "Hybride";
       }
-
+                  
       // algemene hybrid woorden
      else if(
     modelLower.includes("hybrid") ||
@@ -574,27 +584,7 @@ function startFlow(){
       let kmPerYear = km / ageYears;
       let kmAnalysis = "";
 
-if(kmPerYear > 25000){
-  kmAnalysis = `
-Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
 
-👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen.
-`;
-}
-else if(kmPerYear > 20000){
-  kmAnalysis = `
-Intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
-
-👉 Hoger dan gemiddeld, extra controle aanbevolen.
-`;
-}
-else if(kmPerYear > 15000){
-  kmAnalysis = `
-Bovengemiddeld gebruik (${Math.round(kmPerYear)} km/jaar).
-
-👉 Nog acceptabel, maar let op gebruik en laadgedrag.
-`;
-}
 else{
   kmAnalysis = `
 Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
@@ -602,15 +592,14 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
 👉 Dit valt binnen verwachting en geeft geen extra risico.
 `;
 }
-      
-   let degradationText = "";
+
+let degradationText = "";
 let degradationPercent = "";
 
 if(powertrain === "Hybride"){
 
   let baseDeg = age * 1;
 
-  // 🔥 KM invloed toevoegen (DIT IS DE FIX)
   if(kmPerYear > 20000){
     baseDeg += 2;
   }
@@ -618,35 +607,27 @@ if(powertrain === "Hybride"){
   let minDeg = Math.round(baseDeg - 1);
   let maxDeg = Math.round(baseDeg + 3);
 
-  degradationPercent = `${minDeg}% - ${maxDeg}%`;
+  degradationPercent = minDeg + "% - " + maxDeg + "%";
 
-  degradationText = `
-Verwachte degradatie: ${degradationPercent}
+  degradationText =
+    "Verwachte degradatie: " + degradationPercent + "\n\n" +
+    "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
+    "Werkelijke batterijconditie kan afwijken door laadgedrag.";
 
-👉 Gebaseerd op leeftijd én gebruik (${Math.round(kmPerYear)} km/jaar).
-
-Werkelijke batterijconditie kan afwijken door laadgedrag.
-`;
 }
+else{
 
-} else {
+  if(kmPerYear > 15000){
+    degradationText =
+      "Normale slijtage verwacht.\n\n" +
+      "Bovengemiddeld gebruik.";
+  } else {
+    degradationText =
+      "Lage slijtage verwacht.\n\n" +
+      "Normaal gebruik.";
+  }
 
-
-       if(kmPerYear > 15000){
-         degradationText = `
-     Normale slijtage verwacht.
-
-     👉 Bovengemiddeld gebruik.
-     `;
-       } else {
-         degradationText = `
-     Lage slijtage verwacht.
-
-     👉 Normaal gebruik.
-    `;
-      }
-
-     }
+}
 
       
       let score = 75; 
@@ -700,14 +681,7 @@ if(makeUpper.includes("BMW")){
   scoreDetails.push("Gemiddeld accuprofiel (-2)");
 }
 
- if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
-  powertrain = "Hybride";
-}
-
-if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
-  powertrain = "Hybride";
-}     
-      
+     
 
 // 🔥 kilometer gebruik
 const avgKm = 15000;
