@@ -516,8 +516,9 @@ function startFlow(){
      let brandstof = (v.brandstof_omschrijving || "").toLowerCase();
      let modelLower = model.toLowerCase();
 
+     // ✅ RDW basis
      if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
-       powertrain = "Hybride";
+        powertrain = "Hybride";
      }
      else if(brandstof.includes("hybride")){
        powertrain = "Hybride";
@@ -526,53 +527,47 @@ function startFlow(){
        powertrain = "EV";
      }
 
-// 🔥 fallback op modelnaam (HEEL BELANGRIJK)
-  
-if(powertrain === "Onbekend"){
-  if(
-    modelLower.includes("phev") ||
+     // 🔥 HARD MODEL FALLBACK (BELANGRIJKSTE FIX)
+     if(powertrain === "Onbekend"){
+
+       // BMW e-modellen
+       if(modelLower.match(/\d+e\b/)){ // 530e, 330e etc
+         powertrain = "Hybride";
+       }
+
+       // AMG + E performance
+       else if(modelLower.includes("e performance")){
+        powertrain = "Hybride";
+      }
+
+      // algemene hybrid woorden
+     else if(
     modelLower.includes("hybrid") ||
-    modelLower.includes("plug-in") ||
+    modelLower.includes("phev") ||
+    modelLower.includes("plug") ||
     modelLower.includes("recharge") ||
     modelLower.includes("gte") ||
-    modelLower.includes("e-tron") ||
     modelLower.includes("e-hybrid") ||
-    modelLower.includes("e performance")
+    modelLower.includes("4xe")
   ){
     powertrain = "Hybride";
   }
+
+  // EV herkenning
   else if(
-    modelLower.includes("eq") ||
     modelLower.includes("tesla") ||
+    modelLower.includes("eq") ||
     modelLower.includes("ioniq") ||
     modelLower.includes("ev")
   ){
     powertrain = "EV";
   }
+
+  else{
+    powertrain = "Brandstof";
+  }
 }
-
-     let lookupKey = (make + " " + model)
-     .toLowerCase()
-     .replace(/xdrive|4matic|quattro|awd/g, "")
-     .replace(/\s+/g, " ")
-     .trim();
-      let batteryData = batteryDB[lookupKey];
-
-     let battery_kwh = "Onbekend";
-     let battery_type = "Onbekend";
-     let real_range = "Onbekend";
-
-     if(batteryData){
-       battery_kwh = `${batteryData.kwh} kWh`;
-       battery_type = batteryData.type;
-       real_range = batteryData.range;
-     }
-     else if(powertrain === "Hybride"){
-       battery_kwh = "±10–25 kWh";
-       battery_type = "Lithium-ion";
-       real_range = "40–100 km elektrisch";
-     }
-
+      
       let age = new Date().getFullYear() - Number(year);
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
       let ageYears = age || 1;
@@ -615,18 +610,24 @@ if(powertrain === "Hybride"){
 
   let baseDeg = age * 1;
 
+  // 🔥 KM invloed toevoegen (DIT IS DE FIX)
+  if(kmPerYear > 20000){
+    baseDeg += 2;
+  }
+
   let minDeg = Math.round(baseDeg - 1);
-  let maxDeg = Math.round(baseDeg + 2);
+  let maxDeg = Math.round(baseDeg + 3);
 
   degradationPercent = `${minDeg}% - ${maxDeg}%`;
 
   degradationText = `
 Verwachte degradatie: ${degradationPercent}
 
-Werkelijke batterijconditie kan afwijken door laadgedrag.
+👉 Gebaseerd op leeftijd én gebruik (${Math.round(kmPerYear)} km/jaar).
 
-Controle blijft aanbevolen voor zekerheid.
+Werkelijke batterijconditie kan afwijken door laadgedrag.
 `;
+}
 
 } else {
 
@@ -699,20 +700,51 @@ if(makeUpper.includes("BMW")){
   scoreDetails.push("Gemiddeld accuprofiel (-2)");
 }
 
+ if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
+  powertrain = "Hybride";
+}
+
+if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
+  powertrain = "Hybride";
+}     
+      
 
 // 🔥 kilometer gebruik
+const avgKm = 15000;
+
 if(kmPerYear > 25000){
-  score -= 12;
-  scoreDetails.push("Zeer intensief gebruikt (-12)");
+  kmAnalysis = `
+Zeer intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Gemiddeld is ±${avgKm} km/jaar.
+👉 Dit ligt ver boven gemiddeld en kan extra slijtage betekenen.
+`;
 }
 else if(kmPerYear > 20000){
-  score -= 8;
-  scoreDetails.push("Intensief gebruikt (-8)");
+  kmAnalysis = `
+Intensief gebruikt (${Math.round(kmPerYear)} km/jaar).
+
+👉 Gemiddeld is ±${avgKm} km/jaar.
+👉 Hoger dan gemiddeld, extra controle aanbevolen.
+`;
 }
 else if(kmPerYear > 15000){
-  score -= 5;
-  scoreDetails.push("Bovengemiddeld gebruik (-5)");
+  kmAnalysis = `
+Bovengemiddeld gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Gemiddeld is ±${avgKm} km/jaar.
+👉 Nog acceptabel, maar let op gebruik.
+`;
 }
+else{
+  kmAnalysis = `
+Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
+
+👉 Gemiddeld is ±${avgKm} km/jaar.
+👉 Dit valt binnen verwachting.
+`;
+}
+  
 else{
   scoreDetails.push("Normaal gebruik (0)");
 }
