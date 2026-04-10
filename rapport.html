@@ -296,6 +296,83 @@ input{
 </section>
 
 <script>
+function calculateScore({age, km, make, model, powertrain}){
+
+  let score = 100;
+  let details = [];
+
+  // 🔹 1. Leeftijd
+  if(age > 8){
+    score -= 20;
+    details.push("Hogere leeftijd verhoogt accurisico");
+  }
+  else if(age > 5){
+    score -= 10;
+    details.push("Gemiddelde leeftijd → normale slijtage");
+  }
+
+  // 🔹 2. KM gebruik
+  let kmPerYear = km / Math.max(age,1);
+
+  if(kmPerYear > 25000){
+    score -= 20;
+    details.push("Zeer intensief gebruik");
+  }
+  else if(kmPerYear > 20000){
+    score -= 10;
+    details.push("Bovengemiddeld gebruik");
+  }
+
+  // 🔹 3. Merk risico
+  const brandRisk = {
+    "TESLA": -5,
+    "HYUNDAI": -3,
+    "KIA": -3,
+    "TOYOTA": -2,
+    "BMW": -8,
+    "AUDI": -8,
+    "MERCEDES": -8,
+    "PEUGEOT": -10,
+    "OPEL": -10
+  };
+
+  let makeUpper = make.toUpperCase();
+  if(brandRisk[makeUpper]){
+    score += brandRisk[makeUpper];
+    details.push("Merk-specifiek accuprofiel meegenomen");
+  }
+
+  // 🔹 4. Model risico (killer feature)
+  const modelRiskDB = {
+    "nissan leaf": -15, // geen actieve koeling
+  "audi e-tron": -10, // hoge degradatie bij snelladen
+  "tesla model s": -5, // oudere batterijgeneraties
+  "bmw 330e": -5, // kleine batterij, gevoelig gebruik
+  "outlander phev": -8 // vaak slecht geladen
+};
+
+  let modelKey = (make + " " + model).toLowerCase();
+
+  for(let key in modelRiskDB){
+    if(modelKey.includes(key)){
+      score += modelRiskDB[key];
+      details.push("Bekende model-specifieke aandachtspunten");
+    }
+  }
+
+  // 🔹 5. Onzekerheid (altijd!)
+  if(powertrain === "EV"){
+    score -= 10;
+    details.push("Laadgeschiedenis onbekend → risicofactor");
+  }
+
+  // 🔒 Grenzen
+  if(score > 95) score = 95;
+  if(score < 40) score = 40;
+
+  return {score, details};
+}
+  
 function normalizeBrand(brand){
   return String(brand || "")
     .toLowerCase()
@@ -629,59 +706,32 @@ else{
 
 }
 
-      
-      let score = 75; 
-      let scoreDetails = [];
-           
-      // leeftijd impact
-  if(profile === "gunstig"){
-  score += 10;
-  scoreDetails.push("Jonge auto (+10)");
+ let result = calculateScore({
+  age: age,
+  km: km,
+  make: make,
+  model: model,
+  powertrain: powertrain
+});
+
+let score = result.score;
+let scoreDetails = result.details;     
+  
+let scoreLabel = "";
+
+if(score >= 85){
+  scoreLabel = "Zeer sterk accuprofiel";
+}
+else if(score >= 70){
+  scoreLabel = "Goede basis";
+}
+else if(score >= 55){
+  scoreLabel = "Gemiddeld profiel";
+}
+else{
+  scoreLabel = "Verhoogd risico";
 }
 
-// extra boost voor echt nieuwe auto's
-if(age <= 1){
-  score += 10;
-  scoreDetails.push("Vrijwel nieuw voertuig (+10)");
-}
-else if(age <= 3){
-  score += 5;
-  scoreDetails.push("Nieuwe generatie voertuig (+5)");
-}
-      
-if(profile === "aandacht"){
-  score -= 15;
-  scoreDetails.push("Oudere auto (-15)");
-}
-
-
-     // merk impact
-      if(makeUpper.includes("MERCEDES")){
-  score += 3;
-  scoreDetails.push("Premium merk (+3)");
-}
-
-   if(makeUpper.includes("MERCEDES") && modelLower.includes("e performance")){
-  score += 7;
-  scoreDetails.push("Recente performance hybride (+7)");
-}
-      
-    if(makeUpper.includes("TESLA")){
-  score += 5;
-  scoreDetails.push("Sterk accumerk (+5)");
-}
-
-if(makeUpper.includes("BYD") || makeUpper.includes("HYUNDAI") || makeUpper.includes("KIA")){
-  score += 3;
-  scoreDetails.push("Goede accureputatie (+3)");
-}
-
-if(makeUpper.includes("BMW")){
-  score -= 2;
-  scoreDetails.push("Gemiddeld accuprofiel (-2)");
-}
-
-     
 
 // 🔥 kilometer gebruik
 const avgKm = 15000;
@@ -808,6 +858,18 @@ if(battery_kwh === "Onbekend"){
      Controle van de accustatus blijft aanbevolen voor zekerheid.
      `;
     }
+
+let financialRisk = "";
+
+if(score >= 75){
+  financialRisk = "Laag risico (beperkte kans op hoge accukosten)";
+}
+else if(score >= 55){
+  financialRisk = "Gemiddeld risico (€1.000 – €4.000 mogelijk)";
+}
+else{
+  financialRisk = "Hoog risico (€3.000 – €10.000 mogelijk)";
+}
       
    let finalAdvice = "";
 
