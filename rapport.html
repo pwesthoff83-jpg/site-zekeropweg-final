@@ -599,20 +599,18 @@ function startFlow(){
      }
 
        // 🔥 FIXES HIER
-      if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
-       powertrain = "Hybride";
-     }
-
-     if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
-       powertrain = "Hybride";
-     }
-       
+     if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
+     powertrain = "Hybride";
+   }
+     else if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
+      powertrain = "Hybride";
+   }
      else if(brandstof.includes("hybride")){
-       powertrain = "Hybride";
-     }
+     powertrain = "Hybride";
+   }
      else if(brandstof.includes("elektriciteit")){
-       powertrain = "EV";
-     }
+     powertrain = "EV";
+   }
 
      // 🔥 HARD MODEL FALLBACK (BELANGRIJKSTE FIX)
      if(powertrain === "Onbekend"){
@@ -713,6 +711,14 @@ else{
   model: model,
   powertrain: powertrain
 });
+
+let result = calculateScore({
+  age: age,
+  km: km,
+  make: make,
+  model: model,
+  powertrain: powertrain
+});      
 
 let score = result.score;
 let scoreDetails = result.details;     
