@@ -660,14 +660,6 @@ function startFlow(){
       let kmAnalysis = "";
 
 
-else{
-  kmAnalysis = `
-Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
-
-👉 Dit valt binnen verwachting en geeft geen extra risico.
-`;
-}
-
 let degradationText = "";
 let degradationPercent = "";
 
@@ -711,14 +703,6 @@ else{
   model: model,
   powertrain: powertrain
 });
-
-let result = calculateScore({
-  age: age,
-  km: km,
-  make: make,
-  model: model,
-  powertrain: powertrain
-});      
 
 let score = result.score;
 let scoreDetails = result.details;     
@@ -775,10 +759,7 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
 `;
 }
   
-else{
-  scoreDetails.push("Normaal gebruik (0)");
-}
-      
+     
   // onbekende batterij = onzekerheid
 if(battery_kwh === "Onbekend"){
 
@@ -838,32 +819,7 @@ if(battery_kwh === "Onbekend"){
      if(score > 95) score = 95;
      if(score < 40) score = 40;
 
-     let scoreLabel = "Gemiddeld";
-
-     if(score >= 85){ scoreLabel = "Zeer sterk accuprofiel"; }
-     else if(score >= 70){ scoreLabel = "Goede basis"; }
-     else if(score >= 55){ scoreLabel = "Gemiddeld profiel"; }
-     else { scoreLabel = "Verhoogd risico"; }
-
-     let color = "#1c7c54";
-     if(score < 70){ color = "#b7791f"; }
-     if(score < 55){ color = "#c53030"; }
-
-     document.getElementById("score_value").innerText = score + "/100";
-     document.getElementById("score_bar").style.width = score + "%";
-     document.getElementById("score_bar").style.background = color;
-     document.getElementById("score_label").innerText = scoreLabel;
-     document.getElementById("battery_degradation").innerText = degradationText;
-     
-     if(!degradationText){
-      degradationText = `
-     Normale slijtage verwacht.
-
-     👉 Zonder extreme belasting blijft batterij degradatie meestal beperkt.
-
-     Controle van de accustatus blijft aanbevolen voor zekerheid.
-     `;
-    }
+   
 
 let financialRisk = "";
 
