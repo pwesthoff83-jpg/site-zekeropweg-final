@@ -1132,5 +1132,5 @@ export const batteryDB ={
 
 "zeekr x": [
   { "variant": "standard", "kwh": 69 }
-]  
+],  
 }  
