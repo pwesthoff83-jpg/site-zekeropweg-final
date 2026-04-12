@@ -1,7 +1,7 @@
 export const batteryDB ={
   "acura zdx": [
     { "variant": "standard", "kwh": 107.6 }
-  ],
+  ], 
 
   "alpine a290": [
     { "variant": "standard", "kwh": 52 }
