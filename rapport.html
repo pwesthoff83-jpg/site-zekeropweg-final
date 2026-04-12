@@ -295,7 +295,13 @@ input{
   
 </section>
 
-<script>
+<script type="module">
+import { getBattery } from "./battery-service.js";
+
+const test = getBattery("tesla model 3", "long range");
+
+console.log(test);
+  
 function calculateScore({age, km, make, model, powertrain}){
 
   let score = 100;
