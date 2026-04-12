@@ -298,9 +298,12 @@ input{
 <script type="module">
 import { getBattery } from "./battery-service.js";
 
-const test = getBattery("tesla model 3", "long range");
+function debugBattery() {
+  const result = getBattery("kia ev6", "awd long range");
+  console.log("Battery:", result);
+}
 
-console.log(test);
+debugBattery();
   
 function calculateScore({age, km, make, model, powertrain}){
 
