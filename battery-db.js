@@ -868,7 +868,7 @@ export const batteryDB ={
   { "variant": "performance old", "kwh": 78 },
   { "variant": "performance facelift", "kwh": 78.8 },
   { "variant": "performance newest", "kwh": 82 }
-]
+],
 
 "tesla model y": [
   { "variant": "standard range", "kwh": 60.5 },
@@ -883,7 +883,7 @@ export const batteryDB ={
   { "variant": "performance", "kwh": 78 },
   { "variant": "performance facelift", "kwh": 78.8 },
   { "variant": "performance newest", "kwh": 82 }
-]
+],
   
 "tesla model s": [
   { "variant": "60 / 60d", "kwh": 60 },
@@ -895,7 +895,7 @@ export const batteryDB ={
   { "variant": "long range / long range plus", "kwh": 100 },
   { "variant": "performance", "kwh": 100 },
   { "variant": "standard range", "kwh": 75 }
-]
+],
 
 "tesla model x": [
   { "variant": "60d", "kwh": 60 },
@@ -906,7 +906,7 @@ export const batteryDB ={
   { "variant": "long range / long range plus", "kwh": 100 },
   { "variant": "performance", "kwh": 100 },
   { "variant": "standard range", "kwh": 75 }
-]
+],
   
 "toyota c-hr": [
   { "variant": "phev", "kwh": 13.6 }
