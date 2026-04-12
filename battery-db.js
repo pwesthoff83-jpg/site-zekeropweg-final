@@ -1,4 +1,4 @@
-{
+export const batteryDB ={
   "acura zdx": [
     { "variant": "standard", "kwh": 107.6 }
   ],
