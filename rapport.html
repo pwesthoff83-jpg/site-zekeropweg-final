@@ -545,8 +545,15 @@ function fillList(id, items){
     let li = document.createElement("li");
     li.className = "check-item";
 
-    let icon = "✔️";
-    let className = "check-icon check-good";
+   let icon = "✔️";
+   let className = "check-icon check-good";
+
+   // 🔥 lijst type bepalen
+   if(id.includes("bad")){
+   icon = "❌";
+   className = "check-icon check-warning";
+  }
+    
 
     let lower = item.toLowerCase();
 
@@ -611,6 +618,11 @@ function startFlow(){
         powertrain = "Hybride";
      }
 
+      // 🔥 HARD FIX: Tesla altijd EV
+      if(makeUpper.includes("TESLA")){
+      powertrain = "EV";
+      }
+      
        // 🔥 FIXES HIER
      if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
      powertrain = "Hybride";
@@ -637,7 +649,10 @@ function startFlow(){
        else if(modelLower.includes("e performance")){
         powertrain = "Hybride";
       }
-                  
+
+       else if(
+  modelLower.includes("tesla") ||  
+         
       // algemene hybrid woorden
      else if(
     modelLower.includes("hybrid") ||
@@ -679,9 +694,40 @@ let battery = getBattery(
 );
 
 // fallback
+
+// 🔋 BATTERIJ DATA
+let battery = getBattery(
+  (make + " " + model).toLowerCase(),
+  model.toLowerCase()
+);
+
 let battery_kwh = "Onbekend";
 let battery_type = "Lithium-ion";
-let real_range = "Onbekend";
+let real_range = "";
+
+// 🔥 ALS BATTERY GEVONDEN
+if(battery){
+  battery_kwh = battery.kwh + " kWh";
+
+  let kwhNum = battery.kwh;
+
+  if(kwhNum >= 75){
+    real_range = "450–550";
+  }
+  else if(kwhNum >= 60){
+    real_range = "350–450";
+  }
+  else if(kwhNum >= 40){
+    real_range = "250–350";
+  }
+  else{
+    real_range = "150–250";
+  }
+}
+else{
+  // 🔥 fallback (nooit leeg)
+  real_range = "300–450";
+}
 
 if(battery){
   battery_kwh = battery.kwh + " kWh";
