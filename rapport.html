@@ -396,7 +396,10 @@ const brandDB = {
   "VAG": { behavior:"Voorspelbare prestaties.", risk:"gemiddeld", advice:"Let op gebruik." },
   "Volkswagen": { parent:"VAG" },
   "Audi": { parent:"VAG" },
+
   "Tesla": { behavior:"Zeer stabiel.", risk:"laag", advice:"Sterke keuze." },
+  "Tesla Motors": { behavior:"Zeer stabiel.", risk:"laag", advice:"Sterke keuze." },
+
   "BMW": { behavior:"Gemiddeld profiel.", risk:"gemiddeld", advice:"Check gebruik." }
 };
 
@@ -685,10 +688,22 @@ else if(
       let kmAnalysis = "";
 
  // 🔋 BATTERIJ DATA
-let battery = getBattery(
-  (make + " " + model).toLowerCase(),
-  model.toLowerCase()
-);
+let lookupModel = (make + " " + model).toLowerCase();
+
+lookupModel = lookupModel
+  .replace("tesla motors", "tesla")
+  .replace(/\s+/g, " ")
+  .trim();
+
+let lookupModel = (make + " " + model).toLowerCase();
+
+lookupModel = lookupModel
+  .replace("tesla motors", "tesla")
+  .replace("tesla, inc.", "tesla")
+  .replace(/\s+/g, " ")
+  .trim();
+
+let battery = getBattery(lookupModel, model.toLowerCase());
 
 let battery_kwh = "Onbekend";
 let battery_type = "Lithium-ion";
@@ -735,14 +750,15 @@ if(powertrain === "Hybride"){
 
   let minDeg = Math.round(baseDeg - 1);
   let maxDeg = Math.round(baseDeg + 3);
-
+  document.getElementById("real_world").innerText = data.real_world;
   degradationPercent = minDeg + "% - " + maxDeg + "%";
 
   degradationText =
     "Verwachte degradatie: " + degradationPercent + "\n\n" +
     "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
     "Werkelijke batterijconditie kan afwijken door laadgedrag.";
-
+  
+  document.getElementById("battery_degradation").innerText = degradationText;
 }
 else{
 
@@ -829,12 +845,12 @@ if(battery_kwh === "Onbekend"){
   if(powertrain === "Hybride"){
     battery_kwh = "±10–25 kWh";
     battery_type = "Lithium-ion";
-    real_range = "40–100 km elektrisch";
+    real_range = "40–100 elektrisch";
   }
   else if(powertrain === "EV"){
     battery_kwh = "Geschat 60–100 kWh";
     battery_type = "Lithium-ion";
-    real_range = "300–500 km";
+    real_range = "300–500 ";
   }
 
   // extra slimme herkenning als aandrijving nog onbekend is
@@ -844,13 +860,13 @@ if(battery_kwh === "Onbekend"){
       powertrain = "Hybride";
       battery_kwh = "±10–25 kWh";
       battery_type = "Lithium-ion";
-      real_range = "40–100 km elektrisch";
+      real_range = "40–100 elektrisch";
     }
     else if(modelLower.includes("e performance")){
       powertrain = "Hybride";
       battery_kwh = "±10–25 kWh";
       battery_type = "Lithium-ion";
-      real_range = "40–100 km elektrisch";
+      real_range = "40–100 elektrisch";
     }
     else if(
       modelLower.includes("tesla") ||
@@ -861,7 +877,7 @@ if(battery_kwh === "Onbekend"){
       powertrain = "EV";
       battery_kwh = "Geschat 60–100 kWh";
       battery_type = "Lithium-ion";
-      real_range = "300–500 km";
+      real_range = "300–500 ";
     }
     else{
       powertrain = "Brandstof";
