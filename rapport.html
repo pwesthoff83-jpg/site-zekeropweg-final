@@ -305,20 +305,6 @@ function debugBattery() {
 
 debugBattery();
 
- // 🔹 👉 HIER TOEVOEGEN
-function startFlow() {
-  const kenteken = document.getElementById("plate").value;
-  const km = document.getElementById("manual_km").value;
-  const naam = document.getElementById("name").value;
-
-  console.log("Kenteken:", kenteken);
-  console.log("KM:", km);
-  console.log("Naam:", naam);
-
-  const battery = getBattery("kia ev6", "awd long range");
-
-  console.log("Battery:", battery);
-} 
 
 window.startFlow = startFlow;
   
@@ -593,7 +579,6 @@ function startFlow(){
     return;
   }
 
-window.startFlow = startFlow;
   
  fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
     .then(res => res.json())
