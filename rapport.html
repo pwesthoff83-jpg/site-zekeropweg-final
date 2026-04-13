@@ -771,17 +771,17 @@ if(powertrain === "Hybride"){
 }
 else if(powertrain === "EV"){
 
-  let baseDeg = age * 1.5;
+  let baseDeg = age * 1.6;
 
   if(kmPerYear > 30000){
-    baseDeg += 4;
+    baseDeg += 6;
   }
   else if(kmPerYear > 20000){
-    baseDeg += 2;
+    baseDeg += 3;
   }
 
-  let minDeg = Math.max(5, Math.round(baseDeg - 3));
-  let maxDeg = Math.round(baseDeg + 5);
+  let minDeg = Math.max(5, Math.round(baseDeg - 4));
+  let maxDeg = Math.round(baseDeg + 6);
 
   degradationPercent = minDeg + "% – " + maxDeg + "%";
 
