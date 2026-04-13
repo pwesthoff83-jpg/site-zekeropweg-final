@@ -696,6 +696,23 @@ lookupModel = lookupModel
   .replace(/\s+/g, " ")
   .trim();
 
+// 🔥 Tesla variant detectie (ESSENTIEEL)
+if(lookupModel.includes("tesla model x")){
+  lookupModel = "tesla model x 100"; // veilige default
+}
+
+if(lookupModel.includes("tesla model s")){
+  lookupModel = "tesla model s 100";
+}
+
+if(lookupModel.includes("tesla model 3")){
+  lookupModel = "tesla model 3 long range";
+}
+
+if(lookupModel.includes("tesla model y")){
+  lookupModel = "tesla model y long range";
+}
+     
 let battery = getBattery(lookupModel, model.toLowerCase());
 
 let battery_kwh = "Onbekend";
@@ -751,8 +768,7 @@ if(powertrain === "Hybride"){
     "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
     "Werkelijke batterijconditie kan afwijken door laadgedrag.";
   
-  document.getElementById("battery_degradation").innerText = degradationText;
-}
+ }
 else{
 
   if(kmPerYear > 15000){
