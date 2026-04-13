@@ -687,6 +687,21 @@ window.startFlow = startFlow;
       let kmPerYear = km / ageYears;
       let kmAnalysis = "";
 
+      // 🔋 BATTERIJ DATA OPHALEN
+let battery = getBattery(
+  (make + " " + model).toLowerCase(),
+  model.toLowerCase()
+);
+
+// fallback
+let battery_kwh = "Onbekend";
+let battery_type = "Lithium-ion";
+let real_range = "Onbekend";
+
+if(battery){
+  battery_kwh = battery.kwh + " kWh";
+}
+
 
 let degradationText = "";
 let degradationPercent = "";
