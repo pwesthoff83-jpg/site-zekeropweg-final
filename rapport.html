@@ -1175,6 +1175,26 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       document.getElementById("profile_description").innerText = data.description;
 
       document.getElementById("battery_kwh").innerText = battery_kwh;
+      // 🔥 SCORE VISUAL FIX
+     document.getElementById("score_value").innerText = score + "/100";
+
+     // balk vullen (%)
+      document.getElementById("score_bar").style.width = score + "%";
+
+     // kleur dynamisch
+      let barColor = "#1c7c54"; // groen
+
+      if(score < 70){
+      barColor = "#b7791f"; // oranje
+     }
+      if(score < 55){
+       barColor = "#c53030"; // rood
+   }
+
+      document.getElementById("score_bar").style.background = barColor;
+
+     // label tekst
+      document.getElementById("score_label").innerText = scoreLabel;
       document.getElementById("battery_behavior").innerText = data.battery_behavior;
       document.getElementById("real_world").innerText = data.real_world;
       document.getElementById("battery_degradation").innerText = degradationText;
