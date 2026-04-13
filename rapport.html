@@ -752,34 +752,48 @@ let degradationPercent = "";
 
 if(powertrain === "Hybride"){
 
-  let baseDeg = age * 1;
+  let baseDeg = age * 1; // 1% per jaar
 
   if(kmPerYear > 20000){
     baseDeg += 2;
   }
 
-  let minDeg = Math.round(baseDeg - 1);
-  let maxDeg = Math.round(baseDeg + 3);
-  
-  degradationPercent = minDeg + "% - " + maxDeg + "%";
+  let minDeg = Math.max(3, Math.round(baseDeg - 2));
+  let maxDeg = Math.round(baseDeg + 2);
+
+  degradationPercent = minDeg + "% – " + maxDeg + "%";
 
   degradationText =
     "Verwachte degradatie: " + degradationPercent + "\n\n" +
     "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
-    "Werkelijke batterijconditie kan afwijken door laadgedrag.";
-  
- }
+    "Plug-in hybrides hebben kleinere accupakketten, waardoor slijtage vaak beperkter blijft.";
+
+}
+else if(powertrain === "EV"){
+
+  let baseDeg = age * 1.5; // EV realistisch
+
+  if(kmPerYear > 30000){
+    baseDeg += 4;
+  }
+  else if(kmPerYear > 20000){
+    baseDeg += 2;
+  }
+
+  let minDeg = Math.max(5, Math.round(baseDeg - 3));
+  let maxDeg = Math.round(baseDeg + 5);
+
+  degradationPercent = minDeg + "% – " + maxDeg + "%";
+
+  degradationText =
+    "Verwachte degradatie: " + degradationPercent + "\n\n" +
+    "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
+    "Werkelijke conditie hangt sterk af van laadgedrag en snelladen.";
+}
 else{
 
-  if(kmPerYear > 15000){
-    degradationText =
-      "Normale slijtage verwacht.\n\n" +
-      "Bovengemiddeld gebruik.";
-  } else {
-    degradationText =
-      "Lage slijtage verwacht.\n\n" +
-      "Normaal gebruik.";
-  }
+  degradationText = "Niet van toepassing.";
+}
 
 }
 
