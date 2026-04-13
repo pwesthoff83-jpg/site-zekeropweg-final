@@ -650,31 +650,28 @@ function startFlow(){
         powertrain = "Hybride";
       }
 
-       else if(
-  modelLower.includes("tesla") ||  
-         
-      // algemene hybrid woorden
-     else if(
-    modelLower.includes("hybrid") ||
-    modelLower.includes("phev") ||
-    modelLower.includes("plug") ||
-    modelLower.includes("recharge") ||
-    modelLower.includes("gte") ||
-    modelLower.includes("e-hybrid") ||
-    modelLower.includes("4xe")
-  ){
-    powertrain = "Hybride";
-  }
+// algemene hybrid woorden
+else if(
+  modelLower.includes("hybrid") ||
+  modelLower.includes("phev") ||
+  modelLower.includes("plug") ||
+  modelLower.includes("recharge") ||
+  modelLower.includes("gte") ||
+  modelLower.includes("e-hybrid") ||
+  modelLower.includes("4xe")
+){
+  powertrain = "Hybride";
+}
 
-  // EV herkenning
-  else if(
-    modelLower.includes("tesla") ||
-    modelLower.includes("eq") ||
-    modelLower.includes("ioniq") ||
-    modelLower.includes("ev")
-  ){
-    powertrain = "EV";
-  }
+// EV herkenning
+else if(
+  modelLower.includes("tesla") ||
+  modelLower.includes("eq") ||
+  modelLower.includes("ioniq") ||
+  modelLower.includes("ev")
+){
+  powertrain = "EV";
+}
 
   else{
     powertrain = "Brandstof";
@@ -687,15 +684,7 @@ function startFlow(){
       let kmPerYear = km / ageYears;
       let kmAnalysis = "";
 
-      // 🔋 BATTERIJ DATA OPHALEN
-let battery = getBattery(
-  (make + " " + model).toLowerCase(),
-  model.toLowerCase()
-);
-
-// fallback
-
-// 🔋 BATTERIJ DATA
+ // 🔋 BATTERIJ DATA
 let battery = getBattery(
   (make + " " + model).toLowerCase(),
   model.toLowerCase()
@@ -705,31 +694,31 @@ let battery_kwh = "Onbekend";
 let battery_type = "Lithium-ion";
 let real_range = "";
 
-// 🔥 ALS BATTERY GEVONDEN
-if(battery){
+// ✅ CORRECTE STRUCTUUR
+if (battery) {
+
   battery_kwh = battery.kwh + " kWh";
 
   let kwhNum = battery.kwh;
 
-  if(kwhNum >= 75){
+  if (kwhNum >= 75) {
     real_range = "450–550";
-  }
-  else if(kwhNum >= 60){
+  } 
+  else if (kwhNum >= 60) {
     real_range = "350–450";
-  }
-  else if(kwhNum >= 40){
+  } 
+  else if (kwhNum >= 40) {
     real_range = "250–350";
-  }
-  else{
+  } 
+  else {
     real_range = "150–250";
   }
-else{
-  // 🔥 fallback (nooit leeg)
-  real_range = "300–450";
-}
 
-if(battery){
-  battery_kwh = battery.kwh + " kWh";
+} else {
+
+  // fallback (altijd iets tonen)
+  real_range = "300–450";
+
 }
 
 
