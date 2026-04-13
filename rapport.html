@@ -692,13 +692,6 @@ let lookupModel = (make + " " + model).toLowerCase();
 
 lookupModel = lookupModel
   .replace("tesla motors", "tesla")
-  .replace(/\s+/g, " ")
-  .trim();
-
-let lookupModel = (make + " " + model).toLowerCase();
-
-lookupModel = lookupModel
-  .replace("tesla motors", "tesla")
   .replace("tesla, inc.", "tesla")
   .replace(/\s+/g, " ")
   .trim();
@@ -750,7 +743,7 @@ if(powertrain === "Hybride"){
 
   let minDeg = Math.round(baseDeg - 1);
   let maxDeg = Math.round(baseDeg + 3);
-  document.getElementById("real_world").innerText = data.real_world;
+  
   degradationPercent = minDeg + "% - " + maxDeg + "%";
 
   degradationText =
@@ -1168,7 +1161,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       document.getElementById("battery_kwh").innerText = battery_kwh;
       document.getElementById("battery_behavior").innerText = data.battery_behavior;
       document.getElementById("real_world").innerText = data.real_world;
-
+      document.getElementById("battery_degradation").innerText = degradationText;
 
       document.getElementById("r_name").innerText = name;
       document.getElementById("r_plate").innerText = plate;
