@@ -752,7 +752,7 @@ let degradationPercent = "";
 
 if(powertrain === "Hybride"){
 
-  let baseDeg = age * 1; // 1% per jaar
+  let baseDeg = age * 1;
 
   if(kmPerYear > 20000){
     baseDeg += 2;
@@ -771,7 +771,7 @@ if(powertrain === "Hybride"){
 }
 else if(powertrain === "EV"){
 
-  let baseDeg = age * 1.5; // EV realistisch
+  let baseDeg = age * 1.5;
 
   if(kmPerYear > 30000){
     baseDeg += 4;
@@ -789,13 +789,12 @@ else if(powertrain === "EV"){
     "Verwachte degradatie: " + degradationPercent + "\n\n" +
     "Gebaseerd op leeftijd en gebruik (" + Math.round(kmPerYear) + " km/jaar).\n\n" +
     "Werkelijke conditie hangt sterk af van laadgedrag en snelladen.";
+
 }
 else{
-
   degradationText = "Niet van toepassing.";
 }
 
-}
 
  let result = calculateScore({
   age: age,
