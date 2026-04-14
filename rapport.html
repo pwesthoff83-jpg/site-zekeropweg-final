@@ -689,43 +689,7 @@ function startFlow(){
       let rdwRange = getRdwWltpRange(v);
       let powertrain = detectPowertrain(make, model, brandstof, rdwRange);
 
-     // ✅ RDW basis
-     if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
-        powertrain = "Hybride";
-     }
-
-      // 🔥 HARD FIX: Tesla altijd EV
-      if(makeUpper.includes("TESLA")){
-      powertrain = "EV";
-      }
-      
-       // 🔥 FIXES HIER
-     if(makeUpper.includes("FORD") && modelLower.includes("kuga")){
-     powertrain = "Hybride";
-   }
-     else if(makeUpper.includes("BMW") && modelLower.includes("m5") && Number(year) >= 2024){
-      powertrain = "Hybride";
-   }
-     else if(brandstof.includes("hybride")){
-     powertrain = "Hybride";
-   }
-     else if(brandstof.includes("elektriciteit")){
-     powertrain = "EV";
-   }
-
-     // 🔥 HARD MODEL FALLBACK (BELANGRIJKSTE FIX)
-     if(powertrain === "Onbekend"){
-
-       // BMW e-modellen
-       if(modelLower.match(/\d+e\b/)){ // 530e, 330e etc
-         powertrain = "Hybride";
-       }
-
-       // AMG + E performance
-       else if(modelLower.includes("e performance")){
-        powertrain = "Hybride";
-      }
-
+    
 // algemene hybrid woorden
 else if(
   modelLower.includes("hybrid") ||
@@ -833,50 +797,6 @@ if (rdwRange && rdwRange > 0) {
     real_range = "-";
   }
 }
-
-
-// 🔥 PRIORITEIT: user keuze > database
-let kwhNum = null;
-
-if(selectedKwh){
-  kwhNum = Number(selectedKwh);
-}
-else if(battery){
-  kwhNum = battery.kwh;
-}
-
-// 👉 als we kWh hebben → berekenen
-if(kwhNum){
-
-  battery_kwh = kwhNum + " kWh";
-
-  if (kwhNum >= 75) {
-    real_range = "450–550";
-  } 
-  else if (kwhNum >= 60) {
-    real_range = "350–450";
-  } 
-  else if (kwhNum >= 40) {
-    real_range = "250–350";
-  } 
-  else {
-    real_range = "150–250";
-  }
-
-} else {
-
-  battery_kwh = "Geschat 60–100 kWh";
-  real_range = "300–500";
-
-}
-
-} else {
-
-  // fallback (altijd iets tonen)
-  real_range = "300–450";
-
-}
-
 
 let degradationText = "";
 let degradationPercent = "";
