@@ -354,6 +354,16 @@ function getRdwWltpRange(v) {
   if (makeUpper.includes("TESLA")) return "EV";
   if (makeUpper.includes("FORD") && modelLower.includes("kuga")) return "Hybride";
   if (makeUpper.includes("BMW") && modelLower.includes("m5") && new Date().getFullYear() >= 2024) return "Hybride";
+   if(
+    makeUpper.includes("VOLVO") &&
+    (
+      modelLower.includes("xc90") ||
+      modelLower.includes("recharge") ||
+      modelLower.includes("t8")
+    )
+){
+  return "Hybride";
+}
   if (modelLower.match(/\d+e\b/)) return "Hybride";
   if (modelLower.includes("e performance")) return "Hybride";
 
