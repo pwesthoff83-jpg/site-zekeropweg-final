@@ -147,6 +147,16 @@ input{
     <p class="small">Gebruik actuele kilometerstand voor betere analyse</p>
     <input type="text" id="name" placeholder="Jouw naam (optioneel)">
 
+    <label class="small">Batterij (optioneel, voor betere nauwkeurigheid)</label>
+
+    <select id="kwh_select">
+      <option value="">Automatisch detecteren</option>
+      <option value="60">60 kWh</option>
+      <option value="75">75 kWh</option>
+      <option value="90">90 kWh</option>
+      <option value="100">100 kWh</option>
+    </select>
+   
     <br>
     <button class="cta" onclick="startFlow()">Check deze auto</button>
    
@@ -715,9 +725,46 @@ if(lookupModel.includes("tesla model y")){
      
 let battery = getBattery(lookupModel, model.toLowerCase());
 
+let selectedKwh = document.getElementById("kwh_select").value;
+
 let battery_kwh = "Onbekend";
 let battery_type = "Lithium-ion";
 let real_range = "";
+
+// 🔥 PRIORITEIT: user keuze > database
+let kwhNum = null;
+
+if(selectedKwh){
+  kwhNum = Number(selectedKwh);
+}
+else if(battery){
+  kwhNum = battery.kwh;
+}
+
+// 👉 als we kWh hebben → berekenen
+if(kwhNum){
+
+  battery_kwh = kwhNum + " kWh";
+
+  if (kwhNum >= 75) {
+    real_range = "450–550";
+  } 
+  else if (kwhNum >= 60) {
+    real_range = "350–450";
+  } 
+  else if (kwhNum >= 40) {
+    real_range = "250–350";
+  } 
+  else {
+    real_range = "150–250";
+  }
+
+} else {
+
+  battery_kwh = "Geschat 60–100 kWh";
+  real_range = "300–500";
+
+}
 
 // ✅ CORRECTE STRUCTUUR
 if (battery) {
