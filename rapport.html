@@ -689,19 +689,6 @@ function startFlow(){
       let rdwRange = getRdwWltpRange(v);
       let powertrain = detectPowertrain(make, model, brandstof, rdwRange);
 
-    
-// algemene hybrid woorden
-else if(
-  modelLower.includes("hybrid") ||
-  modelLower.includes("phev") ||
-  modelLower.includes("plug") ||
-  modelLower.includes("recharge") ||
-  modelLower.includes("gte") ||
-  modelLower.includes("e-hybrid") ||
-  modelLower.includes("4xe")
-){
-  powertrain = "Hybride";
-}
 
 // EV herkenning
 else if(
