@@ -688,23 +688,7 @@ function startFlow(){
 
       let rdwRange = getRdwWltpRange(v);
       let powertrain = detectPowertrain(make, model, brandstof, rdwRange);
-
-
-// EV herkenning
-else if(
-  modelLower.includes("tesla") ||
-  modelLower.includes("eq") ||
-  modelLower.includes("ioniq") ||
-  modelLower.includes("ev")
-){
-  powertrain = "EV";
-}
-
-  else{
-    powertrain = "Brandstof";
-  }
-}
-      
+     
       let age = new Date().getFullYear() - Number(year);
       let profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
       let ageYears = age || 1;
