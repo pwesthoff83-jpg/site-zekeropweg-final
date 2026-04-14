@@ -315,7 +315,68 @@ function debugBattery() {
 
 debugBattery();
 
+function getRdwWltpRange(v) {
+  const candidates = [
+    v.elektrische_actieradius_wltp,
+    v.actieradius_elektrisch_wltp,
+    v.elektrische_actieradius,
+    v.actieradius_elektrisch
+  ];
 
+  for (const value of candidates) {
+    const num = Number(value);
+    if (!Number.isNaN(num) && num > 0) return num;
+  }
+
+  return null;
+}
+ 
+ function detectPowertrain(make, model, brandstof, rdwRange) {
+  const makeUpper = String(make || "").toUpperCase();
+  const modelLower = String(model || "").toLowerCase();
+  const fuelLower = String(brandstof || "").toLowerCase();
+
+  if (rdwRange && rdwRange > 0) {
+    if (
+      fuelLower.includes("benzine") ||
+      fuelLower.includes("diesel") ||
+      fuelLower.includes("hybride")
+    ) {
+      return "Hybride";
+    }
+    return "EV";
+  }
+
+  if (fuelLower.includes("benzine") && fuelLower.includes("elektriciteit")) return "Hybride";
+  if (fuelLower.includes("hybride")) return "Hybride";
+  if (fuelLower.includes("elektriciteit")) return "EV";
+
+  if (makeUpper.includes("TESLA")) return "EV";
+  if (makeUpper.includes("FORD") && modelLower.includes("kuga")) return "Hybride";
+  if (makeUpper.includes("BMW") && modelLower.includes("m5") && new Date().getFullYear() >= 2024) return "Hybride";
+  if (modelLower.match(/\d+e\b/)) return "Hybride";
+  if (modelLower.includes("e performance")) return "Hybride";
+
+  if (
+    modelLower.includes("hybrid") ||
+    modelLower.includes("phev") ||
+    modelLower.includes("plug") ||
+    modelLower.includes("recharge") ||
+    modelLower.includes("gte") ||
+    modelLower.includes("e-hybrid") ||
+    modelLower.includes("4xe")
+  ) return "Hybride";
+
+  if (
+    modelLower.includes("tesla") ||
+    modelLower.includes("eq") ||
+    modelLower.includes("ioniq") ||
+    modelLower.includes("ev")
+  ) return "EV";
+
+  return "Brandstof";
+}
+ 
 window.startFlow = startFlow;
   
 function calculateScore({age, km, make, model, powertrain}){
@@ -615,16 +676,18 @@ function startFlow(){
       let km = manualKm > 0 ? manualKm : rdwKm;
       if(manualKm > 0 && rdwKm > 0 && Math.abs(manualKm - rdwKm) > 20000){
        alert("Let op: ingevoerde km wijkt sterk af van RDW");
-      } 
+      }
+     
       let make = v.merk || "Onbekend";
       let makeUpper = make.toUpperCase();
       let model = v.handelsbenaming || "Onbekend";
       let year = (v.datum_eerste_toelating || "").substring(0,4) || "Onbekend";
 
-     let powertrain = "Onbekend";
+      let brandstof = v.brandstof_omschrijving || "";
+      let modelLower = model.toLowerCase();
 
-     let brandstof = (v.brandstof_omschrijving || "").toLowerCase();
-     let modelLower = model.toLowerCase();
+      let rdwRange = getRdwWltpRange(v);
+      let powertrain = detectPowertrain(make, model, brandstof, rdwRange);
 
      // ✅ RDW basis
      if(brandstof.includes("benzine") && brandstof.includes("elektriciteit")){
@@ -730,6 +793,47 @@ let selectedKwh = document.getElementById("kwh_select").value;
 let battery_kwh = "Onbekend";
 let battery_type = "Lithium-ion";
 let real_range = "";
+let range_source = "estimate";
+
+let kwhNum = null;
+
+if (selectedKwh) {
+  kwhNum = Number(selectedKwh);
+} else if (battery) {
+  kwhNum = Number(battery.kwh);
+}
+
+if (kwhNum && !Number.isNaN(kwhNum)) {
+  battery_kwh = kwhNum + " kWh";
+}
+
+if (rdwRange && rdwRange > 0) {
+  real_range = String(rdwRange);
+  range_source = "rdw";
+} else if (kwhNum) {
+  if (powertrain === "Hybride") {
+    if (kwhNum >= 20) real_range = "80–120";
+    else if (kwhNum >= 10) real_range = "40–80";
+    else real_range = "10–30";
+  } else {
+    if (kwhNum >= 90) real_range = "550–750";
+    else if (kwhNum >= 75) real_range = "450–600";
+    else if (kwhNum >= 60) real_range = "350–500";
+    else if (kwhNum >= 40) real_range = "250–350";
+    else real_range = "150–250";
+  }
+} else {
+  if (powertrain === "Hybride") {
+    battery_kwh = "±5–25 kWh";
+    real_range = "20–100";
+  } else if (powertrain === "EV") {
+    battery_kwh = "Geschat 60–100 kWh";
+    real_range = "300–500";
+  } else {
+    real_range = "-";
+  }
+}
+
 
 // 🔥 PRIORITEIT: user keuze > database
 let kwhNum = null;
@@ -765,26 +869,6 @@ if(kwhNum){
   real_range = "300–500";
 
 }
-
-// ✅ CORRECTE STRUCTUUR
-if (battery) {
-
-  battery_kwh = battery.kwh + " kWh";
-
-  let kwhNum = battery.kwh;
-
-  if (kwhNum >= 75) {
-    real_range = "450–550";
-  } 
-  else if (kwhNum >= 60) {
-    real_range = "350–450";
-  } 
-  else if (kwhNum >= 40) {
-    real_range = "250–350";
-  } 
-  else {
-    real_range = "150–250";
-  }
 
 } else {
 
@@ -1091,7 +1175,7 @@ Deze uitvoering is uitgerust met een batterij van circa ${battery_kwh} (${batter
 
 Binnen dit segment behoort dit tot de grotere en efficiëntere accupakketten, wat zorgt voor een hoge actieradius en stabiele prestaties.
 
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van rijstijl, temperatuur en gebruik.
+In de praktijk ligt de actieradius rond ${real_range} km (${range_source === "rdw" ? "RDW/WLTP" : "schatting"}), afhankelijk van rijstijl, temperatuur en gebruik.
 
 Dit type batterij staat bekend om sterke prestaties en goede laadcapaciteit, maar is gevoeliger voor intensief snelladen op lange termijn.
 `,
@@ -1121,7 +1205,7 @@ Wil je maximale zekerheid, laat dan de accustatus controleren vóór aankoop —
           battery_behavior:` 
 Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
 
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+In de praktijk ligt de actieradius rond ${real_range} km (${range_source === "rdw" ? "RDW/WLTP" : "schatting"}), afhankelijk van rijstijl, temperatuur en gebruik.
 
 ${brand.behavior}
 `,
@@ -1145,7 +1229,7 @@ Risico-inschatting: ${brand.risk}.
           battery_behavior: `
 Deze auto gebruikt een ${battery_type} batterij met een capaciteit van circa ${battery_kwh}.
 
-In de praktijk ligt de actieradius rond ${real_range} km (WLTP), afhankelijk van gebruik en omstandigheden.
+In de praktijk ligt de actieradius rond ${real_range} km (${range_source === "rdw" ? "RDW/WLTP" : "schatting"}), afhankelijk van rijstijl, temperatuur en gebruik.
 
 ${brand.behavior}
 `,
