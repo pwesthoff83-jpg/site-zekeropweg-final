@@ -515,7 +515,17 @@ function fillList(id, items){
    icon = "❌";
    className = "check-icon check-warning";
   }
-    
+
+  function pickBestBattery(options, year) {
+
+  if (!Array.isArray(options)) return options;
+
+  if (year >= 2022) return options[2]; // nieuwste batterij
+  if (year >= 2019) return options[1];
+  return options[0];
+}
+
+   
 
     let lower = item.toLowerCase();
 
@@ -611,6 +621,10 @@ if(lookupModel.includes("tesla model y")){
      
 let battery = getBattery(lookupModel, model.toLowerCase());
 
+if (Array.isArray(battery)) {
+  battery = pickBestBattery(battery, Number(year));
+}     
+     
 let selectedKwh = document.getElementById("kwh_select").value;
 
 let battery_kwh = "Onbekend";
@@ -787,9 +801,15 @@ if (battery_kwh === "Onbekend") {
     score -= 10;
     scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
   }
-else if (powertrain === "EV") {
-  // alleen als je fallback wilt
-}
+  } else {
+
+   // hier ALLEEN als batterij WEL bekend is
+   if (powertrain === "EV" && !rdwRange) {
+     real_range = real_range || "300–500";
+   }
+
+ }
+
 
 
 // 🔥 HYBRIDE (PHEV)
