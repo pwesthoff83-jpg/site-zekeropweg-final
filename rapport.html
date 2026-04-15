@@ -434,15 +434,7 @@ function pickBestBattery(options, year, variant){
 
   return options[0];
 }
- 
-   
-  str = str
-    .replace("plug-in hybrid", "")
-    .replace("phev", "")
-    .replace("hybrid", "")
-    .replace("electric", "")
-    .replace("ev", "");
-    
+
 function normalizeBrand(brand){
   return String(brand || "")
     .toLowerCase()
