@@ -600,14 +600,45 @@ function startFlow(){
     return;
   }
 
-  
- fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
-    .then(res => res.json())
-    .then(dataRDW => {
-      if(!dataRDW.length){
-        alert("Kenteken niet gevonden");
-        return;
-      }
+  fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("RDW response error");
+    }
+    return res.json();
+  })
+  .then(dataRDW => {
+
+    // 🔥 GEEN DATA = GEEN ERROR
+    if (!dataRDW || dataRDW.length === 0) {
+      alert("Kenteken niet gevonden in RDW database.");
+      return;
+    }
+
+    let v = dataRDW[0];
+
+    if (!v) {
+      alert("Voertuigdata onvolledig ontvangen.");
+      return;
+    }
+
+    // 👉 rest van je code blijft hetzelfde
+
+  })
+  .catch(err => {
+    console.error("RDW fetch error:", err);
+
+    alert(`
+We konden dit kenteken niet ophalen.
+
+Mogelijke oorzaken:
+- Tijdelijke storing bij RDW
+- Kenteken niet beschikbaar in dataset
+
+Probeer het later opnieuw.
+    `);
+  });
+
 
       let v = dataRDW[0];
       let rdwKm = Number(v.tellerstand) || 0;
