@@ -171,8 +171,6 @@ input{
   </div>
 </section>
 
-<div class="card" id="previewGate" style="text-align:center; border:2px solid #1c2b26; background:#f8f7f3; display:none;"></div>
-  
   <section class="container" id="report" style="display:none">
 
   <div class="card report-header">
@@ -316,6 +314,76 @@ input{
 <script type="module">
 import { getBattery } from "./battery-service.js";
 
+function calculateScore({ age, km, make, model, powertrain }) {
+
+  let score = 100;
+  let details = [];
+
+  // 🔹 Leeftijd
+  if (age <= 3) {
+    details.push("Relatief jonge auto (+0)");
+  } 
+  else if (age <= 6) {
+    score -= 5;
+    details.push("Gemiddelde leeftijd (-5)");
+  } 
+  else if (age <= 9) {
+    score -= 12;
+    details.push("Oudere auto (-12)");
+  } 
+  else {
+    score -= 20;
+    details.push("Hogere leeftijd (-20)");
+  }
+
+  // 🔹 Kilometerstand
+  if (km < 50000) {
+    details.push("Lage kilometerstand (+0)");
+  } 
+  else if (km < 120000) {
+    score -= 5;
+    details.push("Gemiddelde kilometerstand (-5)");
+  } 
+  else if (km < 200000) {
+    score -= 12;
+    details.push("Hogere kilometerstand (-12)");
+  } 
+  else {
+    score -= 20;
+    details.push("Zeer hoge kilometerstand (-20)");
+  }
+
+  // 🔹 Aandrijving nuance
+  if (powertrain === "EV") {
+    details.push("Elektrisch rijden → minder slijtage op aandrijflijn (+0)");
+  }
+
+  if (powertrain === "Hybride") {
+    score -= 3;
+    details.push("Hybride systeem complexer (+-3)");
+  }
+
+  // 🔹 Merk simpele correctie (veilig)
+  let makeUpper = String(make || "").toUpperCase();
+
+  if (makeUpper.includes("TESLA")) {
+    details.push("Sterk batterijmanagement (+0)");
+  }
+
+  if (makeUpper.includes("NISSAN") && model.toLowerCase().includes("leaf")) {
+    score -= 5;
+    details.push("Bekend model met snellere degradatie (-5)");
+  }
+
+  // 🔹 Score grenzen
+  if (score > 100) score = 100;
+  if (score < 0) score = 0;
+
+  return {
+    score: Math.round(score),
+    details
+  };
+} 
 
 function getRdwWltpRange(v) {
   const candidates = [
@@ -521,6 +589,8 @@ function fillList(id, items){
   });
 }
 
+
+ 
 function startFlow(){
   let plate = document.getElementById("plate").value.replace(/-/g, "").toUpperCase();
   let name = document.getElementById("name").value || "Onbekend";
