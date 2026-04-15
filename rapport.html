@@ -599,10 +599,11 @@ function startFlow(){
     alert("Voer eerst een kenteken in.");
     return;
   }
-
-  fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
-  .then(res => {
-    if (!res.ok) {
+ 
+   fetch(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${plate}`)
+    .then(res => res.json())
+    .then(dataRDW => {
+     if (!res.ok) {
       throw new Error("RDW response error");
     }
     return res.json();
