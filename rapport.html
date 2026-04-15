@@ -619,8 +619,14 @@ if(lookupModel.includes("tesla model y")){
   lookupModel = "tesla model y long range";
 }
      
-let battery = getBattery(lookupModel, model.toLowerCase());
+let battery = null;
 
+try {
+  battery = getBattery(lookupModel, model.toLowerCase());
+} catch(e) {
+  console.warn("Battery lookup failed:", lookupModel);
+}
+     
 if (Array.isArray(battery)) {
   battery = pickBestBattery(battery, Number(year));
 }     
