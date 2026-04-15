@@ -458,6 +458,10 @@ export const batteryDB ={
   { "variant": "standard", "kwh": 11.1 }
 ],
 
+"kia xceed": [
+  { "variant": "phev", "kwh": 8.9 }
+],  
+  
 "kia sportage phev": [
   { "variant": "standard", "kwh": 13.8 }
 ],
