@@ -567,7 +567,7 @@ function startFlow(){
 
  // 🔋 BATTERIJ DATA
 let lookupModel = normalizeModel(make, model);
-let variant = detectVariant(model);     
+let variant = "";     
 
 lookupModel = lookupModel
   .replace("tesla motors", "tesla")
@@ -822,11 +822,7 @@ if (battery_kwh === "Onbekend") {
 // 🔥 HYBRIDE (PHEV)
 if(powertrain === "Hybride"){
 
-  if(score >= 70){
-  
-
-  else{
-    finalAdvice = `
+  finalAdvice = `
 De basis van deze auto oogt ${score >= 70 ? "goed" : "niet zonder aandachtspunten"}.
 
 Wat belangrijk is om te weten:
@@ -840,7 +836,7 @@ Voor veel kopers is dit het moment waarop extra zekerheid waardevol wordt.
 Een AccuCheck geeft inzicht in de daadwerkelijke batterijconditie vóór aankoop.
 `;
 
-  }
+}
 
 }
 
