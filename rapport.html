@@ -382,23 +382,6 @@ function getRdwWltpRange(v) {
 }
  
 window.startFlow = startFlow;
- // 🔋 batterij keuze
-function pickBestBattery(options, year, variant){
-
-  if (!Array.isArray(options)) return options;
-
-  if(variant){
-    let found = options.find(o =>
-      o.variant && o.variant.toLowerCase().includes(variant)
-    );
-    if(found) return found;
-  }
-
-  if (year >= 2022) return options[options.length - 1];
-  if (year >= 2019) return options[Math.floor(options.length / 2)];
-
-  return options[0];
-}
 
 // 🔥 MODEL NORMALIZER
 function normalizeModel(make, model){
@@ -470,28 +453,7 @@ function detectVariant(model){
     .replace("hybrid", "")
     .replace("electric", "")
     .replace("ev", "");
-
-  str = str
-    .replace("mercedes benz", "mercedes-benz")
-    .replace("mercedes", "mercedes-benz");
-
-  // 🔥 merk-specifiek
-  if(str.includes("bmw 2")) str = "bmw 225xe";
-  if(str.includes("bmw 3")) str = "bmw 330e";
-  if(str.includes("bmw 5")) str = "bmw 530e";
-
-  if(str.includes("audi q4")) str = "audi q4 e-tron";
-  if(str.includes("audi q5")) str = "audi q5";
-
-  if(str.includes("xc90")) str = "volvo xc90";
-  if(str.includes("xc60")) str = "volvo xc60";
-
-  if(str.includes("model 3")) str = "tesla model 3";
-  if(str.includes("model y")) str = "tesla model y";
-
-  return str.trim();
-}
-   
+    
 function normalizeBrand(brand){
   return String(brand || "")
     .toLowerCase()
