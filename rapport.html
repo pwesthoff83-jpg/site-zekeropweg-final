@@ -476,6 +476,12 @@ function normalizeModel(make, model) {
   if (str.includes("model 3")) str = "tesla model 3";
   if (str.includes("model y")) str = "tesla model y";
 
+  if(str.includes("taycan")) str = "porsche taycan";
+  if(str.includes("id buzz")) str = "volkswagen id buzz";
+  if(str.includes("a6 e")) str = "audi a6 e tron";
+  if(str.includes("model 3 highland")) str = "tesla model 3 highland";
+  if(str.includes("model y juniper")) str = "tesla model y juniper";
+
   return str.trim();
 }
 
