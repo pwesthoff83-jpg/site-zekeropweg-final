@@ -624,20 +624,11 @@ function startFlow(){
 
     // 👉 rest van je code blijft hetzelfde
 
-  })
-  .catch(err => {
-    console.error("RDW fetch error:", err);
+    .catch(err => {
+      console.error("RDW fetch error:", err);
 
-    alert(`
-We konden dit kenteken niet ophalen.
-
-Mogelijke oorzaken:
-- Tijdelijke storing bij RDW
-- Kenteken niet beschikbaar in dataset
-
-Probeer het later opnieuw.
-    `);
-  });
+      alert("We konden dit kenteken niet ophalen. Probeer het later opnieuw.");
+    });
 
 
       let v = dataRDW[0];
