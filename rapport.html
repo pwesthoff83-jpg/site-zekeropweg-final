@@ -387,7 +387,11 @@ window.startFlow = startFlow;
 function normalizeModel(make, model){
   let str = (make + " " + model).toLowerCase();
 
- 
+  str = str
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
   const removeWords = [
     "iperformance","e performance","performance","edition",
     "line","sport","plus","pro","ultra","gt","amg",
@@ -395,22 +399,23 @@ function normalizeModel(make, model){
   ];
 
   removeWords.forEach(word => {
+    str = str.replace(new RegExp(word, "g"), "");
+  });
 
-// 🔥 NIEUW: VARIANT DETECTIE (STAP 1)
-function detectVariant(model){
-  let m = model.toLowerCase();
+  if(str.includes("bmw 2")) str = "bmw 225xe";
+  if(str.includes("bmw 3")) str = "bmw 330e";
+  if(str.includes("bmw 5")) str = "bmw 530e";
 
-  if(m.includes("long range")) return "long range";
-  if(m.includes("performance")) return "performance";
-  if(m.includes("standard")) return "standard";
+  if(str.includes("audi q4")) str = "audi q4 e-tron";
+  if(str.includes("audi q5")) str = "audi q5";
 
-  let match = m.match(/\b\d{2,3}e\b/);
-  if(match) return match[0];
+  if(str.includes("xc90")) str = "volvo xc90";
+  if(str.includes("xc60")) str = "volvo xc60";
 
-  if(m.includes("tfsi e")) return "tfsi e";
-  if(m.includes("e-tron")) return "e-tron";
+  if(str.includes("model 3")) str = "tesla model 3";
+  if(str.includes("model y")) str = "tesla model y";
 
-  return null;
+  return str.trim();
 }
 
 function pickBestBattery(options, year, variant){
