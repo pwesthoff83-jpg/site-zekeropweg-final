@@ -221,7 +221,15 @@ input{
   <h3>Kilometergebruik analyse</h3>
   <p id="km_analysis"></p>
 </div>
-  
+
+  <div class="card highlight-box">
+
+  <h3>Wat veel kopers niet weten</h3>
+
+  <p id="insight_block"></p>
+
+</div>
+   
   <div class="card">
     <p>
       Dit rapport is opgesteld op basis van voertuigdata en praktijkervaring.
@@ -703,19 +711,17 @@ let score = result.score;
 let scoreDetails = result.details;     
   
 let scoreLabel = "";
-
+     
 if(score >= 85){
-  scoreLabel = "Zeer sterk accuprofiel";
+  scoreLabel = "Sterke basis";
 }
 else if(score >= 70){
-  scoreLabel = "Goede basis";
-}
-else if(score >= 55){
-  scoreLabel = "Gemiddeld profiel";
+  scoreLabel = "Goede basis met aandachtspunt";
 }
 else{
-  scoreLabel = "Verhoogd risico";
+  scoreLabel = "Aandachtspunt";
 }
+
 
 
 // 🔥 kilometer gebruik
@@ -754,6 +760,36 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
 `;
 }
   
+// ✅ NIEUW BLOK — DIRECT HIERONDER
+
+let insightText = "";
+
+if(powertrain === "EV"){
+  insightText = `
+Bij elektrische auto’s zegt kilometerstand minder dan bij brandstofauto’s.
+
+👉 De batterij slijt namelijk vooral door laadgedrag en temperatuur, niet alleen door kilometers.
+
+Twee auto's met dezelfde km-stand kunnen daardoor een duidelijk verschil hebben in actieradius en prestaties.
+`;
+}
+else if(powertrain === "Hybride"){
+  insightText = `
+Bij plug-in hybrides wordt de batterij vaak onderschat.
+
+👉 Veel auto’s rijden deels op brandstof, waardoor de batterij minder optimaal gebruikt wordt.
+
+Dit kan invloed hebben op de elektrische actieradius.
+`;
+}
+else{
+  insightText = `
+Bij moderne auto’s speelt gebruik een grotere rol dan alleen kilometerstand.
+
+👉 Onderhoud en rijstijl bepalen prestaties op lange termijn.
+`;
+}
+
      
   // onbekende batterij = onzekerheid
 if (battery_kwh === "Onbekend") {
@@ -787,33 +823,23 @@ if (battery_kwh === "Onbekend") {
 if(powertrain === "Hybride"){
 
   if(score >= 70){
-    finalAdvice = `
-Goede keuze.
-
-👉 Bij plug-in hybrides is de batterij minder kritisch dan bij volledige EV’s.
-
-Controleer vooral of de elektrische actieradius logisch is en of laden goed werkt.
-`;
-  }
-
-  else if(score >= 55){
-    finalAdvice = `
-Goede basis, maar check gebruik.
-
-👉 Bij dit type auto is het belangrijk hoe de vorige eigenaar ermee omging.
-
-Controleer of de auto regelmatig geladen is en test de elektrische modus tijdens proefrit.
-`;
-  }
+  
 
   else{
     finalAdvice = `
-Aandachtspunt.
+De basis van deze auto oogt ${score >= 70 ? "goed" : "niet zonder aandachtspunten"}.
 
-👉 De auto is bruikbaar, maar controle van de hybride batterij is verstandig.
+Wat belangrijk is om te weten:
 
-Laat bij twijfel een diagnose uitvoeren vóór aankoop.
+De werkelijke conditie van de batterij is niet zichtbaar in voertuigdata.
+
+👉 Dit betekent dat twee identieke auto’s in de praktijk verschillend kunnen presteren.
+
+Voor veel kopers is dit het moment waarop extra zekerheid waardevol wordt.
+
+Een AccuCheck geeft inzicht in de daadwerkelijke batterijconditie vóór aankoop.
 `;
+
   }
 
 }
@@ -1025,6 +1051,7 @@ if(make.includes("HYUNDAI") || make.includes("KIA") || make.includes("BYD")){
       document.getElementById("meta").innerText = year + " • " + (powertrain === "Onbekend" ? "Aandrijving onbekend" : powertrain);
       document.getElementById("km").innerText = km;
       document.getElementById("km_analysis").innerText = kmAnalysis;
+      document.getElementById("insight_block").innerText = insightText;
       document.getElementById("make_model").innerText = make + " " + model;
       document.getElementById("build_year").innerText = year;
       
