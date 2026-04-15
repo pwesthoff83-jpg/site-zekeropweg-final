@@ -463,65 +463,6 @@ function detectVariant(model){
 
   return null;
 }
-  // 🔋 batterij keuze
-function pickBestBattery(options, year) {
-
-  if (!Array.isArray(options)) return options;
-
-  if (year >= 2022) return options[options.length - 1];
-  if (year >= 2019) return options[Math.floor(options.length / 2)];
-
-  return options[0];
-}
-
-// 🔥 MODEL NORMALIZER
-function normalizeModel(make, model){
-  let str = (make + " " + model).toLowerCase();
-
-  str = str
-    .replace(/-/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  const removeWords = [
-    "iperformance","e performance","performance","edition",
-    "line","sport","plus","pro","ultra","gt","amg",
-    "quattro","xdrive","4motion"
-  ];
-
-  removeWords.forEach(word => {
-    str = str.replace(new RegExp(word, "g"), "");
-  });
-
-  str = str
-    .replace("plug-in hybrid", "")
-    .replace("phev", "")
-    .replace("hybrid", "")
-    .replace("electric", "")
-    .replace("ev", "");
-
-  str = str
-    .replace("mercedes benz", "mercedes-benz")
-    .replace("mercedes", "mercedes-benz");
-
-  // merk fixes
-  if(str.includes("bmw 2")) str = "bmw 225xe";
-  if(str.includes("bmw 3")) str = "bmw 330e";
-  if(str.includes("bmw 5")) str = "bmw 530e";
-
-  if(str.includes("audi q4")) str = "audi q4 e-tron";
-  if(str.includes("audi q5")) str = "audi q5";
-
-  if(str.includes("xc90")) str = "volvo xc90";
-  if(str.includes("xc60")) str = "volvo xc60";
-
-  if(str.includes("model 3")) str = "tesla model 3";
-  if(str.includes("model y")) str = "tesla model y";
-
-  return str.trim();
-}
-
- 
 
   str = str
     .replace("plug-in hybrid", "")
@@ -550,83 +491,7 @@ function normalizeModel(make, model){
 
   return str.trim();
 }
-
    
-  let score = 100;
-  let details = [];
-
-  // 🔹 1. Leeftijd
-  if(age > 8){
-    score -= 20;
-    details.push("Hogere leeftijd verhoogt accurisico");
-  }
-  else if(age > 5){
-    score -= 10;
-    details.push("Gemiddelde leeftijd → normale slijtage");
-  }
-
-  // 🔹 2. KM gebruik
-  let kmPerYear = km / Math.max(age,1);
-
-  if(kmPerYear > 25000){
-    score -= 20;
-    details.push("Zeer intensief gebruik");
-  }
-  else if(kmPerYear > 20000){
-    score -= 10;
-    details.push("Bovengemiddeld gebruik");
-  }
-
-  // 🔹 3. Merk risico
-  const brandRisk = {
-    "TESLA": -5,
-    "HYUNDAI": -3,
-    "KIA": -3,
-    "TOYOTA": -2,
-    "BMW": -8,
-    "AUDI": -8,
-    "MERCEDES": -8,
-    "PEUGEOT": -10,
-    "OPEL": -10
-  };
-
-  let makeUpper = make.toUpperCase();
-  if(brandRisk[makeUpper]){
-    score += brandRisk[makeUpper];
-    details.push("Merk-specifiek accuprofiel meegenomen");
-  }
-
-  // 🔹 4. Model risico (killer feature)
-  const modelRiskDB = {
-    "nissan leaf": -15, // geen actieve koeling
-  "audi e-tron": -10, // hoge degradatie bij snelladen
-  "tesla model s": -5, // oudere batterijgeneraties
-  "bmw 330e": -5, // kleine batterij, gevoelig gebruik
-  "outlander phev": -8 // vaak slecht geladen
-};
-
-  let modelKey = (make + " " + model).toLowerCase();
-
-  for(let key in modelRiskDB){
-    if(modelKey.includes(key)){
-      score += modelRiskDB[key];
-      details.push("Bekende model-specifieke aandachtspunten");
-    }
-  }
-
-  // 🔹 5. Onzekerheid (altijd!)
-  if(powertrain === "EV"){
-    score -= 10;
-    details.push("Laadgeschiedenis onbekend → risicofactor");
-  }
-
-  // 🔒 Grenzen
-  if(score > 95) score = 95;
-  if(score < 40) score = 40;
-
-  return {score, details};
-}
-  
 function normalizeBrand(brand){
   return String(brand || "")
     .toLowerCase()
@@ -682,18 +547,7 @@ function fillList(id, items){
    icon = "❌";
    className = "check-icon check-warning";
   }
-
-  function pickBestBattery(options, year) {
-
-  if (!Array.isArray(options)) return options;
-
-  if (year >= 2022) return options[2]; // nieuwste batterij
-  if (year >= 2019) return options[1];
-  return options[0];
-}
-
-   
-
+ 
     let lower = item.toLowerCase();
 
     if(lower.includes("let op") || lower.includes("controleer") || lower.includes("aanbevolen")){
