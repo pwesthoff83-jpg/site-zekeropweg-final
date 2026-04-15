@@ -382,6 +382,87 @@ function getRdwWltpRange(v) {
 }
  
 window.startFlow = startFlow;
+ // 🔋 batterij keuze
+function pickBestBattery(options, year, variant){
+
+  if (!Array.isArray(options)) return options;
+
+  if(variant){
+    let found = options.find(o =>
+      o.variant && o.variant.toLowerCase().includes(variant)
+    );
+    if(found) return found;
+  }
+
+  if (year >= 2022) return options[options.length - 1];
+  if (year >= 2019) return options[Math.floor(options.length / 2)];
+
+  return options[0];
+}
+
+// 🔥 MODEL NORMALIZER
+function normalizeModel(make, model){
+  let str = (make + " " + model).toLowerCase();
+
+  str = str
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const removeWords = [
+    "iperformance","e performance","performance","edition",
+    "line","sport","plus","pro","ultra","gt","amg",
+    "quattro","xdrive","4motion"
+  ];
+
+  removeWords.forEach(word => {
+    str = str.replace(new RegExp(word, "g"), "");
+  });
+
+  str = str
+    .replace("plug-in hybrid", "")
+    .replace("phev", "")
+    .replace("hybrid", "")
+    .replace("electric", "")
+    .replace("ev", "");
+
+  str = str
+    .replace("mercedes benz", "mercedes-benz")
+    .replace("mercedes", "mercedes-benz");
+
+  if(str.includes("bmw 2")) str = "bmw 225xe";
+  if(str.includes("bmw 3")) str = "bmw 330e";
+  if(str.includes("bmw 5")) str = "bmw 530e";
+
+  if(str.includes("audi q4")) str = "audi q4 e-tron";
+  if(str.includes("audi q5")) str = "audi q5";
+
+  if(str.includes("xc90")) str = "volvo xc90";
+  if(str.includes("xc60")) str = "volvo xc60";
+
+  if(str.includes("model 3")) str = "tesla model 3";
+  if(str.includes("model y")) str = "tesla model y";
+
+  return str.trim();
+}
+
+// 🔥 NIEUW: VARIANT DETECTIE (STAP 1)
+function detectVariant(model){
+
+  let m = model.toLowerCase();
+
+  if(m.includes("long range")) return "long range";
+  if(m.includes("performance")) return "performance";
+  if(m.includes("standard")) return "standard";
+
+  let match = m.match(/\b\d{2,3}e\b/);
+  if(match) return match[0];
+
+  if(m.includes("tfsi e")) return "tfsi e";
+  if(m.includes("e-tron")) return "e-tron";
+
+  return null;
+}
   // 🔋 batterij keuze
 function pickBestBattery(options, year) {
 
@@ -681,6 +762,7 @@ function startFlow(){
 
  // 🔋 BATTERIJ DATA
 let lookupModel = normalizeModel(make, model);
+let variant = detectVariant(model);     
 
 lookupModel = lookupModel
   .replace("tesla motors", "tesla")
@@ -714,9 +796,9 @@ try {
 }
      
 if (Array.isArray(battery)) {
-  battery = pickBestBattery(battery, Number(year));
-}     
-     
+  battery = pickBestBattery(battery, Number(year), variant);
+}
+
 let selectedKwh = document.getElementById("kwh_select").value;
 
 let battery_kwh = "Onbekend";
