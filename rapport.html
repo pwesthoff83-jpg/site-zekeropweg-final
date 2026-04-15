@@ -383,8 +383,65 @@ function getRdwWltpRange(v) {
  
 window.startFlow = startFlow;
   
-function calculateScore({age, km, make, model, powertrain}){
+function pickBestBattery(options, year) {
 
+  if (!Array.isArray(options)) return options;
+
+  if (year >= 2022) return options[options.length - 1];
+  if (year >= 2019) return options[Math.floor(options.length / 2)];
+
+  return options[0];
+}
+
+  function pickBestBattery(options, year) {
+ 
+function normalizeModel(make, model){
+  let str = (make + " " + model).toLowerCase();
+
+  str = str
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const removeWords = [
+    "iperformance","e performance","performance","edition",
+    "line","sport","plus","pro","ultra","gt","amg",
+    "quattro","xdrive","4motion"
+  ];
+
+  removeWords.forEach(word => {
+    str = str.replace(new RegExp(word, "g"), "");
+  });
+
+  str = str
+    .replace("plug-in hybrid", "")
+    .replace("phev", "")
+    .replace("hybrid", "")
+    .replace("electric", "")
+    .replace("ev", "");
+
+  str = str
+    .replace("mercedes benz", "mercedes-benz")
+    .replace("mercedes", "mercedes-benz");
+
+  // 🔥 merk-specifiek
+  if(str.includes("bmw 2")) str = "bmw 225xe";
+  if(str.includes("bmw 3")) str = "bmw 330e";
+  if(str.includes("bmw 5")) str = "bmw 530e";
+
+  if(str.includes("audi q4")) str = "audi q4 e-tron";
+  if(str.includes("audi q5")) str = "audi q5";
+
+  if(str.includes("xc90")) str = "volvo xc90";
+  if(str.includes("xc60")) str = "volvo xc60";
+
+  if(str.includes("model 3")) str = "tesla model 3";
+  if(str.includes("model y")) str = "tesla model y";
+
+  return str.trim();
+}
+
+   
   let score = 100;
   let details = [];
 
@@ -594,7 +651,7 @@ function startFlow(){
       let kmAnalysis = "";
 
  // 🔋 BATTERIJ DATA
-let lookupModel = (make + " " + model).toLowerCase();
+let lookupModel = normalizeModel(make, model);
 
 lookupModel = lookupModel
   .replace("tesla motors", "tesla")
