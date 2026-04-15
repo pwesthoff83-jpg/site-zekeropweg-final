@@ -402,17 +402,7 @@ function normalizeModel(make, model){
     str = str.replace(new RegExp(word, "g"), "");
   });
 
-  str = str
-    .replace("plug-in hybrid", "")
-    .replace("phev", "")
-    .replace("hybrid", "")
-    .replace("electric", "")
-    .replace("ev", "");
-
-  str = str
-    .replace("mercedes benz", "mercedes-benz")
-    .replace("mercedes", "mercedes-benz");
-
+  
   if(str.includes("bmw 2")) str = "bmw 225xe";
   if(str.includes("bmw 3")) str = "bmw 330e";
   if(str.includes("bmw 5")) str = "bmw 530e";
@@ -431,7 +421,25 @@ function normalizeModel(make, model){
 
 // 🔥 NIEUW: VARIANT DETECTIE (STAP 1)
 function detectVariant(model){
+ 
+function pickBestBattery(options, year, variant){
 
+  if (!Array.isArray(options)) return options;
+
+  if(variant){
+    let found = options.find(o =>
+      o.variant && o.variant.toLowerCase().includes(variant)
+    );
+    if(found) return found;
+  }
+
+  if (year >= 2022) return options[options.length - 1];
+  if (year >= 2019) return options[Math.floor(options.length / 2)];
+
+  return options[0];
+}
+ 
+ 
   let m = model.toLowerCase();
 
   if(m.includes("long range")) return "long range";
