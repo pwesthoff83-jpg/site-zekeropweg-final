@@ -19,6 +19,10 @@ export const batteryDB ={
     { "variant": "e-tron", "kwh": 100 }
   ],
 
+  "audi a6 e tron": [
+   { "variant": "standard", "kwh": 83 }
+  ],
+  
   "audi a8": [
     { "variant": "tfsi e", "kwh": 14.1 },
     { "variant": "tfsi e", "kwh": 17.9 }
@@ -730,7 +734,9 @@ export const batteryDB ={
 
 "porsche taycan": [
   { "variant": "standard", "kwh": 71 },
+  { "variant": "standard", "kwh": 82.3 },
   { "variant": "performance", "kwh": 83.7 },
+  { "variant": "performance", "kwh": 97 },
   { "variant": "performance plus", "kwh": 97 }
 ],
 "porsche macan ev": [
@@ -864,6 +870,10 @@ export const batteryDB ={
   { "variant": "sr+ (2021)", "kwh": 55 },
   { "variant": "rwd facelift (2024+)", "kwh": 60.5 },
 
+  { "variant": "standard", "kwh": 64.9 },
+  { "variant": "long range", "kwh": 84.2 },
+  { "variant": "performance", "kwh": 84.2 },
+
   { "variant": "long range old", "kwh": 74.5 },
   { "variant": "long range", "kwh": 78 },
   { "variant": "long range facelift", "kwh": 78.8 },
@@ -877,6 +887,10 @@ export const batteryDB ={
 "tesla model y": [
   { "variant": "standard range", "kwh": 60.5 },
   { "variant": "standard range updated", "kwh": 60.7 },
+
+  { "variant": "standard", "kwh": 64.9 },
+  { "variant": "long range", "kwh": 84.2 },
+  { "variant": "performance", "kwh": 84.2 },
 
   { "variant": "long range old", "kwh": 74.5 },
   { "variant": "long range", "kwh": 78 },
@@ -1028,6 +1042,7 @@ export const batteryDB ={
 ],
 
 "volkswagen id.buzz": [
+  { "variant": "standard", "kwh": 59 },
   { "variant": "cargo", "kwh": 77 },
   { "variant": "cargo pro", "kwh": 79 },
   { "variant": "pro", "kwh": 79 },
