@@ -308,12 +308,6 @@ input{
 <script type="module">
 import { getBattery } from "./battery-service.js";
 
-function debugBattery() {
-  const result = getBattery("kia ev6", "awd long range");
-  console.log("Battery:", result);
-}
-
-debugBattery();
 
 function getRdwWltpRange(v) {
   const candidates = [
@@ -779,49 +773,22 @@ Normaal gebruik (${Math.round(kmPerYear)} km/jaar).
   // onbekende batterij = onzekerheid
 if(battery_kwh === "Onbekend"){
 
-  // slimme fallback voor batterijdata
-  if(powertrain === "Hybride"){
-    battery_kwh = "±10–25 kWh";
-    battery_type = "Lithium-ion";
+  if(powertrain === "Hybride" && !rdwRange){
     real_range = "40–100 elektrisch";
   }
+
+  if(powertrain === "EV" && !rdwRange){
+    real_range = "300–500";
+  }
+}
+ 
   else if(powertrain === "EV"){
     battery_kwh = "Geschat 60–100 kWh";
     battery_type = "Lithium-ion";
     real_range = "300–500 ";
   }
 
-  // extra slimme herkenning als aandrijving nog onbekend is
-  if(powertrain === "Onbekend"){
-
-    if(modelLower.includes("amg") && modelLower.includes("e")){
-      powertrain = "Hybride";
-      battery_kwh = "±10–25 kWh";
-      battery_type = "Lithium-ion";
-      real_range = "40–100 elektrisch";
-    }
-    else if(modelLower.includes("e performance")){
-      powertrain = "Hybride";
-      battery_kwh = "±10–25 kWh";
-      battery_type = "Lithium-ion";
-      real_range = "40–100 elektrisch";
-    }
-    else if(
-      modelLower.includes("tesla") ||
-      modelLower.includes("eq") ||
-      modelLower.includes("ioniq") ||
-      modelLower.includes("ev")
-    ){
-      powertrain = "EV";
-      battery_kwh = "Geschat 60–100 kWh";
-      battery_type = "Lithium-ion";
-      real_range = "300–500 ";
-    }
-    else{
-      powertrain = "Brandstof";
-    }
-  }
-
+ 
   if(age <= 3){
     scoreDetails.push("Nieuwe auto, batterijdata minder kritisch (0)");
   }
@@ -830,26 +797,6 @@ if(battery_kwh === "Onbekend"){
     scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
   }
 }    
-
-     // grenzen
-     if(score > 95) score = 95;
-     if(score < 40) score = 40;
-
-   
-
-let financialRisk = "";
-
-if(score >= 75){
-  financialRisk = "Laag risico (beperkte kans op hoge accukosten)";
-}
-else if(score >= 55){
-  financialRisk = "Gemiddeld risico (€1.000 – €4.000 mogelijk)";
-}
-else{
-  financialRisk = "Hoog risico (€3.000 – €10.000 mogelijk)";
-}
-      
-   let finalAdvice = "";
 
 // 🔥 HYBRIDE (PHEV)
 if(powertrain === "Hybride"){
