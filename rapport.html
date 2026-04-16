@@ -314,6 +314,7 @@ function calculateScore({ age, km, make, model, powertrain }) {
   let score = 100;
   let details = [];
 
+  // 🔢 Leeftijd
   if (age <= 3) {
     details.push("Relatief jonge auto (+0)");
   } else if (age <= 6) {
@@ -327,6 +328,7 @@ function calculateScore({ age, km, make, model, powertrain }) {
     details.push("Hogere leeftijd (-20)");
   }
 
+  // 🔢 Kilometerstand
   if (km < 50000) {
     details.push("Lage kilometerstand (+0)");
   } else if (km < 120000) {
@@ -340,6 +342,7 @@ function calculateScore({ age, km, make, model, powertrain }) {
     details.push("Zeer hoge kilometerstand (-20)");
   }
 
+  // ⚙️ Aandrijving
   if (powertrain === "EV") {
     details.push("Elektrisch rijden: minder slijtage op aandrijflijn (+0)");
   }
@@ -349,17 +352,39 @@ function calculateScore({ age, km, make, model, powertrain }) {
     details.push("Hybride systeem is complexer (-3)");
   }
 
+  // 🧠 Merk-specifiek
   const makeUpper = String(make || "").toUpperCase();
+  const modelLower = String(model || "").toLowerCase();
 
   if (makeUpper.includes("TESLA")) {
     details.push("Sterk batterijmanagement (+0)");
   }
 
-  if (makeUpper.includes("NISSAN") && String(model || "").toLowerCase().includes("leaf")) {
+  if (makeUpper.includes("NISSAN") && modelLower.includes("leaf")) {
     score -= 5;
     details.push("Bekend model met snellere degradatie (-5)");
   }
 
+  // 🔋 Gebruikspatroon (BELANGRIJKSTE BLOK)
+  if (age > 0) {
+    const kmPerYear = km / age;
+
+    if (kmPerYear < 8000 && age > 1) {
+      score -= 5;
+      details.push("Mogelijk lange stilstand (-5)");
+    }
+
+    else if (kmPerYear >= 12000 && kmPerYear <= 20000) {
+      details.push("Gezond gebruikspatroon (+0)");
+    }
+
+    else if (kmPerYear > 25000) {
+      score -= 5;
+      details.push("Zeer intensief gebruik (-5)");
+    }
+  }
+
+  // 🔒 Score begrenzen (ALTijd als laatste)
   if (score > 100) score = 100;
   if (score < 0) score = 0;
 
@@ -368,65 +393,7 @@ function calculateScore({ age, km, make, model, powertrain }) {
     details
   };
 }
-
-function getRdwWltpRange(v) {
-  const candidates = [
-    v.elektrische_actieradius_wltp,
-    v.actieradius_elektrisch_wltp,
-    v.elektrische_actieradius,
-    v.actieradius_elektrisch
-  ];
-
-  for (const value of candidates) {
-    const num = Number(value);
-    if (!Number.isNaN(num) && num > 0) return num;
-  }
-
-  return null;
-}
-
-function detectPowertrain(make, model, brandstof, rdwRange) {
-
-  const fuel = String(brandstof || "").toLowerCase();
-  const modelLower = String(model || "").toLowerCase();
-  const makeUpper = String(make || "").toUpperCase();
-
-  // 🔋 1. RDW RANGE = ALTIJD ELEKTRISCH COMPONENT
-  if (rdwRange && rdwRange > 0) {
-    return "EV";
-  }
-
-  // 🔋 2. BRANDSTOF VELD (RDW)
-  if (fuel.includes("elektriciteit") && fuel.includes("benzine")) {
-    return "Hybride";
-  }
-
-  if (fuel.includes("hybride")) {
-    return "Hybride";
-  }
-
-  if (fuel.includes("elektriciteit")) {
-    return "EV";
-  }
-
-  // 🔥 3. MODEL HERKENNING (CRUCIAAL)
-  if (modelLower.includes("phev") || modelLower.includes("plug")) {
-    return "Hybride";
-  }
-
-  if (modelLower.includes("e-") || modelLower.includes("ev")) {
-    return "EV";
-  }
-
-  // 🔥 4. KNOWN MODELS (MINIMAAL MAAR EFFECTIEF)
-  if (makeUpper.includes("MINI") && modelLower.includes("cooper se")) return "Hybride";
-  if (makeUpper.includes("KIA") && modelLower.includes("sportage")) return "Hybride";
-  if (makeUpper.includes("OPEL") && modelLower.includes("grandland")) return "Hybride";
-  if (makeUpper.includes("LAND ROVER") && modelLower.includes("velar")) return "Hybride";
-
-  return "Brandstof";
-}
-
+ 
 window.startFlow = startFlow;
 
 function normalizeModel(make, model) {
