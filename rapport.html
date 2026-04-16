@@ -310,6 +310,25 @@ input{
 <script type="module">
 
 import { batteryDB } from "./battery-service.js";
+  function getBattery(lookupModel, rawModel){
+  if(!lookupModel) return null;
+
+  const key = lookupModel.toLowerCase();
+
+  // directe match
+  if(batteryDB[key]){
+    return batteryDB[key];
+  }
+
+  // fallback: fuzzy match
+  for(const dbKey in batteryDB){
+    if(key.includes(dbKey)){
+      return batteryDB[dbKey];
+    }
+  }
+
+  return null;
+}
 function calculateScore({ age, km, make, model, powertrain }) {
   let score = 100;
   let details = [];
@@ -384,27 +403,6 @@ function calculateScore({ age, km, make, model, powertrain }) {
     }
   }
 
-function getBattery(lookupModel, rawModel){
-  if(!lookupModel) return null;
-
-  const key = lookupModel.toLowerCase();
-
-  // directe match
-  if(batteryDB[key]){
-    return batteryDB[key];
-  }
-
-  // fallback: fuzzy match
-  for(const dbKey in batteryDB){
-    if(key.includes(dbKey)){
-      return batteryDB[dbKey];
-    }
-  }
-
-  return null;
-}
- 
- 
   // 🔒 Score begrenzen (ALTijd als laatste)
   if (score > 100) score = 100;
   if (score < 0) score = 0;
@@ -413,6 +411,7 @@ function getBattery(lookupModel, rawModel){
     score: Math.round(score),
     details
   };
+ 
 }
  
 window.startFlow = startFlow;
