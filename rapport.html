@@ -386,59 +386,43 @@ function getRdwWltpRange(v) {
 }
 
 function detectPowertrain(make, model, brandstof, rdwRange) {
-  const makeUpper = String(make || "").toUpperCase();
-  const modelLower = String(model || "").toLowerCase();
-  const fuelLower = String(brandstof || "").toLowerCase();
 
+  const fuel = String(brandstof || "").toLowerCase();
+  const modelLower = String(model || "").toLowerCase();
+  const makeUpper = String(make || "").toUpperCase();
+
+  // 🔋 1. RDW RANGE = ALTIJD ELEKTRISCH COMPONENT
   if (rdwRange && rdwRange > 0) {
-    if (
-      fuelLower.includes("benzine") ||
-      fuelLower.includes("diesel") ||
-      fuelLower.includes("hybride")
-    ) {
-      return "Hybride";
-    }
     return "EV";
   }
 
-  if (fuelLower.includes("benzine") && fuelLower.includes("elektriciteit")) return "Hybride";
-  if (fuelLower.includes("hybride")) return "Hybride";
-  if (fuelLower.includes("elektriciteit")) return "EV";
-
-  if (makeUpper.includes("TESLA")) return "EV";
-  if (makeUpper.includes("FORD") && modelLower.includes("kuga")) return "Hybride";
-  if (makeUpper.includes("BMW") && modelLower.includes("m5") && new Date().getFullYear() >= 2024) return "Hybride";
-
-  if (
-    makeUpper.includes("VOLVO") &&
-    (
-      modelLower.includes("xc90") ||
-      modelLower.includes("recharge") ||
-      modelLower.includes("t8")
-    )
-  ) {
+  // 🔋 2. BRANDSTOF VELD (RDW)
+  if (fuel.includes("elektriciteit") && fuel.includes("benzine")) {
     return "Hybride";
   }
 
-  if (modelLower.match(/\d+e\b/)) return "Hybride";
-  if (modelLower.includes("e performance")) return "Hybride";
+  if (fuel.includes("hybride")) {
+    return "Hybride";
+  }
 
-  if (
-    modelLower.includes("hybrid") ||
-    modelLower.includes("phev") ||
-    modelLower.includes("plug") ||
-    modelLower.includes("recharge") ||
-    modelLower.includes("gte") ||
-    modelLower.includes("e-hybrid") ||
-    modelLower.includes("4xe")
-  ) return "Hybride";
+  if (fuel.includes("elektriciteit")) {
+    return "EV";
+  }
 
-  if (
-    modelLower.includes("tesla") ||
-    modelLower.includes("eq") ||
-    modelLower.includes("ioniq") ||
-    modelLower.includes("ev")
-  ) return "EV";
+  // 🔥 3. MODEL HERKENNING (CRUCIAAL)
+  if (modelLower.includes("phev") || modelLower.includes("plug")) {
+    return "Hybride";
+  }
+
+  if (modelLower.includes("e-") || modelLower.includes("ev")) {
+    return "EV";
+  }
+
+  // 🔥 4. KNOWN MODELS (MINIMAAL MAAR EFFECTIEF)
+  if (makeUpper.includes("MINI") && modelLower.includes("cooper se")) return "Hybride";
+  if (makeUpper.includes("KIA") && modelLower.includes("sportage")) return "Hybride";
+  if (makeUpper.includes("OPEL") && modelLower.includes("grandland")) return "Hybride";
+  if (makeUpper.includes("LAND ROVER") && modelLower.includes("velar")) return "Hybride";
 
   return "Brandstof";
 }
