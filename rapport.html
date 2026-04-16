@@ -555,7 +555,24 @@ function detectPowertrain(make, model, brandstof, rdwRange) {
   return "Brandstof";
 }
  
-async function startFlow() {
+function getRdwWltpRange(v) {
+  const rangeFields = [
+    v.actieradius_elektrisch_wltp,
+    v.actieradius_elektrisch,
+    v.wltp_actieradius
+  ];
+
+  for (let val of rangeFields) {
+    const num = Number(val);
+    if (num && num > 0) {
+      return num;
+    }
+  }
+
+  return 0;
+}
+
+ async function startFlow() {
   const plate = document.getElementById("plate").value.replace(/-/g, "").toUpperCase();
   const name = document.getElementById("name").value || "Onbekend";
 
