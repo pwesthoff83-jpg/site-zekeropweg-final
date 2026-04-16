@@ -629,32 +629,51 @@ function getRdwWltpRange(v) {
     let lookupModel = normalizeModel(make, model);
     const variant = "";
 
-    lookupModel = lookupModel
-      .replace("tesla motors", "tesla")
-      .replace("tesla, inc.", "tesla")
-      .replace(/\s+/g, " ")
-      .trim();
+  // 🔥 SLIMME MATCHING (SCHAALBAAR)
 
-    if (lookupModel.includes("tesla model x")) {
-      lookupModel = "tesla model x 100";
+function findBestMatch(lookupModel, batteryDB) {
+  const keys = Object.keys(batteryDB);
+
+  lookupModel = lookupModel.toLowerCase();
+
+  let bestMatch = null;
+  let bestScore = 0;
+
+  for (let key of keys) {
+    let score = 0;
+
+    const words = key.split(" ");
+
+    for (let word of words) {
+      if (lookupModel.includes(word)) {
+        score++;
+      }
     }
 
-    if (lookupModel.includes("tesla model s")) {
-      lookupModel = "tesla model s 100";
+    // bonus voor volledige match
+    if (lookupModel.includes(key)) {
+      score += 5;
     }
 
-    if (lookupModel.includes("tesla model 3")) {
-      lookupModel = "tesla model 3 long range";
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = key;
     }
+  }
 
-    if (lookupModel.includes("tesla model y")) {
-      lookupModel = "tesla model y long range";
-    }
+  return bestMatch;
+}
 
     let battery = null;
+    const bestMatch = findBestMatch(lookupModel, batteryDB);
 
+    if (bestMatch) {
+      battery = batteryDB[bestMatch];
+    } else {
+      battery = null;
+    }
     try {
-      battery = getBattery(lookupModel, model.toLowerCase());
+     
     } catch (e) {
       console.warn("Battery lookup failed:", lookupModel);
     }
@@ -682,32 +701,33 @@ function getRdwWltpRange(v) {
     }
 
     if (rdwRange && rdwRange > 0) {
-      real_range = String(rdwRange);
-      range_source = "rdw";
-    } else if (kwhNum) {
-      if (powertrain === "Hybride") {
-        if (kwhNum >= 20) real_range = "80–120";
-        else if (kwhNum >= 10) real_range = "40–80";
-        else real_range = "20–50";
-      } else {
-        if (kwhNum >= 90) real_range = "550–750";
-        else if (kwhNum >= 75) real_range = "450–600";
-        else if (kwhNum >= 60) real_range = "350–500";
-        else if (kwhNum >= 40) real_range = "250–350";
-        else real_range = "150–250";
-      }
-    } else {
-      if (powertrain === "Hybride") {
-        battery_kwh = "±5–25 kWh";
-        real_range = "20–100";
-      } else if (powertrain === "EV") {
-        battery_kwh = "Geschat 60–100 kWh";
-        real_range = "300–500";
-      } else {
-        real_range = "-";
-      }
+    real_range = String(rdwRange);
+    range_source = "rdw";
+  } else if (kwhNum) {
+
+    if (powertrain === "Hybride") {
+      if (kwhNum >= 20) real_range = "70–100";
+      else if (kwhNum >= 10) real_range = "40–70";
+      else real_range = "20–50";
+
+    } else if (powertrain === "EV") {
+      if (kwhNum >= 90) real_range = "550–750";
+      else if (kwhNum >= 75) real_range = "450–600";
+      else if (kwhNum >= 60) real_range = "350–500";
+      else if (kwhNum >= 40) real_range = "250–350";
+      else real_range = "150–250";
     }
 
+  } else {
+    if (powertrain === "Hybride") {
+      real_range = "40–80";
+    } else if (powertrain === "EV") {
+      real_range = "300–500";
+    } else {
+      real_range = "-";
+    }
+  }
+   
     let degradationText = "";
     let degradationPercent = "";
 
