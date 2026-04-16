@@ -308,8 +308,8 @@ input{
 
 </div>
 <script type="module">
-import { getBattery } from "./battery-service.js";
 
+import { batteryDB } from "./battery-service.js";
 function calculateScore({ age, km, make, model, powertrain }) {
   let score = 100;
   let details = [];
@@ -633,7 +633,6 @@ function getRdwWltpRange(v) {
 
 function findBestMatch(lookupModel, batteryDB) {
   const keys = Object.keys(batteryDB);
-
   lookupModel = lookupModel.toLowerCase();
 
   let bestMatch = null;
@@ -642,13 +641,36 @@ function findBestMatch(lookupModel, batteryDB) {
   for (let key of keys) {
     let score = 0;
 
-    const words = key.split(" ");
+    const keyWords = key.split(" ");
+    const inputWords = lookupModel.split(" ");
 
-    for (let word of words) {
-      if (lookupModel.includes(word)) {
-        score++;
+    // overlap score
+    for (let word of keyWords) {
+      if (inputWords.includes(word)) {
+        score += 2;
+      } else if (lookupModel.includes(word)) {
+        score += 1;
       }
     }
+
+    // bonus als hele string matcht
+    if (lookupModel.includes(key)) {
+      score += 5;
+    }
+
+    // penalty als merk niet matcht
+    if (!lookupModel.includes(keyWords[0])) {
+      score -= 3;
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = key;
+    }
+  }
+
+  return bestScore > 1 ? bestMatch : null;
+}
 
     // bonus voor volledige match
     if (lookupModel.includes(key)) {
@@ -672,12 +694,7 @@ function findBestMatch(lookupModel, batteryDB) {
     } else {
       battery = null;
     }
-    try {
-     
-    } catch (e) {
-      console.warn("Battery lookup failed:", lookupModel);
-    }
-
+    
     if (Array.isArray(battery)) {
       battery = pickBestBattery(battery, Number(year), variant);
     }
