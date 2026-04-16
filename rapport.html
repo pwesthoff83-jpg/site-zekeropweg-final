@@ -629,71 +629,13 @@ function getRdwWltpRange(v) {
     let lookupModel = normalizeModel(make, model);
     const variant = "";
 
-  // 🔥 SLIMME MATCHING (SCHAALBAAR)
-
-function findBestMatch(lookupModel, batteryDB) {
-  const keys = Object.keys(batteryDB);
-  lookupModel = lookupModel.toLowerCase();
-
-  let bestMatch = null;
-  let bestScore = 0;
-
-  for (let key of keys) {
-    let score = 0;
-
-    const keyWords = key.split(" ");
-    const inputWords = lookupModel.split(" ");
-
-    // overlap score
-    for (let word of keyWords) {
-      if (inputWords.includes(word)) {
-        score += 2;
-      } else if (lookupModel.includes(word)) {
-        score += 1;
-      }
-    }
-
-    // bonus als hele string matcht
-    if (lookupModel.includes(key)) {
-      score += 5;
-    }
-
-    // penalty als merk niet matcht
-    if (!lookupModel.includes(keyWords[0])) {
-      score -= 3;
-    }
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = key;
-    }
-  }
-
-  return bestScore > 1 ? bestMatch : null;
-}
-
-    // bonus voor volledige match
-    if (lookupModel.includes(key)) {
-      score += 5;
-    }
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMatch = key;
-    }
-  }
-
-  return bestMatch;
-}
-
     let battery = null;
-    const bestMatch = findBestMatch(lookupModel, batteryDB);
 
-    if (bestMatch) {
-      battery = batteryDB[bestMatch];
-    } else {
-      battery = null;
-    }
+    try {
+     battery = getBattery(lookupModel, model.toLowerCase());
+   } catch (e) {
+     console.warn("Battery lookup failed:", lookupModel);
+   }
     
     if (Array.isArray(battery)) {
       battery = pickBestBattery(battery, Number(year), variant);
