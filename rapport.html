@@ -525,6 +525,36 @@ function fillList(id, items) {
   });
 }
 
+function detectPowertrain(make, model, brandstof, rdwRange) {
+  const str = (make + " " + model + " " + brandstof).toLowerCase();
+
+  // 🔋 EV detectie
+  if (
+    str.includes("elektrisch") ||
+    str.includes("electric") ||
+    str.includes("ev") ||
+    str.includes("e-tron") ||
+    str.includes("eq") ||
+    str.includes("ioniq") ||
+    rdwRange > 0
+  ) {
+    return "EV";
+  }
+
+  // 🔌 Hybride detectie
+  if (
+    str.includes("hybrid") ||
+    str.includes("hybride") ||
+    str.includes("phev") ||
+    str.includes("plug")
+  ) {
+    return "Hybride";
+  }
+
+  // ⛽ Default
+  return "Brandstof";
+}
+ 
 async function startFlow() {
   const plate = document.getElementById("plate").value.replace(/-/g, "").toUpperCase();
   const name = document.getElementById("name").value || "Onbekend";
