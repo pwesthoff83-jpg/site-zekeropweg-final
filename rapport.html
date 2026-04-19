@@ -570,37 +570,40 @@ function fillList(id, items) {
   });
 }
 
-function detectPowertrain(make, model, brandstof, rdwRange, battery) {
-  const str = (make + " " + model + " " + brandstof).toLowerCase();
+function detectPowertrain(make, model, brandstof) {
+  const str = (make + " " + model).toLowerCase();
+  const fuel = (brandstof || "").toLowerCase();
 
-  // 🔥 HARD RULES (MODEL BASED)
+  // 🔥 1. MODEL IS LEIDEND (BELANGRIJKSTE FIX)
   if (
-    str.includes("e") && (
-      str.includes("250e") ||
-      str.includes("300e") ||
-      str.includes("phev") ||
-      str.includes("plug")
-    )
+    str.includes("phev") ||
+    str.includes("hybrid") ||
+    str.includes("hybride") ||
+    str.includes("plug") ||
+    str.match(/\b\d{2,3}e\b/) // 250e, 300e, etc
   ) {
     return "Hybride";
   }
 
-  // 🔥 RDW brandstof
-  if (str.includes("elektr")) return "EV";
+  // 🔋 2. EV
+  if (
+    fuel.includes("elektr") ||
+    str.includes("electric") ||
+    str.includes("ev") ||
+    str.includes("e-tron")
+  ) {
+    return "EV";
+  }
 
-  if (str.includes("hybride")) return "Hybride";
-
-  if (str.includes("benzine") || str.includes("diesel")) {
+  // ⛽ 3. DAN PAS BRANDSTOF
+  if (
+    fuel.includes("benzine") ||
+    fuel.includes("diesel")
+  ) {
     return "Brandstof";
   }
 
-  // 🔥 fallback batterij
-  if (battery && battery.kwh) {
-    if (battery.kwh > 20) return "EV";
-    return "Hybride";
-  }
-
-  return "Brandstof";
+  return "Onbekend";
 }
  
 function getRdwWltpRange(v) {
