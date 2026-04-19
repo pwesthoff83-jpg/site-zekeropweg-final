@@ -695,7 +695,13 @@ const possibleEV =
   lookupModel.includes("e-tron") ||
   lookupModel.includes("electric");
 
-if (possibleEV) {
+// 🔥 EERST powertrain bepalen (CRUCIAAL)
+const powertrain = detectPowertrain(make, model, brandstof);
+
+// 🔥 DAN PAS battery ophalen
+let battery = null;
+
+if (powertrain !== "Brandstof") {
   try {
     battery = getBattery(lookupModel);
   } catch (e) {
