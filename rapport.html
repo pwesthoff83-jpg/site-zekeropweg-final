@@ -643,7 +643,11 @@ function getRdwWltpRange(v) {
     }
 
     const v = dataRDW[0];
-
+   
+    if (!v.merk || !v.handelsbenaming) {
+      alert("Onvoldoende voertuigdata beschikbaar.");
+      return;
+    }
     if (!v) {
       alert("Voertuigdata onvolledig ontvangen.");
       return;
@@ -660,7 +664,7 @@ function getRdwWltpRange(v) {
     const make = v.merk || "Onbekend";
     const makeUpper = make.toUpperCase();
     const model = v.handelsbenaming || "Onbekend";
-    const year = (v.datum_eerste_toelating || "").substring(0, 4) || "Onbekend";
+    const year = parseInt((v.datum_eerste_toelating || "").substring(0, 4)) || new Date().getFullYear();
     const brandstof = v.brandstof_omschrijving || "";
 
     const rdwRange = getRdwWltpRange(v);
@@ -854,27 +858,27 @@ Bij moderne auto’s speelt gebruik een grotere rol dan alleen kilometerstand.
 👉 Onderhoud en rijstijl bepalen prestaties op lange termijn.
 `;
     }
+   
+if (battery_kwh === "Onbekend") {
 
-    if (battery_kwh === "Onbekend") {
-      if (powertrain === "Hybride" && !rdwRange) {
-        real_range = "40–100 elektrisch";
-      }
+  // 🔥 fallback ranges per type
+  if (powertrain === "Hybride") {
+    real_range = "40–80 km elektrisch";
+  }
 
-      if (powertrain === "EV" && !rdwRange) {
-        real_range = "300–500";
-      }
+  if (powertrain === "EV") {
+    real_range = "250–500 km";
+  }
 
-      if (age <= 3) {
-        scoreDetails.push("Nieuwe auto, batterijdata minder kritisch (+0)");
-      } else {
-        score -= 10;
-        scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-10)");
-      }
-    } else {
-      if (powertrain === "EV" && !rdwRange) {
-        real_range = real_range || "300–500";
-      }
-    }
+  // 🔥 score penalty realistischer
+  if (age <= 3) {
+    scoreDetails.push("Nieuwe auto, beperkte batterijdata beschikbaar (+0)");
+  } else {
+    score -= 8;
+    scoreDetails.push("Onzekerheid door ontbrekende batterijdata (-8)");
+  }
+}
+    
 
     let finalAdvice = "";
 
@@ -965,7 +969,7 @@ Dit type batterij staat bekend om sterke prestaties en goede laadcapaciteit, maa
         real_world: `
 Voor dit type en bouwjaar mag je stabiele prestaties verwachten met een relatief laag risico op versnelde degradatie.
 
-Omdat dit model tot de nieuwste generatie EV’s behoort, is de batterijtechnologie efficiënter en beter beschermd dan oudere modellen.
+Omdat dit model tot de nieuwste generatie geëlektrificeerde voertuigen behoort, is de batterijtechnologie efficiënter en beter beschermd dan oudere modellen.
 
 Let wel: zonder inzicht in het laadgedrag van de vorige eigenaar blijft er altijd onzekerheid bestaan.
 
@@ -1132,6 +1136,7 @@ Risico-inschatting: ${brand.risk}.
     }
 
     document.getElementById("report").style.display = "block";
+    document.getElementById("report").scrollIntoView({ behavior: "smooth" });
   } catch (err) {
     console.error("RDW fetch error:", err);
     alert("Er ging iets mis bij het ophalen van voertuigdata.");
