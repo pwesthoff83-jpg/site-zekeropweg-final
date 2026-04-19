@@ -664,7 +664,7 @@ function getRdwWltpRange(v) {
     const brandstof = v.brandstof_omschrijving || "";
 
     const rdwRange = getRdwWltpRange(v);
-    const powertrain = detectPowertrain(make, model, brandstof, rdwRange, battery);
+    
 
     const age = new Date().getFullYear() - Number(year);
     const profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
@@ -679,10 +679,11 @@ function getRdwWltpRange(v) {
     let battery = null;
 
     try {
-     battery = getBattery(lookupModel, model.toLowerCase());
+     battery = getBattery(lookupModel);
    } catch (e) {
      console.warn("Battery lookup failed:", lookupModel);
    }
+   const powertrain = detectPowertrain(make, model, brandstof, rdwRange, battery);
     
     if (Array.isArray(battery)) {
       battery = pickBestBattery(battery, Number(year), variant);
