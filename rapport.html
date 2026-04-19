@@ -683,18 +683,30 @@ function getRdwWltpRange(v) {
 
     let lookupModel = normalizeModel(make, model);
     const variant = "";
-
-   let battery = null;
-
+  
 // 🔥 ALLEEN battery lookup als auto elektrisch of hybride KAN zijn
-const possibleEV =
-  brandstof.toLowerCase().includes("elektr") ||
-  lookupModel.includes("hybrid") ||
-  lookupModel.includes("phev") ||
-  lookupModel.includes("plug") ||
-  lookupModel.includes("e-tron") ||
-  lookupModel.includes("electric");
+let lookupModel = normalizeModel(make, model);
+const variant = "";
 
+// 🔥 EERST powertrain bepalen
+const powertrain = detectPowertrain(make, model, brandstof);
+
+// 🔥 DAN battery ophalen
+let battery = null;
+
+if (powertrain !== "Brandstof") {
+  try {
+    battery = getBattery(lookupModel);
+  } catch (e) {
+    console.warn("Battery lookup failed:", lookupModel);
+  }
+}
+
+// 🔥 juiste batterij kiezen
+if (Array.isArray(battery)) {
+  battery = pickBestBattery(battery, Number(year), variant);
+}
+   
 // 🔥 EERST powertrain bepalen (CRUCIAAL)
 const powertrain = detectPowertrain(make, model, brandstof);
 
@@ -709,8 +721,7 @@ if (powertrain !== "Brandstof") {
   }
 }
    
-   const powertrain = detectPowertrain(make, model, brandstof, rdwRange, battery);
-    
+     
     if (Array.isArray(battery)) {
       battery = pickBestBattery(battery, Number(year), variant);
     }
