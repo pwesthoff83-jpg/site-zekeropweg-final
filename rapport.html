@@ -683,13 +683,25 @@ function getRdwWltpRange(v) {
     let lookupModel = normalizeModel(make, model);
     const variant = "";
 
-    let battery = null;
+   let battery = null;
 
-    try {
-     battery = getBattery(lookupModel);
-   } catch (e) {
-     console.warn("Battery lookup failed:", lookupModel);
-   }
+// 🔥 ALLEEN battery lookup als auto elektrisch of hybride KAN zijn
+const possibleEV =
+  brandstof.toLowerCase().includes("elektr") ||
+  lookupModel.includes("hybrid") ||
+  lookupModel.includes("phev") ||
+  lookupModel.includes("plug") ||
+  lookupModel.includes("e-tron") ||
+  lookupModel.includes("electric");
+
+if (possibleEV) {
+  try {
+    battery = getBattery(lookupModel);
+  } catch (e) {
+    console.warn("Battery lookup failed:", lookupModel);
+  }
+}
+   
    const powertrain = detectPowertrain(make, model, brandstof, rdwRange, battery);
     
     if (Array.isArray(battery)) {
