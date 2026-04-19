@@ -564,19 +564,32 @@ function fillList(id, items) {
 
 function detectPowertrain(make, model, brandstof, rdwRange, battery) {
   const str = (make + " " + model + " " + brandstof).toLowerCase();
+  const fuel = String(brandstof || "").toLowerCase();
 
-  // 🔋 1. HARD: batterij aanwezig → elektrisch systeem
+  // 🔥 1. BRANDSTOF IS LEIDEND
+  if (fuel.includes("benzine") || fuel.includes("diesel")) {
+    // heeft ook batterij → hybride
+    if (battery && battery.kwh) {
+      return "Hybride";
+    }
+    return "Brandstof";
+  }
+
+  // 🔋 2. Volledig elektrisch
+  if (
+    fuel.includes("elektriciteit") ||
+    fuel.includes("elektrisch")
+  ) {
+    return "EV";
+  }
+
+  // 🔌 3. fallback op batterij
   if (battery && battery.kwh) {
     if (battery.kwh > 20) return "EV";
     return "Hybride";
   }
 
-  // 🔋 2. RDW range → EV
-  if (rdwRange > 0) {
-    return "EV";
-  }
-
-  // 🔌 3. fallback string detectie
+  // 🔌 4. laatste fallback string
   if (
     str.includes("hybrid") ||
     str.includes("hybride") ||
