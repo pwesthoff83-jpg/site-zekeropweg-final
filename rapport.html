@@ -313,40 +313,45 @@ import { batteryDB } from "./battery-db.js";
 function getBattery(lookupModel) {
   if (!lookupModel) return null;
 
-  const input = lookupModel.toLowerCase().split(" ");
+  const cleanInput = lookupModel
+    .toLowerCase()
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
   let bestMatch = null;
   let bestScore = 0;
 
   for (const key in batteryDB) {
-    
-   if (!lookupModel.includes(key.split(" ")[0])) continue;
-   
-   const words = key.split(" ");
+    const cleanKey = key
+      .toLowerCase()
+      .replace(/-/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
     let score = 0;
 
-    for (let word of words) {
-      if (input.includes(word)) {
+    // 🔥 woord match
+    const keyWords = cleanKey.split(" ");
+    for (let word of keyWords) {
+      if (cleanInput.includes(word)) {
         score++;
       }
     }
 
-    // bonus voor volledige match
-    if (lookupModel.includes(key)) {
+    // 🔥 volledige string bonus
+    if (cleanInput.includes(cleanKey)) {
       score += 5;
     }
 
-    if (score > bestScore) {
+    // 🔥 MINIMALE MATCH (BELANGRIJK)
+    if (score >= 2 && score > bestScore) {
       bestScore = score;
       bestMatch = key;
     }
   }
- 
-  if (bestMatch && bestScore >= 2) {
-  return batteryDB[bestMatch];
-  }
 
-return null;
+  return bestMatch ? batteryDB[bestMatch] : null;
 }
  
 function calculateScore({ age, km, make, model, powertrain }) {
