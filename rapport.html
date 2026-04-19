@@ -310,25 +310,42 @@ input{
 <script type="module">
 
 import { batteryDB } from "./battery-db.js";
-  function getBattery(lookupModel, rawModel){
-  if(!lookupModel) return null;
+function getBattery(lookupModel) {
+  if (!lookupModel) return null;
 
-  const key = lookupModel.toLowerCase();
+  const input = lookupModel.toLowerCase().split(" ");
 
-  // directe match
-  if(batteryDB[key]){
-    return batteryDB[key];
+  let bestMatch = null;
+  let bestScore = 0;
+
+  for (const key in batteryDB) {
+    const words = key.split(" ");
+    let score = 0;
+
+    for (let word of words) {
+      if (input.includes(word)) {
+        score++;
+      }
+    }
+
+    // bonus voor volledige match
+    if (lookupModel.includes(key)) {
+      score += 5;
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = key;
+    }
   }
 
-  // fallback: fuzzy match
-  for(const dbKey in batteryDB){
-    if(key.includes(dbKey)){
-      return batteryDB[dbKey];
-    }
+  if (bestMatch) {
+    return batteryDB[bestMatch];
   }
 
   return null;
 }
+ 
 function calculateScore({ age, km, make, model, powertrain }) {
   let score = 100;
   let details = [];
@@ -545,23 +562,21 @@ function fillList(id, items) {
   });
 }
 
-function detectPowertrain(make, model, brandstof, rdwRange) {
+function detectPowertrain(make, model, brandstof, rdwRange, battery) {
   const str = (make + " " + model + " " + brandstof).toLowerCase();
 
-  // 🔋 EV detectie
-  if (
-    str.includes("elektrisch") ||
-    str.includes("electric") ||
-    str.includes("ev") ||
-    str.includes("e-tron") ||
-    str.includes("eq") ||
-    str.includes("ioniq") ||
-    rdwRange > 0
-  ) {
+  // 🔋 1. HARD: batterij aanwezig → elektrisch systeem
+  if (battery && battery.kwh) {
+    if (battery.kwh > 20) return "EV";
+    return "Hybride";
+  }
+
+  // 🔋 2. RDW range → EV
+  if (rdwRange > 0) {
     return "EV";
   }
 
-  // 🔌 Hybride detectie
+  // 🔌 3. fallback string detectie
   if (
     str.includes("hybrid") ||
     str.includes("hybride") ||
@@ -571,7 +586,6 @@ function detectPowertrain(make, model, brandstof, rdwRange) {
     return "Hybride";
   }
 
-  // ⛽ Default
   return "Brandstof";
 }
  
@@ -637,7 +651,7 @@ function getRdwWltpRange(v) {
     const brandstof = v.brandstof_omschrijving || "";
 
     const rdwRange = getRdwWltpRange(v);
-    const powertrain = detectPowertrain(make, model, brandstof, rdwRange);
+    const powertrain = detectPowertrain(make, model, brandstof, rdwRange, battery);
 
     const age = new Date().getFullYear() - Number(year);
     const profile = age <= 4 ? "gunstig" : age >= 8 ? "aandacht" : "normaal";
@@ -665,7 +679,7 @@ function getRdwWltpRange(v) {
 
     let battery_kwh = "Onbekend";
     let battery_type = "Lithium-ion";
-    let real_range = "";
+    let real_range = "-";
     let range_source = "estimate";
     let kwhNum = null;
 
