@@ -319,7 +319,10 @@ function getBattery(lookupModel) {
   let bestScore = 0;
 
   for (const key in batteryDB) {
-    const words = key.split(" ");
+    
+   if (!lookupModel.includes(key.split(" ")[0])) continue;
+   
+   const words = key.split(" ");
     let score = 0;
 
     for (let word of words) {
@@ -338,14 +341,13 @@ function getBattery(lookupModel) {
       bestMatch = key;
     }
   }
-
-  if (bestMatch) {
-    return batteryDB[bestMatch];
+ 
+  if (bestMatch && bestScore >= 2) {
+  return batteryDB[bestMatch];
   }
 
-  return null;
-}
- 
+return null;
+  
 function calculateScore({ age, km, make, model, powertrain }) {
   let score = 100;
   let details = [];
