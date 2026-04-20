@@ -792,6 +792,11 @@
       <input type="text" id="naam" placeholder="Voornaam is genoeg" />
     </div>
     <div class="field">
+      <label for="kmstand">Huidige kilometerstand</label>
+      <input type="number" id="kmstand" placeholder="bijv. 87500" min="0" max="999999" />
+      <div style="font-size:11px;color:var(--muted);margin-top:5px;">Cruciaal voor een nauwkeurige inschatting van de accuconditie</div>
+    </div>
+    <div class="field">
       <label for="gebruik">Jaarlijks gebruik</label>
       <select id="gebruik">
         <option value="">Kies je rijpatroon</option>
@@ -1154,6 +1159,7 @@ async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Klant';
   const gebruik = document.getElementById('gebruik').value;
+  const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
 
   if (!kentekenRaw) { alert('Vul een kenteken in om verder te gaan.'); return; }
 
@@ -1187,17 +1193,21 @@ async function startRapport() {
   await new Promise(r => setTimeout(r, 400));
 
   ls.style.display = 'none';
-  renderRapport(voertuigData, kenteken, naam, gebruik);
+  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig);
 }
 
-function renderRapport(data, kenteken, naam, gebruik) {
+function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
   const variantOmschr = data ? (data.variant || data.type || '') : '';
-  const kmstand = data ? parseInt(data.tellerstandoordeel || data.laatste_tellerstandoordeel || 0) : null;
-  const kmRaw = data ? parseInt(data.tellerstand || 0) : null;
-  const km = kmRaw && kmRaw > 0 ? kmRaw : null;
+  const kmRdwRaw = data ? parseInt(data.tellerstand || 0) : null;
+  const kmRdw = kmRdwRaw && kmRdwRaw > 0 ? kmRdwRaw : null;
+
+  // Handmatig ingevoerde km heeft prioriteit boven RDW-waarde
+  const km = kmHandmatig || kmRdw;
+  const kmBron = kmHandmatig ? 'Opgegeven door koper' : (kmRdw ? 'RDW registratie' : 'Niet beschikbaar');
+
   const datum = data ? (data.datum_eerste_toelating || data.datum_eerste_tenaamstelling || '') : '';
   const apk = data ? (data.vervaldatum_apk || '') : '';
 
@@ -1281,7 +1291,7 @@ function renderRapport(data, kenteken, naam, gebruik) {
       <div class="info-row"><span class="info-label">Brandstof</span><span class="info-value">${brandstof || 'Niet geregistreerd'}</span></div>
       <div class="info-row"><span class="info-label">Eerste toelating</span><span class="info-value">${datum ? formatDate(datum) : 'Niet beschikbaar'}</span></div>
       <div class="info-row"><span class="info-label">APK vervalt</span><span class="info-value">${apk ? formatDate(apk) : 'Niet beschikbaar'}</span></div>
-      <div class="info-row"><span class="info-label">Kilometerstand</span><span class="info-value">${kmTxt}</span></div>
+      <div class="info-row"><span class="info-label">Kilometerstand</span><span class="info-value">${kmTxt} <span style="font-size:11px;color:var(--muted);">(${kmBron})</span></span></div>
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
@@ -1351,7 +1361,7 @@ function renderRapport(data, kenteken, naam, gebruik) {
 
     <div class="section-card">
       <h3><span class="section-icon">📈</span>Praktijkgedrag batterij</h3>
-      <p class="prose">In de praktijk presteren ${driveType === 'ev' ? 'elektrische accu\'s' : iveType === 'phev' ? 'plug-in hybride accu\'s' : 'hybride accu\'s'} doorgaans goed bij verstandig gebruik: regelmatig rijden, niet altijd volledig laden en niet langdurig leeg laten staan.</p>
+      <p class="prose">In de praktijk presteren ${driveType === 'ev' ? 'elektrische accu\'s' : driveType === 'phev' ? 'plug-in hybride accu\'s' : 'hybride accu\'s'} doorgaans goed bij verstandig gebruik: regelmatig rijden, niet altijd volledig laden en niet langdurig leeg laten staan.</p>
       <p class="prose" style="margin-top:10px;">Bij intensief gebruik, veel snelladen of extreme temperaturen neemt de degradatie sneller toe. Dit is zelden zichtbaar in de voertuighistorie, maar wel meetbaar via een diagnose.</p>
       ${driveType === 'phev' ? '<p class="prose" style="margin-top:10px;">Plug-in hybrides worden regelmatig uitsluitend op benzine gereden. In dat geval wordt de elektrische accu nauwelijks gebruikt, maar kan er ook stagnatie optreden door langdurig stilstaan.</p>' : ''}
     </div>
