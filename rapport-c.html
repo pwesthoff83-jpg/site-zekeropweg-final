@@ -1169,39 +1169,60 @@ function getRisicoLabel(score) {
   return { label: 'Aandachtspunt', kleur: 'amber', cijfer: 'C' };
 }
 
-function getDegradatie(driveType, leeftijd, km) {
+function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
   leeftijd = leeftijd || 0;
   km = km || 0;
+  jaarGebruik = jaarGebruik || (leeftijd > 0 ? Math.round(km / leeftijd) : 15000);
+
+  // Intensiteitsfactor op basis van km/jaar
+  // Normaal gebruik: ~15.000 km/jaar = factor 1.0
+  // Boven 25.000: zwaar, boven 35.000: zeer zwaar
+  const intensiteit = Math.min(jaarGebruik / 15000, 3.0);
 
   if (driveType === 'ev') {
-    const base = 2;
-    const jaarDeg = Math.min(leeftijd * 1.8, 12);
-    const kmDeg = Math.min(km / 100000 * 6, 10);
-    const min = Math.round(base + jaarDeg * 0.7);
-    const max = Math.round(base + jaarDeg + kmDeg);
+    // EV: basis ~2% per jaar + km-component
+    // Bronnen: diverse studies tonen 1.8–2.3% per jaar bij normaal gebruik
+    const jaarComp = leeftijd * 2.0 * Math.min(intensiteit, 2.0);
+    const kmComp = (km / 100000) * 4.0;
+    const min = Math.max(2, Math.round(leeftijd * 1.5));
+    const max = Math.round(jaarComp + kmComp);
+    return {
+      min: Math.min(min, 15),
+      max: Math.min(Math.max(max, min + 3), 30),
+      uitleg: 'Elektrische accu\'s verliezen capaciteit door laadcycli en leeftijd. Intensief gebruik en snelladen versnellen dit proces.'
+    };
+  }
+
+  if (driveType === 'phev') {
+    // PHEV: accu is kleiner maar cycleert zwaarder relatief gezien
+    // Bij veel km/jaar wordt de elektrische accu intensiever geladen/ontladen
+    // Basis: ~3% per jaar bij normaal gebruik, hoger bij intensief rijden
+    const jaarComp = leeftijd * 3.0 * Math.min(intensiteit, 2.5);
+    const kmComp = (km / 100000) * 6.0;
+    const min = Math.max(3, Math.round(leeftijd * 2.0));
+    const max = Math.round(jaarComp + kmComp);
+    return {
+      min: Math.min(min, 18),
+      max: Math.min(Math.max(max, min + 4), 35),
+      uitleg: 'Plug-in hybride accu\'s zijn kleiner dan volledig elektrische, maar worden bij intensief gebruik per kilometer zwaarder belast. Het werkelijk verlies is afhankelijk van laadgedrag en rijpatroon.'
+    };
+  }
+
+  if (driveType === 'hybrid') {
+    // Milde hybride: kleine accu (1-2 kWh), regeneratief, weinig diepe cycli
+    // Degradatie is laag maar niet nul, vooral bij leeftijd
+    const jaarComp = leeftijd * 1.2;
+    const kmComp = (km / 100000) * 2.0;
+    const min = Math.max(1, Math.round(leeftijd * 0.8));
+    const max = Math.round(jaarComp + kmComp);
     return {
       min: Math.min(min, 8),
-      max: Math.min(max, 22),
-      uitleg: 'Elektrische accu\'s verliezen capaciteit door laadcycli en leeftijd. De werkelijke staat is alleen meetbaar via een diagnose.'
+      max: Math.min(Math.max(max, min + 2), 15),
+      uitleg: 'Milde hybride accu\'s worden minder diep ontladen dan plug-in systemen. Degradatie is doorgaans beperkt, maar neemt toe bij hogere leeftijd en kilometrage.'
     };
   }
-  if (driveType === 'phev') {
-    const min = Math.round(3 + leeftijd * 1.2);
-    const max = Math.round(6 + leeftijd * 2.5 + km / 150000 * 5);
-    return {
-      min: Math.min(min, 10),
-      max: Math.min(max, 20),
-      uitleg: 'Plug-in hybride accu\'s degraderen doorgaans langzamer dan volledig elektrische, maar ook hier speelt gebruik een rol.'
-    };
-  }
-  if (driveType === 'hybrid') {
-    return {
-      min: 2,
-      max: Math.min(5 + leeftijd, 12),
-      uitleg: 'Milde hybrides hebben kleinere accu\'s die minder zwaar belast worden. Degradatie is doorgaans laag tot beperkt.'
-    };
-  }
-  return { min: 0, max: 0, uitleg: 'Niet van toepassing bij brandstofmotoren.' };
+
+  return { min: 0, max: 0, uitleg: 'Niet van toepassing bij een conventionele verbrandingsmotor.' };
 }
 
 function getActieradius(driveType, kwh) {
@@ -1312,7 +1333,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik);
   const risico = getRisicoLabel(score);
-  const degradatie = getDegradatie(driveType, leeftijd, km);
+  const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik);
   const actieradius = getActieradius(driveType, kwh);
   const datumNu = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -1329,8 +1350,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     ? `Geschatte bandbreedte: ${degradatie.min}% tot ${degradatie.max}%`
     : 'Niet van toepassing';
 
-  const barPct = Math.min(100, Math.max(10, 100 - degradatie.max));
-  const barKleur = barPct >= 80 ? 'green' : barPct >= 65 ? 'amber' : 'red';
+  // Balk toont het midden van de degradatiebandbreedte als schatting
+  const degMid = Math.round((degradatie.min + degradatie.max) / 2);
+  const barPct = Math.min(100, Math.max(10, 100 - degMid));
+  const barKleur = barPct >= 85 ? 'green' : barPct >= 72 ? 'amber' : 'red';
+  const barLabel = `${100 - degradatie.max}–${100 - degradatie.min}%`;
 
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
@@ -1396,18 +1420,18 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       ${kwh ? `
       <div class="battery-visual">
         <div class="battery-label-row">
-          <span>Resterende capaciteit (schatting)</span>
-          <span>${barPct}%+</span>
+          <span>Geschatte resterende capaciteit</span>
+          <span style="color:var(--teal);font-weight:600">${barLabel}</span>
         </div>
         <div class="battery-bar-wrap">
           <div class="battery-bar-fill ${barKleur}" style="width:${barPct}%"></div>
         </div>
         <div class="battery-stats">
           <div class="battery-stat"><span class="battery-stat-val">${kwh} kWh</span><span class="battery-stat-label">Originele capaciteit</span></div>
-          <div class="battery-stat"><span class="battery-stat-val">${(kwh * barPct / 100).toFixed(1)} kWh</span><span class="battery-stat-label">Geschatte huidige cap.</span></div>
-          <div class="battery-stat"><span class="battery-stat-val">${leeftijdTxt}</span><span class="battery-stat-label">Leeftijd voertuig</span></div>
+          <div class="battery-stat"><span class="battery-stat-val">${(kwh * (100 - degMid) / 100).toFixed(1)} kWh</span><span class="battery-stat-label">Schatting nu (midden)</span></div>
+          <div class="battery-stat"><span class="battery-stat-val">${degradatie.min}–${degradatie.max}%</span><span class="battery-stat-label">Verwacht verlies</span></div>
         </div>
-        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Dit is een statistische schatting op basis van leeftijd en kilometrage. De werkelijke waarde wijkt hier mogelijk van af.</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Statistische schatting op basis van leeftijd, kilometrage en rijintensiteit. De werkelijke waarde is alleen meetbaar via een diagnose.</p>
       </div>` : `
       <div class="highlight-box">
         De exacte batterijcapaciteit is niet vastgesteld, maar ligt doorgaans in dit segment tussen <strong>${driveType === 'ev' ? '40 en 100 kWh' : '8 en 30 kWh'}</strong>. Een meting geeft uitsluitsel.
