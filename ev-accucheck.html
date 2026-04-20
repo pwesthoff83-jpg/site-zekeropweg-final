@@ -27,6 +27,12 @@
         'event_label': 'Plan AccuCheck button'
       });
     }
+    function trackAccuCheckBarendrechtClick() {
+      gtag('event', 'accucheck_barendrecht_click', {
+        'event_category': 'engagement',
+        'event_label': 'Plan AccuCheck Barendrecht button'
+      });
+    }
   </script>
 
 </head>
@@ -81,7 +87,7 @@
      </p>
 
         <p class="hero-sub">
-         Voorkom duizenden euro’s risico door verborgen batterijdegradatie.
+         Voorkom duizenden euro's risico door verborgen batterijdegradatie.
         </p>
 
         <a
@@ -268,8 +274,8 @@ De accu bepaalt de waarde van een EV.
           <div>
             <strong>Doorzoeken</strong>
             <p>
-              Wanneer de accustatus risico’s toont kunt u beter verder kijken
-              voordat u duizenden euro’s uitgeeft.
+              Wanneer de accustatus risico's toont kunt u beter verder kijken
+              voordat u duizenden euro's uitgeeft.
             </p>
           </div>
         </div>
@@ -436,48 +442,87 @@ De accu bepaalt de waarde van een EV.
       </div>
     </section>
 
-    <!-- PRICE -->
-    <section class="price-section">
+    <!-- PRICE - BEIDE VARIANTEN -->
+    <section class="price-section" id="tarieven">
       <div class="container">
-        <div class="price-card">
-          <p class="price-eyebrow">
-            EV ACCUCHECK
-          </p>
 
-          <h3>
-            AccuCheck vóór aankoop
-          </h3>
+        <h2 style="text-align:center; margin-bottom: 0.5rem;">Kies de variant die bij u past</h2>
+        <p style="text-align:center; font-size:0.95rem; opacity:0.7; margin-bottom: 2.5rem;">
+          Dezelfde onafhankelijke meting · TÜV-gecertificeerd · Accucertificaat inbegrepen
+        </p>
 
-          <div class="price-main">
-            €129
+        <div class="price-comparison-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 760px; margin: 0 auto;">
+
+          <!-- VARIANT 1: Op locatie -->
+          <div class="price-card price-card--featured">
+            <p class="price-eyebrow">EV ACCUCHECK</p>
+            <h3>Op locatie bij u</h3>
+            <div class="price-main">€129</div>
+            <p class="price-sub">Inclusief btw · Meting bij de auto</p>
+            <p style="font-size:13px; opacity:.7; margin-top:4px; margin-bottom:1.25rem;">
+              Binnen 40 km rondom Barendrecht inbegrepen · daarna €0,35 per km
+            </p>
+            <ul class="price-features">
+              <li>Ik kom naar de auto toe</li>
+              <li>Objectieve accumeting (State of Health)</li>
+              <li>Indicatie van praktisch rijbereik</li>
+              <li>TÜV-gecertificeerde diagnoseapparatuur</li>
+              <li>Digitaal accucertificaat na uitvoering</li>
+            </ul>
+            <p style="font-size:12px; opacity:0.65; margin: 0.75rem 0 1rem; line-height:1.5;">
+              Ideaal vóór aankoop — de auto staat bij de verkoper en u wilt zekerheid voordat u beslist.
+            </p>
+            <a
+              href="intake.html?dienst=ev-accucheck"
+              class="btn-primary price-cta"
+              onclick="trackAccuCheckClick()"
+            >
+              Plan AccuCheck op locatie
+            </a>
           </div>
 
-         <p class="price-sub">
-           Inclusief btw · Meting op locatie · Accucertificaat inbegrepen
-         </p>
+          <!-- VARIANT 2: In Barendrecht -->
+          <div class="price-card price-card--secondary">
+            <p class="price-eyebrow">EV ACCUCHECK</p>
+            <h3>In Barendrecht</h3>
+            <div class="price-main">€95</div>
+            <p class="price-sub">Inclusief btw · U brengt de auto langs</p>
+            <p style="font-size:13px; opacity:.7; margin-top:4px; margin-bottom:1.25rem;">
+              Regio Rotterdam/Dordrecht · Direct aan A15/A29
+            </p>
+            <ul class="price-features">
+              <li>U rijdt naar Barendrecht</li>
+              <li>Objectieve accumeting (State of Health)</li>
+              <li>Indicatie van praktisch rijbereik</li>
+              <li>TÜV-gecertificeerde diagnoseapparatuur</li>
+              <li>Digitaal accucertificaat na uitvoering</li>
+            </ul>
+            <p style="font-size:12px; opacity:0.65; margin: 0.75rem 0 1rem; line-height:1.5;">
+              Ideaal als u de auto al heeft — twijfel ná aankoop, controle vóór garantie-afloop of voorbereiding op doorverkoop.
+            </p>
+            <a
+              href="intake.html?dienst=ev-accucheck-barendrecht"
+              class="btn-secondary price-cta"
+              onclick="trackAccuCheckBarendrechtClick()"
+            >
+              Plan AccuCheck in Barendrecht
+            </a>
+          </div>
 
-         <p style="font-size:13px; opacity:.75; margin-top:6px;">
-           Binnen 40 km rondom Barendrecht inbegrepen · daarna €0,35 per km
-         </p>
-
-          <ul class="price-features">
-            <li>Objectieve accumeting (State of Health)</li>
-            <li>Indicatie van praktisch rijbereik</li>
-            <li>TÜV-gecertificeerde diagnoseapparatuur</li>
-            <li>Digitaal accucertificaat na uitvoering</li>
-          </ul>
-
-          <a href="intake.html?dienst=ev-accucheck" class="btn-primary price-cta">
-            Plan uw AccuCheck
-          </a>
-
-          <p class="capacity-note">
-            Om onafhankelijkheid en zorgvuldigheid te waarborgen voeren wij
-            slechts een beperkt aantal AccuChecks per dag uit.
-          </p>
         </div>
+
+        <p style="text-align:center; font-size:13px; opacity:0.6; margin-top:1.5rem;">
+          Niet zeker welke variant u nodig heeft? Neem contact op — we helpen u kiezen.
+        </p>
+
+        <p class="capacity-note" style="text-align:center; margin-top:1rem;">
+          Om onafhankelijkheid en zorgvuldigheid te waarborgen voeren wij
+          slechts een beperkt aantal AccuChecks per dag uit.
+        </p>
+
       </div>
     </section>
+
   </main>
 
   <!-- FOOTER -->
