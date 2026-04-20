@@ -3,44 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>EV AccuCheck Intake | ZekerOpWeg</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-        content="Intakeformulier voor ZekerOpWeg EV AccuCheck inclusief TÜV-gecertificeerde accudiagnose.">
+  <meta name="description" content="Intakeformulier voor ZekerOpWeg EV AccuCheck inclusief TÜV-gecertificeerde accudiagnose.">
 
   <link rel="stylesheet" href="css/styles.css?v=2.0.1">
   <link rel="stylesheet" href="css/zop-stability.css">
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-17962185957');
- </script>
+  <style>
+    .locatie-fixed {
+      background: #f6f5f1;
+      border: 1px solid #d7b56d;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #0b1220;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .locatie-note {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
 </head>
 
 <body class="fade-in page-intake" data-page="intake">
 
-
-<!-- ================= HEADER ================= -->
-
 <header class="zop-header">
   <div class="zop-header-inner">
-
     <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-
     <button class="menu-toggle" aria-label="Menu openen">☰</button>
-
     <nav class="zop-nav">
-
       <a href="index.html">Home</a>
       <a href="aankoopadvies.html">Aankoopadvies</a>
       <a href="ev-accucheck.html" class="active">AccuCheck</a>
       <a href="bezwaarservice.html">Bezwaar</a>
-
       <div class="zop-dropdown">
         <span class="zop-drop-label">Voor bedrijven</span>
         <div class="zop-drop-menu">
@@ -48,293 +54,259 @@
           <a href="automatisering.html">Automatisering</a>
         </div>
       </div>
-
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
-
     </nav>
-
   </div>
 </header>
 
-
-
-<!-- ================= MAIN ================= -->
-
 <main class="page-content">
 
-
-<!-- ================= INTRO ================= -->
-
-<section class="services-section container">
-
-  <h2 class="section-title">EV AccuCheck Intake</h2>
-
-  <p class="section-subtitle">
-    Met deze intake bereid ik uw TÜV-gecertificeerde accudiagnose
-    zorgvuldig voor.
-    <br>
-    Duur: ± 2 minuten.
-  </p>
-
-</section>
-
-
-
-<!-- ================= FORM BLOCK ================= -->
-
-<section class="services-section container intake-shell">
-
-  <h1 class="section-title">
-    Zekerheid vóór u beslist
-  </h1>
-
-  <p class="section-subtitle">
-    U laat uw voertuig testen.
-    Ik zorg voor een objectieve, professionele beoordeling.
-  </p>
-
-  <p class="accentline">
-    Uw gegevens worden uitsluitend gebruikt
-    voor voorbereiding, uitvoering en rapportage
-    van uw EV AccuCheck.
-  </p>
-
-
-
-  <div class="advisor-card">
-
-
-<!-- ================= FORM ================= -->
-
-<form id="accucheckForm"
-      action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
-      method="POST">
-
-
-<!-- ================= HIDDEN ================= -->
-
-<input type="hidden" name="redirect" value="https://zekeropweg.nu/">
-
-<input type="hidden" name="bron" value="accucheck-intake">
-<input type="hidden" name="dienst" value="aviloo-flash">
-<input type="hidden" name="versie" value="2026-1">
-
-<input type="hidden" name="product" value="ev-accucheck-particulier">
-<input type="hidden" name="platform" value="website">
-<input type="hidden" name="kabeladvies" value="standaard-check">
-
-
-
-<!-- ================= KLANT ================= -->
-
-<h3>Klantgegevens</h3>
-
-<label>Naam *</label>
-<input type="text" name="naam" required>
-
-<label>E-mail *</label>
-<input type="email" name="email" required>
-
-<label>Telefoon *</label>
-<input type="tel" name="telefoon" required>
-
-<label>Klanttype *</label>
-<select name="klanttype" id="klanttype" required>
-  <option value="">Selecteer</option>
-  <option value="particulier">Particulier</option>
-  <option value="zakelijk">Zakelijk</option>
-</select>
-
-
-
-<!-- ================= AUTO ================= -->
-
-<h3>Voertuiggegevens</h3>
-
-<label>Kenteken *</label>
-<input type="text" name="kenteken" required>
-
-<label>VIN / Chassisnummer</label>
-<input type="text" name="vin">
-
-<label>Merk *</label>
-<input type="text" name="merk" id="merk" required>
-
-<label>Model *</label>
-<input type="text" name="model" id="model" required>
-
-<label>Bouwjaar *</label>
-<input type="number" name="bouwjaar" id="bouwjaar" required>
-
-<label>Kilometerstand *</label>
-<input type="number" name="kmstand" required>
-
-
-
-<!-- ================= PARTICULIER ================= -->
-
-<div id="particulierFields" style="display:none;">
-
-  <h3>Gebruik en Laden</h3>
-
-  <label>Hoe vaak snellaadt u?</label>
-  <select name="snelladen">
-    <option value="">Selecteer</option>
-    <option value="zelden">Zelden</option>
-    <option value="soms">Soms</option>
-    <option value="regelmatig">Regelmatig</option>
-    <option value="vaak">Vaak</option>
-  </select>
-
-  <label>Hoofdgebruik</label>
-  <select name="gebruik">
-    <option value="">Selecteer</option>
-    <option value="woon-werk">Woon-werk</option>
-    <option value="zakelijk">Zakelijk</option>
-    <option value="lange-ritten">Lange ritten</option>
-    <option value="stad">Stadsverkeer</option>
-  </select>
-
-</div>
-
-
-
-<!-- ================= ZAKELIJK ================= -->
-
-<div id="zakelijkFields" style="display:none;">
-
-  <h3>Zakelijke informatie</h3>
-
-  <label>Bedrijfsnaam</label>
-  <input type="text" name="bedrijfsnaam">
-
-  <label>Doel van de check</label>
-  <select name="doel_zakelijk">
-    <option value="">Selecteer</option>
-    <option value="voorraad">Voorraadcontrole</option>
-    <option value="verkoop">Verkoopvoorbereiding</option>
-    <option value="garantie">Garantieclaim</option>
-    <option value="lease-einde">Lease-einde</option>
-  </select>
-
-</div>
-
-
-
-<!-- ================= DOEL ================= -->
-
-<h3>Doel AccuCheck</h3>
-
-<select name="doel_algemeen" required>
-  <option value="">Selecteer</option>
-  <option value="aankoop">Aankoop</option>
-  <option value="verkoop">Verkoop</option>
-  <option value="garantie">Garantie</option>
-  <option value="zekerheid">Zekerheid</option>
-</select>
-
-
-
-<!-- ================= TOESTEMMING ================= -->
-
-<h3>Toestemming</h3>
-
-<label class="checkbox">
-  <input type="checkbox" name="toestemming" required>
-  Ik ga akkoord met verwerking van mijn gegevens
-</label>
-
-
-
-<!-- ================= KABEL PREVIEW ================= -->
-
-<div id="kabelPreview"
-     style="display:none;margin-top:20px;padding:14px;border:1px solid #d7b56d;border-radius:8px;background:#faf7f0;">
-
-  <strong>Werkvoorbereiding</strong><br>
-  <span id="kabelPreviewText"></span>
-
-</div>
-
-
-
-<!-- ================= CTA ================= -->
-
-<p class="advisor-microtrust">
-Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
-</p>
-
-
-<button type="submit" class="advisor-submit">
-Intake verzenden
-</button>
-
-
-</form>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= AFSLUIT ================= -->
-
-<section class="services-section container">
-
-  <p class="accentline">
-    Na ontvangst neem ik contact met u op
-    voor planning en uitvoering van de meting.
-  </p>
-
-</section>
-
+  <section class="services-section container">
+    <h2 class="section-title">EV AccuCheck Intake</h2>
+    <p class="section-subtitle">
+      Met deze intake bereid ik uw TÜV-gecertificeerde accudiagnose zorgvuldig voor.<br>
+      Duur: ± 2 minuten.
+    </p>
+  </section>
+
+  <section class="services-section container intake-shell">
+
+    <h1 class="section-title">Zekerheid vóór u beslist</h1>
+
+    <p class="section-subtitle">
+      U laat uw voertuig testen. Ik zorg voor een objectieve, professionele beoordeling.
+    </p>
+
+    <p class="accentline">
+      Uw gegevens worden uitsluitend gebruikt voor voorbereiding, uitvoering en rapportage van uw EV AccuCheck.
+    </p>
+
+    <div class="advisor-card">
+
+      <form id="accucheckForm"
+            action="https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh"
+            method="POST">
+
+        <input type="hidden" name="redirect" value="https://zekeropweg.nu/">
+        <input type="hidden" name="bron" value="accucheck-intake">
+        <input type="hidden" name="dienst" id="dienstField" value="">
+        <input type="hidden" name="prijs" id="prijsField" value="">
+        <input type="hidden" name="versie" value="2026-1">
+        <input type="hidden" name="product" id="productField" value="ev-accucheck-particulier">
+        <input type="hidden" name="platform" value="website">
+
+        <!-- KLANT -->
+        <h3>Klantgegevens</h3>
+
+        <label>Naam *</label>
+        <input type="text" name="naam" required>
+
+        <label>E-mail *</label>
+        <input type="email" name="email" required>
+
+        <label>Telefoon *</label>
+        <input type="tel" name="telefoon" required>
+
+        <label>Klanttype *</label>
+        <select name="klanttype" id="klanttype" required>
+          <option value="">Selecteer</option>
+          <option value="particulier">Particulier</option>
+          <option value="zakelijk">Zakelijk</option>
+        </select>
+
+        <!-- AUTO -->
+        <h3>Voertuiggegevens</h3>
+
+        <label>Kenteken *</label>
+        <input type="text" name="kenteken" required>
+
+        <label>VIN / Chassisnummer</label>
+        <input type="text" name="vin">
+
+        <label>Merk *</label>
+        <input type="text" name="merk" id="merk" required>
+
+        <label>Model *</label>
+        <input type="text" name="model" id="model" required>
+
+        <label>Bouwjaar *</label>
+        <input type="number" name="bouwjaar" id="bouwjaar" required>
+
+        <label>Kilometerstand *</label>
+        <input type="number" name="kmstand" required>
+
+        <!-- LOCATIE: wisselt op basis van dienst-parameter -->
+        <h3>Locatie</h3>
+
+        <div id="locatieVast" style="display:none;">
+          <label>Locatie</label>
+          <div class="locatie-fixed">
+            Sneekermeer 11<br>
+            2993 RL Barendrecht
+          </div>
+          <p class="locatie-note">Alleen op afspraak. Na uw aanvraag neem ik contact op voor planning.</p>
+          <input type="hidden" name="locatie_auto" value="Sneekermeer 11, 2993 RL Barendrecht">
+        </div>
+
+        <div id="locatieVrij" style="display:none;">
+          <label>Waar staat de auto? *</label>
+          <input type="text"
+                 id="locatieAuto"
+                 name="locatie_auto"
+                 placeholder="Bijv. plaats, dealernaam of volledig adres"
+                 required>
+        </div>
+
+        <!-- PARTICULIER -->
+        <div id="particulierFields" style="display:none;">
+          <h3>Gebruik en laden</h3>
+          <label>Hoe vaak snellaadt u?</label>
+          <select name="snelladen">
+            <option value="">Selecteer</option>
+            <option value="zelden">Zelden</option>
+            <option value="soms">Soms</option>
+            <option value="regelmatig">Regelmatig</option>
+            <option value="vaak">Vaak</option>
+          </select>
+          <label>Hoofdgebruik</label>
+          <select name="gebruik">
+            <option value="">Selecteer</option>
+            <option value="woon-werk">Woon-werk</option>
+            <option value="zakelijk">Zakelijk</option>
+            <option value="lange-ritten">Lange ritten</option>
+            <option value="stad">Stadsverkeer</option>
+          </select>
+        </div>
+
+        <!-- ZAKELIJK -->
+        <div id="zakelijkFields" style="display:none;">
+          <h3>Zakelijke informatie</h3>
+          <label>Bedrijfsnaam</label>
+          <input type="text" name="bedrijfsnaam">
+          <label>Doel van de check</label>
+          <select name="doel_zakelijk">
+            <option value="">Selecteer</option>
+            <option value="voorraad">Voorraadcontrole</option>
+            <option value="verkoop">Verkoopvoorbereiding</option>
+            <option value="garantie">Garantieclaim</option>
+            <option value="lease-einde">Lease-einde</option>
+          </select>
+        </div>
+
+        <!-- DOEL -->
+        <h3>Doel AccuCheck</h3>
+        <select name="doel_algemeen" required>
+          <option value="">Selecteer</option>
+          <option value="aankoop">Aankoop</option>
+          <option value="verkoop">Verkoop</option>
+          <option value="garantie">Garantie</option>
+          <option value="zekerheid">Zekerheid</option>
+        </select>
+
+        <!-- TOESTEMMING -->
+        <h3>Toestemming</h3>
+        <label class="checkbox">
+          <input type="checkbox" name="toestemming" required>
+          Ik ga akkoord met verwerking van mijn gegevens
+        </label>
+
+        <p class="advisor-microtrust">
+          Persoonlijke uitvoering · TÜV-certificaat · Onafhankelijk
+        </p>
+
+        <button type="submit" class="advisor-submit">Intake verzenden</button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <section class="services-section container">
+    <p class="accentline">
+      Na ontvangst neem ik contact met u op voor planning en uitvoering van de meting.
+    </p>
+  </section>
 
 </main>
 
-
-
-<!-- ================= FOOTER ================= -->
-
 <footer class="footer">
-
   <div class="container footer-grid">
-
     <div class="footer-col">
       <p class="footer-title">ZekerOpWeg</p>
       <p>© 2026 ZekerOpWeg</p>
     </div>
-
     <div class="footer-col">
       <p class="footer-title">Contact</p>
       <p>
-        <a href="mailto:accucheck@zekeropweg.nu" data-service="accu">
-          accucheck@zekeropweg.nu
-        </a><br>
+        <a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>
         EV AccuCheck
       </p>
     </div>
-
   </div>
-
 </footer>
-
-
-
-<!-- ================= SCRIPTS ================= -->
 
 <script src="scripts/menu.js" defer></script>
 
-
-<!-- ====== JOUW ENGINE SCRIPT (ONGEWijzigD) ====== -->
 <script>
+  const params = new URLSearchParams(window.location.search);
+  const dienstParam = params.get("dienst");
 
-/* =========================== */
-/* JOUW BESTAANDE SCRIPT HIER */
-/* (ongewijzigd gelaten)      */
-/* =========================== */
+  const dienstField = document.getElementById("dienstField");
+  const prijsField = document.getElementById("prijsField");
+  const productField = document.getElementById("productField");
+  const locatieVast = document.getElementById("locatieVast");
+  const locatieVrij = document.getElementById("locatieVrij");
+  const locatieVrijInput = document.getElementById("locatieAuto");
 
+  function initLocatie() {
+    if (dienstParam === "ev-accucheck-barendrecht") {
+      // €95 Barendrecht
+      dienstField.value = "ev-accucheck-barendrecht";
+      prijsField.value = "95";
+      productField.value = "ev-accucheck-barendrecht-95";
+      locatieVast.style.display = "block";
+      locatieVrij.style.display = "none";
+      locatieVrijInput.required = false;
+    } else {
+      // €129 op locatie (default)
+      dienstField.value = dienstParam || "ev-accucheck";
+      prijsField.value = "129";
+      productField.value = "ev-accucheck-locatie-129";
+      locatieVast.style.display = "none";
+      locatieVrij.style.display = "block";
+      locatieVrijInput.required = true;
+    }
+  }
+
+  initLocatie();
+
+  // Klanttype: toon juiste velden
+  document.getElementById("klanttype").addEventListener("change", function () {
+    document.getElementById("particulierFields").style.display =
+      this.value === "particulier" ? "block" : "none";
+    document.getElementById("zakelijkFields").style.display =
+      this.value === "zakelijk" ? "block" : "none";
+  });
+
+  // Submit via fetch
+  document.getElementById("accucheckForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const data = new FormData(this);
+
+    fetch("https://hook.eu1.make.com/bnbyl4q50ams7mgms9q1w81hy0tgbnkh", {
+      method: "POST",
+      body: data
+    })
+    .then(function (response) {
+      if (!response.ok) throw new Error("Webhook fout");
+      window.location.href = "https://zekeropweg.nu/";
+    })
+    .catch(function () {
+      alert("Er ging iets mis met verzenden. Probeer opnieuw.");
+    });
+  });
 </script>
 
 </body>
