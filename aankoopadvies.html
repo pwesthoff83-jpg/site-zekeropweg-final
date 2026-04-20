@@ -10,27 +10,16 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-
     {
       "@type": "Organization",
       "@id": "https://zekeropweg.nu#org",
       "name": "ZekerOpWeg",
       "url": "https://zekeropweg.nu",
       "logo": "https://zekeropweg.nu/assets/logo.png",
-      "description": "Onafhankelijk preventief adviesinstituut voor automobilisten en bedrijven. Aankoopadvies, EV accudiagnose en ondersteuning bij verkeers en parkeerboetes.",
-      "founder": {
-        "@type": "Person",
-        "name": "Pepijn Westhoff"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Nederland"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/"
-      ]
+      "description": "Onafhankelijk preventief adviesinstituut voor automobilisten en bedrijven.",
+      "founder": { "@type": "Person", "name": "Pepijn Westhoff" },
+      "areaServed": { "@type": "Country", "name": "Nederland" }
     },
-
     {
       "@type": "Service",
       "name": "Aankoopadvies auto",
@@ -39,7 +28,6 @@
       "url": "https://zekeropweg.nu/aankoopadvies.html",
       "description": "Onafhankelijk aankoopadvies voor gebruikte en nieuwe voertuigen, inclusief selectie, beoordeling en begeleiding zonder verkoopbelang."
     },
-
     {
       "@type": "Service",
       "name": "EV AccuCheck",
@@ -47,75 +35,151 @@
       "areaServed": "Netherlands",
       "url": "https://zekeropweg.nu/ev-accucheck.html",
       "description": "TÜV gecertificeerde accudiagnose op locatie voor elektrische en hybride voertuigen met objectief accucertificaat."
-    },
-
-    {
-      "@type": "Service",
-      "name": "Bezwaarservice verkeersboetes",
-      "provider": { "@id": "https://zekeropweg.nu#org" },
-      "areaServed": "Netherlands",
-      "url": "https://zekeropweg.nu/bezwaarservice.html",
-      "description": "Ondersteuning bij bezwaar tegen verkeers en parkeerboetes met menselijke controle en juridische onderbouwing."
     }
-
   ]
 }
 </script>
 
- <!--
-CSS order:
-0. legacy / base styles (historisch)
-1. zop-stability.css   (structuur & ritme)
-2. components.css     (bouwstenen)
-3. luxury.css         (visuele polish – optioneel)
--->
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+  <link rel="stylesheet" href="css/aankoopadvies.css">
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/luxury.css" />
 
-<link rel="stylesheet" href="css/styles.css?v=2.0.1" />
-<link rel="stylesheet" href="css/zop-buttons.css?v=3" />
-<link rel="stylesheet" href="css/aankoopadvies.css">
-<link rel="stylesheet" href="css/zop-stability.css" />
-  
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/luxury.css" />
+  <style>
+    /* Combinatiekaart onder pakketten */
+    .combo-section {
+      background: #0b1220;
+      padding: 72px 0;
+      color: #fff;
+    }
+    .combo-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .combo-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c6a86a;
+      margin-bottom: 12px;
+    }
+    .combo-inner h2 {
+      font-size: 28px;
+      font-weight: 650;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .combo-intro {
+      font-size: 15px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .combo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .combo-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(198,168,106,.3);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: left;
+    }
+    .combo-card .combo-pakket {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #c6a86a;
+      margin-bottom: 8px;
+    }
+    .combo-card h3 {
+      font-size: 18px;
+      font-weight: 650;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .combo-card .combo-prijzen {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .combo-card .combo-nieuw {
+      font-size: 28px;
+      font-weight: 650;
+      color: #c6a86a;
+    }
+    .combo-card .combo-oud {
+      font-size: 14px;
+      color: rgba(255,255,255,.4);
+      text-decoration: line-through;
+    }
+    .combo-card .combo-besparing {
+      font-size: 12px;
+      color: #7dc87d;
+      margin-bottom: 16px;
+    }
+    .combo-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+    .combo-card ul li {
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+      padding: 4px 0;
+      display: flex;
+      gap: 8px;
+    }
+    .combo-card ul li::before {
+      content: "✓";
+      color: #c6a86a;
+      flex-shrink: 0;
+    }
+    .combo-note {
+      font-size: 12px;
+      color: rgba(255,255,255,.45);
+      margin-top: 20px;
+    }
+    @media (max-width: 680px) {
+      .combo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
+</head>
 
-  gtag('config', 'AW-17962185957');
- </script>
-</head>  
-  
 <body class="fade-in page-aankoopadvies">
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 <header class="zop-header">
   <div class="zop-header-inner">
-    
     <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-
     <nav class="zop-nav">
-
       <a href="index.html">Home</a>
       <a href="aankoopadvies.html">Aankoopadvies</a>
-
-      <!-- ACCUCHECK DROPDOWN -->
       <div class="zop-dropdown">
-        <a href="ev-accucheck.html" class="zop-drop-label active">
-          AccuCheck
-        </a>
+        <a href="ev-accucheck.html" class="zop-drop-label active">AccuCheck</a>
         <div class="zop-drop-menu">
           <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">
-            Premium PHEV Beslischeck – BMW X5 45e / 50e
-          </a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
         </div>
       </div>
-
-      <!-- VOOR BEDRIJVEN DROPDOWN -->
       <div class="zop-dropdown">
         <span class="zop-drop-label">Voor bedrijven</span>
         <div class="zop-drop-menu">
@@ -123,31 +187,22 @@ CSS order:
           <a href="automatisering.html">Automatisering</a>
         </div>
       </div>
-
       <a href="bezwaarservice.html">Bezwaar</a>
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
-
     </nav>
-
     <button class="menu-toggle" aria-label="Menu openen">☰</button>
-
   </div>
 </header>
 
-
-   <!-- ================= MOBILE MENU ================= -->
 <button class="menu-toggle" aria-label="Menu openen">☰</button>
-
 <div id="mobileMenu" class="mobile-menu">
   <button class="close-menu" aria-label="Menu sluiten">×</button>
   <nav class="mobile-nav">
     <a href="index.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
     <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="bmw-x5-45e-50e-accucheck.html">
-      Premium PHEV Beslischeck – BMW X5 45e / 50e
-    </a>
+    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
     <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
     <a href="automatisering.html">Automatisering</a>
     <a href="bezwaarservice.html">Bezwaar</a>
@@ -155,481 +210,458 @@ CSS order:
     <a href="contact.html">Contact</a>
   </nav>
 </div>
-
 <div id="menuOverlay" class="menu-overlay"></div>
-
-
 
 <main class="page-content">
 
-<!-- HERO -->
-<section class="hero hero-standard hero-aankoopadvies">
-  <div class="hero-content">
-    <span class="hero-eyebrow">Onafhankelijk · Rust · Overzicht</span>
-   <h1>Twijfel over deze auto?</h1>
-  <p class="hero-subline">
-Ik zeg je of je hem moet kopen of niet. Voorkom een miskoop van duizenden euro’s.
-</p>
-<a href="https://wa.me/31623452349" class="btn-primary">
-Stuur kenteken via WhatsApp
-</a>
-  </div>
-</section>
-
- <section class="services-section container">
-
-  <div class="premium-card">
-
-    <span class="premium-eyebrow">BeslisCheck</span>
-
-    <h3>Twijfel over deze auto?</h3>
-
-    <div class="price-block">
-      <strong>€49</strong>
-      <span>direct inzicht vóórdat je gaat kijken</span>
+  <!-- HERO -->
+  <section class="hero hero-standard hero-aankoopadvies">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Onafhankelijk · Rust · Overzicht</span>
+      <h1>Twijfel over deze auto?</h1>
+      <p class="hero-subline">
+        Ik zeg je of je hem moet kopen of niet. Voorkom een miskoop van duizenden euro's.
+      </p>
+      <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
     </div>
+  </section>
 
-    <p class="section-subtitle" style="margin-top:10px;">
-      Stuur kenteken of advertentie.  
-      Ik zeg je of je deze moet kopen of laten staan.
-    </p>
-
-    <ul class="lux-list">
-      <li>Analyse van advertentie en verhaal</li>
-      <li>Risico’s en verborgen aandachtspunten</li>
-      <li>Concreet advies: kopen of laten staan</li>
-    </ul>
-
-    <p class="guardian-text">
-      Ideaal als eerste stap voordat je tijd en geld investeert in bezichtigen.
-    </p>
-
-    <a href="https://wa.me/31623452349" class="btn-primary">
-      Stuur kenteken → ik kijk direct met je mee
-    </a>
-
-    <div class="trust-compact">
-    <p>✔ Dagelijks gebruikt bij auto’s van €10.000 – €80.000</p>
-    <p class="muted">Beperkt aantal aanvragen per dag</p>
-  </div>
-
-  </div>
-
-</section>
-
-  
-<!-- INTRO -->
-<section class="services-section container">
-<h2 class="section-title">Aankoopadvies zoals het bedoeld is</h2>
-
-<p class="section-subtitle">
-De meeste miskopen ontstaan niet bij de koop zelf, maar bij de aannames die onderweg worden gemaakt.
-Over budget, gebruik, aandrijving of wat op dat moment logisch lijkt.
-</p>
-
-<p class="section-subtitle">
-Twijfelt u welke auto bij u past, of of u beter elektrisch, hybride of benzine kunt rijden?
-Dan is dit het moment om eerst overzicht te creëren, voordat u gaat vergelijken.
-</p>
-
-<p class="section-subtitle">
-Een auto kopen is zelden een puur rationele beslissing.
-Emotie, tijdsdruk en onzekerheid spelen vaak een grotere rol dan vooraf gedacht.
-ZekerOpWeg helpt u vertragen, beoordelen en kiezen, vóórdat u vastzit aan een beslissing.
-</p>
-
-<p class="accentline">
-Zestien jaar ervaring in autoverkoop en taxatie,
-vertaald naar onafhankelijk advies zonder provisies of verkoopbelang.
-</p>
-</section>
-
-<section class="services-section zow-editorial">
-  <div class="container">
-    <div class="zow-editorial__inner">
-
-       <!-- NIEUW: stack wrapper -->
-      <div class="zow-editorial__stack">
-
-      <!-- Eyebrow -->
-      <p class="zow-eyebrow">
-        Helder uitgangspunt
-      </p>
-
-      <!-- Hoofdtitel -->
-      <h2 class="zow-editorial__title">
-        Wat dit advies wel en niet is
-      </h2>
-
-      <!-- Definitie -->
-      <p class="zow-editorial__text">
-        Mijn rol is niet om te zeggen of een auto “goed” of “fout” is.
-        Mijn rol is om het beeld compleet te maken, zodat u begrijpt
-        waar u wél of juist niet ja tegen zegt.
-      </p>
-
-      <!-- Subtiele divider -->
-      <div class="zow-editorial__divider"></div>
-
-      <!-- Kicker / richtingaanwijzer -->
-     <p class="zow-editorial__kicker">
-  Wanneer aankoopadvies het verschil maakt
-</p>
-
-      <!-- Verdieping -->
-      <p class="zow-editorial__text">
-        Deze service is er om richting te geven. Niet om sneller te beslissen,
-        maar om te voorkomen dat u later opnieuw moet beginnen.
-        Veel mensen zoeken naar aankoopadvies wanneer vergelijken
-        geen duidelijkheid meer geeft.
-      </p>
-
-      <!-- Route-onderscheid (zonder keuzedwang) -->
-      <p class="zow-editorial__transition">
-        Nog geen auto gevonden? Dan begint het traject anders.
-      </p>
-
-      <p class="zow-editorial__text">
-        Wanneer u nog aan het oriënteren bent en eerst helder wilt krijgen
-        welke auto, aandrijving en prijsklasse bij u passen,
-        start het traject met de Zoekservice.
-      </p>
-
-    </div>
-  </div>
-</section>
-  
+  <!-- BESLISCHECK -->
   <section class="services-section container">
-  <h2 class="section-title">Nog geen auto gevonden?</h2>
-
-  <p class="section-subtitle">
-  Veel mensen weten wat ze willen voelen, maar niet waar ze hun zoektocht op moeten richten.
-  Juist die eerste keuzes bepalen of u later rust ervaart, of alsnog moet bijsturen.
-  </p>
-
-  <p class="card-bridge">
-  Deze stap helpt u om uw zoektocht gericht en overzichtelijk te starten.
-</p>
-   
-  <div class="premium-card premium-muted">
-
-    <span class="premium-eyebrow">Zoekservice</span>
-
-    <h3>Van wens naar concrete kandidaten</h3>
-
-    <div class="price-block">
-      <strong>€149</strong>
-      <span>persoonlijke intake en marktverkenning</span>
-    </div>
-
-    <ul class="lux-list">
-      <li>Uitgebreide intake over gebruik en verwachtingen</li>
-      <li>Advies over modellen en uitvoeringen</li>
-      <li>Inzicht in onderhoud en bekende aandachtspunten</li>
-      <li>Selectie van kansrijke advertenties</li>
-      <li>Realistische kosteninschatting komende jaren</li>
-    </ul>
-
-
-    <p class="guardian-text">
-    Na deze stap kan, indien gewenst, een controle van een concrete auto worden uitgevoerd
-    binnen het Premium of Full Service pakket.
-   </p>
-
-     <a href="zoekservice-intake.html" class="btn-primary">
-      Start met zoekservice
-    </a>
-
-  </div>
-</section>
-
-  
-<!-- PAKKETTEN -->
-<section class="services-section section-bg-soft" id="pakketten">
-  <div class="container">
-    <h2 class="section-title">Pakketten en tarieven</h2>
-    <p class="section-subtitle">
-     Afhankelijk van hoeveel begeleiding u wenst, kiest u een passend adviesniveau.
-     Elk pakket is bedoeld om onzekerheden weg te nemen op het moment dat ze ontstaan.
-     Premium bevat Basis. Full Service bevat Premium.
-    </p>
-
-    <p class="accentline accentline--compact">
-  U kiest geen pakket om sneller te kopen,
-  maar om betere beslissingen te nemen op het juiste moment.
-</p>
-    
-    <div class="packages-section">
-
-      <!-- BASIS -->
-     <div class="package-card">
-  <div class="package-body">
-    <h3>Basis</h3>
-    <p class="price">€249</p>
-    <p class="description">Voor wie eerst inzicht en richting wil voordat verdere stappen worden gezet.</p>
-
-    <ul>
-      <li>Bespreking van wensen en gebruik</li>
-      <li>Analyse van advertentie en marktpositie</li>
-      <li>Inzicht in aandachtspunten en risico’s</li>
-      <li>Telefonisch of digitaal advies</li>
+    <div class="premium-card">
+      <span class="premium-eyebrow">BeslisCheck</span>
+      <h3>Twijfel over deze auto?</h3>
+      <div class="price-block">
+        <strong>€49</strong>
+        <span>direct inzicht vóórdat je gaat kijken</span>
+      </div>
+      <p class="section-subtitle" style="margin-top:10px;">
+        Stuur kenteken of advertentie. Ik zeg je of je deze moet kopen of laten staan.
+      </p>
+      <ul class="lux-list">
+        <li>Analyse van advertentie en verhaal</li>
+        <li>Risico's en verborgen aandachtspunten</li>
+        <li>Concreet advies: kopen of laten staan</li>
       </ul>
+      <p class="guardian-text">
+        Ideaal als eerste stap voordat je tijd en geld investeert in bezichtigen.
+      </p>
+      <a href="https://wa.me/31623452349" class="btn-primary">
+        Stuur kenteken, ik kijk direct met je mee
+      </a>
+      <div class="trust-compact">
+        <p>✔ Dagelijks gebruikt bij auto's van €10.000 – €80.000</p>
+        <p class="muted">Beperkt aantal aanvragen per dag</p>
+      </div>
 
-    <div class="result-block">
-  <p><strong>Resultaat:</strong></p>
-  <ul>
-    <li>✔ Je weet of je moet kopen</li>
-    <li>✔ Je voorkomt verborgen kosten</li>
-    <li>✔ Je staat sterker in onderhandeling</li>
-  </ul>
-</div>
-    
-    <p class="note-small">Geen fysieke bezichtiging inbegrepen.</p>
-  </div>
+      <div style="margin-top:20px; padding:14px 18px; background:#f6f5f1; border-left:3px solid #c6a86a; border-radius:0 8px 8px 0; font-size:14px; line-height:1.65; color:#0b1220;">
+        Wil je daarna ook fysiek langs de auto? De €49 van de BeslisCheck wordt verrekend met een Premium of Full Service pakket.
+      </div>
 
-  <div class="package-cta">
-    <a href="start-aankoopadvies.html?pakket=Basis" class="btn-package">Start basisadvies</a>
-  </div>
-</div>
+    </div>
+  </section>
 
+  <!-- ROUTE INDICATOR -->
+  <section style="padding: 0 0 48px;">
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; max-width:700px; margin:0 auto;">
 
-      <!-- PREMIUM -->
-    <div class="package-card featured">
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 1</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">BeslisCheck</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€49</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Weten of de auto de moeite waard is</div>
+        </div>
 
-  <span class="badge">Meest gekozen</span>
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
 
-  <div class="package-body">
-    <h3>Premium</h3>
-    <p class="price">€349</p>
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 2</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">Premium</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€349 <span style="font-size:11px;">(of €300 na BeslisCheck)</span></div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Fysieke bezichtiging bij de auto</div>
+        </div>
 
-    <p class="description">
-      Voor wie zekerheid wil bij de auto zelf, vóórdat de beslissing definitief wordt.
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 3</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">Full Service</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€499</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Begeleiding tot sleuteloverdracht</div>
+        </div>
+
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Optioneel</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">+ AccuCheck</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€109 combinatieprijs</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Bij EV of hybride</div>
+        </div>
+
+      </div>
+      <p style="text-align:center; font-size:12px; color:#888; margin-top:12px;">
+        U kunt op elk moment instappen of opschalen. Eerder betaald wordt verrekend.
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="services-section container">
+    <h2 class="section-title">Aankoopadvies zoals het bedoeld is</h2>
+    <p class="section-subtitle">
+      De meeste miskopen ontstaan niet bij de koop zelf, maar bij de aannames die onderweg worden gemaakt.
+      Over budget, gebruik, aandrijving of wat op dat moment logisch lijkt.
     </p>
-
-    <ul>
-      <li>Alles uit Basis</li>
-      <li>Fysieke bezichtiging (1 locatie)</li>
-      <li>Optische en technische controle</li>
-      <li>Proefrit en rijbeleving</li>
-      <li>Heldere terugkoppeling met advies</li>
-    </ul>
-
-     <div class="result-block">
-     <p><strong>Resultaat:</strong></p>
-     <ul>
-     <li>✔ Je weet of je moet kopen</li>
-     <li>✔ Je voorkomt verborgen kosten</li>
-    <li>✔ Je staat sterker in onderhandeling</li>
-  </ul>
-</div>
-    
-    <p class="note-small">
-      Locatie van de auto wordt vooraf afgestemd.
+    <p class="section-subtitle">
+      Twijfelt u welke auto bij u past, of of u beter elektrisch, hybride of benzine kunt rijden?
+      Dan is dit het moment om eerst overzicht te creëren, voordat u gaat vergelijken.
     </p>
-  </div>
-
-  <div class="package-cta">
-    <a href="start-aankoopadvies.html?pakket=Premium" class="btn-package btn-package--primary">
-      Plan onafhankelijke bezichtiging
-    </a>
-  </div>
-
-</div>
-
-
-      <!-- FULL SERVICE -->
-   <div class="package-card">
-
-  <div class="package-body">
-    <h3>Full Service</h3>
-    <p class="price">€499</p>
-
-    <p class="description">
-      Volledige begeleiding bij complexere of waardevollere aankopen.
+    <p class="section-subtitle">
+      Een auto kopen is zelden een puur rationele beslissing.
+      Emotie, tijdsdruk en onzekerheid spelen vaak een grotere rol dan vooraf gedacht.
+      ZekerOpWeg helpt u vertragen, beoordelen en kiezen, vóórdat u vastzit aan een beslissing.
     </p>
-
-    <ul>
-      <li>Alles uit Premium</li>
-      <li>Tweede bezoek voor onderhandeling</li>
-      <li>Begeleiding tijdens aankoopgesprek</li>
-      <li>Controle afspraken en voorwaarden</li>
-      <li>Zekerheid tot sleuteloverdracht</li>
-    </ul>
-
-    <div class="result-block">
-  <p><strong>Resultaat:</strong></p>
-  <ul>
-    <li>✔ Je weet of je moet kopen</li>
-    <li>✔ Je voorkomt verborgen kosten</li>
-    <li>✔ Je staat sterker in onderhandeling</li>
-  </ul>
-</div>
-    
-    <p class="note-small">
-      Ideaal wanneer u niets wilt laten liggen.
+    <p class="accentline">
+      Zestien jaar ervaring in autoverkoop en taxatie,
+      vertaald naar onafhankelijk advies zonder provisies of verkoopbelang.
     </p>
-  </div>
+  </section>
 
-  <div class="package-cta">
-    <a href="start-aankoopadvies.html?pakket=Full" class="btn-package">
-      Start volledige aankoopbegeleiding
-    </a>
-  </div>
-
-</div>
-
-    
+  <!-- EDITORIAL -->
+  <section class="services-section zow-editorial">
+    <div class="container">
+      <div class="zow-editorial__inner">
+        <div class="zow-editorial__stack">
+          <p class="zow-eyebrow">Helder uitgangspunt</p>
+          <h2 class="zow-editorial__title">Wat dit advies wel en niet is</h2>
+          <p class="zow-editorial__text">
+            Mijn rol is niet om te zeggen of een auto "goed" of "fout" is.
+            Mijn rol is om het beeld compleet te maken, zodat u begrijpt
+            waar u wél of juist niet ja tegen zegt.
+          </p>
+          <div class="zow-editorial__divider"></div>
+          <p class="zow-editorial__kicker">Wanneer aankoopadvies het verschil maakt</p>
+          <p class="zow-editorial__text">
+            Deze service is er om richting te geven. Niet om sneller te beslissen,
+            maar om te voorkomen dat u later opnieuw moet beginnen.
+            Veel mensen zoeken naar aankoopadvies wanneer vergelijken geen duidelijkheid meer geeft.
+          </p>
+          <p class="zow-editorial__transition">Nog geen auto gevonden? Dan begint het traject anders.</p>
+          <p class="zow-editorial__text">
+            Wanneer u nog aan het oriënteren bent en eerst helder wilt krijgen
+            welke auto, aandrijving en prijsklasse bij u passen,
+            start het traject met de Zoekservice.
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ NA PAKKETTEN -->
-<section class="services-section container">
-
-  <h2 class="section-title">Veelgestelde vragen</h2>
-
-  <div class="usp-premium">
-
-   <div class="usp-item">
-  <h3>Wanneer is aankoopadvies het meest waardevol?</h3>
-  <p>
-    Juist voordat u serieus gaat zoeken.
-    Dan is er nog ruimte om aannames bij te stellen,
-    in plaats van keuzes te moeten verdedigen.
-  </p>
-</div>
-    
-    <div class="usp-item">
-      <h3>Werk je echt onafhankelijk?</h3>
-      <p>
-        Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platformen.  
-        Het advies is uitsluitend in uw belang — ook als dat betekent dat deze auto het niet wordt.
-      </p>
-    </div>
-
-    <div class="usp-item">
-      <h3>Wat als de auto tegenvalt?</h3>
-      <p>
-        Dan krijgt u dat eerlijk te horen, inclusief onderbouwing.  
-        Het doel is een goede aankoop, niet het afronden van een transactie.
-      </p>
-    </div>
-
-    <div class="usp-item">
-      <h3>Kan ik later upgraden?</h3>
-      <p>
-        Ja. Kiest u na Basis alsnog voor Premium of Full Service,  
-        dan wordt het eerder betaalde bedrag verrekend.
-      </p>
-    </div>
-
-    <div class="usp-item">
-      <h3>Ga je mee naar de verkoper?</h3>
-      <p>
-        Bij Premium en Full Service ben ik fysiek aanwezig bij de auto.  
-        De locatie wordt vooraf in overleg afgestemd.
-      </p>
-    </div>
-
-    <div class="usp-item">
-      <h3>Krijg ik een rapport?</h3>
-      <p>
-        U ontvangt altijd een duidelijke terugkoppeling met aandachtspunten,  
-        risico’s en een concreet advies voor de vervolgstappen.
-      </p>
-    </div>
-
-    <div class="usp-item">
-      <h3>Ook geschikt voor elektrische auto’s?</h3>
-      <p>
-        Ja. Voor EV’s en hybrides kan aanvullend een onafhankelijke  
-        EV AccuCheck met TÜV certificaat worden uitgevoerd.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-  
-<!-- (rest van je pagina blijft exact gelijk) -->
-
-<!-- REISKOSTEN -->
-<section class="services-section container">
-  <h2 class="section-title">Reiskosten</h2>
-
-  <p class="section-subtitle">
-    Transparant, vooraf afgestemd en zonder verrassingen.
-  </p>
-
-  <p class="accentline accentline--compact">
-    Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen.
-    Buiten deze regio geldt €0,35 per kilometer, berekend vanaf de locatie van de auto.
-    Eventuele kosten worden altijd vooraf met u afgestemd.
-  </p>
-</section>
-
-<!-- EV ACCUCHECK -->
-<section class="services-section container">
-  <h2 class="section-title">EV AccuCheck als aanvulling</h2>
-
-  <p class="section-subtitle">
-    Bij Premium en Full Service kan aanvullend een EV AccuCheck worden uitgevoerd.
-  </p>
-<div class="ev-addon-card card">
-  <div class="card-body">
-    <div class="ev-addon-price">€149</div>
-    <p>
-     Inclusief TÜV gecertificeerd accucertificaat en onafhankelijk ZekerOpWeg adviesrapport.
-     Ingezet wanneer accu-inzicht bepalend wordt voor de beslissing.  
+  <!-- ZOEKSERVICE -->
+  <section class="services-section container">
+    <h2 class="section-title">Nog geen auto gevonden?</h2>
+    <p class="section-subtitle">
+      Veel mensen weten wat ze willen voelen, maar niet waar ze hun zoektocht op moeten richten.
+      Juist die eerste keuzes bepalen of u later rust ervaart, of alsnog moet bijsturen.
     </p>
-  </div>
-
- <div class="ev-addon-cta">
-  <a href="ev-accucheck.html" class="btn-secondary">
-    EV AccuCheck toevoegen
-   </a>
-  </div>
-</div>
-
- 
-
-<!-- WERKWIJZE -->
-<section class="services-section container">
-  <h2 class="section-title">Hoe het traject verloopt</h2>
-</a>
-
-  <div class="service-grid">
-    <div class="service-card">
-      <h3>1. Aanvraag</h3>
-      <p>
-        U kiest een pakket en levert de beschikbare voertuiggegevens aan.
-        De exacte locatie kan later worden doorgegeven.
+    <p class="card-bridge">Deze stap helpt u om uw zoektocht gericht en overzichtelijk te starten.</p>
+    <div class="premium-card premium-muted">
+      <span class="premium-eyebrow">Zoekservice</span>
+      <h3>Van wens naar concrete kandidaten</h3>
+      <div class="price-block">
+        <strong>€149</strong>
+        <span>persoonlijke intake en marktverkenning</span>
+      </div>
+      <ul class="lux-list">
+        <li>Uitgebreide intake over gebruik en verwachtingen</li>
+        <li>Advies over modellen en uitvoeringen</li>
+        <li>Inzicht in onderhoud en bekende aandachtspunten</li>
+        <li>Selectie van kansrijke advertenties</li>
+        <li>Realistische kosteninschatting komende jaren</li>
+      </ul>
+      <p class="guardian-text">
+        Na deze stap kan, indien gewenst, een controle van een concrete auto worden uitgevoerd
+        binnen het Premium of Full Service pakket.
       </p>
+      <a href="zoekservice-intake.html" class="btn-primary">Start met zoekservice</a>
     </div>
+  </section>
 
-    <div class="service-card">
-      <h3>2. Analyse en afstemming</h3>
-      <p>
-        De informatie wordt beoordeeld en besproken.
-        Waar nodig volgt aanvullende afstemming.
+  <!-- PAKKETTEN -->
+  <section class="services-section section-bg-soft" id="pakketten">
+    <div class="container">
+      <h2 class="section-title">Pakketten en tarieven</h2>
+      <p class="section-subtitle">
+        Afhankelijk van hoeveel begeleiding u wenst, kiest u een passend adviesniveau.
+        Elk pakket is bedoeld om onzekerheden weg te nemen op het moment dat ze ontstaan.
+        Premium bevat Basis. Full Service bevat Premium.
       </p>
-    </div>
+      <p class="accentline accentline--compact">
+        U kiest geen pakket om sneller te kopen, maar om betere beslissingen te nemen op het juiste moment.
+      </p>
 
-    <div class="service-card">
-      <h3>3. Begeleiding en afronding</h3>
-      <p>
-        Afhankelijk van het pakket volgt begeleiding bij bezichtiging,
-        onderhandeling en afronding van de aankoop.
-      </p>
+      <div class="packages-section">
+
+        <!-- BASIS -->
+        <div class="package-card">
+          <div class="package-body">
+            <h3>Basis</h3>
+            <p class="price">€249</p>
+            <p class="description">Voor wie eerst inzicht en richting wil voordat verdere stappen worden gezet.</p>
+            <ul>
+              <li>Bespreking van wensen en gebruik</li>
+              <li>Analyse van advertentie en marktpositie</li>
+              <li>Inzicht in aandachtspunten en risico's</li>
+              <li>Telefonisch of digitaal advies</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Geen fysieke bezichtiging inbegrepen.</p>
+          </div>
+          <div class="package-cta">
+            <a href="start-aankoopadvies.html?pakket=Basis" class="btn-package">Start basisadvies</a>
+          </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="package-card featured">
+          <span class="badge">Meest gekozen</span>
+          <div class="package-body">
+            <h3>Premium</h3>
+            <p class="price">€349</p>
+            <p class="description">
+              Voor wie zekerheid wil bij de auto zelf, vóórdat de beslissing definitief wordt.
+            </p>
+            <ul>
+              <li>Alles uit Basis</li>
+              <li>Fysieke bezichtiging (1 locatie)</li>
+              <li>Optische en technische controle</li>
+              <li>Proefrit en rijbeleving</li>
+              <li>Heldere terugkoppeling met advies</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Locatie van de auto wordt vooraf afgestemd.</p>
+          </div>
+          <div class="package-cta">
+            <a href="start-aankoopadvies.html?pakket=Premium" class="btn-package btn-package--primary">
+              Plan onafhankelijke bezichtiging
+            </a>
+          </div>
+        </div>
+
+        <!-- FULL SERVICE -->
+        <div class="package-card">
+          <div class="package-body">
+            <h3>Full Service</h3>
+            <p class="price">€499</p>
+            <p class="description">Volledige begeleiding bij complexere of waardevollere aankopen.</p>
+            <ul>
+              <li>Alles uit Premium</li>
+              <li>Tweede bezoek voor onderhandeling</li>
+              <li>Begeleiding tijdens aankoopgesprek</li>
+              <li>Controle afspraken en voorwaarden</li>
+              <li>Zekerheid tot sleuteloverdracht</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Ideaal wanneer u niets wilt laten liggen.</p>
+          </div>
+          <div class="package-cta">
+            <a href="start-aankoopadvies.html?pakket=Full" class="btn-package">
+              Start volledige aankoopbegeleiding
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- COMBINATIEPRIJZEN -->
+  <section class="combo-section">
+    <div class="container combo-inner">
+
+      <p class="combo-eyebrow">EV AccuCheck combinatieprijs</p>
+      <h2>Koopt u een EV of hybride?</h2>
+      <p class="combo-intro">
+        Bij Premium en Full Service ben ik toch al bij de auto. Voeg een EV AccuCheck toe
+        en u betaalt minder dan wanneer u de diensten los afneemt.
+        De AccuCheck en het aankoopadvies worden in één bezoek uitgevoerd.
+      </p>
+
+      <div class="combo-grid">
+
+        <!-- Premium + AccuCheck -->
+        <div class="combo-card">
+          <p class="combo-pakket">Premium + EV AccuCheck</p>
+          <h3>Bezichtiging en accucheck in één</h3>
+          <div class="combo-prijzen">
+            <span class="combo-nieuw">€449</span>
+            <span class="combo-oud">€478</span>
+          </div>
+          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
+          <ul>
+            <li>Alles uit Premium (€349)</li>
+            <li>Onafhankelijke EV AccuCheck op locatie</li>
+            <li>TÜV-gecertificeerde accumeting</li>
+            <li>Digitaal accucertificaat inbegrepen</li>
+          </ul>
+          <a href="start-aankoopadvies.html?pakket=Premium-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
+            Plan Premium + AccuCheck
+          </a>
+        </div>
+
+        <!-- Full Service + AccuCheck -->
+        <div class="combo-card">
+          <p class="combo-pakket">Full Service + EV AccuCheck</p>
+          <h3>Volledige begeleiding inclusief accucheck</h3>
+          <div class="combo-prijzen">
+            <span class="combo-nieuw">€599</span>
+            <span class="combo-oud">€628</span>
+          </div>
+          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
+          <ul>
+            <li>Alles uit Full Service (€499)</li>
+            <li>Onafhankelijke EV AccuCheck op locatie</li>
+            <li>TÜV-gecertificeerde accumeting</li>
+            <li>Digitaal accucertificaat inbegrepen</li>
+          </ul>
+          <a href="start-aankoopadvies.html?pakket=FullService-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
+            Plan Full Service + AccuCheck
+          </a>
+        </div>
+
+      </div>
+
+      <p class="combo-note">
+        Accucheck wordt uitgevoerd op dezelfde locatie als de bezichtiging.
+        Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="services-section container">
+    <h2 class="section-title">Veelgestelde vragen</h2>
+    <div class="usp-premium">
+
+      <div class="usp-item">
+        <h3>Wanneer is aankoopadvies het meest waardevol?</h3>
+        <p>
+          Juist voordat u serieus gaat zoeken.
+          Dan is er nog ruimte om aannames bij te stellen,
+          in plaats van keuzes te moeten verdedigen.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Werk je echt onafhankelijk?</h3>
+        <p>
+          Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platformen.
+          Het advies is uitsluitend in uw belang, ook als dat betekent dat deze auto het niet wordt.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Wat als de auto tegenvalt?</h3>
+        <p>
+          Dan krijgt u dat eerlijk te horen, inclusief onderbouwing.
+          Het doel is een goede aankoop, niet het afronden van een transactie.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Kan ik later upgraden?</h3>
+        <p>
+          Ja. Kiest u na Basis alsnog voor Premium of Full Service,
+          dan wordt het eerder betaalde bedrag verrekend.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Ga je mee naar de verkoper?</h3>
+        <p>
+          Bij Premium en Full Service ben ik fysiek aanwezig bij de auto.
+          De locatie wordt vooraf in overleg afgestemd.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Krijg ik een rapport?</h3>
+        <p>
+          U ontvangt altijd een duidelijke terugkoppeling met aandachtspunten,
+          risico's en een concreet advies voor de vervolgstappen.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Ook geschikt voor elektrische auto's?</h3>
+        <p>
+          Ja. Voor EV's en hybrides kan aanvullend een onafhankelijke
+          EV AccuCheck met TÜV-certificaat worden uitgevoerd.
+          Bij Premium en Full Service geldt een combinatieprijs.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REISKOSTEN -->
+  <section class="services-section container">
+    <h2 class="section-title">Reiskosten</h2>
+    <p class="section-subtitle">Transparant, vooraf afgestemd en zonder verrassingen.</p>
+    <p class="accentline accentline--compact">
+      Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen.
+      Buiten deze regio geldt €0,35 per kilometer, berekend vanaf de locatie van de auto.
+      Eventuele kosten worden altijd vooraf met u afgestemd.
+    </p>
+  </section>
+
+  <!-- WERKWIJZE -->
+  <section class="services-section container">
+    <h2 class="section-title">Hoe het traject verloopt</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>1. Aanvraag</h3>
+        <p>U kiest een pakket en levert de beschikbare voertuiggegevens aan. De exacte locatie kan later worden doorgegeven.</p>
+      </div>
+      <div class="service-card">
+        <h3>2. Analyse en afstemming</h3>
+        <p>De informatie wordt beoordeeld en besproken. Waar nodig volgt aanvullende afstemming.</p>
+      </div>
+      <div class="service-card">
+        <h3>3. Begeleiding en afronding</h3>
+        <p>Afhankelijk van het pakket volgt begeleiding bij bezichtiging, onderhandeling en afronding van de aankoop.</p>
+      </div>
+    </div>
+  </section>
 
 </main>
+
 <footer class="footer">
   <div class="container footer-grid">
-
     <div class="footer-col">
       <p class="footer-title">ZekerOpWeg</p>
       <p>© 2026 ZekerOpWeg</p>
@@ -640,37 +672,18 @@ vertaald naar onafhankelijk advies zonder provisies of verkoopbelang.
         IBAN NL22 INGB 0116 6008 02
       </p>
     </div>
-
     <div class="footer-col">
       <p class="footer-title">Contact</p>
-      <p>
-        <a href="mailto:info@zekeropweg.nu" data-service="info">info@zekeropweg.nu</a><br>
-        Algemene vragen en eerste contact
-      </p>
-      <p>
-        <a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>
-        Facturatie en administratie
-      </p>
+      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+      <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>Facturatie en administratie</p>
     </div>
-
     <div class="footer-col">
       <p class="footer-title">Diensten</p>
-      <p>
-        <a href="mailto:advies@zekeropweg.nu" data-service="advies">advies@zekeropweg.nu</a><br>
-        Persoonlijk aankoopadvies
-      </p>
-      <p>
-        <a href="mailto:accucheck@zekeropweg.nu" data-service="accu">accucheck@zekeropweg.nu</a><br>
-        EV AccuCheck
-      </p>
-      <p>
-        <a href="mailto:bezwaarsupport@zekeropweg.nu" data-service="bezwaar">bezwaarsupport@zekeropweg.nu</a><br>
-        Bezwaarservice
-      </p>
+      <p><a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a><br>Persoonlijk aankoopadvies</p>
+      <p><a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>EV AccuCheck</p>
+      <p><a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br>Bezwaarservice</p>
     </div>
-
   </div>
-
   <div style="margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid rgba(255,255,255,.08);">
     <div class="container">
       <p class="footer-legal">
@@ -683,6 +696,3 @@ vertaald naar onafhankelijk advies zonder provisies of verkoopbelang.
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
-
-
-
