@@ -1161,6 +1161,20 @@ Risico-inschatting: ${brand.risk}.
     document.getElementById("summary").innerText = data.summary;
     document.getElementById("profile_description").innerText = data.description;
 
+    let moneyText = "";
+
+    if (score >= 85) {
+      moneyText = "Lage kans op accuproblemen. Financieel een stabiele keuze.";
+    } else if (score >= 70) {
+      moneyText = "Over het algemeen veilig, maar accustatus kan invloed hebben op waarde en onderhandeling.";
+    } else if (score >= 55) {
+      moneyText = "Let op: mogelijke impact op waarde en toekomstige kosten.";
+    } else {
+      moneyText = "Verhoogd risico: dit kan duizenden euro’s verschil maken na aankoop.";
+    }
+
+    document.getElementById("money_impact").innerText = moneyText;
+   
     document.getElementById("battery_kwh").innerText = battery_kwh;
     document.getElementById("score_value").innerText = score + "/100";
     document.getElementById("score_bar").style.width = score + "%";
@@ -1171,6 +1185,19 @@ Risico-inschatting: ${brand.risk}.
 
     document.getElementById("score_bar").style.background = barColor;
     document.getElementById("score_label").innerText = scoreLabel;
+    let impact = "";
+
+if (score >= 85) {
+  impact = "Lage kans op accuproblemen. Dit is een sterke basis.";
+} else if (score >= 70) {
+  impact = "Goede basis, maar extra controle blijft verstandig.";
+} else if (score >= 55) {
+  impact = "Er zijn duidelijke aandachtspunten. Zonder extra controle blijft onzekerheid bestaan.";
+} else {
+  impact = "Verhoogd risico. Zonder accutest ontbreekt essentiële zekerheid.";
+}
+
+document.getElementById("score_impact").innerText = impact;
     document.getElementById("battery_behavior").innerText = data.battery_behavior;
     document.getElementById("real_world").innerText = data.real_world;
     document.getElementById("battery_degradation").innerText = degradationText;
