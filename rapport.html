@@ -223,7 +223,37 @@ select{
   <p id="score_label" style="margin-top:12px;"></p>
   <p id="score_impact" style="margin-top:8px;font-weight:500;color:#1c2b26;"></p>
 </div>
+   
+<div class="card" style="background:#fff8ec;border:1px solid #f3ddc2;">
 
+  <h3>Twijfel? Dit is het moment om dat op te lossen</h3>
+
+  <p>
+    Je hebt nu een risico-inschatting. Maar dit is nog geen oordeel over déze specifieke auto.
+  </p>
+
+  <p>
+    👉 Wil je weten of jij deze auto moet kopen of laten staan?
+  </p>
+
+  <p style="font-weight:600;">
+    BeslisCheck €49
+  </p>
+
+  <ul class="checklist">
+    <li class="check-item"><span class="check-icon check-good">✔️</span><span>Controle van advertentie en verhaal</span></li>
+    <li class="check-item"><span class="check-icon check-good">✔️</span><span>Merk- en model specifieke risico’s</span></li>
+    <li class="check-item"><span class="check-icon check-good">✔️</span><span>Concreet advies: kopen of laten staan</span></li>
+  </ul>
+
+  <button class="cta" onclick="window.open('https://wa.me/316XXXXXXXX?text=Ik wil een BeslisCheck voor kenteken ' + document.getElementById('r_plate').innerText)">
+    Stuur kenteken via WhatsApp
+  </button>
+
+  <p class="small">Voorkom een miskoop van duizenden euro’s</p>
+
+</div>
+   
 <div class="card highlight-box">
   <h3>Wat betekent dit voor u?</h3>
   <p id="money_impact"></p>
@@ -317,6 +347,38 @@ select{
 
   <h3>Meer zekerheid vóór aankoop?</h3>
 
+  <div class="card" style="text-align:center; background:#eef8f3; border:1px solid #ccebdc;">
+
+  <h3>Laatste stap vóór je beslist</h3>
+
+  <p>
+    Je hebt nu inzicht. Maar de werkelijke accustatus blijft onbekend.
+  </p>
+
+  <p style="font-weight:600;">
+    Zonder test koop je op aannames.
+  </p>
+
+  <p>
+    👉 Met een AccuCheck weet je exact waar je ja tegen zegt.
+  </p>
+
+  <p style="margin-top:20px;">
+    €95 (Barendrecht)<br>
+    €129 (op locatie)
+  </p>
+
+  <button class="cta" style="font-size:18px;padding:18px 32px;"
+    onclick="window.open('https://wa.me/316XXXXXXXX?text=Ik wil een AccuCheck voor kenteken ' + document.getElementById('r_plate').innerText)">
+    Plan AccuCheck
+  </button>
+
+  <p class="small" style="margin-top:12px;">
+    Ideaal bij auto’s vanaf €10.000+
+  </p>
+
+</div>
+ 
   <p>
     Wil je niet alleen een risico-inschatting, maar de werkelijke accugezondheid laten controleren?
   </p>
@@ -726,22 +788,6 @@ if (powertrain !== "Brandstof") {
 if (Array.isArray(battery)) {
   battery = pickBestBattery(battery, Number(year), variant);
 }
-
-   
-// 🔥 EERST powertrain bepalen (CRUCIAAL)
-const powertrain = detectPowertrain(make, model, brandstof);
-
-// 🔥 DAN PAS battery ophalen
-let battery = null;
-
-if (powertrain !== "Brandstof") {
-  try {
-    battery = getBattery(lookupModel);
-  } catch (e) {
-    console.warn("Battery lookup failed:", lookupModel);
-  }
-}
-   
      
     if (Array.isArray(battery)) {
       battery = pickBestBattery(battery, Number(year), variant);
@@ -1156,11 +1202,33 @@ Risico-inschatting: ${brand.risk}.
     document.getElementById("build_year").innerText = year;
     document.getElementById("powertrain").innerText = powertrain;
 
-    document.getElementById("buying_profile").innerText = data.buying;
-    document.getElementById("battery_profile").innerText = data.battery;
-    document.getElementById("summary").innerText = data.summary;
-    document.getElementById("profile_description").innerText = data.description;
+    // ===== SCORE =====
+    document.getElementById("score_value").innerText = score + "/100";
+    document.getElementById("score_bar").style.width = score + "%";
 
+    let barColor = "#1c7c54";
+    if (score < 70) barColor = "#b7791f";
+    if (score < 55) barColor = "#c53030";
+
+    document.getElementById("score_bar").style.background = barColor;
+    document.getElementById("score_label").innerText = scoreLabel;
+
+    // ===== SCORE UITLEG =====
+    let impact = "";
+
+    if (score >= 85) {
+      impact = "Lage kans op accuproblemen. Dit is een sterke basis.";
+    } else if (score >= 70) {
+      impact = "Goede basis, maar extra controle blijft verstandig.";
+    } else if (score >= 55) {
+      impact = "Er zijn duidelijke aandachtspunten. Zonder extra controle blijft onzekerheid bestaan.";
+    } else {
+      impact = "Verhoogd risico. Zonder accutest ontbreekt essentiële zekerheid.";
+    }
+
+    document.getElementById("score_impact").innerText = impact;
+
+    // ===== GELD IMPACT =====
     let moneyText = "";
 
     if (score >= 85) {
@@ -1174,30 +1242,15 @@ Risico-inschatting: ${brand.risk}.
     }
 
     document.getElementById("money_impact").innerText = moneyText;
-   
+
+    // ===== PROFIEL =====
+    document.getElementById("buying_profile").innerText = data.buying;
+    document.getElementById("battery_profile").innerText = data.battery;
+    document.getElementById("summary").innerText = data.summary;
+    document.getElementById("profile_description").innerText = data.description;
+
+    // ===== REST =====
     document.getElementById("battery_kwh").innerText = battery_kwh;
-    document.getElementById("score_value").innerText = score + "/100";
-    document.getElementById("score_bar").style.width = score + "%";
-
-    let barColor = "#1c7c54";
-    if (score < 70) barColor = "#b7791f";
-    if (score < 55) barColor = "#c53030";
-
-    document.getElementById("score_bar").style.background = barColor;
-    document.getElementById("score_label").innerText = scoreLabel;
-    let impact = "";
-
-if (score >= 85) {
-  impact = "Lage kans op accuproblemen. Dit is een sterke basis.";
-} else if (score >= 70) {
-  impact = "Goede basis, maar extra controle blijft verstandig.";
-} else if (score >= 55) {
-  impact = "Er zijn duidelijke aandachtspunten. Zonder extra controle blijft onzekerheid bestaan.";
-} else {
-  impact = "Verhoogd risico. Zonder accutest ontbreekt essentiële zekerheid.";
-}
-
-document.getElementById("score_impact").innerText = impact;
     document.getElementById("battery_behavior").innerText = data.battery_behavior;
     document.getElementById("real_world").innerText = data.real_world;
     document.getElementById("battery_degradation").innerText = degradationText;
