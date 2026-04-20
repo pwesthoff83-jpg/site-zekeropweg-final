@@ -45,6 +45,16 @@ input{
   border:1px solid #ddd;
   margin-top:10px;
 }
+select{
+  width:100%;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  margin-top:10px;
+  background:#fff;
+  font-family:Inter, sans-serif;
+  font-size:15px;
+} 
 .small{font-size:13px;color:#8a867d;}
 .report-header{
   border-bottom:1px solid #e5e1d8;
@@ -138,9 +148,15 @@ input{
 <body>
 
 <section class="container">
-  <div class="card">
-    <h1>Is deze auto een goede deal of een risico?</h1>
-    <p>Voer het kenteken in en ontdek binnen 60 seconden of je goed zit, of een dure fout voorkomt.</p>
+ <div class="card">
+  <p class="small" style="text-transform:uppercase; letter-spacing:0.08em; color:#8a867d; margin-bottom:10px;">
+    ZekerOpWeg · AccuRisico Rapport
+  </p>
+  <h1>Is deze auto een goede deal of een risico?</h1>
+  <p>
+    Vul het kenteken in en ontvang een onafhankelijke risico-inschatting op basis van voertuigdata,
+    leeftijd, gebruik en accuprofiel.
+  </p>
 
     <input type="text" id="plate" placeholder="Kenteken">
     <input type="number" id="manual_km" placeholder="Kilometerstand (optioneel)">
@@ -190,20 +206,29 @@ input{
       Kenteken: <strong><span id="r_plate"></span></strong>
     </p>
   </div>
-  
-<!-- ✅ HIER STAAT HIJ GOED -->
+   
+  <div class="card highlight-box">
+  <h3>Hoe risicovol is deze auto?</h3>
+ 
+  <p class="small" style="margin-bottom:14px;">
+    Dit is een realistische inschatting op basis van leeftijd, kilometerstand, voertuigtype en accuprofiel.
+  </p>
+
+  <div id="score_value" style="font-size:36px;font-weight:600;margin-bottom:10px;"></div>
+
+  <div style="background:#e9e6dd;border-radius:999px;height:12px;overflow:hidden;">
+    <div id="score_bar" style="height:100%;width:0%;background:#1c7c54;"></div>
+  </div>
+
+  <p id="score_label" style="margin-top:12px;"></p>
+  <p id="score_impact" style="margin-top:8px;font-weight:500;color:#1c2b26;"></p>
+</div>
+
 <div class="card highlight-box">
-  <h3>Accu Score</h3>
-  
- <div id="score_value" style="font-size:32px;font-weight:600;margin-bottom:10px;"></div>
-
- <div style="background:#e9e6dd;border-radius:999px;height:12px;overflow:hidden;">
-  <div id="score_bar" style="height:100%;width:0%;background:#1c7c54;"></div>
+  <h3>Wat betekent dit voor u?</h3>
+  <p id="money_impact"></p>
 </div>
-
-  <p id="score_label"></p>
-</div>
-
+   
   <div class="card highlight-box">
   <div class="big-score" id="buying_profile"></div>
   <p><strong>Accuprofiel:</strong> <span id="battery_profile"></span></p>
@@ -235,7 +260,7 @@ input{
     </p>
   </div>
 
-  
+   
   <div class="card">
     <h3>Samenvatting</h3>
     <p id="summary"></p>
@@ -681,17 +706,13 @@ function getRdwWltpRange(v) {
 
     let kmAnalysis = "";
 
-    let lookupModel = normalizeModel(make, model);
-    const variant = "";
-  
-// 🔥 ALLEEN battery lookup als auto elektrisch of hybride KAN zijn
-let lookupModel = normalizeModel(make, model);
+   let lookupModel = normalizeModel(make, model);
 const variant = "";
 
-// 🔥 EERST powertrain bepalen
+// Eerst aandrijving bepalen
 const powertrain = detectPowertrain(make, model, brandstof);
 
-// 🔥 DAN battery ophalen
+// Daarna batterij ophalen
 let battery = null;
 
 if (powertrain !== "Brandstof") {
@@ -702,10 +723,10 @@ if (powertrain !== "Brandstof") {
   }
 }
 
-// 🔥 juiste batterij kiezen
 if (Array.isArray(battery)) {
   battery = pickBestBattery(battery, Number(year), variant);
 }
+
    
 // 🔥 EERST powertrain bepalen (CRUCIAAL)
 const powertrain = detectPowertrain(make, model, brandstof);
