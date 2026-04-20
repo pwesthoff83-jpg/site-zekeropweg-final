@@ -928,6 +928,7 @@ const batteryDB = {
   "renault megane e-tech": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 60 }],
   "renault scenic e-tech": [{ "variant": "standard", "kwh": 60 }, { "variant": "long range", "kwh": 87 }],
   "renault 5": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 52 }],
+  "skoda octavia": [{ "variant": "phev", "kwh": 13 }, { "variant": "rs iv", "kwh": 13 }],
   "skoda elroq": [{ "variant": "50", "kwh": 52 }, { "variant": "85", "kwh": 77 }],
   "skoda enyaq": [{ "variant": "50", "kwh": 52 }, { "variant": "80", "kwh": 77 }, { "variant": "rs", "kwh": 77 }],
   "smart #1": [{ "variant": "standard", "kwh": 49 }, { "variant": "long range", "kwh": 66 }],
@@ -1008,33 +1009,74 @@ function formatKenteken(raw) {
   return raw.replace(/[-\s]/g, '').toUpperCase();
 }
 
-function detectDriveType(brandstof, handelsbenaming) {
+function detectDriveType(brandstof, handelsbenaming, merk) {
   const b = (brandstof || '').toLowerCase();
   const h = (handelsbenaming || '').toLowerCase();
-  const combined = b + ' ' + h;
+  const m = (merk || '').toLowerCase();
+  const combined = b + ' ' + h + ' ' + m;
 
+  // Volledig elektrisch
   if (combined.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev') && !combined.includes('plug')) {
     return 'ev';
   }
-  if (combined.includes('phev') || combined.includes('plug-in') || combined.includes('plug in') ||
+
+  // Plug-in hybride signalen
+  // "iV" suffix is VW/Skoda/SEAT/Cupra PHEV aanduiding (octavia rs iv, superb iv, leon iv, etc.)
+  const ivSuffix = /\biv\b/.test(h) || /\bi\.v\b/.test(h);
+
+  if (ivSuffix ||
+      combined.includes('phev') || combined.includes('plug-in') || combined.includes('plug in') ||
       h.includes('e-hybrid') || h.includes('ehybrid') || h.includes('tfsi e') ||
       h.includes('300e') || h.includes('350e') || h.includes('400e') || h.includes('250e') ||
-      h.includes('gte') || h.match(/\d+e\b/) ||
+      h.includes('gte') || /\d+e\b/.test(h) ||
       (combined.includes('elektr') && combined.includes('benzin')) ||
       (combined.includes('elektr') && combined.includes('diesel'))) {
     return 'phev';
   }
-  if (combined.includes('hybrid') || h.includes('recharge') || h.includes(' e ')) {
+
+  // Bekende milde hybride modellen op modelnaam (GEEN octavia — die heeft iV voor PHEV)
+  const mildHybridModels = [
+    'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
+    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage', 'tucson',
+    'corolla', 'yaris', 'camry', 'c-hr', '3 serie', '5 serie',
+    'qashqai', 'juke', 'kuga', 'focus', 'fiesta', 'polo', 'ibiza',
+    'fabia', 'scala', 'rapid', 'citigo'
+  ];
+  const isMildHybridModel = mildHybridModels.some(model => h.includes(model) || m.includes(model));
+
+  if (combined.includes('hybrid') || h.includes('recharge') || isMildHybridModel) {
     return 'hybrid';
   }
+
   if (combined.includes('elektr')) return 'ev';
   return 'verbrandingsmotor';
 }
 
-function calcLeeftijd(datum) {
+function parseDatum(datum) {
   if (!datum) return null;
+  datum = String(datum).trim();
+  // RDW formaat: YYYYMMDD (bijv. 20210714)
+  if (/^\d{8}$/.test(datum)) {
+    const y = datum.slice(0, 4);
+    const m = datum.slice(4, 6);
+    const d = datum.slice(6, 8);
+    return new Date(`${y}-${m}-${d}T00:00:00`);
+  }
+  // ISO of andere formaten
   const d = new Date(datum);
-  if (isNaN(d)) return null;
+  if (!isNaN(d)) return d;
+  return null;
+}
+
+function formatDatumStr(datum) {
+  const d = parseDatum(datum);
+  if (!d) return 'Niet beschikbaar';
+  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function calcLeeftijd(datum) {
+  const d = parseDatum(datum);
+  if (!d) return null;
   return Math.floor((Date.now() - d) / (365.25 * 24 * 3600 * 1000));
 }
 
@@ -1143,13 +1185,6 @@ function formatNumber(n) {
   return Number(n).toLocaleString('nl-NL');
 }
 
-function formatDate(str) {
-  if (!str) return 'onbekend';
-  const d = new Date(str);
-  if (isNaN(d)) return str;
-  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
 function setLoadingText(txt) {
   const el = document.getElementById('loading-text');
   if (el) el.textContent = txt;
@@ -1212,7 +1247,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const apk = data ? (data.vervaldatum_apk || '') : '';
 
   const leeftijd = calcLeeftijd(datum);
-  const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr);
+  const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
 
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
@@ -1289,8 +1324,8 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div class="info-row"><span class="info-label">Merk / Model</span><span class="info-value">${autoNaam}</span></div>
       <div class="info-row"><span class="info-label">Aandrijving</span><span class="info-value highlight">${getDriveLabel(driveType)}</span></div>
       <div class="info-row"><span class="info-label">Brandstof</span><span class="info-value">${brandstof || 'Niet geregistreerd'}</span></div>
-      <div class="info-row"><span class="info-label">Eerste toelating</span><span class="info-value">${datum ? formatDate(datum) : 'Niet beschikbaar'}</span></div>
-      <div class="info-row"><span class="info-label">APK vervalt</span><span class="info-value">${apk ? formatDate(apk) : 'Niet beschikbaar'}</span></div>
+      <div class="info-row"><span class="info-label">Eerste toelating</span><span class="info-value">${formatDatumStr(datum)}</span></div>
+      <div class="info-row"><span class="info-label">APK vervalt</span><span class="info-value">${formatDatumStr(apk)}</span></div>
       <div class="info-row"><span class="info-label">Kilometerstand</span><span class="info-value">${kmTxt} <span style="font-size:11px;color:var(--muted);">(${kmBron})</span></span></div>
     </div>
 
