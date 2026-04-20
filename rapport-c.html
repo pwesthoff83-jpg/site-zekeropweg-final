@@ -916,9 +916,13 @@ const batteryDB = {
   "nissan leaf": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 62 }],
   "opel corsa": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "opel astra": [{ "variant": "phev", "kwh": 12.4 }, { "variant": "ev", "kwh": 54 }],
+  "peugeot 208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "peugeot e-208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
+  "peugeot 2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "peugeot e-2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
+  "peugeot 308": [{ "variant": "standard", "kwh": 54 }],
   "peugeot e-3008": [{ "variant": "standard", "kwh": 77 }],
+  "peugeot 3008": [{ "variant": "standard", "kwh": 77 }],
   "polestar 2": [{ "variant": "standard", "kwh": 69 }, { "variant": "long range", "kwh": 82 }],
   "polestar 4": [{ "variant": "long range", "kwh": 100 }],
   "porsche taycan": [{ "variant": "standard", "kwh": 82.3 }, { "variant": "performance", "kwh": 97 }],
@@ -998,11 +1002,59 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   const entries = batteryDB[bestKey];
   if (!entries || entries.length === 0) return null;
 
+  let entry = entries[0];
   if (variantLow) {
     const varMatch = entries.find(e => variantLow.includes(e.variant) || e.variant.includes(variantLow));
-    if (varMatch) return { ...varMatch, modelKey: bestKey };
+    if (varMatch) entry = varMatch;
   }
-  return { ...entries[0], modelKey: bestKey };
+
+  // Leid driveType af uit de db-sleutel en variant
+  const keyAndVariant = bestKey + ' ' + entry.variant;
+  let dbDriveType = null;
+  const evKeys = ['e-tron', 'id.', 'ioniq', 'leaf', 'zoe', 'model 3', 'model y', 'model s', 'model x',
+    'e-golf', 'e-up', 'born', 'tavascan', 'enyaq', 'elroq', 'megane e-tech', 'scenic e-tech',
+    'e-208', 'e-2008', 'e-308', 'e-3008', 'e-c3', 'e-c4', 'corsa-e', 'mokka-e', 'astra ev',
+    '500e', '600e', 'dolphin', 'atto', 'byd seal', 'byd tang', 'ariya', 'kona ev',
+    'i-pace', 'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv', 'i4', 'i5', 'i7', 'ix',
+    'ix1', 'ix2', 'ix3', 'lyriq', 'optiq', 'vistiq', 'ex30', 'ex40', 'ec40',
+    'xc40 recharge', 'c40 recharge', 'gv60', 'ev6', 'ev9', 'ev3', 'niro ev', 'soul ev',
+    'mg4', 'mg5', 'mg zs ev', 'marvel', 'cyberster', 'aceman', 'mini cooper e',
+    'polestar', 'taycan', 'macan ev', 'bz4x', 'solterra', 'g6', 'g9', 'p7', 'zeekr',
+    'spring', 'twingo', 'renault 5', 'honda eny', 'prologue', 'capri', 'mustang mach',
+    'f-150 lightning', 'silverado', 'hummer', 'sierra ev', 'equinox ev', 'escalade iq',
+    'smart #', 'ora', 'omoda', 'hongqi', 'bestune nat', 'sakura', 'fortwo', 'forfour',
+    // Modellen waarbij de key zelf al EV impliceert (zonder e- prefix in RDW naam)
+    'peugeot 208', 'peugeot 2008', 'peugeot 308', 'peugeot 3008',
+    'opel corsa', 'opel mokka', 'opel astra ev',
+    'citroen c3', 'citroen c4',
+    'fiat 500', 'fiat 600',
+    'ds 3', 'ds 4', 'ds 7',
+    'mini cooper', 'mini aceman',
+    'volkswagen up', 'volkswagen golf e',
+    'kia soul', 'hyundai ioniq 5', 'hyundai ioniq 6', 'hyundai kona'];
+
+  const phevKeys = ['tfsi e', 'phev', 'plug-in', 'e-hybrid', 'ehybrid', 'gte', 'recharge',
+    '300e', '350e', '400e', '250e', '560e', '580e', 'dm-i', 'ehs'];
+
+  const hybridKeys = ['hybrid', 'mhev'];
+
+  if (evKeys.some(k => keyAndVariant.includes(k))) {
+    dbDriveType = 'ev';
+  } else if (phevKeys.some(k => keyAndVariant.includes(k)) || /\biv\b/.test(entry.variant)) {
+    dbDriveType = 'phev';
+  } else if (hybridKeys.some(k => keyAndVariant.includes(k))) {
+    dbDriveType = 'hybrid';
+  }
+
+  // Als kWh < 20: milde hybride accu
+  if (entry.kwh < 20) dbDriveType = 'hybrid';
+  // Als kWh 20-34: PHEV
+  else if (entry.kwh < 35) dbDriveType = 'phev';
+  // Als kWh >= 35 en geen phev/hybrid signaal in naam: EV
+  else if (!dbDriveType) dbDriveType = 'ev';
+  // Als al gedetecteerd als phev/hybrid via naam, behoud dat (kWh kan overlappen)
+
+  return { ...entry, modelKey: bestKey, dbDriveType };
 }
 
 function formatKenteken(raw) {
@@ -1247,11 +1299,16 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const apk = data ? (data.vervaldatum_apk || '') : '';
 
   const leeftijd = calcLeeftijd(datum);
-  const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
-  const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
-
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
   const kwh = battery ? battery.kwh : null;
+
+  // Ground truth: battery-db weet het type het zekerst.
+  // Alleen als geen match: val terug op brandstof/naam detectie.
+  const driveType = (battery && battery.dbDriveType)
+    ? battery.dbDriveType
+    : detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
+
+  const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
 
   const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik);
   const risico = getRisicoLabel(score);
