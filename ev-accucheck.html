@@ -3,13 +3,275 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>EV AccuCheck vóór aankoop | ZekerOpWeg</title>
-
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/zop-luxury-polish.css" />
   <link rel="stylesheet" href="css/zop-stability.css" />
-  <link rel="stylesheet" href="css/ev-accucheck.css" /> 
+  <link rel="stylesheet" href="css/ev-accucheck.css" />
+
+  <style>
+    /* ---- INLINE FIXES: secties die geen class in ev-accucheck.css hebben ---- */
+
+    .cta-center {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+
+    /* Process: fix broken nesting via inline grid */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .process-step {
+      background: #f5f7fb;
+      padding: 28px 24px;
+      border-radius: 14px;
+      text-align: center;
+    }
+    .process-step .step-num {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .process-step strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--zop-ink);
+    }
+    .process-step p {
+      font-size: 14px;
+      color: var(--zop-muted);
+      margin: 0;
+    }
+
+    /* Decision: 3-koloms kaarten */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .decision-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+    .decision-card .decision-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .decision-card strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 650;
+      margin-bottom: 8px;
+      color: var(--zop-ink);
+    }
+    .decision-card p {
+      font-size: 14px;
+      color: var(--zop-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .decision-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .decision-section h2,
+    .decision-section .decision-intro {
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .decision-intro {
+      font-size: 15px;
+      color: var(--zop-muted);
+      margin-top: 10px;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* Usecase: 2x2 grid */
+    .usecase-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .usecase-section h2,
+    .usecase-intro {
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .usecase-intro {
+      font-size: 15px;
+      color: var(--zop-muted);
+      margin-top: 10px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .usecase-card {
+      background: #f6f5f1;
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .usecase-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 650;
+      margin-bottom: 8px;
+      color: var(--zop-ink);
+    }
+    .usecase-card p {
+      font-size: 14px;
+      color: var(--zop-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Value: 2x2 grid */
+    .value-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .value-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .value-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    .value-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 650;
+      margin-bottom: 8px;
+      color: var(--zop-ink);
+    }
+    .value-item p {
+      font-size: 14px;
+      color: var(--zop-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: 24px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-item h3 {
+      font-size: 17px;
+      font-weight: 650;
+      margin: 0 0 10px;
+      color: var(--zop-ink);
+    }
+    .faq-item p {
+      font-size: 15px;
+      color: var(--zop-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Authority strip */
+    .authority-strip {
+      background: #0b1220;
+      padding: 28px 0;
+    }
+    .authority-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+    }
+    .authority-items span::before {
+      content: "✓ ";
+      color: var(--zop-gold);
+      font-weight: 600;
+    }
+
+    /* Price section: overflow fix voor badge */
+    .price-section {
+      padding-top: 60px;
+    }
+    .price-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .price-card-wrap {
+      position: relative;
+      padding-top: 20px;
+    }
+    .price-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--zop-gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 20px;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .price-card {
+      max-width: none !important;
+      text-align: center;
+    }
+    .price-features {
+      text-align: left;
+    }
+    @media (max-width: 760px) {
+      .price-cards-grid { grid-template-columns: 1fr; }
+      .decision-grid,
+      .usecase-grid,
+      .value-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
@@ -18,35 +280,24 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
-  </script>
-
-  <script>
     function trackAccuCheckClick() {
-      gtag('event', 'accucheck_click', {
-        'event_category': 'engagement',
-        'event_label': 'Plan AccuCheck button'
-      });
+      gtag('event', 'accucheck_click', { event_category: 'engagement', event_label: 'Plan AccuCheck button' });
     }
     function trackAccuCheckBarendrechtClick() {
-      gtag('event', 'accucheck_barendrecht_click', {
-        'event_category': 'engagement',
-        'event_label': 'Plan AccuCheck Barendrecht button'
-      });
+      gtag('event', 'accucheck_barendrecht_click', { event_category: 'engagement', event_label: 'Plan AccuCheck Barendrecht button' });
     }
   </script>
-
 </head>
 
 <body class="page-ev-accucheck">
+
   <!-- HEADER -->
   <header class="zop-header">
     <div class="zop-header-inner">
       <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-
       <nav class="zop-nav">
         <a href="index.html">Home</a>
         <a href="aankoopadvies.html">Aankoopadvies</a>
-
         <div class="zop-dropdown">
           <a href="ev-accucheck.html" class="zop-drop-label active">AccuCheck</a>
           <div class="zop-drop-menu">
@@ -54,7 +305,6 @@
             <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
           </div>
         </div>
-
         <div class="zop-dropdown">
           <span class="zop-drop-label">Voor bedrijven</span>
           <div class="zop-drop-menu">
@@ -62,377 +312,230 @@
             <a href="automatisering.html">Automatisering</a>
           </div>
         </div>
-
         <a href="bezwaarservice.html">Bezwaar</a>
         <a href="over.html">Over</a>
         <a href="contact.html" class="zop-contact">Contact</a>
       </nav>
-
       <button class="menu-toggle" aria-label="Menu">☰</button>
     </div>
   </header>
 
   <main>
+
     <!-- HERO -->
     <section class="hero-ev">
       <div class="container">
-        <p class="hero-eyebrow">
-          ONAFHANKELIJKE EV ACCUCHECK
-        </p>
-
-     <h1>EV AccuCheck vóór aankoop</h1>
-
-     <p class="hero-sub">
-      Voorkom een miskoop door batterijdegradatie.
-     </p>
-
-        <p class="hero-sub">
-         Voorkom duizenden euro's risico door verborgen batterijdegradatie.
-        </p>
-
-        <a
-          href="intake.html?dienst=ev-accucheck"
-          class="btn-primary"
-          onclick="trackAccuCheckClick()"
-        >
+        <p class="hero-eyebrow">ONAFHANKELIJKE EV ACCUCHECK</p>
+        <h1>EV AccuCheck vóór aankoop</h1>
+        <p class="hero-sub">Voorkom een miskoop door batterijdegradatie.</p>
+        <p class="hero-sub">Voorkom duizenden euro's risico door verborgen batterijdegradatie.</p>
+        <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">
           Plan AccuCheck €129
         </a>
-
-       <div class="hero-trust">
-
-        <span>✓ Volledig onafhankelijk</span>
-        <span>✓ TÜV-gecertificeerde meetmethode</span>
-        <span>✓ Meting op locatie</span>
-        <span>✓ Accucertificaat inbegrepen</span>
-
-       </div>
-        
-        <p class="cta-trust">
-          Vrijblijvende aanvraag · afspraak wordt eerst bevestigd
-        </p>
-
-        <p class="cta-note">
-          Veel klanten kopen een auto onder voorbehoud van een onafhankelijke AccuCheck.
-          Zo blijft het voertuig gereserveerd terwijl de accustatus objectief wordt vastgesteld.
-        </p>
-
-        <p class="hero-meta">
-          €129 · Meting op locatie · TÜV-gecertificeerd accucertificaat
-        </p>
-
-        <p class="hero-proof">
-          Veel EV-kopers laten vóór aankoop een onafhankelijke accutest uitvoeren.
-        </p>
+        <div class="hero-trust">
+          <span>✓ Volledig onafhankelijk</span>
+          <span>✓ TÜV-gecertificeerde meetmethode</span>
+          <span>✓ Meting op locatie</span>
+          <span>✓ Accucertificaat inbegrepen</span>
+        </div>
+        <p class="cta-trust">Vrijblijvende aanvraag · afspraak wordt eerst bevestigd</p>
+        <p class="hero-meta">€129 · Meting op locatie · TÜV-gecertificeerd accucertificaat</p>
       </div>
     </section>
 
-
-    <!-- VISUAL -->
+    <!-- PEPIJN -->
     <section class="section-pepijn">
       <div class="container pepijn-grid">
         <div class="pepijn-text">
           <h2>Onafhankelijk uitgevoerd door ZekerOpWeg</h2>
-
           <p>
             De AccuCheck wordt persoonlijk uitgevoerd door Pepijn Westhoff.
             Volledig onafhankelijk en uitsluitend in opdracht van de koper.
             De meting geeft objectieve accutransparantie vóór aankoop.
           </p>
         </div>
-
         <div class="pepijn-card">
-          <img
-            src="assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg"
-            alt="Pepijn Westhoff EV accudiagnose"
-          />
-
+          <img src="assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg" alt="Pepijn Westhoff EV accudiagnose" />
           <p class="pepijn-name">Pepijn Westhoff</p>
-
-          <p class="pepijn-role">
-            EV accudiagnose · 16 jaar automotive ervaring
-          </p>
-
-         </div>
+          <p class="pepijn-role">EV accudiagnose · 16 jaar automotive ervaring</p>
+        </div>
       </div>
     </section>
 
+    <!-- BRAND STATEMENT -->
     <section class="brand-statement">
+      <p>De accu bepaalt de waarde van een EV. <strong>ZekerOpWeg maakt die waarde zichtbaar.</strong></p>
+    </section>
 
-<p>
-De accu bepaalt de waarde van een EV.
-<strong>ZekerOpWeg maakt die waarde zichtbaar.</strong>
-</p>
+    <!-- WAAROM -->
+    <section class="section why-section">
+      <div class="container why-grid">
+        <div class="why-text">
+          <h2>Waarom een AccuCheck vóór aankoop belangrijk is</h2>
+          <p class="risk-highlight">De accu is het duurste onderdeel van een EV. Vervanging kan €8.000 tot €20.000 kosten.</p>
+          <p>De conditie van de accu bepaalt het rijbereik, de restwaarde en het financiële risico bij aankoop.</p>
+          <ul>
+            <li>Accugezondheid beïnvloedt restwaarde</li>
+            <li>Degradatie is niet zichtbaar tijdens een proefrit</li>
+            <li>Accustatus bepaalt toekomstig rijbereik</li>
+            <li>Objectieve meting voorkomt discussies achteraf</li>
+          </ul>
+        </div>
+        <div class="why-image">
+          <img src="assets/images/ev-accudiagnose-apparatuur-interieur.jpeg" alt="EV accudiagnose apparatuur interieur" />
+        </div>
+      </div>
+    </section>
 
-</section>
-
-    <!-- CONTENT -->
-   <section class="section why-section">
-  <div class="container why-grid">
-
-    <div class="why-text">
-
-      <h2>Waarom een AccuCheck vóór aankoop belangrijk is</h2>
-
-      <p class="risk-highlight">
-      De accu is het duurste onderdeel van een EV.
-      Vervanging kan €8.000 – €20.000 kosten.
-      </p>
-
-      <p>
-      De conditie van de accu bepaalt het rijbereik, de restwaarde en
-      het financiële risico bij aankoop.
-      </p>
-
-      <ul>
-        <li>Accugezondheid beïnvloedt restwaarde</li>
-        <li>Degradatie is niet zichtbaar tijdens een proefrit</li>
-        <li>Accustatus bepaalt toekomstig rijbereik</li>
-        <li>Objectieve meting voorkomt discussies achteraf</li>
-      </ul>
-
+    <div class="cta-center">
+      <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">Plan AccuCheck</a>
     </div>
 
-    <div class="why-image">
-
-      <img
-        src="assets/images/ev-accudiagnose-apparatuur-interieur.jpeg"
-        alt="EV accudiagnose apparatuur interieur"
-      />
-
-    </div>
-
-  </div>
-</section>
-
-  <div class="container" style="text-align:center;margin-top:40px;">
-
-    <a href="intake.html?dienst=ev-accucheck" class="btn-primary">
-     Plan AccuCheck
-    </a>
-
-</div>
-    
     <!-- PROCESS -->
     <section class="section process">
       <div class="container">
-        <h2>
-          Hoe de AccuCheck verloopt
-        </h2>
-
-        <div class="process-grid">
-          <div>
-            <strong><strong>1️⃣ Accudiagnose (15 min)</strong>
-             <p>Diagnoseapparatuur wordt aangesloten op het voertuig.</p></strong>
-          
-
-          <div>
-           <strong>2️⃣ Analyse batterijgezondheid</strong>
+        <h2>Hoe de AccuCheck verloopt</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <span class="step-num">1</span>
+            <strong>Accudiagnose (15 min)</strong>
+            <p>Diagnoseapparatuur wordt aangesloten op het voertuig.</p>
+          </div>
+          <div class="process-step">
+            <span class="step-num">2</span>
+            <strong>Analyse batterijgezondheid</strong>
             <p>De accugezondheid en prestaties worden gemeten.</p>
           </div>
-
-          <div>
-          <strong>3️⃣ Accucertificaat</strong>
+          <div class="process-step">
+            <span class="step-num">3</span>
+            <strong>Accucertificaat</strong>
             <p>U ontvangt een objectief accucertificaat.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <a href="intake.html?dienst=ev-accucheck" class="btn-primary">
-    Plan AccuCheck
-    </a>
-    
-    <!-- DECISION -->
+    <div class="cta-center">
+      <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">Plan AccuCheck</a>
+    </div>
+
+    <!-- BESLISSEN -->
     <section class="decision-section">
-      <div class="container decision-box">
-        <h2>
-          Kopen, onderhandelen of doorzoeken
-        </h2>
-
-        <p class="decision-intro">
-          Een onafhankelijke AccuCheck geeft duidelijkheid vóór aankoop.
-          De uitkomst helpt u een rationele beslissing nemen.
-        </p>
-
+      <div class="container">
+        <h2>Kopen, onderhandelen of doorzoeken</h2>
+        <p class="decision-intro">Een onafhankelijke AccuCheck geeft duidelijkheid vóór aankoop. De uitkomst helpt u een rationele beslissing nemen.</p>
         <div class="decision-grid">
-          <div>
+          <div class="decision-card">
+            <span class="decision-icon">✓</span>
             <strong>Kopen</strong>
-            <p>
-              De accustatus is gezond en het voertuig presteert zoals verwacht.
-              U koopt met vertrouwen.
-            </p>
+            <p>De accustatus is gezond en het voertuig presteert zoals verwacht. U koopt met vertrouwen.</p>
           </div>
-
-          <div>
+          <div class="decision-card">
+            <span class="decision-icon">↓</span>
             <strong>Onderhandelen</strong>
-            <p>
-              Afwijkingen in accugezondheid kunnen invloed hebben op de waarde.
-              Objectieve data versterkt uw onderhandelingspositie.
-            </p>
+            <p>Afwijkingen in accugezondheid kunnen invloed hebben op de waarde. Objectieve data versterkt uw onderhandelingspositie.</p>
           </div>
-
-          <div>
+          <div class="decision-card">
+            <span class="decision-icon">→</span>
             <strong>Doorzoeken</strong>
-            <p>
-              Wanneer de accustatus risico's toont kunt u beter verder kijken
-              voordat u duizenden euro's uitgeeft.
-            </p>
+            <p>Wanneer de accustatus risico's toont kunt u beter verder kijken voordat u duizenden euro's uitgeeft.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <a href="intake.html?dienst=ev-accucheck" class="btn-primary">
-     Plan AccuCheck
-    </a>
-    
-    <!-- USECASE -->
+    <div class="cta-center">
+      <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">Plan AccuCheck</a>
+    </div>
+
+    <!-- WANNEER -->
     <section class="usecase-section">
-      <div class="container usecase-box">
-        <h2>
-          Wanneer is een AccuCheck zinvol?
-        </h2>
-
-        <p class="usecase-intro">
-          Bij elektrische auto's bepaalt de aandrijfaccu een groot deel van de waarde.
-          Juist bij een gebruikte EV kan een onafhankelijke accutest veel onzekerheid wegnemen.
-        </p>
-
+      <div class="container">
+        <h2>Wanneer is een AccuCheck zinvol?</h2>
+        <p class="usecase-intro">Bij elektrische auto's bepaalt de aandrijfaccu een groot deel van de waarde. Juist bij een gebruikte EV kan een onafhankelijke accutest veel onzekerheid wegnemen.</p>
         <div class="usecase-grid">
           <div class="usecase-card">
             <strong>Bij aankoop van een gebruikte EV</strong>
-            <p>
-              Wanneer u een elektrische auto overweegt, maar geen zekerheid heeft
-              over de werkelijke conditie van de accu.
-            </p>
+            <p>Wanneer u een elektrische auto overweegt, maar geen zekerheid heeft over de werkelijke conditie van de accu.</p>
           </div>
-
           <div class="usecase-card">
             <strong>Bij twijfel over het rijbereik</strong>
-            <p>
-              Wanneer het praktijkbereik afwijkt van verwachting
-              of wanneer de auto intensief is gebruikt.
-            </p>
+            <p>Wanneer het praktijkbereik afwijkt van verwachting of wanneer de auto intensief is gebruikt.</p>
           </div>
-
           <div class="usecase-card">
             <strong>Voor onderhandeling</strong>
-            <p>
-              Objectieve accudata kan een sterke basis vormen
-              voor prijsonderhandeling of aanvullende garanties.
-            </p>
+            <p>Objectieve accudata kan een sterke basis vormen voor prijsonderhandeling of aanvullende garanties.</p>
           </div>
-
           <div class="usecase-card">
             <strong>Vóór het aflopen van accugarantie</strong>
-            <p>
-              Een onafhankelijke meting kan helpen vaststellen
-              of de accustatus nog binnen de garantievoorwaarden valt.
-            </p>
+            <p>Een onafhankelijke meting kan helpen vaststellen of de accustatus nog binnen de garantievoorwaarden valt.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CERT -->
+    <!-- CERTIFICAAT -->
     <section class="cert-section">
       <div class="container">
-        <h2>
-          Accucertificaat na uitvoering
-        </h2>
-
+        <h2>Accucertificaat na uitvoering</h2>
         <div class="cert-frame">
-          <img
-            src="assets/images/ev-accucertificaat-voorbeeld-soh.jpg"
-            alt="EV accucertificaat voorbeeld SOH"
-          />
+          <img src="assets/images/ev-accucertificaat-voorbeeld-soh.jpg" alt="EV accucertificaat voorbeeld SOH" />
         </div>
-
-        <p>
-          Na de meting ontvangt u een digitaal accucertificaat
-          met de gemeten accustatus.
-        </p>
+        <p>Na de meting ontvangt u een digitaal accucertificaat met de gemeten accustatus.</p>
       </div>
     </section>
 
-   <a href="intake.html?dienst=ev-accucheck" class="btn-primary">
-    Plan AccuCheck
-   </a>
-    
+    <div class="cta-center">
+      <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">Plan AccuCheck</a>
+    </div>
+
     <!-- FAQ -->
     <section class="faq-section">
-      <div class="container faq-box">
+      <div class="container">
         <h2>Veelgestelde vragen</h2>
-
         <div class="faq-list">
           <div class="faq-item">
             <h3>Hoe lang duurt een AccuCheck?</h3>
-            <p>
-              De meting zelf duurt meestal ongeveer 15 tot 20 minuten.
-              U ontvangt daarna een digitaal accucertificaat met de gemeten accustatus.
-            </p>
+            <p>De meting zelf duurt meestal ongeveer 15 tot 20 minuten. U ontvangt daarna een digitaal accucertificaat met de gemeten accustatus.</p>
           </div>
-
           <div class="faq-item">
             <h3>Is de meting veilig voor het voertuig?</h3>
-            <p>
-              Ja. De diagnose wordt uitgevoerd via de voertuigcommunicatie en belast de accu niet.
-              Er wordt niets gedemonteerd en de test heeft geen invloed op garantie of voertuigstatus.
-            </p>
+            <p>Ja. De diagnose wordt uitgevoerd via de voertuigcommunicatie en belast de accu niet. Er wordt niets gedemonteerd en de test heeft geen invloed op garantie of voertuigstatus.</p>
           </div>
-
           <div class="faq-item">
             <h3>Wanneer ontvang ik het accucertificaat?</h3>
-            <p>
-              Na de meting ontvangt u het accucertificaat digitaal.
-              Hierin staat de gemeten accugezondheid en een duidelijke toelichting op de accustatus.
-            </p>
+            <p>Na de meting ontvangt u het accucertificaat digitaal. Hierin staat de gemeten accugezondheid en een duidelijke toelichting op de accustatus.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VALUE -->
+    <!-- WAT U ONTVANGT -->
     <section class="value-section">
-      <div class="container value-box">
-        <h2>
-          Wat u concreet ontvangt
-        </h2>
-
+      <div class="container">
+        <h2>Wat u concreet ontvangt</h2>
         <div class="value-grid">
           <div class="value-item">
             <strong>Werkelijke accugezondheid en rijbereik</strong>
-            <p>
-              De meting geeft inzicht in de werkelijke accugezondheid van de accu
-              en een indicatie van het praktische rijbereik op basis van de actuele accustatus.
-            </p>
+            <p>De meting geeft inzicht in de werkelijke accugezondheid en een indicatie van het praktische rijbereik op basis van de actuele accustatus.</p>
           </div>
-
           <div class="value-item">
             <strong>Professionele accudiagnose</strong>
-            <p>
-              De meting wordt uitgevoerd met TÜV-gecertificeerde diagnoseapparatuur.
-            </p>
+            <p>De meting wordt uitgevoerd met TÜV-gecertificeerde diagnoseapparatuur.</p>
           </div>
-
           <div class="value-item">
             <strong>Digitaal accucertificaat</strong>
-            <p>
-              U ontvangt een rapport met de gemeten accustatus en duidelijke toelichting.
-            </p>
+            <p>U ontvangt een rapport met de gemeten accustatus en duidelijke toelichting.</p>
           </div>
-
           <div class="value-item">
             <strong>Onderbouwing voor uw beslissing</strong>
-            <p>
-              Helpt bepalen of u het voertuig koopt, onderhandelt of beter verder zoekt.
-            </p>
+            <p>Helpt bepalen of u het voertuig koopt, onderhandelt of beter verder zoekt.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- AUTHORITY -->
+    <!-- AUTHORITY STRIP -->
     <section class="authority-strip">
       <div class="container authority-items">
         <span>TÜV-gecertificeerde meetmethodiek</span>
@@ -442,74 +545,58 @@ De accu bepaalt de waarde van een EV.
       </div>
     </section>
 
-    <!-- PRICE - BEIDE VARIANTEN -->
+    <!-- TARIEVEN -->
     <section class="price-section" id="tarieven">
       <div class="container">
 
         <p class="price-eyebrow" style="text-align:center;">EV ACCUCHECK</p>
-        <h2 style="text-align:center; font-size:32px; font-weight:650; margin-bottom:10px;">Kies de variant die bij u past</h2>
-        <p style="text-align:center; font-size:15px; color:var(--zop-muted); margin-bottom:56px; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.6;">
+        <h2 style="text-align:center; font-size:32px; margin-bottom:10px;">Kies de variant die bij u past</h2>
+        <p style="text-align:center; font-size:15px; color:var(--zop-muted); max-width:520px; margin:0 auto 56px; line-height:1.6;">
           Dezelfde onafhankelijke meting, TÜV-gecertificeerd, accucertificaat inbegrepen. Het verschil zit alleen in de locatie.
         </p>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:880px; margin:0 auto;">
+        <div class="price-cards-grid">
 
           <!-- VARIANT 1: Op locatie -->
-          <div class="price-card" style="max-width:none; position:relative;">
-            <div style="position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--zop-gold); color:#fff; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:5px 18px; border-radius:20px; white-space:nowrap;">
-              Meest gekozen
-            </div>
-            <p class="price-eyebrow">Op locatie</p>
-            <h3 style="font-size:22px; font-weight:650; margin:8px 0 4px;">AccuCheck bij de auto</h3>
-            <p style="font-size:14px; color:var(--zop-muted); margin-bottom:20px; line-height:1.5;">Ik kom naar de auto toe. Ideaal voor aankoop, als de auto bij de verkoper staat.</p>
-            <div class="price-main">€129</div>
-            <p class="price-sub">Inclusief btw · Meting op locatie · Certificaat inbegrepen</p>
-            <p style="font-size:13px; color:var(--zop-muted); margin-bottom:28px;">
-              Binnen 40 km rondom Barendrecht inbegrepen, daarna €0,35 per km
-            </p>
-            <ul class="price-features" style="text-align:left; margin-bottom:32px;">
-              <li>Ik kom naar de auto toe</li>
-              <li>Objectieve accumeting (State of Health)</li>
-              <li>Indicatie van praktisch rijbereik</li>
-              <li>TÜV-gecertificeerde diagnoseapparatuur</li>
-              <li>Digitaal accucertificaat na uitvoering</li>
-            </ul>
-            <div style="text-align:center;">
-              <a
-                href="intake.html?dienst=ev-accucheck"
-                class="btn-primary price-cta"
-                onclick="trackAccuCheckClick()"
-                style="display:inline-block;"
-              >
+          <div class="price-card-wrap">
+            <div class="price-badge">Meest gekozen</div>
+            <div class="price-card">
+              <p class="price-eyebrow">Op locatie</p>
+              <h3 style="font-size:22px; font-weight:650; margin:8px 0 6px;">AccuCheck bij de auto</h3>
+              <p style="font-size:14px; color:var(--zop-muted); margin-bottom:20px; line-height:1.5;">Ik kom naar de auto toe. Ideaal vóór aankoop, als de auto bij de verkoper staat.</p>
+              <div class="price-main">€129</div>
+              <p class="price-sub">Inclusief btw · Meting op locatie · Certificaat inbegrepen</p>
+              <p style="font-size:13px; color:var(--zop-muted); margin-bottom:28px;">Binnen 40 km rondom Barendrecht inbegrepen, daarna €0,35 per km</p>
+              <ul class="price-features" style="margin-bottom:32px;">
+                <li>Ik kom naar de auto toe</li>
+                <li>Objectieve accumeting (State of Health)</li>
+                <li>Indicatie van praktisch rijbereik</li>
+                <li>TÜV-gecertificeerde diagnoseapparatuur</li>
+                <li>Digitaal accucertificaat na uitvoering</li>
+              </ul>
+              <a href="intake.html?dienst=ev-accucheck" class="btn-primary price-cta" onclick="trackAccuCheckClick()">
                 Plan AccuCheck op locatie
               </a>
             </div>
           </div>
 
           <!-- VARIANT 2: In Barendrecht -->
-          <div class="price-card" style="max-width:none; background:#f9f8f5; box-shadow:var(--zop-shadow-soft);">
-            <p class="price-eyebrow">In Barendrecht</p>
-            <h3 style="font-size:22px; font-weight:650; margin:8px 0 4px;">AccuCheck in Barendrecht</h3>
-            <p style="font-size:14px; color:var(--zop-muted); margin-bottom:20px; line-height:1.5;">U brengt de auto langs. Ideaal als u de auto al heeft en zekerheid wilt achteraf.</p>
-            <div class="price-main">€95</div>
-            <p class="price-sub">Inclusief btw · U rijdt naar Barendrecht · Certificaat inbegrepen</p>
-            <p style="font-size:13px; color:var(--zop-muted); margin-bottom:28px;">
-              Regio Rotterdam/Dordrecht, direct aan de A15/A29
-            </p>
-            <ul class="price-features" style="text-align:left; margin-bottom:32px;">
-              <li>U rijdt naar Barendrecht</li>
-              <li>Objectieve accumeting (State of Health)</li>
-              <li>Indicatie van praktisch rijbereik</li>
-              <li>TÜV-gecertificeerde diagnoseapparatuur</li>
-              <li>Digitaal accucertificaat na uitvoering</li>
-            </ul>
-            <div style="text-align:center;">
-              <a
-                href="intake.html?dienst=ev-accucheck-barendrecht"
-                class="btn-primary price-cta"
-                onclick="trackAccuCheckBarendrechtClick()"
-                style="display:inline-block; background:#0b1220;"
-              >
+          <div class="price-card-wrap" style="padding-top:20px;">
+            <div class="price-card" style="background:#f9f8f5; box-shadow:0 10px 30px rgba(0,0,0,.05);">
+              <p class="price-eyebrow">In Barendrecht</p>
+              <h3 style="font-size:22px; font-weight:650; margin:8px 0 6px;">AccuCheck in Barendrecht</h3>
+              <p style="font-size:14px; color:var(--zop-muted); margin-bottom:20px; line-height:1.5;">U brengt de auto langs. Ideaal als u de auto al heeft en zekerheid wilt achteraf.</p>
+              <div class="price-main">€95</div>
+              <p class="price-sub">Inclusief btw · U rijdt naar Barendrecht · Certificaat inbegrepen</p>
+              <p style="font-size:13px; color:var(--zop-muted); margin-bottom:28px;">Regio Rotterdam/Dordrecht, direct aan de A15/A29</p>
+              <ul class="price-features" style="margin-bottom:32px;">
+                <li>U rijdt naar Barendrecht</li>
+                <li>Objectieve accumeting (State of Health)</li>
+                <li>Indicatie van praktisch rijbereik</li>
+                <li>TÜV-gecertificeerde diagnoseapparatuur</li>
+                <li>Digitaal accucertificaat na uitvoering</li>
+              </ul>
+              <a href="intake.html?dienst=ev-accucheck-barendrecht" class="btn-primary price-cta" onclick="trackAccuCheckBarendrechtClick()" style="background:#0b1220;">
                 Plan AccuCheck in Barendrecht
               </a>
             </div>
@@ -520,26 +607,14 @@ De accu bepaalt de waarde van een EV.
         <p style="text-align:center; font-size:13px; color:var(--zop-muted); margin-top:28px;">
           Niet zeker welke variant u nodig heeft? Neem contact op, we helpen u kiezen.
         </p>
-
         <p class="capacity-note">
-          Om onafhankelijkheid en zorgvuldigheid te waarborgen voeren wij
-          slechts een beperkt aantal AccuChecks per dag uit.
+          Om onafhankelijkheid en zorgvuldigheid te waarborgen voeren wij slechts een beperkt aantal AccuChecks per dag uit.
         </p>
 
       </div>
     </section>
 
-    <style>
-      @media (max-width: 760px) {
-        #tarieven [style*="grid-template-columns:1fr 1fr"] {
-          grid-template-columns: 1fr !important;
-        }
-      }
-    </style>
-
   </main>
-
-
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -547,7 +622,6 @@ De accu bepaalt de waarde van een EV.
       <div class="footer-col">
         <p class="footer-title">ZekerOpWeg</p>
         <p>© 2026 ZekerOpWeg</p>
-
         <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">
           Handelsnaam van Pepijn Westhoff<br />
           KvK 99323575<br />
@@ -555,38 +629,16 @@ De accu bepaalt de waarde van een EV.
           IBAN NL22 INGB 0116 6008 02
         </p>
       </div>
-
       <div class="footer-col">
         <p class="footer-title">Contact</p>
-
-        <p>
-          <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br />
-          Algemene vragen en eerste contact
-        </p>
-
-        <p>
-          <a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br />
-          Facturatie en administratie
-        </p>
+        <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br />Algemene vragen en eerste contact</p>
+        <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br />Facturatie en administratie</p>
       </div>
-
       <div class="footer-col">
         <p class="footer-title">Diensten</p>
-
-        <p>
-          <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a><br />
-          Persoonlijk aankoopadvies
-        </p>
-
-        <p>
-          <a href="mailto:accucheck@zekeropweg.nu" class="footer-accent">accucheck@zekeropweg.nu</a><br />
-          EV AccuCheck
-        </p>
-
-        <p>
-          <a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br />
-          Bezwaarservice
-        </p>
+        <p><a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a><br />Persoonlijk aankoopadvies</p>
+        <p><a href="mailto:accucheck@zekeropweg.nu" class="footer-accent">accucheck@zekeropweg.nu</a><br />EV AccuCheck</p>
+        <p><a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br />Bezwaarservice</p>
       </div>
     </div>
   </footer>
