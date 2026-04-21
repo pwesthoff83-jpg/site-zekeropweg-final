@@ -897,6 +897,12 @@ const batteryDB = {
   "kia sportage phev": [{ "variant": "standard", "kwh": 13.8 }],
   "kia sorento phev": [{ "variant": "standard", "kwh": 13.8 }],
   "mercedes-benz a-class": [{ "variant": "250e", "kwh": 15.6 }],
+  "mercedes-benz cla": [
+    { "variant": "250e phev", "kwh": 15.6 },
+    { "variant": "250e", "kwh": 15.6 },
+    { "variant": "250+ ev", "kwh": 85 },
+    { "variant": "standard", "kwh": 15.6 }
+  ],
   "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }],
   "mercedes-benz e-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }],
   "mercedes-benz s-class": [{ "variant": "560e", "kwh": 13.5 }, { "variant": "580e", "kwh": 28.6 }],
@@ -1003,7 +1009,20 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   if (!entries || entries.length === 0) return null;
 
   let entry = entries[0];
-  if (variantLow) {
+
+  // Stap 1: probeer kWh-getal uit varianttekst te halen (bijv. "Long Range AWD 75 kWh" → 75)
+  const kwhInVariant = variantLow.match(/(\d+(?:\.\d+)?)\s*kwh/);
+  if (kwhInVariant) {
+    const kwhGetal = parseFloat(kwhInVariant[1]);
+    // Vind de entry met dichtstbijzijnde kWh-waarde
+    const byKwh = entries.reduce((best, e) => {
+      return Math.abs(e.kwh - kwhGetal) < Math.abs(best.kwh - kwhGetal) ? e : best;
+    });
+    if (Math.abs(byKwh.kwh - kwhGetal) <= 5) { entry = byKwh; }
+  }
+
+  // Stap 2: als geen kWh-match, probeer variantnaam
+  if (!kwhInVariant && variantLow) {
     const varMatch = entries.find(e => variantLow.includes(e.variant) || e.variant.includes(variantLow));
     if (varMatch) entry = varMatch;
   }
@@ -1320,14 +1339,32 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const apk = data ? (data.vervaldatum_apk || '') : '';
 
   const leeftijd = calcLeeftijd(datum);
+  const bouwjaar = datum ? parseInt(String(datum).slice(0, 4)) : null;
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
-  const kwh = battery ? battery.kwh : null;
+  let kwh = battery ? battery.kwh : null;
 
   // Ground truth: battery-db weet het type het zekerst.
   // Alleen als geen match: val terug op brandstof/naam detectie.
-  const driveType = (battery && battery.dbDriveType)
+  let driveType = (battery && battery.dbDriveType)
     ? battery.dbDriveType
     : detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
+
+  // Bouwjaar-gebaseerde correcties voor modellen die van type wisselden:
+  // Mercedes CLA 250e: PHEV tot en met 2024, volledig elektrisch (CLA 250+) vanaf 2025
+  const handelLow2 = handelsbenaming.toLowerCase();
+  if (merk.toLowerCase().includes('mercedes') && handelLow2.includes('cla')) {
+    if (bouwjaar && bouwjaar >= 2025) {
+      driveType = 'ev';
+      // CLA 2025+ heeft 85 kWh accu
+      if (!kwh || kwh < 50) kwh = 85;
+    } else {
+      driveType = 'phev';
+    }
+  }
+  // Mercedes EQS/EQE/EQA/EQB zijn altijd EV ondanks soms lege brandstofveld
+  if (merk.toLowerCase().includes('mercedes') && /\beq[sabce]\b/i.test(handelsbenaming)) {
+    driveType = 'ev';
+  }
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
 
