@@ -1621,7 +1621,19 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <h3><span class="section-icon">📈</span>Praktijkgedrag batterij</h3>
       <p class="prose">In de praktijk presteren ${driveType === 'ev' ? 'elektrische accu\'s' : driveType === 'phev' ? 'plug-in hybride accu\'s' : 'hybride accu\'s'} doorgaans goed bij verstandig gebruik: regelmatig rijden, niet altijd volledig laden en niet langdurig leeg laten staan.</p>
       <p class="prose" style="margin-top:10px;">Bij intensief gebruik, veel snelladen of extreme temperaturen neemt de degradatie sneller toe. Dit is zelden zichtbaar in de voertuighistorie, maar wel meetbaar via een diagnose.</p>
-      ${driveType === 'phev' ? '<p class="prose" style="margin-top:10px;">Plug-in hybrides worden regelmatig uitsluitend op benzine gereden. In dat geval wordt de elektrische accu nauwelijks gebruikt, maar kan er ook stagnatie optreden door langdurig stilstaan.</p>' : ''}
+
+      ${driveType === 'phev' ? `
+      <div class="highlight-box" style="margin-top:14px;background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2)">
+        <strong style="color:var(--amber)">Veelvoorkomend patroon: gebruikt als volledige EV.</strong>
+        <span style="display:block;margin-top:6px;line-height:1.6;">Plug-in hybrides worden regelmatig uitsluitend elektrisch gereden: elke dag volledig leegrijden en 's avonds tot 100% opladen. Dit klinkt zuinig, maar is voor de accu het meest belastende gebruik dat bestaat. Diepe ontlading gevolgd door volledige oplading versnelt celveroudering sterk.</span>
+        <span style="display:block;margin-top:8px;line-height:1.6;">Dit rijgedrag is volledig onzichtbaar in het kenteken, de kilometerstand en het dashboard. Twee auto's met identieke gegevens kunnen daardoor sterk van elkaar verschillen in werkelijke accuconditie. Alleen een meting maakt dit zichtbaar.</span>
+      </div>` : ''}
+
+      ${driveType === 'hybrid' ? `
+      <p class="prose" style="margin-top:10px;">Milde hybrides laden zichzelf op via remenergie en de verbrandingsmotor. De accu wordt nooit volledig leeggereden en zelden volledig geladen. Dit beschermde laadpatroon is juist de reden dat milde hybride accu's doorgaans langer meegaan.</p>` : ''}
+
+      ${driveType === 'ev' ? `
+      <p class="prose" style="margin-top:10px;">Volledig elektrische accu's zijn ontworpen voor dagelijks gebruik, maar profiteren van een laadbreedte tussen 20% en 80%. Regelmatig snelladen en langdurig op 100% staan versnelt de degradatie merkbaar over langere tijd.</p>` : ''}
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
@@ -1703,6 +1715,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
             <li>Langdurig bij 0% laten staan</li>
             <li>Dagelijks snelladen</li>
             <li>Langdurig parkeren in hitte</li>
+            ${driveType === 'phev' ? '<li>Dagelijks volledig leegrijden en dan opladen tot 100% (EV-gebruik)</li>' : ''}
           </ul>
         </div>
         <div class="tip-box drive">
@@ -1712,6 +1725,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
             <li>Controleer weergegeven restbereik</li>
             <li>Let op plotselinge energiedaling</li>
             <li>Vraag naar laadgedrag vorige eigenaar</li>
+            ${driveType === 'phev' ? '<li>Vraag of de auto dagelijks elektrisch werd leeggereden</li>' : ''}
           </ul>
         </div>
         <div class="tip-box buy">
