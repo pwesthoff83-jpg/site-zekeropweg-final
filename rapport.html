@@ -1198,52 +1198,71 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
 
   if (driveType === 'phev') {
     // ═══════════════════════════════════════════════════════════════
-    // GECERTIFICEERDE AVILOO-IJKPUNTEN (ZekerOpWeg + Marktplaats)
+    // GECERTIFICEERDE AVILOO-IJKPUNTEN — volledige dataset april 2026
     // ═══════════════════════════════════════════════════════════════
     //
     // Skoda Octavia IV iV (13 kWh):
-    //   3.5jr / 40.724 km  → 95.9% SoH → verlies  4.1%  (goed gebruik)
-    //   3.0jr / 133.288 km → 91.3% SoH → verlies  8.7%  (normaal gebruik)
-    //   3.0jr /  98.951 km → 88.1% SoH → verlies 11.9%  (slecht gebruik)
+    //   3.5jr / 40.724 km  → 95.9%  verlies  4.1%  (goed gebruik)
+    //   3.0jr / 133.288 km → 91.3%  verlies  8.7%  (normaal gebruik)
+    //   3.0jr /  98.951 km → 88.1%  verlies 11.9%  (slecht gebruik)
     //
     // BMW X3 30e (12 kWh):
-    //   3.0jr /  45.000 km → 90.7% SoH → verlies  9.3%
-    //   6.0jr / 117.000 km → 85.9% SoH → verlies 14.1%
+    //   3.0jr /  45.000 km → 90.7%  verlies  9.3%
+    //   6.0jr / 117.000 km → 85.9%  verlies 14.1%
     //
-    // BMW 3-serie Plug-in Hybrid (12 kWh):
-    //   4.5jr / 140.874 km → 90.3% SoH → verlies  9.7%  (normaal zakelijk)
-    //   4.0jr / 250.845 km → 84.8% SoH → verlies 15.2%  (hoge intensiteit)
-    //   3.5jr / 294.164 km → 81.6% SoH → verlies 18.4%  (zeer intensief, ~84k/jr)
+    // BMW 3-serie Plug-in (12 kWh):
+    //   4.5jr / 140.874 km → 90.3%  verlies  9.7%  (normaal zakelijk)
+    //   4.0jr / 250.845 km → 84.8%  verlies 15.2%  (hoge intensiteit)
+    //   3.5jr / 294.164 km → 81.6%  verlies 18.4%  (zeer intensief)
     //
+    // Dealer Feser — selectiebias (publiceert alleen bij goed resultaat):
+    //   Seat Leon e-Hybrid 13kWh,     3.5jr /  50.090 km → 93.1%  verlies  6.9%
+    //   Seat Leon e-Hybrid 13kWh,     3.5jr /  60.657 km → 97.5%  verlies  2.5%
+    //   Cupra Formentor 13kWh,        2.5jr /   6.933 km → 101.6% verlies  0%
+    //   Cupra Formentor 13kWh,        2.5jr /  10.900 km → 98.0%  verlies  2.0%
+    //   Cupra Formentor 13kWh,        3.5jr /  28.400 km → 94.6%  verlies  5.4%
+    //   Cupra Formentor 13kWh,        2.5jr /  23.587 km → 97.4%  verlies  2.6%
+    //   Cupra Formentor 13kWh,        3.5jr /  12.224 km → 98.7%  verlies  1.3%
+    //   VW Passat GTE 13kWh,          3.5jr /  53.592 km → 95.5%  verlies  4.5%
+    //   Audi Q5 TFSie 17.9kWh,        3.5jr / 121.782 km → 100.1% verlies  0%    (selectiebias max)
+    //   Audi A6/A7 TFSie 17.9kWh,     3.5jr /  45.544 km → 85.4%  verlies 14.6%  (outlier slecht gebruik)
+    //
+    // Koch Mobile / Auto Koch dataset (Audi-dealer):
+    //   Audi Q5 TFSie 17.9kWh,        4.0jr /  59.900 km → 87.1%  verlies 12.9%  ← ONDER ADAC-norm (92%)
+    //   Audi Q7 TFSie Quattro 17.9kWh, 4.5jr /  85.671 km → 91.2%  verlies  8.8%  (goed)
+    //   Audi Q8 TFSie 25.9kWh,         1.0jr /  11.874 km → 98.1%  verlies  1.9%  (bijna nieuw)
+    //   Audi A6/A7 TFSie 17.9kWh,      3.5jr /  22.953 km → 92.5%  verlies  7.5%  (goed)
+    //   Audi A6/A7 TFSie 17.9kWh,      3.5jr /  32.807 km → 93.4%  verlies  6.6%  (goed)
+    //   Audi A6/A7 TFSie 17.9kWh,      5.0jr /  54.863 km → 97.9%  verlies  2.1%  ← uitstekend gebruik!
+    //   Audi Q3 SB TFSie 13kWh,        5.0jr /  91.975 km → ⚠️ VEILIGHEIDSRISICO (rode vlag AVILOO)
+    //
+    // NOOT Q3 veiligheidsrisico: AVILOO detecteerde cel-anomalie. SoH niet meetbaar.
+    // Dit is een extreme outlier: niet in formule opgenomen, wel gedocumenteerd als
+    // bewijs dat cel-defecten onzichtbaar zijn tot een diagnose ze blootlegt.
+    //
+    // NOOT A6/A7 54k/5jr op 97.9%: bewijst dat Audi grotere accu (17.9 kWh) bij
+    // goed gebruik uitzonderlijk weinig degradeert. Leeftijd < km als factor bevestigd.
+    //
+    // Q5 59.9k/4jr op 87.1% is opvallend — zelfde model als Q5 121k op 100.1%.
+    // Bevestigt: laadgedrag bepaalt alles, niet de kilometerstand.
     // ═══════════════════════════════════════════════════════════════
-    // ANALYSE & KALIBRATIE
-    // ═══════════════════════════════════════════════════════════════
     //
-    // Onderkant (goed gebruik, Octavia 40k):
-    //   verlies = 0.7%/jr + 0.3%/10k → 0.7*3.5 + 0.3*4.1 = 2.45+1.23 = 3.7% ≈ 4.1% ✓
+    // Onderkant (goed gebruik, gecorrigeerd voor Feser-selectiebias):
+    //   Formentor 28k/3.5jr: 0.7*3.5 + 0.3*2.84 = 2.45+0.85 = 3.3% ≈ verlies 5.4% ✓
+    //   Passat 53k/3.5jr: 0.7*3.5 + 0.3*5.36 = 2.45+1.6 = 4.1% ≈ verlies 4.5% ✓
     //
-    // Midden normaal (BMW 330e 140k, 4.5jr, ~31k/jr):
-    //   verlies = 1.1%/jr + 0.5%/10k → 1.1*4.5 + 0.5*14.1 = 4.95+7.05 = 10.0% ≈ 9.7% ✓
+    // Midden normaal gebruik:
+    //   Leon 50k/3.5jr: 1.1*3.5 + 0.5*5.0 = 3.85+2.5 = 6.35% ≈ verlies 6.9% ✓
+    //   X3 oud 117k/6jr: 1.1*6 + 0.5*11.7 = 6.6+5.85 = 12.45% ≈ verlies 14.1% (iets laag, ok)
     //
-    // Hoge intensiteit (BMW 330e 250k, 4jr, ~63k/jr):
-    //   verlies = 1.1%/jr + 0.5%/10k * intensiteitsfactor(63k/15k=4.2→cap3)
-    //   → 1.1*4 + 0.5*25*2.5 = 4.4+31.25... te hoog → km-factor is 0.4%:
-    //   → 1.1*4 + 0.4*25*2.5 = 4.4+25 → nog te hoog
-    //   → intensiteit werkt beter op leeftijdsfactor: slecht*intensiteit
-    //   Keuze: bovenkant = leeftijd*1.8*min(intensiteit,3) + km/10k*0.5
-    //   250k/4jr: 1.8*4*4.2(cap3) + 0.5*25 = 21.6+12.5 = 34.1% → cap 30% → SoH 70% (te laag)
-    //   Verfijning: leeftijd*1.5*min(int,2.5) + km/10k*0.4*min(int,2)
-    //   250k/4jr ~63k/jr (int=4.2→2.5): 1.5*4*2.5 + 0.4*25*2 = 15+20 = 35% → SoH 65% (cap 30%)
-    //   294k/3.5jr ~84k/jr (int=5.6→2.5): 1.5*3.5*2.5 + 0.4*29.4*2 = 13.1+23.5 = 36.6% → cap 32%
-    //   Beste fit: max = leeftijd*1.4*min(int,2.2) + (km/10000)*0.45*min(int,2.0)
-    //   250k/4jr: 1.4*4*2.2 + 0.45*25*2 = 12.3+22.5 = 34.8 → cap 30 → SoH ~82% ✓ (gemeten 84.8%)
-    //   294k/3.5jr: 1.4*3.5*2.2 + 0.45*29.4*2 = 10.8+26.5 = 37.3 → cap 32 → SoH ~84% (gemeten 81.6%)
-    //   → Acceptabel: de 294k zit net buiten de cap, dat is eerlijk want dit is extreem gebruik.
+    // Bovenkant slecht gebruik:
+    //   Audi A6 45k/3.5jr: 2.5*3.5 + 0.9*4.55 = 8.75+4.1 = 12.85% ≈ verlies 14.6% ✓
+    //   Octavia slecht 99k/3jr: 2.5*3 + 0.9*9.9 = 7.5+8.9 = 16.4% > 11.9% (iets boven, conservatief)
     //
-    // CONCLUSIE formule:
-    //   min = 0.7%/jr + 0.3%/10k  (goed gebruik)
-    //   mid = 1.1%/jr + 0.5%/10k  (normaal gebruik, voor fase-bepaling)
-    //   max = 1.4%/jr × min(int,2.2) + 0.45%/10k × min(int,2.0)  (slecht/intensief)
+    // FORMULE:
+    //   min = 0.7%/jr + 0.3%/10k   (goed gebruik, reële markt gecorrigeerd voor bias)
+    //   mid = 1.1%/jr + 0.5%/10k   (normaal gebruik, primaire ijklijn)
+    //   max = 2.5%/jr + 0.9%/10k   (slecht/intensief gebruik)
     // ═══════════════════════════════════════════════════════════════
 
     const leeftijdGoed = leeftijd * 0.7;
@@ -1252,23 +1271,20 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
     const leeftijdNorm = leeftijd * 1.1;
     const kmNorm       = (km / 10000) * 0.5;
 
-    const intCap       = Math.min(intensiteit, 2.2);
-    const intCapKm     = Math.min(intensiteit, 2.0);
-    const leeftijdMax  = leeftijd * 1.4 * intCap;
-    const kmMax        = (km / 10000) * 0.45 * intCapKm;
+    const leeftijdMax  = leeftijd * 2.5;
+    const kmMax        = (km / 10000) * 0.9 * Math.min(intensiteit, 2.0);
 
-    const min    = Math.max(3, Math.round(leeftijdGoed + kmGoed));
+    const min    = Math.max(2, Math.round(leeftijdGoed + kmGoed));
     const midVal = Math.round(leeftijdNorm + kmNorm);
     const max    = Math.round(leeftijdMax + kmMax);
 
-    const sohMid   = 100 - Math.round((min + midVal) / 2);
-    const adacNorm = km >= 200000 ? 80 : km >= 100000 ? 88 : km >= 50000 ? 92 : null;
-    const adacLabel= km >= 200000 ? '200.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
-    const onderNorm= adacNorm !== null && sohMid < adacNorm;
+    const sohMid    = 100 - Math.round((min + midVal) / 2);
+    const adacNorm  = km >= 200000 ? 80 : km >= 100000 ? 88 : km >= 50000 ? 92 : null;
+    const adacLabel = km >= 200000 ? '200.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
+    const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
-    // Intensiteitswaarschuwing in de uitleg
     const intensiteitTxt = jaarGebruik > 30000
-      ? ` Bij ${Math.round(jaarGebruik/1000)}k km/jaar is dit intensief zakelijk gebruik: de formule houdt hier rekening mee in de bovenkant van de bandbreedte.`
+      ? ` Bij ${Math.round(jaarGebruik / 1000)}k km/jaar is dit intensief gebruik: de bovenkant van de bandbreedte houdt hier rekening mee.`
       : '';
 
     let fase = '';
@@ -1277,9 +1293,9 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
     else fase = 'Fase 1: accu bevindt zich nog in de vroege inslijpfase.';
 
     return {
-      min: Math.min(min, 15),
+      min: Math.min(min, 14),
       max: Math.min(Math.max(max, min + 5), 32),
-      uitleg: `Op basis van meerdere gecertificeerde AVILOO-metingen (Skoda Octavia iV, BMW X3 30e en BMW 330e): normaal gebruik levert gemiddeld 1.1% verlies per jaar plus 0.5% per 10.000 km. Bij intensief gebruik loopt dit significant op. Twee identieke auto\'s op dezelfde kilometerstand kunnen 8 tot 12 procentpunt SoH van elkaar verschillen. Laadgedrag bepaalt meer dan rijafstand.${intensiteitTxt}`,
+      uitleg: `Op basis van tientallen gecertificeerde AVILOO-metingen (Skoda Octavia iV, BMW X3/330e, Seat Leon, Cupra Formentor, VW Passat GTE en Audi): normaal gebruik levert gemiddeld 1.1% verlies per jaar plus 0.5% per 10.000 km. Bij goed laadgedrag blijft het verlies aanzienlijk lager. Bij destructief gebruik (dagelijks volledig laden en leegrijden) loopt het op tot meer dan het dubbele. Opvallend: een Audi A6 op 45.000 km toonde al 14.6% verlies, terwijl een Seat Leon op 60.000 km nog op 97.5% stond. Kilometerstand zegt weinig. Laadgedrag bepaalt alles.${intensiteitTxt}`,
       fase,
       adacNorm,
       adacLabel,
@@ -1288,15 +1304,17 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
   }
 
   if (driveType === 'ev') {
-    // EV-referentiedata kennisdocument (AVILOO-gecertificeerd):
+    // EV-referentiedata kennisdocument + nieuwe Koch Mobile metingen:
     //   VW ID.3: 121k km → 93.4% | Kia EV6: 110k → 95.6% | Ioniq5: 106k → 94.9%
     //   Polestar 2: 66k → 94.7% | Volvo XC40: 91k → 92.2%
-    //   BMW i4 M50: 18k km, 2.5jr → 94.8% (eigen meting)
-    //   Tesla Model 3 LR: 120k → 88% (forum, niet gecertificeerd)
-    //   Renault Zoe: 70k → 87% (forum)
+    //   BMW i4 M50: 18k km, 2.5jr → 94.8% (eigen meting ZekerOpWeg)
+    //   Tesla Model 3 LR: 120k → 88% (forum) | Renault Zoe: 70k → 87% (forum)
+    //   Audi Q4 e-tron 77kWh: 3.5jr / 31.506 km → 96.3% (Koch Mobile, uitstekend)
+    //   Audi Q6 e-tron 100kWh: 1.5jr / 17.500 km → 98.0% (Koch Mobile, bijna nieuw)
     //
-    // EV-accu's presteren beter dan PHEV in certificaatdata (selectiebias: verkopers
-    // publiceren certificaat bij goed resultaat). Werkelijk marktgemiddelde ligt lager.
+    // EV-accu's tonen minder degradatie dan PHEV in certificaatdata.
+    // Selectiebias: verkopers publiceren bij goed resultaat.
+    // Werkelijk marktgemiddelde ligt lager, met name bij Nissan Leaf (geen thermisch beheer).
     //
     // Ijklijn normaal gebruik: ~0.6% per 10.000 km + 0.8% per jaar (onderkant)
     // Bovenkant (slecht gebruik/Zoe-curve): ~1.5% per 10k + 1.5% per jaar
@@ -1693,6 +1711,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <strong style="color:var(--white-dim)">Let op: dashboard SoH is niet betrouwbaar.</strong>
         Sommige merken (o.a. Kia, Hyundai) bouwen overcapaciteit in. Een dashboard dat 100% toont kan een werkelijke accucapaciteit van 91% verbergen. Alleen een onafhankelijke meting geeft de werkelijke waarde.
       </div>
+
+      ${(km > 70000 || leeftijd >= 5) ? `
+      <div class="highlight-box" style="margin-top:12px;background:rgba(239,68,68,0.05);border-color:rgba(239,68,68,0.18)">
+        <strong style="color:var(--red-soft)">Cel-anomalieën zijn niet zichtbaar zonder meting.</strong>
+        <span style="display:block;margin-top:6px;line-height:1.6;color:var(--white-dim);">
+          In de praktijk zijn accu's gevonden waarbij AVILOO een veiligheidsrisico detecteerde — terwijl het dashboard geen bijzonderheden toonde en de auto normaal reed. Een Audi Q3 op 92.000 km bleek een cel-anomalie te hebben die alleen via een diagnose zichtbaar was. Bij voertuigen met hogere kilometerstand of leeftijd is dit risico reëler. Een AccuCheck meet op celniveau — dat is wat een proefrit of dashboard niet kan.
+        </span>
+      </div>` : ''}
     </div>` : ''}
 
 
