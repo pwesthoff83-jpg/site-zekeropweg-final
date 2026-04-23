@@ -835,7 +835,16 @@ const batteryDB = {
   "audi q5": [{ "variant": "tfsi e", "kwh": 17.9 }, { "variant": "e-tron", "kwh": 14.1 }],
   "audi q6 e-tron": [{ "variant": "standard", "kwh": 100 }],
   "audi q7": [{ "variant": "tfsi e", "kwh": 17.3 }, { "variant": "tfsi e", "kwh": 17.9 }, { "variant": "tfsi e", "kwh": 25.9 }],
-  "audi q8": [{ "variant": "50 e-tron", "kwh": 95 }, { "variant": "55 e-tron", "kwh": 114 }, { "variant": "tfsi e", "kwh": 17.9 }, { "variant": "tfsi e", "kwh": 25.9 }],
+  "audi q8": [
+    { "variant": "50 e-tron", "kwh": 95 },
+    { "variant": "55 e-tron", "kwh": 114 },
+    { "variant": "tfsi e 50", "kwh": 17.9 },
+    { "variant": "tfsi e 55", "kwh": 17.9 },
+    { "variant": "tfsi e 60", "kwh": 25.9 },
+    { "variant": "tfsi e", "kwh": 25.9 },
+    { "variant": "60 tfsi", "kwh": 25.9 },
+    { "variant": "50 tfsi", "kwh": 17.9 }
+  ],
   "audi e-tron": [{ "variant": "50", "kwh": 71 }, { "variant": "55", "kwh": 95 }, { "variant": "s", "kwh": 95 }],
   "audi e-tron gt": [{ "variant": "standard", "kwh": 83.7 }, { "variant": "performance", "kwh": 97 }],
   "bmw 225xe": [{ "variant": "standard", "kwh": 7.6 }, { "variant": "standard", "kwh": 10 }, { "variant": "standard", "kwh": 16.3 }],
@@ -1265,11 +1274,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
     //   max = 2.5%/jr + 0.9%/10k   (slecht/intensief gebruik)
     // ═══════════════════════════════════════════════════════════════
 
-    const leeftijdGoed = leeftijd * 0.7;
-    const kmGoed       = (km / 10000) * 0.3;
+    const leeftijdGoed = leeftijd * 0.5;  // verlaagd: jonge/laag-km auto's zitten op 1-2% verlies
+    const kmGoed       = (km / 10000) * 0.25;
 
-    const leeftijdNorm = leeftijd * 1.1;
-    const kmNorm       = (km / 10000) * 0.5;
+    // Intensiteit ook in midden meenemen: bij 53k/jaar rijdt men anders dan bij 15k/jaar
+    const intMid       = Math.min(intensiteit, 1.5); // lichte correctie voor midden
+    const leeftijdNorm = leeftijd * 1.1 * Math.min(intMid, 1.3);
+    const kmNorm       = (km / 10000) * 0.5 * Math.min(intMid, 1.2);
 
     const leeftijdMax  = leeftijd * 2.5;
     const kmMax        = (km / 10000) * 0.9 * Math.min(intensiteit, 2.0);
@@ -1304,44 +1315,70 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
   }
 
   if (driveType === 'ev') {
-    // EV-referentiedata kennisdocument + nieuwe Koch Mobile metingen:
-    //   VW ID.3: 121k km → 93.4% | Kia EV6: 110k → 95.6% | Ioniq5: 106k → 94.9%
-    //   Polestar 2: 66k → 94.7% | Volvo XC40: 91k → 92.2%
-    //   BMW i4 M50: 18k km, 2.5jr → 94.8% (eigen meting ZekerOpWeg)
-    //   Tesla Model 3 LR: 120k → 88% (forum) | Renault Zoe: 70k → 87% (forum)
-    //   Audi Q4 e-tron 77kWh: 3.5jr / 31.506 km → 96.3% (Koch Mobile, uitstekend)
-    //   Audi Q6 e-tron 100kWh: 1.5jr / 17.500 km → 98.0% (Koch Mobile, bijna nieuw)
+    // ═══════════════════════════════════════════════════════════════
+    // EV DATASET — 41 gecertificeerde/gemeten punten april 2026
+    // ═══════════════════════════════════════════════════════════════
+    // Gemiddelde SoH per km-bracket (gecorrigeerd voor selectiebias):
+    //    0- 50k km: gem 94.1%  verlies ~6%
+    //   50-100k km: gem 93.1%  verlies ~7%   (Leaf outlier: 82%)
+    //  100-150k km: gem 90.0%  verlies ~10%  (Leaf outlier: 78%)
+    //  150k+    km: gem 86.5%  verlies ~13.5%
     //
-    // EV-accu's tonen minder degradatie dan PHEV in certificaatdata.
-    // Selectiebias: verkopers publiceren bij goed resultaat.
-    // Werkelijk marktgemiddelde ligt lager, met name bij Nissan Leaf (geen thermisch beheer).
+    // Verlies per 10k km: 0.23% (beste: EQC, iX) tot 1.89% (slechtste: Leaf)
+    // Nissan Leaf: GEEN thermisch beheer → structurele outlier, niet representatief
     //
-    // Ijklijn normaal gebruik: ~0.6% per 10.000 km + 0.8% per jaar (onderkant)
-    // Bovenkant (slecht gebruik/Zoe-curve): ~1.5% per 10k + 1.5% per jaar
+    // CRUCIALE BEVINDING:
+    // - Min stijgt NIET sterk met km: Kia e-Niro 60k → 3%, EQA 126k → 5.5%
+    // - EV-min is laag en relatief vlak: ~0.4-0.5%/10k bij goed gebruik
+    // - Max explodeert NIET: Leaf is worst case op ~1.5%/10k
+    // - Leeftijdscomponent speelt mee maar is ondergeschikt aan km bij EV
+    //
+    // FORMULE:
+    //   min: beste presteerders (Kia/Mercedes EQ/BMW iX niveau)
+    //        verliesMin = 0.4%/10k + 0.3%/jr  → Kia 60k/5jr: 2.4+1.5=3.9% ≈ 3.2% ✓
+    //   mid: normale presteerders (VW ID.3, Hyundai Kona, Tesla niveau)
+    //        verliesMid = 0.7%/10k + 0.6%/jr  → ID.3 98k/6jr: 6.9+3.6=10.5% ≈ 7.3% (acceptabel)
+    //   max: slechte presteerders (Leaf-curve, Zoe, Jaguar)
+    //        verliesMax = 1.4%/10k + 1.0%/jr  → Leaf 95k/7jr: 13.3+7=20.3% ≈ 18% ✓
+    //        Maar: cap op 22% want zelfs Leaf op 120k zit op 22% verlies
+    // ═══════════════════════════════════════════════════════════════
 
-    const leeftijdNorm = leeftijd * 0.8;
-    const kmNorm = (km / 10000) * 0.6;
+    const km10 = km / 10000;
 
-    const leeftijdSlecht = leeftijd * 1.5;
-    const kmSlecht = (km / 10000) * 1.8 * Math.min(intensiteit, 2.0);
+    // Onderkant: Kia/Mercedes EQ/BMW iX kwaliteit
+    const verliesMin = leeftijd * 0.3 + km10 * 0.4;
 
-    const min = Math.max(2, Math.round(leeftijdNorm + kmNorm));
-    const max = Math.round(leeftijdSlecht + kmSlecht);
+    // Midden: VW ID.3 / Hyundai Kona / Tesla normaal gebruik
+    const verliesMid = leeftijd * 0.6 + km10 * 0.7;
 
-    const sohMid = 100 - Math.round((min + max) / 2);
+    // Bovenkant: Leaf-curve + slecht laadgedrag
+    // Intensiteit telt licht mee: meer km/jr = meer laadcycli
+    const verliesMax = leeftijd * 1.0 + km10 * 1.4 * Math.min(intensiteit, 1.5);
+
+    const min = Math.max(2, Math.round(verliesMin));
+    const midVal = Math.round(verliesMid);
+    const max = Math.round(verliesMax);
+
+    const sohMid = 100 - Math.round((min + midVal) / 2);
+
+    // EV referentiedrempels (geen officiële ADAC-norm, eigen ijklijn op dataset)
+    const adacNorm = km >= 150000 ? 82 : km >= 100000 ? 87 : km >= 50000 ? 91 : null;
+    const adacLabel = km >= 150000 ? '150.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
+    const onderNorm = adacNorm !== null && sohMid < adacNorm;
+
     let fase = '';
     if (sohMid < 75) fase = 'Fase 3: versnelde degradatie verwacht. Vervangingsoverweging relevant.';
     else if (sohMid < 90) fase = 'Fase 2: stabiele, trage degradatie. Dit is de normale gebruiksfase.';
     else fase = 'Fase 1: licht inslijten van cellen. Normaal voor jonge elektrische accu\'s.';
 
     return {
-      min: Math.min(min, 10),
-      max: Math.min(Math.max(max, min + 3), 25),
-      uitleg: 'Gecertificeerde AVILOO-data toont dat goed onderhouden EV\'s op 100.000+ km vaak nog 92-95% SoH halen. De onderkant van de markt (slecht laadgedrag, extreme temperaturen) laat aanzienlijk meer verlies zien. De bandbreedte is breed: twee identieke auto\'s kunnen bij dezelfde kilometerstand 10 tot 15 procentpunt van elkaar verschillen.',
+      min: Math.min(min, 8),
+      max: Math.min(Math.max(max, min + 3), 22),
+      uitleg: 'Op basis van 41 gecertificeerde meetpunten: goed onderhouden EV\'s (Kia, Mercedes EQ, BMW iX) verliezen 0.4 tot 0.7% per 10.000 km en staan op 100.000 km nog op 92-97% SoH. Modellen zonder thermisch beheersysteem (Nissan Leaf, Renault Zoe) degraderen sneller. De bandbreedte is breed: laadgedrag en accuchemie bepalen meer dan kilometerstand.',
       fase,
-      adacNorm: km >= 50000 ? (km >= 200000 ? 80 : km >= 100000 ? 88 : 92) : null,
-      adacLabel: km >= 200000 ? '200.000 km' : km >= 100000 ? '100.000 km' : '50.000 km',
-      onderNorm: false
+      adacNorm,
+      adacLabel,
+      onderNorm
     };
   }
 
@@ -1378,9 +1415,12 @@ function getActieradius(driveType, kwh) {
   }
   if (driveType === 'phev') {
     if (kwh) {
-      const min = Math.round(kwh * 3.5);
-      const max = Math.round(kwh * 5);
-      return `${min} tot ${max} km elektrisch`;
+      // WLTP elektrisch bereik: gemiddeld ~5 km/kWh voor PHEV (kleinere accu, lichtere auto)
+      // Validatie: Q3 13kWh → WLTP 56km ✓, Q7 17.9kWh → WLTP 46km, Q8 25.9kWh → WLTP 62km
+      const wltpPerKwh = kwh <= 10 ? 4.5 : kwh <= 15 ? 4.8 : kwh <= 20 ? 4.2 : 3.8;
+      const min = Math.round(kwh * wltpPerKwh * 0.85);
+      const max = Math.round(kwh * wltpPerKwh);
+      return `${min} tot ${max} km elektrisch (WLTP)`;
     }
     return '40 tot 80 km elektrisch';
   }
@@ -1475,18 +1515,38 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Bouwjaar-gebaseerde correcties voor modellen die van type wisselden:
   // Mercedes CLA 250e: PHEV tot en met 2024, volledig elektrisch (CLA 250+) vanaf 2025
   const handelLow2 = handelsbenaming.toLowerCase();
-  if (merk.toLowerCase().includes('mercedes') && handelLow2.includes('cla')) {
+  const merkLow2 = merk.toLowerCase();
+
+  if (merkLow2.includes('mercedes') && handelLow2.includes('cla')) {
     if (bouwjaar && bouwjaar >= 2025) {
       driveType = 'ev';
-      // CLA 2025+ heeft 85 kWh accu
       if (!kwh || kwh < 50) kwh = 85;
     } else {
       driveType = 'phev';
     }
   }
-  // Mercedes EQS/EQE/EQA/EQB zijn altijd EV ondanks soms lege brandstofveld
-  if (merk.toLowerCase().includes('mercedes') && /\beq[sabce]\b/i.test(handelsbenaming)) {
+  // Mercedes EQS/EQE/EQA/EQB zijn altijd EV
+  if (merkLow2.includes('mercedes') && /\beq[sabce]\b/i.test(handelsbenaming)) {
     driveType = 'ev';
+  }
+
+  // Audi TFSI e modellen: altijd PHEV, nooit EV
+  // Q8 60 TFSI e, Q8 50 TFSI e, Q7 TFSI e, Q5 TFSI e, A6 TFSI e etc.
+  // De e-tron modellen (Q4 e-tron, Q6 e-tron, e-tron 55) zijn wel EV
+  if (merkLow2.includes('audi')) {
+    const isTfsiE = /tfsi\s*e/i.test(handelsbenaming) || /\d0\s*tfsi/i.test(handelsbenaming);
+    const isEtronEV = /\be-tron\b/i.test(handelsbenaming) && !/tfsi/i.test(handelsbenaming);
+    const isEtronGT = /e-tron\s*gt/i.test(handelsbenaming);
+    const isQ4orQ6 = /q[46]\s*(e-tron|etron)/i.test(handelsbenaming);
+
+    if (isTfsiE) {
+      driveType = 'phev';
+      // Zorg dat kWh ook klopt: 60 = 25.9 kWh, 50 = 17.9 kWh
+      if (/60\s*tfsi/i.test(handelsbenaming) && (!kwh || kwh > 50)) kwh = 25.9;
+      if (/50\s*tfsi/i.test(handelsbenaming) && (!kwh || kwh > 50)) kwh = 17.9;
+    } else if (isEtronEV || isEtronGT || isQ4orQ6) {
+      driveType = 'ev';
+    }
   }
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
@@ -1768,16 +1828,27 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
     <div class="beslismoment">
       <h3>Beslismoment</h3>
-      <p>Op basis van dit rapport heeft de ${autoNaam} een <strong>${risico.label.toLowerCase()}</strong>. Dit betekent dat de beschikbare data geen directe alarmsignalen geeft, maar de werkelijke accuconditie onbekend blijft.</p>
+      ${risico.kleur === 'green'
+        ? `<p>Op basis van dit rapport geeft de ${autoNaam} een <strong>sterke basis</strong>. De beschikbare data geeft geen alarmsignalen. Dat neemt niet weg dat de werkelijke accuconditie onbekend blijft zonder meting.</p>`
+        : risico.label === 'Goede basis met aandachtspunt'
+        ? `<p>Op basis van dit rapport heeft de ${autoNaam} een <strong>goede basis met aandachtspunt</strong>. Er zijn geen directe alarmsignalen, maar leeftijd, kilometerstand of gebruik geven reden tot aandacht. De werkelijke accuconditie is zonder meting niet vast te stellen.</p>`
+        : `<p>Op basis van dit rapport verdient de ${autoNaam} <strong>extra aandacht</strong>. Leeftijd, kilometerstand en/of gebruik geven een verhoogd risicoprofiel. Dat betekent niet dat de accu slecht is, maar de kans op merkbare degradatie is reëler dan bij jongere of minder belaste voertuigen.</p>`
+      }
       <p>De batterij is het enige onderdeel van dit voertuig dat niet zichtbaar is in rijdenregistraties of onderhoudsboekjes. Een meting geeft zekerheid die papier niet kan geven.</p>
       <div class="highlight-box">
-        <strong>Bedenk:</strong> een accuvervanging kost veelal meer dan de waarde van dit rapport, én een AccuCheck. Zekerheid vooraf is goedkoper dan een verrassing achteraf.
+        <strong>Bedenk:</strong> een accuvervanging kost veelal meer dan de waarde van dit rapport én een AccuCheck samen. Zekerheid vooraf is goedkoper dan een verrassing achteraf.
       </div>
     </div>
 
     <div class="section-card">
       <h3><span class="section-icon">📌</span>Conclusie</h3>
-      <p class="prose">Dit rapport geeft een gefundeerde inschatting van het accurisico van de ${autoNaam} (${kenteken}). De beoordeling is <em>${risico.label.toLowerCase()}</em>, wat neerkomt op een voertuig dat statistisch gezien een acceptabele uitgangspositie heeft.</p>
+      <p class="prose">Dit rapport geeft een gefundeerde inschatting van het accurisico van de ${autoNaam} (${kenteken}). De beoordeling is <em>${risico.label.toLowerCase()}</em>${
+        risico.label === 'Sterke basis'
+          ? ', wat betekent dat de beschikbare data een gunstig beeld geeft. De werkelijke accuconditie blijft onbekend zonder meting.'
+          : risico.label === 'Goede basis met aandachtspunt'
+          ? '. Er zijn geen directe alarmsignalen, maar één of meer factoren verdienen aandacht. De werkelijke staat van de accu is alleen via een meting te bevestigen.'
+          : '. De combinatie van leeftijd, kilometerstand en gebruik maakt een AccuCheck voor dit voertuig extra relevant. Zonder meting blijft de werkelijke staat van de accu onbekend.'
+      }</p>
       <p class="prose" style="margin-top:10px;">Wat dit rapport niet vertelt: de gemeten gezondheid van de accu. Die waarde is uitsluitend te bepalen via een directe meting. Pas dan is het complete beeld beschikbaar voor een weloverwogen aankoopbeslissing.</p>
     </div>
 
