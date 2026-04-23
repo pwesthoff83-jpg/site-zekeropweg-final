@@ -1289,7 +1289,10 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
     const midVal = Math.round(leeftijdNorm + kmNorm);
     const max    = Math.round(leeftijdMax + kmMax);
 
-    const sohMid    = 100 - Math.round((min + midVal) / 2);
+    // SoH-midden op basis van midVal alleen (niet gem. van min+mid):
+    // min+mid gemiddelde gaf structureel te optimistische fase-bepaling.
+    // Validatie Q7 5jr/122k: midVal = 1.1*5 + 0.5*12.27 = 11.7% → SoH 88% ✓ (verwacht ~85-88%)
+    const sohMid    = 100 - midVal;
     const adacNorm  = km >= 200000 ? 80 : km >= 100000 ? 88 : km >= 50000 ? 92 : null;
     const adacLabel = km >= 200000 ? '200.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
