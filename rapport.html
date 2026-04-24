@@ -1495,7 +1495,12 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
-  const variantOmschr = data ? (data.variant || data.type || '') : '';
+  // RDW velden voor motorvariant: variant, type, uitvoering, inrichting
+  // 'handelsbenaming' bevat soms de volledige naam incl. '55 TFSI E'
+  // 'type_gasinstallatie' / overige velden kunnen extra info bevatten
+  const variantRaw = data ? (data.variant || data.type || data.uitvoering || '') : '';
+  // Combineer handelsbenaming + variant voor detectie (Q7 55 TFSI E of Q7 + TFSI E)
+  const variantOmschr = variantRaw || handelsbenaming;
   const kmRdwRaw = data ? parseInt(data.tellerstand || 0) : null;
   const kmRdw = kmRdwRaw && kmRdwRaw > 0 ? kmRdwRaw : null;
 
@@ -1511,13 +1516,40 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
   let kwh = battery ? battery.kwh : null;
 
+  // DEBUG — tijdelijk — verwijder later
+  console.log('RDW data:', { merk, handelsbenaming, brandstof, variantRaw, variantOmschr });
+  console.log('Battery match:', battery);
+
   // Ground truth: battery-db weet het type het zekerst.
   // Alleen als geen match: val terug op brandstof/naam detectie.
   let driveType = (battery && battery.dbDriveType)
     ? battery.dbDriveType
     : detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
 
-  // Bouwjaar-gebaseerde correcties voor modellen die van type wisselden:
+  // Audi-specifieke override: TFSI e modellen zijn ALTIJD PHEV.
+  // RDW geeft soms alleen 'Q7' of 'A6' als handelsbenaming zonder 'TFSI E'.
+  // In dat geval vertrouwen we op de battery-db (die 'tfsi e' als variant heeft → phev).
+  // Maar als dbDriveType 'hybrid' of 'verbrandingsmotor' is door slechte match,
+  // controleren we de gecombineerde tekst inclusief handelsbenaming.
+  if (merkLow2.includes('audi')) {
+    const auditekst = (handelLow2 + ' ' + variantOmschr + ' ' + (brandstof||'')).toLowerCase();
+    const isTfsiE = /tfsi\s*e/i.test(auditekst) || /\d{2}\s*tfsi/i.test(auditekst);
+    const isEtronEV = /\be-tron\b/i.test(handelLow2) && !/tfsi/i.test(handelLow2);
+    const isQ4orQ6 = /q[46]\s*(e-tron|etron)/i.test(handelLow2);
+    const isEtronGT = /e-tron\s*gt/i.test(handelLow2);
+
+    if (isTfsiE) {
+      driveType = 'phev';
+      if (/6[05]\s*tfsi/i.test(auditekst) && (!kwh || kwh > 50)) kwh = 25.9;
+      else if (/5[05]\s*tfsi/i.test(auditekst) && (!kwh || kwh > 50)) kwh = 17.9;
+    } else if (isEtronEV || isQ4orQ6 || isEtronGT) {
+      driveType = 'ev';
+    } else if (driveType === 'hybrid' || driveType === 'verbrandingsmotor') {
+      // Battery-db match geeft voor Audi Q-modellen met PHEV variant 'phev' terug.
+      // Als de db al phev zegt, vertrouw dat boven de naam-detectie.
+      if (battery && battery.dbDriveType === 'phev') driveType = 'phev';
+    }
+  }
   // Mercedes CLA 250e: PHEV tot en met 2024, volledig elektrisch (CLA 250+) vanaf 2025
   const handelLow2 = handelsbenaming.toLowerCase();
   const merkLow2 = merk.toLowerCase();
@@ -1533,25 +1565,6 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Mercedes EQS/EQE/EQA/EQB zijn altijd EV
   if (merkLow2.includes('mercedes') && /\beq[sabce]\b/i.test(handelsbenaming)) {
     driveType = 'ev';
-  }
-
-  // Audi TFSI e modellen: altijd PHEV, nooit EV
-  // Q8 60 TFSI e, Q8 50 TFSI e, Q7 TFSI e, Q5 TFSI e, A6 TFSI e etc.
-  // De e-tron modellen (Q4 e-tron, Q6 e-tron, e-tron 55) zijn wel EV
-  if (merkLow2.includes('audi')) {
-    const isTfsiE = /tfsi\s*e/i.test(handelsbenaming) || /\d0\s*tfsi/i.test(handelsbenaming);
-    const isEtronEV = /\be-tron\b/i.test(handelsbenaming) && !/tfsi/i.test(handelsbenaming);
-    const isEtronGT = /e-tron\s*gt/i.test(handelsbenaming);
-    const isQ4orQ6 = /q[46]\s*(e-tron|etron)/i.test(handelsbenaming);
-
-    if (isTfsiE) {
-      driveType = 'phev';
-      // Zorg dat kWh ook klopt: 60 = 25.9 kWh, 50 = 17.9 kWh
-      if (/60\s*tfsi/i.test(handelsbenaming) && (!kwh || kwh > 50)) kwh = 25.9;
-      if (/50\s*tfsi/i.test(handelsbenaming) && (!kwh || kwh > 50)) kwh = 17.9;
-    } else if (isEtronEV || isEtronGT || isQ4orQ6) {
-      driveType = 'ev';
-    }
   }
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
