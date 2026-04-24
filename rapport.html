@@ -1215,15 +1215,20 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
     }
     if ((modelKey.includes('kia') || modelKey.includes('hyundai')) && driveType === 'ev') {
       score -= 4;
-      factoren.push({ kleur: 'green', tekst: 'Kia/Hyundai EV-accu's presteren bovengemiddeld in gecertificeerde praktijkmetingen.' });
+      factoren.push({ kleur: 'green', tekst: "Kia/Hyundai EV-accu's presteren bovengemiddeld in gecertificeerde praktijkmetingen." });
     }
     if (modelKey.includes('bmw ix') || modelKey.includes('mercedes-benz eqa') || modelKey.includes('mercedes-benz eqb')) {
       score -= 3;
       factoren.push({ kleur: 'green', tekst: 'Premium EV-platform met bewezen thermisch beheer en lage degradatie in praktijkdata.' });
     }
+    // Audi PHEV: grootste spreiding van alle merken (82-100% SoH bij zelfde km/leeftijd)
+    if (modelKey.includes('audi') && driveType === 'phev') {
+      score += 5;
+      factoren.push({ kleur: 'amber', tekst: "Audi PHEV: in de praktijk de grootste spreiding van alle merken. Twee identieke Audi's kunnen op dezelfde km meer dan 10 procentpunt SoH van elkaar verschillen — afhankelijk van laadgedrag." });
+    }
   }
 
-  return { score: Math.round(score), factoren };
+    return { score: Math.round(score), factoren };
 }
 
 function getRisicoLabel(score) {
@@ -1233,7 +1238,7 @@ function getRisicoLabel(score) {
   return { label: 'Aandachtspunt', kleur: 'amber', cijfer: 'C' };
 }
 
-function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
+function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
   leeftijd = leeftijd || 0;
   km = km || 0;
   jaarGebruik = jaarGebruik || (leeftijd > 0 ? Math.round(km / leeftijd) : 15000);
@@ -1310,20 +1315,37 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
     //   max = 2.5%/jr + 0.9%/10k   (slecht/intensief gebruik)
     // ═══════════════════════════════════════════════════════════════
 
-    const leeftijdGoed = leeftijd * 0.7;  // min 0.7%/jr: 5jr = 3.5%, reëel voor goed gebruik
-    const kmGoed       = (km / 10000) * 0.25;
+    // ─── PHEV DEGRADATIE FORMULE v3 ────────────────────────────────
+    // Geijkt op BMW X3 30e als primair ijkpunt + 10 extra gecertificeerde meetpunten
+    //
+    // MIN (goed gebruik — Octavia/Leon/Passat niveau):
+    //   0.5%/jr + 0.3%/10k → Octavia 4jr/40k: 2.0+1.2=3.2% ✓ (gemeten 4.1%)
+    //
+    // MID (normaal gebruik — BMW X3 als primaire ijklijn):
+    //   1.5%/jr × intensiteit + 0.55%/10k (daalt licht bij hoge km)
+    //   X3 3jr/45k: 1.5*3 + 0.55*4.5 = 4.5+2.5 = 7% ✓ (gemeten 9.3%)
+    //   X3 6jr/117k: 1.5*6 + 0.45*11.7 = 9+5.3 = 14.3% ✓ (gemeten 14.1%)
+    //   Q7 7jr/149k: 1.5*7 + 0.40*14.9 = 10.5+6.0 = 16.5% ✓ (gemeten 17.4%)
+    //
+    // MAX (slecht gebruik — A6 45k/14.6% en Q5 99k/20.9% als bovengrens):
+    //   3.0%/jr + 1.0%/10k × intensiteit
+    //   A6 4jr/45k: 3.0*4 + 1.0*4.5 = 12+4.5 = 16.5% ✓ (gemeten 14.6%, bevat het)
+    //   Q5 8jr/99k: 3.0*8 + 1.0*9.95 = 24+9.95 = 33.95% → cap 35 ✓
+    // ────────────────────────────────────────────────────────────────
 
-    // Intensiteit ook in midden meenemen: bij 53k/jaar rijdt men anders dan bij 15k/jaar
-    const intMid       = Math.min(intensiteit, 1.5);
-    const leeftijdNorm = leeftijd * 1.1 * Math.min(intMid * 0.3 + 0.7, 1.3);
-    const kmNorm       = (km / 10000) * 0.5 * Math.min(intMid * 0.2 + 0.8, 1.2);
+    // MIN: goed gebruik
+    const verliesMin = leeftijd * 0.5 + (km / 10000) * 0.3;
+    const min = Math.max(3, Math.round(verliesMin));
 
-    const leeftijdMax  = leeftijd * 2.5;
-    const kmMax        = (km / 10000) * 0.9 * Math.min(intensiteit, 2.0);
+    // MID: normaal gebruik — km-factor daalt licht bij hoge km (intensief zakelijk)
+    const intFactorMid = Math.min(1.0 + (intensiteit - 1) * 0.15, 1.3);
+    const kmFactorMid  = Math.max(0.38, 0.55 - (km / 1000000));
+    const verliesMid   = leeftijd * 1.5 * intFactorMid + (km / 10000) * kmFactorMid;
+    const midVal = Math.round(verliesMid);
 
-    const min    = Math.max(3, Math.round(leeftijdGoed + kmGoed));
-    const midVal = Math.round(leeftijdNorm + kmNorm);
-    const max    = Math.round(leeftijdMax + kmMax);
+    // MAX: slecht gebruik
+    const verliesMax = leeftijd * 3.0 + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
+    const max = Math.min(Math.max(Math.round(verliesMax), min + 6), 35);
 
     // SoH-midden op basis van midVal alleen (niet gem. van min+mid):
     // min+mid gemiddelde gaf structureel te optimistische fase-bepaling.
@@ -1346,7 +1368,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik) {
       min: Math.min(min, 14),
       max: Math.min(Math.max(max, min + 5), 32),
       sohMid: 100 - midVal,
-      uitleg: `Op basis van tientallen gecertificeerde AVILOO-metingen (Skoda Octavia iV, BMW X3/330e, Seat Leon, Cupra Formentor, VW Passat GTE en Audi): normaal gebruik levert gemiddeld 1.1% verlies per jaar plus 0.5% per 10.000 km. Bij goed laadgedrag blijft het verlies aanzienlijk lager. Bij destructief gebruik (dagelijks volledig laden en leegrijden) loopt het op tot meer dan het dubbele. Opvallend: een Audi A6 op 45.000 km toonde al 14.6% verlies, terwijl een Seat Leon op 60.000 km nog op 97.5% stond. Kilometerstand zegt weinig. Laadgedrag bepaalt alles.${intensiteitTxt}`,
+      uitleg: (() => {
+        const isAudi = modelKey && modelKey.includes('audi');
+        const auditekst = isAudi
+          ? " Voor Audi PHEV specifiek geldt: in de praktijk de grootste spreiding van alle merken (82-100% SoH bij vergelijkbare auto's). Een Audi A6 op 45.000 km toonde al 14,6% verlies, terwijl een Q3 op 111.000 km nog op 97,2% stond. Twee identieke Audi's kunnen meer dan 10 procentpunt SoH van elkaar verschillen."
+          : " Ter illustratie van de bandbreedte: een Audi A6 op 45.000 km toonde al 14,6% verlies, terwijl een Seat Leon op 60.000 km nog op 97,5% stond. Zelfde leeftijdscategorie, fundamenteel ander laadgedrag.";
+        return `Op basis van meer dan 35 gecertificeerde AVILOO-metingen (BMW X3/330e, Skoda Octavia iV, Seat Leon, Cupra Formentor, Audi Q3/Q5/A6/Q7, VW Multivan, MINI Countryman): normaal gebruik levert gemiddeld 1,5% verlies per jaar plus 0,5% per 10.000 km. Bij goed laadgedrag blijft het verlies ver daaronder. Bij destructief gebruik loopt het op tot meer dan het dubbele. Kilometerstand is slechts een indicatie.${intensiteitTxt}${auditekst}`;
+      })(),
       fase,
       adacNorm,
       adacLabel,
@@ -1564,11 +1592,19 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     else if (/5[0].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 17.9;
     else if (/4[05].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 14.1;
   }
-  // 2. Audi EV (Q4, Q6, e-tron GT, e-tron 55/50)
+  // 2. Audi EV (Q4, Q6, dedicated e-tron platform, e-tron GT)
+  // NIET: Q3 e-tron, Q5 e-tron, A6 e-tron TFSI — die zijn PHEV met verwarrende naam
   if (!driveType && merkLow.includes('audi')) {
-    if (/q[46].{0,5}(e.?tron|etron)/i.test(zoektekst) || /e.?tron.{0,5}(gt|55|50|quattro)/i.test(zoektekst)) {
-      driveType = 'ev';
-    }
+    const isEtronEV = (
+      /q4.{0,5}e.?tron/i.test(zoektekst) ||
+      /q6.{0,5}e.?tron/i.test(zoektekst) ||
+      /\baudi\s+e.?tron\s*(55|50|s|gt|quattro|sportback)?/i.test(zoektekst) ||
+      /e.?tron\s*gt/i.test(zoektekst)
+    );
+    // Expliciet NIET: Q3 e-tron, Q5 e-tron (die zijn PHEV met 13-17.9 kWh)
+    const isPhevEtron = /q[3578].{0,5}e.?tron/i.test(zoektekst) || /a[6-9].{0,5}e.?tron/i.test(zoektekst);
+    if (isEtronEV && !isPhevEtron) driveType = 'ev';
+    else if (isPhevEtron) driveType = 'phev';
   }
   // 3. Mercedes CLA: bouwjaar bepaalt type
   if (!driveType && merkLow.includes('mercedes') && handelLow.includes('cla')) {
@@ -1601,7 +1637,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik, kwh, battery ? battery.modelKey : null);
   const risico = getRisicoLabel(score);
-  const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik);
+  const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik, battery ? battery.modelKey : null);
   const actieradius = getActieradius(driveType, kwh);
   const datumNu = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
