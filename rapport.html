@@ -1166,35 +1166,70 @@ function calcJaarGebruik(km, leeftijd) {
   return Math.round(km / leeftijd);
 }
 
-function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput) {
+function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh, modelKey) {
   let score = 0;
   let factoren = [];
 
+  // Leeftijd: continu lineair — elk jaar telt
   if (leeftijd !== null) {
-    if (leeftijd <= 3) { score += 10; factoren.push({ kleur: 'green', tekst: 'Relatief jonge auto, degeneratie is beperkt.' }); }
-    else if (leeftijd <= 6) { score += 20; factoren.push({ kleur: 'amber', tekst: 'Middelbare leeftijd: accudegeneratie is aannemelijk, maar doorgaans beheersbaar.' }); }
-    else { score += 35; factoren.push({ kleur: 'amber', tekst: 'Oudere auto: leeftijd heeft invloed op accucapaciteit, ook bij weinig gebruik.' }); }
+    score += Math.min(30, (leeftijd / 10) * 30);
+    if (leeftijd <= 2) factoren.push({ kleur: 'green', tekst: `${leeftijd} jaar oud: accu heeft weinig degradatiecycli doorlopen.` });
+    else if (leeftijd <= 4) factoren.push({ kleur: 'green', tekst: `${leeftijd} jaar oud: relatief jong voertuig, degeneratie is doorgaans beperkt.` });
+    else if (leeftijd <= 7) factoren.push({ kleur: 'amber', tekst: `${leeftijd} jaar oud: leeftijdsdegeneratie is aannemelijk, varieert sterk per gebruik.` });
+    else factoren.push({ kleur: 'amber', tekst: `${leeftijd} jaar oud: hogere leeftijd heeft meetbare invloed op accucapaciteit.` });
   }
 
+  // Kilometerstand: continu lineair — elke 10k km telt
   if (km !== null) {
-    if (km < 60000) { score += 5; factoren.push({ kleur: 'green', tekst: 'Lage kilometerstand: duidt op beperkte accubelasting.' }); }
-    else if (km < 130000) { score += 15; factoren.push({ kleur: 'amber', tekst: 'Gemiddelde kilometerstand: staat voor de meeste accu\'s binnen verwachte grenzen.' }); }
-    else { score += 30; factoren.push({ kleur: 'amber', tekst: 'Hoge kilometerstand: accudegeneratie is een reeel aandachtspunt bij deze rijafstand.' }); }
+    score += Math.min(30, (km / 200000) * 30);
+    if (km < 40000) factoren.push({ kleur: 'green', tekst: `${Math.round(km/1000)}k km: lage kilometerstand, beperkte accubelasting.` });
+    else if (km < 80000) factoren.push({ kleur: 'green', tekst: `${Math.round(km/1000)}k km: normale kilometerstand voor de leeftijdscategorie.` });
+    else if (km < 130000) factoren.push({ kleur: 'amber', tekst: `${Math.round(km/1000)}k km: gemiddeld hoge kilometerstand, accuconditie verdient aandacht.` });
+    else factoren.push({ kleur: 'amber', tekst: `${Math.round(km/1000)}k km: hoge kilometerstand, accudegeneratie is een reëel aandachtspunt.` });
   }
 
-  if (gebruikInput === 'veel' || (jaarGebruik && jaarGebruik > 20000)) {
-    score += 10;
-    factoren.push({ kleur: 'amber', tekst: 'Intensief gebruik verhoogt het aantal laadcycli en daarmee de slijtage.' });
-  } else if (gebruikInput === 'weinig' || (jaarGebruik && jaarGebruik < 8000)) {
-    factoren.push({ kleur: 'green', tekst: 'Weinig rijder: lagere accubelasting dan gemiddeld.' });
+  // Jaargebruik/rijintensiteit
+  const jaarKm = jaarGebruik || 0;
+  if (gebruikInput === 'veel' || jaarKm > 30000) {
+    score += 15;
+    factoren.push({ kleur: 'amber', tekst: `Hoog jaargebruik (~${Math.round(jaarKm/1000)}k km/jr): meer laadcycli en versnelde accubelasting.` });
+  } else if (jaarKm > 20000) {
+    score += 8;
+    factoren.push({ kleur: 'amber', tekst: `Bovengemiddeld gebruik (~${Math.round(jaarKm/1000)}k km/jr): meer laadcycli dan gemiddeld.` });
+  } else if (gebruikInput === 'weinig' || (jaarKm > 0 && jaarKm < 8000)) {
+    score -= 3;
+    factoren.push({ kleur: 'green', tekst: `Laag jaargebruik: minder laadcycli dan gemiddeld.` });
   }
 
-  return { score, factoren };
+  // Batterijgrootte: grote accu = relatief lagere slijtage per km
+  if (kwh) {
+    if (kwh >= 70) { score -= 5; factoren.push({ kleur: 'green', tekst: `Grote accu (${kwh} kWh): grotere buffer, relatief minder diepe ontlading per km.` }); }
+    else if (kwh <= 15 && driveType === 'phev') { score += 3; factoren.push({ kleur: 'amber', tekst: `Kleinere PHEV-accu (${kwh} kWh): hogere relatieve belasting per laadcyclus.` }); }
+  }
+
+  // Merk/chemie correctie op basis van praktijkdata
+  if (modelKey) {
+    if (modelKey.includes('leaf') || modelKey.includes('zoe')) {
+      score += 8;
+      factoren.push({ kleur: 'amber', tekst: 'Model zonder actief thermisch beheer: hogere degradatiekans bij intensief gebruik en snelladen.' });
+    }
+    if ((modelKey.includes('kia') || modelKey.includes('hyundai')) && driveType === 'ev') {
+      score -= 4;
+      factoren.push({ kleur: 'green', tekst: 'Kia/Hyundai EV-accu's presteren bovengemiddeld in gecertificeerde praktijkmetingen.' });
+    }
+    if (modelKey.includes('bmw ix') || modelKey.includes('mercedes-benz eqa') || modelKey.includes('mercedes-benz eqb')) {
+      score -= 3;
+      factoren.push({ kleur: 'green', tekst: 'Premium EV-platform met bewezen thermisch beheer en lage degradatie in praktijkdata.' });
+    }
+  }
+
+  return { score: Math.round(score), factoren };
 }
 
 function getRisicoLabel(score) {
-  if (score <= 20) return { label: 'Sterke basis', kleur: 'green', cijfer: 'A' };
-  if (score <= 45) return { label: 'Goede basis met aandachtspunt', kleur: 'amber', cijfer: 'B' };
+  // Drempels herijkt op nieuwe continue scoring (max ~75 punten)
+  if (score <= 18) return { label: 'Sterke basis', kleur: 'green', cijfer: 'A' };
+  if (score <= 38) return { label: 'Goede basis met aandachtspunt', kleur: 'amber', cijfer: 'B' };
   return { label: 'Aandachtspunt', kleur: 'amber', cijfer: 'C' };
 }
 
@@ -1564,7 +1599,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
 
-  const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik);
+  const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik, kwh, battery ? battery.modelKey : null);
   const risico = getRisicoLabel(score);
   const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik);
   const actieradius = getActieradius(driveType, kwh);
