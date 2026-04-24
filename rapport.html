@@ -1495,76 +1495,71 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
-  // RDW velden voor motorvariant: variant, type, uitvoering, inrichting
-  // 'handelsbenaming' bevat soms de volledige naam incl. '55 TFSI E'
-  // 'type_gasinstallatie' / overige velden kunnen extra info bevatten
   const variantRaw = data ? (data.variant || data.type || data.uitvoering || '') : '';
-  // Combineer handelsbenaming + variant voor detectie (Q7 55 TFSI E of Q7 + TFSI E)
-  const variantOmschr = variantRaw || handelsbenaming;
+  const variantOmschr = variantRaw || '';
+
   const kmRdwRaw = data ? parseInt(data.tellerstand || 0) : null;
   const kmRdw = kmRdwRaw && kmRdwRaw > 0 ? kmRdwRaw : null;
-
-  // Handmatig ingevoerde km heeft prioriteit boven RDW-waarde
   const km = kmHandmatig || kmRdw;
   const kmBron = kmHandmatig ? 'Opgegeven door koper' : (kmRdw ? 'RDW registratie' : 'Niet beschikbaar');
 
   const datum = data ? (data.datum_eerste_toelating || data.datum_eerste_tenaamstelling || '') : '';
   const apk = data ? (data.vervaldatum_apk || '') : '';
-
   const leeftijd = calcLeeftijd(datum);
   const bouwjaar = datum ? parseInt(String(datum).slice(0, 4)) : null;
+
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
   let kwh = battery ? battery.kwh : null;
 
-  // DEBUG — tijdelijk — verwijder later
-  console.log('RDW data:', { merk, handelsbenaming, brandstof, variantRaw, variantOmschr });
-  console.log('Battery match:', battery);
+  // Bouw volledige zoektekst van ALLE beschikbare RDW-velden
+  const merkLow    = merk.toLowerCase();
+  const handelLow  = handelsbenaming.toLowerCase();
+  const varLow     = variantOmschr.toLowerCase();
+  const bsLow      = brandstof.toLowerCase();
+  const zoektekst  = (merkLow + ' ' + handelLow + ' ' + varLow + ' ' + bsLow).replace(/\s+/g, ' ').trim();
 
-  // Ground truth: battery-db weet het type het zekerst.
-  // Alleen als geen match: val terug op brandstof/naam detectie.
-  let driveType = (battery && battery.dbDriveType)
-    ? battery.dbDriveType
-    : detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk);
+  // DriveType detectie — strikte prioriteitsvolgorde
+  let driveType = null;
 
-  // Audi-specifieke override: TFSI e modellen zijn ALTIJD PHEV.
-  // RDW geeft soms alleen 'Q7' of 'A6' als handelsbenaming zonder 'TFSI E'.
-  // In dat geval vertrouwen we op de battery-db (die 'tfsi e' als variant heeft → phev).
-  // Maar als dbDriveType 'hybrid' of 'verbrandingsmotor' is door slechte match,
-  // controleren we de gecombineerde tekst inclusief handelsbenaming.
-  if (merkLow2.includes('audi')) {
-    const auditekst = (handelLow2 + ' ' + variantOmschr + ' ' + (brandstof||'')).toLowerCase();
-    const isTfsiE = /tfsi\s*e/i.test(auditekst) || /\d{2}\s*tfsi/i.test(auditekst);
-    const isEtronEV = /\be-tron\b/i.test(handelLow2) && !/tfsi/i.test(handelLow2);
-    const isQ4orQ6 = /q[46]\s*(e-tron|etron)/i.test(handelLow2);
-    const isEtronGT = /e-tron\s*gt/i.test(handelLow2);
-
-    if (isTfsiE) {
-      driveType = 'phev';
-      if (/6[05]\s*tfsi/i.test(auditekst) && (!kwh || kwh > 50)) kwh = 25.9;
-      else if (/5[05]\s*tfsi/i.test(auditekst) && (!kwh || kwh > 50)) kwh = 17.9;
-    } else if (isEtronEV || isQ4orQ6 || isEtronGT) {
+  // 1. Audi TFSI e → altijd PHEV (Q7 55, Q8 60, Q5 50, A6, A8 etc.)
+  if (merkLow.includes('audi') && /tfsi.{0,2}e/i.test(zoektekst)) {
+    driveType = 'phev';
+    if (/6[05].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 25.9;
+    else if (/5[5].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 17.9;
+    else if (/5[0].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 17.9;
+    else if (/4[05].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 14.1;
+  }
+  // 2. Audi EV (Q4, Q6, e-tron GT, e-tron 55/50)
+  if (!driveType && merkLow.includes('audi')) {
+    if (/q[46].{0,5}(e.?tron|etron)/i.test(zoektekst) || /e.?tron.{0,5}(gt|55|50|quattro)/i.test(zoektekst)) {
       driveType = 'ev';
-    } else if (driveType === 'hybrid' || driveType === 'verbrandingsmotor') {
-      // Battery-db match geeft voor Audi Q-modellen met PHEV variant 'phev' terug.
-      // Als de db al phev zegt, vertrouw dat boven de naam-detectie.
-      if (battery && battery.dbDriveType === 'phev') driveType = 'phev';
     }
   }
-  // Mercedes CLA 250e: PHEV tot en met 2024, volledig elektrisch (CLA 250+) vanaf 2025
-  const handelLow2 = handelsbenaming.toLowerCase();
-  const merkLow2 = merk.toLowerCase();
-
-  if (merkLow2.includes('mercedes') && handelLow2.includes('cla')) {
-    if (bouwjaar && bouwjaar >= 2025) {
-      driveType = 'ev';
-      if (!kwh || kwh < 50) kwh = 85;
-    } else {
-      driveType = 'phev';
-    }
+  // 3. Mercedes CLA: bouwjaar bepaalt type
+  if (!driveType && merkLow.includes('mercedes') && handelLow.includes('cla')) {
+    driveType = (bouwjaar && bouwjaar >= 2025) ? 'ev' : 'phev';
+    if (driveType === 'ev' && (!kwh || kwh < 50)) kwh = 85;
   }
-  // Mercedes EQS/EQE/EQA/EQB zijn altijd EV
-  if (merkLow2.includes('mercedes') && /\beq[sabce]\b/i.test(handelsbenaming)) {
+  // 4. Mercedes EQ-serie → EV
+  if (!driveType && merkLow.includes('mercedes') && /\beq[a-z0-9]/i.test(handelLow)) {
     driveType = 'ev';
+  }
+  // 5. VW-groep iV suffix → PHEV
+  if (!driveType && /\biv\b/i.test(handelLow)) {
+    driveType = 'phev';
+  }
+  // 6. Battery-db als ground truth
+  if (!driveType && battery && battery.dbDriveType) {
+    driveType = battery.dbDriveType;
+  }
+  // 7. Tekst-detectie als laatste fallback
+  if (!driveType) {
+    driveType = detectDriveType(brandstof, zoektekst, merk);
+  }
+
+  // Physics guardrail: kwh > 6 kWh = nooit milde hybride
+  if ((driveType === 'hybrid' || driveType === 'verbrandingsmotor') && kwh && kwh > 6) {
+    driveType = kwh >= 35 ? 'ev' : 'phev';
   }
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
@@ -1655,6 +1650,22 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value highlight">${batterijLabel}</span></div>
       <div class="info-row"><span class="info-label">Verwacht elektrisch bereik</span><span class="info-value">${actieradius}</span></div>
       <div class="info-row"><span class="info-label">Accutype</span><span class="info-value">${driveType === 'ev' ? 'Traktieaccu (hoog voltage)' : 'Plug-in hybride accu'}</span></div>
+      ${degradatie.adacNorm && km > 0 ? `
+      <div class="info-row">
+        <span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span>
+        <span class="info-value" style="color:${degradatie.onderNorm ? 'var(--red-soft)' : 'var(--green-soft)'}">
+          ${degradatie.adacNorm}% min. SoH &nbsp;
+          <span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:${degradatie.onderNorm ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.12)'}">
+            ${degradatie.onderNorm ? '⚠️ Onder norm' : '✓ Boven norm'}
+          </span>
+        </span>
+      </div>` : ''}
+      <div class="info-row">
+        <span class="info-label">Geschatte SoH (normaal gebruik)</span>
+        <span class="info-value" style="color:${degradatie.sohMid >= 88 ? 'var(--teal)' : degradatie.sohMid >= 80 ? 'var(--amber)' : 'var(--red-soft)'}">
+          ~${degradatie.sohMid || (100 - Math.round((degradatie.min + degradatie.max)/2))}%
+        </span>
+      </div>
 
       ${kwh ? `
       <div class="battery-visual">
@@ -1878,10 +1889,43 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <p class="cta-sub">ZekerOpWeg komt naar de auto toe. Op locatie, op afspraak.</p>
     </div>
 
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;">
+      <h3 style="font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;margin-bottom:16px;color:var(--white-dim);">
+        ⚠️ Belangrijke toelichting bij dit rapport
+      </h3>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px 16px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.18);border-radius:10px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--amber);margin-bottom:6px;">Dit rapport is een schatting, geen meting</div>
+          <p style="font-size:13px;color:var(--white-dim);line-height:1.6;margin:0;">
+            De waarden in dit rapport zijn statistische aannames op basis van leeftijd, kilometerstand en rijpatroon. Ze zijn gebaseerd op gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen. De werkelijke accuconditie van <em>dit specifieke voertuig</em> kan hoger of lager uitvallen, afhankelijk van laadgedrag, gebruik en onderhoud.
+          </p>
+        </div>
+
+        <div style="padding:14px 16px;background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.18);border-radius:10px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red-soft);margin-bottom:6px;">Niet vergelijkbaar met Moba- of BMS-uitlezing</div>
+          <p style="font-size:13px;color:var(--white-dim);line-height:1.6;margin:0;">
+            Dit rapport is <strong style="color:var(--white);">geen vervanging</strong> voor een gecertificeerde accumeting zoals een AVILOO-diagnose. Een Moba-uitlezing of BMS-weergave via het dashboard is evenmin betrouwbaar als aankoopinstrument. Een auto met 130.000 km kan op het dashboard 100% SoH tonen — dat is een fabrikantspecifiek algoritme, geen gemeten waarde. Alleen een onafhankelijke meting op celniveau geeft de werkelijke staat.
+          </p>
+        </div>
+
+        <div style="padding:14px 16px;background:rgba(100,116,139,0.08);border:1px solid rgba(100,116,139,0.18);border-radius:10px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--white-dim);margin-bottom:6px;">Hoe dit rapport te lezen</div>
+          <p style="font-size:13px;color:var(--white-dim);line-height:1.6;margin:0;">
+            De bandbreedte in dit rapport (bijv. 7–30% verlies) geeft aan wat realistisch is op basis van de markt. De ondergrens geldt voor voertuigen met aantoonbaar goed laadgedrag. De bovengrens geldt bij intensief of destructief gebruik. De middenwaarde is de meest waarschijnlijke schatting bij normaal gebruik. Geen enkel getal in dit rapport is een garantie of gecertificeerde meetuitslag.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
     <div class="rapport-footer">
       <p>ZekerOpWeg &middot; <a href="https://zekeropweg.nu" style="color:var(--teal);text-decoration:none;">zekeropweg.nu</a></p>
-      <p style="margin-top:4px;">Dit rapport is een statistische inschatting op basis van beschikbare voertuigdata. Het vervangt geen fysieke accumeting.</p>
-      <p style="margin-top:4px;">Gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;">
+        Dit rapport is een statistische risico-inschatting op basis van openbare RDW-data en referentiemeetdata. Het bevat geen gecertificeerde meetresultaten en is niet bedoeld als technisch keuringsbewijs. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport. Een AccuCheck door ZekerOpWeg vervangt dit rapport met een gecertificeerde AVILOO-diagnose.
+      </p>
+      <p style="margin-top:8px;">Gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
     </div>
   `;
 
