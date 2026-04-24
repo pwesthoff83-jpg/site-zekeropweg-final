@@ -1333,18 +1333,27 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     //   Q5 8jr/99k: 3.0*8 + 1.0*9.95 = 24+9.95 = 33.95% → cap 35 ✓
     // ────────────────────────────────────────────────────────────────
 
+    // Audi PHEV correctiefactor — onderbouwd door volledige dataset (n=11):
+    // Reëel marktgemiddelde Audi PHEV (gecorrigeerd voor selectiebias): 88.5% SoH
+    // Audi-accu's gevoeliger voor laadgedrag dan BMW/Skoda → min hoger, mid hoger
+    // Bewijs: A6 45k/4jr → 85.4% (formule gaf 92% → 6.6% te laag)
+    //         Q5 76k/4jr → 87.6% (formule gaf 90% → 2.4% te laag)
+    //         Q3 93k/4jr → 91.3% (normaal gebruik, klopt beter)
+    const isAudiMerk = modelKey && modelKey.includes('audi');
+    const audiCorrectie = isAudiMerk ? 1.20 : 1.0; // Audi: 20% hogere verliesverwachting
+
     // MIN: goed gebruik
-    const verliesMin = leeftijd * 0.5 + (km / 10000) * 0.3;
+    const verliesMin = (leeftijd * 0.5 + (km / 10000) * 0.3) * audiCorrectie;
     const min = Math.max(3, Math.round(verliesMin));
 
     // MID: normaal gebruik — km-factor daalt licht bij hoge km (intensief zakelijk)
     const intFactorMid = Math.min(1.0 + (intensiteit - 1) * 0.15, 1.3);
     const kmFactorMid  = Math.max(0.38, 0.55 - (km / 1000000));
-    const verliesMid   = leeftijd * 1.5 * intFactorMid + (km / 10000) * kmFactorMid;
+    const verliesMid   = (leeftijd * 1.5 * intFactorMid + (km / 10000) * kmFactorMid) * audiCorrectie;
     const midVal = Math.round(verliesMid);
 
-    // MAX: slecht gebruik
-    const verliesMax = leeftijd * 3.0 + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
+    // MAX: slecht gebruik — Audi outliers (A6 45k → 14.6%, Q5 99k → 20.9%) als bovengrens
+    const verliesMax = leeftijd * 3.0 * audiCorrectie + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
     const max = Math.min(Math.max(Math.round(verliesMax), min + 6), 35);
 
     // SoH-midden op basis van midVal alleen (niet gem. van min+mid):
