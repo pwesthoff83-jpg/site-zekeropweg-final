@@ -1106,6 +1106,31 @@
       border-radius: 8px !important;
       page-break-inside: avoid !important;
     }
+    /* Disclaimer sub-blokken — tekst altijd donker zichtbaar */
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(245,158,11"] {
+      background: #fffbeb !important;
+      border: 1px solid #f59e0b !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(239,68,68"] {
+      background: #fef2f2 !important;
+      border: 1px solid #ef4444 !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(100,116,139"] {
+      background: #f1f5f9 !important;
+      border: 1px solid #94a3b8 !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] p {
+      color: #1e293b !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="font-size:12px"] {
+      color: #1e293b !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] strong {
+      color: #0f172a !important;
+    }
+    #rapport-content > div[style*="rgba(255,255,255,0.02)"] h3 {
+      color: #0f4c6e !important;
+    }
 
     /* Alle kleuren resetten die inline staan */
     * { box-shadow: none !important; text-shadow: none !important; }
@@ -1202,176 +1227,272 @@
 
 <script>
 const batteryDB = {
+  // ── ACURA ──────────────────────────────────────────────────────────────────
   "acura zdx": [{ "variant": "standard", "kwh": 107.6 }],
+  // ── ALPINE ─────────────────────────────────────────────────────────────────
   "alpine a290": [{ "variant": "standard", "kwh": 52 }],
-  "audi a3": [{ "variant": "tfsi e", "kwh": 8.8 }, { "variant": "tfsi e", "kwh": 13.0 }, { "variant": "tfsi e", "kwh": 25.7 }],
-  "audi a6": [{ "variant": "tfsi e", "kwh": 14.1 }, { "variant": "tfsi e", "kwh": 17.9 }, { "variant": "e-tron", "kwh": 100 }],
-  "audi a6 e tron": [{ "variant": "standard", "kwh": 83 }],
-  "audi a8": [{ "variant": "tfsi e", "kwh": 14.1 }, { "variant": "tfsi e", "kwh": 17.9 }],
-  "audi q3": [{ "variant": "tfsi e", "kwh": 13.0 }],
-  "audi q4 e-tron": [{ "variant": "35", "kwh": 52 }, { "variant": "40", "kwh": 77 }, { "variant": "45", "kwh": 77 }, { "variant": "quattro", "kwh": 77 }],
-  "audi q5": [{ "variant": "tfsi e", "kwh": 17.9 }, { "variant": "e-tron", "kwh": 14.1 }],
-  "audi q6 e-tron": [{ "variant": "standard", "kwh": 100 }],
-  "audi q7": [{ "variant": "tfsi e", "kwh": 17.3 }, { "variant": "tfsi e", "kwh": 17.9 }, { "variant": "tfsi e", "kwh": 25.9 }],
-  "audi q8": [
-    { "variant": "50 e-tron", "kwh": 95 },
-    { "variant": "55 e-tron", "kwh": 114 },
-    { "variant": "tfsi e 50", "kwh": 17.9 },
-    { "variant": "tfsi e 55", "kwh": 17.9 },
-    { "variant": "tfsi e 60", "kwh": 25.9 },
-    { "variant": "tfsi e", "kwh": 25.9 },
-    { "variant": "60 tfsi", "kwh": 25.9 },
-    { "variant": "50 tfsi", "kwh": 17.9 }
-  ],
-  "audi e-tron": [{ "variant": "50", "kwh": 71 }, { "variant": "55", "kwh": 95 }, { "variant": "s", "kwh": 95 }],
-  "audi e-tron gt": [{ "variant": "standard", "kwh": 83.7 }, { "variant": "performance", "kwh": 97 }],
+  // ── AUDI PHEV ──────────────────────────────────────────────────────────────
+  "audi a3": [{ "variant": "tfsi e", "kwh": 8.8 }, { "variant": "40 tfsi e", "kwh": 13.0 }, { "variant": "45 tfsi e", "kwh": 13.0 }, { "variant": "tfsi e", "kwh": 25.7 }],
+  "audi a6": [{ "variant": "tfsi e", "kwh": 14.1 }, { "variant": "tfsi e", "kwh": 17.9 }],
+  "audi a8": [{ "variant": "60 tfsi e", "kwh": 14.1 }, { "variant": "tfsi e", "kwh": 17.9 }],
+  "audi q3": [{ "variant": "45 tfsi e", "kwh": 13.0 }, { "variant": "tfsi e", "kwh": 13.0 }],
+  "audi q5": [{ "variant": "tfsi e", "kwh": 17.9 }],
+  "audi q7": [{ "variant": "55 tfsi e", "kwh": 17.3 }, { "variant": "tfsi e quattro", "kwh": 17.9 }, { "variant": "tfsi e quattro", "kwh": 25.9 }, { "variant": "60 tfsi e", "kwh": 17.3 }, { "variant": "e-tron", "kwh": 17.3 }],
+  "audi q8": [{ "variant": "tfsi e", "kwh": 17.9 }, { "variant": "tfsi e", "kwh": 25.9 }, { "variant": "55 tfsi e", "kwh": 17.9 }, { "variant": "60 tfsi e", "kwh": 25.9 }],
+  // ── AUDI EV ────────────────────────────────────────────────────────────────
+  "audi a6 e-tron": [{ "variant": "rwd", "kwh": 83 }, { "variant": "awd", "kwh": 100 }],
+  "audi q4 e-tron": [{ "variant": "35", "kwh": 52 }, { "variant": "40", "kwh": 77 }, { "variant": "45", "kwh": 77 }, { "variant": "50", "kwh": 77 }, { "variant": "55", "kwh": 77 }],
+  "audi q6 e-tron": [{ "variant": "rwd", "kwh": 100 }],
+  "audi q8 e-tron": [{ "variant": "50", "kwh": 95 }, { "variant": "55", "kwh": 114 }, { "variant": "sportback 50", "kwh": 95 }, { "variant": "sportback 55", "kwh": 114 }, { "variant": "sq8", "kwh": 114 }],
+  "audi e-tron": [{ "variant": "50", "kwh": 71 }, { "variant": "55", "kwh": 95 }, { "variant": "s", "kwh": 95 }, { "variant": "sportback 50", "kwh": 71 }, { "variant": "sportback 55", "kwh": 95 }],
+  "audi e-tron gt": [{ "variant": "standard", "kwh": 83.7 }, { "variant": "rs", "kwh": 97 }, { "variant": "s", "kwh": 97 }],
+  // ── BMW PHEV ───────────────────────────────────────────────────────────────
   "bmw 225xe": [{ "variant": "standard", "kwh": 7.6 }, { "variant": "standard", "kwh": 10 }, { "variant": "standard", "kwh": 16.3 }],
   "bmw 230xe": [{ "variant": "standard", "kwh": 16.3 }],
   "bmw 320e": [{ "variant": "standard", "kwh": 11.15 }],
-  "bmw 330e": [{ "variant": "standard", "kwh": 7.6 }, { "variant": "standard", "kwh": 11.15 }, { "variant": "touring", "kwh": 22.3 }],
-  "bmw 530e": [{ "variant": "standard", "kwh": 9.2 }, { "variant": "standard", "kwh": 12 }, { "variant": "standard", "kwh": 22.1 }],
-  "bmw 545e": [{ "variant": "standard", "kwh": 12 }],
-  "bmw 550e": [{ "variant": "standard", "kwh": 22.1 }],
+  "bmw 330e": [{ "variant": "standard", "kwh": 7.6 }, { "variant": "standard", "kwh": 11.15 }, { "variant": "touring", "kwh": 22.3 }, { "variant": "xdrive", "kwh": 11.15 }, { "variant": "xdrive touring", "kwh": 22.3 }],
+  "bmw 520e": [{ "variant": "standard", "kwh": 12 }],
+  "bmw 530e": [{ "variant": "standard", "kwh": 9.2 }, { "variant": "standard", "kwh": 12 }, { "variant": "standard", "kwh": 22.1 }, { "variant": "touring", "kwh": 22.1 }, { "variant": "xdrive", "kwh": 22.1 }],
+  "bmw 545e": [{ "variant": "xdrive", "kwh": 12 }],
+  "bmw 550e": [{ "variant": "xdrive", "kwh": 22.1 }, { "variant": "touring", "kwh": 22.1 }],
   "bmw 740e": [{ "variant": "standard", "kwh": 9.2 }],
   "bmw 745e": [{ "variant": "standard", "kwh": 12 }],
-  "bmw 750e": [{ "variant": "standard", "kwh": 22.1 }],
-  "bmw m5": [{ "variant": "hybrid", "kwh": 22.1 }],
+  "bmw 750e": [{ "variant": "xdrive", "kwh": 22.1 }],
+  "bmw m5": [{ "variant": "hybrid", "kwh": 22.1 }, { "variant": "touring", "kwh": 22.1 }],
+  "bmw m760e": [{ "variant": "xdrive", "kwh": 22.1 }],
   "bmw x1": [{ "variant": "25e", "kwh": 10 }, { "variant": "25e", "kwh": 16.3 }, { "variant": "30e", "kwh": 16.3 }],
+  "bmw x2": [{ "variant": "25e", "kwh": 10 }],
   "bmw x3": [{ "variant": "30e", "kwh": 12 }, { "variant": "30e", "kwh": 22.7 }],
   "bmw x5": [{ "variant": "40e", "kwh": 9.2 }, { "variant": "45e", "kwh": 24 }, { "variant": "50e", "kwh": 29.5 }],
-  "bmw xm": [{ "variant": "standard", "kwh": 29.5 }],
-  "bmw i4": [{ "variant": "edrive35", "kwh": 70.3 }, { "variant": "edrive40", "kwh": 83.9 }, { "variant": "m50", "kwh": 83.9 }],
-  "bmw i5": [{ "variant": "edrive40", "kwh": 83.9 }, { "variant": "m60", "kwh": 83.9 }],
-  "bmw i7": [{ "variant": "standard", "kwh": 105 }],
-  "bmw ix": [{ "variant": "40", "kwh": 76.6 }, { "variant": "50", "kwh": 111.5 }, { "variant": "60", "kwh": 111.5 }],
-  "bmw ix1": [{ "variant": "standard", "kwh": 66.5 }],
-  "bmw ix2": [{ "variant": "standard", "kwh": 66.5 }],
+  "bmw xm": [{ "variant": "standard", "kwh": 29.5 }, { "variant": "50e", "kwh": 29.5 }, { "variant": "label", "kwh": 29.5 }],
+  "bmw i8": [{ "variant": "standard", "kwh": 5.18 }, { "variant": "roadster", "kwh": 9.4 }],
+  // ── BMW EV ─────────────────────────────────────────────────────────────────
+  "bmw i3": [{ "variant": "60ah", "kwh": 18.8 }, { "variant": "94ah", "kwh": 27.2 }, { "variant": "120ah", "kwh": 42.2 }],
+  "bmw i4": [{ "variant": "edrive35", "kwh": 70.3 }, { "variant": "edrive40", "kwh": 83.9 }, { "variant": "m50", "kwh": 83.9 }, { "variant": "xdrive40", "kwh": 83.9 }, { "variant": "m60", "kwh": 83.9 }],
+  "bmw i5": [{ "variant": "edrive40", "kwh": 83.9 }, { "variant": "xdrive40", "kwh": 83.9 }, { "variant": "m60", "kwh": 83.9 }],
+  "bmw i7": [{ "variant": "edrive50", "kwh": 105 }, { "variant": "xdrive60", "kwh": 105 }, { "variant": "m70", "kwh": 105 }],
+  "bmw ix": [{ "variant": "40", "kwh": 76.6 }, { "variant": "45", "kwh": 100.6 }, { "variant": "50", "kwh": 111.5 }, { "variant": "60", "kwh": 111.5 }, { "variant": "m60", "kwh": 111.5 }, { "variant": "m70", "kwh": 111.5 }],
+  "bmw ix1": [{ "variant": "edrive20", "kwh": 66.5 }, { "variant": "xdrive30", "kwh": 66.5 }],
+  "bmw ix2": [{ "variant": "edrive20", "kwh": 66.5 }, { "variant": "edrive30", "kwh": 66.5 }],
   "bmw ix3": [{ "variant": "standard", "kwh": 80 }],
-  "byd atto 3": [{ "variant": "standard", "kwh": 60.48 }],
-  "byd dolphin": [{ "variant": "standard", "kwh": 60.48 }],
-  "byd seal": [{ "variant": "standard", "kwh": 82.56 }],
+  // ── BYD ────────────────────────────────────────────────────────────────────
+  "byd atto 3": [{ "variant": "standard", "kwh": 49.92 }, { "variant": "extended", "kwh": 60.48 }],
+  "byd dolphin": [{ "variant": "standard", "kwh": 44.9 }, { "variant": "extended", "kwh": 60.48 }],
+  "byd seal": [{ "variant": "rwd", "kwh": 64 }, { "variant": "awd", "kwh": 82.56 }],
   "byd seal u": [{ "variant": "ev", "kwh": 87 }, { "variant": "dm-i", "kwh": 18.3 }],
-  "byd tang": [{ "variant": "standard", "kwh": 108.8 }],
+  "byd tang": [{ "variant": "standard", "kwh": 86.4 }, { "variant": "extended", "kwh": 108.8 }],
+  "byd han": [{ "variant": "standard", "kwh": 85.4 }],
+  "byd sealion": [{ "variant": "dm-i", "kwh": 18.3 }, { "variant": "phev", "kwh": 8.3 }],
+  // ── CADILLAC ───────────────────────────────────────────────────────────────
   "cadillac escalade iq": [{ "variant": "standard", "kwh": 215 }],
   "cadillac lyriq": [{ "variant": "standard", "kwh": 107.6 }],
   "cadillac optiq": [{ "variant": "standard", "kwh": 89 }],
+  // ── CHEVROLET ──────────────────────────────────────────────────────────────
   "chevrolet equinox ev": [{ "variant": "standard", "kwh": 85 }],
+  // ── CITROEN ────────────────────────────────────────────────────────────────
   "citroen e-c3": [{ "variant": "standard", "kwh": 44 }],
-  "citroen e-c4": [{ "variant": "standard", "kwh": 54 }],
-  "cupra born": [{ "variant": "standard", "kwh": 58 }, { "variant": "long range", "kwh": 77 }, { "variant": "performance", "kwh": 79 }],
-  "cupra formentor": [{ "variant": "hybrid", "kwh": 13.0 }, { "variant": "hybrid", "kwh": 25.8 }],
+  "citroen e-c4": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
+  "citroen c5 aircross": [{ "variant": "hybrid", "kwh": 13.2 }],
+  "citroen c5x": [{ "variant": "hybrid", "kwh": 12.4 }],
+  // ── CUPRA ──────────────────────────────────────────────────────────────────
+  "cupra born": [{ "variant": "standard", "kwh": 58 }, { "variant": "long range", "kwh": 77 }, { "variant": "vz", "kwh": 79 }, { "variant": "e-boost", "kwh": 58 }],
+  "cupra formentor": [{ "variant": "e-hybrid", "kwh": 13.0 }, { "variant": "e-hybrid", "kwh": 25.8 }],
   "cupra tavascan": [{ "variant": "standard", "kwh": 77 }],
+  "cupra terramar": [{ "variant": "e-hybrid", "kwh": 25.7 }],
+  // ── DACIA ──────────────────────────────────────────────────────────────────
   "dacia spring": [{ "variant": "standard", "kwh": 27.4 }],
+  // ── DS ─────────────────────────────────────────────────────────────────────
+  "ds 3": [{ "variant": "e-tense", "kwh": 50 }, { "variant": "e-tense", "kwh": 54 }],
+  "ds 4": [{ "variant": "e-tense", "kwh": 12.4 }],
+  "ds 7": [{ "variant": "e-tense", "kwh": 14.2 }, { "variant": "hybrid", "kwh": 13.2 }],
+  // ── FIAT ───────────────────────────────────────────────────────────────────
   "fiat 500e": [{ "variant": "standard", "kwh": 23.8 }, { "variant": "long range", "kwh": 42 }],
   "fiat 600e": [{ "variant": "standard", "kwh": 54 }],
-  "ford capri": [{ "variant": "standard", "kwh": 77 }],
-  "ford explorer": [{ "variant": "standard", "kwh": 77 }],
-  "ford mustang mach-e": [{ "variant": "standard", "kwh": 72.6 }, { "variant": "long range", "kwh": 98.7 }],
+  // ── FORD ───────────────────────────────────────────────────────────────────
+  "ford kuga": [{ "variant": "phev", "kwh": 14.4 }],
+  "ford mustang mach-e": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "awd", "kwh": 72.6 }, { "variant": "gt", "kwh": 98.7 }, { "variant": "long range", "kwh": 98.7 }],
+  "ford explorer": [{ "variant": "rwd", "kwh": 77 }, { "variant": "awd", "kwh": 79 }, { "variant": "phev", "kwh": 13.6 }],
+  "ford capri": [{ "variant": "rwd", "kwh": 77 }, { "variant": "awd", "kwh": 79 }],
+  "ford f-150 lightning": [{ "variant": "sr", "kwh": 98 }, { "variant": "er", "kwh": 131 }],
+  // ── GENESIS ────────────────────────────────────────────────────────────────
   "genesis gv60": [{ "variant": "standard", "kwh": 77.4 }],
   "genesis gv70": [{ "variant": "standard", "kwh": 77.4 }],
+  "genesis g80": [{ "variant": "ev", "kwh": 87.2 }],
+  // ── HONDA ──────────────────────────────────────────────────────────────────
   "honda eny1": [{ "variant": "standard", "kwh": 68.8 }],
-  "hyundai ioniq 5": [{ "variant": "standard", "kwh": 63 }, { "variant": "long range", "kwh": 77.4 }, { "variant": "performance", "kwh": 84 }],
-  "hyundai ioniq 6": [{ "variant": "standard", "kwh": 53 }, { "variant": "long range", "kwh": 77.4 }],
-  "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }],
+  "honda prologue": [{ "variant": "standard", "kwh": 85 }],
+  // ── HYUNDAI EV ─────────────────────────────────────────────────────────────
+  "hyundai ioniq": [{ "variant": "standard", "kwh": 28 }, { "variant": "long range", "kwh": 38.3 }],
+  "hyundai ioniq 5": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "awd", "kwh": 77.4 }, { "variant": "long range", "kwh": 77.4 }, { "variant": "n", "kwh": 84 }],
+  "hyundai ioniq 6": [{ "variant": "rwd", "kwh": 77.4 }, { "variant": "awd", "kwh": 77.4 }],
+  "hyundai ioniq 9": [{ "variant": "rwd", "kwh": 110.3 }, { "variant": "awd", "kwh": 110.3 }],
   "hyundai kona": [{ "variant": "standard", "kwh": 39.2 }, { "variant": "long range", "kwh": 64 }],
-  "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }, { "variant": "hybrid", "kwh": 1.49 }],
   "hyundai kona ev": [{ "variant": "standard", "kwh": 48.4 }, { "variant": "long range", "kwh": 64.8 }],
-  "jaguar i-pace": [{ "variant": "standard", "kwh": 90.2 }],
-  "land rover range rover": [{ "variant": "p400e", "kwh": 31.8 }, { "variant": "phev", "kwh": 31.8 }],
-  "land rover range rover sport": [{ "variant": "p400e", "kwh": 31.8 }, { "variant": "phev", "kwh": 31.8 }],
-  "land rover range rover velar": [{ "variant": "p400e", "kwh": 17.1 }],
-  "land rover defender": [{ "variant": "phev", "kwh": 19.2 }],
-  "land rover discovery sport": [{ "variant": "phev", "kwh": 15 }],
+  "hyundai inster": [{ "variant": "standard", "kwh": 42 }, { "variant": "long range", "kwh": 49 }],
+  // ── HYUNDAI PHEV ───────────────────────────────────────────────────────────
+  "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }, { "variant": "hybrid", "kwh": 1.49 }],
+  "hyundai santa fe": [{ "variant": "phev", "kwh": 13.8 }],
+  // ── JAGUAR ─────────────────────────────────────────────────────────────────
+  "jaguar i-pace": [{ "variant": "ev400", "kwh": 90.2 }],
+  "jaguar e-pace": [{ "variant": "phev", "kwh": 15.0 }],
+  // ── JEEP ───────────────────────────────────────────────────────────────────
   "jeep avenger": [{ "variant": "standard", "kwh": 54 }],
+  "jeep compass": [{ "variant": "4xe", "kwh": 11.4 }],
+  "jeep renegade": [{ "variant": "4xe", "kwh": 11.4 }],
+  // ── KIA EV ─────────────────────────────────────────────────────────────────
   "kia ev3": [{ "variant": "sr", "kwh": 58.3 }, { "variant": "lr", "kwh": 81.4 }],
-  "kia ev6": [{ "variant": "standard", "kwh": 58 }, { "variant": "long range", "kwh": 77.4 }, { "variant": "gt", "kwh": 77.4 }],
-  "kia ev9": [{ "variant": "rwd", "kwh": 99.8 }, { "variant": "awd", "kwh": 99.8 }],
+  "kia ev6": [{ "variant": "rwd", "kwh": 77.4 }, { "variant": "awd", "kwh": 77.4 }, { "variant": "gt", "kwh": 77.4 }],
+  "kia ev9": [{ "variant": "rwd", "kwh": 99.8 }, { "variant": "awd", "kwh": 99.8 }, { "variant": "gt", "kwh": 99.8 }],
   "kia niro ev": [{ "variant": "standard", "kwh": 64.8 }],
+  "kia e-niro": [{ "variant": "standard", "kwh": 39.2 }, { "variant": "long range", "kwh": 64 }],
+  "kia soul": [{ "variant": "standard", "kwh": 27 }, { "variant": "long range", "kwh": 64 }],
+  // ── KIA PHEV ───────────────────────────────────────────────────────────────
   "kia niro phev": [{ "variant": "standard", "kwh": 11.1 }],
   "kia sportage phev": [{ "variant": "standard", "kwh": 13.8 }],
   "kia sorento phev": [{ "variant": "standard", "kwh": 13.8 }],
+  // ── LAND ROVER ─────────────────────────────────────────────────────────────
+  "land rover range rover": [{ "variant": "phev", "kwh": 38.2 }, { "variant": "p400e", "kwh": 31.8 }],
+  "land rover range rover sport": [{ "variant": "phev", "kwh": 31.8 }, { "variant": "p400e", "kwh": 31.8 }],
+  "land rover range rover velar": [{ "variant": "phev", "kwh": 17.1 }, { "variant": "p400e", "kwh": 19.2 }],
+  "land rover defender": [{ "variant": "phev", "kwh": 19.2 }],
+  "land rover discovery sport": [{ "variant": "p300e", "kwh": 15.0 }],
+  "land rover evoque": [{ "variant": "phev", "kwh": 15.0 }],
+  // ── LEXUS ──────────────────────────────────────────────────────────────────
+  "lexus nx": [{ "variant": "450h+", "kwh": 18.1 }],
+  "lexus rx": [{ "variant": "450h+", "kwh": 18.1 }],
+  "lexus rz": [{ "variant": "300e", "kwh": 71.4 }, { "variant": "450e", "kwh": 71.4 }],
+  "lexus ux": [{ "variant": "300e", "kwh": 54.3 }, { "variant": "300e", "kwh": 72.8 }],
+  // ── MAZDA ──────────────────────────────────────────────────────────────────
+  "mazda cx-60": [{ "variant": "phev", "kwh": 17.8 }],
+  "mazda cx-80": [{ "variant": "phev", "kwh": 17.8 }],
+  "mazda mx-30": [{ "variant": "standard", "kwh": 35.5 }],
+  // ── MERCEDES PHEV ──────────────────────────────────────────────────────────
   "mercedes-benz a-class": [{ "variant": "250e", "kwh": 15.6 }],
-  "mercedes-benz cla": [
-    { "variant": "250e phev", "kwh": 15.6 },
-    { "variant": "250e", "kwh": 15.6 },
-    { "variant": "250+ ev", "kwh": 85 },
-    { "variant": "standard", "kwh": 15.6 }
-  ],
-  "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }],
-  "mercedes-benz e-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }],
+  "mercedes-benz b-class": [{ "variant": "250e", "kwh": 15.6 }],
+  "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "300de", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }, { "variant": "400e", "kwh": 25.4 }],
+  "mercedes-benz cla": [{ "variant": "250e", "kwh": 15.6 }, { "variant": "250+", "kwh": 85 }],
+  "mercedes-benz cle": [{ "variant": "300e", "kwh": 25.4 }],
+  "mercedes-benz e-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "300de", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }, { "variant": "400e", "kwh": 25.4 }],
+  "mercedes-benz gla": [{ "variant": "250e", "kwh": 15.6 }],
+  "mercedes-benz glc": [{ "variant": "300e", "kwh": 24.82 }, { "variant": "300de", "kwh": 24.82 }, { "variant": "350e", "kwh": 8.7 }, { "variant": "400e", "kwh": 24.82 }],
+  "mercedes-benz gle": [{ "variant": "350e", "kwh": 31.2 }, { "variant": "350de", "kwh": 31.2 }, { "variant": "400e", "kwh": 31.2 }, { "variant": "450e", "kwh": 31.5 }, { "variant": "500e", "kwh": 8.7 }, { "variant": "550e", "kwh": 8.7 }],
   "mercedes-benz s-class": [{ "variant": "560e", "kwh": 13.5 }, { "variant": "580e", "kwh": 28.6 }],
-  "mercedes-benz glc": [{ "variant": "300e", "kwh": 24.82 }, { "variant": "350e", "kwh": 8.7 }],
-  "mercedes-benz gle": [{ "variant": "350e", "kwh": 31.2 }, { "variant": "450e", "kwh": 31.5 }],
+  // ── MERCEDES EV ────────────────────────────────────────────────────────────
+  "mercedes-benz eqa": [{ "variant": "250", "kwh": 66.5 }, { "variant": "250+", "kwh": 70.5 }, { "variant": "300", "kwh": 66.5 }, { "variant": "350", "kwh": 70.5 }],
+  "mercedes-benz eqb": [{ "variant": "250", "kwh": 66.5 }, { "variant": "250+", "kwh": 70.5 }, { "variant": "300", "kwh": 66.5 }, { "variant": "350", "kwh": 70.5 }],
   "mercedes-benz eqc": [{ "variant": "400", "kwh": 85 }],
-  "mercedes-benz eqa": [{ "variant": "250", "kwh": 66.5 }, { "variant": "250+", "kwh": 70.5 }],
-  "mercedes-benz eqb": [{ "variant": "250", "kwh": 66.5 }, { "variant": "250+", "kwh": 70.5 }],
-  "mercedes-benz eqe": [{ "variant": "350", "kwh": 90.56 }, { "variant": "500", "kwh": 90.56 }],
-  "mercedes-benz eqs": [{ "variant": "450+", "kwh": 107.8 }, { "variant": "580", "kwh": 118 }],
-  "mg4 electric": [{ "variant": "standard range", "kwh": 51 }, { "variant": "long range", "kwh": 64 }, { "variant": "extended range", "kwh": 77 }],
+  "mercedes-benz eqe": [{ "variant": "standard", "kwh": 90.56 }, { "variant": "suv", "kwh": 90.56 }],
+  "mercedes-benz eqs": [{ "variant": "450+", "kwh": 107.8 }, { "variant": "450+", "kwh": 108.4 }, { "variant": "450+", "kwh": 118 }, { "variant": "suv", "kwh": 108.4 }],
+  "mercedes-benz eqt": [{ "variant": "standard", "kwh": 45 }],
+  "mercedes-benz eqv": [{ "variant": "250", "kwh": 60 }, { "variant": "300", "kwh": 100 }],
+  // ── MG ─────────────────────────────────────────────────────────────────────
+  "mg4 electric": [{ "variant": "standard", "kwh": 51 }, { "variant": "long range", "kwh": 64 }, { "variant": "extended", "kwh": 77 }],
   "mg zs ev": [{ "variant": "standard", "kwh": 44.5 }, { "variant": "long range", "kwh": 72.6 }],
-  "mini cooper": [{ "variant": "e", "kwh": 32.6 }, { "variant": "se", "kwh": 54.2 }],
-  "mini countryman": [{ "variant": "phev", "kwh": 10 }, { "variant": "ev", "kwh": 66.5 }],
-  "mitsubishi outlander": [{ "variant": "phev", "kwh": 13.8 }],
+  "mg5": [{ "variant": "sr", "kwh": 50.3 }, { "variant": "lr", "kwh": 61.1 }],
+  "mg ehs": [{ "variant": "phev", "kwh": 16.6 }],
+  // ── MINI ───────────────────────────────────────────────────────────────────
+  "mini cooper": [{ "variant": "e", "kwh": 40.7 }, { "variant": "se", "kwh": 32.6 }, { "variant": "se", "kwh": 54.2 }],
+  "mini aceman": [{ "variant": "e", "kwh": 42.5 }, { "variant": "se", "kwh": 54.2 }],
+  "mini countryman": [{ "variant": "phev", "kwh": 7.6 }, { "variant": "phev", "kwh": 10 }, { "variant": "e", "kwh": 66.5 }, { "variant": "se", "kwh": 66.5 }],
+  // ── MITSUBISHI ─────────────────────────────────────────────────────────────
+  "mitsubishi outlander": [{ "variant": "phev", "kwh": 12.0 }, { "variant": "phev", "kwh": 13.8 }],
+  // ── NISSAN ─────────────────────────────────────────────────────────────────
   "nissan ariya": [{ "variant": "standard", "kwh": 63 }, { "variant": "long range", "kwh": 87 }],
+  "nissan leaf": [{ "variant": "standard", "kwh": 24 }, { "variant": "ze1", "kwh": 40 }, { "variant": "long range", "kwh": 62 }],
   "nissan qashqai": [{ "variant": "e-power", "kwh": 2.1 }, { "variant": "hybrid", "kwh": 2.1 }],
-  "nissan leaf": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 62 }],
-  "opel corsa": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
-  "opel astra": [{ "variant": "phev", "kwh": 12.4 }, { "variant": "ev", "kwh": 54 }],
-  "peugeot 208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
+  // ── OPEL ───────────────────────────────────────────────────────────────────
+  "opel astra": [{ "variant": "phev", "kwh": 12.4 }, { "variant": "electric", "kwh": 54 }],
+  "opel corsa": [{ "variant": "electric", "kwh": 50 }, { "variant": "electric", "kwh": 54 }],
+  "opel mokka": [{ "variant": "electric", "kwh": 50 }, { "variant": "electric", "kwh": 54 }],
+  "opel grandland": [{ "variant": "phev", "kwh": 13.2 }],
+  // ── PEUGEOT PHEV ───────────────────────────────────────────────────────────
+  "peugeot 3008": [{ "variant": "hybrid", "kwh": 13.2 }],
+  "peugeot 308": [{ "variant": "hybrid", "kwh": 12.4 }],
+  "peugeot 408": [{ "variant": "hybrid", "kwh": 12.4 }],
+  "peugeot 508": [{ "variant": "hybrid", "kwh": 11.5 }, { "variant": "hybrid sw", "kwh": 11.5 }, { "variant": "hybrid4", "kwh": 11.5 }],
+  // ── PEUGEOT EV ─────────────────────────────────────────────────────────────
   "peugeot e-208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
-  "peugeot 2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "peugeot e-2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
-  "peugeot 308": [{ "variant": "hybrid", "kwh": 12.4 }, { "variant": "ev", "kwh": 54 }],
-  "peugeot 508": [{ "variant": "hybrid", "kwh": 11.8 }, { "variant": "phev", "kwh": 11.8 }],
+  "peugeot e-308": [{ "variant": "standard", "kwh": 54 }],
   "peugeot e-3008": [{ "variant": "standard", "kwh": 77 }],
-  "peugeot 3008": [{ "variant": "standard", "kwh": 77 }],
-  "polestar 2": [{ "variant": "standard", "kwh": 69 }, { "variant": "long range", "kwh": 82 }],
+  // ── POLESTAR ───────────────────────────────────────────────────────────────
+  "polestar 2": [{ "variant": "standard", "kwh": 64 }, { "variant": "long range", "kwh": 78 }, { "variant": "long range", "kwh": 82 }],
   "polestar 4": [{ "variant": "long range", "kwh": 100 }],
-  "porsche taycan": [{ "variant": "standard", "kwh": 82.3 }, { "variant": "performance", "kwh": 97 }],
-  "porsche macan ev": [{ "variant": "standard", "kwh": 100 }],
-  "porsche cayenne": [{ "variant": "phev", "kwh": 17.9 }, { "variant": "phev", "kwh": 25.9 }],
-  "renault zoe": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 52 }],
+  // ── PORSCHE ────────────────────────────────────────────────────────────────
+  "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 14.1 }, { "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }, { "variant": "turbo s e-hybrid", "kwh": 14.1 }],
+  "porsche panamera": [{ "variant": "4 e-hybrid", "kwh": 14.1 }, { "variant": "4 hybrid", "kwh": 17.9 }, { "variant": "turbo s e-hybrid", "kwh": 14.1 }],
+  "porsche taycan": [{ "variant": "standard", "kwh": 71 }, { "variant": "standard", "kwh": 82.3 }, { "variant": "standard", "kwh": 97 }, { "variant": "turbo", "kwh": 97 }, { "variant": "turbo s", "kwh": 97 }],
+  "porsche macan": [{ "variant": "ev", "kwh": 100 }],
+  // ── RENAULT ────────────────────────────────────────────────────────────────
+  "renault zoe": [{ "variant": "standard", "kwh": 22 }, { "variant": "ze40", "kwh": 41 }, { "variant": "ze50", "kwh": 52 }],
   "renault megane e-tech": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 60 }],
   "renault scenic e-tech": [{ "variant": "standard", "kwh": 60 }, { "variant": "long range", "kwh": 87 }],
   "renault 5": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 52 }],
-  "skoda octavia": [{ "variant": "phev", "kwh": 13 }, { "variant": "rs iv", "kwh": 13 }],
+  "renault capture": [{ "variant": "e-tech", "kwh": 9.8 }],
+  "renault rafale": [{ "variant": "e-tech", "kwh": 22 }],
+  "renault megane": [{ "variant": "e-tech", "kwh": 9.8 }],
+  // ── SEAT ───────────────────────────────────────────────────────────────────
+  "seat leon": [{ "variant": "e-hybrid", "kwh": 13.0 }],
+  "seat tarraco": [{ "variant": "e-hybrid", "kwh": 13.0 }],
+  // ── SKODA ──────────────────────────────────────────────────────────────────
+  "skoda octavia": [{ "variant": "iv", "kwh": 13.0 }],
+  "skoda superb": [{ "variant": "iv", "kwh": 13.0 }, { "variant": "iv", "kwh": 25.7 }],
+  "skoda kodiaq": [{ "variant": "iv", "kwh": 25.7 }],
+  "skoda enyaq": [{ "variant": "50", "kwh": 52 }, { "variant": "60", "kwh": 58 }, { "variant": "80", "kwh": 77 }, { "variant": "rs", "kwh": 77 }],
   "skoda elroq": [{ "variant": "50", "kwh": 52 }, { "variant": "85", "kwh": 77 }],
-  "skoda enyaq": [{ "variant": "50", "kwh": 52 }, { "variant": "80", "kwh": 77 }, { "variant": "rs", "kwh": 77 }],
-  "smart #1": [{ "variant": "standard", "kwh": 49 }, { "variant": "long range", "kwh": 66 }],
-  "smart #3": [{ "variant": "standard", "kwh": 49 }, { "variant": "long range", "kwh": 66 }],
+  // ── SMART ──────────────────────────────────────────────────────────────────
+  "smart #1": [{ "variant": "rwd", "kwh": 49 }, { "variant": "awd", "kwh": 66 }],
+  "smart #3": [{ "variant": "rwd", "kwh": 49 }, { "variant": "awd", "kwh": 66 }],
+  // ── SUBARU ─────────────────────────────────────────────────────────────────
   "subaru solterra": [{ "variant": "standard", "kwh": 71.4 }],
+  // ── SUZUKI ─────────────────────────────────────────────────────────────────
   "suzuki across": [{ "variant": "phev", "kwh": 18.1 }],
-  "tesla model 3": [{ "variant": "standard range", "kwh": 60.5 }, { "variant": "long range", "kwh": 82 }, { "variant": "performance", "kwh": 82 }],
-  "tesla model y": [{ "variant": "standard range", "kwh": 60.5 }, { "variant": "long range", "kwh": 82 }, { "variant": "performance", "kwh": 82 }],
-  "tesla model s": [{ "variant": "standard", "kwh": 100 }, { "variant": "performance", "kwh": 100 }],
-  "tesla model x": [{ "variant": "standard", "kwh": 100 }, { "variant": "performance", "kwh": 100 }],
-  "toyota bz4x": [{ "variant": "rwd", "kwh": 71.4 }, { "variant": "awd", "kwh": 71.4 }],
+  // ── TESLA ──────────────────────────────────────────────────────────────────
+  "tesla model 3": [{ "variant": "sr", "kwh": 60.5 }, { "variant": "long range", "kwh": 78.8 }, { "variant": "performance", "kwh": 78.8 }, { "variant": "highland", "kwh": 60.5 }],
+  "tesla model y": [{ "variant": "sr", "kwh": 60.5 }, { "variant": "long range", "kwh": 78.8 }, { "variant": "performance", "kwh": 78.8 }, { "variant": "juniper", "kwh": 78.8 }],
+  "tesla model s": [{ "variant": "standard", "kwh": 100 }, { "variant": "long range", "kwh": 100 }, { "variant": "plaid", "kwh": 100 }],
+  "tesla model x": [{ "variant": "standard", "kwh": 100 }, { "variant": "long range", "kwh": 100 }, { "variant": "plaid", "kwh": 100 }],
+  // ── TOYOTA ─────────────────────────────────────────────────────────────────
   "toyota c-hr": [{ "variant": "phev", "kwh": 13.6 }],
   "toyota prius": [{ "variant": "phev", "kwh": 13.6 }],
   "toyota rav4": [{ "variant": "phev", "kwh": 18.1 }],
-  "volkswagen e-golf": [{ "variant": "standard", "kwh": 35.8 }],
-  "volkswagen e-up": [{ "variant": "standard", "kwh": 18.7 }, { "variant": "long range", "kwh": 36.8 }],
-  "volkswagen golf": [{ "variant": "g8 phev", "kwh": 13 }, { "variant": "g8 phev upgraded", "kwh": 25.7 }],
+  "toyota bz4x": [{ "variant": "rwd", "kwh": 71.4 }, { "variant": "awd", "kwh": 71.4 }],
+  // ── VOLKSWAGEN PHEV ────────────────────────────────────────────────────────
+  "volkswagen golf": [{ "variant": "gte", "kwh": 8.7 }, { "variant": "8 gte", "kwh": 13 }, { "variant": "ehybrid", "kwh": 13 }, { "variant": "gte", "kwh": 25.7 }, { "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen passat": [{ "variant": "gte", "kwh": 9.9 }, { "variant": "gte", "kwh": 13 }, { "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen tiguan": [{ "variant": "ehybrid", "kwh": 13.0 }, { "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen touareg": [{ "variant": "e-hybrid", "kwh": 17.9 }],
+  "volkswagen arteon": [{ "variant": "ehybrid", "kwh": 13 }],
+  "volkswagen multivan": [{ "variant": "e-hybrid", "kwh": 13 }, { "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen tayron": [{ "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen caddy": [{ "variant": "e-hybrid", "kwh": 25.7 }],
+  // ── VOLKSWAGEN EV ──────────────────────────────────────────────────────────
   "volkswagen id.3": [{ "variant": "pure", "kwh": 52 }, { "variant": "pro", "kwh": 58 }, { "variant": "pro s", "kwh": 77 }, { "variant": "gtx", "kwh": 79 }],
   "volkswagen id.4": [{ "variant": "pure", "kwh": 52 }, { "variant": "pro", "kwh": 77 }, { "variant": "gtx", "kwh": 77 }],
   "volkswagen id.5": [{ "variant": "pure", "kwh": 52 }, { "variant": "pro", "kwh": 77 }, { "variant": "gtx", "kwh": 79 }],
   "volkswagen id.7": [{ "variant": "pro", "kwh": 77 }, { "variant": "pro s", "kwh": 86 }],
-  "volkswagen id.buzz": [{ "variant": "standard", "kwh": 79 }, { "variant": "pro", "kwh": 86 }],
-  "volkswagen passat": [{ "variant": "gte", "kwh": 13 }, { "variant": "ehybrid", "kwh": 25.7 }],
-  "volkswagen tiguan": [{ "variant": "ehybrid", "kwh": 25.7 }],
-  "volkswagen touareg": [{ "variant": "ehybrid", "kwh": 17.9 }],
-  "volvo ex30": [{ "variant": "rwd standard", "kwh": 51 }, { "variant": "rwd long range", "kwh": 69 }, { "variant": "awd", "kwh": 69 }],
-  "volvo ex40": [{ "variant": "standard", "kwh": 69 }, { "variant": "rwd", "kwh": 82 }, { "variant": "awd", "kwh": 82 }],
+  "volkswagen id.buzz": [{ "variant": "standard", "kwh": 77 }, { "variant": "pro", "kwh": 86 } ],
+  "volkswagen e-golf": [{ "variant": "standard", "kwh": 24.2 }, { "variant": "standard", "kwh": 35.8 }],
+  "volkswagen e-up": [{ "variant": "standard", "kwh": 18.7 }, { "variant": "long range", "kwh": 36.8 }],
+  // ── VOLVO PHEV ─────────────────────────────────────────────────────────────
+  "volvo s60": [{ "variant": "recharge t6", "kwh": 18.8 }, { "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }],
+  "volvo s90": [{ "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }],
+  "volvo v60": [{ "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }],
+  "volvo v90": [{ "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }],
+  "volvo xc60": [{ "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }],
+  "volvo xc90": [{ "variant": "recharge t8", "kwh": 18.8 }, { "variant": "t8 twin engine", "kwh": 11.6 }, { "variant": "excellence", "kwh": 10.4 }],
+  // ── VOLVO EV ───────────────────────────────────────────────────────────────
+  "volvo ex30": [{ "variant": "rwd", "kwh": 51 }, { "variant": "long range", "kwh": 69 }, { "variant": "awd", "kwh": 69 }],
+  "volvo ex40": [{ "variant": "standard", "kwh": 69 }, { "variant": "awd", "kwh": 82 }],
   "volvo xc40 recharge": [{ "variant": "standard", "kwh": 69 }, { "variant": "awd", "kwh": 82 }],
   "volvo c40 recharge": [{ "variant": "standard", "kwh": 69 }, { "variant": "awd", "kwh": 82 }],
-  "volvo s60": [{ "variant": "t8 recharge", "kwh": 18.8 }],
-  "volvo s90": [{ "variant": "t8 recharge", "kwh": 18.8 }],
-  "volvo v60": [{ "variant": "t8 recharge", "kwh": 18.8 }],
-  "volvo v90": [{ "variant": "t8 recharge", "kwh": 18.8 }],
-  "volvo xc60": [{ "variant": "t8 recharge", "kwh": 18.8 }],
-  "volvo xc90": [{ "variant": "recharge", "kwh": 18.8 }],
+  "volvo ec40": [{ "variant": "standard", "kwh": 69 }, { "variant": "awd", "kwh": 82 }],
+  // ── XPENG ──────────────────────────────────────────────────────────────────
   "xpeng g6": [{ "variant": "standard", "kwh": 66 }, { "variant": "long range", "kwh": 87.5 }],
-  "zeekr x": [{ "variant": "standard", "kwh": 69 }]
+  "xpeng g9": [{ "variant": "sr", "kwh": 78.2 }, { "variant": "lr", "kwh": 98 }],
+  "xpeng p7": [{ "variant": "standard", "kwh": 86.2 }],
+  // ── ZEEKR ──────────────────────────────────────────────────────────────────
+  "zeekr x": [{ "variant": "rwd", "kwh": 69 }, { "variant": "awd", "kwh": 69 }]
 };
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
@@ -1426,30 +1547,32 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   // Leid driveType af uit de db-sleutel en variant
   const keyAndVariant = bestKey + ' ' + entry.variant;
   let dbDriveType = null;
-  const evKeys = ['e-tron', 'id.', 'ioniq', 'leaf', 'zoe', 'model 3', 'model y', 'model s', 'model x',
-    'e-golf', 'e-up', 'born', 'tavascan', 'enyaq', 'elroq', 'megane e-tech', 'scenic e-tech',
-    'e-208', 'e-2008', 'e-308', 'e-3008', 'e-c3', 'e-c4', 'corsa-e', 'mokka-e', 'astra ev',
-    '500e', '600e', 'dolphin', 'atto', 'byd seal', 'byd tang', 'ariya', 'kona ev',
-    'i-pace', 'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv', 'i4', 'i5', 'i7', 'ix',
-    'ix1', 'ix2', 'ix3', 'lyriq', 'optiq', 'vistiq', 'ex30', 'ex40', 'ec40',
-    'xc40 recharge', 'c40 recharge', 'gv60', 'ev6', 'ev9', 'ev3', 'niro ev', 'soul ev',
-    'mg4', 'mg5', 'mg zs ev', 'marvel', 'cyberster', 'aceman', 'mini cooper e',
-    'polestar', 'taycan', 'macan ev', 'bz4x', 'solterra', 'g6', 'g9', 'p7', 'zeekr',
-    'spring', 'twingo', 'renault 5', 'honda eny', 'prologue', 'capri', 'mustang mach',
-    'f-150 lightning', 'silverado', 'hummer', 'sierra ev', 'equinox ev', 'escalade iq',
-    'smart #', 'ora', 'omoda', 'hongqi', 'bestune nat', 'sakura', 'fortwo', 'forfour',
-    // Modellen waarbij de key zelf al EV impliceert (zonder e- prefix in RDW naam)
-    'peugeot e-208', 'peugeot e-2008', 'peugeot e-308', 'peugeot e-3008', 'peugeot e-008',
-    'opel corsa', 'opel mokka', 'opel astra ev',
-    'citroen c3', 'citroen c4',
-    'fiat 500', 'fiat 600',
-    'ds 3', 'ds 4', 'ds 7',
-    'mini cooper', 'mini aceman',
-    'volkswagen up', 'volkswagen golf e',
-    'kia soul', 'hyundai ioniq 5', 'hyundai ioniq 6', 'hyundai kona'];
+  // EV keys — alleen modellen die ALTIJD volledig elektrisch zijn
+  const evKeys = [
+    'q4 e-tron', 'q6 e-tron', 'q8 e-tron', 'a6 e-tron', 'e-tron gt', 'rs e-tron', 's e-tron gt', 'sq8 e-tron', 'sq6 e-tron',
+    'ix1', 'ix2', 'ix3', ' i4 ', ' i5 ', ' i7 ', ' ix ',
+    'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
+    'ioniq 5', 'ioniq 6', 'ioniq 9', 'kona ev', 'ev3 ', 'ev6', 'ev9', 'niro ev', 'e-niro', 'inster',
+    'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
+    'ex30', 'ex40', 'ec40', 'xc40 recharge', 'c40 recharge',
+    'peugeot e-208', 'peugeot e-2008', 'peugeot e-308', 'peugeot e-3008',
+    'leaf', 'ariya', 'zoe', 'megane e-tech', 'scenic e-tech', 'renault 5',
+    'model 3', 'model y', 'model s', 'model x',
+    'polestar', 'taycan', 'macan ev', 'bz4x', 'solterra',
+    'born', 'tavascan', 'enyaq', 'elroq',
+    'mg4', 'cyberster', 'mg zs ev',
+    'smart #', 'mini cooper e ', 'mini cooper se', 'aceman',
+    'i-pace', 'gv60', 'genesis gv60', 'genesis ev6',
+    'dolphin', 'atto 3', 'byd seal ', 'byd han', 'byd tang',
+    'spring', 'capri', 'mustang mach', 'f-150 lightning', 'equinox ev', 'escalade iq',
+    'honda eny', 'prologue', 'zeekr'
+  ];
 
-  const phevKeys = ['tfsi e', 'phev', 'plug-in', 'e-hybrid', 'ehybrid', 'gte', 'recharge',
-    '300e', '350e', '400e', '250e', '560e', '580e', 'dm-i', 'ehs'];
+  const phevKeys = [
+    'tfsi e', 'phev', 'plug-in', 'e-hybrid', 'ehybrid', 'gte', 'recharge t', 'twin engine',
+    '300e', '350e', '400e', '250e', '560e', '580e', 'dm-i', 'p400e', 'p300e',
+    '4xe', 'e-power', 'hybrid4', 'hybrid sw', '4 e-hybrid', 'turbo s e-hybrid'
+  ];
 
   const hybridKeys = ['hybrid', 'mhev'];
 
@@ -2105,10 +2228,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
   const jaarKmTxt = jaarGebruik ? `${formatNumber(jaarGebruik)} km/jaar` : 'Niet berekend';
 
-  document.getElementById('rapport-screen').style.display = 'block';
-
   const isPaidNow = localStorage.getItem('zow_paid') === 'true' || new URLSearchParams(window.location.search).get('paid') === 'true';
   const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
+
+  // Zet preview/full klasse DIRECT vóór display:block — voorkomt flash van volledig rapport
+  const rapportScreen = document.getElementById('rapport-screen');
+  rapportScreen.classList.remove('preview-mode', 'full-mode');
+  rapportScreen.classList.add(isPaidNow ? 'full-mode' : 'preview-mode');
+  rapportScreen.style.display = 'block';
   // Bouw rappportURL voor terugkeer na betaling
   const returnUrl = encodeURIComponent(window.location.href.split('?')[0] + '?paid=true');
 
@@ -2505,7 +2632,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <div style="padding:14px 16px;background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.18);border-radius:10px;">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red-soft);margin-bottom:6px;">Niet vergelijkbaar met Moba- of BMS-uitlezing</div>
           <p style="font-size:13px;color:var(--white-dim);line-height:1.6;margin:0;">
-            Dit rapport is <strong style="color:var(--white);">geen vervanging</strong> voor een gecertificeerde accumeting zoals een AVILOO-diagnose. Een Moba-uitlezing of BMS-weergave via het dashboard is evenmin betrouwbaar als aankoopinstrument. Een auto met 130.000 km kan op het dashboard 100% SoH tonen — dat is een fabrikantspecifiek algoritme, geen gemeten waarde. Alleen een onafhankelijke meting op celniveau geeft de werkelijke staat.
+            Dit rapport is <strong style="color:var(--white);">geen vervanging</strong> voor een gecertificeerde accumeting zoals een AVILOO-diagnose. Een Moba-uitlezing of BMS-weergave via het dashboard is evenmin betrouwbaar als aankoopinstrument. Een auto met 130.000 km kan op het dashboard 100% SoH tonen. Dat is een fabrikantspecifiek algoritme, geen gemeten waarde. Alleen een onafhankelijke meting op celniveau geeft de werkelijke staat.
           </p>
         </div>
 
@@ -2540,23 +2667,12 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     waBtn.href = `https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20overweeg%20je%20deze%20auto%20serieus%3F%20${kenteken}`;
   }
 
-  // Check of paid=true in URL staat
-  const urlParams = new URLSearchParams(window.location.search);
-  const isPaid = urlParams.get('paid') === 'true' || localStorage.getItem('zow_paid') === 'true';
-
-  if (isPaid) {
+  // Paid banner tonen/verbergen
+  if (isPaidNow) {
     localStorage.setItem('zow_paid', 'true');
-    document.getElementById('rapport-screen').classList.remove('preview-mode');
-    document.getElementById('rapport-screen').classList.add('full-mode');
-    // Toon betaald-banner
-    const paidBanner = document.getElementById('paid-banner');
-    if (paidBanner) paidBanner.style.display = 'flex';
-  } else {
-    document.getElementById('rapport-screen').classList.add('preview-mode');
-    document.getElementById('rapport-screen').classList.remove('full-mode');
-    const paidBanner = document.getElementById('paid-banner');
-    if (paidBanner) paidBanner.style.display = 'none';
   }
+  const paidBanner = document.getElementById('paid-banner');
+  if (paidBanner) paidBanner.style.display = isPaidNow ? 'flex' : 'none';
 }
 
 document.getElementById('kenteken').addEventListener('input', function () {
