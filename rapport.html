@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AccuRisico Rapport – ZekerOpWeg</title>
+<title>AccuRisico Rapport - ZekerOpWeg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -571,7 +571,7 @@
   }
 
   .tip-box li::before {
-    content: '–';
+    content: '-';
     position: absolute;
     left: 0;
     color: var(--muted);
@@ -944,7 +944,7 @@
       display: block !important;
     }
 
-    /* PDF header — ZekerOpWeg branding bovenaan elke pagina */
+    /* PDF header, ZekerOpWeg branding bovenaan elke pagina */
     #rapport-content::before {
       content: '';
       display: block;
@@ -1102,7 +1102,7 @@
       border-radius: 8px !important;
       page-break-inside: avoid !important;
     }
-    /* Disclaimer sub-blokken — tekst altijd donker zichtbaar */
+    /* Disclaimer sub-blokken, tekst altijd donker zichtbaar */
     #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(245,158,11"] {
       background: #fffbeb !important;
       border: 1px solid #f59e0b !important;
@@ -1168,7 +1168,7 @@
       <select id="gebruik">
         <option value="">Kies je rijpatroon</option>
         <option value="weinig">Weinig rijder (tot 10.000 km/jaar)</option>
-        <option value="gemiddeld">Gemiddeld (10.000–20.000 km/jaar)</option>
+        <option value="gemiddeld">Gemiddeld (10.000-20.000 km/jaar)</option>
         <option value="veel">Veel rijder (meer dan 20.000 km/jaar)</option>
       </select>
     </div>
@@ -1199,7 +1199,7 @@
   <div class="loading-text" id="loading-text">Kenteken ophalen...</div>
   <div style="margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 28px;text-align:center;max-width:420px;width:100%;">
     <p style="font-size:14px;color:var(--white-dim);margin-bottom:6px;">Twijfel je over deze auto?</p>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">Stuur het kenteken alvast via WhatsApp — ik kijk direct met je mee.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">Stuur het kenteken alvast via WhatsApp, ik kijk direct met je mee.</p>
     <a id="wa-loading-btn" href="https://wa.me/31623452349?text=Hoi%2C%20ik%20overweeg%20deze%20auto%20te%20kopen%20en%20wil%20de%20accu%20laten%20checken%3A%20" target="_blank"
       style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:12px;text-decoration:none;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1543,7 +1543,7 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   // Leid driveType af uit de db-sleutel en variant
   const keyAndVariant = bestKey + ' ' + entry.variant;
   let dbDriveType = null;
-  // EV keys — alleen modellen die ALTIJD volledig elektrisch zijn
+  // EV keys, alleen modellen die ALTIJD volledig elektrisch zijn
   const evKeys = [
     'q4 e-tron', 'q6 e-tron', 'q8 e-tron', 'a6 e-tron', 'e-tron gt', 'rs e-tron', 's e-tron gt', 'sq8 e-tron', 'sq6 e-tron',
     'ix1', 'ix2', 'ix3', ' i4 ', ' i5 ', ' i7 ', ' ix ',
@@ -1580,7 +1580,7 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
     dbDriveType = 'hybrid';
   }
 
-  // kWh als fallback — ALLEEN als naamdetectie niets heeft gevonden.
+  // kWh als fallback, ALLEEN als naamdetectie niets heeft gevonden.
   // Nooit de naamdetectie overschrijven: 17.9 kWh is een PHEV-accu, geen milde hybride.
   // Milde hybrides hebben 1-3 kWh, PHEV's hebben 8-35 kWh.
   if (!dbDriveType) {
@@ -1621,7 +1621,7 @@ function detectDriveType(brandstof, handelsbenaming, merk) {
     return 'phev';
   }
 
-  // Bekende milde hybride modellen op modelnaam (GEEN octavia — die heeft iV voor PHEV)
+  // Bekende milde hybride modellen op modelnaam (GEEN octavia, die heeft iV voor PHEV)
   const mildHybridModels = [
     'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
     'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage',
@@ -1676,7 +1676,7 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
   let score = 0;
   let factoren = [];
 
-  // Leeftijd: continu lineair — elk jaar telt
+  // Leeftijd: continu lineair, elk jaar telt
   if (leeftijd !== null) {
     score += Math.min(30, (leeftijd / 10) * 30);
     if (leeftijd <= 2) factoren.push({ kleur: 'green', tekst: `${leeftijd} jaar oud: accu heeft weinig degradatiecycli doorlopen.` });
@@ -1685,7 +1685,7 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
     else factoren.push({ kleur: 'amber', tekst: `${leeftijd} jaar oud: hogere leeftijd heeft meetbare invloed op accucapaciteit.` });
   }
 
-  // Kilometerstand: continu lineair — elke 10k km telt
+  // Kilometerstand: continu lineair, elke 10k km telt
   if (km !== null) {
     score += Math.min(30, (km / 200000) * 30);
     if (km < 40000) factoren.push({ kleur: 'green', tekst: `${Math.round(km/1000)}k km: lage kilometerstand, beperkte accubelasting.` });
@@ -1730,7 +1730,7 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
     // Audi PHEV: grootste spreiding van alle merken (82-100% SoH bij zelfde km/leeftijd)
     if (modelKey.includes('audi') && driveType === 'phev') {
       score += 5;
-      factoren.push({ kleur: 'amber', tekst: "Audi PHEV: in de praktijk de grootste spreiding van alle merken. Twee identieke Audi's kunnen op dezelfde km meer dan 10 procentpunt SoH van elkaar verschillen — afhankelijk van laadgedrag." });
+      factoren.push({ kleur: 'amber', tekst: "Audi PHEV: in de praktijk de grootste spreiding van alle merken. Twee identieke Audi's kunnen op dezelfde km meer dan 10 procentpunt SoH van elkaar verschillen, afhankelijk van laadgedrag." });
     }
   }
 
@@ -1754,7 +1754,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
 
   if (driveType === 'phev') {
     // ═══════════════════════════════════════════════════════════════
-    // GECERTIFICEERDE AVILOO-IJKPUNTEN — volledige dataset april 2026
+    // GECERTIFICEERDE AVILOO-IJKPUNTEN, volledige dataset april 2026
     // ═══════════════════════════════════════════════════════════════
     //
     // Skoda Octavia IV iV (13 kWh):
@@ -1771,7 +1771,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     //   4.0jr / 250.845 km → 84.8%  verlies 15.2%  (hoge intensiteit)
     //   3.5jr / 294.164 km → 81.6%  verlies 18.4%  (zeer intensief)
     //
-    // Dealer Feser — selectiebias (publiceert alleen bij goed resultaat):
+    // Dealer Feser, selectiebias (publiceert alleen bij goed resultaat):
     //   Seat Leon e-Hybrid 13kWh,     3.5jr /  50.090 km → 93.1%  verlies  6.9%
     //   Seat Leon e-Hybrid 13kWh,     3.5jr /  60.657 km → 97.5%  verlies  2.5%
     //   Cupra Formentor 13kWh,        2.5jr /   6.933 km → 101.6% verlies  0%
@@ -1799,7 +1799,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     // NOOT A6/A7 54k/5jr op 97.9%: bewijst dat Audi grotere accu (17.9 kWh) bij
     // goed gebruik uitzonderlijk weinig degradeert. Leeftijd < km als factor bevestigd.
     //
-    // Q5 59.9k/4jr op 87.1% is opvallend — zelfde model als Q5 121k op 100.1%.
+    // Q5 59.9k/4jr op 87.1% is opvallend, zelfde model als Q5 121k op 100.1%.
     // Bevestigt: laadgedrag bepaalt alles, niet de kilometerstand.
     // ═══════════════════════════════════════════════════════════════
     //
@@ -1824,22 +1824,22 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     // ─── PHEV DEGRADATIE FORMULE v3 ────────────────────────────────
     // Geijkt op BMW X3 30e als primair ijkpunt + 10 extra gecertificeerde meetpunten
     //
-    // MIN (goed gebruik — Octavia/Leon/Passat niveau):
+    // MIN (goed gebruik, Octavia/Leon/Passat niveau):
     //   0.5%/jr + 0.3%/10k → Octavia 4jr/40k: 2.0+1.2=3.2% ✓ (gemeten 4.1%)
     //
-    // MID (normaal gebruik — BMW X3 als primaire ijklijn):
+    // MID (normaal gebruik, BMW X3 als primaire ijklijn):
     //   1.5%/jr × intensiteit + 0.55%/10k (daalt licht bij hoge km)
     //   X3 3jr/45k: 1.5*3 + 0.55*4.5 = 4.5+2.5 = 7% ✓ (gemeten 9.3%)
     //   X3 6jr/117k: 1.5*6 + 0.45*11.7 = 9+5.3 = 14.3% ✓ (gemeten 14.1%)
     //   Q7 7jr/149k: 1.5*7 + 0.40*14.9 = 10.5+6.0 = 16.5% ✓ (gemeten 17.4%)
     //
-    // MAX (slecht gebruik — A6 45k/14.6% en Q5 99k/20.9% als bovengrens):
+    // MAX (slecht gebruik, A6 45k/14.6% en Q5 99k/20.9% als bovengrens):
     //   3.0%/jr + 1.0%/10k × intensiteit
     //   A6 4jr/45k: 3.0*4 + 1.0*4.5 = 12+4.5 = 16.5% ✓ (gemeten 14.6%, bevat het)
     //   Q5 8jr/99k: 3.0*8 + 1.0*9.95 = 24+9.95 = 33.95% → cap 35 ✓
     // ────────────────────────────────────────────────────────────────
 
-    // Audi PHEV correctiefactor — onderbouwd door volledige dataset (n=11):
+    // Audi PHEV correctiefactor, onderbouwd door volledige dataset (n=11):
     // Reëel marktgemiddelde Audi PHEV (gecorrigeerd voor selectiebias): 88.5% SoH
     // Audi-accu's gevoeliger voor laadgedrag dan BMW/Skoda → min hoger, mid hoger
     // Bewijs: A6 45k/4jr → 85.4% (formule gaf 92% → 6.6% te laag)
@@ -1852,13 +1852,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     const verliesMin = (leeftijd * 0.5 + (km / 10000) * 0.3) * audiCorrectie;
     const min = Math.max(3, Math.round(verliesMin));
 
-    // MID: normaal gebruik — km-factor daalt licht bij hoge km (intensief zakelijk)
+    // MID: normaal gebruik, km-factor daalt licht bij hoge km (intensief zakelijk)
     const intFactorMid = Math.min(1.0 + (intensiteit - 1) * 0.15, 1.3);
     const kmFactorMid  = Math.max(0.38, 0.55 - (km / 1000000));
     const verliesMid   = (leeftijd * 1.5 * intFactorMid + (km / 10000) * kmFactorMid) * audiCorrectie;
     const midVal = Math.round(verliesMid);
 
-    // MAX: slecht gebruik — Audi outliers (A6 45k → 14.6%, Q5 99k → 20.9%) als bovengrens
+    // MAX: slecht gebruik, Audi outliers (A6 45k → 14.6%, Q5 99k → 20.9%) als bovengrens
     const verliesMax = leeftijd * 3.0 * audiCorrectie + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
     const max = Math.min(Math.max(Math.round(verliesMax), min + 6), 35);
 
@@ -1899,7 +1899,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
 
   if (driveType === 'ev') {
     // ═══════════════════════════════════════════════════════════════
-    // EV DATASET — 41 gecertificeerde/gemeten punten april 2026
+    // EV DATASET, 41 gecertificeerde/gemeten punten april 2026
     // ═══════════════════════════════════════════════════════════════
     // Gemiddelde SoH per km-bracket (gecorrigeerd voor selectiebias):
     //    0- 50k km: gem 94.1%  verlies ~6%
@@ -2044,7 +2044,7 @@ async function startRapport() {
   // Sla lead op in localStorage
   const leadData = { naam, email, kenteken: kentekenRaw.replace(/[-\s]/g,'').toUpperCase(), kooptiming, locatie, timestamp: new Date().toISOString() };
   localStorage.setItem('zow_lead', JSON.stringify(leadData));
-  // Stuur naar webhook (optioneel — vult stil op de achtergrond)
+  // Stuur naar webhook (optioneel, vult stil op de achtergrond)
   try {
     fetch('https://hook.eu1.make.com/rbterm9vnvcdjhaikugy394qbpi0aq93', {
       method: 'POST', headers: {'Content-Type':'application/json'},
@@ -2112,7 +2112,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const bsLow      = brandstof.toLowerCase();
   const zoektekst  = (merkLow + ' ' + handelLow + ' ' + varLow + ' ' + bsLow).replace(/\s+/g, ' ').trim();
 
-  // DriveType detectie — strikte prioriteitsvolgorde
+  // DriveType detectie, strikte prioriteitsvolgorde
   let driveType = null;
 
   // 1. Audi TFSI e → altijd PHEV (Q7 55, Q8 60, Q5 50, A6, A8 etc.)
@@ -2124,7 +2124,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     else if (/4[05].{0,4}tfsi/i.test(zoektekst)) kwh = kwh && kwh < 30 ? kwh : 14.1;
   }
   // 2. Audi EV (Q4, Q6, dedicated e-tron platform, e-tron GT)
-  // NIET: Q3 e-tron, Q5 e-tron, A6 e-tron TFSI — die zijn PHEV met verwarrende naam
+  // NIET: Q3 e-tron, Q5 e-tron, A6 e-tron TFSI, die zijn PHEV met verwarrende naam
   if (!driveType && merkLow.includes('audi')) {
     const isEtronEV = (
       /q4.{0,5}e.?tron/i.test(zoektekst) ||
@@ -2150,31 +2150,31 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   if (!driveType && /\biv\b/i.test(handelLow)) {
     driveType = 'phev';
   }
-  // 5b. Land Rover PHEV detectie — RDW registreert als Benzine zonder PHEV-indicator
+  // 5b. Land Rover PHEV detectie, RDW registreert als Benzine zonder PHEV-indicator
   // P400e, P510e, P550e zijn allemaal PHEV varianten
   if (!driveType && (merkLow.includes('land rover') || merkLow.includes('landrover'))) {
-    // Range Rover Sport P400e heeft 31.8 kWh — battery-db pakt dit op
+    // Range Rover Sport P400e heeft 31.8 kWh, battery-db pakt dit op
     // Als db match gevonden is met phev variant, driveType al gezet
     // Fallback: alle Range Rover met kwh > 5 zijn PHEV
     if (battery && battery.dbDriveType) driveType = battery.dbDriveType;
   }
-  // 5c. Hyundai Tucson — hybride, niet EV
+  // 5c. Hyundai Tucson, hybride, niet EV
   if (!driveType && merkLow.includes('hyundai') && handelLow.includes('tucson')) {
     driveType = battery && battery.kwh && battery.kwh > 5 ? 'phev' : 'hybrid';
     if (!kwh) kwh = 13.8;
   }
-  // 5d. Nissan Qashqai — e-Power is mild hybrid, niet EV
+  // 5d. Nissan Qashqai, e-Power is mild hybrid, niet EV
   // RDW registreert soms als Elektrisch maar Qashqai rijdt op benzine, heeft geen laadpaal
   if (!driveType && merkLow.includes('nissan') && handelLow.includes('qashqai')) {
     driveType = 'hybrid';
     if (!kwh) kwh = 2.1;
   }
-  // 5e. Peugeot 508 — PHEV, nooit EV. evKey 'peugeot 208' matcht anders op '508'
+  // 5e. Peugeot 508, PHEV, nooit EV. evKey 'peugeot 208' matcht anders op '508'
   if (!driveType && merkLow.includes('peugeot') && handelLow.includes('508')) {
     driveType = 'phev';
     if (!kwh) kwh = 11.8;
   }
-  // 5f. Peugeot 308 zonder e- prefix — hybride/PHEV, niet EV
+  // 5f. Peugeot 308 zonder e- prefix, hybride/PHEV, niet EV
   if (!driveType && merkLow.includes('peugeot') && handelLow.includes('308') && !handelLow.includes('e-308')) {
     driveType = battery && battery.kwh && battery.kwh > 30 ? 'ev' : 'phev';
   }
@@ -2205,9 +2205,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const batterijLabel = kwh
     ? `${kwh} kWh`
-    : (driveType === 'ev' ? 'Niet vastgesteld (doorgaans 40–100 kWh in dit segment)' :
-       driveType === 'phev' ? 'Niet vastgesteld (doorgaans 8–30 kWh in dit segment)' :
-       driveType === 'hybrid' ? 'Niet vastgesteld (doorgaans 1–3 kWh)' : 'n.v.t.');
+    : (driveType === 'ev' ? 'Niet vastgesteld (doorgaans 40-100 kWh in dit segment)' :
+       driveType === 'phev' ? 'Niet vastgesteld (doorgaans 8-30 kWh in dit segment)' :
+       driveType === 'hybrid' ? 'Niet vastgesteld (doorgaans 1-3 kWh)' : 'n.v.t.');
 
   const degTekst = driveType !== 'verbrandingsmotor'
     ? `Verwacht verlies: ${degradatie.min}% tot ${degradatie.max}% (bandbreedte goed tot slecht gebruik)`
@@ -2218,7 +2218,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const degMid = degradatie.sohMid || Math.round(100 - (degradatie.min + degradatie.max) / 2);
   const barPct = Math.min(100, Math.max(10, degMid));
   const barKleur = barPct >= 88 ? 'green' : barPct >= 78 ? 'amber' : 'red';
-  const barLabel = `${100 - degradatie.max}–${100 - degradatie.min}%`;
+  const barLabel = `${100 - degradatie.max}-${100 - degradatie.min}%`;
 
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
@@ -2227,7 +2227,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const isPaidNow = localStorage.getItem('zow_paid') === 'true' || new URLSearchParams(window.location.search).get('paid') === 'true';
   const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
 
-  // Zet preview/full klasse DIRECT vóór display:block — voorkomt flash van volledig rapport
+  // Zet preview/full klasse DIRECT vóór display:block, voorkomt flash van volledig rapport
   const rapportScreen = document.getElementById('rapport-screen');
   rapportScreen.classList.remove('preview-mode', 'full-mode');
   rapportScreen.classList.add(isPaidNow ? 'full-mode' : 'preview-mode');
@@ -2300,7 +2300,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     ${!isPaidNow ? `
     <!-- PREVIEW MODE: urgentie + lock -->
     <div class="urgency-banner no-print">
-      <strong>Let op:</strong> Accuschade bij dit type voertuig kan oplopen tot <strong>${accuKosten}</strong> — onzichtbaar zonder meting.
+      <strong>Let op:</strong> Accuschade bij dit voertuigtype kan oplopen tot <strong>${accuKosten}</strong>, onzichtbaar zonder meting.
     </div>
     ` : ''}
 
@@ -2328,17 +2328,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
       <div class="info-row" style="position:relative;overflow:hidden;">
         <span class="info-label">Verwacht verlies</span>
-        <span class="info-value" style="filter:blur(5px);user-select:none;">??–??%</span>
+        <span class="info-value" style="filter:blur(5px);user-select:none;">??-??%</span>
       </div>
       <div class="info-row" style="position:relative;overflow:hidden;">
         <span class="info-label">ADAC-norm status</span>
         <span class="info-value" style="filter:blur(5px);user-select:none;">?? norm</span>
       </div>
-      <div style="margin-top:14px;padding:12px 14px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;text-align:center;">
-        <div style="font-size:13px;color:var(--white-dim);margin-bottom:8px;">🔒 Ontgrendel voor exacte accudata</div>
-        <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}" style="font-size:13px;padding:10px 20px;">
-          Zie werkelijke accustatus – €19,95
-        </a>
+      <div style="margin-top:12px;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;text-align:center;">
+        <span style="font-size:12px;color:var(--muted);">🔒 Volledige analyse beschikbaar na betaling</span>
       </div>
       ` : `
       <!-- BETAALD: toon alles -->
@@ -2367,7 +2364,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <div class="battery-stats">
           <div class="battery-stat"><span class="battery-stat-val">${kwh} kWh</span><span class="battery-stat-label">Originele capaciteit</span></div>
           <div class="battery-stat"><span class="battery-stat-val">${(kwh * (100 - degMid) / 100).toFixed(1)} kWh</span><span class="battery-stat-label">Schatting nu (midden)</span></div>
-          <div class="battery-stat"><span class="battery-stat-val">${degradatie.min}–${degradatie.max}%</span><span class="battery-stat-label">Verwacht verlies</span></div>
+          <div class="battery-stat"><span class="battery-stat-val">${degradatie.min}-${degradatie.max}%</span><span class="battery-stat-label">Verwacht verlies</span></div>
         </div>
         <p style="font-size:12px;color:var(--muted);margin-top:12px;">Statistische schatting op basis van leeftijd, kilometrage en rijintensiteit.</p>
       </div>` : `
@@ -2380,31 +2377,33 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     ${!isPaidNow ? `
     <!-- LOCK GATE -->
     <div class="unlock-gate no-print">
-      <div style="font-size:28px;margin-bottom:8px;">🔒</div>
-      <h3>Ontgrendel het volledige AccuRisico Rapport</h3>
-      <p style="font-size:14px;color:var(--white-dim);margin-bottom:16px;line-height:1.6;">
-        Dit lijkt vaak een goede deal…<br>
-        <strong style="color:var(--white);">Maar de accu bepaalt de echte waarde. Zonder check koop je blind.</strong>
+      <div style="font-size:24px;margin-bottom:12px;">🔒</div>
+      <h3 style="font-size:19px;margin-bottom:12px;">Dit is wat je nu niet ziet</h3>
+
+      <p style="font-size:14px;color:var(--white-dim);line-height:1.65;margin-bottom:18px;">
+        Dit lijkt een goede deal.<br>
+        Maar zonder inzicht in de accu koop je blind.<br>
+        <strong style="color:var(--white);">En dat kan je duizenden euro's kosten.</strong>
       </p>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:4px;">Wat je nu mist:</p>
-      <ul>
-        <li>Exacte SoH-schatting (accugezondheid in %)</li>
-        <li>Verwachte degradatie, goed vs slecht gebruik</li>
-        <li>ADAC-norm vergelijking voor dit voertuig</li>
-        <li>Praktijkgedrag en cel-anomalie risico</li>
-        <li>Volledige tips voor proefrit en aankoop</li>
-        <li>Conclusie + aankoopadvies</li>
-      </ul>
-      <div style="margin-bottom:14px;">
-        <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}">
-          🔓 Ontgrendel direct – voorkom miskoop van €1.000+
-        </a>
-        <p class="btn-unlock-sub">Eenmalig · Geen abonnement · Direct toegang</p>
-        <p style="font-size:11px;color:var(--muted);margin-top:8px;">⏳ Dit rapport is 48 uur geldig voor kenteken ${kenteken}</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;text-align:left;">
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Accuconditie inschatting</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Degradatie analyse</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 ADAC-norm vergelijking</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Aankoopadvies</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Proefrit tips</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Cel-anomalie risico</div>
       </div>
-      <div class="social-proof-bar">
-        <div class="social-proof-item">✅ <span>1.200+</span> rapporten gegenereerd</div>
-        <div class="social-proof-item">🔒 <span>Veilige betaling</span> via Stripe</div>
+
+      <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}">
+        Bekijk het volledige rapport voor €19,95
+      </a>
+      <p class="btn-unlock-sub" style="margin-top:10px;">Eenmalig · Geen abonnement · Veilig via Stripe</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:6px;">⏳ Geldig voor 48 uur · Kenteken ${kenteken}</p>
+
+      <div class="social-proof-bar" style="margin-top:16px;">
+        <div class="social-proof-item">✅ <span>1.200+</span> rapporten</div>
+        <div class="social-proof-item">🔒 <span>Veilig</span> via Stripe</div>
       </div>
     </div>
     ` : ''}
@@ -2527,7 +2526,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div class="highlight-box" style="margin-top:12px;background:rgba(239,68,68,0.05);border-color:rgba(239,68,68,0.18)">
         <strong style="color:var(--red-soft)">Cel-anomalieën zijn niet zichtbaar zonder meting.</strong>
         <span style="display:block;margin-top:6px;line-height:1.6;color:var(--white-dim);">
-          In de praktijk zijn accu's gevonden waarbij AVILOO een veiligheidsrisico detecteerde — terwijl het dashboard geen bijzonderheden toonde en de auto normaal reed. Een Audi Q3 op 92.000 km bleek een cel-anomalie te hebben die alleen via een diagnose zichtbaar was. Bij voertuigen met hogere kilometerstand of leeftijd is dit risico reëler. Een AccuCheck meet op celniveau — dat is wat een proefrit of dashboard niet kan.
+          In de praktijk zijn accu's gevonden waarbij AVILOO een veiligheidsrisico detecteerde, terwijl het dashboard geen bijzonderheden toonde en de auto normaal reed. Een Audi Q3 op 92.000 km bleek een cel-anomalie te hebben die alleen via een diagnose zichtbaar was. Bij voertuigen met hogere kilometerstand of leeftijd is dit risico reëler. Een AccuCheck meet op celniveau, dat is wat een proefrit of dashboard niet kan.
         </span>
       </div>` : ''}
     </div>` : ''}
@@ -2606,10 +2605,10 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     ${!isPaidNow ? `
     <div class="cta-card">
       <div style="font-size:28px;margin-bottom:8px;">🔒</div>
-      <h2>Ontgrendel je volledige AccuRisico Rapport</h2>
-      <p>Je preview is klaar. Ontgrendel nu voor €19,95 en zie de exacte accuschade-inschatting, degradatieanalyse en aankoopadvies voor de ${autoNaam}.</p>
+      <h2>Dit is je preview. Het echte rapport staat hierachter.</h2>
+      <p>Je ziet nu de risicoscore en basisinfo. De accuconditie, degradatie-analyse en aankoopadvies voor de ${autoNaam} zijn beschikbaar na betaling.</p>
       <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" class="cta-btn" style="display:inline-block;background:var(--teal);color:var(--navy);padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;box-shadow:0 6px 28px rgba(45,212,191,0.3);">
-        🔓 Ontgrendel direct – voorkom miskoop van €1.000+
+        🔓 Ontgrendel direct - voorkom miskoop van €1.000+
       </a>
       <p class="cta-sub">Eenmalig · Geen abonnement · Stripe beveiligd · Direct toegang</p>
       <p style="font-size:12px;color:var(--muted);margin-top:6px;">Minder dan een tankbeurt. Meer zekerheid dan een proefrit.</p>
@@ -2652,7 +2651,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <div style="padding:14px 16px;background:rgba(100,116,139,0.08);border:1px solid rgba(100,116,139,0.18);border-radius:10px;">
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--white-dim);margin-bottom:6px;">Hoe dit rapport te lezen</div>
           <p style="font-size:13px;color:var(--white-dim);line-height:1.6;margin:0;">
-            De bandbreedte in dit rapport (bijv. 7–30% verlies) geeft aan wat realistisch is op basis van de markt. De ondergrens geldt voor voertuigen met aantoonbaar goed laadgedrag. De bovengrens geldt bij intensief of destructief gebruik. De middenwaarde is de meest waarschijnlijke schatting bij normaal gebruik. Geen enkel getal in dit rapport is een garantie of gecertificeerde meetuitslag.
+            De bandbreedte in dit rapport (bijv. 7-30% verlies) geeft aan wat realistisch is op basis van de markt. De ondergrens geldt voor voertuigen met aantoonbaar goed laadgedrag. De bovengrens geldt bij intensief of destructief gebruik. De middenwaarde is de meest waarschijnlijke schatting bij normaal gebruik. Geen enkel getal in dit rapport is een garantie of gecertificeerde meetuitslag.
           </p>
         </div>
 
