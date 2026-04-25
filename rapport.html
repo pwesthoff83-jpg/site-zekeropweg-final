@@ -904,14 +904,10 @@
   }
   .btn-pdf:hover { background: rgba(45,212,191,0.18); }
 
-  /* Preview: toon alleen bepaalde cards */
-  .preview-mode .section-card.preview-hidden {
-    display: none;
-  }
-  .preview-mode .beslismoment,
-  .preview-mode .cta-card {
-    display: none;
-  }
+  /* Preview: fallback CSS (inline styles zijn leidend) */
+  .preview-mode .section-card.preview-hidden { display: none !important; }
+  .preview-mode .beslismoment { display: none !important; }
+  .preview-mode .cta-card { display: none !important; }
 
   /* Print styles */
   @media print {
@@ -2319,7 +2315,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
-    <div class="${!isPaidNow ? 'blur-block' : ''}" style="margin-bottom:16px;">
+    <div style="margin-bottom:16px;${!isPaidNow ? 'filter:blur(4px);pointer-events:none;user-select:none;opacity:0.7' : ''}">
     <div class="section-card">
       <h3><span class="section-icon">🔋</span>Accu-inschatting</h3>
       <div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value highlight">${batterijLabel}</span></div>
@@ -2396,13 +2392,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
     ` : ''}
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">📊</span>Risicoclassificatie</h3>
       <div style="margin-bottom:14px;"><span class="badge ${risico.kleur === 'green' ? 'teal' : 'amber'}">${risico.label}</span></div>
       <p class="prose">Op basis van de beschikbare gegevens is een globale beoordeling gemaakt. Deze beoordeling weerspiegelt de statistische kans op accuproblemen, niet de werkelijke staat.</p>
     </div>
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">📋</span>Waarom deze beoordeling</h3>
       <ul class="risk-list">
         ${factoren.map(f => `
@@ -2417,7 +2413,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </ul>
     </div>
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">🛣️</span>Kilometeranalyse</h3>
       <div class="info-row"><span class="info-label">Totale kilometerstand</span><span class="info-value">${kmTxt}</span></div>
       <div class="info-row"><span class="info-label">Voertuigleeftijd</span><span class="info-value">${leeftijdTxt}</span></div>
@@ -2426,14 +2422,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       ${jaarGebruik && jaarGebruik > 20000 ? '<div class="highlight-box"><strong>Let op:</strong> Het gemiddeld jaargebruik ligt boven de 20.000 km. Dit betekent meer laadcycli en doorgaans snellere accubelasting.</div>' : ''}
     </div>
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">💡</span>Wat veel kopers niet weten</h3>
       <p class="prose">Twee identieke auto's met dezelfde kilometerstand kunnen 10 tot 15 procentpunt SoH van elkaar verschillen. Kilometerstand is een indicatie. Laadgedrag is de echte slijtfactor, en die is volledig onzichtbaar in het kenteken.</p>
       <p class="prose" style="margin-top:10px;">Een accu die structureel tot 100% geladen wordt en helemaal wordt leeggereden, cycleert destructief. Bij 50 km bereik en dagelijks volledig laden is de accu al na circa 50.000 km zwaar belast. Diezelfde accu met goed laadgedrag haalt moeiteloos 150.000 km met een SoH boven de 82%.</p>
       <p class="prose" style="margin-top:10px;">De accu is het duurste onderdeel van dit voertuig. Vervanging kost doorgaans ${driveType === 'ev' ? '5.000 tot 20.000 euro' : '2.000 tot 8.000 euro'}, afhankelijk van merk en accugrootte. De optimale laadbreedte voor celgezondheid ligt tussen 20% en 80%.</p>
     </div>
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">📈</span>Praktijkgedrag batterij</h3>
       <p class="prose">In de praktijk presteren ${driveType === 'ev' ? 'elektrische accu\'s' : driveType === 'phev' ? 'plug-in hybride accu\'s' : 'hybride accu\'s'} doorgaans goed bij verstandig gebruik: regelmatig rijden, niet altijd volledig laden en niet langdurig leeg laten staan.</p>
       <p class="prose" style="margin-top:10px;">Bij intensief gebruik, veel snelladen of extreme temperaturen neemt de degradatie sneller toe. Dit is zelden zichtbaar in de voertuighistorie, maar wel meetbaar via een diagnose.</p>
@@ -2453,7 +2449,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">⚡</span>Verwachte degradatie</h3>
       <p class="prose" style="margin-bottom:16px;">${degradatie.uitleg}</p>
 
@@ -2520,7 +2516,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>` : ''}
 
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">✅</span>Tips voor koper en proefrit</h3>
       <div class="tip-grid">
         <div class="tip-box good">
@@ -2564,7 +2560,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
     </div>
 
-    <div class="${!isPaidNow ? 'beslismoment preview-hidden' : 'beslismoment'}">
+    <div class="beslismoment" style="${!isPaidNow ? 'display:none' : ''}">
       <h3>Beslismoment</h3>
       ${risico.kleur === 'green'
         ? `<p>Op basis van dit rapport geeft de ${autoNaam} een <strong>sterke basis</strong>. De beschikbare data geeft geen alarmsignalen. Dat neemt niet weg dat de werkelijke accuconditie onbekend blijft zonder meting.</p>`
@@ -2578,7 +2574,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
     </div>
 
-    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
+    <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
       <h3><span class="section-icon">📌</span>Conclusie</h3>
       <p class="prose">Dit rapport geeft een gefundeerde inschatting van het accurisico van de ${autoNaam} (${kenteken}). De beoordeling is <em>${risico.label.toLowerCase()}</em>${
         risico.label === 'Sterke basis'
