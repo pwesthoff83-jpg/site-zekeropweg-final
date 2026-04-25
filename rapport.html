@@ -1321,7 +1321,8 @@ const batteryDB = {
   "peugeot e-208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "peugeot 2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
   "peugeot e-2008": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
-  "peugeot 308": [{ "variant": "standard", "kwh": 54 }],
+  "peugeot 308": [{ "variant": "hybrid", "kwh": 12.4 }, { "variant": "ev", "kwh": 54 }],
+  "peugeot 508": [{ "variant": "hybrid", "kwh": 11.8 }, { "variant": "phev", "kwh": 11.8 }],
   "peugeot e-3008": [{ "variant": "standard", "kwh": 77 }],
   "peugeot 3008": [{ "variant": "standard", "kwh": 77 }],
   "polestar 2": [{ "variant": "standard", "kwh": 69 }, { "variant": "long range", "kwh": 82 }],
@@ -1438,7 +1439,7 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
     'f-150 lightning', 'silverado', 'hummer', 'sierra ev', 'equinox ev', 'escalade iq',
     'smart #', 'ora', 'omoda', 'hongqi', 'bestune nat', 'sakura', 'fortwo', 'forfour',
     // Modellen waarbij de key zelf al EV impliceert (zonder e- prefix in RDW naam)
-    'peugeot 208', 'peugeot 2008', 'peugeot 308', 'peugeot 3008',
+    'peugeot e-208', 'peugeot e-2008', 'peugeot e-308', 'peugeot e-3008', 'peugeot e-008',
     'opel corsa', 'opel mokka', 'opel astra ev',
     'citroen c3', 'citroen c4',
     'fiat 500', 'fiat 600',
@@ -2048,6 +2049,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   if (!driveType && merkLow.includes('nissan') && handelLow.includes('qashqai')) {
     driveType = 'hybrid';
     if (!kwh) kwh = 2.1;
+  }
+  // 5e. Peugeot 508 — PHEV, nooit EV. evKey 'peugeot 208' matcht anders op '508'
+  if (!driveType && merkLow.includes('peugeot') && handelLow.includes('508')) {
+    driveType = 'phev';
+    if (!kwh) kwh = 11.8;
+  }
+  // 5f. Peugeot 308 zonder e- prefix — hybride/PHEV, niet EV
+  if (!driveType && merkLow.includes('peugeot') && handelLow.includes('308') && !handelLow.includes('e-308')) {
+    driveType = battery && battery.kwh && battery.kwh > 30 ? 'ev' : 'phev';
   }
   // 6. Battery-db als ground truth
   if (!driveType && battery && battery.dbDriveType) {
