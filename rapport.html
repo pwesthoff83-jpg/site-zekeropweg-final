@@ -1200,7 +1200,7 @@
   <div style="margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 28px;text-align:center;max-width:420px;width:100%;">
     <p style="font-size:14px;color:var(--white-dim);margin-bottom:6px;">Twijfel je over deze auto?</p>
     <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">Stuur het kenteken alvast via WhatsApp — ik kijk direct met je mee.</p>
-    <a id="wa-loading-btn" href="https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20overweeg%20je%20deze%20auto%20serieus%3F%20" target="_blank"
+    <a id="wa-loading-btn" href="https://wa.me/31623452349?text=Hoi%2C%20ik%20overweeg%20deze%20auto%20te%20kopen%20en%20wil%20de%20accu%20laten%20checken%3A%20" target="_blank"
       style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:12px;text-decoration:none;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Stuur kenteken via WhatsApp
@@ -2315,29 +2315,46 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
-    <div style="margin-bottom:16px;${!isPaidNow ? 'filter:blur(4px);pointer-events:none;user-select:none;opacity:0.7' : ''}">
-    <div class="section-card">
+    <div class="section-card" style="margin-bottom:16px;">
       <h3><span class="section-icon">🔋</span>Accu-inschatting</h3>
       <div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value highlight">${batterijLabel}</span></div>
-      <div class="info-row"><span class="info-label">Verwacht elektrisch bereik</span><span class="info-value">${actieradius}</span></div>
       <div class="info-row"><span class="info-label">Accutype</span><span class="info-value">${driveType === 'ev' ? 'Traktieaccu (hoog voltage)' : 'Plug-in hybride accu'}</span></div>
-      ${degradatie.adacNorm && km > 0 ? `
+
+      ${!isPaidNow ? `
+      <!-- PREVIEW: verberg alle kritische info, toon alleen teaser -->
+      <div class="info-row" style="position:relative;overflow:hidden;">
+        <span class="info-label">Geschatte SoH</span>
+        <span class="info-value" style="filter:blur(5px);user-select:none;color:var(--teal);">~??%</span>
+      </div>
+      <div class="info-row" style="position:relative;overflow:hidden;">
+        <span class="info-label">Verwacht verlies</span>
+        <span class="info-value" style="filter:blur(5px);user-select:none;">??–??%</span>
+      </div>
+      <div class="info-row" style="position:relative;overflow:hidden;">
+        <span class="info-label">ADAC-norm status</span>
+        <span class="info-value" style="filter:blur(5px);user-select:none;">?? norm</span>
+      </div>
+      <div style="margin-top:14px;padding:12px 14px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;text-align:center;">
+        <div style="font-size:13px;color:var(--white-dim);margin-bottom:8px;">🔒 Ontgrendel voor exacte accudata</div>
+        <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}" style="font-size:13px;padding:10px 20px;">
+          Zie werkelijke accustatus – €19,95
+        </a>
+      </div>
+      ` : `
+      <!-- BETAALD: toon alles -->
       <div class="info-row">
-        <span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span>
+        <span class="info-label">ADAC-norm bij ${degradatie.adacLabel || ''}</span>
         <span class="info-value" style="color:${degradatie.onderNorm ? 'var(--red-soft)' : 'var(--green-soft)'}">
-          ${degradatie.adacNorm}% min. SoH &nbsp;
-          <span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:${degradatie.onderNorm ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.12)'}">
-            ${degradatie.onderNorm ? '⚠️ Onder norm' : '✓ Boven norm'}
-          </span>
+          ${degradatie.adacNorm ? degradatie.adacNorm + '% min. SoH' : 'n.v.t.'} &nbsp;
+          ${degradatie.adacNorm ? '<span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:' + (degradatie.onderNorm ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.12)') + '">' + (degradatie.onderNorm ? '⚠️ Onder norm' : '✓ Boven norm') + '</span>' : ''}
         </span>
-      </div>` : ''}
+      </div>
       <div class="info-row">
         <span class="info-label">Geschatte SoH (normaal gebruik)</span>
         <span class="info-value" style="color:${degradatie.sohMid >= 88 ? 'var(--teal)' : degradatie.sohMid >= 80 ? 'var(--amber)' : 'var(--red-soft)'}">
           ~${degradatie.sohMid || (100 - Math.round((degradatie.min + degradatie.max)/2))}%
         </span>
       </div>
-
       ${kwh ? `
       <div class="battery-visual">
         <div class="battery-label-row">
@@ -2352,12 +2369,12 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
           <div class="battery-stat"><span class="battery-stat-val">${(kwh * (100 - degMid) / 100).toFixed(1)} kWh</span><span class="battery-stat-label">Schatting nu (midden)</span></div>
           <div class="battery-stat"><span class="battery-stat-val">${degradatie.min}–${degradatie.max}%</span><span class="battery-stat-label">Verwacht verlies</span></div>
         </div>
-        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Statistische schatting op basis van leeftijd, kilometrage en rijintensiteit. De werkelijke waarde is alleen meetbaar via een diagnose.</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;">Statistische schatting op basis van leeftijd, kilometrage en rijintensiteit.</p>
       </div>` : `
       <div class="highlight-box">
-        De exacte batterijcapaciteit is niet vastgesteld, maar ligt doorgaans in dit segment tussen <strong>${driveType === 'ev' ? '40 en 100 kWh' : '8 en 30 kWh'}</strong>. Een meting geeft uitsluitsel.
+        De exacte batterijcapaciteit is niet vastgesteld, maar ligt doorgaans in dit segment tussen <strong>${driveType === 'ev' ? '40 en 100 kWh' : '8 en 30 kWh'}</strong>.
       </div>`}
-    </div>
+      `}
     </div>` : ''}
 
     ${!isPaidNow ? `
@@ -2372,7 +2389,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <p style="font-size:13px;color:var(--muted);margin-bottom:4px;">Wat je nu mist:</p>
       <ul>
         <li>Exacte SoH-schatting (accugezondheid in %)</li>
-        <li>Verwachte degradatie — goed vs slecht gebruik</li>
+        <li>Verwachte degradatie, goed vs slecht gebruik</li>
         <li>ADAC-norm vergelijking voor dit voertuig</li>
         <li>Praktijkgedrag en cel-anomalie risico</li>
         <li>Volledige tips voor proefrit en aankoop</li>
@@ -2380,7 +2397,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </ul>
       <div style="margin-bottom:14px;">
         <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}">
-          🔓 Ontgrendel volledig rapport – €19,95
+          🔓 Ontgrendel direct – voorkom miskoop van €1.000+
         </a>
         <p class="btn-unlock-sub">Eenmalig · Geen abonnement · Direct toegang</p>
         <p style="font-size:11px;color:var(--muted);margin-top:8px;">⏳ Dit rapport is 48 uur geldig voor kenteken ${kenteken}</p>
@@ -2592,7 +2609,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <h2>Ontgrendel je volledige AccuRisico Rapport</h2>
       <p>Je preview is klaar. Ontgrendel nu voor €19,95 en zie de exacte accuschade-inschatting, degradatieanalyse en aankoopadvies voor de ${autoNaam}.</p>
       <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" class="cta-btn" style="display:inline-block;background:var(--teal);color:var(--navy);padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;box-shadow:0 6px 28px rgba(45,212,191,0.3);">
-        🔓 Ontgrendel volledig rapport – €19,95
+        🔓 Ontgrendel direct – voorkom miskoop van €1.000+
       </a>
       <p class="cta-sub">Eenmalig · Geen abonnement · Stripe beveiligd · Direct toegang</p>
       <p style="font-size:12px;color:var(--muted);margin-top:6px;">Minder dan een tankbeurt. Meer zekerheid dan een proefrit.</p>
@@ -2660,7 +2677,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // WhatsApp knop bijwerken met kenteken
   const waBtn = document.getElementById('wa-loading-btn');
   if (waBtn) {
-    waBtn.href = `https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20overweeg%20je%20deze%20auto%20serieus%3F%20${kenteken}`;
+    waBtn.href = `https://wa.me/31623452349?text=Hoi%2C%20ik%20overweeg%20deze%20auto%20te%20kopen%20en%20wil%20de%20accu%20laten%20checken%3A%20${kenteken}`;
   }
 
   // Paid banner tonen/verbergen
