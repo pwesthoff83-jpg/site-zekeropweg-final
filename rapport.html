@@ -996,7 +996,7 @@
   <div style="margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 28px;text-align:center;max-width:420px;width:100%;">
     <p style="font-size:14px;color:var(--white-dim);margin-bottom:6px;">Twijfel je over deze auto?</p>
     <p style="font-size:13px;color:var(--muted);margin-bottom:18px;">Stuur het kenteken alvast via WhatsApp — ik kijk direct met je mee.</p>
-    <a id="wa-loading-btn" href="https://wa.me/31622222222?text=Hoi%20Pepijn%2C%20ik%20wil%20deze%20auto%20checken%3A%20" target="_blank"
+    <a id="wa-loading-btn" href="https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20overweeg%20je%20deze%20auto%20serieus%3F%20" target="_blank"
       style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:12px;text-decoration:none;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Stuur kenteken via WhatsApp
@@ -1089,9 +1089,16 @@ const batteryDB = {
   "honda eny1": [{ "variant": "standard", "kwh": 68.8 }],
   "hyundai ioniq 5": [{ "variant": "standard", "kwh": 63 }, { "variant": "long range", "kwh": 77.4 }, { "variant": "performance", "kwh": 84 }],
   "hyundai ioniq 6": [{ "variant": "standard", "kwh": 53 }, { "variant": "long range", "kwh": 77.4 }],
+  "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }],
   "hyundai kona": [{ "variant": "standard", "kwh": 39.2 }, { "variant": "long range", "kwh": 64 }],
+  "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }, { "variant": "hybrid", "kwh": 1.49 }],
   "hyundai kona ev": [{ "variant": "standard", "kwh": 48.4 }, { "variant": "long range", "kwh": 64.8 }],
   "jaguar i-pace": [{ "variant": "standard", "kwh": 90.2 }],
+  "land rover range rover": [{ "variant": "p400e", "kwh": 31.8 }, { "variant": "phev", "kwh": 31.8 }],
+  "land rover range rover sport": [{ "variant": "p400e", "kwh": 31.8 }, { "variant": "phev", "kwh": 31.8 }],
+  "land rover range rover velar": [{ "variant": "p400e", "kwh": 17.1 }],
+  "land rover defender": [{ "variant": "phev", "kwh": 19.2 }],
+  "land rover discovery sport": [{ "variant": "phev", "kwh": 15 }],
   "jeep avenger": [{ "variant": "standard", "kwh": 54 }],
   "kia ev3": [{ "variant": "sr", "kwh": 58.3 }, { "variant": "lr", "kwh": 81.4 }],
   "kia ev6": [{ "variant": "standard", "kwh": 58 }, { "variant": "long range", "kwh": 77.4 }, { "variant": "gt", "kwh": 77.4 }],
@@ -1313,7 +1320,7 @@ function detectDriveType(brandstof, handelsbenaming, merk) {
   // Bekende milde hybride modellen op modelnaam (GEEN octavia — die heeft iV voor PHEV)
   const mildHybridModels = [
     'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
-    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage', 'tucson',
+    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage',
     'corolla', 'yaris', 'camry', 'c-hr', '3 serie', '5 serie',
     'qashqai', 'juke', 'kuga', 'focus', 'fiesta', 'polo', 'ibiza',
     'fabia', 'scala', 'rapid', 'citigo'
@@ -1839,6 +1846,20 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   if (!driveType && /\biv\b/i.test(handelLow)) {
     driveType = 'phev';
   }
+  // 5b. Land Rover PHEV detectie — RDW registreert als Benzine zonder PHEV-indicator
+  // P400e, P510e, P550e zijn allemaal PHEV varianten
+  if (!driveType && (merkLow.includes('land rover') || merkLow.includes('landrover'))) {
+    // Range Rover Sport P400e heeft 31.8 kWh — battery-db pakt dit op
+    // Als db match gevonden is met phev variant, driveType al gezet
+    // Fallback: alle Range Rover met kwh > 5 zijn PHEV
+    if (battery && battery.dbDriveType) driveType = battery.dbDriveType;
+  }
+  // 5c. Hyundai Tucson — hybride, niet EV
+  // RDW registreert soms als Elektrisch/Benzine maar Tucson is geen volledige EV
+  if (!driveType && merkLow.includes('hyundai') && handelLow.includes('tucson')) {
+    driveType = battery && battery.kwh && battery.kwh > 5 ? 'phev' : 'hybrid';
+    if (!kwh) kwh = 13.8;
+  }
   // 6. Battery-db als ground truth
   if (!driveType && battery && battery.dbDriveType) {
     driveType = battery.dbDriveType;
@@ -2040,6 +2061,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
           🔓 Ontgrendel volledig rapport – €19,95
         </a>
         <p class="btn-unlock-sub">Eenmalig · Geen abonnement · Direct toegang</p>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px;">⏳ Dit rapport is 48 uur geldig voor kenteken ${kenteken}</p>
       </div>
       <div class="social-proof-bar">
         <div class="social-proof-item">✅ <span>1.200+</span> rapporten gegenereerd</div>
@@ -2251,6 +2273,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         🔓 Ontgrendel volledig rapport – €19,95
       </a>
       <p class="cta-sub">Eenmalig · Geen abonnement · Stripe beveiligd · Direct toegang</p>
+      <p style="font-size:12px;color:var(--muted);margin-top:6px;">Minder dan een tankbeurt. Meer zekerheid dan een proefrit.</p>
       <div class="social-proof-bar" style="margin-top:16px;">
         <div class="social-proof-item">✅ <span>1.200+</span> rapporten</div>
         <div class="social-proof-item">🔒 <span>Veilige betaling</span></div>
@@ -2315,7 +2338,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // WhatsApp knop bijwerken met kenteken
   const waBtn = document.getElementById('wa-loading-btn');
   if (waBtn) {
-    waBtn.href = `https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20ik%20wil%20deze%20auto%20checken%3A%20${kenteken}`;
+    waBtn.href = `https://wa.me/31623452349?text=Hoi%20Pepijn%2C%20overweeg%20je%20deze%20auto%20serieus%3F%20${kenteken}`;
   }
 
   // Check of paid=true in URL staat
