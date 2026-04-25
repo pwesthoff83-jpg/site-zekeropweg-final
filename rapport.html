@@ -1723,7 +1723,7 @@ async function startRapport() {
   localStorage.setItem('zow_lead', JSON.stringify(leadData));
   // Stuur naar webhook (optioneel — vult stil op de achtergrond)
   try {
-    fetch('https://hooks.zapier.com/hooks/catch/JOUW_ZAPIER_ID/', {
+    fetch('https://hook.eu1.make.com/rbterm9vnvcdjhaikugy394qbpi0aq93', {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify(leadData)
     }).catch(()=>{});
