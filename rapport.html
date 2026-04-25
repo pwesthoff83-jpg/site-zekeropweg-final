@@ -770,6 +770,164 @@
     .rapport-title { font-size: 26px; }
     .score-banner { flex-direction: column; gap: 16px; }
   }
+
+  /* ── COMMERCIEEL LAAG ─────────────────────────────────────────── */
+  .preview-mode .locked { display: block !important; }
+  .preview-mode .unlocked-only { display: none !important; }
+  .full-mode .locked { display: none !important; }
+  .full-mode .unlocked-only { display: block !important; }
+
+  .blur-block {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .blur-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15,25,35,0.1) 0%, rgba(15,25,35,0.96) 60%);
+    border-radius: var(--radius);
+    pointer-events: none;
+  }
+  .blur-block > * { filter: blur(3px); user-select: none; }
+
+  .unlock-gate {
+    background: linear-gradient(135deg, #1a3a4a 0%, #162035 100%);
+    border: 1px solid rgba(45,212,191,0.3);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .unlock-gate h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .unlock-gate ul {
+    list-style: none;
+    margin: 14px 0 20px;
+    text-align: left;
+    display: inline-block;
+  }
+  .unlock-gate ul li {
+    font-size: 14px;
+    color: var(--white-dim);
+    padding: 4px 0 4px 22px;
+    position: relative;
+  }
+  .unlock-gate ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 700;
+  }
+  .btn-unlock {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 28px rgba(45,212,191,0.3);
+    transition: background 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 400px;
+  }
+  .btn-unlock:hover { background: #5eead4; box-shadow: 0 8px 36px rgba(45,212,191,0.4); }
+  .btn-unlock-sub { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  .social-proof-bar {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 14px 0 0;
+  }
+  .social-proof-item {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .social-proof-item span { color: var(--teal); font-weight: 600; }
+
+  .urgency-banner {
+    background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(239,68,68,0.04) 100%);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--white-dim);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .urgency-banner strong { color: var(--red-soft); }
+
+  .paid-banner {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(34,197,94,0.05) 100%);
+    border: 1px solid rgba(34,197,94,0.25);
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--white-dim);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45,212,191,0.1);
+    border: 1px solid rgba(45,212,191,0.3);
+    color: var(--teal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: auto;
+  }
+  .btn-pdf:hover { background: rgba(45,212,191,0.18); }
+
+  /* Preview: toon alleen bepaalde cards */
+  .preview-mode .section-card.preview-hidden {
+    display: none;
+  }
+  .preview-mode .beslismoment,
+  .preview-mode .cta-card {
+    display: none;
+  }
+
+  /* Print styles */
+  @media print {
+    #form-screen, #loading-screen { display: none !important; }
+    .btn-pdf, .btn-unlock, .unlock-gate, .urgency-banner,
+    .paid-banner, .no-print { display: none !important; }
+    body { background: white !important; color: black !important; }
+    .rapport-header, .section-card, .score-banner, .beslismoment {
+      border: 1px solid #ddd !important;
+      background: white !important;
+      color: black !important;
+    }
+    * { color: black !important; background: transparent !important; }
+    .rapport-footer { color: #666 !important; }
+    #rapport-screen { padding: 0 !important; max-width: 100% !important; }
+  }
 </style>
 </head>
 <body>
@@ -792,6 +950,11 @@
       <input type="text" id="naam" placeholder="Voornaam is genoeg" />
     </div>
     <div class="field">
+      <label for="email">E-mailadres <span style="color:var(--red-soft)">*</span></label>
+      <input type="email" id="email" placeholder="jouw@email.nl" required />
+      <div style="font-size:11px;color:var(--muted);margin-top:5px;">Voor je rapport en eventuele AccuCheck offerte</div>
+    </div>
+    <div class="field">
       <label for="kmstand">Huidige kilometerstand</label>
       <input type="number" id="kmstand" placeholder="bijv. 87500" min="0" max="999999" />
       <div style="font-size:11px;color:var(--muted);margin-top:5px;">Cruciaal voor een nauwkeurige inschatting van de accuconditie</div>
@@ -806,8 +969,21 @@
       </select>
     </div>
 
-    <button class="btn-primary" id="btn-start" onclick="startRapport()">Genereer mijn rapport</button>
-    <p class="form-note">Gegevens worden uitsluitend gebruikt voor dit rapport</p>
+    <div class="field">
+      <label for="kooptiming">Wanneer wil je kopen?</label>
+      <select id="kooptiming">
+        <option value="">Kies je situatie</option>
+        <option value="week">Binnen 1 week</option>
+        <option value="maand">Binnen 1 maand</option>
+        <option value="orientatie">Nog oriënterend</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="locatie">Waar staat de auto?</label>
+      <input type="text" id="locatie" placeholder="bijv. Amsterdam of 1234AB" />
+    </div>
+    <button class="btn-primary" id="btn-start" onclick="startRapport()">Genereer mijn gratis preview</button>
+    <p class="form-note">Gratis preview · Volledig rapport €19,95 · Geen abonnement</p>
   </div>
 </div>
 
@@ -819,6 +995,14 @@
 
 <!-- RAPPORT SCREEN -->
 <div id="rapport-screen">
+  <div id="paid-banner" class="paid-banner" style="display:none;max-width:760px;margin:20px auto 0;">
+    <span style="font-size:22px;">✅</span>
+    <div>
+      <strong style="color:var(--green-soft);display:block;margin-bottom:2px;">Volledig rapport ontgrendeld</strong>
+      <span style="font-size:13px;">Je hebt toegang tot alle accudata, degradatieanalyse en aanbevelingen.</span>
+    </div>
+    <button class="btn-pdf no-print" onclick="window.print()">⬇ PDF</button>
+  </div>
   <div id="rapport-content"></div>
 </div>
 
@@ -1525,10 +1709,25 @@ function setLoadingText(txt) {
 async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Klant';
+  const email = document.getElementById('email').value.trim();
   const gebruik = document.getElementById('gebruik').value;
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
+  const kooptiming = document.getElementById('kooptiming').value;
+  const locatie = document.getElementById('locatie').value.trim();
 
   if (!kentekenRaw) { alert('Vul een kenteken in om verder te gaan.'); return; }
+  if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return; }
+
+  // Sla lead op in localStorage
+  const leadData = { naam, email, kenteken: kentekenRaw.replace(/[-\s]/g,'').toUpperCase(), kooptiming, locatie, timestamp: new Date().toISOString() };
+  localStorage.setItem('zow_lead', JSON.stringify(leadData));
+  // Stuur naar webhook (optioneel — vult stil op de achtergrond)
+  try {
+    fetch('https://hooks.zapier.com/hooks/catch/JOUW_ZAPIER_ID/', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(leadData)
+    }).catch(()=>{});
+  } catch(e) {}
 
   const kenteken = formatKenteken(kentekenRaw);
   const btn = document.getElementById('btn-start');
@@ -1676,6 +1875,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   document.getElementById('rapport-screen').style.display = 'block';
 
+  const isPaidNow = localStorage.getItem('zow_paid') === 'true' || new URLSearchParams(window.location.search).get('paid') === 'true';
+  const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
+  // Bouw rappportURL voor terugkeer na betaling
+  const returnUrl = encodeURIComponent(window.location.href.split('?')[0] + '?paid=true');
+
+  // Urgentie teaser op basis van voertuigtype
+  const accuKosten = driveType === 'ev' ? '€5.000 tot €20.000' : '€2.000 tot €8.000';
+  const risicoKleurHex = risico.kleur === 'green' ? '#22c55e' : risico.kleur === 'amber' ? '#f59e0b' : '#ef4444';
+
   document.getElementById('rapport-content').innerHTML = `
 
     <div class="rapport-header">
@@ -1714,6 +1922,33 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
     </div>
 
+    ${!isPaidNow ? `
+    <div class="section-card no-print" style="border-color:rgba(45,212,191,0.15);">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:24px;">🔋</span>
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--teal);margin-bottom:2px;">Accu-inschatting beschikbaar</div>
+          <div style="font-size:15px;font-weight:500;color:var(--white);">Het volledige rapport bevat:</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;color:var(--white-dim);">
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 SoH inschatting in %</div>
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 Degradatie bandbreedte</div>
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 ADAC-norm vergelijking</div>
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 Cel-anomalie risico</div>
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 Proefrit tips</div>
+        <div style="padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;">🔒 Aankoopadvies</div>
+      </div>
+    </div>
+    ` : ''}
+
+    ${!isPaidNow ? `
+    <!-- PREVIEW MODE: urgentie + lock -->
+    <div class="urgency-banner no-print">
+      <strong>Let op:</strong> Accuschade bij dit type voertuig kan oplopen tot <strong>${accuKosten}</strong> — onzichtbaar zonder meting.
+    </div>
+    ` : ''}
+
     <div class="section-card">
       <h3><span class="section-icon">🚗</span>Basisinformatie voertuig</h3>
       <div class="info-row"><span class="info-label">Merk / Model</span><span class="info-value">${autoNaam}</span></div>
@@ -1725,6 +1960,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
+    <div class="${!isPaidNow ? 'blur-block' : ''}" style="margin-bottom:16px;">
     <div class="section-card">
       <h3><span class="section-icon">🔋</span>Accu-inschatting</h3>
       <div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value highlight">${batterijLabel}</span></div>
@@ -1766,15 +2002,44 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div class="highlight-box">
         De exacte batterijcapaciteit is niet vastgesteld, maar ligt doorgaans in dit segment tussen <strong>${driveType === 'ev' ? '40 en 100 kWh' : '8 en 30 kWh'}</strong>. Een meting geeft uitsluitsel.
       </div>`}
+    </div>
     </div>` : ''}
 
-    <div class="section-card">
+    ${!isPaidNow ? `
+    <!-- LOCK GATE -->
+    <div class="unlock-gate no-print">
+      <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+      <h3>Ontgrendel het volledige AccuRisico Rapport</h3>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:4px;">Wat je nu mist:</p>
+      <ul>
+        <li>Exacte SoH-schatting (accugezondheid in %)</li>
+        <li>Verwachte degradatie — goed vs slecht gebruik</li>
+        <li>ADAC-norm vergelijking voor dit voertuig</li>
+        <li>Praktijkgedrag en cel-anomalie risico</li>
+        <li>Volledige tips voor proefrit en aankoop</li>
+        <li>Conclusie + aankoopadvies</li>
+      </ul>
+      <div style="margin-bottom:14px;">
+        <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}">
+          🔓 Ontgrendel volledig rapport – €19,95
+        </a>
+        <p class="btn-unlock-sub">Eenmalig · Geen abonnement · Direct toegang</p>
+      </div>
+      <div class="social-proof-bar">
+        <div class="social-proof-item">✅ <span>1.200+</span> rapporten gegenereerd</div>
+        <div class="social-proof-item">⭐ <span>4.8/5</span> klantwaardering</div>
+        <div class="social-proof-item">🔒 <span>Veilige betaling</span> via Stripe</div>
+      </div>
+    </div>
+    ` : ''}
+
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">📊</span>Risicoclassificatie</h3>
       <div style="margin-bottom:14px;"><span class="badge ${risico.kleur === 'green' ? 'teal' : 'amber'}">${risico.label}</span></div>
       <p class="prose">Op basis van de beschikbare gegevens is een globale beoordeling gemaakt. Deze beoordeling weerspiegelt de statistische kans op accuproblemen, niet de werkelijke staat.</p>
     </div>
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">📋</span>Waarom deze beoordeling</h3>
       <ul class="risk-list">
         ${factoren.map(f => `
@@ -1789,7 +2054,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </ul>
     </div>
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">🛣️</span>Kilometeranalyse</h3>
       <div class="info-row"><span class="info-label">Totale kilometerstand</span><span class="info-value">${kmTxt}</span></div>
       <div class="info-row"><span class="info-label">Voertuigleeftijd</span><span class="info-value">${leeftijdTxt}</span></div>
@@ -1798,14 +2063,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       ${jaarGebruik && jaarGebruik > 20000 ? '<div class="highlight-box"><strong>Let op:</strong> Het gemiddeld jaargebruik ligt boven de 20.000 km. Dit betekent meer laadcycli en doorgaans snellere accubelasting.</div>' : ''}
     </div>
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">💡</span>Wat veel kopers niet weten</h3>
       <p class="prose">Twee identieke auto's met dezelfde kilometerstand kunnen 10 tot 15 procentpunt SoH van elkaar verschillen. Kilometerstand is een indicatie. Laadgedrag is de echte slijtfactor, en die is volledig onzichtbaar in het kenteken.</p>
       <p class="prose" style="margin-top:10px;">Een accu die structureel tot 100% geladen wordt en helemaal wordt leeggereden, cycleert destructief. Bij 50 km bereik en dagelijks volledig laden is de accu al na circa 50.000 km zwaar belast. Diezelfde accu met goed laadgedrag haalt moeiteloos 150.000 km met een SoH boven de 82%.</p>
       <p class="prose" style="margin-top:10px;">De accu is het duurste onderdeel van dit voertuig. Vervanging kost doorgaans ${driveType === 'ev' ? '5.000 tot 20.000 euro' : '2.000 tot 8.000 euro'}, afhankelijk van merk en accugrootte. De optimale laadbreedte voor celgezondheid ligt tussen 20% en 80%.</p>
     </div>
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">📈</span>Praktijkgedrag batterij</h3>
       <p class="prose">In de praktijk presteren ${driveType === 'ev' ? 'elektrische accu\'s' : driveType === 'phev' ? 'plug-in hybride accu\'s' : 'hybride accu\'s'} doorgaans goed bij verstandig gebruik: regelmatig rijden, niet altijd volledig laden en niet langdurig leeg laten staan.</p>
       <p class="prose" style="margin-top:10px;">Bij intensief gebruik, veel snelladen of extreme temperaturen neemt de degradatie sneller toe. Dit is zelden zichtbaar in de voertuighistorie, maar wel meetbaar via een diagnose.</p>
@@ -1825,7 +2090,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>
 
     ${driveType !== 'verbrandingsmotor' ? `
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">⚡</span>Verwachte degradatie</h3>
       <p class="prose" style="margin-bottom:16px;">${degradatie.uitleg}</p>
 
@@ -1892,7 +2157,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     </div>` : ''}
 
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">✅</span>Tips voor koper en proefrit</h3>
       <div class="tip-grid">
         <div class="tip-box good">
@@ -1936,7 +2201,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
     </div>
 
-    <div class="beslismoment">
+    <div class="${!isPaidNow ? 'beslismoment preview-hidden' : 'beslismoment'}">
       <h3>Beslismoment</h3>
       ${risico.kleur === 'green'
         ? `<p>Op basis van dit rapport geeft de ${autoNaam} een <strong>sterke basis</strong>. De beschikbare data geeft geen alarmsignalen. Dat neemt niet weg dat de werkelijke accuconditie onbekend blijft zonder meting.</p>`
@@ -1950,7 +2215,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
     </div>
 
-    <div class="section-card">
+    <div class="${!isPaidNow ? 'section-card preview-hidden' : 'section-card'}">
       <h3><span class="section-icon">📌</span>Conclusie</h3>
       <p class="prose">Dit rapport geeft een gefundeerde inschatting van het accurisico van de ${autoNaam} (${kenteken}). De beoordeling is <em>${risico.label.toLowerCase()}</em>${
         risico.label === 'Sterke basis'
@@ -1962,13 +2227,31 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <p class="prose" style="margin-top:10px;">Wat dit rapport niet vertelt: de gemeten gezondheid van de accu. Die waarde is uitsluitend te bepalen via een directe meting. Pas dan is het complete beeld beschikbaar voor een weloverwogen aankoopbeslissing.</p>
     </div>
 
+    ${!isPaidNow ? `
+    <div class="cta-card">
+      <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+      <h2>Ontgrendel je volledige AccuRisico Rapport</h2>
+      <p>Je preview is klaar. Ontgrendel nu voor €19,95 en zie de exacte accuschade-inschatting, degradatieanalyse en aankoopadvies voor de ${autoNaam}.</p>
+      <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" class="cta-btn" style="display:inline-block;background:var(--teal);color:var(--navy);padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;box-shadow:0 6px 28px rgba(45,212,191,0.3);">
+        🔓 Ontgrendel volledig rapport – €19,95
+      </a>
+      <p class="cta-sub">Eenmalig · Geen abonnement · Stripe beveiligd · Direct toegang</p>
+      <div class="social-proof-bar" style="margin-top:16px;">
+        <div class="social-proof-item">✅ <span>1.200+</span> rapporten</div>
+        <div class="social-proof-item">⭐ <span>4.8</span> beoordeling</div>
+        <div class="social-proof-item">🔒 <span>Veilige betaling</span></div>
+      </div>
+    </div>
+    ` : `
     <div class="cta-card">
       <h2>Bevestig dit voor aankoop</h2>
       <p>Een AccuCheck meet de werkelijke staat van de accu van de ${autoNaam}. Geen schattingen, geen aannames. Alleen feiten, op locatie, binnen 30 minuten.</p>
       <a href="https://zekeropweg.nu" class="cta-btn" target="_blank">Bevestig dit voor aankoop met een AccuCheck</a>
       <p class="cta-sub">ZekerOpWeg komt naar de auto toe. Op locatie, op afspraak.</p>
     </div>
+    `}
 
+    ${isPaidNow ? `
     <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;">
       <h3 style="font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;margin-bottom:16px;color:var(--white-dim);">
         ⚠️ Belangrijke toelichting bij dit rapport
@@ -1999,17 +2282,39 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
       </div>
     </div>
+    ` : ''}
 
     <div class="rapport-footer">
       <p>ZekerOpWeg &middot; <a href="https://zekeropweg.nu" style="color:var(--teal);text-decoration:none;">zekeropweg.nu</a></p>
-      <p style="margin-top:6px;font-size:11px;color:var(--muted);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;">
-        Dit rapport is een statistische risico-inschatting op basis van openbare RDW-data en referentiemeetdata. Het bevat geen gecertificeerde meetresultaten en is niet bedoeld als technisch keuringsbewijs. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport. Een AccuCheck door ZekerOpWeg vervangt dit rapport met een gecertificeerde AVILOO-diagnose.
-      </p>
-      <p style="margin-top:8px;">Gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
+      ${isPaidNow ? `<p style="margin-top:6px;font-size:11px;color:var(--muted);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;">
+        Dit rapport is een statistische risico-inschatting op basis van openbare RDW-data en referentiemeetdata. Het bevat geen gecertificeerde meetresultaten en is niet bedoeld als technisch keuringsbewijs. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.
+      </p>` : ''}
+      <p style="margin-top:8px;">Preview gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
+      ${!isPaidNow ? `<p style="margin-top:8px;font-size:12px;color:var(--muted);">
+        <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" style="color:var(--teal);text-decoration:none;font-weight:600;">Ontgrendel volledig rapport →</a>
+      </p>` : ''}
     </div>
   `;
 
   document.getElementById('rapport-screen').scrollIntoView({ behavior: 'smooth' });
+
+  // Check of paid=true in URL staat
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaid = urlParams.get('paid') === 'true' || localStorage.getItem('zow_paid') === 'true';
+
+  if (isPaid) {
+    localStorage.setItem('zow_paid', 'true');
+    document.getElementById('rapport-screen').classList.remove('preview-mode');
+    document.getElementById('rapport-screen').classList.add('full-mode');
+    // Toon betaald-banner
+    const paidBanner = document.getElementById('paid-banner');
+    if (paidBanner) paidBanner.style.display = 'flex';
+  } else {
+    document.getElementById('rapport-screen').classList.add('preview-mode');
+    document.getElementById('rapport-screen').classList.remove('full-mode');
+    const paidBanner = document.getElementById('paid-banner');
+    if (paidBanner) paidBanner.style.display = 'none';
+  }
 }
 
 document.getElementById('kenteken').addEventListener('input', function () {
