@@ -2238,8 +2238,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
   const jaarKmTxt = jaarGebruik ? `${formatNumber(jaarGebruik)} km/jaar` : 'Niet berekend';
 
-  const isPaidNow = localStorage.getItem('zow_paid') === 'true' || new URLSearchParams(window.location.search).get('paid') === 'true';
+  // Betaalstatus: ALLEEN via URL parameter van Stripe redirect
+  // localStorage wordt NIET gebruikt — voorkomt permanent gratis toegang na 1 test
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaidNow = urlParams.get('paid') === 'true';
   const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
+
+  // Verwijder eventueel eerder opgeslagen paid status uit localStorage
+  // (opruimen van oude sessies die niet via Stripe liepen)
+  localStorage.removeItem('zow_paid');
 
   // Zet preview/full klasse DIRECT vóór display:block, voorkomt flash van volledig rapport
   const rapportScreen = document.getElementById('rapport-screen');
@@ -2694,9 +2701,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   }
 
   // Paid banner tonen/verbergen
-  if (isPaidNow) {
-    localStorage.setItem('zow_paid', 'true');
-  }
+  // Geen localStorage opslag — paid geldt alleen voor deze sessie via Stripe URL
   const paidBanner = document.getElementById('paid-banner');
   if (paidBanner) paidBanner.style.display = isPaidNow ? 'flex' : 'none';
 }
@@ -2711,3 +2716,4 @@ document.getElementById('kenteken').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
