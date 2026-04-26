@@ -1364,6 +1364,8 @@ const batteryDB = {
   "mazda mx-30": [{ "variant": "standard", "kwh": 35.5 }],
   // ── MERCEDES PHEV ──────────────────────────────────────────────────────────
   "mercedes-benz a-class": [{ "variant": "250e", "kwh": 15.6 }],
+  "mercedes-benz a 250": [{ "variant": "e", "kwh": 15.6 }],
+  "mercedes-benz a250": [{ "variant": "e", "kwh": 15.6 }],
   "mercedes-benz b-class": [{ "variant": "250e", "kwh": 15.6 }],
   "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "300de", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }, { "variant": "400e", "kwh": 25.4 }],
   "mercedes-benz cla": [{ "variant": "250e", "kwh": 15.6 }, { "variant": "250+", "kwh": 85 }],
@@ -2142,8 +2144,20 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = (bouwjaar && bouwjaar >= 2025) ? 'ev' : 'phev';
     if (driveType === 'ev' && (!kwh || kwh < 50)) kwh = 85;
   }
-  // 4. Mercedes EQ-serie → EV
-  if (!driveType && merkLow.includes('mercedes') && /\beq[a-z0-9]/i.test(handelLow)) {
+  // 4. Mercedes A/B/GLA klasse 250e = altijd PHEV, nooit EV
+  // Alleen CLA 250+ vanaf 2025 is EV. Alle 250e zijn PHEV.
+  if (!driveType && merkLow.includes('mercedes')) {
+    const mbHandel = handelLow;
+    // A 250e, B 250e, GLA 250e, C 300e etc = PHEV
+    if (/a\s*250e?/i.test(mbHandel) || /b\s*250e?/i.test(mbHandel) ||
+        /gla\s*250e?/i.test(mbHandel) || /300e/i.test(mbHandel) ||
+        /350e/i.test(mbHandel) || /400e/i.test(mbHandel) ||
+        /300de/i.test(mbHandel)) {
+      driveType = 'phev';
+    }
+  }
+  // Mercedes EQ-serie → EV
+  if (!driveType && merkLow.includes('mercedes') && /eq[a-z0-9]/i.test(handelLow)) {
     driveType = 'ev';
   }
   // 5. VW-groep iV suffix → PHEV
