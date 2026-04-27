@@ -1721,6 +1721,18 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
       score += 8;
       factoren.push({ kleur: 'amber', tekst: 'Model zonder actief thermisch beheer: hogere degradatiekans bij intensief gebruik en snelladen.' });
     }
+    if (modelKey.includes('captur') || modelKey.includes('renault captur')) {
+      score += 6;
+      factoren.push({ kleur: 'amber', tekst: 'Renault Captur E-Tech: kleinste accu in dataset (9,8 kWh). In de praktijk de laagste SoH gemeten: 75% bij 124k km. Extra aandacht vereist.' });
+    }
+    if (modelKey.includes('jeep') && driveType === 'phev') {
+      score += 4;
+      factoren.push({ kleur: 'amber', tekst: 'Jeep PHEV: aandachtspunt in dataset. Compass 4xe toonde 87,4% SoH bij slechts 37k km.' });
+    }
+    if (modelKey.includes('land rover') || modelKey.includes('landrover')) {
+      score += 3;
+      factoren.push({ kleur: 'amber', tekst: 'Land Rover PHEV: wisselende resultaten in dataset. Velar toonde 87,3% bij 100k km, Discovery Sport 92,6% bij 82k km.' });
+    }
     if ((modelKey.includes('kia') || modelKey.includes('hyundai')) && driveType === 'ev') {
       score -= 4;
       factoren.push({ kleur: 'green', tekst: "Kia/Hyundai EV-accu's presteren bovengemiddeld in gecertificeerde praktijkmetingen." });
@@ -1746,7 +1758,7 @@ function getRisicoLabel(score) {
   return { label: 'Aandachtspunt', kleur: 'amber', cijfer: 'C' };
 }
 
-function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
+function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
   leeftijd = leeftijd || 0;
   km = km || 0;
   jaarGebruik = jaarGebruik || (leeftijd > 0 ? Math.round(km / leeftijd) : 15000);
@@ -1868,8 +1880,19 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey) {
     // min+mid gemiddelde gaf structureel te optimistische fase-bepaling.
     // Validatie Q7 5jr/122k: midVal = 1.1*5 + 0.5*12.27 = 11.7% → SoH 88% ✓ (verwacht ~85-88%)
     const sohMid    = 100 - midVal;
-    const adacNorm  = km >= 200000 ? 80 : km >= 100000 ? 88 : km >= 50000 ? 92 : null;
-    const adacLabel = km >= 200000 ? '200.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
+    // ADAC-norm herijkt op dataset van 30 voertuigen (april 2026)
+    // Kleine accu (<= 13 kWh): snellere degradatie
+    // Grote accu (> 13 kWh): langzamere degradatie
+    const isKleineAccu = !kwh || kwh <= 13;
+    const adacNorm  = km >= 120000 ? (isKleineAccu ? 83 : 86)
+                    : km >= 90000  ? (isKleineAccu ? 85 : 88)
+                    : km >= 60000  ? (isKleineAccu ? 87 : 90)
+                    : km >= 30000  ? (isKleineAccu ? 90 : 93)
+                    : null;
+    const adacLabel = km >= 120000 ? '120.000 km'
+                    : km >= 90000  ? '90.000 km'
+                    : km >= 60000  ? '60.000 km'
+                    : km >= 30000  ? '30.000 km' : null;
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     const intensiteitTxt = jaarGebruik > 30000
@@ -2210,7 +2233,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const { score, factoren } = getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruik, kwh, battery ? battery.modelKey : null);
   const risico = getRisicoLabel(score);
-  const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik, battery ? battery.modelKey : null);
+  const degradatie = getDegradatie(driveType, leeftijd, km, jaarGebruik, battery ? battery.modelKey : null, kwh);
   const actieradius = getActieradius(driveType, kwh);
   const datumNu = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
