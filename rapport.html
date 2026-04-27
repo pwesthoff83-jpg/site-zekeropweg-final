@@ -2366,46 +2366,6 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Verwijder eventueel eerder opgeslagen paid status uit localStorage
   localStorage.removeItem('zow_paid');
 
-  // ── HERSTEL NA STRIPE REDIRECT ──
-  // Als klant terugkomt met ?paid=true én er zijn opgeslagen formuliergegevens,
-  // herstel dan het formulier en start het rapport automatisch.
-  if (isPaidNow) {
-    // Probeer eerst localStorage (werkt ook na tab-wissel en mobiele redirect)
-    const restoreRaw = localStorage.getItem('zow_restore');
-    if (restoreRaw) {
-      try {
-        const restore = JSON.parse(restoreRaw);
-        localStorage.removeItem('zow_restore'); // eenmalig gebruiken, direct verwijderen
-
-        // Controleer of de data niet verlopen is (30 minuten geldigheid)
-        if (restore.expires && Date.now() > restore.expires) {
-          console.warn('Hersteldata verlopen — toon formulier opnieuw');
-        } else if (restore.kenteken) {
-          // Vul formulier in met opgeslagen data
-          const setVal = (id, val) => {
-            const el = document.getElementById(id);
-            if (el && val) el.value = val;
-          };
-          setVal('kenteken', restore.kenteken);
-          setVal('naam',     restore.naam);
-          setVal('email',    restore.email);
-          setVal('kmstand',  restore.kmstand);
-          setVal('gebruik',  restore.gebruik);
-
-          // Start rapport automatisch — klant hoeft niets te doen
-          startRapport();
-        }
-      } catch(e) {
-        console.warn('Herstel na betaling mislukt:', e);
-        localStorage.removeItem('zow_restore');
-      }
-    } else {
-      // Geen hersteldata — toon formulier zodat klant kenteken opnieuw kan invullen
-      // (gebeurt bijv. bij directe link-toegang met ?paid=true)
-      document.getElementById('form-screen').style.display = 'flex';
-    }
-  }
-
   // Zet preview/full klasse DIRECT vóór display:block, voorkomt flash van volledig rapport
   const rapportScreen = document.getElementById('rapport-screen');
   rapportScreen.classList.remove('preview-mode', 'full-mode');
@@ -2934,6 +2894,52 @@ document.getElementById('kenteken').addEventListener('input', function () {
 document.getElementById('kenteken').addEventListener('keydown', function (e) {
   if (e.key === 'Enter') startRapport();
 });
+
+// ── PAGINA-INITIALISATIE: herstel na Stripe redirect ──────────────────────
+// Dit loopt direct bij het laden van de pagina, VOOR alles anders.
+// Als URL ?paid=true bevat én er is opgeslagen formulierdata, herstel en
+// start het rapport automatisch. Klant hoeft niets te doen.
+(function initNaStripe() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('paid') !== 'true') return; // niet na Stripe redirect, stop
+
+  const restoreRaw = localStorage.getItem('zow_restore');
+  if (!restoreRaw) {
+    // Geen data — laat formulier zichtbaar (klant kan opnieuw invullen)
+    return;
+  }
+
+  try {
+    const restore = JSON.parse(restoreRaw);
+    localStorage.removeItem('zow_restore'); // eenmalig, direct verwijderen
+
+    // Verlopen na 30 minuten
+    if (restore.expires && Date.now() > restore.expires) {
+      console.warn('ZOW: hersteldata verlopen, formulier opnieuw invullen');
+      return;
+    }
+
+    if (!restore.kenteken) return;
+
+    // Vul formulier in met opgeslagen data
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el && val) el.value = val;
+    };
+    setVal('kenteken', restore.kenteken);
+    setVal('naam',     restore.naam);
+    setVal('email',    restore.email);
+    setVal('kmstand',  restore.kmstand);
+    setVal('gebruik',  restore.gebruik);
+
+    // Start rapport automatisch — klant ziet direct het volledige rapport
+    startRapport();
+
+  } catch(e) {
+    console.warn('ZOW: herstel na betaling mislukt:', e);
+    localStorage.removeItem('zow_restore');
+  }
+})();
 </script>
 </body>
 </html>
