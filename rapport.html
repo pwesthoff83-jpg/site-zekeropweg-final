@@ -2094,6 +2094,21 @@ function setLoadingText(txt) {
   if (el) el.textContent = txt;
 }
 
+function saveBeforeStripe() {
+  // Sla alle invoerdata op zodat we na Stripe-redirect het rapport kunnen herstellen
+  const data = {
+    kenteken: document.getElementById('kenteken') ? document.getElementById('kenteken').value.trim() : '',
+    naam:     document.getElementById('naam')     ? document.getElementById('naam').value.trim()     : '',
+    email:    document.getElementById('email')    ? document.getElementById('email').value.trim()    : '',
+    kmstand:  document.getElementById('kmstand')  ? document.getElementById('kmstand').value.trim()  : '',
+    gebruik:  document.getElementById('gebruik')  ? document.getElementById('gebruik').value          : '',
+  };
+  // Alleen opslaan als we een kenteken hebben (rapport is al gegenereerd)
+  if (data.kenteken) {
+    sessionStorage.setItem('zow_restore', JSON.stringify(data));
+  }
+}
+
 async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Klant';
@@ -2347,8 +2362,43 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
 
   // Verwijder eventueel eerder opgeslagen paid status uit localStorage
-  // (opruimen van oude sessies die niet via Stripe liepen)
   localStorage.removeItem('zow_paid');
+
+  // ── HERSTEL NA STRIPE REDIRECT ──
+  // Als klant terugkomt met ?paid=true én er zijn opgeslagen formuliergegevens,
+  // herstel dan het formulier en start het rapport automatisch.
+  if (isPaidNow) {
+    const restoreRaw = sessionStorage.getItem('zow_restore');
+    if (restoreRaw) {
+      try {
+        const restore = JSON.parse(restoreRaw);
+        sessionStorage.removeItem('zow_restore'); // eenmalig gebruiken
+        // Vul formulier in
+        if (restore.kenteken && document.getElementById('kenteken')) {
+          document.getElementById('kenteken').value = restore.kenteken;
+        }
+        if (restore.naam && document.getElementById('naam')) {
+          document.getElementById('naam').value = restore.naam;
+        }
+        if (restore.email && document.getElementById('email')) {
+          document.getElementById('email').value = restore.email;
+        }
+        if (restore.kmstand && document.getElementById('kmstand')) {
+          document.getElementById('kmstand').value = restore.kmstand;
+        }
+        if (restore.gebruik && document.getElementById('gebruik')) {
+          document.getElementById('gebruik').value = restore.gebruik;
+        }
+        // Start rapport automatisch — klant hoeft niets te doen
+        if (restore.kenteken) {
+          startRapport();
+        }
+      } catch(e) {
+        // Herstel mislukt — toon gewoon het formulier
+        console.warn('Herstel na betaling mislukt:', e);
+      }
+    }
+  }
 
   // Zet preview/full klasse DIRECT vóór display:block, voorkomt flash van volledig rapport
   const rapportScreen = document.getElementById('rapport-screen');
@@ -2518,7 +2568,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <div style="padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:13px;color:var(--white-dim);">🔒 Cel-anomalie risico</div>
       </div>
 
-      <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}">
+      <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}" onclick="saveBeforeStripe()">
         Bekijk het volledige rapport voor €19,95
       </a>
       <p class="btn-unlock-sub" style="margin-top:10px;">Eenmalig · Geen abonnement · Veilig via Stripe</p>
@@ -2793,7 +2843,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div style="font-size:28px;margin-bottom:8px;">🔒</div>
       <h2>Dit is je preview. Het echte rapport staat hierachter.</h2>
       <p>Je ziet nu de risicoscore en basisinfo. De accuconditie, degradatie-analyse en aankoopadvies voor de ${autoNaam} zijn beschikbaar na betaling.</p>
-      <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" class="cta-btn" style="display:inline-block;background:var(--teal);color:var(--navy);padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;box-shadow:0 6px 28px rgba(45,212,191,0.3);">
+      <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" class="cta-btn" onclick="saveBeforeStripe()" style="display:inline-block;background:var(--teal);color:var(--navy);padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;font-size:15px;box-shadow:0 6px 28px rgba(45,212,191,0.3);">
         🔓 Ontgrendel direct - voorkom miskoop van €1.000+
       </a>
       <p class="cta-sub">Eenmalig · Geen abonnement · Stripe beveiligd · Direct toegang</p>
@@ -2852,7 +2902,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </p>` : ''}
       <p style="margin-top:8px;">Preview gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
       ${!isPaidNow ? `<p style="margin-top:8px;font-size:12px;color:var(--muted);">
-        <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" style="color:var(--teal);text-decoration:none;font-weight:600;">Ontgrendel volledig rapport →</a>
+        <a href="${STRIPE_LINK}?client_reference_id=${kenteken}" onclick="saveBeforeStripe()" style="color:var(--teal);text-decoration:none;font-weight:600;">Ontgrendel volledig rapport →</a>
       </p>` : ''}
     </div>
   `;
