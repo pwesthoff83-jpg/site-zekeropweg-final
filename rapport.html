@@ -2095,17 +2095,19 @@ function setLoadingText(txt) {
 }
 
 function saveBeforeStripe() {
-  // Sla alle invoerdata op zodat we na Stripe-redirect het rapport kunnen herstellen
+  // Sla alle invoerdata op zodat we na Stripe-redirect het rapport kunnen herstellen.
+  // Gebruikt localStorage (niet sessionStorage) zodat het ook bij tab-wissel of
+  // mobiele redirects beschikbaar blijft. Vervalt automatisch na 30 minuten.
   const data = {
     kenteken: document.getElementById('kenteken') ? document.getElementById('kenteken').value.trim() : '',
     naam:     document.getElementById('naam')     ? document.getElementById('naam').value.trim()     : '',
     email:    document.getElementById('email')    ? document.getElementById('email').value.trim()    : '',
     kmstand:  document.getElementById('kmstand')  ? document.getElementById('kmstand').value.trim()  : '',
     gebruik:  document.getElementById('gebruik')  ? document.getElementById('gebruik').value          : '',
+    expires:  Date.now() + (30 * 60 * 1000), // 30 minuten geldig
   };
-  // Alleen opslaan als we een kenteken hebben (rapport is al gegenereerd)
   if (data.kenteken) {
-    sessionStorage.setItem('zow_restore', JSON.stringify(data));
+    localStorage.setItem('zow_restore', JSON.stringify(data));
   }
 }
 
@@ -2368,35 +2370,39 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Als klant terugkomt met ?paid=true én er zijn opgeslagen formuliergegevens,
   // herstel dan het formulier en start het rapport automatisch.
   if (isPaidNow) {
-    const restoreRaw = sessionStorage.getItem('zow_restore');
+    // Probeer eerst localStorage (werkt ook na tab-wissel en mobiele redirect)
+    const restoreRaw = localStorage.getItem('zow_restore');
     if (restoreRaw) {
       try {
         const restore = JSON.parse(restoreRaw);
-        sessionStorage.removeItem('zow_restore'); // eenmalig gebruiken
-        // Vul formulier in
-        if (restore.kenteken && document.getElementById('kenteken')) {
-          document.getElementById('kenteken').value = restore.kenteken;
-        }
-        if (restore.naam && document.getElementById('naam')) {
-          document.getElementById('naam').value = restore.naam;
-        }
-        if (restore.email && document.getElementById('email')) {
-          document.getElementById('email').value = restore.email;
-        }
-        if (restore.kmstand && document.getElementById('kmstand')) {
-          document.getElementById('kmstand').value = restore.kmstand;
-        }
-        if (restore.gebruik && document.getElementById('gebruik')) {
-          document.getElementById('gebruik').value = restore.gebruik;
-        }
-        // Start rapport automatisch — klant hoeft niets te doen
-        if (restore.kenteken) {
+        localStorage.removeItem('zow_restore'); // eenmalig gebruiken, direct verwijderen
+
+        // Controleer of de data niet verlopen is (30 minuten geldigheid)
+        if (restore.expires && Date.now() > restore.expires) {
+          console.warn('Hersteldata verlopen — toon formulier opnieuw');
+        } else if (restore.kenteken) {
+          // Vul formulier in met opgeslagen data
+          const setVal = (id, val) => {
+            const el = document.getElementById(id);
+            if (el && val) el.value = val;
+          };
+          setVal('kenteken', restore.kenteken);
+          setVal('naam',     restore.naam);
+          setVal('email',    restore.email);
+          setVal('kmstand',  restore.kmstand);
+          setVal('gebruik',  restore.gebruik);
+
+          // Start rapport automatisch — klant hoeft niets te doen
           startRapport();
         }
       } catch(e) {
-        // Herstel mislukt — toon gewoon het formulier
         console.warn('Herstel na betaling mislukt:', e);
+        localStorage.removeItem('zow_restore');
       }
+    } else {
+      // Geen hersteldata — toon formulier zodat klant kenteken opnieuw kan invullen
+      // (gebeurt bijv. bij directe link-toegang met ?paid=true)
+      document.getElementById('form-screen').style.display = 'flex';
     }
   }
 
