@@ -1497,6 +1497,7 @@ const batteryDB = {
 };
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
+  const zoekterm = ((merk||'') + ' ' + (handelsbenaming||'') + ' ' + (variant||'')).toLowerCase();
   const keys = Object.keys(batteryDB);
   const merkLow = (merk || '').toLowerCase().trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
@@ -1550,23 +1551,56 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   let dbDriveType = null;
   // EV keys, alleen modellen die ALTIJD volledig elektrisch zijn
   const evKeys = [
-    'q4 e-tron', 'q6 e-tron', 'q8 e-tron', 'a6 e-tron', 'e-tron gt', 'rs e-tron', 's e-tron gt', 'sq8 e-tron', 'sq6 e-tron',
-    'ix1', 'ix2', 'ix3', ' i4 ', ' i5 ', ' i7 ', ' ix ',
+    // Audi EV
+    'q4 e-tron', 'q6 e-tron', 'q8 50 e-tron', 'q8 55 e-tron', 'sq8 e-tron',
+    'a6 e-tron', 'e-tron gt', 'rs e-tron gt', 's e-tron gt',
+    'e-tron 50', 'e-tron 55', 'e-tron s',
+    // BMW EV
+    'bmw ix1', 'bmw ix2', 'bmw ix3', 'bmw i4', 'bmw i5', 'bmw i7', 'bmw i3',
+    // VW EV
     'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
-    'ioniq 5', 'ioniq 6', 'ioniq 9', 'kona ev', 'ev3 ', 'ev6', 'ev9', 'niro ev', 'e-niro', 'inster',
+    // Hyundai/Kia EV
+    'ioniq 5', 'ioniq 6', 'ioniq 9', 'kona ev', 'kona electric',
+    'ev3', 'ev6', 'ev9', 'niro ev', 'e-niro', 'inster',
+    // Mercedes EV
     'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
-    'ex30', 'ex40', 'ec40', 'xc40 recharge', 'c40 recharge',
+    // Volvo EV
+    'ex30', 'ex40', 'ec40', 'c40 recharge',
+    // Peugeot EV — ALLEEN met e- prefix
     'peugeot e-208', 'peugeot e-2008', 'peugeot e-308', 'peugeot e-3008',
-    'leaf', 'ariya', 'zoe', 'megane e-tech', 'scenic e-tech', 'renault 5',
+    // Opel EV — alleen met electric in naam
+    'corsa-e', 'corsa electric', 'mokka-e', 'mokka electric', 'astra electric',
+    // Tesla
     'model 3', 'model y', 'model s', 'model x',
-    'polestar', 'taycan', 'macan ev', 'bz4x', 'solterra',
-    'born', 'tavascan', 'enyaq', 'elroq',
-    'mg4', 'cyberster', 'mg zs ev',
-    'smart #', 'mini cooper e ', 'mini cooper se', 'aceman',
-    'i-pace', 'gv60', 'genesis gv60', 'genesis ev6',
-    'dolphin', 'atto 3', 'byd seal ', 'byd han', 'byd tang',
-    'spring', 'capri', 'mustang mach', 'f-150 lightning', 'equinox ev', 'escalade iq',
-    'honda eny', 'prologue', 'zeekr'
+    // Renault EV
+    'zoe', 'megane e-tech electric', 'scenic e-tech', 'renault 5',
+    // Polestar / Porsche EV
+    'polestar 2', 'polestar 3', 'polestar 4', 'taycan', 'macan electric',
+    // Toyota/Subaru EV
+    'bz4x', 'solterra',
+    // Skoda/Cupra EV
+    'enyaq', 'elroq', 'citigo-e', 'born', 'tavascan',
+    // MG/Smart/Mini EV
+    'mg4', 'mg zs ev', 'mg5 electric', 'smart #1', 'smart #3',
+    'mini cooper se', 'mini cooper electric', 'mini aceman',
+    // Overige
+    'i-pace', 'gv60', 'genesis ev6',
+    'atto 3', 'byd seal', 'byd han', 'byd tang', 'byd dolphin',
+    'spring', 'mustang mach-e', 'f-150 lightning', 'equinox ev', 'escalade iq',
+    'honda eny', 'mx-30',
+    'nissan ariya', 'nissan leaf',
+    'e-c3', 'e-c4', 'e-berlingo',
+    'zeekr', 'xpeng g6', 'xpeng g9',
+  ];
+
+  // Milde hybride blacklist — modellen die NOOIT EV zijn
+  const mildHybridBlacklist = [
+    'cx-30', 'cx-5', 'cx-3',
+    'qashqai', 'juke', 'x-trail',
+    'm hybrid', 'skyactiv-x', 'e-skyactiv',
+    'mhev', '48v',
+    'rav4 hybrid', 'c-hr hybrid',
+    'cr-v hybrid', 'kuga hybrid',
   ];
 
   const phevKeys = [
@@ -1577,8 +1611,13 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
 
   const hybridKeys = ['hybrid', 'mhev'];
 
-  if (evKeys.some(k => keyAndVariant.includes(k))) {
+  // Check eerst de mild hybrid blacklist — deze wint altijd van evKeys
+  const isMildHybrid = mildHybridBlacklist.some(k => keyAndVariant.includes(k) || zoekterm.includes(k));
+
+  if (!isMildHybrid && evKeys.some(k => keyAndVariant.includes(k))) {
     dbDriveType = 'ev';
+  } else if (isMildHybrid) {
+    dbDriveType = 'hybrid';
   } else if (phevKeys.some(k => keyAndVariant.includes(k)) || /\biv\b/.test(entry.variant)) {
     dbDriveType = 'phev';
   } else if (hybridKeys.some(k => keyAndVariant.includes(k))) {
@@ -2238,10 +2277,37 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = detectDriveType(brandstof, zoektekst, merk);
   }
 
-  // Physics guardrail: kwh > 6 kWh = nooit milde hybride
+  // ── PHYSICS GUARDRAILS ─────────────────────────────────────────────────────
+  // Gebaseerd op marktdata: kleinste EV = Fiat 500e Action 22 kWh
+  //                         grootste PHEV in Europa = BMW X5 45e 29,5 kWh
+  //                         grootste PHEV wereldwijd = SVOLT 80 kWh (nog niet in NL)
+  // Harde regel: Benzine of Diesel = NOOIT volledig elektrisch. Altijd.
+
+  // Guardrail 1: brandstof Benzine of Diesel = nooit EV, zonder uitzondering
+  if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel'))) {
+    if (driveType === 'ev') {
+      // Benzine/diesel + EV-classificatie = fout. Corrigeer naar PHEV als kwh > 6, anders verbrandingsmotor
+      driveType = (kwh && kwh > 6) ? 'phev' : 'verbrandingsmotor';
+    }
+  }
+
+  // Guardrail 2: kwh >= 35 + brandstof Elektrisch = altijd EV
+  if (driveType !== 'ev' && kwh && kwh >= 35 && bsLow && bsLow.includes('elektr') && !bsLow.includes('benzin') && !bsLow.includes('diesel')) {
+    driveType = 'ev';
+  }
+
+  // Guardrail 3: kwh > 6 maar auto staat als hybrid/verbrandingsmotor = phev
   if ((driveType === 'hybrid' || driveType === 'verbrandingsmotor') && kwh && kwh > 6) {
     driveType = kwh >= 35 ? 'ev' : 'phev';
   }
+
+  // Guardrail 4: kwh < 5 = nooit EV (milde hybrides 0.3-3 kWh, 48V systemen)
+  if (driveType === 'ev' && kwh && kwh < 5) {
+    driveType = 'hybrid';
+  }
+
+  // Guardrail 5: geen brandstoftype bekend + geen kwh = veilig naar verbrandingsmotor
+  // Beter geen inschatting dan een foute
 
   const jaarGebruik = km && leeftijd ? calcJaarGebruik(km, leeftijd) : null;
 
