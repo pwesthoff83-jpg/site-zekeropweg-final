@@ -1371,6 +1371,12 @@ const batteryDB = {
   "mercedes-benz a250": [{ "variant": "e", "kwh": 15.6 }],
   "mercedes-benz b-class": [{ "variant": "250e", "kwh": 15.6 }],
   "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "300de", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }, { "variant": "400e", "kwh": 25.4 }],
+  "mercedes-benz c 300": [{ "variant": "e", "kwh": 25.4 }, { "variant": "de", "kwh": 25.4 }],
+  "mercedes-benz c 350": [{ "variant": "e", "kwh": 6.38 }],
+  "mercedes-benz e 300": [{ "variant": "e", "kwh": 25.4 }, { "variant": "de", "kwh": 25.4 }],
+  "mercedes-benz e 350": [{ "variant": "e", "kwh": 6.38 }],
+  "mercedes-benz glc 300": [{ "variant": "e", "kwh": 24.82 }, { "variant": "de", "kwh": 24.82 }],
+  "mercedes-benz gle 350": [{ "variant": "e", "kwh": 31.2 }, { "variant": "de", "kwh": 31.2 }],
   "mercedes-benz cla": [{ "variant": "250e", "kwh": 15.6 }, { "variant": "250+", "kwh": 85 }],
   "mercedes-benz cle": [{ "variant": "300e", "kwh": 25.4 }],
   "mercedes-benz e-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "300de", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }, { "variant": "400e", "kwh": 25.4 }],
@@ -2225,16 +2231,24 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = (bouwjaar && bouwjaar >= 2025) ? 'ev' : 'phev';
     if (driveType === 'ev' && (!kwh || kwh < 50)) kwh = 85;
   }
-  // 4. Mercedes A/B/GLA klasse 250e = altijd PHEV, nooit EV
-  // Alleen CLA 250+ vanaf 2025 is EV. Alle 250e zijn PHEV.
+ // 4. Mercedes PHEV detectie — vangt zowel geplakte (300e) als RDW-spatie variant (300 e / c 300 e)
+  // RDW stuurt handelsbenaming als "C 300 E", "C 300 DE", "GLC 300 E" etc. met spaties
   if (!driveType && merkLow.includes('mercedes')) {
     const mbHandel = handelLow;
-    // A 250e, B 250e, GLA 250e, C 300e etc = PHEV
-    if (/a\s*250e?/i.test(mbHandel) || /b\s*250e?/i.test(mbHandel) ||
-        /gla\s*250e?/i.test(mbHandel) || /300e/i.test(mbHandel) ||
-        /350e/i.test(mbHandel) || /400e/i.test(mbHandel) ||
-        /300de/i.test(mbHandel)) {
+    // C-klasse met getal = altijd PHEV (C 300 E, C 350 E, C 400 E)
+    const isCKlassePhev = /\bc\s*\d/i.test(mbHandel);
+    // Getal gevolgd door spatie+e of direct e/de = PHEV aanduiding (300 e, 300e, 300de, 250 e)
+    const phevSuffix = /\b\d+\s+[de]{1,2}\b/i.test(mbHandel) || /\b\d+[de]{1,2}\b/i.test(mbHandel);
+    // GLC, GLE met getal = PHEV
+    const isGlcGlePhev = /\bgl[ce]\s*\d/i.test(mbHandel);
+    if (isCKlassePhev || phevSuffix || isGlcGlePhev) {
       driveType = 'phev';
+      if (!kwh || kwh > 40) {
+        if (/\bglc\b/i.test(mbHandel)) kwh = 24.82;
+        else if (/\bgle\b/i.test(mbHandel)) kwh = 31.2;
+        else if (/\bs\s*\d/i.test(mbHandel)) kwh = 28.6;
+        else kwh = 25.4;
+      }
     }
   }
   // Mercedes EQ-serie → EV
@@ -2310,6 +2324,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Guardrail 2: kwh >= 35 + brandstof Elektrisch = altijd EV
   if (driveType !== 'ev' && kwh && kwh >= 35 && bsLow && bsLow.includes('elektr') && !bsLow.includes('benzin') && !bsLow.includes('diesel')) {
     driveType = 'ev';
+  }
+
+  // Guardrail 2b: driveType is 'ev' maar kwh <= 35 = dit is een PHEV, nooit een EV
+  // Kleinste EV in serieproductie: 22 kWh. Alles onder 35 kWh dat als EV gedetecteerd wordt
+  // is een detectiefout. Forceer naar PHEV als kwh bekend is en <= 35.
+  if (driveType === 'ev' && kwh && kwh <= 35) {
+    driveType = 'phev';
   }
 
   // Guardrail 3: kwh > 6 maar auto staat als hybrid/verbrandingsmotor = phev
