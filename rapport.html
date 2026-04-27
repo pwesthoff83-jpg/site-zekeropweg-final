@@ -1361,7 +1361,10 @@ const batteryDB = {
   // ── MAZDA ──────────────────────────────────────────────────────────────────
   "mazda cx-60": [{ "variant": "phev", "kwh": 17.8 }],
   "mazda cx-80": [{ "variant": "phev", "kwh": 17.8 }],
+  "mazda cx-30": [{ "variant": "m hybrid", "kwh": 0.5 }, { "variant": "hybrid", "kwh": 0.5 }],
   "mazda mx-30": [{ "variant": "standard", "kwh": 35.5 }],
+  "mazda cx-5": [{ "variant": "hybrid", "kwh": 0.5 }],
+  "mazda cx-60": [{ "variant": "phev", "kwh": 17.8 }],
   // ── MERCEDES PHEV ──────────────────────────────────────────────────────────
   "mercedes-benz a-class": [{ "variant": "250e", "kwh": 15.6 }],
   "mercedes-benz a 250": [{ "variant": "e", "kwh": 15.6 }],
@@ -2206,6 +2209,17 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = 'hybrid';
     if (!kwh) kwh = 2.1;
   }
+  // 5d2. Mazda CX-30 M Hybrid / e-SkyActiv = milde hybride (48V, 0.5 kWh), NOOIT EV
+  // MX-30 is de echte Mazda EV (35.5 kWh) — CX-30 heeft geen laadpaal
+  if (!driveType && merkLow.includes('mazda') && handelLow.includes('cx-30')) {
+    driveType = 'hybrid';
+    kwh = null; // geen accu-inschatting voor milde hybride
+  }
+  // 5d3. Mazda CX-60 PHEV
+  if (!driveType && merkLow.includes('mazda') && handelLow.includes('cx-60')) {
+    driveType = 'phev';
+    if (!kwh) kwh = 17.8;
+  }
   // 5e. Peugeot 508, PHEV, nooit EV. evKey 'peugeot 208' matcht anders op '508'
   if (!driveType && merkLow.includes('peugeot') && handelLow.includes('508')) {
     driveType = 'phev';
@@ -2739,4 +2753,3 @@ document.getElementById('kenteken').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
-
