@@ -1497,7 +1497,6 @@ const batteryDB = {
 };
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
-  const zoekterm = ((merk||'') + ' ' + (handelsbenaming||'') + ' ' + (variant||'')).toLowerCase();
   const keys = Object.keys(batteryDB);
   const merkLow = (merk || '').toLowerCase().trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
