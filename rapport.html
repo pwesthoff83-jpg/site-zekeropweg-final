@@ -2354,11 +2354,22 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = 'ev';
   }
 
-  // Guardrail 2b: driveType is 'ev' maar kwh <= 35 = dit is een PHEV, nooit een EV
-  // Kleinste EV in serieproductie: 22 kWh. Alles onder 35 kWh dat als EV gedetecteerd wordt
-  // is een detectiefout. Forceer naar PHEV als kwh bekend is en <= 35.
-  if (driveType === 'ev' && kwh && kwh <= 35) {
-    driveType = 'phev';
+  // Guardrail 2b: kwh-grens op basis van marktdata
+  // Kleinste EV in serieproductie: 22 kWh (Fiat 500e Action, Renault Zoe)
+  // Grootste PHEV in Europa: 31.8 kWh (Range Rover P400e)
+  // Zone 22-32 kWh: overlap, wordt bepaald door naam (guardrails 0 en 1), niet door kWh
+  // Alles > 32 kWh = altijd EV (Mini Cooper SE 32.6 kWh is de laagste echte EV boven de grens)
+  // Alles < 22 kWh = nooit EV
+  // 22-32 kWh: alleen PHEV forceren als naam-detectie al PHEV zegt maar kWh te hoog was
+  if (driveType === 'ev' && kwh && kwh < 22) {
+    driveType = 'phev'; // Onder 22 kWh = nooit EV
+  }
+  if (driveType === 'ev' && kwh && kwh >= 22 && kwh <= 32) {
+    // In overlap zone: vertrouw op naam-detectie (guardrail 0 heeft al plug-in hybrid gevangen)
+    // Alleen forceren naar PHEV als er geen EV-signaal in de naam zit
+    const evSignaalInNaam = zoektekst.includes('elektr') || zoektekst.includes('zoe') ||
+      zoektekst.includes('spring') || zoektekst.includes('500e') || zoektekst.includes('e-up');
+    if (!evSignaalInNaam) driveType = 'phev';
   }
 
   // Guardrail 3: kwh > 6 maar auto staat als hybrid/verbrandingsmotor = phev
