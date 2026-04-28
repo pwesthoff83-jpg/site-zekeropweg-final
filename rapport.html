@@ -1306,6 +1306,9 @@ const batteryDB = {
   "fiat 600e": [{ "variant": "standard", "kwh": 54 }],
   // ── FORD ───────────────────────────────────────────────────────────────────
   "ford kuga": [{ "variant": "phev", "kwh": 14.4 }],
+  "ford transit": [{ "variant": "hybrid", "kwh": 1.5 }],
+  "ford transit custom": [{ "variant": "phev", "kwh": 11.8 }],
+  "ford transit custom plug-in": [{ "variant": "phev", "kwh": 11.8 }],
   "ford mustang mach-e": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "awd", "kwh": 72.6 }, { "variant": "gt", "kwh": 98.7 }, { "variant": "long range", "kwh": 98.7 }],
   "ford explorer": [{ "variant": "rwd", "kwh": 77 }, { "variant": "awd", "kwh": 79 }, { "variant": "phev", "kwh": 13.6 }],
   "ford capri": [{ "variant": "rwd", "kwh": 77 }, { "variant": "awd", "kwh": 79 }],
@@ -1433,6 +1436,9 @@ const batteryDB = {
   // ── RENAULT ────────────────────────────────────────────────────────────────
   "renault zoe": [{ "variant": "standard", "kwh": 22 }, { "variant": "ze40", "kwh": 41 }, { "variant": "ze50", "kwh": 52 }],
   "renault megane e-tech": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 60 }],
+  "renault megane e-tech plug-in": [{ "variant": "phev", "kwh": 9.8 }],
+  "renault megane e-tech plug-in hybrid": [{ "variant": "phev", "kwh": 9.8 }],
+  "renault megane plug-in": [{ "variant": "phev", "kwh": 9.8 }],
   "renault scenic e-tech": [{ "variant": "standard", "kwh": 60 }, { "variant": "long range", "kwh": 87 }],
   "renault 5": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 52 }],
   "renault capture": [{ "variant": "e-tech", "kwh": 9.8 }],
@@ -1499,7 +1505,10 @@ const batteryDB = {
   "xpeng g9": [{ "variant": "sr", "kwh": 78.2 }, { "variant": "lr", "kwh": 98 }],
   "xpeng p7": [{ "variant": "standard", "kwh": 86.2 }],
   // ── ZEEKR ──────────────────────────────────────────────────────────────────
-  "zeekr x": [{ "variant": "rwd", "kwh": 69 }, { "variant": "awd", "kwh": 69 }]
+  "zeekr x": [{ "variant": "rwd", "kwh": 69 }, { "variant": "awd", "kwh": 69 }],
+  "lynk": [{ "variant": "01 phev", "kwh": 10.7 }, { "variant": "01", "kwh": 10.7 }],
+  "lynk & co": [{ "variant": "01", "kwh": 10.7 }],
+  "lynk co": [{ "variant": "01", "kwh": 10.7 }]
 };
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
@@ -1606,6 +1615,7 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
     'mhev', '48v',
     'rav4 hybrid', 'c-hr hybrid',
     'cr-v hybrid', 'kuga hybrid',
+    'transit', // Ford Transit is altijd verbrandingsmotor of mild hybrid, nooit EV
   ];
 
   const phevKeys = [
@@ -1931,15 +1941,17 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     // Kleine accu (<= 13 kWh): snellere degradatie
     // Grote accu (> 13 kWh): langzamere degradatie
     const isKleineAccu = !kwh || kwh <= 13;
-    const adacNorm  = km >= 120000 ? (isKleineAccu ? 83 : 86)
-                    : km >= 90000  ? (isKleineAccu ? 85 : 88)
-                    : km >= 60000  ? (isKleineAccu ? 87 : 90)
-                    : km >= 30000  ? (isKleineAccu ? 90 : 93)
+    // ADAC norm: pak de bracket die het dichtst bij de werkelijke km ligt (naar boven afronden)
+    // 85.000 km → vergelijk met 90.000 km bracket, niet 60.000 km
+    const adacNorm  = km >= 105000 ? (isKleineAccu ? 83 : 86)
+                    : km >= 75000  ? (isKleineAccu ? 85 : 88)
+                    : km >= 45000  ? (isKleineAccu ? 87 : 90)
+                    : km >= 15000  ? (isKleineAccu ? 90 : 93)
                     : null;
-    const adacLabel = km >= 120000 ? '120.000 km'
-                    : km >= 90000  ? '90.000 km'
-                    : km >= 60000  ? '60.000 km'
-                    : km >= 30000  ? '30.000 km' : null;
+    const adacLabel = km >= 105000 ? '120.000 km'
+                    : km >= 75000  ? '90.000 km'
+                    : km >= 45000  ? '60.000 km'
+                    : km >= 15000  ? '30.000 km' : null;
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     const intensiteitTxt = jaarGebruik > 30000
@@ -2017,8 +2029,9 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     const sohMid = 100 - Math.round((min + midVal) / 2);
 
     // EV referentiedrempels (geen officiële ADAC-norm, eigen ijklijn op dataset)
-    const adacNorm = km >= 150000 ? 82 : km >= 100000 ? 87 : km >= 50000 ? 91 : null;
-    const adacLabel = km >= 150000 ? '150.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
+    // ADAC norm EV: bracket naar boven afronden zodat 85.000 km met 100.000 km wordt vergeleken
+    const adacNorm = km >= 125000 ? 82 : km >= 75000 ? 87 : km >= 25000 ? 91 : null;
+    const adacLabel = km >= 125000 ? '150.000 km' : km >= 75000 ? '100.000 km' : '50.000 km';
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     let fase = '';
@@ -2272,6 +2285,12 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = battery && battery.kwh && battery.kwh > 5 ? 'phev' : 'hybrid';
     if (!kwh) kwh = 13.8;
   }
+  // 5c2. Lynk & Co = altijd PHEV (01 is enige model in NL, heeft 10.7 kWh)
+  if (!driveType && (merkLow.includes('lynk') || handelLow.includes('lynk'))) {
+    driveType = 'phev';
+    if (!kwh) kwh = 10.7;
+  }
+
   // 5d. Nissan Qashqai, e-Power is mild hybrid, niet EV
   // RDW registreert soms als Elektrisch maar Qashqai rijdt op benzine, heeft geen laadpaal
   if (!driveType && merkLow.includes('nissan') && handelLow.includes('qashqai')) {
@@ -2312,6 +2331,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   //                         grootste PHEV in Europa = BMW X5 45e 29,5 kWh
   //                         grootste PHEV wereldwijd = SVOLT 80 kWh (nog niet in NL)
   // Harde regel: Benzine of Diesel = NOOIT volledig elektrisch. Altijd.
+
+  // Guardrail 0: handelsbenaming bevat "plug-in hybrid" of "plug-in hybride" = altijd PHEV
+  // Dit vangt gevallen op zoals "Megane E-Tech Plug-in Hybrid" die anders als EV worden gezien
+  if (handelLow.includes('plug-in hybrid') || handelLow.includes('plug-in hybride') ||
+      handelLow.includes('plug in hybrid') || varLow.includes('plug-in hybrid')) {
+    driveType = 'phev';
+    // Corrigeer kWh als die fout is overgenomen uit EV-variant
+    if (kwh && kwh > 35) kwh = 9.8; // PHEV Megane heeft 9.8 kWh, niet 40+
+  }
 
   // Guardrail 1: brandstof Benzine of Diesel = nooit EV, zonder uitzondering
   if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel'))) {
