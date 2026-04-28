@@ -2431,6 +2431,16 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   rapportScreen.classList.remove('preview-mode', 'full-mode');
   rapportScreen.classList.add(isPaidNow ? 'full-mode' : 'preview-mode');
   rapportScreen.style.display = 'block';
+
+  // ── BEVEILIGING: verwijder ?paid=true uit de URL na het laden ──
+  // Zodra het rapport gerenderd is als betaald, wordt de URL schoongemaakt.
+  // Zo kan de URL niet worden gekopieerd of opnieuw gebruikt als gratis toegang.
+  // history.replaceState verwijdert de parameter zonder de pagina te herladen.
+  if (isPaidNow) {
+    const cleanUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+
   // Bouw rappportURL voor terugkeer na betaling
   const returnUrl = encodeURIComponent(window.location.href.split('?')[0] + '?paid=true');
 
