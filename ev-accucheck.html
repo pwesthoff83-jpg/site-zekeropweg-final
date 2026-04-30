@@ -360,6 +360,170 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Preview knop */
+    .btn-rapport-preview {
+      background: transparent;
+      border: 1.5px solid var(--zop-gold, #c6a86a);
+      color: var(--zop-gold, #c6a86a);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .btn-rapport-preview:hover {
+      background: var(--zop-gold, #c6a86a);
+      color: #fff;
+    }
+
+    /* Modal overlay */
+    .rapport-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11,18,32,0.72);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .rapport-modal-overlay.active {
+      display: flex;
+    }
+    .rapport-modal {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+    }
+    .rapport-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--zop-muted, #5a6472);
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .rapport-modal-close:hover {
+      background: #f0f0f0;
+    }
+    .rapport-modal-header {
+      padding: 36px 36px 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .rapport-modal-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--zop-gold, #c6a86a);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .rapport-modal-header h3 {
+      font-size: 20px;
+      font-weight: 650;
+      color: var(--zop-ink, #0b1220);
+      margin: 0 0 8px;
+    }
+    .rapport-modal-sub {
+      font-size: 13px;
+      color: var(--zop-muted, #5a6472);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .rapport-modal-body {
+      padding: 24px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .rapport-preview-block {
+      background: #f6f5f1;
+      border-radius: 12px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .rapport-preview-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--zop-gold, #c6a86a);
+      margin-bottom: 10px;
+    }
+    .rapport-preview-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 650;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .rapport-badge-goed {
+      background: #e8f5e8;
+      color: #2d6a2d;
+    }
+    .rapport-preview-text {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .rapport-preview-blur {
+      user-select: none;
+    }
+    .rapport-preview-blur .rapport-preview-text {
+      filter: blur(4px);
+      pointer-events: none;
+    }
+    .rapport-blur-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(246,245,241,0.55);
+    }
+    .rapport-blur-overlay span {
+      background: var(--zop-ink, #0b1220);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 20px;
+    }
+    .rapport-modal-footer {
+      padding: 20px 36px 32px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      text-align: center;
+    }
+    .rapport-modal-footer-text {
+      font-size: 13px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 480px) {
+      .rapport-modal-header,
+      .rapport-modal-body,
+      .rapport-modal-footer { padding-left: 20px; padding-right: 20px; }
+      .rapport-modal-header { padding-top: 28px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -512,9 +676,54 @@
         </div>
         <div class="rapport-instap-cta-block">
           <a href="rapport.html" class="btn-primary">Bestel AccuRisico Rapport · €19,95</a>
+          <button class="btn-rapport-preview" onclick="document.getElementById('rapportModal').classList.add('active')">Bekijk voorbeeld</button>
         </div>
       </div>
     </section>
+
+    <!-- RAPPORT PREVIEW MODAL -->
+    <div id="rapportModal" class="rapport-modal-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+      <div class="rapport-modal">
+        <button class="rapport-modal-close" onclick="document.getElementById('rapportModal').classList.remove('active')" aria-label="Sluiten">x</button>
+        <div class="rapport-modal-header">
+          <span class="rapport-modal-eyebrow">AccuRisico Rapport · Voorbeeld</span>
+          <h3>Mitsubishi Outlander PHEV · 2019 · 74.200 km</h3>
+          <p class="rapport-modal-sub">Dit is een voorbeeld van hoe het rapport eruitziet. De inhoud is gebaseerd op een echt voertuigprofiel.</p>
+        </div>
+        <div class="rapport-modal-body">
+
+          <!-- SECTIE 1: Zichtbaar -->
+          <div class="rapport-preview-block">
+            <div class="rapport-preview-label">Risicoclassificatie</div>
+            <div class="rapport-preview-badge rapport-badge-goed">Goede basis met aandachtspunt</div>
+            <p class="rapport-preview-text">De accustatus van deze Outlander PHEV valt binnen verwachting voor het bouwjaar en de kilometerstand. De plug-in accu van dit model veroudert geleidelijk. Er is een aandachtspunt rondom het elektrisch rijbereik dat nader aandacht verdient bij bezichtiging.</p>
+          </div>
+
+          <!-- SECTIE 2: Geblurred -->
+          <div class="rapport-preview-block rapport-preview-blur">
+            <div class="rapport-preview-label">Kilometeranalyse en degradatieverloop</div>
+            <p class="rapport-preview-text">Op basis van 74.200 km en bouwjaar 2019 verwacht je bij de Outlander PHEV een resterende accucapaciteit van ongeveer... Het elektrisch rijbereik loopt bij dit profiel terug naar...</p>
+            <div class="rapport-blur-overlay">
+              <span>Zichtbaar na aankoop</span>
+            </div>
+          </div>
+
+          <!-- SECTIE 3: Geblurred -->
+          <div class="rapport-preview-block rapport-preview-blur">
+            <div class="rapport-preview-label">Proefrit checklist</div>
+            <p class="rapport-preview-text">Let bij de Outlander PHEV specifiek op het elektrisch rijbereik bij een volle lading, de overgang tussen elektrisch en benzinerijden, en het gedrag van het remsysteem bij...</p>
+            <div class="rapport-blur-overlay">
+              <span>Zichtbaar na aankoop</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="rapport-modal-footer">
+          <p class="rapport-modal-footer-text">Het volledige rapport bevat de risicoclassificatie, kilometeranalyse, degradatieverwachting, meetwaarden uitleg, proefrit checklist en aankoopadvies op maat.</p>
+          <a href="rapport.html" class="btn-primary">Bestel volledig rapport · €19,95</a>
+        </div>
+      </div>
+    </div>
 
     <div class="cta-center">
       <a href="intake.html?dienst=ev-accucheck" class="btn-primary" onclick="trackAccuCheckClick()">Plan AccuCheck</a>
