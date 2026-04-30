@@ -271,6 +271,101 @@
       .usecase-grid,
       .value-grid { grid-template-columns: 1fr; }
     }
+
+    /* AccuRisico Rapport instap sectie */
+    .rapport-instap-section {
+      background: #fff;
+      padding: 72px 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .rapport-instap-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .rapport-instap-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--zop-gold, #c6a86a);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .rapport-instap-inner h2 {
+      font-size: 28px;
+      font-weight: 650;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .rapport-instap-intro {
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 620px;
+    }
+    .rapport-voordelen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .rapport-voordeel {
+      background: #f6f5f1;
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .rapport-voordeel strong {
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--zop-ink, #0b1220);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rapport-voordeel strong::before {
+      content: "✓";
+      color: var(--zop-gold, #c6a86a);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .rapport-voordeel p {
+      font-size: 13px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+      padding-left: 21px;
+    }
+    .rapport-instap-cta-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .rapport-instap-cta-block .btn-primary {
+      flex-shrink: 0;
+    }
+    .rapport-instap-upsell-note {
+      font-size: 13px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      border-left: 3px solid var(--zop-gold, #c6a86a);
+      padding-left: 14px;
+    }
+    @media (max-width: 600px) {
+      .rapport-instap-cta-block {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .rapport-voordelen {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -383,6 +478,50 @@
         </div>
         <div class="why-image">
           <img src="assets/images/ev-accudiagnose-apparatuur-interieur.jpeg" alt="EV accudiagnose apparatuur interieur" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCURISICO RAPPORT INSTAP SECTIE -->
+    <section class="rapport-instap-section">
+      <div class="rapport-instap-inner">
+        <span class="rapport-instap-eyebrow">AccuRisico Rapport</span>
+        <h2>Wil je eerst weten waar je aan toe bent?</h2>
+        <p class="rapport-instap-intro">
+          Nog niet klaar voor een fysieke AccuCheck? Het AccuRisico Rapport geeft je direct inzicht in het accurisico van de auto die je overweegt. Alleen op basis van kenteken, bouwjaar en kilometerstand. Geen afspraak, geen wachttijd.
+        </p>
+        <div class="rapport-voordelen">
+          <div class="rapport-voordeel">
+            <strong>Direct beschikbaar</strong>
+            <p>Na betaling ontvang je het rapport vrijwel direct. Geen wachttijd, geen afspraak.</p>
+          </div>
+          <div class="rapport-voordeel">
+            <strong>Risicoclassificatie op maat</strong>
+            <p>Het rapport beoordeelt het accurisico op basis van bouwjaar, kilometerstand en bekende degradatiepatronen.</p>
+          </div>
+          <div class="rapport-voordeel">
+            <strong>Inzicht in wat je niet ziet</strong>
+            <p>Degradatie is niet zichtbaar bij een proefrit. Het rapport maakt het onzichtbare risico inzichtelijk.</p>
+          </div>
+          <div class="rapport-voordeel">
+            <strong>Concrete beslishulp</strong>
+            <p>Je ziet direct of de accustatus een aandachtspunt is, en wat dat betekent voor jouw aankoopbeslissing.</p>
+          </div>
+          <div class="rapport-voordeel">
+            <strong>Verrekend met AccuCheck</strong>
+            <p>Kies je daarna voor een volledige AccuCheck? Dan wordt de €19,95 verrekend met de kosten van de meting.</p>
+          </div>
+          <div class="rapport-voordeel">
+            <strong>Onafhankelijk en zonder belang</strong>
+            <p>Het rapport is uitsluitend in jouw belang. Geen dealer, geen verkoper, geen provisie.</p>
+          </div>
+        </div>
+        <div class="rapport-instap-cta-block">
+          <a href="rapport.html" class="btn-primary">Bekijk AccuRisico Rapport &mdash; €19,95</a>
+          <p class="rapport-instap-upsell-note">
+            Wil je daarna een volledige meting op locatie?<br>
+            De €19,95 wordt verrekend met de AccuCheck.
+          </p>
         </div>
       </div>
     </section>
