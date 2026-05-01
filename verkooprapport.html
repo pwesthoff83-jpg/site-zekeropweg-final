@@ -633,13 +633,137 @@
   }
 
   @media print {
-    #form-screen, #loading-screen, .unlock-gate, .paid-banner, .cta-card, .btn-pdf { display: none !important; }
-    @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
-    html, body { background: #fff !important; font-size: 11pt !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    #rapport-screen { padding: 0 !important; max-width: 100% !important; display: block !important; }
-    .rapport-header { background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .card { box-shadow: none !important; page-break-inside: avoid !important; }
-    * { box-shadow: none !important; }
+    /* Verberg alles buiten het rapport */
+    #form-screen, #loading-screen, .unlock-gate, .paid-banner,
+    .cta-card, .btn-pdf, .no-print { display: none !important; }
+
+    /* Pagina instelling — geen marge zodat header doorloopt */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @page :first {
+      margin: 0;
+    }
+
+    html, body {
+      background: #ffffff !important;
+      font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
+      font-size: 10pt !important;
+      line-height: 1.55 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color: #0f172a !important;
+    }
+
+    #rapport-screen {
+      padding: 0 !important;
+      max-width: 100% !important;
+      display: block !important;
+      background: #ffffff !important;
+    }
+
+    /* HEADER — full bleed gradient tot rand */
+    .rapport-header {
+      background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      border-radius: 0 !important;
+      padding: 28px 32px 28px 32px !important;
+      margin: 0 0 0 0 !important;
+      page-break-after: avoid !important;
+    }
+
+    /* Rapport content padding na header */
+    #rapport-content {
+      padding: 0 24px 24px 24px !important;
+    }
+
+    /* Cards */
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      margin-bottom: 10px !important;
+      page-break-inside: avoid !important;
+      padding: 16px 20px !important;
+    }
+
+    .card-title {
+      font-size: 13pt !important;
+      padding-bottom: 8px !important;
+      margin-bottom: 10px !important;
+      color: #0f172a !important;
+    }
+
+    /* Score banner */
+    .score-banner {
+      border-radius: 10px !important;
+      padding: 16px 20px !important;
+      margin-bottom: 10px !important;
+      page-break-inside: avoid !important;
+    }
+
+    .score-banner.green { background: #f0fdf4 !important; border: 1px solid #86efac !important; }
+    .score-banner.amber { background: #fffbeb !important; border: 1px solid #fcd34d !important; }
+    .score-banner.red { background: #fef2f2 !important; border: 1px solid #fca5a5 !important; }
+
+    .score-circle.green { background: #dcfce7 !important; color: #16a34a !important; }
+    .score-circle.amber { background: #fef3c7 !important; color: #d97706 !important; }
+
+    /* Info rows */
+    .info-row { border-bottom: 1px solid #f1f5f9 !important; }
+    .info-label { color: #64748b !important; }
+    .info-value { color: #334155 !important; }
+    .info-value.teal { color: #0f7c6e !important; }
+
+    /* Tank boxes */
+    .tank-box { background: #f0f9f7 !important; border: 1px solid #b2ddd8 !important; }
+    .tank-bar-wrap { background: #e2e8f0 !important; }
+    .tank-bar-fill.full { background: #0f7c6e !important; }
+    .tank-bar-fill.degraded { background: #d97706 !important; }
+
+    /* Fase grid */
+    .fase-grid { page-break-inside: avoid !important; }
+    .fase-block.f1 { background: #fef2f2 !important; border-color: #fca5a5 !important; }
+    .fase-block.f2 { background: #f0fdf4 !important; border-color: #86efac !important; }
+    .fase-block.f3 { background: #fffbeb !important; border-color: #fcd34d !important; }
+    .fase-tag, .fase-range, .fase-desc { color: #0f172a !important; }
+    .fase-block.f1 .fase-tag { color: #dc2626 !important; }
+    .fase-block.f2 .fase-tag { color: #16a34a !important; }
+    .fase-block.f3 .fase-tag { color: #d97706 !important; }
+
+    /* Toekomst grid */
+    .toekomst-grid { page-break-inside: avoid !important; }
+    .toekomst-block { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+    .toekomst-soh { color: #0f7c6e !important; }
+
+    /* Vergelijk bars */
+    .vergelijk-bar-wrap { background: #e2e8f0 !important; }
+
+    /* Highlight boxes */
+    .highlight-box { background: #fffbeb !important; border: 1px solid #fcd34d !important; }
+    .info-box { background: #f0f9f7 !important; border: 1px solid #b2ddd8 !important; }
+
+    /* Footer */
+    .rapport-footer {
+      border-top: 1px solid #e2e8f0 !important;
+      color: #94a3b8 !important;
+      font-size: 8pt !important;
+      margin-top: 12px !important;
+      padding-top: 12px !important;
+    }
+
+    /* Disclaimer */
+    #rapport-content > div[style*="background:#f8fafc"] {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+    }
+
+    /* Geen schaduwen */
+    * { box-shadow: none !important; text-shadow: none !important; }
+    a { color: #0f7c6e !important; text-decoration: none !important; }
   }
 </style>
 </head>
@@ -662,6 +786,10 @@
     <div class="field">
       <label for="naam">Jouw naam</label>
       <input type="text" id="naam" placeholder="Voornaam is genoeg" />
+    </div>
+    <div class="field">
+      <label for="bedrijf">Bedrijfsnaam <span style="font-size:11px;color:#94a3b8;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+      <input type="text" id="bedrijf" placeholder="bijv. Mar-Automotive" />
     </div>
     <div class="field">
       <label for="email">E-mailadres *</label>
@@ -874,7 +1002,7 @@ function getDriveLabel(driveType) {
   return 'Verbrandingsmotor';
 }
 
-function getDegradatie(driveType, leeftijd, km, kwh) {
+function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
   leeftijd = leeftijd || 0;
   km = km || 0;
   const jaarGebruik = leeftijd > 0 ? Math.round(km / leeftijd) : 15000;
@@ -1050,6 +1178,7 @@ function saveBeforeStripe() {
 async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Verkoper';
+  const bedrijf = document.getElementById('bedrijf') ? document.getElementById('bedrijf').value.trim() : '';
   const email = document.getElementById('email').value.trim();
   const gebruik = 'gemiddeld';
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
@@ -1080,10 +1209,10 @@ async function startRapport() {
   await new Promise(r => setTimeout(r, 600));
 
   ls.style.display = 'none';
-  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig);
+  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf);
 }
 
-function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
+function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
@@ -1103,7 +1232,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk, battery);
 
   const jaarGebruik = km && leeftijd ? Math.round(km / leeftijd) : 15000;
-  const degradatie = getDegradatie(driveType, leeftijd, km, kwh);
+  const degradatie = getDegradatie(driveType, leeftijd, km, kwh, battery ? battery.modelKey : null);
   const sohMid = degradatie.sohMid;
   const risico = getRisicoLabel(sohMid, degradatie.onderNorm);
   const toekomst = getToekomstSoH(sohMid, driveType, jaarGebruik);
@@ -1178,7 +1307,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         <div class="header-meta">
           <strong>VerkoopRapport</strong><br>
           ${datumNu}<br>
-          Kenteken: ${kenteken}
+          Kenteken: ${kenteken}${bedrijf ? '<br><span style="color:rgba(255,255,255,0.9);font-weight:600;">' + bedrijf + '</span>' : ''}
         </div>
       </div>
       <div class="header-badge">🏷️ VerkoopRapport</div>
