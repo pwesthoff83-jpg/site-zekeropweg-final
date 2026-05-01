@@ -633,148 +633,13 @@
   }
 
   @media print {
-    #form-screen, #loading-screen, .unlock-gate, .paid-banner,
-    .cta-card, .btn-pdf, .no-print { display: none !important; }
-
-    @page {
-      size: A4;
-      margin: 0mm 0mm 12mm 0mm;
-    }
-
-    html, body {
-      background: #ffffff !important;
-      font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
-      font-size: 9.5pt !important;
-      line-height: 1.5 !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-      color: #0f172a !important;
-    }
-
-    #rapport-screen {
-      padding: 0 !important;
-      max-width: 100% !important;
-      display: block !important;
-      background: #ffffff !important;
-    }
-
-    /* HEADER — full bleed tot rand pagina */
-    .rapport-header {
-      background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%) !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-      border-radius: 0 !important;
-      padding: 24px 28px !important;
-      margin: 0 !important;
-      page-break-after: avoid !important;
-    }
-
-    .header-title { font-size: 20pt !important; }
-    .header-car { font-size: 13pt !important; }
-    .header-stat-value { font-size: 13pt !important; }
-
-    /* Content gebied met marges */
-    #rapport-content {
-      padding: 16px 28px 0 28px !important;
-    }
-
-    /* Score banner */
-    .score-banner {
-      border-radius: 8px !important;
-      padding: 14px 18px !important;
-      margin-bottom: 10px !important;
-      page-break-inside: avoid !important;
-    }
-
-    .score-banner.green { background: #f0fdf4 !important; border: 1px solid #86efac !important; }
-    .score-banner.amber { background: #fffbeb !important; border: 1px solid #fcd34d !important; }
-    .score-banner.red   { background: #fef2f2 !important; border: 1px solid #fca5a5 !important; }
-    .score-circle.green { background: #dcfce7 !important; color: #16a34a !important; }
-    .score-circle.amber { background: #fef3c7 !important; color: #d97706 !important; }
-    .score-info h2 { color: #0f172a !important; font-size: 14pt !important; }
-    .score-info p  { color: #475569 !important; }
-
-    /* Cards */
-    .card {
-      box-shadow: none !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 8px !important;
-      margin-bottom: 8px !important;
-      page-break-inside: avoid !important;
-      padding: 14px 18px !important;
-      background: #ffffff !important;
-    }
-
-    .card-title {
-      font-size: 11pt !important;
-      font-weight: 600 !important;
-      padding-bottom: 8px !important;
-      margin-bottom: 8px !important;
-      color: #0f172a !important;
-      border-bottom: 1px solid #f1f5f9 !important;
-    }
-
-    .card-icon { display: none !important; }
-
-    /* Info rows */
-    .info-row   { border-bottom: 1px solid #f1f5f9 !important; padding: 6px 0 !important; }
-    .info-label { color: #64748b !important; font-size: 9pt !important; }
-    .info-value { color: #334155 !important; font-size: 9pt !important; }
-    .info-value.teal { color: #0f7c6e !important; font-weight: 600 !important; }
-    .info-value.green { color: #16a34a !important; font-weight: 600 !important; }
-    .info-value.amber { color: #d97706 !important; }
-
-    /* Tank boxes */
-    .tank-box { background: #f0f9f7 !important; border: 1px solid #b2ddd8 !important; border-radius: 6px !important; padding: 12px 14px !important; }
-    .tank-bar-wrap { background: #e2e8f0 !important; height: 8px !important; }
-    .tank-bar-fill.full     { background: #0f7c6e !important; }
-    .tank-bar-fill.degraded { background: #d97706 !important; }
-    .tank-val   { font-size: 9pt !important; }
-    .tank-label { font-size: 9pt !important; }
-
-    /* Fase grid compact */
-    .fase-grid  { gap: 8px !important; page-break-inside: avoid !important; }
-    .fase-block { padding: 10px 12px !important; border-radius: 6px !important; }
-    .fase-block.f1 { background: #fef2f2 !important; border-color: #fca5a5 !important; }
-    .fase-block.f2 { background: #f0fdf4 !important; border-color: #86efac !important; }
-    .fase-block.f3 { background: #fffbeb !important; border-color: #fcd34d !important; }
-    .fase-block.f1 .fase-tag { color: #dc2626 !important; }
-    .fase-block.f2 .fase-tag { color: #16a34a !important; }
-    .fase-block.f3 .fase-tag { color: #d97706 !important; }
-    .fase-range { font-size: 10pt !important; color: #0f172a !important; }
-    .fase-desc  { font-size: 8pt  !important; color: #64748b !important; }
-
-    /* Toekomst grid */
-    .toekomst-grid  { gap: 8px !important; page-break-inside: avoid !important; }
-    .toekomst-block { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; border-radius: 6px !important; padding: 12px !important; }
-    .toekomst-soh   { font-size: 16pt !important; color: #0f7c6e !important; }
-    .toekomst-jaar  { font-size: 9pt !important; color: #64748b !important; }
-    .toekomst-label { font-size: 8pt !important; color: #94a3b8 !important; }
-
-    /* Vergelijk */
-    .vergelijk-bar-wrap { background: #e2e8f0 !important; height: 6px !important; }
-    .vergelijk-model    { font-size: 9pt !important; color: #334155 !important; }
-    .vergelijk-soh      { font-size: 9pt !important; }
-    .vergelijk-row      { padding: 6px 0 !important; }
-
-    /* Highlight en info boxes */
-    .highlight-box { background: #fffbeb !important; border: 1px solid #fcd34d !important; border-radius: 6px !important; padding: 10px 14px !important; font-size: 9pt !important; }
-    .info-box      { background: #f0f9f7 !important; border: 1px solid #b2ddd8 !important; border-radius: 6px !important; padding: 10px 14px !important; font-size: 9pt !important; }
-
-    /* Footer */
-    .rapport-footer {
-      border-top: 2px solid #0f7c6e !important;
-      padding: 12px 28px !important;
-      margin-top: 12px !important;
-      color: #64748b !important;
-      font-size: 9pt !important;
-    }
-
-    /* Verberg badge en lock elements */
-    .header-badge, .unlock-gate { display: none !important; }
-
-    * { box-shadow: none !important; text-shadow: none !important; }
-    a { color: #0f7c6e !important; text-decoration: none !important; }
+    #form-screen, #loading-screen, .unlock-gate, .paid-banner, .cta-card, .btn-pdf { display: none !important; }
+    @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+    html, body { background: #fff !important; font-size: 11pt !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    #rapport-screen { padding: 0 !important; max-width: 100% !important; display: block !important; }
+    .rapport-header { background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .card { box-shadow: none !important; page-break-inside: avoid !important; }
+    * { box-shadow: none !important; }
   }
 </style>
 </head>
@@ -799,10 +664,6 @@
       <input type="text" id="naam" placeholder="Voornaam is genoeg" />
     </div>
     <div class="field">
-      <label for="bedrijf">Bedrijfsnaam <span style="font-size:11px;color:#94a3b8;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
-      <input type="text" id="bedrijf" placeholder="bijv. Mar-Automotive" />
-    </div>
-    <div class="field">
       <label for="email">E-mailadres *</label>
       <input type="email" id="email" placeholder="jouw@email.nl" required />
       <div style="font-size:11px;color:#94a3b8;margin-top:5px;">Voor je rapport</div>
@@ -824,7 +685,14 @@
 
 <!-- RAPPORT SCREEN -->
 <div id="rapport-screen">
-  <div id="paid-banner" style="display:none;"></div>
+  <div id="paid-banner" style="display:none;">
+    <span style="font-size:20px;">✅</span>
+    <div>
+      <strong style="color:#16a34a;display:block;margin-bottom:2px;">VerkoopRapport ontgrendeld</strong>
+      <span style="font-size:13px;color:#475569;">Gebruik dit rapport om je koper vertrouwen te geven over de accustaat.</span>
+    </div>
+    <button class="btn-pdf no-print" onclick="window.print()">⬇ PDF</button>
+  </div>
   <div id="rapport-content"></div>
 </div>
 
@@ -884,9 +752,8 @@ const batteryDB = {
   "nissan ariya": [{ "variant": "standard", "kwh": 63 }, { "variant": "long range", "kwh": 87 }],
   "nissan leaf": [{ "variant": "standard", "kwh": 24 }, { "variant": "ze1", "kwh": 40 }, { "variant": "long range", "kwh": 62 }],
   "peugeot 308": [{ "variant": "hybrid", "kwh": 12.4 }],
-  "peugeot e-208": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }, { "variant": "long range", "kwh": 54, "dbDriveType": "ev" }],
-  "peugeot 208": [{ "variant": "ev", "kwh": 50, "dbDriveType": "ev" }, { "variant": "electric", "kwh": 50, "dbDriveType": "ev" }],
-  "peugeot e-2008": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }],
+  "peugeot e-208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
+  "peugeot e-2008": [{ "variant": "standard", "kwh": 50 }],
   "polestar 2": [{ "variant": "standard", "kwh": 64 }, { "variant": "long range", "kwh": 78 }],
   "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }],
   "porsche taycan": [{ "variant": "standard", "kwh": 79.2 }, { "variant": "turbo", "kwh": 97 }],
@@ -970,37 +837,40 @@ function detectDriveType(brandstof, handelsbenaming, merk, battery) {
   const m = (merk || '').toLowerCase();
   const combined = b + ' ' + h + ' ' + m;
 
-  // Brandstof Elektriciteit zonder hybrid/phev = altijd EV
-  if (b.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev') && !combined.includes('plug')) return 'ev';
-
-  // iV suffix = VW-groep PHEV
-  const ivSuffix = /\biv\b/.test(h) || /\bi\.v\b/.test(h);
-
-  // PHEV signalen
-  if (ivSuffix ||
-      combined.includes('phev') || combined.includes('plug-in') || combined.includes('plug in') ||
-      h.includes('e-hybrid') || h.includes('ehybrid') || h.includes('tfsi e') ||
-      h.includes('300e') || h.includes('350e') || h.includes('400e') || h.includes('250e') ||
-      h.includes('gte') || /\d+e\b/.test(h) ||
-      (combined.includes('elektr') && combined.includes('benzin')) ||
-      (combined.includes('elektr') && combined.includes('diesel'))) {
-    return 'phev';
-  }
-
-  // Milde hybride modellen
-  const mildHybridModels = [
-    'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
-    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage',
-    'corolla', 'yaris', 'camry', 'c-hr', 'qashqai', 'juke',
-    'kuga', 'focus', 'fiesta', 'polo', 'ibiza', 'fabia'
-  ];
-  const isMildHybridModel = mildHybridModels.some(model => h.includes(model) || m.includes(model));
-  if (combined.includes('hybrid') || h.includes('recharge') || isMildHybridModel) return 'hybrid';
-
-  // Battery DB als ground truth
+  // Gebruik battery DB driveType als ground truth
   if (battery && battery.dbDriveType) return battery.dbDriveType;
 
-  // EV op brandstof als laatste
+  // Bekende EV modelnamen
+  const evModels = [
+    'kona ev', 'ioniq 5', 'ioniq 6', 'ioniq 9', 'e-niro', 'niro ev',
+    'ev6', 'ev9', 'ev3', 'model 3', 'model y', 'model s', 'model x',
+    'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
+    'zoe', 'spring', 'enyaq', 'elroq', 'born', 'tavascan',
+    'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
+    'i3', 'i4', 'i5', 'i7', 'ix', 'ix1', 'ix2', 'ix3',
+    'ariya', 'leaf', 'polestar 2', 'polestar 4',
+    'e-208', 'e-2008', 'e-308', 'e-3008',
+    'mg4', 'mg zs ev', 'bz4x', 'solterra',
+    'atto 3', 'dolphin', 'seal', 'han', 'tang',
+    'g6', 'g9', '001', 'ex30', 'ex40', 'c40',
+    'mustang mach-e', 'explorer ev', 'capri ev',
+    'fiat 500e', 'mini cooper se', 'aceman',
+    'ioniq', 'kona electric', 'inster',
+  ];
+
+  if (evModels.some(ev => combined.includes(ev))) return 'ev';
+
+  // Brandstof Elektriciteit = altijd EV
+  if (b.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev')) return 'ev';
+
+  // PHEV signalen
+  if (combined.includes('phev') || combined.includes('plug-in') || h.includes('e-hybrid') ||
+      h.includes('ehybrid') || h.includes('tfsi e') || /\d+e\b/.test(h) || /\biv\b/.test(h)) return 'phev';
+
+  // Hybride
+  if (combined.includes('hybrid')) return 'hybrid';
+
+  // Alsnog EV op brandstof
   if (b.includes('elektr')) return 'ev';
 
   return 'verbrandingsmotor';
@@ -1013,7 +883,7 @@ function getDriveLabel(driveType) {
   return 'Verbrandingsmotor';
 }
 
-function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
+function getDegradatie(driveType, leeftijd, km, kwh) {
   leeftijd = leeftijd || 0;
   km = km || 0;
   const jaarGebruik = leeftijd > 0 ? Math.round(km / leeftijd) : 15000;
@@ -1073,80 +943,30 @@ function getToekomstSoH(sohMid, driveType, jaarGebruik) {
   });
 }
 
-function getVergelijkModellen(driveType, sohMid, modelKey, km) {
-  // Vergelijk altijd met voertuigen in vergelijkbare km-bracket
-  // Gebaseerd op gecertificeerde AVILOO-meetdata kennisbestand v6
-
-  const kmBracket = km >= 130000 ? 'hoog' : km >= 80000 ? 'midden' : 'laag';
-
+function getVergelijkModellen(driveType, sohMid, modelKey) {
+  // Marktgemiddelden op basis van AVILOO-dataset
   const vergelijkData = {
-    ev: {
-      laag: [
-        { model: 'Kia e-Niro 64kWh', soh: 97, km: '60.000 km' },
-        { model: 'Tesla Model Y LR', soh: 95, km: '40.000 km' },
-        { model: 'BMW iX1 67kWh', soh: 96, km: '42.000 km' },
-        { model: 'Hyundai Kona EV 64kWh', soh: 93, km: '42.000 km' },
-        { model: 'MG ZS EV', soh: 93, km: '42.000 km' },
-      ],
-      midden: [
-        { model: 'Kia e-Niro 64kWh', soh: 96, km: '87.000 km' },
-        { model: 'Hyundai Kona EV 64kWh', soh: 95, km: '99.000 km' },
-        { model: 'Tesla Model 3 SR LFP', soh: 92, km: '76.000 km' },
-        { model: 'VW ID.3 58kWh', soh: 93, km: '98.000 km' },
-        { model: 'Nissan Leaf 40kWh', soh: 89, km: '98.000 km' },
-      ],
-      hoog: [
-        { model: 'Kia e-Niro 64kWh', soh: 94, km: '154.000 km' },
-        { model: 'Tesla Model X 100kWh', soh: 87, km: '129.000 km' },
-        { model: 'Mercedes EQA 67kWh', soh: 95, km: '127.000 km' },
-        { model: 'Hyundai IONIQ 28kWh', soh: 88, km: '176.000 km' },
-        { model: 'VW ID.3 58kWh', soh: 92, km: '140.000 km' },
-      ],
-    },
-    phev: {
-      laag: [
-        { model: 'Seat Leon e-Hybrid', soh: 97, km: '50.000 km' },
-        { model: 'Cupra Formentor e-Hybrid', soh: 95, km: '29.000 km' },
-        { model: 'VW Passat GTE', soh: 96, km: '54.000 km' },
-        { model: 'BMW X3 30e', soh: 91, km: '45.000 km' },
-        { model: 'Audi Q5 TFSIe', soh: 93, km: '46.000 km' },
-      ],
-      midden: [
-        { model: 'BMW X3 30e', soh: 91, km: '80.000 km' },
-        { model: 'Skoda Octavia iV', soh: 88, km: '99.000 km' },
-        { model: 'Audi Q5 TFSIe', soh: 87, km: '90.000 km' },
-        { model: 'BMW 3-serie PHEV', soh: 90, km: '141.000 km' },
-        { model: 'Seat Leon e-Hybrid', soh: 93, km: '61.000 km' },
-      ],
-      hoog: [
-        { model: 'BMW 3-serie PHEV', soh: 85, km: '141.000 km' },
-        { model: 'BMW X3 30e', soh: 86, km: '117.000 km' },
-        { model: 'Audi Q7 TFSIe', soh: 83, km: '150.000 km' },
-        { model: 'Skoda Octavia iV', soh: 88, km: '133.000 km' },
-        { model: 'Seat Leon e-Hybrid', soh: 92, km: '95.000 km' },
-      ],
-    },
-    hybrid: {
-      laag: [
-        { model: 'Toyota RAV4 Hybrid', soh: 97, km: '60.000 km' },
-        { model: 'Toyota C-HR Hybrid', soh: 96, km: '50.000 km' },
-        { model: 'Hyundai Tucson Hybrid', soh: 95, km: '55.000 km' },
-      ],
-      midden: [
-        { model: 'Toyota RAV4 Hybrid', soh: 96, km: '100.000 km' },
-        { model: 'Toyota C-HR Hybrid', soh: 95, km: '80.000 km' },
-        { model: 'Hyundai Tucson Hybrid', soh: 94, km: '90.000 km' },
-      ],
-      hoog: [
-        { model: 'Toyota RAV4 Hybrid', soh: 94, km: '150.000 km' },
-        { model: 'Toyota C-HR Hybrid', soh: 93, km: '130.000 km' },
-        { model: 'Hyundai Tucson Hybrid', soh: 92, km: '140.000 km' },
-      ],
-    }
+    ev: [
+      { model: 'Tesla Model 3 / Y', soh: 94, km: '80.000 km' },
+      { model: 'Hyundai Ioniq 5', soh: 95, km: '70.000 km' },
+      { model: 'Volkswagen ID.3', soh: 91, km: '75.000 km' },
+      { model: 'Renault Zoe', soh: 88, km: '80.000 km' },
+      { model: 'Nissan Leaf', soh: 85, km: '75.000 km' },
+    ],
+    phev: [
+      { model: 'Seat Leon e-Hybrid', soh: 93, km: '55.000 km' },
+      { model: 'BMW X3 30e', soh: 91, km: '80.000 km' },
+      { model: 'Volkswagen Golf GTE', soh: 92, km: '60.000 km' },
+      { model: 'Audi Q5 TFSIe', soh: 89, km: '90.000 km' },
+      { model: 'Skoda Octavia iV', soh: 92, km: '70.000 km' },
+    ],
+    hybrid: [
+      { model: 'Toyota RAV4 Hybrid', soh: 96, km: '100.000 km' },
+      { model: 'Toyota C-HR Hybrid', soh: 95, km: '80.000 km' },
+      { model: 'Hyundai Tucson Hybrid', soh: 94, km: '70.000 km' },
+    ]
   };
-
-  const type = vergelijkData[driveType] || vergelijkData.phev;
-  return type[kmBracket] || type.midden;
+  return vergelijkData[driveType] || vergelijkData.phev;
 }
 
 function getCurrentFase(sohMid) {
@@ -1189,7 +1009,6 @@ function saveBeforeStripe() {
 async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Verkoper';
-  const bedrijf = document.getElementById('bedrijf') ? document.getElementById('bedrijf').value.trim() : '';
   const email = document.getElementById('email').value.trim();
   const gebruik = 'gemiddeld';
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
@@ -1220,10 +1039,10 @@ async function startRapport() {
   await new Promise(r => setTimeout(r, 600));
 
   ls.style.display = 'none';
-  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf);
+  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig);
 }
 
-function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
+function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
@@ -1243,11 +1062,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk, battery);
 
   const jaarGebruik = km && leeftijd ? Math.round(km / leeftijd) : 15000;
-  const degradatie = getDegradatie(driveType, leeftijd, km, kwh, battery ? battery.modelKey : null);
+  const degradatie = getDegradatie(driveType, leeftijd, km, kwh);
   const sohMid = degradatie.sohMid;
   const risico = getRisicoLabel(sohMid, degradatie.onderNorm);
   const toekomst = getToekomstSoH(sohMid, driveType, jaarGebruik);
-  const vergelijk = getVergelijkModellen(driveType, sohMid, battery ? battery.modelKey : null, km || 0);
+  const vergelijk = getVergelijkModellen(driveType, sohMid, battery ? battery.modelKey : null);
   const fase = getCurrentFase(sohMid);
 
   const autoNaam = [merk, handelsbenaming].filter(Boolean).join(' ').trim() || 'Onbekend voertuig';
@@ -1255,32 +1074,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
 
-  // Blokkeer verbrandingsmotoren — toon foutmelding
-  if (driveType === 'verbrandingsmotor') {
-    const rapportScreen = document.getElementById('rapport-screen');
-    rapportScreen.style.display = 'block';
-    document.getElementById('rapport-content').innerHTML = `
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:40px;text-align:center;max-width:520px;margin:40px auto;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
-        <div style="font-size:40px;margin-bottom:16px;">⛽</div>
-        <h2 style="font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:#0f172a;margin-bottom:12px;">Dit voertuig is geen EV of hybride</h2>
-        <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:20px;">
-          Het VerkoopRapport is bedoeld voor hybride en volledig elektrische voertuigen. Het RDW-register geeft aan dat dit voertuig rijdt op benzine of diesel.
-        </p>
-        <p style="font-size:13px;color:#94a3b8;">Klopt dit niet? Controleer of het kenteken correct is ingevoerd.</p>
-      </div>`;
-    return;
-  }
-
-  // Tank analogie berekening — PHEV gebruikt elektrisch rijbereik, EV totaal bereik
-  const isPHEV = driveType === 'phev';
-  const tankNieuw = isPHEV ? (kwh ? Math.round(kwh * 4.8) : 50) : 60;
-  const tankLabel = isPHEV ? 'km elektrisch bereik' : 'ltr';
-  const tankEenheid = isPHEV ? 'km' : 'ltr';
-  const tankFactor = isPHEV ? 1 : 15;
+  // Tank analogie berekening
+  const tankNieuw = 60;
   const tankDegradatie = Math.round(tankNieuw * sohMid / 100);
-  const kmNieuw = isPHEV ? tankNieuw : Math.round(tankNieuw * tankFactor);
-  const kmDegradatie = isPHEV ? tankDegradatie : Math.round(tankDegradatie * tankFactor);
+  const kmNieuw = Math.round(tankNieuw * 15);
+  const kmDegradatie = Math.round(tankDegradatie * 15);
   const tankPct = Math.round(sohMid);
+  const tankPctNieuw = 100;
 
   const urlParams = new URLSearchParams(window.location.search);
   const isPaidNow = urlParams.get('paid') === 'true';
@@ -1295,21 +1095,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   rapportScreen.style.display = 'block';
 
   const paidBanner = document.getElementById('paid-banner');
-  if (paidBanner) paidBanner.style.display = 'none';
-
-  // PDF knop en ontgrendeld melding komen in het rapport zelf
-  const pdfBtnHtml = isPaidNow ? `
-    <div style="display:flex;align-items:center;gap:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 18px;margin-bottom:16px;" class="no-print">
-      <span style="font-size:18px;">✅</span>
-      <div style="flex:1;">
-        <strong style="color:#16a34a;display:block;font-size:14px;">VerkoopRapport ontgrendeld</strong>
-        <span style="font-size:12px;color:#475569;">Gebruik dit rapport om je koper vertrouwen te geven.</span>
-      </div>
-      <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;background:#f0f9f7;border:1px solid #b2ddd8;color:#0f7c6e;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;">⬇ PDF</button>
-    </div>` : '';
+  if (paidBanner) paidBanner.style.display = isPaidNow ? 'flex' : 'none';
 
   document.getElementById('rapport-content').innerHTML = `
-    ${pdfBtnHtml}
 
     <!-- HEADER -->
     <div class="rapport-header">
@@ -1318,7 +1106,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
         <div class="header-meta">
           <strong>VerkoopRapport</strong><br>
           ${datumNu}<br>
-          Kenteken: ${kenteken}${bedrijf ? '<br><span style="color:rgba(255,255,255,0.9);font-weight:600;">' + bedrijf + '</span>' : ''}
+          Kenteken: ${kenteken}
         </div>
       </div>
       <div class="header-badge">🏷️ VerkoopRapport</div>
@@ -1360,7 +1148,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#64748b;margin-bottom:10px;">📌 Hoe werkt degradatie?</div>
         <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:8px;">Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij 1 op 15 rijd je daarmee 900 kilometer.</p>
-        <p style="font-size:14px;color:#334155;line-height:1.7;">Een accu werkt hetzelfde: stel je voor dat je brandstoftank na jaren gebruik niet meer 60 maar 52 liter kan bevatten. De auto rijdt nog precies hetzelfde. Je tankt alleen wat eerder bij. Dat is wat degradatie betekent voor een accu. Geen defect. Gewoon slijtage die bij elke accu optreedt.</p>
+        <p style="font-size:14px;color:#334155;line-height:1.7;">Een accu werkt hetzelfde: na verloop van tijd neemt de maximale capaciteit af. De auto rijdt nog hetzelfde, maar je kunt minder laden. Je tankt iets eerder bij. Dat heet degradatie. Het is geen defect.</p>
       </div>
 
       <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
@@ -1396,20 +1184,20 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
       </div>
 
       <div class="tank-box">
-        <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
+        <div class="tank-title">⛽ ${autoNaam} — jouw voertuig</div>
         <div class="tank-row">
-          <span class="tank-label">Nieuw (100%)</span>
+          <span class="tank-label">Nieuwe auto (100%)</span>
           <div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div>
-          <span class="tank-val">${isPHEV ? tankNieuw + ' km elektrisch' : tankNieuw + ' ltr · ' + kmNieuw + ' km'}</span>
+          <span class="tank-val">${tankNieuw} ltr · ${kmNieuw} km</span>
         </div>
         <div class="tank-row">
           <span class="tank-label">Dit voertuig (~${sohMid}%)</span>
           <div class="tank-bar-wrap"><div class="tank-bar-fill degraded" style="width:${tankPct}%"></div></div>
-          <span class="tank-val">${isPHEV ? tankDegradatie + ' km elektrisch' : tankDegradatie + ' ltr · ' + kmDegradatie + ' km'}</span>
+          <span class="tank-val">${tankDegradatie} ltr · ${kmDegradatie} km</span>
         </div>
       </div>
       <p style="font-size:13px;color:#64748b;margin-top:10px;line-height:1.65;">
-        ${isPHEV ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km. Op benzine rijdt de auto precies hetzelfde.' : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter tank. Bij 1 op 15 rijd je ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km.'}
+        Met ~${sohMid}% accucapaciteit is dat vergelijkbaar met ${tankDegradatie} liter tank. Bij 1 op 15 rijd je ${kmDegradatie} km in plaats van ${kmNieuw} km.
       </p>
     </div>
 
@@ -1462,10 +1250,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#64748b;margin-bottom:12px;">📌 Hoe werkt degradatie?</div>
         <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:10px;">
-          Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij 1 op 15 rijd je daarmee 900 kilometer.
+          Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij een verbruik van 1 op 15 rijd je daarmee 900 kilometer.
+        </p>
+        <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:10px;">
+          Een accu werkt hetzelfde: na verloop van tijd en kilometers neemt de maximale capaciteit af. De auto rijdt nog precies hetzelfde, maar je kunt minder laden dan bij een nieuwe auto. Je tankt iets eerder bij.
         </p>
         <p style="font-size:14px;color:#334155;line-height:1.7;">
-          Een accu werkt hetzelfde: stel je voor dat je brandstoftank na jaren gebruik niet meer 60 maar 52 liter kan bevatten. De auto rijdt nog precies hetzelfde. Je tankt alleen wat eerder bij. Dat is wat degradatie betekent voor een accu. Geen defect. Gewoon slijtage die bij elke accu optreedt.
+          Dit heet degradatie. Het is geen defect. Het is normale slijtage, net als bij een brandstoftank die na jaren gebruik iets minder efficiënt wordt.
         </p>
       </div>
 
@@ -1513,26 +1304,24 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
 
       <!-- BEREKENING VOOR DIT VOERTUIG -->
       <div class="tank-box">
-        <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
+        <div class="tank-title">⛽ ${autoNaam} — bij 1 op 15</div>
         <div class="tank-row">
-          <span class="tank-label">Nieuw (100%)</span>
+          <span class="tank-label">Nieuwe auto (100%)</span>
           <div class="tank-bar-wrap">
             <div class="tank-bar-fill full" style="width:100%"></div>
           </div>
-          <span class="tank-val">${isPHEV ? tankNieuw + ' km elektrisch' : tankNieuw + ' ltr · ' + kmNieuw + ' km'}</span>
+          <span class="tank-val">${tankNieuw} ltr · ${kmNieuw} km</span>
         </div>
         <div class="tank-row">
           <span class="tank-label">Dit voertuig (~${sohMid}%)</span>
           <div class="tank-bar-wrap">
             <div class="tank-bar-fill degraded" style="width:${tankPct}%"></div>
           </div>
-          <span class="tank-val">${isPHEV ? tankDegradatie + ' km elektrisch' : tankDegradatie + ' ltr · ' + kmDegradatie + ' km'}</span>
+          <span class="tank-val">${tankDegradatie} ltr · ${kmDegradatie} km</span>
         </div>
       </div>
       <p style="font-size:13px;color:#64748b;margin-top:12px;line-height:1.65;">
-        ${isPHEV
-          ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km per volle lading. Op benzine rijdt de auto precies hetzelfde.'
-          : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter brandstoftank. Bij 1 op 15 rijd je dan ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km. Een verschil van ' + (kmNieuw - kmDegradatie) + ' km per volle lading.'}
+        Met ~${sohMid}% accucapaciteit is dat vergelijkbaar met ${tankDegradatie} liter brandstoftank. Bij 1 op 15 rijd je dan ${kmDegradatie} km in plaats van ${kmNieuw} km. Een verschil van ${kmNieuw - kmDegradatie} km per volle lading.
       </p>
     </div>
 
@@ -1574,7 +1363,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     <!-- VERGELIJKING MARKT -->
     <div class="card">
       <div class="card-title"><span class="card-icon">📊</span>Vergelijking vergelijkbare modellen</div>
-      <p style="font-size:14px;color:#475569;margin-bottom:16px;">Gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen in dezelfde kilometerklasse (${km >= 130000 ? 'boven 130.000 km' : km >= 80000 ? '80.000 tot 130.000 km' : 'onder 80.000 km'}).</p>
+      <p style="font-size:14px;color:#475569;margin-bottom:16px;">Gemiddelde SOH-waarden uit gecertificeerde AVILOO-metingen bij vergelijkbare voertuigen op de markt.</p>
 
       ${vergelijk.map((v, i) => {
         const isThis = i === 0;
@@ -1654,27 +1443,31 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     <!-- NEUTRALE AFSLUITING -->
     <div class="card">
       <div class="card-title"><span class="card-icon">📌</span>Over dit rapport</div>
-      <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:8px;">
-        Dit rapport geeft verkoper en koper statistisch inzicht in de verwachte accuconditie van dit voertuig. Gebaseerd op leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen.
+      <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:12px;">
+        Dit rapport geeft de verkoper en koper inzicht in wat statistisch verwacht mag worden van de accuconditie van dit voertuig.
       </p>
-      <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
-        De werkelijke accucapaciteit is uitsluitend vast te stellen via een gecertificeerde celmeting. Dit rapport is een gefundeerde inschatting, geen gemeten waarde. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.
+      <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:12px;">
+        De berekeningen zijn gebaseerd op leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen. Twee identieke auto's met dezelfde kilometerstand kunnen door verschillend laadgedrag aanzienlijk van elkaar afwijken in werkelijke accucapaciteit.
+      </p>
+      <p style="font-size:14px;color:#475569;line-height:1.7;">
+        De werkelijke accucapaciteit van dit specifieke voertuig is uitsluitend vast te stellen via een gecertificeerde celmeting. Dit rapport geeft een gefundeerde inschatting, geen gemeten waarde.
       </p>
     </div>
 
+    <!-- DISCLAIMER -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#94a3b8;margin-bottom:10px;">⚠️ Belangrijke toelichting</div>
+      <p style="font-size:13px;color:#64748b;line-height:1.65;">Dit rapport is een statistische inschatting op basis van openbare RDW-data en referentiemeetdata van gecertificeerde AVILOO-metingen bij vergelijkbare voertuigen. De waarden in dit rapport zijn geen gecertificeerde meetresultaten en niet bedoeld als technisch keuringsbewijs. De werkelijke accucapaciteit van dit specifieke voertuig kan hoger of lager uitvallen, afhankelijk van laadgedrag, gebruik en onderhoud. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.</p>
+    </div>
+    `}
+
     <!-- FOOTER -->
     <div class="rapport-footer">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-        <div>
-          <span style="font-family:'DM Serif Display',serif;font-size:14px;color:#0f172a;">Zeker<span style="color:#0f7c6e;">OpWeg</span></span>
-          ${bedrijf ? `<span style="margin-left:12px;font-size:12px;color:#475569;font-weight:500;">${bedrijf}</span>` : ''}
-        </div>
-        <div style="font-size:11px;color:#94a3b8;">
-          ${datumNu} &middot; Kenteken ${kenteken} &middot; zekeropweg.nu
-        </div>
-      </div>
+      <p>ZekerOpWeg &middot; <a href="https://zekeropweg.nu" style="color:#0f7c6e;text-decoration:none;">zekeropweg.nu</a></p>
+      <p style="margin-top:6px;">VerkoopRapport gegenereerd op ${datumNu} &middot; Kenteken ${kenteken}</p>
+      ${!isPaidNow ? `<p style="margin-top:8px;"><a href="${STRIPE_LINK}?client_reference_id=${kenteken}_vk" onclick="saveBeforeStripe()" style="color:#0f7c6e;text-decoration:none;font-weight:600;">Ontgrendel volledig rapport →</a></p>` : ''}
     </div>
-  `}
+  `;
 
   document.getElementById('rapport-screen').scrollIntoView({ behavior: 'smooth' });
 }
