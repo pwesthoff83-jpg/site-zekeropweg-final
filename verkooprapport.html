@@ -685,14 +685,7 @@
 
 <!-- RAPPORT SCREEN -->
 <div id="rapport-screen">
-  <div id="paid-banner" style="display:none;">
-    <span style="font-size:20px;">✅</span>
-    <div>
-      <strong style="color:#16a34a;display:block;margin-bottom:2px;">VerkoopRapport ontgrendeld</strong>
-      <span style="font-size:13px;color:#475569;">Gebruik dit rapport om je koper vertrouwen te geven over de accustaat.</span>
-    </div>
-    <button class="btn-pdf no-print" onclick="window.print()">⬇ PDF</button>
-  </div>
+  <div id="paid-banner" style="display:none;"></div>
   <div id="rapport-content"></div>
 </div>
 
@@ -1088,11 +1081,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     return;
   }
 
-  // Tank analogie berekening
-  const tankNieuw = 60;
+  // Tank analogie berekening — PHEV gebruikt elektrisch rijbereik, EV totaal bereik
+  const isPHEV = driveType === 'phev';
+  const tankNieuw = isPHEV ? (kwh ? Math.round(kwh * 4.8) : 50) : 60;
+  const tankLabel = isPHEV ? 'km elektrisch bereik' : 'ltr';
+  const tankEenheid = isPHEV ? 'km' : 'ltr';
+  const tankFactor = isPHEV ? 1 : 15;
   const tankDegradatie = Math.round(tankNieuw * sohMid / 100);
-  const kmNieuw = Math.round(tankNieuw * 15);
-  const kmDegradatie = Math.round(tankDegradatie * 15);
+  const kmNieuw = isPHEV ? tankNieuw : Math.round(tankNieuw * tankFactor);
+  const kmDegradatie = isPHEV ? tankDegradatie : Math.round(tankDegradatie * tankFactor);
   const tankPct = Math.round(sohMid);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -1108,9 +1105,21 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   rapportScreen.style.display = 'block';
 
   const paidBanner = document.getElementById('paid-banner');
-  if (paidBanner) paidBanner.style.display = isPaidNow ? 'flex' : 'none';
+  if (paidBanner) paidBanner.style.display = 'none';
+
+  // PDF knop en ontgrendeld melding komen in het rapport zelf
+  const pdfBtnHtml = isPaidNow ? `
+    <div style="display:flex;align-items:center;gap:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 18px;margin-bottom:16px;" class="no-print">
+      <span style="font-size:18px;">✅</span>
+      <div style="flex:1;">
+        <strong style="color:#16a34a;display:block;font-size:14px;">VerkoopRapport ontgrendeld</strong>
+        <span style="font-size:12px;color:#475569;">Gebruik dit rapport om je koper vertrouwen te geven.</span>
+      </div>
+      <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;background:#f0f9f7;border:1px solid #b2ddd8;color:#0f7c6e;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;">⬇ PDF</button>
+    </div>` : '';
 
   document.getElementById('rapport-content').innerHTML = `
+    ${pdfBtnHtml}
 
     <!-- HEADER -->
     <div class="rapport-header">
@@ -1197,20 +1206,20 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
 
       <div class="tank-box">
-        <div class="tank-title">⛽ ${autoNaam} — jouw voertuig</div>
+        <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
         <div class="tank-row">
-          <span class="tank-label">Nieuwe auto (100%)</span>
+          <span class="tank-label">Nieuw (100%)</span>
           <div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div>
-          <span class="tank-val">${tankNieuw} ltr · ${kmNieuw} km</span>
+          <span class="tank-val">${isPHEV ? tankNieuw + ' km elektrisch' : tankNieuw + ' ltr · ' + kmNieuw + ' km'}</span>
         </div>
         <div class="tank-row">
           <span class="tank-label">Dit voertuig (~${sohMid}%)</span>
           <div class="tank-bar-wrap"><div class="tank-bar-fill degraded" style="width:${tankPct}%"></div></div>
-          <span class="tank-val">${tankDegradatie} ltr · ${kmDegradatie} km</span>
+          <span class="tank-val">${isPHEV ? tankDegradatie + ' km elektrisch' : tankDegradatie + ' ltr · ' + kmDegradatie + ' km'}</span>
         </div>
       </div>
       <p style="font-size:13px;color:#64748b;margin-top:10px;line-height:1.65;">
-        Met ~${sohMid}% accucapaciteit is dat vergelijkbaar met ${tankDegradatie} liter tank. Bij 1 op 15 rijd je ${kmDegradatie} km in plaats van ${kmNieuw} km.
+        ${isPHEV ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km. Op benzine rijdt de auto precies hetzelfde.' : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter tank. Bij 1 op 15 rijd je ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km.'}
       </p>
     </div>
 
@@ -1314,24 +1323,26 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
       <!-- BEREKENING VOOR DIT VOERTUIG -->
       <div class="tank-box">
-        <div class="tank-title">⛽ ${autoNaam} — bij 1 op 15</div>
+        <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
         <div class="tank-row">
-          <span class="tank-label">Nieuwe auto (100%)</span>
+          <span class="tank-label">Nieuw (100%)</span>
           <div class="tank-bar-wrap">
             <div class="tank-bar-fill full" style="width:100%"></div>
           </div>
-          <span class="tank-val">${tankNieuw} ltr · ${kmNieuw} km</span>
+          <span class="tank-val">${isPHEV ? tankNieuw + ' km elektrisch' : tankNieuw + ' ltr · ' + kmNieuw + ' km'}</span>
         </div>
         <div class="tank-row">
           <span class="tank-label">Dit voertuig (~${sohMid}%)</span>
           <div class="tank-bar-wrap">
             <div class="tank-bar-fill degraded" style="width:${tankPct}%"></div>
           </div>
-          <span class="tank-val">${tankDegradatie} ltr · ${kmDegradatie} km</span>
+          <span class="tank-val">${isPHEV ? tankDegradatie + ' km elektrisch' : tankDegradatie + ' ltr · ' + kmDegradatie + ' km'}</span>
         </div>
       </div>
       <p style="font-size:13px;color:#64748b;margin-top:12px;line-height:1.65;">
-        Met ~${sohMid}% accucapaciteit is dat vergelijkbaar met ${tankDegradatie} liter brandstoftank. Bij 1 op 15 rijd je dan ${kmDegradatie} km in plaats van ${kmNieuw} km. Een verschil van ${kmNieuw - kmDegradatie} km per volle lading.
+        ${isPHEV
+          ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km per volle lading. Op benzine rijdt de auto precies hetzelfde.'
+          : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter brandstoftank. Bij 1 op 15 rijd je dan ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km. Een verschil van ' + (kmNieuw - kmDegradatie) + ' km per volle lading.'}
       </p>
     </div>
 
