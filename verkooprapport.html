@@ -729,7 +729,9 @@ const batteryDB = {
   "ford mustang mach-e": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "gt", "kwh": 98.7 }],
   "hyundai ioniq 5": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "awd", "kwh": 77.4 }],
   "hyundai ioniq 6": [{ "variant": "rwd", "kwh": 77.4 }, { "variant": "awd", "kwh": 77.4 }],
-  "hyundai kona ev": [{ "variant": "standard", "kwh": 48.4 }, { "variant": "long range", "kwh": 64.8 }],
+  "hyundai kona ev": [{ "variant": "standard", "kwh": 48.4, "dbDriveType": "ev" }, { "variant": "long range", "kwh": 64.8, "dbDriveType": "ev" }],
+  "hyundai kona electric": [{ "variant": "standard", "kwh": 48.4, "dbDriveType": "ev" }, { "variant": "long range", "kwh": 64.8, "dbDriveType": "ev" }],
+  "hyundai kona": [{ "variant": "ev", "kwh": 64.8, "dbDriveType": "ev" }, { "variant": "electric", "kwh": 64.8, "dbDriveType": "ev" }],
   "hyundai tucson": [{ "variant": "phev", "kwh": 13.8 }],
   "kia ev6": [{ "variant": "rwd", "kwh": 77.4 }, { "variant": "awd", "kwh": 77.4 }],
   "kia ev9": [{ "variant": "rwd", "kwh": 99.8 }],
@@ -829,14 +831,48 @@ function getBattery(merk, handelsbenaming) {
   return { ...batteryDB[bestKey][0], modelKey: bestKey };
 }
 
-function detectDriveType(brandstof, handelsbenaming) {
+function detectDriveType(brandstof, handelsbenaming, merk, battery) {
   const b = (brandstof || '').toLowerCase();
   const h = (handelsbenaming || '').toLowerCase();
-  const combined = b + ' ' + h;
-  if (combined.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev')) return 'ev';
-  if (combined.includes('phev') || combined.includes('plug-in') || h.includes('e-hybrid') || h.includes('ehybrid') || h.includes('tfsi e') || /\d+e\b/.test(h) || /\biv\b/.test(h)) return 'phev';
+  const m = (merk || '').toLowerCase();
+  const combined = b + ' ' + h + ' ' + m;
+
+  // Gebruik battery DB driveType als ground truth
+  if (battery && battery.dbDriveType) return battery.dbDriveType;
+
+  // Bekende EV modelnamen
+  const evModels = [
+    'kona ev', 'ioniq 5', 'ioniq 6', 'ioniq 9', 'e-niro', 'niro ev',
+    'ev6', 'ev9', 'ev3', 'model 3', 'model y', 'model s', 'model x',
+    'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
+    'zoe', 'spring', 'enyaq', 'elroq', 'born', 'tavascan',
+    'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
+    'i3', 'i4', 'i5', 'i7', 'ix', 'ix1', 'ix2', 'ix3',
+    'ariya', 'leaf', 'polestar 2', 'polestar 4',
+    'e-208', 'e-2008', 'e-308', 'e-3008',
+    'mg4', 'mg zs ev', 'bz4x', 'solterra',
+    'atto 3', 'dolphin', 'seal', 'han', 'tang',
+    'g6', 'g9', '001', 'ex30', 'ex40', 'c40',
+    'mustang mach-e', 'explorer ev', 'capri ev',
+    'fiat 500e', 'mini cooper se', 'aceman',
+    'ioniq', 'kona electric', 'inster',
+  ];
+
+  if (evModels.some(ev => combined.includes(ev))) return 'ev';
+
+  // Brandstof Elektriciteit = altijd EV
+  if (b.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev')) return 'ev';
+
+  // PHEV signalen
+  if (combined.includes('phev') || combined.includes('plug-in') || h.includes('e-hybrid') ||
+      h.includes('ehybrid') || h.includes('tfsi e') || /\d+e\b/.test(h) || /\biv\b/.test(h)) return 'phev';
+
+  // Hybride
   if (combined.includes('hybrid')) return 'hybrid';
-  if (combined.includes('elektr')) return 'ev';
+
+  // Alsnog EV op brandstof
+  if (b.includes('elektr')) return 'ev';
+
   return 'verbrandingsmotor';
 }
 
@@ -867,13 +903,22 @@ function getDegradatie(driveType, leeftijd, km, kwh) {
   }
 
   if (driveType === 'ev') {
-    const min = Math.max(2, Math.round(leeftijd * 0.3 + (km / 10000) * 0.4));
-    const mid = Math.round(leeftijd * 0.6 + (km / 10000) * 0.7);
-    const max = Math.min(Math.round(leeftijd * 1.0 + (km / 10000) * 1.4), 22);
-    const sohMid = 100 - Math.round((min + mid) / 2);
+    const km10 = km / 10000;
+    // Gecalibreerd op Kona EV: 95,3% AVILOO bij 99.000 km / 5 jaar
+    // Min (beste gebruik, Kia/Hyundai niveau): 0.25%/10k + 0.2%/jr
+    // Mid (normaal gebruik): 0.45%/10k + 0.4%/jr
+    // Max (slecht gebruik / Leaf niveau): 1.2%/10k + 0.8%/jr
+    const verliesMin = leeftijd * 0.2 + km10 * 0.25;
+    const verliesMid = leeftijd * 0.4 + km10 * 0.45;
+    const verliesMax = leeftijd * 0.8 + km10 * 1.2 * Math.min(intensiteit, 1.5);
+
+    const min = Math.max(2, Math.round(verliesMin));
+    const midVal = Math.round(verliesMid);
+    const max = Math.min(Math.round(verliesMax), 20);
+    const sohMid = 100 - Math.round((min + midVal) / 2);
     const adacNorm = km >= 125000 ? 82 : km >= 75000 ? 87 : 91;
     const adacLabel = km >= 125000 ? '150.000 km' : km >= 75000 ? '100.000 km' : '50.000 km';
-    return { min, max, sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
+    return { min: Math.min(min, 6), max: Math.min(Math.max(max, min + 3), 20), sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
   }
 
   return { min: 1, max: 6, sohMid: 97, adacNorm: null, adacLabel: null, onderNorm: false };
@@ -1006,7 +1051,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const battery = getBattery(merk, handelsbenaming);
   const kwh = battery ? battery.kwh : null;
-  const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr);
+  const driveType = detectDriveType(brandstof, handelsbenaming + ' ' + variantOmschr, merk, battery);
 
   const jaarGebruik = km && leeftijd ? Math.round(km / leeftijd) : 15000;
   const degradatie = getDegradatie(driveType, leeftijd, km, kwh);
@@ -1372,7 +1417,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         </div>
       </div>
       <div class="highlight-box" style="margin-top:14px;">
-        <strong>Belangrijk:</strong> Dit rapport is een statistische inschatting, geen gecertificeerde meting. Voor 100% zekerheid is een AVILOO Battery Check de enige methode die ook cel-anomalieën detecteert.
+        <strong>Belangrijk:</strong> Dit rapport is een statistische inschatting op basis van leeftijd, kilometerstand en vergelijkbare voertuigen. De werkelijke accucapaciteit is uitsluitend vast te stellen via een gecertificeerde celmeting.
       </div>
     </div>
 
@@ -1387,18 +1432,24 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       ${kwh ? `<div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value">${kwh} kWh</span></div>` : ''}
     </div>
 
-    <!-- CTA ACCUCHECK -->
-    <div class="cta-card">
-      <h2>Wil je 100% zekerheid geven?</h2>
-      <p>Een AVILOO Battery Check meet elke cel individueel. Geen schattingen. Alleen feiten. Dat geeft jouw koper de zekerheid die een rapport niet kan geven.</p>
-      <a href="https://zekeropweg.nu" class="cta-btn" target="_blank">Vraag een AccuCheck aan</a>
-      <p class="cta-sub">ZekerOpWeg komt naar de auto toe. Op locatie, op afspraak. Vanaf €95.</p>
+    <!-- NEUTRALE AFSLUITING -->
+    <div class="card">
+      <div class="card-title"><span class="card-icon">📌</span>Over dit rapport</div>
+      <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:12px;">
+        Dit rapport geeft de verkoper en koper inzicht in wat statistisch verwacht mag worden van de accuconditie van dit voertuig.
+      </p>
+      <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:12px;">
+        De berekeningen zijn gebaseerd op leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen. Twee identieke auto's met dezelfde kilometerstand kunnen door verschillend laadgedrag aanzienlijk van elkaar afwijken in werkelijke accucapaciteit.
+      </p>
+      <p style="font-size:14px;color:#475569;line-height:1.7;">
+        De werkelijke accucapaciteit van dit specifieke voertuig is uitsluitend vast te stellen via een gecertificeerde celmeting. Dit rapport geeft een gefundeerde inschatting, geen gemeten waarde.
+      </p>
     </div>
 
     <!-- DISCLAIMER -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:14px;">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#94a3b8;margin-bottom:10px;">⚠️ Belangrijke toelichting</div>
-      <p style="font-size:13px;color:#64748b;line-height:1.65;">Dit rapport is een statistische risico-inschatting op basis van openbare RDW-data en referentiemeetdata van gecertificeerde AVILOO-metingen. Het bevat geen gecertificeerde meetresultaten en is niet bedoeld als technisch keuringsbewijs. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.</p>
+      <p style="font-size:13px;color:#64748b;line-height:1.65;">Dit rapport is een statistische inschatting op basis van openbare RDW-data en referentiemeetdata van gecertificeerde AVILOO-metingen bij vergelijkbare voertuigen. De waarden in dit rapport zijn geen gecertificeerde meetresultaten en niet bedoeld als technisch keuringsbewijs. De werkelijke accucapaciteit van dit specifieke voertuig kan hoger of lager uitvallen, afhankelijk van laadgedrag, gebruik en onderhoud. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.</p>
     </div>
     `}
 
