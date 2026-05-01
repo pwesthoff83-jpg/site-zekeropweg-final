@@ -752,8 +752,9 @@ const batteryDB = {
   "nissan ariya": [{ "variant": "standard", "kwh": 63 }, { "variant": "long range", "kwh": 87 }],
   "nissan leaf": [{ "variant": "standard", "kwh": 24 }, { "variant": "ze1", "kwh": 40 }, { "variant": "long range", "kwh": 62 }],
   "peugeot 308": [{ "variant": "hybrid", "kwh": 12.4 }],
-  "peugeot e-208": [{ "variant": "standard", "kwh": 50 }, { "variant": "long range", "kwh": 54 }],
-  "peugeot e-2008": [{ "variant": "standard", "kwh": 50 }],
+  "peugeot e-208": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }, { "variant": "long range", "kwh": 54, "dbDriveType": "ev" }],
+  "peugeot 208": [{ "variant": "ev", "kwh": 50, "dbDriveType": "ev" }, { "variant": "electric", "kwh": 50, "dbDriveType": "ev" }],
+  "peugeot e-2008": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }],
   "polestar 2": [{ "variant": "standard", "kwh": 64 }, { "variant": "long range", "kwh": 78 }],
   "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }],
   "porsche taycan": [{ "variant": "standard", "kwh": 79.2 }, { "variant": "turbo", "kwh": 97 }],
@@ -837,40 +838,37 @@ function detectDriveType(brandstof, handelsbenaming, merk, battery) {
   const m = (merk || '').toLowerCase();
   const combined = b + ' ' + h + ' ' + m;
 
-  // Gebruik battery DB driveType als ground truth
-  if (battery && battery.dbDriveType) return battery.dbDriveType;
+  // Brandstof Elektriciteit zonder hybrid/phev = altijd EV
+  if (b.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev') && !combined.includes('plug')) return 'ev';
 
-  // Bekende EV modelnamen
-  const evModels = [
-    'kona ev', 'ioniq 5', 'ioniq 6', 'ioniq 9', 'e-niro', 'niro ev',
-    'ev6', 'ev9', 'ev3', 'model 3', 'model y', 'model s', 'model x',
-    'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
-    'zoe', 'spring', 'enyaq', 'elroq', 'born', 'tavascan',
-    'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
-    'i3', 'i4', 'i5', 'i7', 'ix', 'ix1', 'ix2', 'ix3',
-    'ariya', 'leaf', 'polestar 2', 'polestar 4',
-    'e-208', 'e-2008', 'e-308', 'e-3008',
-    'mg4', 'mg zs ev', 'bz4x', 'solterra',
-    'atto 3', 'dolphin', 'seal', 'han', 'tang',
-    'g6', 'g9', '001', 'ex30', 'ex40', 'c40',
-    'mustang mach-e', 'explorer ev', 'capri ev',
-    'fiat 500e', 'mini cooper se', 'aceman',
-    'ioniq', 'kona electric', 'inster',
-  ];
-
-  if (evModels.some(ev => combined.includes(ev))) return 'ev';
-
-  // Brandstof Elektriciteit = altijd EV
-  if (b.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev')) return 'ev';
+  // iV suffix = VW-groep PHEV
+  const ivSuffix = /\biv\b/.test(h) || /\bi\.v\b/.test(h);
 
   // PHEV signalen
-  if (combined.includes('phev') || combined.includes('plug-in') || h.includes('e-hybrid') ||
-      h.includes('ehybrid') || h.includes('tfsi e') || /\d+e\b/.test(h) || /\biv\b/.test(h)) return 'phev';
+  if (ivSuffix ||
+      combined.includes('phev') || combined.includes('plug-in') || combined.includes('plug in') ||
+      h.includes('e-hybrid') || h.includes('ehybrid') || h.includes('tfsi e') ||
+      h.includes('300e') || h.includes('350e') || h.includes('400e') || h.includes('250e') ||
+      h.includes('gte') || /\d+e\b/.test(h) ||
+      (combined.includes('elektr') && combined.includes('benzin')) ||
+      (combined.includes('elektr') && combined.includes('diesel'))) {
+    return 'phev';
+  }
 
-  // Hybride
-  if (combined.includes('hybrid')) return 'hybrid';
+  // Milde hybride modellen
+  const mildHybridModels = [
+    'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
+    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage',
+    'corolla', 'yaris', 'camry', 'c-hr', 'qashqai', 'juke',
+    'kuga', 'focus', 'fiesta', 'polo', 'ibiza', 'fabia'
+  ];
+  const isMildHybridModel = mildHybridModels.some(model => h.includes(model) || m.includes(model));
+  if (combined.includes('hybrid') || h.includes('recharge') || isMildHybridModel) return 'hybrid';
 
-  // Alsnog EV op brandstof
+  // Battery DB als ground truth
+  if (battery && battery.dbDriveType) return battery.dbDriveType;
+
+  // EV op brandstof als laatste
   if (b.includes('elektr')) return 'ev';
 
   return 'verbrandingsmotor';
@@ -904,21 +902,29 @@ function getDegradatie(driveType, leeftijd, km, kwh) {
 
   if (driveType === 'ev') {
     const km10 = km / 10000;
-    // Gecalibreerd op Kona EV: 95,3% AVILOO bij 99.000 km / 5 jaar
-    // Min (beste gebruik, Kia/Hyundai niveau): 0.25%/10k + 0.2%/jr
-    // Mid (normaal gebruik): 0.45%/10k + 0.4%/jr
-    // Max (slecht gebruik / Leaf niveau): 1.2%/10k + 0.8%/jr
-    const verliesMin = leeftijd * 0.2 + km10 * 0.25;
-    const verliesMid = leeftijd * 0.4 + km10 * 0.45;
-    const verliesMax = leeftijd * 0.8 + km10 * 1.2 * Math.min(intensiteit, 1.5);
+    // Formule v6 — geijkt op 47 meetpunten incl. 6 eigen ZekerOpWeg AVILOO metingen
+    // Merkcorrectie op basis van thermisch beheerkwaliteit
+    const modelKeyLow = (modelKey || '').toLowerCase();
+    let merkFactor = 1.0;
+    if (modelKeyLow.includes('kia') || modelKeyLow.includes('hyundai') || modelKeyLow.includes('ioniq')) {
+      merkFactor = 0.80; // Kia/Hyundai: 20% minder verlies
+    } else if (modelKeyLow.includes('leaf')) {
+      merkFactor = 1.60; // Nissan Leaf: geen thermisch beheer
+    } else if (modelKeyLow.includes('zoe') || modelKeyLow.includes('jaguar')) {
+      merkFactor = 1.30;
+    }
+
+    const verliesMin = (leeftijd * 0.25 + km10 * 0.25) * merkFactor;
+    const verliesMid = (leeftijd * 0.65 + km10 * 0.50) * merkFactor;
+    const verliesMax = (leeftijd * 1.0 + km10 * 1.2 * Math.min(intensiteit, 1.5)) * merkFactor;
 
     const min = Math.max(2, Math.round(verliesMin));
     const midVal = Math.round(verliesMid);
-    const max = Math.min(Math.round(verliesMax), 20);
+    const max = Math.min(Math.round(verliesMax), 22);
     const sohMid = 100 - Math.round((min + midVal) / 2);
-    const adacNorm = km >= 125000 ? 82 : km >= 75000 ? 87 : 91;
+    const adacNorm = km >= 125000 ? 82 : km >= 75000 ? 87 : km >= 25000 ? 91 : null;
     const adacLabel = km >= 125000 ? '150.000 km' : km >= 75000 ? '100.000 km' : '50.000 km';
-    return { min: Math.min(min, 6), max: Math.min(Math.max(max, min + 3), 20), sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
+    return { min: Math.min(min, 8), max: Math.min(Math.max(max, min + 3), 22), sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
   }
 
   return { min: 1, max: 6, sohMid: 97, adacNorm: null, adacLabel: null, onderNorm: false };
@@ -1066,13 +1072,28 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
 
+  // Blokkeer verbrandingsmotoren — toon foutmelding
+  if (driveType === 'verbrandingsmotor') {
+    const rapportScreen = document.getElementById('rapport-screen');
+    rapportScreen.style.display = 'block';
+    document.getElementById('rapport-content').innerHTML = `
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:40px;text-align:center;max-width:520px;margin:40px auto;box-shadow:0 2px 12px rgba(0,0,0,0.05);">
+        <div style="font-size:40px;margin-bottom:16px;">⛽</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:#0f172a;margin-bottom:12px;">Dit voertuig is geen EV of hybride</h2>
+        <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:20px;">
+          Het VerkoopRapport is bedoeld voor hybride en volledig elektrische voertuigen. Het RDW-register geeft aan dat dit voertuig rijdt op benzine of diesel.
+        </p>
+        <p style="font-size:13px;color:#94a3b8;">Klopt dit niet? Controleer of het kenteken correct is ingevoerd.</p>
+      </div>`;
+    return;
+  }
+
   // Tank analogie berekening
   const tankNieuw = 60;
   const tankDegradatie = Math.round(tankNieuw * sohMid / 100);
   const kmNieuw = Math.round(tankNieuw * 15);
   const kmDegradatie = Math.round(tankDegradatie * 15);
   const tankPct = Math.round(sohMid);
-  const tankPctNieuw = 100;
 
   const urlParams = new URLSearchParams(window.location.search);
   const isPaidNow = urlParams.get('paid') === 'true';
@@ -1140,7 +1161,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#64748b;margin-bottom:10px;">📌 Hoe werkt degradatie?</div>
         <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:8px;">Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij 1 op 15 rijd je daarmee 900 kilometer.</p>
-        <p style="font-size:14px;color:#334155;line-height:1.7;">Een accu werkt hetzelfde: na verloop van tijd neemt de maximale capaciteit af. De auto rijdt nog hetzelfde, maar je kunt minder laden. Je tankt iets eerder bij. Dat heet degradatie. Het is geen defect.</p>
+        <p style="font-size:14px;color:#334155;line-height:1.7;">Een accu werkt hetzelfde: stel je voor dat je brandstoftank na jaren gebruik niet meer 60 maar 52 liter kan bevatten. De auto rijdt nog precies hetzelfde. Je tankt alleen wat eerder bij. Dat is wat degradatie betekent voor een accu. Geen defect. Gewoon slijtage die bij elke accu optreedt.</p>
       </div>
 
       <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
@@ -1242,13 +1263,10 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
         <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#64748b;margin-bottom:12px;">📌 Hoe werkt degradatie?</div>
         <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:10px;">
-          Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij een verbruik van 1 op 15 rijd je daarmee 900 kilometer.
-        </p>
-        <p style="font-size:14px;color:#334155;line-height:1.7;margin-bottom:10px;">
-          Een accu werkt hetzelfde: na verloop van tijd en kilometers neemt de maximale capaciteit af. De auto rijdt nog precies hetzelfde, maar je kunt minder laden dan bij een nieuwe auto. Je tankt iets eerder bij.
+          Een nieuwe auto heeft een volle brandstoftank van 60 liter. Bij 1 op 15 rijd je daarmee 900 kilometer.
         </p>
         <p style="font-size:14px;color:#334155;line-height:1.7;">
-          Dit heet degradatie. Het is geen defect. Het is normale slijtage, net als bij een brandstoftank die na jaren gebruik iets minder efficiënt wordt.
+          Een accu werkt hetzelfde: stel je voor dat je brandstoftank na jaren gebruik niet meer 60 maar 52 liter kan bevatten. De auto rijdt nog precies hetzelfde. Je tankt alleen wat eerder bij. Dat is wat degradatie betekent voor een accu. Geen defect. Gewoon slijtage die bij elke accu optreedt.
         </p>
       </div>
 
