@@ -1766,9 +1766,9 @@ function getToekomstSoH(sohMid, driveType, jaarGebruik) {
 }
 
 function getSohColor(soh) {
-  if (soh >= 90) return '#16a34a';
-  if (soh >= 82) return '#d97706';
-  return '#dc2626';
+  if (soh >= 90) return '#15803d';   // donker groen: 100% → 90%
+  if (soh >= 75) return '#4ade80';   // licht groen: 90% → 75%
+  return '#ea580c';                   // rood-oranje: onder 75%
 }
 
 function getActieradius(driveType, kwh) {
