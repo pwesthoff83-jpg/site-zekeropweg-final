@@ -1194,9 +1194,9 @@ function getCurrentFase(sohMid) {
 }
 
 function getSohColor(soh) {
-  if (soh >= 90) return '#16a34a';
-  if (soh >= 80) return '#d97706';
-  return '#dc2626';
+  if (soh >= 90) return '#15803d';   // donker groen: 100% naar 90%
+  if (soh >= 75) return '#4ade80';   // licht groen: 90% naar 75%
+  return '#ea580c';                   // oranje: onder 75%
 }
 
 function getRisicoLabel(sohMid, onderNorm) {
@@ -1433,6 +1433,55 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
         <p style="font-size:12px;color:#94a3b8;margin-top:10px;line-height:1.6;">Na 8 jaar en 130.000 km heeft de Tesla nog 87,3% capaciteit. Vergelijkbaar met 52 liter tank: 785 km in plaats van 900 km. De auto rijdt hetzelfde. Je laadt 115 km eerder bij.</p>
       </div>
 
+      <!-- AUDI A6 PRAKTIJKVOORBEELD -->
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#15803d;margin-bottom:12px;">🔍 Praktijkvoorbeeld: twee Audi A6 55 TFSI e — AVILOO gecertificeerd</div>
+        <p style="font-size:13px;color:#334155;line-height:1.65;margin-bottom:14px;">
+          Twee Audi A6 55 TFSI e quattro's van dezelfde dealer. Allebei in goede conditie. Dit is het verschil in de praktijk.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div style="background:#fff;border:1px solid #86efac;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#15803d;margin-bottom:8px;">Audi A6 — 2020</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">Kilometerstand</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">119.642 km</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">AVILOO SoH</span>
+              <span style="font-size:14px;font-weight:700;color:#15803d;">94,1%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:12px;color:#64748b;">Elektrisch bereik</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">~69 km</span>
+            </div>
+            <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+              <div style="width:94.1%;height:100%;background:#15803d;border-radius:4px;"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #4ade80;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#15803d;margin-bottom:8px;">Audi A6 — 2022</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">Kilometerstand</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">111.556 km</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">AVILOO SoH</span>
+              <span style="font-size:14px;font-weight:700;color:#4ade80;">87,4%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:12px;color:#64748b;">Elektrisch bereik</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">~64 km</span>
+            </div>
+            <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+              <div style="width:87.4%;height:100%;background:#4ade80;border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#334155;line-height:1.65;">
+          Beide accu's zijn gezond. Het verschil in dagelijks gebruik? 5 kilometer elektrisch bereik. Op benzine rijden ze identiek. Dit rapport geeft de koper dat inzicht direct, zodat twijfel over de accu geen reden meer is om af te haken.
+        </p>
+      </div>
+
       <div class="tank-box">
         <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
         <div class="tank-row">
@@ -1549,6 +1598,55 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
         </p>
       </div>
 
+      <!-- AUDI A6 PRAKTIJKVOORBEELD: dealer voordeel -->
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#15803d;margin-bottom:12px;">🔍 Praktijkvoorbeeld: twee Audi A6 55 TFSI e — AVILOO gecertificeerd</div>
+        <p style="font-size:13px;color:#334155;line-height:1.65;margin-bottom:14px;">
+          Twee Audi A6 55 TFSI e quattro's van dezelfde dealer. Allebei in goede conditie. Dit is het verschil in de praktijk.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div style="background:#fff;border:1px solid #86efac;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#15803d;margin-bottom:8px;">Audi A6 — 2020</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">Kilometerstand</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">119.642 km</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">AVILOO SoH</span>
+              <span style="font-size:14px;font-weight:700;color:#15803d;">94,1%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:12px;color:#64748b;">Elektrisch bereik</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">~69 km</span>
+            </div>
+            <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+              <div style="width:94.1%;height:100%;background:#15803d;border-radius:4px;"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #4ade80;border-radius:10px;padding:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#15803d;margin-bottom:8px;">Audi A6 — 2022</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">Kilometerstand</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">111.556 km</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;color:#64748b;">AVILOO SoH</span>
+              <span style="font-size:14px;font-weight:700;color:#4ade80;">87,4%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:12px;color:#64748b;">Elektrisch bereik</span>
+              <span style="font-size:12px;font-weight:600;color:#0f172a;">~64 km</span>
+            </div>
+            <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+              <div style="width:87.4%;height:100%;background:#4ade80;border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#334155;line-height:1.65;">
+          Beide accu's zijn gezond. Het verschil in dagelijks gebruik? 5 kilometer elektrisch bereik. Op benzine rijden ze identiek. Dit rapport geeft de koper dat inzicht direct, zodat twijfel over de accu geen reden meer is om af te haken.
+        </p>
+      </div>
+
       <!-- BEREKENING VOOR DIT VOERTUIG -->
       <div class="tank-box">
         <div class="tank-title">⛽ ${autoNaam} — ${isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
@@ -1616,7 +1714,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
 
       ${vergelijk.map((v, i) => {
         const isThis = i === 0;
-        const barColor = v.soh >= 92 ? '#16a34a' : v.soh >= 85 ? '#0f7c6e' : '#d97706';
+        const barColor = getSohColor(v.soh);
         return `
         <div class="vergelijk-row">
           <div class="vergelijk-model ${isThis ? 'highlight' : ''}">${v.model} <span style="font-size:11px;color:#94a3b8;">(${v.km})</span></div>
