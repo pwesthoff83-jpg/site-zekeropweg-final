@@ -636,9 +636,47 @@
     #form-screen, #loading-screen, .unlock-gate, .paid-banner,
     .cta-card, .btn-pdf, .no-print { display: none !important; }
 
+    /* Pagina instellingen: URL verbergen, paginanummer lichtgrijs, marge pagina 2+ */
     @page {
       size: A4;
-      margin: 0mm 0mm 12mm 0mm;
+      margin: 14mm 0mm 8mm 0mm; /* ruimte bovenaan pagina 2, 3, 4 */
+
+      /* Paginanummer rechtsonder in lichtgrijs (werkt in Firefox/Edge) */
+      @bottom-right {
+        content: counter(page) " / " counter(pages);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 8pt;
+        color: #cbd5e1;
+      }
+
+      /* URL linksonder verbergen */
+      @bottom-left {
+        content: none;
+      }
+
+      /* Verberg ook de center slot */
+      @bottom-center {
+        content: none;
+      }
+    }
+
+    @page :first {
+      margin: 0mm; /* eerste pagina: geen marge, header vult de bovenkant */
+
+      @bottom-right {
+        content: counter(page) " / " counter(pages);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 8pt;
+        color: #cbd5e1;
+      }
+
+      @bottom-left {
+        content: none;
+      }
+
+      @bottom-center {
+        content: none;
+      }
     }
 
     html, body {
