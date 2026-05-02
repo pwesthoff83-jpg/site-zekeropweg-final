@@ -965,6 +965,9 @@ const batteryDB = {
   "volkswagen golf": [{ "variant": "gte", "kwh": 13 }, { "variant": "e-hybrid", "kwh": 25.7 }],
   "volkswagen passat": [{ "variant": "gte", "kwh": 13 }, { "variant": "e-hybrid", "kwh": 25.7 }],
   "volkswagen tiguan": [{ "variant": "ehybrid", "kwh": 13.0 }, { "variant": "e-hybrid", "kwh": 25.7 }],
+  "volkswagen touareg": [{ "variant": "e-hybrid", "kwh": 17.9 }],
+  "volkswagen arteon": [{ "variant": "ehybrid", "kwh": 13 }],
+  "volkswagen multivan": [{ "variant": "e-hybrid", "kwh": 13 }, { "variant": "e-hybrid", "kwh": 25.7 }],
   "volkswagen id.3": [{ "variant": "pure", "kwh": 52 }, { "variant": "pro", "kwh": 58 }, { "variant": "pro s", "kwh": 77 }],
   "volkswagen id.4": [{ "variant": "pure", "kwh": 52 }, { "variant": "pro", "kwh": 77 }],
   "volkswagen id.5": [{ "variant": "pro", "kwh": 77 }],
@@ -1421,6 +1424,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
 
   // 6. VW-groep iV suffix = PHEV
   if (!driveType && /\biv\b/i.test(handelLow)) driveType = 'phev';
+
+  // 6b. VW Touareg = altijd PHEV (bestaat niet als volledig EV)
+  if (!driveType && merkLow.includes('volkswagen') && handelLow.includes('touareg')) {
+    driveType = 'phev'; if (!kwh) kwh = 17.9;
+  }
 
   // 7. Land Rover
   if (!driveType && (merkLow.includes('land rover') || merkLow.includes('landrover')) && battery && battery.dbDriveType) driveType = battery.dbDriveType;
