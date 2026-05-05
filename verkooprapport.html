@@ -400,13 +400,13 @@
   }
 
   .fase-block.active-fase { border-width: 2px; }
-  .fase-block.f1 { background: var(--red-bg); border-color: var(--red-border); }
-  .fase-block.f2 { background: var(--green-bg); border-color: var(--green-border); }
+  .fase-block.f1 { background: var(--green-bg); border-color: var(--green-border); }
+  .fase-block.f2 { background: #eff6ff; border-color: #93c5fd; }
   .fase-block.f3 { background: var(--amber-bg); border-color: var(--amber-border); }
 
   .fase-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
-  .fase-block.f1 .fase-tag { color: var(--red); }
-  .fase-block.f2 .fase-tag { color: var(--green); }
+  .fase-block.f1 .fase-tag { color: var(--green); }
+  .fase-block.f2 .fase-tag { color: #1d4ed8; }
   .fase-block.f3 .fase-tag { color: var(--amber); }
 
   .fase-range { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
@@ -792,11 +792,11 @@
     /* Fase grid compact */
     .fase-grid  { gap: 8px !important; page-break-inside: avoid !important; }
     .fase-block { padding: 10px 12px !important; border-radius: 6px !important; }
-    .fase-block.f1 { background: #fef2f2 !important; border-color: #fca5a5 !important; }
-    .fase-block.f2 { background: #f0fdf4 !important; border-color: #86efac !important; }
+    .fase-block.f1 { background: #f0fdf4 !important; border-color: #86efac !important; }
+    .fase-block.f2 { background: #eff6ff !important; border-color: #93c5fd !important; }
     .fase-block.f3 { background: #fffbeb !important; border-color: #fcd34d !important; }
-    .fase-block.f1 .fase-tag { color: #dc2626 !important; }
-    .fase-block.f2 .fase-tag { color: #16a34a !important; }
+    .fase-block.f1 .fase-tag { color: #16a34a !important; }
+    .fase-block.f2 .fase-tag { color: #1d4ed8 !important; }
     .fase-block.f3 .fase-tag { color: #d97706 !important; }
     .fase-range { font-size: 10pt !important; color: #0f172a !important; }
     .fase-desc  { font-size: 8pt  !important; color: #64748b !important; }
@@ -1903,7 +1903,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
           <div class="fase-tag">Fase 1</div>
           <div class="fase-range">100% → 90%</div>
           <div class="fase-desc">Snel bereikt. Vrijwel elke accu doorloopt dit in de eerste jaren.</div>
-          ${fase === 1 ? '<div style="margin-top:8px;font-size:11px;font-weight:700;color:#dc2626;">← Deze auto</div>' : ''}
+          ${fase === 1 ? '<div style="margin-top:8px;font-size:11px;font-weight:700;color:#16a34a;">← Deze auto</div>' : ''}
         </div>
         <div class="fase-block f2 ${fase === 2 ? 'active-fase' : ''}">
           <div class="fase-tag">Fase 2</div>
