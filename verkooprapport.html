@@ -1358,7 +1358,14 @@ async function startRapport() {
   ls.style.display = 'none';
   renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf);
 }
-
+if (voertuigData) {
+  console.log('RDW merk:', voertuigData.merk);
+  console.log('RDW handelsbenaming:', voertuigData.handelsbenaming);
+  console.log('RDW brandstof:', voertuigData.brandstof_omschrijving);
+  console.log('RDW variant:', voertuigData.variant);
+  console.log('RDW type:', voertuigData.type);
+}
+  
 function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
