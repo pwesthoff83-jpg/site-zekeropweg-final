@@ -659,9 +659,8 @@
     .rapport-footer { page-break-before: avoid !important; }
     @page {
       size: A4;
-      margin: 14mm 0mm 8mm 0mm; /* ruimte bovenaan pagina 2, 3, 4 */
+      margin: 14mm 0mm 8mm 0mm;
 
-      /* Paginanummer rechtsonder in lichtgrijs (werkt in Firefox/Edge) */
       @bottom-right {
         content: counter(page) " / " counter(pages);
         font-family: 'DM Sans', sans-serif;
@@ -669,19 +668,17 @@
         color: #cbd5e1;
       }
 
-      /* URL linksonder verbergen */
       @bottom-left {
         content: none;
       }
 
-      /* Verberg ook de center slot */
       @bottom-center {
         content: none;
       }
     }
 
     @page :first {
-      margin: 0mm; /* eerste pagina: geen marge, header vult de bovenkant */
+      margin: 0mm;
 
       @bottom-right {
         content: counter(page) " / " counter(pages);
@@ -929,7 +926,11 @@ const batteryDB = {
   "kia ev9": [{ "variant": "rwd", "kwh": 99.8 }],
   "kia niro ev": [{ "variant": "standard", "kwh": 64.8 }],
   "kia niro phev": [{ "variant": "standard", "kwh": 11.1 }],
+  "kia soul ev": [{ "variant": "27 kwh", "kwh": 27 }, { "variant": "30 kwh", "kwh": 30 }, { "variant": "39 kwh", "kwh": 39.2 }, { "variant": "64 kwh", "kwh": 64 }],
   "kia sportage phev": [{ "variant": "standard", "kwh": 13.8 }],
+  "lynk & co 01": [{ "variant": "phev", "kwh": 14.1 }],
+  "mercedes-benz a-class": [{ "variant": "250e", "kwh": 15.6 }],
+  "mercedes-benz b-class": [{ "variant": "250e", "kwh": 15.6 }],
   "mercedes-benz c-class": [{ "variant": "300e", "kwh": 25.4 }, { "variant": "350e", "kwh": 6.38 }],
   "mercedes-benz e-class": [{ "variant": "300e", "kwh": 25.4 }],
   "mercedes-benz glc": [{ "variant": "300e", "kwh": 24.82 }],
@@ -1008,7 +1009,8 @@ function calcLeeftijd(datum) {
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
   const keys = Object.keys(batteryDB);
-  const merkLow = (merk || '').toLowerCase().trim();
+  // FIX: normaliseer merkLow zodat "LYNK&CO" correct matcht als "lynk & co"
+  const merkLow = (merk || '').toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
   const variantLow = (variant || '').toLowerCase().trim();
   const zoekterm = (merkLow + ' ' + handelLow).replace(/\s+/g, ' ').trim();
@@ -1358,14 +1360,7 @@ async function startRapport() {
   ls.style.display = 'none';
   renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf);
 }
-if (voertuigData) {
-  console.log('RDW merk:', voertuigData.merk);
-  console.log('RDW handelsbenaming:', voertuigData.handelsbenaming);
-  console.log('RDW brandstof:', voertuigData.brandstof_omschrijving);
-  console.log('RDW variant:', voertuigData.variant);
-  console.log('RDW type:', voertuigData.type);
-}
-  
+
 function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
@@ -1473,6 +1468,8 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     if (driveType === 'ev') driveType = (kwh && kwh > 6) ? 'phev' : 'verbrandingsmotor';
     if (driveType === 'verbrandingsmotor' && kwh && kwh > 6) driveType = 'phev';
   }
+  // FIX: rescue voor merken die RDW als puur benzine registreert maar wel een kwh in batteryDB hebben
+  if (driveType === 'verbrandingsmotor' && battery && battery.kwh && battery.kwh > 6) driveType = 'phev';
   // kwh >= 35 + brandstof elektrisch = altijd EV
   if (driveType !== 'ev' && kwh && kwh >= 35 && bsLow && bsLow.includes('elektr') && !bsLow.includes('benzin') && !bsLow.includes('diesel')) driveType = 'ev';
   // Onder 22 kWh = nooit EV
