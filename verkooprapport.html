@@ -1283,8 +1283,20 @@ function getVergelijkModellen(driveType, sohMid, modelKey, km) {
     }
   };
 
-  const type = vergelijkData[driveType] || vergelijkData.phev;
-  return type[kmBracket] || type.midden;
+const type = vergelijkData[driveType] || vergelijkData.phev;
+  const lijst = [...(type[kmBracket] || type.midden)];
+
+  // Sorteer zodat voertuig zelf altijd in het midden valt:
+  // 2 modellen boven sohMid, 2 modellen onder sohMid (of zo dicht mogelijk)
+  const boven = lijst.filter(v => v.soh > sohMid).sort((a, b) => a.soh - b.soh);
+  const onder = lijst.filter(v => v.soh < sohMid).sort((a, b) => b.soh - a.soh);
+  const gelijk = lijst.filter(v => v.soh === sohMid);
+
+  const aantalPerKant = Math.floor((lijst.length - gelijk.length) / 2);
+  const selectBoven = boven.slice(0, aantalPerKant);
+  const selectOnder = onder.slice(0, aantalPerKant);
+
+  return [...selectBoven.sort((a, b) => b.soh - a.soh), ...gelijk, ...selectOnder.sort((a, b) => a.soh - b.soh)];
 }
 
 function getCurrentFase(sohMid) {
