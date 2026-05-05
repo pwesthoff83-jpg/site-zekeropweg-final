@@ -1461,9 +1461,10 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     driveType = 'phev';
     if (kwh && kwh > 35) kwh = 9.8;
   }
-  // Benzine of diesel = nooit EV
+  // Benzine of diesel = nooit EV, maar PHEV blijft PHEV
   if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel'))) {
     if (driveType === 'ev') driveType = (kwh && kwh > 6) ? 'phev' : 'verbrandingsmotor';
+    if (driveType === 'verbrandingsmotor' && kwh && kwh > 6) driveType = 'phev';
   }
   // kwh >= 35 + brandstof elektrisch = altijd EV
   if (driveType !== 'ev' && kwh && kwh >= 35 && bsLow && bsLow.includes('elektr') && !bsLow.includes('benzin') && !bsLow.includes('diesel')) driveType = 'ev';
