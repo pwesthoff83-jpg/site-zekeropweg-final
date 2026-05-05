@@ -1504,7 +1504,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const vergelijk = getVergelijkModellen(driveType, sohMid, battery ? battery.modelKey : null, km || 0);
   const fase = getCurrentFase(sohMid);
 
-  const autoNaam = [merk, handelsbenaming].filter(Boolean).join(' ').trim() || 'Onbekend voertuig';
+  const autoNaam = handelsbenaming.trim() || [merk, handelsbenaming].filter(Boolean).join(' ').trim() || 'Onbekend voertuig';
   const datumNu = new Date().toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
