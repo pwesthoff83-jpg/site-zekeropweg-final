@@ -481,6 +481,10 @@ export const batteryDB ={
   { "variant": "64 kwh", "kwh": 64 }
 ], 
 
+"lynk & co 01": [
+  { "variant": "phev", "kwh": 14.1 }
+],
+  
 "mercedes-benz a-class": [
   { "variant": "250e", "kwh": 15.6 }
 ],
