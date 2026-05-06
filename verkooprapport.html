@@ -950,7 +950,7 @@ const batteryDB = {
   "peugeot e-2008": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }],
   "polestar 2": [{ "variant": "standard", "kwh": 64 }, { "variant": "long range", "kwh": 78 }],
   "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }],
-  "porsche taycan": [{ "variant": "standard", "kwh": 79.2 }, { "variant": "turbo", "kwh": 97 }],
+  "porsche taycan": [{ "variant": "standard", "kwh": 79.2 }, { "variant": "performance plus", "kwh": 97 }, { "variant": "turbo", "kwh": 105 }, { "variant": "turbo s", "kwh": 105 }],
   "renault zoe": [{ "variant": "ze50", "kwh": 52 }],
   "renault megane e-tech": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 60 }],
   "renault 5": [{ "variant": "standard", "kwh": 40 }, { "variant": "long range", "kwh": 52 }],
@@ -1401,7 +1401,34 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   let driveType = null;
 
   // 1. Audi TFSI e = altijd PHEV
+   if (merkLow.includes('porsche')) {
+    const isTaycan = handelLow.includes('taycan') || zoektekst.includes('taycan');
+    const isMacanEv = handelLow.includes('macan') && (zoektekst.includes('electric') || zoektekst.includes('ev') || (battery && battery.kwh >= 80));
+    const isCayennePhev = handelLow.includes('cayenne') || zoektekst.includes('cayenne');
+    const isPanameraPhev = handelLow.includes('panamera') || zoektekst.includes('panamera');
+ 
+    if (isTaycan) {
+      driveType = 'ev';
+      const isPerformancePlus = varLow.includes('performance') || handelLow.includes('performance');
+      const isTurboS = varLow.includes('turbo s') || handelLow.includes('turbo s');
+      const isTurbo = (varLow.includes('turbo') || handelLow.includes('turbo')) && !isTurboS;
+      if (isPerformancePlus || isTurboS) {
+        kwh = 97;
+      } else if (isTurbo) {
+        kwh = 105;
+      } else {
+        kwh = (kwh && kwh >= 79) ? kwh : 79.2;
+      }
+    } else if (isMacanEv) {
+      driveType = 'ev'; kwh = kwh || 100;
+    } else if (isCayennePhev || isPanameraPhev) {
+      driveType = 'phev';
+    }
+  }
+ 
+  // 1. Audi TFSI e = altijd PHEV
   if (merkLow.includes('audi') && /tfsi.{0,2}e/i.test(zoektekst)) driveType = 'phev';
+ 
 
   // 2. Audi EV (Q4, Q6, e-tron platform, e-tron GT)
   if (!driveType && merkLow.includes('audi')) {
@@ -1477,7 +1504,8 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   }
   // Benzine of diesel = nooit EV, maar PHEV blijft PHEV
   if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel'))) {
-    if (driveType === 'ev') driveType = (kwh && kwh > 6) ? 'phev' : 'verbrandingsmotor';
+    const isBekendeEv = merkLow.includes('porsche') && ['taycan', 'macan electric', 'macan ev'].some(m => handelLow.includes(m) || zoektekst.includes(m));
+    if (driveType === 'ev' && !isBekendeEv) driveType = (kwh && kwh > 6) ? 'phev' : 'verbrandingsmotor';
     if (driveType === 'verbrandingsmotor' && kwh && kwh > 6) driveType = 'phev';
   }
   // FIX: rescue voor merken die RDW als puur benzine registreert maar wel een kwh in batteryDB hebben
