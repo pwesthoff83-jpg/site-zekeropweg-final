@@ -2035,8 +2035,18 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     const sohMid = 100 - Math.round((min + midVal) / 2);
 
     // EV referentiedrempels (geen officiële ADAC-norm, eigen ijklijn op dataset)
-    const adacNorm = km >= 150000 ? 82 : km >= 100000 ? 87 : km >= 50000 ? 91 : km >= 25000 ? 93 : null;
-    const adacLabel = km >= 150000 ? '150.000 km' : km >= 100000 ? '100.000 km' : km >= 50000 ? '100.000 km' : '50.000 km';
+   const adacNorm =
+    km >= 150000 ? 82 :
+    km >= 100000 ? 87 :
+    km >= 50000  ? 91 :
+    km >= 25000  ? 93 :
+    null;
+   const adacLabel =
+    km >= 150000 ? '150.000 km' :
+    km >= 100000 ? '100.000 km' :
+    km >= 50000  ? '50.000 km' :
+    km >= 25000  ? '25.000 km' :
+  null;
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     let fase = '';
@@ -2047,7 +2057,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     return {
       min: Math.min(min, 8),
       max: Math.min(Math.max(max, min + 3), 22),
-      uitleg: 'Op basis van 41 gecertificeerde meetpunten: goed onderhouden EV\'s verliezen 0,25 tot 0,65% per 10.000 km. EV\'s zonder thermisch beheersysteem degraderen aanzienlijk sneller. De bandbreedte is breed: laadgedrag en accuchemie bepalen meer dan kilometerstand.',
+      uitleg: 'De inschatting is gebaseerd op referentiemetingen van vergelijkbare EV’s, leeftijd, kilometerstand en bekende accukenmerken. Goed onderhouden accu’s degraderen doorgaans geleidelijk. Bij intensief laden, veel snelladen of beperkt thermisch beheer kan het verlies sneller oplopen.',
       fase,
       adacNorm,
       adacLabel,
@@ -2447,9 +2457,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // barLabel toont min-mid range: dat is de reële verwachting bij normaal-goed gebruik
   const degMid = degradatie.sohMid || Math.round(100 - (degradatie.min + degradatie.max) / 2);
   const barPct = Math.min(100, Math.max(10, degMid));
-  const barKleur = barPct >= 88 ? 'green' : barPct >= 78 ? 'amber' : 'red';
+ 
   const barLabel = `${100 - degradatie.max}-${100 - degradatie.min}%`;
-
+  const barKleur = barPct >= 85 ? 'green' : barPct >= 75 ? 'amber' : 'red';
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
   const jaarKmTxt = jaarGebruik ? `${formatNumber(jaarGebruik)} km/jaar` : 'Niet berekend';
