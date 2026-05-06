@@ -2035,8 +2035,8 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     const sohMid = 100 - Math.round((min + midVal) / 2);
 
     // EV referentiedrempels (geen officiële ADAC-norm, eigen ijklijn op dataset)
-    const adacNorm = km >= 150000 ? 82 : km >= 100000 ? 87 : km >= 50000 ? 91 : null;
-    const adacLabel = km >= 150000 ? '150.000 km' : km >= 100000 ? '100.000 km' : '50.000 km';
+    const adacNorm = km >= 150000 ? 82 : km >= 100000 ? 87 : km >= 50000 ? 91 : km >= 25000 ? 93 : null;
+    const adacLabel = km >= 150000 ? '150.000 km' : km >= 100000 ? '100.000 km' : km >= 50000 ? '100.000 km' : '50.000 km';
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     let fase = '';
@@ -2584,10 +2584,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
         </span>
       </div>
       <div class="info-row">
-        <span class="info-label">Geschatte SoH (normaal gebruik)</span>
-        <span class="info-value" style="color:${degradatie.sohMid >= 88 ? 'var(--teal)' : degradatie.sohMid >= 80 ? 'var(--amber)' : 'var(--red-soft)'}">
-          ~${degradatie.sohMid || (100 - Math.round((degradatie.min + degradatie.max)/2))}%
-        </span>
+       <div class="info-row" style="padding:14px 0;">
+       <span class="info-label" style="font-size:14px;font-weight:600;color:var(--white-dim);">Geschatte SoH (normaal gebruik)</span>
+       <span style="font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;color:${degradatie.sohMid >= 85 ? 'var(--teal)' : degradatie.sohMid >= 75 ? 'var(--amber)' : 'var(--red-soft)'}">~${degradatie.sohMid}%</span>
       </div>
       ${kwh ? `
       <div class="battery-visual">
