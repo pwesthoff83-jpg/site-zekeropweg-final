@@ -1526,15 +1526,25 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   }
 
   // Tank analogie berekening — PHEV gebruikt elektrisch rijbereik, EV totaal bereik
-  const isPHEV = driveType === 'phev';
-  const tankNieuw = isPHEV ? (kwh ? Math.round(kwh * 4.8) : 50) : 60;
-  const tankLabel = isPHEV ? 'km elektrisch bereik' : 'ltr';
-  const tankEenheid = isPHEV ? 'km' : 'ltr';
-  const tankFactor = isPHEV ? 1 : 15;
+ const isPHEV = driveType === 'phev';
+  const isEV   = driveType === 'ev';
+
+  // EV: werkelijk WLTP-bereik op basis van kWh (gemiddeld 6 km/kWh voor opgegeven WLTP)
+  // PHEV: elektrisch rijbereik in km
+  // Hybrid/overig: brandstoftank analogie (60 ltr, 1 op 15)
+  const tankNieuw = isEV
+    ? (kwh ? Math.round(kwh * 6) : 400)
+    : isPHEV
+      ? (kwh ? Math.round(kwh * 4.8) : 50)
+      : 60;
+
+  const tankLabel    = isEV ? 'km bereik (WLTP)' : isPHEV ? 'km elektrisch bereik' : 'ltr';
+  const tankEenheid  = (isEV || isPHEV) ? 'km' : 'ltr';
+  const tankFactor   = (isEV || isPHEV) ? 1 : 15;
   const tankDegradatie = Math.round(tankNieuw * sohMid / 100);
-  const kmNieuw = isPHEV ? tankNieuw : Math.round(tankNieuw * tankFactor);
-  const kmDegradatie = isPHEV ? tankDegradatie : Math.round(tankDegradatie * tankFactor);
-  const tankPct = Math.round(sohMid);
+  const kmNieuw      = tankNieuw;
+  const kmDegradatie = tankDegradatie;
+  const tankPct      = Math.round(sohMid);
 
   const urlParams = new URLSearchParams(window.location.search);
   const isPaidNow = urlParams.get('paid') === 'true';
