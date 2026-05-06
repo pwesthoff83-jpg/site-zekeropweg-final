@@ -928,227 +928,302 @@
 
   /* Print styles */
   @media print {
-    /* Verberg alles wat niet in PDF hoort */
-    #form-screen, #loading-screen,
-    .btn-pdf, .btn-unlock, .unlock-gate, .urgency-banner,
-    .paid-banner, .no-print, .cta-card, .social-proof-bar,
-    .blur-block { display: none !important; }
-
-    /* Pagina instellingen */
-    @page {
-      size: A4;
-      margin: 18mm 16mm 20mm 16mm;
-    }
-    @page :first {
-      margin-top: 10mm;
-    }
-
-    /* Reset body */
-    html, body {
-      background: #fff !important;
-      color: #1a1a2e !important;
-      font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
-      font-size: 11pt !important;
-      line-height: 1.55 !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-
-    /* Rapport container */
-    #rapport-screen {
-      padding: 0 !important;
-      max-width: 100% !important;
-      display: block !important;
-    }
-
-    /* PDF header, ZekerOpWeg branding bovenaan elke pagina */
-    #rapport-content::before {
-      content: '';
-      display: block;
-      height: 4px;
-      background: linear-gradient(90deg, #0f4c6e 0%, #2dd4bf 100%);
-      margin-bottom: 20px;
-      border-radius: 2px;
-    }
-
-    /* Rapport header */
-    .rapport-header {
-      background: #f0f7fa !important;
-      border: none !important;
-      border-left: 4px solid #2dd4bf !important;
-      border-radius: 0 8px 8px 0 !important;
-      padding: 20px 24px !important;
-      margin-bottom: 16px !important;
-      page-break-after: avoid !important;
-      color: #1a1a2e !important;
-    }
-
-    .rapport-logo { color: #0f4c6e !important; }
-    .rapport-logo span { color: #2dd4bf !important; }
-    .rapport-title { color: #0f4c6e !important; font-size: 20pt !important; }
-    .rapport-car { color: #2dd4bf !important; }
-    .rapport-date { color: #666 !important; }
-
-    /* Header stats */
-    .header-stat {
-      background: #fff !important;
-      border: 1px solid #e0e8f0 !important;
-      border-radius: 6px !important;
-    }
-    .header-stat-label { color: #888 !important; }
-    .header-stat-value { color: #1a1a2e !important; }
-
-    /* Score banner */
-    .score-banner {
-      border-radius: 8px !important;
-      padding: 16px 20px !important;
-      margin-bottom: 14px !important;
-      page-break-after: avoid !important;
-      page-break-inside: avoid !important;
-    }
-    .score-banner.green { background: #f0fdf4 !important; border: 1px solid #86efac !important; }
-    .score-banner.amber { background: #fffbeb !important; border: 1px solid #fcd34d !important; }
-    .score-banner.red { background: #fef2f2 !important; border: 1px solid #fca5a5 !important; }
-    .score-circle.green { background: #dcfce7 !important; color: #16a34a !important; }
-    .score-circle.amber { background: #fef3c7 !important; color: #d97706 !important; }
-    .score-circle.red { background: #fee2e2 !important; color: #dc2626 !important; }
-    .score-info h2 { color: #1a1a2e !important; }
-    .score-info p { color: #555 !important; }
-
-    /* Section cards */
-    .section-card {
-      background: #fff !important;
-      border: 1px solid #e0e8f0 !important;
-      border-radius: 8px !important;
-      padding: 18px 22px !important;
-      margin-bottom: 12px !important;
-      page-break-inside: avoid !important;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
-    }
-
-    .section-card h3 {
-      color: #0f4c6e !important;
-      font-size: 13pt !important;
-      border-bottom: 1px solid #e8f0f5 !important;
-      padding-bottom: 8px !important;
-      margin-bottom: 12px !important;
-    }
-
-    .section-icon {
-      background: #e8f5f3 !important;
-      border: 1px solid #b2ddd8 !important;
-    }
-
-    /* Info rows */
-    .info-row { border-bottom: 1px solid #f0f4f8 !important; padding: 7px 0 !important; }
-    .info-label { color: #666 !important; }
-    .info-value { color: #1a1a2e !important; }
-    .info-value.highlight { color: #0f7c6e !important; }
-    .info-value.amber { color: #b45309 !important; }
-
-    /* Battery visual */
-    .battery-visual {
-      background: #f0f9f7 !important;
-      border: 1px solid #b2ddd8 !important;
-      border-radius: 6px !important;
-    }
-    .battery-bar-wrap { background: #e0eeec !important; }
-    .battery-bar-fill.green { background: #2dd4bf !important; }
-    .battery-bar-fill.amber { background: #f59e0b !important; }
-    .battery-bar-fill.red { background: #ef4444 !important; }
-    .battery-stat { background: #fff !important; border: 1px solid #e0e8f0 !important; }
-    .battery-stat-val { color: #0f7c6e !important; }
-    .battery-stat-label { color: #888 !important; }
-    .battery-label-row span { color: #0f7c6e !important; }
-
-    /* Risk items */
-    .risk-item { background: #f8fafc !important; border: 1px solid #e8eef4 !important; color: #333 !important; }
-    .risk-dot.green { background: #16a34a !important; }
-    .risk-dot.amber { background: #d97706 !important; }
-    .risk-dot.red { background: #dc2626 !important; }
-
-    /* Tips */
-    .tip-box { border-radius: 6px !important; }
-    .tip-box.good { background: #f0fdf4 !important; border-color: #86efac !important; }
-    .tip-box.bad { background: #fef2f2 !important; border-color: #fca5a5 !important; }
-    .tip-box.drive { background: #f0f9ff !important; border-color: #7dd3fc !important; }
-    .tip-box.buy { background: #fffbeb !important; border-color: #fcd34d !important; }
-    .tip-box li { color: #444 !important; }
-
-    /* Degradatie */
-    .deg-bar { background: #e8eef4 !important; }
-    .deg-fill { background: linear-gradient(90deg, #2dd4bf, #f59e0b) !important; }
-    .deg-val { color: #333 !important; }
-    .highlight-box { background: #fffbeb !important; border-color: #fcd34d !important; color: #444 !important; }
-    .highlight-box strong { color: #b45309 !important; }
-
-    /* Beslismoment */
-    .beslismoment {
-      background: #f0f9f7 !important;
-      border: 1px solid #b2ddd8 !important;
-      border-radius: 8px !important;
-      page-break-inside: avoid !important;
-    }
-    .beslismoment h3 { color: #0f4c6e !important; }
-    .beslismoment p { color: #444 !important; }
-
-    /* Prose tekst */
-    .prose { color: #444 !important; }
-
-    /* Fase blokken */
-    .section-card [style*="rgba(239,68,68"] { background: #fef2f2 !important; border-color: #fca5a5 !important; }
-    .section-card [style*="rgba(45,212,191"] { background: #f0f9f7 !important; border-color: #b2ddd8 !important; }
-    .section-card [style*="rgba(245,158,11"] { background: #fffbeb !important; border-color: #fcd34d !important; }
-
-    /* Pagina-indeling: welke secties starten op nieuwe pagina */
-    .section-card:nth-child(4) { page-break-before: always !important; }
-
-    /* Footer */
-    .rapport-footer {
-      color: #999 !important;
-      border-top: 1px solid #e0e8f0 !important;
-      padding-top: 12px !important;
-      margin-top: 20px !important;
-      font-size: 9pt !important;
-    }
-
-    /* Disclaimer blok */
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] {
-      background: #f8fafc !important;
-      border: 1px solid #e0e8f0 !important;
-      border-radius: 8px !important;
-      page-break-inside: avoid !important;
-    }
-    /* Disclaimer sub-blokken, tekst altijd donker zichtbaar */
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(245,158,11"] {
-      background: #fffbeb !important;
-      border: 1px solid #f59e0b !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(239,68,68"] {
-      background: #fef2f2 !important;
-      border: 1px solid #ef4444 !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="rgba(100,116,139"] {
-      background: #f1f5f9 !important;
-      border: 1px solid #94a3b8 !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] p {
-      color: #1e293b !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] div[style*="font-size:12px"] {
-      color: #1e293b !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] strong {
-      color: #0f172a !important;
-    }
-    #rapport-content > div[style*="rgba(255,255,255,0.02)"] h3 {
-      color: #0f4c6e !important;
-    }
-
-    /* Alle kleuren resetten die inline staan */
-    * { box-shadow: none !important; text-shadow: none !important; }
-    a { color: #0f4c6e !important; text-decoration: none !important; }
+  #form-screen, #loading-screen,
+  .btn-pdf, .btn-unlock, .unlock-gate, .urgency-banner,
+  .paid-banner, .no-print, .cta-card, .social-proof-bar,
+  .blur-block {
+    display: none !important;
   }
+
+  @page {
+    size: A4;
+    margin: 16mm 15mm 18mm 15mm;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #172033 !important;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
+    font-size: 10.5pt !important;
+    line-height: 1.55 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #rapport-screen {
+    padding: 0 !important;
+    max-width: 100% !important;
+    display: block !important;
+  }
+
+  #rapport-content {
+    max-width: 100% !important;
+  }
+
+  #rapport-content::before {
+    content: 'ZekerOpWeg · AccuRisico Rapport';
+    display: block;
+    font-size: 9pt;
+    letter-spacing: .04em;
+    color: #64748b;
+    border-bottom: 2px solid #0f766e;
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+
+  .rapport-header {
+    background: #f8fafc !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 12px !important;
+    padding: 22px 24px !important;
+    margin-bottom: 16px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .rapport-header::before,
+  .cta-card::before {
+    display: none !important;
+  }
+
+  .rapport-logo,
+  .rapport-title,
+  .section-card h3,
+  .beslismoment h3 {
+    color: #0f2a3d !important;
+  }
+
+  .rapport-logo span,
+  .rapport-car,
+  .info-value.highlight {
+    color: #0f766e !important;
+  }
+
+  .rapport-title {
+    font-size: 22pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .rapport-car {
+    font-size: 10pt !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+  }
+
+  .rapport-date {
+    color: #64748b !important;
+  }
+
+  .header-stat {
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 8px !important;
+    padding: 12px 14px !important;
+  }
+
+  .header-stat-label {
+    color: #64748b !important;
+  }
+
+  .header-stat-value {
+    color: #111827 !important;
+    font-weight: 700 !important;
+  }
+
+  .score-banner {
+    background: #f8fafc !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 12px !important;
+    padding: 18px 22px !important;
+    margin-bottom: 16px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .score-banner.green {
+    border-left: 5px solid #16a34a !important;
+  }
+
+  .score-banner.amber {
+    border-left: 5px solid #d97706 !important;
+  }
+
+  .score-banner.red {
+    border-left: 5px solid #dc2626 !important;
+  }
+
+  .score-circle {
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 22pt !important;
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+  }
+
+  .score-info h2 {
+    color: #111827 !important;
+    font-size: 16pt !important;
+  }
+
+  .score-info p {
+    color: #334155 !important;
+  }
+
+  .section-card,
+  .beslismoment {
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 12px !important;
+    padding: 20px 22px !important;
+    margin-bottom: 14px !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .section-card h3 {
+    font-size: 14pt !important;
+    border-bottom: 1px solid #e5edf3 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .section-icon {
+    background: #eef7f6 !important;
+    border: 1px solid #b7deda !important;
+  }
+
+  .info-row {
+    border-bottom: 1px solid #edf2f7 !important;
+    padding: 8px 0 !important;
+  }
+
+  .info-label {
+    color: #64748b !important;
+  }
+
+  .info-value {
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+
+  .battery-visual {
+    background: #f8fafc !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 10px !important;
+  }
+
+  .battery-stat {
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+  }
+
+  .battery-stat-val {
+    color: #0f766e !important;
+  }
+
+  .battery-stat-label,
+  .battery-label-row,
+  .deg-val {
+    color: #64748b !important;
+  }
+
+  .battery-bar-wrap,
+  .deg-bar {
+    background: #e5edf3 !important;
+  }
+
+  .battery-bar-fill.green,
+  .deg-fill {
+    background: #0f766e !important;
+  }
+
+  .battery-bar-fill.amber {
+    background: #d97706 !important;
+  }
+
+  .battery-bar-fill.red {
+    background: #dc2626 !important;
+  }
+
+  .risk-item,
+  .tip-box {
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 10px !important;
+    color: #334155 !important;
+  }
+
+  .tip-box.good,
+  .tip-box.bad,
+  .tip-box.drive,
+  .tip-box.buy {
+    background: #fff !important;
+  }
+
+  .tip-box.good { border-left: 4px solid #16a34a !important; }
+  .tip-box.bad { border-left: 4px solid #dc2626 !important; }
+  .tip-box.drive { border-left: 4px solid #0f766e !important; }
+  .tip-box.buy { border-left: 4px solid #d97706 !important; }
+
+  .tip-box li,
+  .prose,
+  .beslismoment p,
+  p,
+  li {
+    color: #334155 !important;
+  }
+
+  .highlight-box {
+    background: #f8fafc !important;
+    border: 1px solid #dbe3ea !important;
+    border-left: 4px solid #d97706 !important;
+    border-radius: 10px !important;
+    color: #334155 !important;
+  }
+
+  .highlight-box strong {
+    color: #92400e !important;
+  }
+
+  .section-card [style*="rgba(239,68,68"],
+  .section-card [style*="rgba(245,158,11"],
+  .section-card [style*="rgba(45,212,191"],
+  #rapport-content > div[style*="rgba(255,255,255,0.02)"] div {
+    background: #f8fafc !important;
+    border-color: #dbe3ea !important;
+    color: #334155 !important;
+  }
+
+  #rapport-content > div[style*="rgba(255,255,255,0.02)"] {
+    background: #fff !important;
+    border: 1px solid #dbe3ea !important;
+    border-radius: 12px !important;
+    page-break-inside: avoid !important;
+  }
+
+  #rapport-content > div[style*="rgba(255,255,255,0.02)"] p,
+  #rapport-content > div[style*="rgba(255,255,255,0.02)"] div,
+  #rapport-content > div[style*="rgba(255,255,255,0.02)"] strong {
+    color: #334155 !important;
+  }
+
+  .rapport-footer {
+    border-top: 1px solid #dbe3ea !important;
+    padding-top: 14px !important;
+    margin-top: 24px !important;
+    color: #64748b !important;
+    font-size: 9pt !important;
+  }
+
+  a {
+    color: #0f766e !important;
+    text-decoration: none !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
 </style>
 </head>
 <body>
