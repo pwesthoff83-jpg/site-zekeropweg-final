@@ -2132,7 +2132,16 @@ async function startRapport() {
   if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return; }
 
   // Sla lead op in localStorage
-  const leadData = { naam, email, kenteken: kentekenRaw.replace(/[-\s]/g,'').toUpperCase(), kooptiming, locatie, timestamp: new Date().toISOString() };
+ const leadData = {
+  naam,
+  email,
+  kenteken: kentekenRaw.replace(/[-\s]/g,'').toUpperCase(),
+  kmstand: kmHandmatig,
+  gebruik,
+  kooptiming,
+  locatie,
+  timestamp: new Date().toISOString()
+};
   localStorage.setItem('zow_lead', JSON.stringify(leadData));
   // Stuur naar webhook (optioneel, vult stil op de achtergrond)
   try {
@@ -2175,6 +2184,62 @@ async function startRapport() {
   renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig);
 }
 
+async function startRapportFromSavedLead() {
+  const savedLeadRaw = localStorage.getItem('zow_lead');
+  if (!savedLeadRaw) return false;
+
+  let savedLead = null;
+
+  try {
+    savedLead = JSON.parse(savedLeadRaw);
+  } catch (e) {
+    console.warn('Leaddata kon niet worden gelezen:', e);
+    return false;
+  }
+
+  if (!savedLead || !savedLead.kenteken) return false;
+
+  const kenteken = formatKenteken(savedLead.kenteken);
+  const naam = savedLead.naam || 'Klant';
+
+  document.getElementById('form-screen').style.display = 'none';
+
+  const ls = document.getElementById('loading-screen');
+  ls.style.display = 'flex';
+
+  let voertuigData = null;
+
+  try {
+    setLoadingText('Betaald rapport ophalen...');
+    await new Promise(r => setTimeout(r, 300));
+
+    const url = `https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${kenteken}`;
+    const resp = await fetch(url);
+
+    if (resp.ok) {
+      const json = await resp.json();
+      if (json && json.length > 0) voertuigData = json[0];
+    }
+  } catch (e) {
+    console.warn('RDW fetch mislukt na betaling:', e);
+  }
+
+  setLoadingText('Volledig rapport samenstellen...');
+  await new Promise(r => setTimeout(r, 400));
+
+  ls.style.display = 'none';
+
+  renderRapport(
+    voertuigData,
+    kenteken,
+    naam,
+    savedLead.gebruik || '',
+    savedLead.kmstand || null
+  );
+
+  return true;
+}
+  
 function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
@@ -2864,6 +2929,20 @@ document.getElementById('kenteken').addEventListener('input', function () {
 document.getElementById('kenteken').addEventListener('keydown', function (e) {
   if (e.key === 'Enter') startRapport();
 });
+
+window.addEventListener('DOMContentLoaded', async function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaidNow = urlParams.get('paid') === 'true';
+
+  if (isPaidNow) {
+    const loaded = await startRapportFromSavedLead();
+
+    if (!loaded) {
+      document.getElementById('form-screen').style.display = 'flex';
+      alert('We konden je rapportgegevens niet automatisch terugvinden. Vul het kenteken opnieuw in om je rapport te openen.');
+    }
+  }
+});  
 </script>
 </body>
 </html>
