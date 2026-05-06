@@ -2055,14 +2055,15 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     else fase = 'Fase 1: licht inslijten van cellen. Normaal voor jonge elektrische accu\'s.';
 
     return {
-      min: Math.min(min, 8),
-      max: Math.min(Math.max(max, min + 3), 22),
-      uitleg: 'De inschatting is gebaseerd op referentiemetingen van vergelijkbare EV’s, leeftijd, kilometerstand en bekende accukenmerken. Goed onderhouden accu’s degraderen doorgaans geleidelijk. Bij intensief laden, veel snelladen of beperkt thermisch beheer kan het verlies sneller oplopen.',
-      fase,
-      adacNorm,
-      adacLabel,
-      onderNorm
-    };
+  min: Math.min(min, 8),
+  max: Math.min(Math.max(max, min + 3), 22),
+  sohMid,
+  uitleg: 'De inschatting is gebaseerd op referentiemetingen van vergelijkbare EV’s, leeftijd, kilometerstand en bekende accukenmerken. Goed onderhouden accu’s degraderen doorgaans geleidelijk. Bij intensief laden, veel snelladen of beperkt thermisch beheer kan het verlies sneller oplopen.',
+  fase,
+  adacNorm,
+  adacLabel,
+  onderNorm
+};
   }
 
   if (driveType === 'hybrid') {
