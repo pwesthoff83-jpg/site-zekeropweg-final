@@ -2020,9 +2020,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
   const degMid = degradatie.sohMid || Math.round(100 - (degradatie.min + degradatie.max) / 2);
   const barPct = Math.min(100, Math.max(10, degMid));
-  const barKleur = barPct >= 88 ? 'green' : barPct >= 78 ? 'amber' : 'red';
+ 
   const barLabel = `${100 - degradatie.max}-${100 - degradatie.min}%`;
-
+  const barKleur = barPct >= 85 ? 'green' : barPct >= 75 ? 'amber' : 'red';
   const leeftijdTxt = leeftijd !== null ? `${leeftijd} jaar` : 'Onbekend';
   const kmTxt = km ? `${formatNumber(km)} km` : 'Niet beschikbaar';
   const jaarKmTxt = jaarGebruik ? `${formatNumber(jaarGebruik)} km/jaar` : 'Niet berekend';
@@ -2138,7 +2138,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       </div>
       <div class="info-row">
         <span class="info-label">Geschatte SoH (normaal gebruik)</span>
-        <span class="info-value" style="color:${degradatie.sohMid >= 88 ? '#0f7c6e' : degradatie.sohMid >= 80 ? '#d97706' : '#dc2626'}">
+        <span class="info-value" style="color:${degradatie.sohMid >= 85 ? '#0f7c6e' : degradatie.sohMid >= 75 ? '#d97706' : '#dc2626'}; font-size:18px; font-weight:700;">
           ~${degradatie.sohMid || (100 - Math.round((degradatie.min + degradatie.max)/2))}%
         </span>
       </div>
