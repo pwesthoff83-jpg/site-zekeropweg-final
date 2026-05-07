@@ -2029,10 +2029,11 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
                     : km >= 60000  ? (isKleineAccu ? 87 : 90)
                     : km >= 30000  ? (isKleineAccu ? 90 : 93)
                     : null;
-    const adacLabel = km >= 120000 ? '120.000 km'
-                    : km >= 90000  ? '90.000 km'
-                    : km >= 60000  ? '60.000 km'
-                    : km >= 30000  ? '30.000 km' : null;
+    const adacLabel = km >= 120000 ? '120.000+ km'
+                    : km >= 90000  ? '90.000–120.000 km'
+                    : km >= 60000  ? '60.000–90.000 km'
+                    : km >= 30000  ? '30.000–60.000 km'
+                    : null;
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     const intensiteitTxt = jaarGebruik > 30000
@@ -2117,11 +2118,11 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     km >= 25000  ? 93 :
     null;
    const adacLabel =
-    km >= 150000 ? '150.000 km' :
-    km >= 100000 ? '100.000 km' :
-    km >= 50000  ? '50.000 km' :
-    km >= 25000  ? '25.000 km' :
-  null;
+    km >= 150000 ? '150.000+ km' :
+    km >= 100000 ? '100.000–150.000 km' :
+    km >= 50000  ? '50.000–100.000 km' :
+    km >= 25000  ? '25.000–50.000 km' :
+    null;
     const onderNorm = adacNorm !== null && sohMid < adacNorm;
 
     let fase = '';
@@ -2561,7 +2562,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Urgentie teaser op basis van voertuigtype
   const accuKosten = driveType === 'ev' ? '€5.000 tot €20.000' : '€2.000 tot €8.000';
   const risicoKleurHex = risico.kleur === 'green' ? '#22c55e' : risico.kleur === 'amber' ? '#f59e0b' : '#ef4444';
-
+  const faseNr = degradatie.fase && degradatie.fase.includes('Fase 1') ? 1 :
+                 degradatie.fase && degradatie.fase.includes('Fase 2') ? 2 :
+                 degradatie.fase && degradatie.fase.includes('Fase 3') ? 3 : null;
   document.getElementById('rapport-content').innerHTML = `
 
     <div class="rapport-header">
@@ -2669,11 +2672,10 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
           ${degradatie.adacNorm ? '<span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:' + (degradatie.onderNorm ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.12)') + '">' + (degradatie.onderNorm ? '⚠️ Onder norm' : '✓ Boven norm') + '</span>' : ''}
         </span>
       </div>
-      <div class="info-row">
-       <div class="info-row" style="padding:14px 0;">
-       <span class="info-label" style="font-size:14px;font-weight:600;color:var(--white-dim);">Geschatte SoH (normaal gebruik)</span>
-       <span style="font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;color:${degradatie.sohMid >= 85 ? 'var(--teal)' : degradatie.sohMid >= 75 ? 'var(--amber)' : 'var(--red-soft)'}">~${degradatie.sohMid}%</span>
-      </div>
+      <div class="info-row" style="padding:14px 0;">
+      <span class="info-label" style="font-size:14px;font-weight:600;color:var(--white-dim);">Geschatte SoH (normaal gebruik)</span>
+      <span style="font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;color:${degradatie.sohMid >= 85 ? 'var(--teal)' : degradatie.sohMid >= 75 ? 'var(--amber)' : 'var(--red-soft)'}">~${degradatie.sohMid}%</span>
+    </div>
       ${kwh ? `
       <div class="battery-visual">
         <div class="battery-label-row">
@@ -2831,12 +2833,12 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
 
       ${degradatie.adacNorm && km > 0 ? `
       <div class="highlight-box" style="${degradatie.onderNorm ? 'background:rgba(34,197,94,0.06);border-color:rgba(239,68,68,0.2)' : ''}">
-        <strong style="color:${degradatie.onderNorm ? 'var(--red-soft)' : 'var(--amber)'}">ADAC-norm bij ${degradatie.adacLabel}:</strong>
-        minimale gezondheid is ${degradatie.adacNorm}% SoH.
+      <strong style="color:${degradatie.onderNorm ? 'var(--red-soft)' : 'var(--amber)'}">Referentieklasse ${degradatie.adacLabel}:</strong>
+       minimale richtwaarde is ${degradatie.adacNorm}% SoH.
         ${degradatie.onderNorm
           ? ' De schatting voor dit voertuig valt onder deze norm. Dit is een direct aandachtspunt dat bevestiging via een meting vraagt.'
           : ' De schatting voor dit voertuig bevindt zich boven of op deze ondergrens.'}
-        <br><span style="font-size:11px;color:var(--muted);margin-top:4px;display:block;">De ADAC-norm is een minimumdrempel, geen gemiddelde. Een auto die precies op de norm zit is niet goed, hij is net voldoende.</span>
+        <br><span style="font-size:11px;color:var(--muted);margin-top:4px;display:block;">Deze referentie is een minimumdrempel binnen de kilometerklasse, geen gemiddelde. Boven de drempel betekent: geen direct alarmsignaal op basis van deze statistische inschatting.
       </div>` : ''}
 
       <div class="highlight-box" style="margin-top:12px;background:rgba(100,116,139,0.08);border-color:rgba(100,116,139,0.15)">
@@ -2943,7 +2945,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     <div class="cta-card">
       <h2>Bevestig dit voor aankoop</h2>
       <p>Een AccuCheck meet de werkelijke staat van de accu van de ${autoNaam}. Geen schattingen, geen aannames. Alleen feiten, op locatie, binnen 30 minuten.</p>
-     <a href="https://zekeropweg.nu/ev-accucheck.html"class="cta-btn"target="_blank">Plan een onafhankelijke EV AccuCheck</a>
+     <a href="https://zekeropweg.nu/ev-accucheck.html" class="cta-btn"target="_blank">Plan een onafhankelijke EV AccuCheck</a>
       <p class="cta-sub">ZekerOpWeg komt naar de auto toe. Op locatie, op afspraak.</p>
     </div>
     `}
