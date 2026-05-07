@@ -1742,42 +1742,61 @@ function detectDriveType(brandstof, handelsbenaming, merk) {
   const b = (brandstof || '').toLowerCase();
   const h = (handelsbenaming || '').toLowerCase();
   const m = (merk || '').toLowerCase();
-  const combined = b + ' ' + h + ' ' + m;
+  const combined = (b + ' ' + h + ' ' + m).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  // Volledig elektrisch
-  if (combined.includes('elektr') && !combined.includes('hybrid') && !combined.includes('phev') && !combined.includes('plug')) {
-    return 'ev';
-  }
-
-  // Plug-in hybride signalen
-  // "iV" suffix is VW/Skoda/SEAT/Cupra PHEV aanduiding (octavia rs iv, superb iv, leon iv, etc.)
-  const ivSuffix = /\biv\b/.test(h) || /\bi\.v\b/.test(h);
-
-  if (ivSuffix ||
-      combined.includes('phev') || combined.includes('plug-in') || combined.includes('plug in') ||
-      h.includes('e-hybrid') || h.includes('ehybrid') || h.includes('tfsi e') ||
-      h.includes('300e') || h.includes('350e') || h.includes('400e') || h.includes('250e') ||
-      h.includes('gte') || /\d+e\b/.test(h) ||
-      (combined.includes('elektr') && combined.includes('benzin')) ||
-      (combined.includes('elektr') && combined.includes('diesel'))) {
-    return 'phev';
-  }
-
-  // Bekende milde hybride modellen op modelnaam (GEEN octavia, die heeft iV voor PHEV)
-  const mildHybridModels = [
-    'superb', 'kodiaq', 'passat', 'golf', 'tiguan',
-    'a3', 'a4', 'a6', 'leon', 'ceed', 'xceed', 'sportage',
-    'corolla', 'yaris', 'camry', 'c-hr', '3 serie', '5 serie',
-    'qashqai', 'juke', 'kuga', 'focus', 'fiesta', 'polo', 'ibiza',
-    'fabia', 'scala', 'rapid', 'citigo'
+  // ── STAP 1: HARDE HYBRID-DETECTIE (wint van EV, altijd) ──────────────
+  // Als híbride-signaal aanwezig is, nooit EV retourneren tenzij expliciete EV-hit
+  const hybridSignals = [
+    'hybrid', 'hybride', 'hev', 'mhev', 'fhev', 'mild hybrid', 'full hybrid',
+    'self-charging', 'ecoboost hybrid', 'e-power', 'epower', 'eq boost', 'eqboost',
+    'e-tech hybrid', 'etech hybrid', 'hsd', 'hybrid synergy drive',
+    'e:hev', 'ehev', 'blue hybrid',
+    // Specifieke modelmatches die altijd hybride zijn (nooit EV, nooit verbrandingsmotor)
+    'mondeo hybrid', 'kuga hybrid', 'puma hybrid', 'yaris hybrid', 'corolla hybrid',
+    'camry hybrid', 'rav4 hybrid', 'cx-5 hybrid', 'tucson hybrid', 'santa fe hybrid',
+    'niro hybrid', 'insignia hybrid', 'auris hybrid', 'jazz hybrid', 'cr-v hybrid',
+    'accord hybrid'
   ];
-  const isMildHybridModel = mildHybridModels.some(model => h.includes(model) || m.includes(model));
+  const hasHybridSignal = hybridSignals.some(s => combined.includes(s));
 
-  if (combined.includes('hybrid') || h.includes('recharge') || isMildHybridModel) {
-    return 'hybrid';
-  }
+  // ── STAP 2: PHEV-SIGNALEN ────────────────────────────────────────────
+  const phevSignals = [
+    'phev', 'plug-in', 'plug in hybrid', 'recharge t',
+    'e-tense', 'etense', 'tfsi e', 'tfsie',
+    '330e', '530e', '740e', '225xe', '330xe', '300e', '350e', '400e', '250e',
+    'xc60 t8', 'xc90 t8', 'p400e', 'p510e', 'p550e',
+    'prius prime', 'kia niro phev',
+    // DS modellen zijn ALTIJD PHEV of hybride, nooit puur ICE
+    'ds 9', 'ds9', 'ds 7', 'ds7', 'ds 4', 'ds4',
+    'e-hybrid', 'ehybrid', 'gte'
+  ];
+  const hasPHEV = phevSignals.some(s => combined.includes(s));
 
-  if (combined.includes('elektr')) return 'ev';
+  // ── STAP 3: HARDE NIET-ELEKTRISCHE BRANDSTOFFEN ──────────────────────
+  // CNG, LPG, benzine, diesel = nooit EV
+  const combustionFuels = ['benzin', 'diesel', 'cng', 'lpg', 'lng', 'petrol', 'gasolin'];
+  const hasCombustionFuel = combustionFuels.some(f => b.includes(f));
+
+  // ── STAP 4: PURE EV-SIGNALEN (alleen harde bewijzen) ─────────────────
+  const evFuelKeywords = ['elektr', 'electric', 'bev'];
+  const hasElectricFuel = evFuelKeywords.some(k => b.includes(k));
+
+  // ── BESLISBOOM ────────────────────────────────────────────────────────
+  // Prioriteit: PHEV > EV > Hybrid > Combustion
+  // KRITIEKE REGEL: hybride + combustion fuel = hybride (nooit verbrandingsmotor)
+
+  if (hasPHEV) return 'phev';
+
+  if (hasElectricFuel && !hasHybridSignal && !hasCombustionFuel) return 'ev';
+
+  // Hybride: ook als brandstof onbekend of CNG/benzine is (mild hybrid rijdt op brandstof)
+  if (hasHybridSignal) return 'hybrid';
+
+  if (hasCombustionFuel) return 'verbrandingsmotor';
+
+  // Elektrisch brandstof maar ook hybride-signaal = PHEV (conservatief)
+  if (hasElectricFuel) return 'ev';
+
   return 'verbrandingsmotor';
 }
 
@@ -2049,13 +2068,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
       min: Math.min(min, 14),
       max: Math.min(Math.max(max, min + 5), 32),
       sohMid: 100 - midVal,
-      uitleg: (() => {
-        const isAudi = modelKey && modelKey.includes('audi');
-        const auditekst = isAudi
-          ? " Voor Audi PHEV specifiek geldt: in de praktijk de grootste spreiding van alle merken (82-100% SoH bij vergelijkbare auto's). Een Audi A6 op 45.000 km toonde al 14,6% verlies, terwijl een Q3 op 111.000 km nog op 97,2% stond. Twee identieke Audi's kunnen meer dan 10 procentpunt SoH van elkaar verschillen."
-          : " Ter illustratie van de bandbreedte: een Audi A6 op 45.000 km toonde al 14,6% verlies, terwijl een Seat Leon op 60.000 km nog op 97,5% stond. Zelfde leeftijdscategorie, fundamenteel ander laadgedrag.";
-        return `Op basis van meer dan 35 gecertificeerde AVILOO-metingen (BMW X3/330e, Skoda Octavia iV, Seat Leon, Cupra Formentor, Audi Q3/Q5/A6/Q7, VW Multivan, MINI Countryman): normaal gebruik levert gemiddeld 1,5% verlies per jaar plus 0,5% per 10.000 km. Bij goed laadgedrag blijft het verlies ver daaronder. Bij destructief gebruik loopt het op tot meer dan het dubbele. Kilometerstand is slechts een indicatie.${intensiteitTxt}${auditekst}`;
-      })(),
+     uitleg: (() => {
+     const isAudi = modelKey && modelKey.includes('audi');
+     const auditekst = isAudi
+      ? " Voor Audi PHEV specifiek geldt: in de praktijk de grootste spreiding van alle merken (82-100% SoH bij vergelijkbare auto's). Laadgedrag bepaalt hier meer dan bij welk ander merk dan ook."
+      : " Ter illustratie: een Seat Leon op 60.000 km staat nog op 97,5% SoH, terwijl een Audi A6 op 45.000 km al 14,6% verlies toonde. Zelfde leeftijdscategorie, fundamenteel ander laadgedrag.";
+    return `Beoordeeld op basis van het gecertificeerde AVILOO-protocol. Dezelfde methodiek die wordt gebruikt door leasemaatschappijen en autobedrijven voor objectieve accuwaardering. Normaal gebruik levert gemiddeld 1,5% verlies per jaar plus 0,5% per 10.000 km. Bij goed laadgedrag blijft het verlies ver daaronder. Bij destructief gebruik loopt het op tot meer dan het dubbele. Kilometerstand is slechts een indicatie.${intensiteitTxt}${auditekst}`;
+  })(),
       fase,
       adacNorm,
       adacLabel,
@@ -2424,6 +2443,30 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   if (!driveType && /\biv\b/i.test(handelLow)) {
     driveType = 'phev';
   }
+
+  // 4d. DS modellen — altijd PHEV of hybride, nooit verbrandingsmotor
+  // DS registreert brandstof soms als "Niet geregistreerd" in RDW
+  if (!driveType && merkLow.includes('ds')) {
+    const dsPhevModels = ['ds 9', 'ds9', 'ds 7', 'ds7', 'ds 4', 'ds4'];
+    const dsEvModels = ['ds 3', 'ds3'];
+    if (dsEvModels.some(m => handelLow.includes(m)) && bsLow.includes('elektr')) {
+      driveType = 'ev';
+    } else if (dsPhevModels.some(m => handelLow.includes(m))) {
+      driveType = 'phev';
+      if (!kwh) kwh = 14.2; // DS 7/9 standaard PHEV accu
+    } else {
+      // Onbekend DS model: conservatief naar PHEV (alle DS modellen zijn geëlektrificeerd)
+      driveType = 'phev';
+    }
+  }
+
+  // 4e. Ford CNG-Technik Mondeo Hybrid en vergelijkbare CNG-hybrides
+  // RDW registreert brandstof als "CNG" — die valt buiten de benzine/diesel guardrail
+  // Harde regel: CNG + hybrid in naam = altijd hybrid, nooit EV
+  if (!driveType && bsLow.includes('cng')) {
+    driveType = zoektekst.includes('hybrid') ? 'hybrid' : 'verbrandingsmotor';
+  }
+  
   // 5b. Land Rover PHEV detectie, RDW registreert als Benzine zonder PHEV-indicator
   // P400e, P510e, P550e zijn allemaal PHEV varianten
   if (!driveType && (merkLow.includes('land rover') || merkLow.includes('landrover'))) {
@@ -2478,9 +2521,10 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   //                         grootste PHEV wereldwijd = SVOLT 80 kWh (nog niet in NL)
   // Harde regel: Benzine of Diesel = NOOIT volledig elektrisch. Altijd.
 
-  // Guardrail 1: brandstof Benzine of Diesel = nooit EV
+  // Guardrail 1: brandstof Benzine, Diesel, CNG of LPG = nooit EV
   // UITZONDERING: Porsche Taycan, Tesla en auto's met 60+ kWh accu
-  if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel'))) {
+  // CNG = aardgas, rijdt op verbrandingsmotor. Nooit EV, ook niet bij hybride-variant.
+  if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel') || bsLow.includes('cng') || bsLow.includes('lpg'))) {
     if (driveType === 'ev') {
       const isBekendeEV = (merkLow.includes('porsche') && (handelLow.includes('taycan') || (handelLow.includes('macan') && kwh >= 80)))
         || merkLow.includes('tesla')
@@ -2496,8 +2540,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     driveType = 'ev';
   }
 
-  // Guardrail 3: kwh > 6 maar auto staat als hybrid/verbrandingsmotor = phev
-  if ((driveType === 'hybrid' || driveType === 'verbrandingsmotor') && kwh && kwh > 6) {
+ // Guardrail 3: kwh > 6 maar auto staat als verbrandingsmotor = phev
+  // UITZONDERING: hybrid blijft hybrid als brandstof CNG/diesel/benzine is
+  // (milde hybrides hebben soms kwh-waarden in DB maar zijn geen PHEV)
+  if (driveType === 'verbrandingsmotor' && kwh && kwh > 6) {
+    driveType = kwh >= 35 ? 'ev' : 'phev';
+  }
+  // Hybrid mag alleen naar PHEV als kwh echt groot genoeg is (>= 8 kWh)
+  // en brandstof NIET CNG/diesel/benzine is
+  if (driveType === 'hybrid' && kwh && kwh >= 8 && !hasCombustionFuel) {
     driveType = kwh >= 35 ? 'ev' : 'phev';
   }
 
