@@ -2805,24 +2805,26 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       ${degradatie.fase ? `<div class="info-row" style="margin-bottom:16px;"><span class="info-label">Degradatiefase (schatting)</span><span class="info-value" style="color:var(--white-dim)">${degradatie.fase}</span></div>` : ''}
 
       <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:14px;">
-        <div style="font-size:12px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Hoe degradatie verloopt</div>
+        <div style="font-size:12px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">
+          Hoe degradatie verloopt ${faseNr ? `· deze auto zit naar verwachting in Fase ${faseNr}` : ''}
+        </div>
         <div style="display:flex;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;height:10px;">
           <div style="width:33%;background:linear-gradient(90deg,rgba(239,68,68,0.7),rgba(245,158,11,0.6));"></div>
           <div style="width:42%;background:linear-gradient(90deg,rgba(45,212,191,0.5),rgba(45,212,191,0.35));"></div>
           <div style="width:25%;background:linear-gradient(90deg,rgba(245,158,11,0.4),rgba(239,68,68,0.6));"></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;"> 
-          <div style="padding:10px 12px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;">
+            <div style="padding:10px 12px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;box-shadow:${faseNr === 1 ? '0 0 0 2px rgba(34,197,94,0.35)' : 'none'};">
             <div style="font-size:11px;font-weight:700;color:#16a34a;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Fase 1</div>
             <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">100% → 90%</div>
             <div style="font-size:12px;color:var(--muted);line-height:1.4;">Snel bereikt. Cellen slijten initieel in. Vrijwel elke accu doorloopt dit.</div>
           </div>
-          <div style="padding:10px 12px;background:rgba(45,212,191,0.05);border:1px solid rgba(45,212,191,0.15);border-radius:8px;">
+            <div style="padding:10px 12px;background:rgba(45,212,191,0.05);border:1px solid rgba(45,212,191,0.15);border-radius:8px;box-shadow:${faseNr === 2 ? '0 0 0 2px rgba(45,212,191,0.35)' : 'none'};">
             <div style="font-size:11px;font-weight:700;color:var(--teal);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Fase 2</div>
             <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">90% → 75%</div>
             <div style="font-size:12px;color:var(--muted);line-height:1.4;">Veel langer dan fase 1. Stabiele, trage degradatie. Grootste deel van de levensduur.</div>
           </div>
-          <div style="padding:10px 12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;">
+            <div style="padding:10px 12px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;box-shadow:${faseNr === 3 ? '0 0 0 2px rgba(245,158,11,0.35)' : 'none'};">
             <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Fase 3</div>
             <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">Onder 75%</div>
             <div style="font-size:12px;color:var(--muted);line-height:1.4;">Versnelde terugval. Merkbaar verlies in bereik en prestaties.</div>
