@@ -1517,7 +1517,7 @@ const batteryDB = {
   // ── PORSCHE ────────────────────────────────────────────────────────────────
   "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 14.1 }, { "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }, { "variant": "turbo s e-hybrid", "kwh": 14.1 }],
   "porsche panamera": [{ "variant": "4 e-hybrid", "kwh": 14.1 }, { "variant": "4 hybrid", "kwh": 17.9 }, { "variant": "turbo s e-hybrid", "kwh": 14.1 }],
-  "porsche taycan": [{ "variant": "standard", "kwh": 71 }, { "variant": "standard", "kwh": 82.3 }, { "variant": "standard", "kwh": 97 }, { "variant": "turbo", "kwh": 97 }, { "variant": "turbo s", "kwh": 97 }],
+  "porsche taycan": [{ "variant": "standard range", "kwh": 71 }, { "variant": "standard", "kwh": 82.3 }, { "variant": "performance", "kwh": 97 }, { "variant": "performance plus", "kwh": 97 }, { "variant": "gts", "kwh": 97 }, { "variant": "turbo", "kwh": 105 }, { "variant": "turbo s", "kwh": 105 }],
   "porsche macan": [{ "variant": "ev", "kwh": 100 }],
   // ── RENAULT ────────────────────────────────────────────────────────────────
   "renault zoe": [{ "variant": "standard", "kwh": 22 }, { "variant": "ze40", "kwh": 41 }, { "variant": "ze50", "kwh": 52 }],
@@ -2390,7 +2390,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
       const isGts = varLow.includes('gts') || handelLow.includes('gts');
       if (isTurboS || isTurbo) kwh = 105;
       else if (isPerformancePlus || isGts) kwh = 97;
-      else kwh = (kwh && kwh >= 79) ? kwh : 93.4;
+      else kwh = (kwh && kwh >= 79) ? kwh : 97;
     } else if (isMacanEv) {
       driveType = 'ev'; kwh = kwh || 100;
     } else if (handelLow.includes('cayenne') || handelLow.includes('panamera')) {
