@@ -2372,7 +2372,8 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const varLow     = variantOmschr.toLowerCase();
   const bsLow      = brandstof.toLowerCase();
   const zoektekst  = (merkLow + ' ' + handelLow + ' ' + varLow + ' ' + bsLow).replace(/\s+/g, ' ').trim();
-  const hasCombustionFuel = ['benzin', 'diesel', 'cng', 'lpg'].some(f => bsLow.includes(f));
+  const hasCombustionFuel = ['benzin', 'diesel', 'cng', 'lpg'].some(f => bsLow.includes(f))
+   || handelLow.includes('cng') || merkLow.includes('cng');
   
   // DriveType detectie, strikte prioriteitsvolgorde
   let driveType = null;
@@ -2461,13 +2462,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
     }
   }
 
-  // 4e. Ford CNG-Technik Mondeo Hybrid en vergelijkbare CNG-hybrides
-  // RDW registreert brandstof als "CNG" — die valt buiten de benzine/diesel guardrail
-  // Harde regel: CNG + hybrid in naam = altijd hybrid, nooit EV
-  if (!driveType && bsLow.includes('cng')) {
+// 4e. CNG-hybrides zoals Ford CNG-Technik Mondeo Hybrid
+  // RDW registreert brandstof soms als leeg/onbekend bij CNG-voertuigen
+  // CNG staat dan in de handelsbenaming of merk-omschrijving
+  // Harde regel: CNG in welk veld dan ook + hybrid in naam = altijd hybrid
+  const hasCngSignal = bsLow.includes('cng') || handelLow.includes('cng') || merkLow.includes('cng') || zoektekst.includes('cng');
+  if (!driveType && hasCngSignal) {
     driveType = zoektekst.includes('hybrid') ? 'hybrid' : 'verbrandingsmotor';
   }
-  
   // 5b. Land Rover PHEV detectie, RDW registreert als Benzine zonder PHEV-indicator
   // P400e, P510e, P550e zijn allemaal PHEV varianten
   if (!driveType && (merkLow.includes('land rover') || merkLow.includes('landrover'))) {
@@ -2525,7 +2527,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Guardrail 1: brandstof Benzine, Diesel, CNG of LPG = nooit EV
   // UITZONDERING: Porsche Taycan, Tesla en auto's met 60+ kWh accu
   // CNG = aardgas, rijdt op verbrandingsmotor. Nooit EV, ook niet bij hybride-variant.
-  if (bsLow && (bsLow.includes('benzin') || bsLow.includes('diesel') || bsLow.includes('cng') || bsLow.includes('lpg'))) {
+  // CNG kan in merk of handelsbenaming zitten als RDW brandstof leeg laat
+  const hasFuelBlock = bsLow.includes('benzin') || bsLow.includes('diesel') ||
+                       bsLow.includes('cng') || bsLow.includes('lpg') ||
+                       handelLow.includes('cng') || merkLow.includes('cng');
+  if (hasFuelBlock) {
     if (driveType === 'ev') {
       const isBekendeEV = (merkLow.includes('porsche') && (handelLow.includes('taycan') || (handelLow.includes('macan') && kwh >= 80)))
         || merkLow.includes('tesla')
