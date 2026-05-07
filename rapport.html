@@ -2372,7 +2372,8 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const varLow     = variantOmschr.toLowerCase();
   const bsLow      = brandstof.toLowerCase();
   const zoektekst  = (merkLow + ' ' + handelLow + ' ' + varLow + ' ' + bsLow).replace(/\s+/g, ' ').trim();
-
+  const hasCombustionFuel = ['benzin', 'diesel', 'cng', 'lpg'].some(f => bsLow.includes(f));
+  
   // DriveType detectie, strikte prioriteitsvolgorde
   let driveType = null;
 
