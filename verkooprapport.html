@@ -2005,9 +2005,11 @@ const tankPct        = Math.round(sohMid);
 <p style="font-size:13px;color:#64748b;margin-top:12px;line-height:1.65;">
   ${isEV
     ? 'WLTP is de officiële fabrieksopgave onder testomstandigheden. Reëel rijbereik ligt gemiddeld 20-25% lager door temperatuur, rijstijl en snelheid. Met ~' + sohMid + '% accucapaciteit is het WLTP-bereik ' + tankDegradatie + ' km en het reële bereik ~' + tankRealistischDegradatie + ' km. Een verschil van ' + (tankWltp - tankDegradatie) + ' km ten opzichte van nieuw.'
-    : isPHEVMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km per volle lading. Op benzine rijdt de auto precies hetzelfde.'
+    : isPHEV
+      ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km per volle lading. Op benzine rijdt de auto precies hetzelfde.'
       : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter brandstoftank. Bij 1 op 15 rijd je dan ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km. Een verschil van ' + (kmNieuw - kmDegradatie) + ' km per volle lading.'}
-</p>
+   </p>
+    </div>
     <!-- DEGRADATIE FASES -->
     <div class="card">
       <div class="card-title"><span class="card-icon">📈</span>Degradatie in fases</div>
