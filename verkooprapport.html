@@ -1501,6 +1501,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   // 12. Tekst-detectie als laatste fallback
   if (!driveType) driveType = detectDriveType(brandstof, zoektekst, merk);
 
+  // Land Rover PHEV rescue
+if ((merkLow.includes('land rover') || merkLow.includes('landrover')) && 
+    (handelLow.includes('p300e') || handelLow.includes('p400e') || handelLow.includes('phev') || handelLow.includes('plug-in'))) {
+  driveType = 'phev';
+  if (!kwh) kwh = handelLow.includes('p400e') ? 31.8 : 15.0;
+}
+  
   // ── GUARDRAILS ────────────────────────────────────────────────────────────
   // Plug-in hybrid in naam = altijd PHEV
   if (handelLow.includes('plug-in hybrid') || handelLow.includes('plug-in hybride') || varLow.includes('plug-in hybrid')) {
