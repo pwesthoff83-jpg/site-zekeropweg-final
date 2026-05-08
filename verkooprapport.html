@@ -1507,6 +1507,25 @@ if ((merkLow.includes('land rover') || merkLow.includes('landrover')) &&
   driveType = 'phev';
   if (!kwh) kwh = handelLow.includes('p400e') ? 31.8 : 15.0;
 }
+
+// Structurele PHEV rescue voor modellen die RDW als benzine registreert
+const phevWhitelist = [
+  { merk: 'jaguar', modellen: ['e-pace', 'f-pace', 'xe', 'xf'], kwh: 15.0 },
+  { merk: 'land rover', modellen: ['evoque', 'discovery sport', 'defender'], kwh: 15.0 },
+  { merk: 'land rover', modellen: ['range rover sport', 'range rover'], kwh: 31.8 },
+  { merk: 'volvo', modellen: ['xc90', 'xc60', 's90', 'v90', 's60', 'v60'], kwh: 18.8 },
+  { merk: 'porsche', modellen: ['cayenne', 'panamera'], kwh: 17.9 },
+];
+
+for (const entry of phevWhitelist) {
+  if (merkLow.includes(entry.merk)) {
+    const modelMatch = entry.modellen.some(m => handelLow.includes(m) || zoektekst.includes(m));
+    if (modelMatch && (driveType === 'verbrandingsmotor' || !driveType)) {
+      driveType = 'phev';
+      if (!kwh) kwh = entry.kwh;
+    }
+  }
+}
   
   // ── GUARDRAILS ────────────────────────────────────────────────────────────
   // Plug-in hybrid in naam = altijd PHEV
