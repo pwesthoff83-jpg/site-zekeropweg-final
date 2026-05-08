@@ -915,6 +915,7 @@ const batteryDB = {
   "dacia spring": [{ "variant": "standard", "kwh": 27.4 }],
   "fiat 500e": [{ "variant": "standard", "kwh": 23.8 }, { "variant": "long range", "kwh": 42 }],
   "ford kuga": [{ "variant": "phev", "kwh": 14.4 }],
+  "ford explorer": [{ "variant": "phev", "kwh": 13.6 }, { "variant": "rwd", "kwh": 77 }],
   "ford mustang mach-e": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "gt", "kwh": 98.7 }],
   "hyundai ioniq 5": [{ "variant": "rwd", "kwh": 72.6 }, { "variant": "awd", "kwh": 77.4 }],
   "hyundai ioniq 6": [{ "variant": "rwd", "kwh": 77.4 }, { "variant": "awd", "kwh": 77.4 }],
@@ -1112,7 +1113,7 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
 
   if (!dbDriveType) {
     if (entry.kwh < 5) dbDriveType = 'hybrid';
-    else if (entry.kwh < 35) dbDriveType = 'phev';
+    else if (entry.kwh < 32) dbDriveType = 'phev';
     else dbDriveType = 'ev';
   }
 
