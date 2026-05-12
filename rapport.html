@@ -2607,7 +2607,13 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   // Verwijder eventueel eerder opgeslagen paid status uit localStorage
   // (opruimen van oude sessies die niet via Stripe liepen)
   localStorage.removeItem('zow_paid');
-
+  // Verwijder ook oude lead als kenteken niet overeenkomt met URL parameter
+  const urlKenteken = urlParams.get('client_reference_id');
+  if (urlKenteken && savedLead && savedLead.kenteken !== urlKenteken) {
+  localStorage.removeItem('zow_lead');
+  return false;
+ }
+  
   // Zet preview/full klasse DIRECT vóór display:block, voorkomt flash van volledig rapport
   const rapportScreen = document.getElementById('rapport-screen');
   rapportScreen.classList.remove('preview-mode', 'full-mode');
