@@ -1772,22 +1772,16 @@ const tankPct        = Math.round(sohMid);
    <div class="tank-box">
   <div class="tank-title">⛽ ${autoNaam} — ${isEV ? 'rijbereik' : isPHEV ? 'elektrisch rijbereik' : 'bij 1 op 15'}</div>
 
-  ${isEV ? `
+${isEV ? `
   <div class="tank-row">
-    <span class="tank-label">Nieuw — WLTP</span>
+    <span class="tank-label">Nieuw (100%)</span>
     <div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div>
-    <span class="tank-val">${tankWltp} km</span>
+    <span class="tank-val">${tankWltp} km WLTP</span>
   </div>
-  <div class="tank-row">
-    <span class="tank-label">Nieuw — Reëel</span>
-    <div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:${Math.round(tankRealistisch / tankWltp * 100)}%"></div></div>
-    <span class="tank-val">~${tankRealistisch} km</span>
-  </div>
-  <div style="height:1px;background:#e2e8f0;margin:6px 0;"></div>
   <div class="tank-row">
     <span class="tank-label" style="font-weight:600;color:#0f172a;">Dit voertuig (~${sohMid}%)</span>
     <div class="tank-bar-wrap"><div class="tank-bar-fill degraded" style="width:${tankPct}%"></div></div>
-    <span class="tank-val" style="font-weight:600;">${tankDegradatie} km WLTP · ~${tankRealistischDegradatie} km reëel</span>
+    <span class="tank-val" style="font-weight:600;">${tankDegradatie} km WLTP</span>
   </div>
   ` : isPHEV ? `
   <div class="tank-row">
@@ -1815,7 +1809,7 @@ const tankPct        = Math.round(sohMid);
 </div>
    <p style="font-size:13px;color:#64748b;margin-top:12px;line-height:1.65;">
   ${isEV
-    ? 'WLTP is de officiële fabrieksopgave onder testomstandigheden. Reëel rijbereik ligt gemiddeld 20-25% lager door temperatuur, rijstijl en snelheid. Met ~' + sohMid + '% accucapaciteit is het WLTP-bereik ' + tankDegradatie + ' km en het reële bereik ~' + tankRealistischDegradatie + ' km. Een verschil van ' + (tankWltp - tankDegradatie) + ' km ten opzichte van nieuw.'
+    ? 'Met ~' + sohMid + '% accucapaciteit is het WLTP-bereik ' + tankDegradatie + ' km in plaats van ' + tankWltp + ' km nieuw. Degradatie is ' + (100 - sohMid) + '%. Dat scheelt ' + (tankWltp - tankDegradatie) + ' km rijbereik op een volle accu. De auto rijdt precies hetzelfde. Je laadt eerder bij.'
     : isPHEV
       ? 'Met ~' + sohMid + '% accucapaciteit is het elektrische rijbereik afgenomen van ' + tankNieuw + ' naar ' + tankDegradatie + ' km. Een verschil van ' + (tankNieuw - tankDegradatie) + ' km per volle lading. Op benzine rijdt de auto precies hetzelfde.'
       : 'Met ~' + sohMid + '% accucapaciteit is dat vergelijkbaar met ' + tankDegradatie + ' liter brandstoftank. Bij 1 op 15 rijd je dan ' + kmDegradatie + ' km in plaats van ' + kmNieuw + ' km. Een verschil van ' + (kmNieuw - kmDegradatie) + ' km per volle lading.'}
