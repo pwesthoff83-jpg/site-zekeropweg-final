@@ -2361,15 +2361,16 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
 let kwh = battery ? battery.kwh : null;
 
-// Polestar 2 Long Range fix — RDW geeft geen kWh terug
-if (merkLow.includes('polestar') && handelLow.includes('2')) {
-  if (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('single motor') || handelLow.includes('300') || handelLow.includes('408')) {
-    kwh = 78;
-  } else if (handelLow.includes('standard range')) {
-    kwh = 64;
+// Polestar 2 fix — RDW geeft alleen "POLESTAR 2" terug
+// Long Range (78/82 kWh) is verreweg de meeste op NL markt
+// Standard Range (63/64/69/70 kWh) is zeldzamer
+if (merkLow.includes('polestar') && handelLow.includes('polestar 2')) {
+  if (bouwjaar && bouwjaar >= 2024) {
+    kwh = 82; // Nieuwe Polestar 2 is 82 kWh Long Range
+  } else {
+    kwh = 78; // Polestar 2 2020-2023 is 78 kWh Long Range
   }
 }
-
    
   // DriveType detectie, strikte prioriteitsvolgorde
   let driveType = null;
