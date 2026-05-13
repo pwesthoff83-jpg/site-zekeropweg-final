@@ -2343,7 +2343,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const apk = data ? (data.vervaldatum_apk || '') : '';
   const leeftijd = calcLeeftijd(datum);
   const bouwjaar = datum ? parseInt(String(datum).slice(0, 4)) : null;
-
+  
+  console.log('RDW merk:', merk);
+  console.log('RDW handelsbenaming:', handelsbenaming);
+  console.log('RDW variant:', variantRaw);
+  
   // Bouw volledige zoektekst van ALLE beschikbare RDW-velden
   const merkLow    = merk.toLowerCase();
   const handelLow  = handelsbenaming.toLowerCase();
