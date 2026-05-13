@@ -953,7 +953,7 @@ const batteryDB = {
   "peugeot e-208": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }, { "variant": "long range", "kwh": 54, "dbDriveType": "ev" }],
   "peugeot 208": [{ "variant": "ev", "kwh": 50, "dbDriveType": "ev" }, { "variant": "electric", "kwh": 50, "dbDriveType": "ev" }],
   "peugeot e-2008": [{ "variant": "standard", "kwh": 50, "dbDriveType": "ev" }],
-  "polestar 2": [{ "variant": "standard", "kwh": 64 }, { "variant": "long range", "kwh": 78 }],
+  "polestar 2": [{ "variant": "long range", "kwh": 78 }, { "variant": "standard", "kwh": 69 }],
   "porsche cayenne": [{ "variant": "e-hybrid", "kwh": 17.9 }, { "variant": "e-hybrid", "kwh": 25.9 }],
   "porsche taycan": [{ "variant": "standard", "kwh": 79.2 }, { "variant": "performance plus", "kwh": 97 }, { "variant": "turbo", "kwh": 105 }, { "variant": "turbo s", "kwh": 105 }],
   "renault zoe": [{ "variant": "ze50", "kwh": 52 }],
@@ -1495,6 +1495,11 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     driveType = 'hybrid'; kwh = null;
   }
 
+// Polestar 2 Long Range fix
+if (merkLow.includes('polestar') && (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('performance') || kwh === 64)) {
+  kwh = 78;
+}
+  
   // 11. Battery DB als ground truth
   if (!driveType && battery && battery.dbDriveType) driveType = battery.dbDriveType;
 
