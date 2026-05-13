@@ -1651,10 +1651,15 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   if (!driveType && merkLow.includes('mazda') && handelLow.includes('cx-30')) {
     driveType = 'hybrid'; kwh = null;
   }
-
-// Polestar 2 Long Range fix
-if (merkLow.includes('polestar') && (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('performance') || kwh === 64)) {
-  kwh = 78;
+  
+// Polestar 2 fix — Long Range = altijd 78 kWh, Standard Range = 64 kWh
+// Polestar 4 = 100 kWh, die moet niet worden aangepast
+if (merkLow.includes('polestar') && handelLow.includes('2')) {
+  if (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('single motor') || handelLow.includes('300') || handelLow.includes('408')) {
+    kwh = 78;
+  } else if (handelLow.includes('standard range')) {
+    kwh = 64;
+  }
 }
   
   // 11. Battery DB als ground truth
