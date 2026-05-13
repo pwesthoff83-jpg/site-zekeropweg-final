@@ -1652,13 +1652,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
     driveType = 'hybrid'; kwh = null;
   }
   
-// Polestar 2 fix — Long Range = altijd 78 kWh, Standard Range = 64 kWh
-// Polestar 4 = 100 kWh, die moet niet worden aangepast
-if (merkLow.includes('polestar') && handelLow.includes('2')) {
-  if (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('single motor') || handelLow.includes('300') || handelLow.includes('408')) {
-    kwh = 78;
-  } else if (handelLow.includes('standard range')) {
-    kwh = 64;
+// Polestar 2 fix — RDW geeft alleen "POLESTAR 2" terug
+// Long Range (78/82 kWh) is verreweg de meeste op NL markt
+// Standard Range (63/64/69/70 kWh) is zeldzamer
+if (merkLow.includes('polestar') && handelLow.includes('polestar 2')) {
+  if (bouwjaar && bouwjaar >= 2024) {
+    kwh = 82; // Nieuwe Polestar 2 is 82 kWh Long Range
+  } else {
+    kwh = 78; // Polestar 2 2020-2023 is 78 kWh Long Range
   }
 }
   
