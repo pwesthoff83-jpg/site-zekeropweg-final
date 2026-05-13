@@ -2344,9 +2344,6 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const leeftijd = calcLeeftijd(datum);
   const bouwjaar = datum ? parseInt(String(datum).slice(0, 4)) : null;
 
-  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
-  let kwh = battery ? battery.kwh : null;
-
   // Bouw volledige zoektekst van ALLE beschikbare RDW-velden
   const merkLow    = merk.toLowerCase();
   const handelLow  = handelsbenaming.toLowerCase();
@@ -2356,6 +2353,20 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig) {
   const hasCombustionFuel = ['benzin', 'diesel', 'cng', 'lpg'].some(f => bsLow.includes(f))
    || handelLow.includes('cng') || merkLow.includes('cng');
   
+  
+ const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
+let kwh = battery ? battery.kwh : null;
+
+// Polestar 2 Long Range fix — RDW geeft geen kWh terug
+if (merkLow.includes('polestar') && handelLow.includes('2')) {
+  if (handelLow.includes('long range') || handelLow.includes('dual motor') || handelLow.includes('single motor') || handelLow.includes('300') || handelLow.includes('408')) {
+    kwh = 78;
+  } else if (handelLow.includes('standard range')) {
+    kwh = 64;
+  }
+}
+
+   
   // DriveType detectie, strikte prioriteitsvolgorde
   let driveType = null;
 
