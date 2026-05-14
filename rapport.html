@@ -935,9 +935,15 @@
     display: none !important;
   }
 
-  @page {
+@page {
     size: A4;
     margin: 16mm 15mm 18mm 15mm;
+    @top-center { content: none; }
+    @bottom-center { content: none; }
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+    @top-left { content: none; }
+    @top-right { content: none; }
   }
 
   html, body {
@@ -960,15 +966,13 @@
     max-width: 100% !important;
   }
 
-  #rapport-content::before {
-    content: 'ZekerOpWeg · AccuRisico Rapport';
+ #rapport-content::before {
+    content: '';
     display: block;
-    font-size: 9pt;
-    letter-spacing: .04em;
-    color: #64748b;
-    border-bottom: 2px solid #0f766e;
-    padding-bottom: 8px;
-    margin-bottom: 18px;
+    height: 3px;
+    background: linear-gradient(90deg, #0f766e 0%, #2dd4bf 100%);
+    border-radius: 2px;
+    margin-bottom: 20px;
   }
 
   .rapport-header {
@@ -1184,13 +1188,22 @@
     color: #92400e !important;
   }
 
-  .section-card [style*="rgba(239,68,68"],
+ .section-card [style*="rgba(239,68,68"],
   .section-card [style*="rgba(245,158,11"],
   .section-card [style*="rgba(45,212,191"],
   #rapport-content > div[style*="rgba(255,255,255,0.02)"] div {
     background: #f8fafc !important;
     border-color: #dbe3ea !important;
-    color: #334155 !important;
+    color: #1e293b !important;
+  }
+
+  .section-card [style*="rgba(239,68,68"] *,
+  .section-card [style*="rgba(245,158,11"] *,
+  .section-card [style*="rgba(45,212,191"] *,
+  #rapport-content [style*="font-size:12px"],
+  #rapport-content [style*="font-size:13px"],
+  #rapport-content [style*="color:var(--muted)"] {
+    color: #1e293b !important;
   }
 
   #rapport-content > div[style*="rgba(255,255,255,0.02)"] {
