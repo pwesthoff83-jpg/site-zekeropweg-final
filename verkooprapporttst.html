@@ -1,1 +1,156 @@
-
+          <div class="fase-tag">Fase 1</div>
+          <div class="fase-range">100% → 90%</div>
+          <div class="fase-desc">Snel bereikt. Vrijwel elke accu doorloopt dit in de eerste jaren.</div>
+          ${fase === 1 ? '<div style="margin-top:8px;font-size:11px;font-weight:700;color:#16a34a;">← Deze auto</div>' : ''}
+        </div>
+        <div class="fase-block f2 ${fase === 2 ? 'active-fase' : ''}">
+          <div class="fase-tag">Fase 2</div>
+          <div class="fase-range">90% → 75%</div>
+          <div class="fase-desc">De langste fase. Stabiele, trage degradatie. Grootste deel van de levensduur.</div>
+          ${fase === 2 ? '<div style="margin-top:8px;font-size:11px;font-weight:700;color:#16a34a;">← Deze auto</div>' : ''}
+        </div>
+        <div class="fase-block f3 ${fase === 3 ? 'active-fase' : ''}">
+          <div class="fase-tag">Fase 3</div>
+          <div class="fase-range">Onder 75%</div>
+          <div class="fase-desc">Versnelde terugval. Merkbaar in bereik en prestaties.</div>
+          ${fase === 3 ? '<div style="margin-top:8px;font-size:11px;font-weight:700;color:#d97706;">← Deze auto</div>' : ''}
+        </div>
+      </div>
+      <div class="info-box" style="margin-top:16px;">
+        <strong>Deze auto bevindt zich in fase ${fase}.</strong> ${
+          fase === 1 ? 'De accu is nog in de vroege inslijpfase. Normale degradatie voor de leeftijd van dit voertuig.' :
+          fase === 2 ? 'De accu bevindt zich in de langste en meest stabiele fase van zijn levensduur. Dit is waar de meeste occasions zich bevinden.' :
+          'De accu heeft de stabiele fase verlaten. Verdere degradatie verloopt sneller.'
+        }
+      </div>
+    </div>
+    <!-- VERGELIJKING MARKT -->
+    <div class="card page-start">
+      <div class="card-title"><span class="card-icon">📊</span>Vergelijking vergelijkbare modellen</div>
+      <p style="font-size:14px;color:#475569;margin-bottom:16px;">Gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen in dezelfde kilometerklasse (${km >= 130000 ? 'boven 130.000 km' : km >= 80000 ? '80.000 tot 130.000 km' : 'onder 80.000 km'}).</p>
+      ${vergelijk.map((v, i) => {
+        const isThis = i === 0;
+        const barColor = getSohColor(v.soh);
+        return `
+        <div class="vergelijk-row">
+          <div class="vergelijk-model ${isThis ? 'highlight' : ''}">${v.model} <span style="font-size:11px;color:#94a3b8;">(${v.km})</span></div>
+          <div class="vergelijk-bar-wrap">
+            <div class="vergelijk-bar-fill" style="width:${v.soh}%;background:${barColor};"></div>
+          </div>
+          <div class="vergelijk-soh" style="color:${barColor}">${v.soh}%</div>
+        </div>`;
+      }).join('')}
+      <div class="vergelijk-row" style="background:#f0f9f7;border-radius:8px;padding:10px 12px;margin-top:8px;border:1px solid #b2ddd8;">
+        <div class="vergelijk-model highlight">⭐ ${autoNaam} (dit voertuig)</div>
+        <div class="vergelijk-bar-wrap">
+          <div class="vergelijk-bar-fill" style="width:${sohMid}%;background:${getSohColor(sohMid)};"></div>
+        </div>
+        <div class="vergelijk-soh" style="color:${getSohColor(sohMid)}">~${sohMid}%</div>
+      </div>
+      <p style="font-size:12px;color:#94a3b8;margin-top:12px;">Vergelijkingsdata op basis van gecertificeerde AVILOO-metingen. Werkelijke waarden kunnen afwijken per individueel voertuig.</p>
+    </div>
+    <!-- TOEKOMSTPROGNOSE -->
+    <div class="card">
+      <div class="card-title"><span class="card-icon">🔭</span>Verwachte accuconditie</div>
+      <p style="font-size:14px;color:#475569;margin-bottom:4px;">Op basis van normaal gebruik en het huidige degradatiepatroon.</p>
+      <div class="toekomst-grid">
+        ${toekomst.map(t => `
+        <div class="toekomst-block">
+          <div class="toekomst-jaar">${t.jaar}</div>
+          <div class="toekomst-soh" style="color:${getSohColor(t.soh)};">${t.soh}%</div>
+          <div class="toekomst-label">verwachte SoH</div>
+        </div>`).join('')}
+      </div>
+      <p style="font-size:12px;color:#94a3b8;margin-top:14px;">Statistische schatting op basis van leeftijd, kilometerstand en rijpatroon. Laadgedrag heeft de grootste invloed op de werkelijke degradatie.</p>
+    </div>
+    <!-- WAT DIT BETEKENT VOOR DE KOPER -->
+    <div class="card">
+      <div class="card-title"><span class="card-icon">💬</span>Wat dit rapport zegt aan jouw koper</div>
+      <p style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:14px;">
+        Dit rapport toont je koper dat je transparant bent over de staat van de accu. Dat schept vertrouwen.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;">
+          <span style="font-size:16px;flex-shrink:0;">✅</span>
+          <div style="font-size:14px;color:#334155;line-height:1.6;">De accu heeft nog <strong>${sohMid}%</strong> van zijn originele capaciteit. Dat is ${sohMid >= 90 ? 'uitstekend' : sohMid >= 82 ? 'normaal' : 'acceptabel'} voor dit gebruik.</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;">
+          <span style="font-size:16px;flex-shrink:0;">✅</span>
+          <div style="font-size:14px;color:#334155;line-height:1.6;">De accu bevindt zich in fase ${fase} van de degradatiecurve. ${fase === 2 ? 'Dit is de langste, meest stabiele fase.' : fase === 1 ? 'De accu is nog jong.' : 'Verdere degradatie is meetbaar.'}</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;">
+          <span style="font-size:16px;flex-shrink:0;">✅</span>
+          <div style="font-size:14px;color:#334155;line-height:1.6;">Vergelijkbare modellen op de markt tonen gemiddeld ${Math.round(vergelijk.reduce((a,b) => a + b.soh, 0) / vergelijk.length)}% SOH. Dit voertuig scoort ${sohMid >= Math.round(vergelijk.reduce((a,b) => a + b.soh, 0) / vergelijk.length) ? 'boven' : 'onder'} dat gemiddelde.</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:14px;">
+        <strong>Belangrijk:</strong> Dit rapport is een statistische inschatting op basis van leeftijd, kilometerstand en vergelijkbare voertuigen. De werkelijke accucapaciteit is uitsluitend vast te stellen via een gecertificeerde celmeting.
+      </div>
+    </div>
+    <!-- VOERTUIG INFO -->
+    <div class="card">
+      <div class="card-title"><span class="card-icon">🚗</span>Voertuiginformatie</div>
+      <div class="info-row"><span class="info-label">Merk / Model</span><span class="info-value">${autoNaam}</span></div>
+      <div class="info-row"><span class="info-label">Aandrijving</span><span class="info-value teal">${getDriveLabel(driveType)}</span></div>
+      <div class="info-row"><span class="info-label">Eerste toelating</span><span class="info-value">${formatDatumStr(datum)}</span></div>
+      <div class="info-row"><span class="info-label">APK vervalt</span><span class="info-value">${formatDatumStr(apk)}</span></div>
+      <div class="info-row"><span class="info-label">Kilometerstand</span><span class="info-value">${kmTxt} <span style="font-size:11px;color:#94a3b8;">(${kmBron})</span></span></div>
+      ${kwh ? `<div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value">${kwh} kWh</span></div>` : ''}
+    </div>
+    <!-- NEUTRALE AFSLUITING -->
+    <div class="card">
+      <div class="card-title"><span class="card-icon">📌</span>Over dit rapport</div>
+      <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:8px;">
+        Dit rapport geeft verkoper en koper statistisch inzicht in de verwachte accuconditie van dit voertuig. Gebaseerd op leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen.
+      </p>
+      <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
+        De werkelijke accucapaciteit is uitsluitend vast te stellen via een gecertificeerde celmeting. Dit rapport is een gefundeerde inschatting, geen gemeten waarde. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.
+      </p>
+    </div>
+    <!-- FOOTER -->
+    <div class="rapport-footer">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <div>
+          <span style="font-family:'DM Serif Display',serif;font-size:14px;color:#0f172a;">Zeker<span style="color:#0f7c6e;">OpWeg</span></span>
+          ${bedrijf ? `<span style="margin-left:12px;font-size:12px;color:#475569;font-weight:500;">${bedrijf}</span>` : ''}
+        </div>
+        <div style="font-size:11px;color:#94a3b8;">
+          ${datumNu} &middot; Kenteken ${kenteken} &middot; zekeropweg.nu
+        </div>
+      </div>
+    </div>
+  `}
+  `;
+  document.getElementById('rapport-screen').scrollIntoView({ behavior: 'smooth' });
+}
+// ── KENTEKEN INPUT ──────────────────────────────────────────────────────────
+document.getElementById('kenteken').addEventListener('input', function () {
+  this.value = this.value.toUpperCase();
+});
+document.getElementById('kenteken').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') startRapport();
+});
+// ── HERSTEL NA STRIPE REDIRECT ──────────────────────────────────────────────
+(function initNaStripe() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('paid') !== 'true') return;
+  const restoreRaw = localStorage.getItem('zow_restore_verkoop');
+  if (!restoreRaw) return;
+  try {
+    const restore = JSON.parse(restoreRaw);
+    localStorage.removeItem('zow_restore_verkoop');
+    if (restore.expires && Date.now() > restore.expires) return;
+    if (!restore.kenteken) return;
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+    setVal('kenteken', restore.kenteken);
+    setVal('naam', restore.naam);
+    setVal('email', restore.email);
+    setVal('kmstand', restore.kmstand);
+    startRapport();
+  } catch(e) {
+    localStorage.removeItem('zow_restore_verkoop');
+  }
+})();
+</script>
+</body>
+</html>
