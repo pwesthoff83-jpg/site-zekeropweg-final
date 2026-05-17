@@ -1647,6 +1647,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const leeftijd = calcLeeftijd(datum);
   
   const wltpKm = data ? parseInt(data.actie_radius_enkel_elektrisch_wltp || 0) : 0;
+  console.log('WLTP debug:', wltpKm, wltpVerbruik, data);
   const wltpVerbruik = data ? parseFloat(data.elektrisch_verbruik_enkel_elektrisch_wltp || 0) : 0;
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik);
   let kwh = battery ? battery.kwh : null;
