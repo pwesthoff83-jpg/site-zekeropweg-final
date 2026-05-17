@@ -1169,7 +1169,7 @@ function calcLeeftijd(datum) {
   return Math.floor((Date.now() - d) / (365.25 * 24 * 3600 * 1000));
 }
 
-function getBattery(merk, handelsbenaming, brandstof, variant) {
+function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm) {
   const keys = Object.keys(batteryDB);
   const merkLow = (merk || '').toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
@@ -1205,7 +1205,23 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   if (entries.length === 1) {
     return { ...entries[0], modelKey: bestKey, dbDriveType: entries[0].dbDriveType || null, variantOnzeker: false };
   }
-
+  
+ // ── STAP 2b: WLTP-actieradius uit RDW gebruiken om kWh te schatten ───────
+  // actieradius_enkel_elektrisch_wltp is in km. Delen door gemiddeld verbruik
+  // per kWh (6.0 km/kWh voor EVs, 4.8 voor PHEVs) geeft geschatte kWh.
+  // Daarna dichtstbijzijnde entry in batteryDB pakken.
+  if (wltpKm && wltpKm > 0 && entries.length > 1) {
+    const verbruikFactor = entries[0].dbDriveType === 'phev' ? 4.8 : 6.0;
+    const geschatKwh = wltpKm / verbruikFactor;
+    const byWltp = entries.reduce((best, e) =>
+      Math.abs(e.kwh - geschatKwh) < Math.abs(best.kwh - geschatKwh) ? e : best
+    );
+    // Alleen gebruiken als de match binnen 15% van de schatting valt
+    if (Math.abs(byWltp.kwh - geschatKwh) / geschatKwh < 0.15) {
+      return { ...byWltp, modelKey: bestKey, dbDriveType: byWltp.dbDriveType || null, variantOnzeker: false };
+    }
+  }
+  
   // ── STAP 3: kWh-getal in variant/handelsbenaming parsen ─────────────────
   // Zoekt naar patronen als "77 kWh", "77kWh", "77kwh"
   const kwhInStr = (variantLow + ' ' + handelLow).match(/(\d+(?:[.,]\d+)?)\s*kwh/i);
@@ -1578,17 +1594,33 @@ async function startRapport() {
 
   let voertuigData = null;
 
-  try {
+ try {
     setLoadingText('Kenteken ophalen bij RDW...');
     await new Promise(r => setTimeout(r, 400));
-    const url = `https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${kenteken}`;
-    const resp = await fetch(url);
-    if (resp.ok) {
-      const json = await resp.json();
-      if (json && json.length > 0) voertuigData = json[0];
+    const url1 = `https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${kenteken}`;
+    const url2 = `https://opendata.rdw.nl/resource/8ys7-d773.json?kenteken=${kenteken}`;
+    const url3 = `https://opendata.rdw.nl/resource/vezc-m2t6.json?kenteken=${kenteken}`;
+
+    const [r1, r2, r3] = await Promise.all([fetch(url1), fetch(url2), fetch(url3)]);
+
+    if (r1.ok) {
+      const j1 = await r1.json();
+      if (j1 && j1.length > 0) voertuigData = j1[0];
+    }
+    if (r2.ok) {
+      const j2 = await r2.json();
+      if (j2 && j2.length > 0) {
+        voertuigData = { ...voertuigData, ...j2[0] };
+      }
+    }
+    if (r3.ok) {
+      const j3 = await r3.json();
+      if (j3 && j3.length > 0) {
+        voertuigData = { ...voertuigData, ...j3[0] };
+      }
     }
   } catch (e) { console.warn('RDW fetch mislukt:', e); }
-
+  
   setLoadingText('Rapport samenstellen...');
   await new Promise(r => setTimeout(r, 600));
 
@@ -1610,8 +1642,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const datum = data ? (data.datum_eerste_toelating || '') : '';
   const apk = data ? (data.vervaldatum_apk || '') : '';
   const leeftijd = calcLeeftijd(datum);
-
-  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
+  
+  const wltpKm = data ? parseInt(data.actieradius_enkel_elektrisch_wltp || 0) : 0;
+  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm);
   let kwh = battery ? battery.kwh : null;
   const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
 
