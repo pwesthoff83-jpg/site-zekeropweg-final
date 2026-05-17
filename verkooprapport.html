@@ -1169,7 +1169,7 @@ function calcLeeftijd(datum) {
   return Math.floor((Date.now() - d) / (365.25 * 24 * 3600 * 1000));
 }
 
-function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm) {
+function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbruik) {
   const keys = Object.keys(batteryDB);
   const merkLow = (merk || '').toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
@@ -1211,8 +1211,11 @@ function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm) {
   // per kWh (6.0 km/kWh voor EVs, 4.8 voor PHEVs) geeft geschatte kWh.
   // Daarna dichtstbijzijnde entry in batteryDB pakken.
   if (wltpKm && wltpKm > 0 && entries.length > 1) {
-    const verbruikFactor = entries[0].dbDriveType === 'phev' ? 4.8 : 6.0;
-    const geschatKwh = wltpKm / verbruikFactor;
+    // wltpVerbruik is in Wh/km — kWh = km * Wh/km / 1000
+    // Fallback op vaste factor als RDW het niet levert
+    const geschatKwh = (wltpVerbruik && wltpVerbruik > 50)
+      ? (wltpKm * wltpVerbruik / 1000)
+      : (wltpKm / (entries[0].dbDriveType === 'phev' ? 4.8 : 6.0));
     const byWltp = entries.reduce((best, e) =>
       Math.abs(e.kwh - geschatKwh) < Math.abs(best.kwh - geschatKwh) ? e : best
     );
@@ -1643,8 +1646,9 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   const apk = data ? (data.vervaldatum_apk || '') : '';
   const leeftijd = calcLeeftijd(datum);
   
-  const wltpKm = data ? parseInt(data.actieradius_enkel_elektrisch_wltp || 0) : 0;
-  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm);
+  const wltpKm = data ? parseInt(data.actie_radius_enkel_elektrisch_wltp || 0) : 0;
+  const wltpVerbruik = data ? parseFloat(data.elektrisch_verbruik_enkel_elektrisch_wltp || 0) : 0;
+  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik);
   let kwh = battery ? battery.kwh : null;
   const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
 
