@@ -1171,12 +1171,13 @@ function calcLeeftijd(datum) {
 
 function getBattery(merk, handelsbenaming, brandstof, variant) {
   const keys = Object.keys(batteryDB);
-  // FIX: normaliseer merkLow zodat "LYNK&CO" correct matcht als "lynk & co"
   const merkLow = (merk || '').toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
   const handelLow = (handelsbenaming || '').toLowerCase().trim();
   const variantLow = (variant || '').toLowerCase().trim();
+  const bsLow = (brandstof || '').toLowerCase().trim();
   const zoekterm = (merkLow + ' ' + handelLow).replace(/\s+/g, ' ').trim();
 
+  // ── STAP 1: modelsleutel vinden ─────────────────────────────────────────
   let bestKey = null;
   let bestScore = 0;
 
@@ -1200,85 +1201,145 @@ function getBattery(merk, handelsbenaming, brandstof, variant) {
   const entries = batteryDB[bestKey];
   if (!entries || entries.length === 0) return null;
 
-  let entry = entries[0];
+  // ── STAP 2: bij één entry direct teruggeven ──────────────────────────────
+  if (entries.length === 1) {
+    return { ...entries[0], modelKey: bestKey, dbDriveType: entries[0].dbDriveType || null, variantOnzeker: false };
+  }
 
-  const kwhInVariant = variantLow.match(/(\d+(?:\.\d+)?)\s*kwh/);
-  if (kwhInVariant) {
-    const kwhGetal = parseFloat(kwhInVariant[1]);
+  // ── STAP 3: kWh-getal in variant/handelsbenaming parsen ─────────────────
+  // Zoekt naar patronen als "77 kWh", "77kWh", "77kwh"
+  const kwhInStr = (variantLow + ' ' + handelLow).match(/(\d+(?:[.,]\d+)?)\s*kwh/i);
+  if (kwhInStr) {
+    const kwhGetal = parseFloat(kwhInStr[1].replace(',', '.'));
     const byKwh = entries.reduce((best, e) => Math.abs(e.kwh - kwhGetal) < Math.abs(best.kwh - kwhGetal) ? e : best);
-    if (Math.abs(byKwh.kwh - kwhGetal) <= 5) entry = byKwh;
+    if (Math.abs(byKwh.kwh - kwhGetal) <= 5) {
+      return { ...byKwh, modelKey: bestKey, dbDriveType: byKwh.dbDriveType || null, variantOnzeker: false };
+    }
   }
 
-  if (!kwhInVariant && variantLow) {
-    const varMatch = entries.find(e => variantLow.includes(e.variant) || e.variant.includes(variantLow));
-    if (varMatch) entry = varMatch;
+  // ── STAP 4: tekstuele variantsignalen parsen ─────────────────────────────
+  // Brede set signaalwoorden die op accugrootte wijzen
+  const zoekVeld = (variantLow + ' ' + handelLow + ' ' + bsLow).replace(/\s+/g, ' ');
+
+  const signaalKlein  = /\b(pure|entry|standard range|sr\b|basis|basic|lite|base|40\b|24\b|22\b)\b/i.test(zoekVeld);
+  const signaalMiddel = /\b(pro\b|mid|plus\b|normal|58\b|52\b|55\b)\b/i.test(zoekVeld);
+  const signaalGroot  = /\b(pro s|long range|lr\b|extended|performance|turbo|max|gtx|gts|awd|77\b|82\b|83\b|86\b|87\b|97\b|100\b|107\b|114\b)\b/i.test(zoekVeld);
+
+  const sorted = [...entries].sort((a, b) => a.kwh - b.kwh);
+
+  if (signaalKlein && !signaalGroot) {
+    return { ...sorted[0], modelKey: bestKey, dbDriveType: sorted[0].dbDriveType || null, variantOnzeker: false };
+  }
+  if (signaalGroot && !signaalKlein) {
+    return { ...sorted[sorted.length - 1], modelKey: bestKey, dbDriveType: sorted[sorted.length - 1].dbDriveType || null, variantOnzeker: false };
+  }
+  if (signaalMiddel && entries.length >= 3) {
+    const mid = sorted[Math.floor(sorted.length / 2)];
+    return { ...mid, modelKey: bestKey, dbDriveType: mid.dbDriveType || null, variantOnzeker: false };
   }
 
-  const keyAndVariant = bestKey + ' ' + entry.variant;
-  let dbDriveType = null;
-
-  const evKeys = [
-    'q4 e-tron', 'q6 e-tron', 'a6 e-tron', 'e-tron gt',
-    'e-tron 50', 'e-tron 55', 'e-tron s',
-    'bmw ix1', 'bmw ix2', 'bmw ix3', 'bmw i4', 'bmw i5', 'bmw i7', 'bmw i3',
-    'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up',
-    'ioniq 5', 'ioniq 6', 'ioniq 9', 'kona ev', 'kona electric',
-    'ev3', 'ev6', 'ev9', 'niro ev', 'e-niro', 'inster',
-    'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'eqt', 'eqv',
-    'ex30', 'ex40', 'ec40', 'c40 recharge', 'xc40 recharge',
-    'peugeot e-208', 'peugeot e-2008', 'peugeot e-308', 'peugeot e-3008',
-    'model 3', 'model y', 'model s', 'model x',
-    'zoe', 'scenic e-tech', 'renault 5',
-    'polestar 2', 'polestar 4', 'taycan', 'macan electric',
-    'bz4x', 'solterra',
-    'enyaq', 'elroq', 'born', 'tavascan',
-    'mg4', 'mg zs ev', 'smart #1', 'smart #3',
-    'mini cooper se', 'mini aceman',
-    'i-pace', 'gv60',
-    'atto 3', 'byd seal', 'byd han', 'byd tang', 'byd dolphin',
-    'spring', 'mustang mach-e',
-    'honda eny', 'mx-30',
-    'nissan ariya', 'nissan leaf',
-    'e-c3', 'e-c4',
-    'zeekr', 'xpeng g6', 'xpeng g9',
-    'corsa electric', 'mokka electric', 'astra electric',
-    'fiat 500e', 'fiat 600e',
-    'jeep avenger',
-    'hyundai ioniq',
-  ];
-
-  const mildHybridBlacklist = [
-    'cx-30', 'cx-5', 'cx-3', 'qashqai', 'juke', 'x-trail',
-    'm hybrid', 'skyactiv-x', 'mhev', '48v',
-  ];
-
-  const phevKeys = [
-    'tfsi e', 'phev', 'plug-in', 'e-hybrid', 'ehybrid', 'gte', 'recharge t', 'twin engine',
-    '300e', '350e', '400e', '250e', '560e', '580e', '4xe', 'p400e', 'p300e',
-    '4 e-hybrid', 'turbo s e-hybrid'
-  ];
-
-  const hybridKeys = ['hybrid', 'mhev'];
-
-  const isMildHybrid = mildHybridBlacklist.some(k => keyAndVariant.includes(k) || zoekterm.includes(k));
-
-  if (!isMildHybrid && evKeys.some(k => keyAndVariant.includes(k))) {
-    dbDriveType = 'ev';
-  } else if (isMildHybrid) {
-    dbDriveType = 'hybrid';
-  } else if (phevKeys.some(k => keyAndVariant.includes(k)) || /\biv\b/.test(entry.variant)) {
-    dbDriveType = 'phev';
-  } else if (hybridKeys.some(k => keyAndVariant.includes(k))) {
-    dbDriveType = 'hybrid';
+  // ── STAP 5: varianttekst direct matchen tegen entry.variant ─────────────
+  if (variantLow) {
+    const directMatch = entries.find(e =>
+      variantLow.includes(e.variant.toLowerCase()) ||
+      e.variant.toLowerCase().includes(variantLow)
+    );
+    if (directMatch) {
+      return { ...directMatch, modelKey: bestKey, dbDriveType: directMatch.dbDriveType || null, variantOnzeker: false };
+    }
   }
 
-  if (!dbDriveType) {
-    if (entry.kwh < 5) dbDriveType = 'hybrid';
-    else if (entry.kwh < 32) dbDriveType = 'phev';
-    else dbDriveType = 'ev';
+  // ── STAP 6: bouwjaarlogica per model ────────────────────────────────────
+  // Per model bepalen welke kWh-variant in welk jaar gangbaar was op NL markt.
+  // Bron: kentekendatabank.nl / AVILOO NL fleet data
+  const bouwjaarRaw = (handelsbenaming + ' ' + variant + ' ').match(/\b(20\d{2})\b/);
+  const bouwjaar = bouwjaarRaw ? parseInt(bouwjaarRaw[1]) : null;
+
+  const bouwjaarRules = {
+    'nissan leaf':             [{ tot: 2017, kwh: 24 }, { van: 2018, tot: 2021, kwh: 40 }, { van: 2022, kwh: 62 }],
+    'renault zoe':             [{ tot: 2016, kwh: 22 }, { van: 2017, tot: 2019, kwh: 41 }, { van: 2020, kwh: 52 }],
+    'volkswagen id.3 pro':     [{ kwh: 58 }],
+    'volkswagen id.3 pro s':   [{ kwh: 77 }],
+    'volkswagen id.3 pure':    [{ kwh: 52 }],
+    'audi q8':                 [{ tot: 2023, kwh: 95 }, { van: 2024, kwh: 114 }],
+    'bmw i3':                  [{ tot: 2016, kwh: 18.8 }, { van: 2017, tot: 2018, kwh: 27.2 }, { van: 2019, kwh: 42.2 }],
+    'polestar 2 long range':   [{ tot: 2023, kwh: 78 }, { van: 2024, kwh: 82 }],
+    'polestar 2 standard range':[{ tot: 2023, kwh: 64 }, { van: 2024, kwh: 69 }],
+    'hyundai kona':            [{ tot: 2023, kwh: 39.2 }, { van: 2024, kwh: 64 }],
+    'kia soul':                [{ tot: 2018, kwh: 27 }, { van: 2019, tot: 2021, kwh: 39.2 }, { van: 2022, kwh: 64 }],
+    'tesla model 3 long':      [{ tot: 2023, kwh: 78 }, { van: 2024, kwh: 78.8 }],
+    'tesla model y long':      [{ tot: 2023, kwh: 78 }, { van: 2024, kwh: 78.8 }],
+    'volvo xc40':              [{ tot: 2022, kwh: 69 }, { van: 2023, tot: 2023, kwh: 78 }, { van: 2024, kwh: 82 }],
+    'volvo c40':               [{ tot: 2022, kwh: 69 }, { van: 2023, tot: 2023, kwh: 78 }, { van: 2024, kwh: 82 }],
+    'mercedes-benz eqa 250':   [{ tot: 2023, kwh: 66.5 }, { van: 2024, kwh: 70.5 }],
+    'audi e-tron':             [{ tot: 2022, kwh: 71 }, { van: 2023, kwh: 95 }],
+    'bmw x5':                  [{ tot: 2018, kwh: 9.2 }, { van: 2019, tot: 2022, kwh: 24 }, { van: 2023, kwh: 29.5 }],
+    'bmw 530e':                [{ tot: 2020, kwh: 9.2 }, { van: 2021, tot: 2022, kwh: 12 }, { van: 2023, kwh: 22.1 }],
+    'bmw 330e':                [{ tot: 2018, kwh: 7.6 }, { van: 2019, tot: 2022, kwh: 11.15 }, { van: 2023, kwh: 22.3 }],
+    'bmw 225xe':               [{ tot: 2021, kwh: 7.6 }, { van: 2022, tot: 2023, kwh: 10 }, { van: 2024, kwh: 16.3 }],
+    'renault megane e-tech':   [{ tot: 2021, kwh: 9.8 }, { van: 2022, tot: 2023, kwh: 40 }, { van: 2024, kwh: 60 }],
+    'mg zs ev':                [{ tot: 2022, kwh: 44.5 }, { van: 2023, kwh: 72.6 }],
+    'mg mg4':                  [{ tot: 2022, kwh: 51 }, { van: 2023, tot: 2023, kwh: 64 }, { van: 2024, kwh: 77 }],
+    'mini countryman':         [{ tot: 2023, kwh: 7.6 }, { van: 2024, kwh: 10 }],
+    'volkswagen e-up':         [{ tot: 2019, kwh: 18.7 }, { van: 2020, kwh: 36.8 }],
+    'volkswagen e-golf':       [{ tot: 2016, kwh: 24.2 }, { van: 2017, kwh: 35.8 }],
+  };
+
+  if (bouwjaar) {
+    const regel = bouwjaarRules[bestKey];
+    if (regel) {
+      for (const r of regel) {
+        const vanOk = !r.van || bouwjaar >= r.van;
+        const totOk = !r.tot || bouwjaar <= r.tot;
+        if (vanOk && totOk) {
+          const match = entries.reduce((best, e) => Math.abs(e.kwh - r.kwh) < Math.abs(best.kwh - r.kwh) ? e : best);
+          return { ...match, modelKey: bestKey, dbDriveType: match.dbDriveType || null, variantOnzeker: false };
+        }
+      }
+    }
   }
 
-  return { ...entry, modelKey: bestKey, dbDriveType };
+  // ── STAP 7: NL-markt gewogen default per model ───────────────────────────
+  // Meest verkochte variant op NL markt als geen enkel signaal beschikbaar is.
+  // Index verwijst naar entries[] na sortering op kwh ascending.
+  // Bron: kentekendatabank.nl 2022-2024 registratiedata
+  const nlMarktDefault = {
+    'nissan leaf':              1,   // 40 kWh (meest geregistreerd NL)
+    'renault zoe':              2,   // 52 kWh (R135 dominant NL vloot)
+    'volkswagen id.3 pro':      0,   // enkel 58 kWh
+    'audi q8':                  0,   // 95 kWh (standaard, 114 zeldzamer)
+    'bmw i3':                   2,   // 42.2 kWh (120Ah dominant)
+    'polestar 2 long range':    0,   // 78 kWh (2020-2023 dominant)
+    'polestar 2 standard range':0,   // 64 kWh
+    'hyundai kona':             0,   // 39.2 kWh (meest aanwezig in oude vloot)
+    'kia soul':                 1,   // 39.2 kWh
+    'tesla model 3 long':       0,   // 78 kWh
+    'tesla model y long':       0,   // 78 kWh
+    'volvo xc40':               0,   // 69 kWh (RWD dominant NL)
+    'volvo c40':                0,   // 69 kWh
+    'mg mg4':                   1,   // 64 kWh (standaard NL)
+    'mg zs ev':                 0,   // 44.5 kWh (oude vloot dominant)
+    'bmw x5':                   1,   // 24 kWh (xDrive45e dominant NL)
+    'bmw 330e':                 1,   // 11.15 kWh (G20 dominant)
+    'bmw 530e':                 1,   // 12 kWh
+    'bmw 225xe':                0,   // 7.6 kWh (F45 dominant NL vloot)
+    'volkswagen id.4 pro':      0,   // 77 kWh (enkel variant)
+    'audi e-tron':              1,   // 95 kWh (55 quattro dominant)
+    'porsche taycan':           1,   // 82.3 kWh (standaard RWD dominant NL)
+    'mini countryman':          0,   // 7.6 kWh (F60 dominant NL vloot)
+  };
+
+  const defaultIdx = nlMarktDefault[bestKey];
+  const sortedAsc = [...entries].sort((a, b) => a.kwh - b.kwh);
+
+  if (defaultIdx !== undefined && defaultIdx < sortedAsc.length) {
+    const chosen = sortedAsc[defaultIdx];
+    return { ...chosen, modelKey: bestKey, dbDriveType: chosen.dbDriveType || null, variantOnzeker: true };
+  }
+
+  // ── STAP 8: absolute fallback — middelste entry, markeer als onzeker ─────
+  const midden = sortedAsc[Math.floor(sortedAsc.length / 2)];
+  return { ...midden, modelKey: bestKey, dbDriveType: midden.dbDriveType || null, variantOnzeker: true };
 }
 
 function detectDriveType(brandstof, handelsbenaming, merk) {
@@ -1552,6 +1613,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
 
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr);
   let kwh = battery ? battery.kwh : null;
+  const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
 
   const merkLow   = merk.toLowerCase();
   const handelLow = handelsbenaming.toLowerCase();
@@ -2034,7 +2096,10 @@ ${isEV ? `
           ${degradatie.adacNorm}% min. SoH &nbsp; ${degradatie.onderNorm ? '⚠️ Onder norm' : '✓ Boven norm'}
         </span>
       </div>` : ''}
-      <div class="info-box" style="margin-top:14px;">
+         ${variantOnzeker ? `<div class="highlight-box" style="margin-top:14px;margin-bottom:8px;">
+        <strong>Accuvariant niet eenduidig:</strong> Dit model is geleverd met meerdere accupakketten. Op basis van bouwjaar en marktdata is de meest voorkomende variant gekozen (${kwh} kWh). De werkelijke capaciteit kan afwijken.
+      </div>` : ''}
+      <div class="info-box" style="margin-top:${variantOnzeker ? '0' : '14px'};">
         <strong>Wat dit betekent:</strong> Op basis van leeftijd, kilometerstand en gecertificeerde meetdata van vergelijkbare modellen ligt de geschatte accuconditie van dit voertuig rond de ${sohMid}%. Dat is ${sohMid >= 90 ? 'uitstekend' : sohMid >= 82 ? 'normaal' : 'iets onder gemiddeld'} voor een voertuig van ${leeftijdTxt} met ${kmTxt}. De werkelijke waarde kan hoger of lager zijn afhankelijk van laadgedrag en gebruik.
       </div>
     </div>
