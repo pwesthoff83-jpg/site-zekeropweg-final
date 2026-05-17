@@ -1795,14 +1795,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   }
   
 // Polestar 2 fix — RDW geeft alleen "POLESTAR 2" terug
-// Long Range (78/82 kWh) is verreweg de meeste op NL markt
-// Standard Range (63/64/69/70 kWh) is zeldzamer
+// Geen harde default meer: getBattery() bepaalt of de variant betrouwbaar is.
+// Bij onduidelijke Polestar 2 variant blijft kWh leeg en variantOnzeker true.
 if (merkLow.includes('polestar') && handelLow.includes('polestar 2')) {
-  if (bouwjaar && bouwjaar >= 2024) {
-    kwh = 82; // Nieuwe Polestar 2 is 82 kWh Long Range
-  } else {
-    kwh = 78; // Polestar 2 2020-2023 is 78 kWh Long Range
-  }
+  console.debug('Polestar override uitgeschakeld, getBattery leidend', {
+    battery,
+    confidence: battery ? battery.confidence : 'unknown',
+    variantOnzeker: battery ? battery.variantOnzeker === true : true
+  });
 }
   
   // 11. Battery DB als ground truth
