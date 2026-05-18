@@ -1169,170 +1169,111 @@ function calcLeeftijd(datum) {
   return Math.floor((Date.now() - d) / (365.25 * 24 * 3600 * 1000));
 }
 
-function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbruik, context = {}) {
+function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbruik) {
   const keys = Object.keys(batteryDB);
-  const normalize = v => (v || '').toString().toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
-  const merkLow = normalize(merk);
-  const handelLow = normalize(handelsbenaming);
-  const variantLow = normalize(variant);
-  const typeLow = normalize(context.type);
-  const uitvoeringLow = normalize(context.uitvoering);
-  const bsLow = normalize(brandstof);
-  const zoekterm = [merkLow, handelLow, variantLow, typeLow, uitvoeringLow, bsLow].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
-  const debug = {
-    input: { merk, handelsbenaming, brandstof, variant, type: context.type || '', uitvoering: context.uitvoering || '', wltpKm, wltpVerbruik },
-    kandidaten: [],
-    gekozen: null,
-    afgewezen: [],
-    wltpValidatie: null,
-    confidence: 'unknown'
-  };
+  const merkLow = (merk || '').toLowerCase().trim().replace(/&/g, '& ').replace(/\s+/g, ' ').trim();
+  const handelLow = (handelsbenaming || '').toLowerCase().trim();
+  const variantLow = (variant || '').toLowerCase().trim();
+  const bsLow = (brandstof || '').toLowerCase().trim();
+  const zoekterm = (merkLow + ' ' + handelLow).replace(/\s+/g, ' ').trim();
 
-  const logResult = result => {
-    debug.gekozen = result ? {
-      modelKey: result.modelKey,
-      variant: result.variant || null,
-      kwh: result.kwh || null,
-      dbDriveType: result.dbDriveType || null,
-      reden: result.matchReason || null,
-      confidence: result.confidence || 'unknown',
-      variantOnzeker: result.variantOnzeker === true
-    } : null;
-    debug.confidence = result ? (result.confidence || 'unknown') : 'unknown';
-    if (typeof console !== 'undefined' && console.groupCollapsed) {
-      console.groupCollapsed('[ZekerOpWeg batterijmatch]', debug.confidence, debug.gekozen ? debug.gekozen.modelKey : 'geen match');
-      console.debug(debug);
-      console.groupEnd();
-    } else if (typeof console !== 'undefined') {
-      console.debug('[ZekerOpWeg batterijmatch]', debug);
+  // ── STAP 1: modelsleutel vinden ─────────────────────────────────────────
+  let bestKey = null;
+  let bestScore = 0;
+
+  for (const key of keys) {
+    if (zoekterm.includes(key) || key.includes(zoekterm)) {
+      const score = key.length;
+      if (score > bestScore) { bestScore = score; bestKey = key; }
     }
-    return result;
-  };
+  }
 
-  const getBouwjaar = () => {
-    const datum = context.datumEersteToelating || context.datum || '';
-    const datumJaar = String(datum).match(/\b(19|20)\d{2}\b/);
-    if (datumJaar) return parseInt(datumJaar[0]);
-    const tekstJaar = (handelsbenaming + ' ' + variant + ' ' + (context.type || '') + ' ' + (context.uitvoering || '')).match(/\b(20\d{2})\b/);
-    return tekstJaar ? parseInt(tekstJaar[1]) : null;
-  };
-
-  const detectDbDriveType = (key, entry) => {
-    if (entry && entry.dbDriveType) return entry.dbDriveType;
-    const keyAndVariant = normalize(key + ' ' + ((entry && entry.variant) || ''));
-    const mildHybridBlacklist = ['cx-30', 'cx-5', 'cx-3', 'qashqai', 'juke', 'x-trail', 'm hybrid', 'skyactiv-x', 'e-skyactiv', 'mhev', '48v', 'rav4 hybrid', 'c-hr hybrid', 'cr-v hybrid', 'kuga hybrid'];
-    if (mildHybridBlacklist.some(k => keyAndVariant.includes(k) || zoekterm.includes(k))) return 'hybrid';
-    const phevKeys = ['tfsi e', 'phev', 'plug-in', 'plug in', 'e-hybrid', 'ehybrid', 'gte', 'recharge t', 'twin engine', '300e', '350e', '400e', '250e', '560e', '580e', 'dm-i', 'p400e', 'p300e', '4xe', 'hybrid4', 'hybrid sw', 'turbo s e-hybrid'];
-    if (phevKeys.some(k => keyAndVariant.includes(k) || zoekterm.includes(k)) || /\biv\b/.test(keyAndVariant)) return 'phev';
-    const evKeys = ['e-tron', 'id.3', 'id.4', 'id.5', 'id.7', 'id.buzz', 'e-golf', 'e-up', 'ioniq 5', 'ioniq 6', 'kona ev', 'ev3', 'ev6', 'ev9', 'niro ev', 'e-niro', 'eqa', 'eqb', 'eqc', 'eqe', 'eqs', 'ex30', 'ex40', 'c40 recharge', 'model 3', 'model y', 'model s', 'model x', 'zoe', 'polestar', 'taycan', 'bz4x', 'enyaq', 'born', 'mg4', 'smart #', 'i-pace', 'atto 3', 'byd seal', 'spring', 'mustang mach-e', 'nissan leaf', 'e-c3', 'e-c4', 'zeekr', 'xpeng'];
-    if (evKeys.some(k => keyAndVariant.includes(k))) return 'ev';
-    if (!entry || !entry.kwh) return null;
-    if (entry.kwh < 5) return 'hybrid';
-    if (entry.kwh < 35) return 'phev';
-    return 'ev';
-  };
-
-  const expectedWltp = entry => {
-    if (!entry || !entry.kwh) return null;
-    const driveType = entry.dbDriveType || detectDbDriveType('', entry);
-    const factor = driveType === 'phev' ? 4.8 : 6.0;
-    return entry.wltpKm || entry.wltp || Math.round(entry.kwh * factor);
-  };
-
-  const validateWltp = entry => {
-    if (!wltpKm || !entry || !entry.kwh) return { status: 'geen RDW WLTP validatie beschikbaar', rdwWltpKm: wltpKm || null, profielWltpKm: expectedWltp(entry) };
-    const profielWltpKm = expectedWltp(entry);
-    const afwijkingPct = profielWltpKm ? Math.round((Math.abs(wltpKm - profielWltpKm) / profielWltpKm) * 100) : null;
-    const status = afwijkingPct === null ? 'geen profiel-WLTP beschikbaar'
-      : afwijkingPct <= 25 ? 'RDW WLTP past logisch bij gekozen profiel'
-      : 'WAARSCHUWING: RDW WLTP wijkt sterk af van gekozen profiel';
-    return { status, rdwWltpKm: wltpKm, profielWltpKm, afwijkingPct, wltpVerbruik: wltpVerbruik || null };
-  };
-
-  const withMeta = (entry, bestKey, confidence, matchReason, variantOnzeker) => {
-    const driveType = detectDbDriveType(bestKey, entry);
-    const result = { ...entry, modelKey: bestKey, dbDriveType: driveType, confidence, matchReason, variantOnzeker };
-    debug.wltpValidatie = validateWltp(result);
-    if (debug.wltpValidatie.status && debug.wltpValidatie.status.includes('WAARSCHUWING') && typeof console !== 'undefined') {
-      console.warn('[ZekerOpWeg batterijmatch] RDW WLTP validatie wijkt af', debug.wltpValidatie, result);
+  if (!bestKey) {
+    for (const key of keys) {
+      const keyParts = key.split(' ');
+      const matchCount = keyParts.filter(p => zoekterm.includes(p) && p.length > 2).length;
+      if (matchCount > 0 && matchCount >= bestScore) { bestScore = matchCount; bestKey = key; }
     }
-    return logResult(result);
-  };
-
-  const keyScores = keys.map(key => {
-    const keyParts = key.split(' ').filter(p => p.length > 1);
-    let score = 0;
-    const redenen = [];
-    if (zoekterm.includes(key)) { score += key.length + 40; redenen.push('volledige modelsleutel in voertuigtekst'); }
-    if (key.includes((merkLow + ' ' + handelLow).trim()) && handelLow) { score += 20; redenen.push('RDW merk/handelsbenaming zit in modelsleutel'); }
-    const partMatches = keyParts.filter(p => zoekterm.includes(p));
-    score += partMatches.length * 8;
-    if (partMatches.length) redenen.push('deelsleutels: ' + partMatches.join(', '));
-    if (merkLow && key.startsWith(merkLow)) { score += 15; redenen.push('merk exact aan begin modelsleutel'); }
-    const entries = batteryDB[key] || [];
-    const hasDriveTypeMatch = entries.some(e => {
-      const dt = detectDbDriveType(key, e);
-      return (dt === 'ev' && bsLow.includes('elektr') && !bsLow.includes('benzin') && !bsLow.includes('diesel')) ||
-             (dt === 'phev' && (zoekterm.includes('hybrid') || zoekterm.includes('plug') || bsLow.includes('benzin') || bsLow.includes('diesel')));
-    });
-    if (hasDriveTypeMatch) { score += 6; redenen.push('EV/PHEV signaal past bij kandidaat'); }
-    return { key, score, redenen, entries };
-  }).filter(k => k.score > 0).sort((a, b) => b.score - a.score || b.key.length - a.key.length);
-
-  debug.kandidaten = keyScores.slice(0, 8).map(k => ({
-    modelKey: k.key,
-    score: k.score,
-    redenen: k.redenen,
-    profielen: k.entries.map(e => ({ variant: e.variant, kwh: e.kwh, dbDriveType: e.dbDriveType || detectDbDriveType(k.key, e), verwachtWltpKm: expectedWltp(e) }))
-  }));
-
-  if (!keyScores.length) {
-    debug.afgewezen.push('Geen batteryDB modelsleutel past betrouwbaar op merk/model/handelsbenaming/variant/type/uitvoering.');
-    return logResult(null);
   }
 
-  const best = keyScores[0];
-  const second = keyScores[1];
-  if (second && second.score >= best.score - 4 && !zoekterm.includes(best.key)) {
-    debug.afgewezen.push('Meerdere modelsleutels scoren vrijwel gelijk; geen betrouwbare voertuigidentiteit.');
-    return logResult({ modelKey: best.key, dbDriveType: null, kwh: null, variant: null, confidence: 'unknown', matchReason: 'ambigue modelsleutel', variantOnzeker: true });
-  }
+  if (!bestKey) return null;
 
-  const entries = best.entries;
-  if (!entries || entries.length === 0) {
-    debug.afgewezen.push('Modelsleutel gevonden, maar geen batterijprofielen beschikbaar.');
-    return logResult(null);
-  }
+  const entries = batteryDB[bestKey];
+  if (!entries || entries.length === 0) return null;
 
-  const sortedAsc = [...entries].sort((a, b) => a.kwh - b.kwh);
+  // ── STAP 2: bij één entry direct teruggeven ──────────────────────────────
   if (entries.length === 1) {
-    return withMeta(entries[0], best.key, best.score >= 60 ? 'exact' : 'probable', 'enkel batteryDB profiel voor deze voertuigidentiteit', false);
+    return { ...entries[0], modelKey: bestKey, dbDriveType: entries[0].dbDriveType || null, variantOnzeker: false };
   }
-
-  const candidateReasons = [];
-  const kwhInStr = zoekterm.match(/(\d+(?:[.,]\d+)?)\s*kwh/i);
+  
+ // ── STAP 2b: WLTP-actieradius uit RDW gebruiken om kWh te schatten ───────
+  // actieradius_enkel_elektrisch_wltp is in km. Delen door gemiddeld verbruik
+  // per kWh (6.0 km/kWh voor EVs, 4.8 voor PHEVs) geeft geschatte kWh.
+  // Daarna dichtstbijzijnde entry in batteryDB pakken.
+  if (wltpKm && wltpKm > 0 && entries.length > 1) {
+    // wltpVerbruik is in Wh/km — kWh = km * Wh/km / 1000
+    // Fallback op vaste factor als RDW het niet levert
+    const geschatKwh = (wltpVerbruik && wltpVerbruik > 50)
+      ? (wltpKm * wltpVerbruik / 1000)
+      : (wltpKm / (entries[0].dbDriveType === 'phev' ? 4.8 : 6.0));
+    const byWltp = entries.reduce((best, e) =>
+      Math.abs(e.kwh - geschatKwh) < Math.abs(best.kwh - geschatKwh) ? e : best
+    );
+    // Alleen gebruiken als de match binnen 15% van de schatting valt
+    if (Math.abs(byWltp.kwh - geschatKwh) / geschatKwh < 0.15) {
+      return { ...byWltp, modelKey: bestKey, dbDriveType: byWltp.dbDriveType || null, variantOnzeker: false };
+    }
+  }
+  
+  // ── STAP 3: kWh-getal in variant/handelsbenaming parsen ─────────────────
+  // Zoekt naar patronen als "77 kWh", "77kWh", "77kwh"
+  const kwhInStr = (variantLow + ' ' + handelLow).match(/(\d+(?:[.,]\d+)?)\s*kwh/i);
   if (kwhInStr) {
     const kwhGetal = parseFloat(kwhInStr[1].replace(',', '.'));
-    const byKwh = entries.reduce((chosen, e) => Math.abs(e.kwh - kwhGetal) < Math.abs(chosen.kwh - kwhGetal) ? e : chosen);
-    candidateReasons.push({ entry: byKwh, confidence: 'exact', reason: 'kWh expliciet genoemd in voertuigidentiteit: ' + kwhGetal + ' kWh' });
+    const byKwh = entries.reduce((best, e) => Math.abs(e.kwh - kwhGetal) < Math.abs(best.kwh - kwhGetal) ? e : best);
+    if (Math.abs(byKwh.kwh - kwhGetal) <= 5) {
+      return { ...byKwh, modelKey: bestKey, dbDriveType: byKwh.dbDriveType || null, variantOnzeker: false };
+    }
   }
 
-  const directVariant = entries.find(e => {
-    const ev = normalize(e.variant);
-    return ev && (zoekterm.includes(ev) || (variantLow && ev.includes(variantLow)) || (typeLow && ev.includes(typeLow)) || (uitvoeringLow && ev.includes(uitvoeringLow)));
-  });
-  if (directVariant) candidateReasons.push({ entry: directVariant, confidence: 'exact', reason: 'variant/type/uitvoering matcht batteryDB variantnaam' });
+  // ── STAP 4: tekstuele variantsignalen parsen ─────────────────────────────
+  // Brede set signaalwoorden die op accugrootte wijzen
+  const zoekVeld = (variantLow + ' ' + handelLow + ' ' + bsLow).replace(/\s+/g, ' ');
 
-  const signaalKlein  = /\b(pure|entry|standard range|sr\b|basis|basic|lite|base|40\b|24\b|22\b)\b/i.test(zoekterm);
-  const signaalMiddel = /\b(pro\b|mid|plus\b|normal|58\b|52\b|55\b)\b/i.test(zoekterm);
-  const signaalGroot  = /\b(pro s|long range|lr\b|extended|performance|turbo|max|gtx|gts|awd|77\b|82\b|83\b|86\b|87\b|97\b|100\b|107\b|114\b)\b/i.test(zoekterm);
-  if (signaalKlein && !signaalGroot) candidateReasons.push({ entry: sortedAsc[0], confidence: 'probable', reason: 'kleine-accu variantsignalen in voertuigidentiteit' });
-  if (signaalGroot && !signaalKlein) candidateReasons.push({ entry: sortedAsc[sortedAsc.length - 1], confidence: 'probable', reason: 'grote-accu variantsignalen in voertuigidentiteit' });
-  if (signaalMiddel && !signaalKlein && !signaalGroot && entries.length >= 3) {
-    candidateReasons.push({ entry: sortedAsc[Math.floor(sortedAsc.length / 2)], confidence: 'probable', reason: 'midden-accu variantsignalen in voertuigidentiteit' });
+  const signaalKlein  = /\b(pure|entry|standard range|sr\b|basis|basic|lite|base|40\b|24\b|22\b)\b/i.test(zoekVeld);
+  const signaalMiddel = /\b(pro\b|mid|plus\b|normal|58\b|52\b|55\b)\b/i.test(zoekVeld);
+  const signaalGroot  = /\b(pro s|long range|lr\b|extended|performance|turbo|max|gtx|gts|awd|77\b|82\b|83\b|86\b|87\b|97\b|100\b|107\b|114\b)\b/i.test(zoekVeld);
+
+  const sorted = [...entries].sort((a, b) => a.kwh - b.kwh);
+
+  if (signaalKlein && !signaalGroot) {
+    return { ...sorted[0], modelKey: bestKey, dbDriveType: sorted[0].dbDriveType || null, variantOnzeker: false };
+  }
+  if (signaalGroot && !signaalKlein) {
+    return { ...sorted[sorted.length - 1], modelKey: bestKey, dbDriveType: sorted[sorted.length - 1].dbDriveType || null, variantOnzeker: false };
+  }
+  if (signaalMiddel && entries.length >= 3) {
+    const mid = sorted[Math.floor(sorted.length / 2)];
+    return { ...mid, modelKey: bestKey, dbDriveType: mid.dbDriveType || null, variantOnzeker: false };
   }
 
-  const bouwjaar = getBouwjaar();
+  // ── STAP 5: varianttekst direct matchen tegen entry.variant ─────────────
+  if (variantLow) {
+    const directMatch = entries.find(e =>
+      variantLow.includes(e.variant.toLowerCase()) ||
+      e.variant.toLowerCase().includes(variantLow)
+    );
+    if (directMatch) {
+      return { ...directMatch, modelKey: bestKey, dbDriveType: directMatch.dbDriveType || null, variantOnzeker: false };
+    }
+  }
+
+  // ── STAP 6: bouwjaarlogica per model ────────────────────────────────────
+  // Per model bepalen welke kWh-variant in welk jaar gangbaar was op NL markt.
+  // Bron: kentekendatabank.nl / AVILOO NL fleet data
+  const bouwjaarRaw = (handelsbenaming + ' ' + variant + ' ').match(/\b(20\d{2})\b/);
+  const bouwjaar = bouwjaarRaw ? parseInt(bouwjaarRaw[1]) : null;
+
   const bouwjaarRules = {
     'nissan leaf':             [{ tot: 2017, kwh: 24 }, { van: 2018, tot: 2021, kwh: 40 }, { van: 2022, kwh: 62 }],
     'renault zoe':             [{ tot: 2016, kwh: 22 }, { van: 2017, tot: 2019, kwh: 41 }, { van: 2020, kwh: 52 }],
@@ -1363,41 +1304,61 @@ function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbr
     'volkswagen e-golf':       [{ tot: 2016, kwh: 24.2 }, { van: 2017, kwh: 35.8 }],
   };
 
-  if (bouwjaar && bouwjaarRules[best.key]) {
-    for (const r of bouwjaarRules[best.key]) {
-      const vanOk = !r.van || bouwjaar >= r.van;
-      const totOk = !r.tot || bouwjaar <= r.tot;
-      if (vanOk && totOk) {
-        const match = entries.reduce((chosen, e) => Math.abs(e.kwh - r.kwh) < Math.abs(chosen.kwh - r.kwh) ? e : chosen);
-        candidateReasons.push({ entry: match, confidence: 'probable', reason: 'bouwjaarregel op voertuigidentiteit: ' + bouwjaar });
-        break;
+  if (bouwjaar) {
+    const regel = bouwjaarRules[bestKey];
+    if (regel) {
+      for (const r of regel) {
+        const vanOk = !r.van || bouwjaar >= r.van;
+        const totOk = !r.tot || bouwjaar <= r.tot;
+        if (vanOk && totOk) {
+          const match = entries.reduce((best, e) => Math.abs(e.kwh - r.kwh) < Math.abs(best.kwh - r.kwh) ? e : best);
+          return { ...match, modelKey: bestKey, dbDriveType: match.dbDriveType || null, variantOnzeker: false };
+        }
       }
     }
   }
 
-  if (candidateReasons.length) {
-    const chosen = candidateReasons[0];
-    debug.afgewezen = entries
-      .filter(e => e !== chosen.entry)
-      .map(e => ({ variant: e.variant, kwh: e.kwh, reden: 'lager scorende identiteitssignalen dan gekozen profiel' }));
-    return withMeta(chosen.entry, best.key, chosen.confidence, chosen.reason, false);
+  // ── STAP 7: NL-markt gewogen default per model ───────────────────────────
+  // Meest verkochte variant op NL markt als geen enkel signaal beschikbaar is.
+  // Index verwijst naar entries[] na sortering op kwh ascending.
+  // Bron: kentekendatabank.nl 2022-2024 registratiedata
+  const nlMarktDefault = {
+    'nissan leaf':              1,   // 40 kWh (meest geregistreerd NL)
+    'renault zoe':              2,   // 52 kWh (R135 dominant NL vloot)
+    'volkswagen id.3 pro':      0,   // enkel 58 kWh
+    'audi q8':                  0,   // 95 kWh (standaard, 114 zeldzamer)
+    'bmw i3':                   2,   // 42.2 kWh (120Ah dominant)
+    'polestar 2 long range':    0,   // 78 kWh (2020-2023 dominant)
+    'polestar 2 standard range':0,   // 64 kWh
+    'hyundai kona':             0,   // 39.2 kWh (meest aanwezig in oude vloot)
+    'kia soul':                 1,   // 39.2 kWh
+    'tesla model 3 long':       0,   // 78 kWh
+    'tesla model y long':       0,   // 78 kWh
+    'volvo xc40':               0,   // 69 kWh (RWD dominant NL)
+    'volvo c40':                0,   // 69 kWh
+    'mg mg4':                   1,   // 64 kWh (standaard NL)
+    'mg zs ev':                 0,   // 44.5 kWh (oude vloot dominant)
+    'bmw x5':                   1,   // 24 kWh (xDrive45e dominant NL)
+    'bmw 330e':                 1,   // 11.15 kWh (G20 dominant)
+    'bmw 530e':                 1,   // 12 kWh
+    'bmw 225xe':                0,   // 7.6 kWh (F45 dominant NL vloot)
+    'volkswagen id.4 pro':      0,   // 77 kWh (enkel variant)
+    'audi e-tron':              1,   // 95 kWh (55 quattro dominant)
+    'porsche taycan':           1,   // 82.3 kWh (standaard RWD dominant NL)
+    'mini countryman':          0,   // 7.6 kWh (F60 dominant NL vloot)
+  };
+
+  const defaultIdx = nlMarktDefault[bestKey];
+  const sortedAsc = [...entries].sort((a, b) => a.kwh - b.kwh);
+
+  if (defaultIdx !== undefined && defaultIdx < sortedAsc.length) {
+    const chosen = sortedAsc[defaultIdx];
+    return { ...chosen, modelKey: bestKey, dbDriveType: chosen.dbDriveType || null, variantOnzeker: true };
   }
 
-  debug.afgewezen = entries.map(e => ({
-    variant: e.variant,
-    kwh: e.kwh,
-    reden: 'geen betrouwbare variant-, uitvoering-, type- of bouwjaarhit; WLTP wordt niet gebruikt om kWh terug te rekenen'
-  }));
-  return logResult({
-    modelKey: best.key,
-    dbDriveType: detectDbDriveType(best.key, sortedAsc[Math.floor(sortedAsc.length / 2)]),
-    kwh: null,
-    variant: null,
-    confidence: 'fallback',
-    matchReason: 'voertuigidentiteit gevonden, batterijvariant onzeker',
-    variantOnzeker: true,
-    mogelijkeProfielen: sortedAsc.map(e => ({ variant: e.variant, kwh: e.kwh, dbDriveType: detectDbDriveType(best.key, e) }))
-  });
+  // ── STAP 8: absolute fallback — middelste entry, markeer als onzeker ─────
+  const midden = sortedAsc[Math.floor(sortedAsc.length / 2)];
+  return { ...midden, modelKey: bestKey, dbDriveType: midden.dbDriveType || null, variantOnzeker: true };
 }
 
 function detectDriveType(brandstof, handelsbenaming, merk) {
@@ -1687,11 +1648,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   
   let wltpKm = data ? parseInt(data.actie_radius_enkel_elektrisch_wltp || 0) : 0;
   let wltpVerbruik = data ? parseFloat(data.elektrisch_verbruik_enkel_elektrisch_wltp || 0) : 0;
-  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik, {
-    type: data ? (data.type || '') : '',
-    uitvoering: data ? (data.uitvoering || '') : '',
-    datumEersteToelating: datum
-  });
+  const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik);
   let kwh = battery ? battery.kwh : null;
   const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
 
@@ -1795,14 +1752,14 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   }
   
 // Polestar 2 fix — RDW geeft alleen "POLESTAR 2" terug
-// Geen harde default meer: getBattery() bepaalt of de variant betrouwbaar is.
-// Bij onduidelijke Polestar 2 variant blijft kWh leeg en variantOnzeker true.
+// Long Range (78/82 kWh) is verreweg de meeste op NL markt
+// Standard Range (63/64/69/70 kWh) is zeldzamer
 if (merkLow.includes('polestar') && handelLow.includes('polestar 2')) {
-  console.debug('Polestar override uitgeschakeld, getBattery leidend', {
-    battery,
-    confidence: battery ? battery.confidence : 'unknown',
-    variantOnzeker: battery ? battery.variantOnzeker === true : true
-  });
+  if (bouwjaar && bouwjaar >= 2024) {
+    kwh = 82; // Nieuwe Polestar 2 is 82 kWh Long Range
+  } else {
+    kwh = 78; // Polestar 2 2020-2023 is 78 kWh Long Range
+  }
 }
   
   // 11. Battery DB als ground truth
