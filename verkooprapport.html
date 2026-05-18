@@ -1400,18 +1400,30 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
   const intensiteit = Math.min(jaarGebruik / 15000, 3.0);
 
   if (driveType === 'phev') {
-    const verliesMin = leeftijd * 0.5 + (km / 10000) * 0.3;
-    const verliesMid = leeftijd * 1.5 + (km / 10000) * 0.5;
-    const verliesMax = leeftijd * 3.0 + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
+    const isAudiMerk = (modelKey || '').includes('audi');
+    const audiCorrectie = isAudiMerk ? 1.20 : 1.0;
+    const isKleineAccu = !kwh || kwh <= 13;
+    const verliesMin = (leeftijd * 0.5 + (km / 10000) * 0.3) * audiCorrectie;
+    const intFactorMid = Math.min(1.0 + (intensiteit - 1) * 0.15, 1.3);
+    const kmFactorMid  = Math.max(0.38, 0.55 - (km / 1000000));
+    const verliesMid   = (leeftijd * 1.5 * intFactorMid + (km / 10000) * kmFactorMid) * audiCorrectie;
+    const verliesMax = leeftijd * 3.0 * audiCorrectie + (km / 10000) * 1.0 * Math.min(intensiteit, 2.0);
     const min = Math.max(2, Math.round(verliesMin));
     const mid = Math.round(verliesMid);
     const max = Math.min(Math.max(Math.round(verliesMax), min + 5), 32);
     const sohMid = 100 - mid;
-    const adacNorm = km >= 105000 ? 83 : km >= 75000 ? 85 : km >= 45000 ? 87 : km >= 15000 ? 90 : null;
-    const adacLabel = km >= 105000 ? '120.000 km' : km >= 75000 ? '90.000 km' : km >= 45000 ? '60.000 km' : '30.000 km';
-    return { min, max, sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
+    const adacNorm = km >= 120000 ? (isKleineAccu ? 83 : 86)
+                   : km >= 90000  ? (isKleineAccu ? 85 : 88)
+                   : km >= 60000  ? (isKleineAccu ? 87 : 90)
+                   : km >= 30000  ? (isKleineAccu ? 90 : 93)
+                   : null;
+    const adacLabel = km >= 120000 ? '120.000+ km'
+                    : km >= 90000  ? '90.000–120.000 km'
+                    : km >= 60000  ? '60.000–90.000 km'
+                    : km >= 30000  ? '30.000–60.000 km'
+                    : null;
+    return { min: Math.min(min, 14), max: Math.min(Math.max(max, min + 5), 32), sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
   }
-
   if (driveType === 'ev') {
     const km10 = km / 10000;
     // Formule v6 — geijkt op 47 meetpunten incl. 6 eigen ZekerOpWeg AVILOO metingen
@@ -1434,8 +1446,8 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
     const midVal = Math.round(verliesMid);
     const max = Math.min(Math.round(verliesMax), 22);
     const sohMid = 100 - Math.round((min + midVal) / 2);
-    const adacNorm = km >= 125000 ? 82 : km >= 75000 ? 87 : km >= 25000 ? 91 : null;
-    const adacLabel = km >= 125000 ? '150.000 km' : km >= 75000 ? '100.000 km' : '50.000 km';
+    const adacNorm = km >= 150000 ? 84 : km >= 100000 ? 88 : km >= 50000 ? 91 : km >= 25000 ? 93 : null;
+    const adacLabel = km >= 150000 ? '150.000+ km' : km >= 100000 ? '100.000–150.000 km' : km >= 50000 ? '50.000–100.000 km' : km >= 25000 ? '25.000–50.000 km' : null;
     return { min: Math.min(min, 8), max: Math.min(Math.max(max, min + 3), 22), sohMid, adacNorm, adacLabel, onderNorm: adacNorm !== null && sohMid < adacNorm };
   }
 
@@ -1459,51 +1471,51 @@ function getVergelijkModellen(driveType, sohMid, modelKey, km) {
 
   const kmBracket = km >= 130000 ? 'hoog' : km >= 80000 ? 'midden' : 'laag';
 
-  const vergelijkData = {
+ const vergelijkData = {
     ev: {
       laag: [
-        { model: 'Kia e-Niro 64kWh', soh: 97, km: '60.000 km' },
-        { model: 'Tesla Model Y LR', soh: 95, km: '40.000 km' },
-        { model: 'BMW iX1 67kWh', soh: 96, km: '42.000 km' },
-        { model: 'Hyundai Kona EV 64kWh', soh: 93, km: '42.000 km' },
-        { model: 'MG ZS EV', soh: 93, km: '42.000 km' },
+        { model: 'Kia e-Niro 64kWh (AVILOO)', soh: 97, km: '60.286 km' },
+        { model: 'Ford Mustang Mach-E 98kWh (AVILOO)', soh: 95, km: '72.267 km' },
+        { model: 'Audi e-tron Sportback 55 95kWh (AVILOO)', soh: 95, km: '89.961 km' },
+        { model: 'VW ID.4 77kWh (AVILOO)', soh: 92, km: '91.823 km' },
+        { model: 'Hyundai Kona EV 64kWh (AVILOO)', soh: 93, km: '41.723 km' },
       ],
       midden: [
-        { model: 'Kia e-Niro 64kWh', soh: 96, km: '87.000 km' },
-        { model: 'Hyundai Kona EV 64kWh', soh: 95, km: '99.000 km' },
-        { model: 'Tesla Model 3 SR LFP', soh: 92, km: '76.000 km' },
-        { model: 'VW ID.3 58kWh', soh: 93, km: '98.000 km' },
-        { model: 'Nissan Leaf 40kWh', soh: 89, km: '98.000 km' },
+        { model: 'Kia e-Niro 64kWh (AVILOO)', soh: 96, km: '86.964 km' },
+        { model: 'Hyundai Kona EV 64kWh (AVILOO)', soh: 95, km: '99.366 km' },
+        { model: 'VW ID.3 58kWh (AVILOO)', soh: 93, km: '98.152 km' },
+        { model: 'Audi Q4 e-tron 77kWh (AVILOO)', soh: 91, km: '92.322 km' },
+        { model: 'Nissan Leaf 40kWh (AVILOO)', soh: 89, km: '98.109 km' },
       ],
       hoog: [
-        { model: 'Kia e-Niro 64kWh', soh: 94, km: '154.000 km' },
-        { model: 'Tesla Model X 100kWh', soh: 87, km: '129.000 km' },
-        { model: 'Mercedes EQA 67kWh', soh: 95, km: '127.000 km' },
-        { model: 'Hyundai IONIQ 28kWh', soh: 88, km: '176.000 km' },
-        { model: 'VW ID.3 58kWh', soh: 92, km: '140.000 km' },
+        { model: 'Mercedes EQA 67kWh (AVILOO)', soh: 95, km: '126.683 km' },
+        { model: 'Kia e-Niro 64kWh (AVILOO)', soh: 94, km: '154.000 km' },
+        { model: 'Polestar 2 78kWh (AVILOO)', soh: 92, km: '137.301 km' },
+        { model: 'Hyundai IONIQ 28kWh (AVILOO)', soh: 88, km: '176.018 km' },
+        { model: 'VW ID.3 58kWh (AVILOO)', soh: 92, km: '139.573 km' },
       ],
     },
-    phev: {
+      phev: {
       laag: [
-        { model: 'Seat Leon e-Hybrid', soh: 97, km: '50.000 km' },
-        { model: 'Cupra Formentor e-Hybrid', soh: 95, km: '29.000 km' },
-        { model: 'VW Passat GTE', soh: 96, km: '54.000 km' },
-        { model: 'BMW X3 30e', soh: 91, km: '45.000 km' },
-        { model: 'Audi Q5 TFSIe', soh: 93, km: '46.000 km' },
+        { model: 'Seat Leon e-Hybrid 13kWh (AVILOO)', soh: 97, km: '60.657 km' },
+        { model: 'Cupra Formentor 13kWh (AVILOO)', soh: 95, km: '28.400 km' },
+        { model: 'VW Passat GTE 13kWh (AVILOO)', soh: 96, km: '53.592 km' },
+        { model: 'Audi Q5 TFSIe 17,9kWh (AVILOO)', soh: 95, km: '53.923 km' },
+        { model: 'Audi Q5 TFSIe 17,9kWh (AVILOO)', soh: 87, km: '59.900 km' },
       ],
       midden: [
-        { model: 'BMW X3 30e', soh: 91, km: '80.000 km' },
-        { model: 'Skoda Octavia iV', soh: 88, km: '99.000 km' },
-        { model: 'Audi Q5 TFSIe', soh: 87, km: '90.000 km' },
-        { model: 'BMW 3-serie PHEV', soh: 90, km: '141.000 km' },
-        { model: 'Seat Leon e-Hybrid', soh: 93, km: '61.000 km' },
+        { model: 'Audi Q7 TFSIe 17,9kWh (AVILOO)', soh: 91, km: '85.671 km' },
+        { model: 'Skoda Octavia iV 13kWh (AVILOO)', soh: 88, km: '98.951 km' },
+        { model: 'BMW X5 xDrive45e 24kWh (AVILOO)', soh: 90, km: '153.430 km' },
+        { model: 'BMW 330e 12kWh (AVILOO)', soh: 90, km: '140.874 km' },
+        { model: 'Seat Leon e-Hybrid 13kWh (AVILOO)', soh: 93, km: '60.657 km' },
       ],
       hoog: [
-        { model: 'BMW 3-serie PHEV', soh: 85, km: '141.000 km' },
-        { model: 'BMW X3 30e', soh: 86, km: '117.000 km' },
-        { model: 'Audi Q7 TFSIe', soh: 83, km: '150.000 km' },
-        { model: 'Skoda Octavia iV', soh: 88, km: '133.000 km' },
-        { model: 'Seat Leon e-Hybrid', soh: 92, km: '95.000 km' },
+        { model: 'BMW 330e 12kWh (AVILOO)', soh: 90, km: '140.874 km' },
+        { model: 'BMW X3 30e 12kWh (AVILOO)', soh: 86, km: '117.000 km' },
+        { model: 'Audi Q7 TFSIe 17,9kWh (AVILOO)', soh: 83, km: '149.000 km' },
+        { model: 'Skoda Octavia iV 13kWh (AVILOO)', soh: 91, km: '133.288 km' },
+        { model: 'Renault Captur E-Tech 9,8kWh (AVILOO)', soh: 75, km: '123.985 km' },
       ],
     },
     hybrid: {
@@ -1523,7 +1535,7 @@ function getVergelijkModellen(driveType, sohMid, modelKey, km) {
         { model: 'Hyundai Tucson Hybrid', soh: 92, km: '140.000 km' },
       ],
     }
-  };
+  }; 
 
 const type = vergelijkData[driveType] || vergelijkData.phev;
   const lijst = [...(type[kmBracket] || type.midden)];
