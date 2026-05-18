@@ -1414,6 +1414,7 @@ const batteryDB = {
   "ford f-150 lightning sr": [{"variant": "F-150 Lightning SR", "kwh": 98.0, "dbDriveType": "ev"}],
   "ford kuga 2.5 phev": [{"variant": "Kuga 2.5 PHEV", "kwh": 14.4, "dbDriveType": "phev"}],
   "ford mustang mach-e awd": [{"variant": "Mustang Mach-E AWD", "kwh": 72.6, "dbDriveType": "ev"}],
+  "ford mustang mach-e extended awd": [{"variant": "Mustang Mach-E Extended AWD", "kwh": 98.0, "dbDriveType": "ev"}],
   "ford mustang mach-e gt": [{"variant": "Mustang Mach-E GT", "kwh": 98.7, "dbDriveType": "ev"}],
   "ford mustang mach-e rwd": [{"variant": "Mustang Mach-E RWD", "kwh": 72.6, "dbDriveType": "ev"}],
   "genesis g80": [{"variant": "G80 EV", "kwh": 87.2, "dbDriveType": "ev"}],
@@ -1906,9 +1907,17 @@ function getRisicoScore(leeftijd, km, driveType, jaarGebruik, gebruikInput, kwh,
       score -= 4;
       factoren.push({ kleur: 'green', tekst: "Kia/Hyundai EV-accu's presteren doorgaans gemiddeld wat beter in gecertificeerde praktijkmetingen." });
     }
-    if (modelKey.includes('bmw ix') || modelKey.includes('mercedes-benz eqa') || modelKey.includes('mercedes-benz eqb')) {
+     if (modelKey.includes('bmw ix') || modelKey.includes('mercedes-benz eqa') || modelKey.includes('mercedes-benz eqb')) {
       score -= 3;
       factoren.push({ kleur: 'green', tekst: 'Premium EV-platform met bewezen thermisch beheer en lage degradatie in praktijkdata.' });
+    }
+    if (modelKey.includes('porsche taycan') || modelKey.includes('taycan')) {
+      score -= 4;
+      factoren.push({ kleur: 'green', tekst: 'Porsche Taycan: AVILOO-data toont 91,6% SoH bij 54.743 km (2021). Stabiel premium EV-platform.' });
+    }
+    if (modelKey.includes('ford mustang mach-e') || (modelKey.includes('mustang') && driveType === 'ev')) {
+      score -= 3;
+      factoren.push({ kleur: 'green', tekst: 'Mustang Mach-E Extended AWD 98kWh: AVILOO toont 94,9% bij 72.267 km. Sterk resultaat.' });
     }
     // Audi PHEV: grootste spreiding van alle merken (82-100% SoH bij zelfde km/leeftijd)
     if (modelKey.includes('audi') && driveType === 'phev') {
@@ -2140,9 +2149,9 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     const sohMid = 100 - Math.round((min + midVal) / 2);
 
     // EV referentiedrempels (geen officiële ADAC-norm, eigen ijklijn op dataset)
-   const adacNorm =
-    km >= 150000 ? 82 :
-    km >= 100000 ? 87 :
+  const adacNorm =
+    km >= 150000 ? 84 :
+    km >= 100000 ? 88 :
     km >= 50000  ? 91 :
     km >= 25000  ? 93 :
     null;
