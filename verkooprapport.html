@@ -864,9 +864,14 @@
       <input type="email" id="email" placeholder="jouw@email.nl" required />
       <div style="font-size:11px;color:#94a3b8;margin-top:5px;">Voor je rapport</div>
     </div>
-    <div class="field">
+   <div class="field">
       <label for="kmstand">Huidige kilometerstand</label>
       <input type="number" id="kmstand" placeholder="bijv. 87500" min="0" max="999999" />
+    </div>
+    <div class="field">
+      <label for="accukwh">Accugrootte <span style="font-size:11px;color:#94a3b8;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel, in kWh)</span></label>
+      <input type="number" id="accukwh" placeholder="bijv. 77 of 17.9" min="1" max="200" step="0.1" />
+      <div style="font-size:11px;color:#94a3b8;margin-top:5px;">Staat op de kentekencard of in de advertentie.</div>
     </div>
     <button class="btn-primary" id="btn-start" onclick="startRapport()">Bekijk voorbeeld</button>
     <p class="form-note">Eenmalig · €24,95 · Geen abonnement · Direct beschikbaar</p>
@@ -1454,14 +1459,14 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
   return { min: 1, max: 6, sohMid: 97, adacNorm: null, adacLabel: null, onderNorm: false };
 }
 
-function getToekomstSoH(sohMid, driveType, jaarGebruik) {
-  const verliesPerJaar = driveType === 'ev' ? 0.8 : driveType === 'phev' ? 1.5 : 0.5;
-  const factor = Math.min(jaarGebruik / 15000, 1.5);
+function getToekomstSoH(sohMid, driveType, jaarGebruik, km, leeftijd, kwh, modelKey) {
   const nu = new Date().getFullYear();
   return [2027, 2029, 2031].map(jaar => {
-    const jaren = jaar - nu;
-    const verwacht = Math.max(sohMid - (verliesPerJaar * factor * jaren), 60);
-    return { jaar, soh: Math.round(verwacht * 10) / 10 };
+    const extraJaren = jaar - nu;
+    const toekomstigKm = (km || 0) + (jaarGebruik * extraJaren);
+    const toekomstigLeeftijd = (leeftijd || 0) + extraJaren;
+    const deg = getDegradatie(driveType, toekomstigLeeftijd, toekomstigKm, kwh, modelKey);
+    return { jaar, soh: Math.max(deg.sohMid, 60) };
   });
 }
 
@@ -1597,6 +1602,7 @@ async function startRapport() {
   const email = document.getElementById('email').value.trim();
   const gebruik = 'gemiddeld';
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
+  const accuKwhHandmatig = parseFloat(document.getElementById('accukwh').value) || null;
 
   if (!kentekenRaw) { alert('Vul een kenteken in.'); return; }
   if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return; }
@@ -1640,10 +1646,10 @@ async function startRapport() {
   await new Promise(r => setTimeout(r, 600));
 
   ls.style.display = 'none';
-  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf);
+renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, bedrijf, accuKwhHandmatig);
 }
 
-function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
+function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf, accuKwhHandmatig) {
   const merk = data ? (data.merk || '') : '';
   const handelsbenaming = data ? (data.handelsbenaming || '') : '';
   const brandstof = data ? (data.brandstof_omschrijving || '') : '';
@@ -1661,7 +1667,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf) {
   let wltpKm = data ? parseInt(data.actie_radius_enkel_elektrisch_wltp || 0) : 0;
   let wltpVerbruik = data ? parseFloat(data.elektrisch_verbruik_enkel_elektrisch_wltp || 0) : 0;
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik);
-  let kwh = battery ? battery.kwh : null;
+  let kwh = accuKwhHandmatig || (battery ? battery.kwh : null);
   const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
 
   const merkLow   = merk.toLowerCase();
@@ -1838,7 +1844,7 @@ for (const entry of phevWhitelist) {
   const degradatie = getDegradatie(driveType, leeftijd, km, kwh, battery ? battery.modelKey : null);
   const sohMid = degradatie.sohMid;
   const risico = getRisicoLabel(sohMid, degradatie.onderNorm);
-  const toekomst = getToekomstSoH(sohMid, driveType, jaarGebruik);
+  const toekomst = getToekomstSoH(sohMid, driveType, jaarGebruik, km, leeftijd, kwh, battery ? battery.modelKey : null);
   const vergelijk = getVergelijkModellen(driveType, sohMid, battery ? battery.modelKey : null, km || 0);
   const fase = getCurrentFase(sohMid);
 
