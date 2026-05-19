@@ -2261,7 +2261,8 @@ async function startRapport() {
   const naam = document.getElementById('naam').value.trim() || 'Klant';
   const email = document.getElementById('email').value.trim();
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
-  const accuKwhHandmatig = parseFloat(document.getElementById('accukwh').value) || null;onst gebruik = document.getElementById('gebruik').value;
+  const accuKwhHandmatig = parseFloat(document.getElementById('accukwh').value) || null;
+  const gebruik = document.getElementById('gebruik').value;
  
   // Uitgeschakeld: kooptiming en locatie tijdelijk niet uitgevraagd
   const kooptiming = '';
@@ -2319,8 +2320,9 @@ async function startRapport() {
   setLoadingText('Rapport samenstellen...');
   await new Promise(r => setTimeout(r, 400));
 
-  ls.style.display = 'none';
- renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, accuKwhHandmatig);
+ls.style.display = 'none';
+  renderRapport(voertuigData, kenteken, naam, gebruik, kmHandmatig, accuKwhHandmatig);
+}
 
 async function startRapportFromSavedLead() {
   const savedLeadRaw = localStorage.getItem('zow_lead');
@@ -2372,7 +2374,8 @@ async function startRapportFromSavedLead() {
     kenteken,
     naam,
     savedLead.gebruik || '',
-    savedLead.kmstand || null
+    savedLead.kmstand || null,
+    null
   );
 
   return true;
@@ -2869,8 +2872,39 @@ if (merkLow.includes('polestar') && handelLow.includes('polestar 2')) {
       <div class="info-row"><span class="info-label">Totale kilometerstand</span><span class="info-value">${kmTxt}</span></div>
       <div class="info-row"><span class="info-label">Voertuigleeftijd</span><span class="info-value">${leeftijdTxt}</span></div>
       <div class="info-row"><span class="info-label">Gemiddeld jaargebruik</span><span class="info-value ${jaarGebruik && jaarGebruik > 20000 ? 'amber' : ''}">${jaarKmTxt}</span></div>
-      <div class="info-row"><span class="info-label">Eigen gebruik</span><span class="info-value">${gebruik === 'weinig' ? 'Weinig rijder' : gebruik === 'gemiddeld' ? 'Gemiddeld rijder' : gebruik === 'veel' ? 'Veel rijder' : 'Niet opgegeven'}</span></div>
-      ${jaarGebruik && jaarGebruik > 20000 ? '<div class="highlight-box"><strong>Let op:</strong> Het gemiddeld jaargebruik ligt boven de 20.000 km. Dit betekent meer laadcycli en doorgaans snellere accubelasting.</div>' : ''}
+      <div class="info-row"><span class="info-label">Eigen gebruik</span><span class="info-value">${gebruik === 'weinig' ? 'Weinig rijder (tot 10.000 km/jr)' : gebruik === 'gemiddeld' ? 'Gemiddeld (10.000–20.000 km/jr)' : gebruik === 'hoog' ? 'Hoog (20.000–35.000 km/jr)' : gebruik === 'intensief' ? 'Intensief (35.000–50.000 km/jr)' : gebruik === 'zeer_intensief' ? 'Zeer intensief (50.000+ km/jr)' : 'Niet opgegeven'}</span></div>
+         ${jaarGebruik && jaarGebruik > 20000 ? '<div class="highlight-box"><strong>Let op:</strong> Het gemiddeld jaargebruik ligt boven de 20.000 km. Dit betekent meer laadcycli en doorgaans snellere accubelasting.</div>' : ''}
+      ${(() => {
+        if (!jaarGebruik || !km || !leeftijd) return '';
+        const jaarNaar2031 = 2031 - new Date().getFullYear();
+        const kmIn2031 = km + (jaarGebruik * jaarNaar2031);
+        const kmIn2031Fmt = Math.round(kmIn2031).toLocaleString('nl-NL');
+        const totalLeeftijd2031 = leeftijd + jaarNaar2031;
+        const deg2031 = getDegradatie(driveType, totalLeeftijd2031, kmIn2031, jaarGebruik, battery ? battery.modelKey : null, kwh);
+        const soh2031Min = 100 - deg2031.max;
+        const soh2031Max = 100 - deg2031.min;
+        const kleur2031 = soh2031Min >= 80 ? 'rgba(45,212,191,0.08)' : soh2031Min >= 70 ? 'rgba(245,158,11,0.07)' : 'rgba(239,68,68,0.07)';
+        const border2031 = soh2031Min >= 80 ? 'rgba(45,212,191,0.2)' : soh2031Min >= 70 ? 'rgba(245,158,11,0.2)' : 'rgba(239,68,68,0.2)';
+        const label2031 = soh2031Min >= 80 ? 'var(--teal)' : soh2031Min >= 70 ? 'var(--amber)' : 'var(--red-soft)';
+        return `<div style="margin-top:14px;padding:16px 18px;background:${kleur2031};border:1px solid ${border2031};border-radius:var(--radius-sm);">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:${label2031};margin-bottom:10px;">Prognose 2031 — bij dit rijpatroon</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+            <div style="text-align:center;">
+              <div style="font-size:18px;font-weight:600;color:var(--white);">${kmIn2031Fmt}</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;">Verwachte km stand</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:18px;font-weight:600;color:var(--white);">${totalLeeftijd2031} jr</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;">Voertuigleeftijd</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:18px;font-weight:600;color:${label2031};">${soh2031Min}–${soh2031Max}%</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;">Verwachte SoH bandbreedte</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.55;">Statistische schatting bij gelijkblijvend rijpatroon van ${Math.round(jaarGebruik).toLocaleString('nl-NL')} km/jaar. De werkelijke SoH is afhankelijk van laadgedrag en gebruik.</p>
+        </div>`;
+      })()}
     </div>
 
     <div class="section-card" style="${!isPaidNow ? 'display:none' : ''}">
