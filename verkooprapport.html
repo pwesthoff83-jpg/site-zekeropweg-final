@@ -1588,10 +1588,11 @@ function saveBeforeStripe() {
     naam: document.getElementById('naam') ? document.getElementById('naam').value.trim() : '',
     email: document.getElementById('email') ? document.getElementById('email').value.trim() : '',
     kmstand: document.getElementById('kmstand') ? document.getElementById('kmstand').value.trim() : '',
+    accukwh: document.getElementById('accukwh') ? document.getElementById('accukwh').value.trim() : '',
     gebruik: document.getElementById('gebruik') ? document.getElementById('gebruik').value : '',
     expires: Date.now() + (30 * 60 * 1000),
     type: 'verkoop'
-  };
+  }; 
   if (data.kenteken) localStorage.setItem('zow_restore_verkoop', JSON.stringify(data));
 }
 
@@ -1668,7 +1669,7 @@ function renderRapport(data, kenteken, naam, gebruik, kmHandmatig, bedrijf, accu
   let wltpVerbruik = data ? parseFloat(data.elektrisch_verbruik_enkel_elektrisch_wltp || 0) : 0;
   const battery = getBattery(merk, handelsbenaming, brandstof, variantOmschr, wltpKm, wltpVerbruik);
   let kwh = accuKwhHandmatig || (battery ? battery.kwh : null);
-  const variantOnzeker = battery ? (battery.variantOnzeker === true) : false;
+  const variantOnzeker = !accuKwhHandmatig && battery ? (battery.variantOnzeker === true) : false;
 
   const merkLow   = merk.toLowerCase();
   const handelLow = handelsbenaming.toLowerCase();
@@ -2484,10 +2485,11 @@ document.getElementById('kenteken').addEventListener('keydown', function (e) {
     if (!restore.kenteken) return;
 
     const setVal = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
-    setVal('kenteken', restore.kenteken);
+   setVal('kenteken', restore.kenteken);
     setVal('naam', restore.naam);
     setVal('email', restore.email);
     setVal('kmstand', restore.kmstand);
+    setVal('accukwh', restore.accukwh);
 
     startRapport();
   } catch(e) {
