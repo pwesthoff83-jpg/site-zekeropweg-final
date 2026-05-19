@@ -1,1 +1,1047 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg — Onafhankelijk accuinzicht voor EV en hybride</title>
+<meta name="description" content="Koop of verkoop een EV of hybride met zekerheid. AccuRisico Rapport voor kopers. VerkoopRapport voor verkopers. AVILOO-gecertificeerd.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0f7c6e;
+  --teal-light: #18C7B5;
+  --teal-bg: #f0f9f7;
+  --teal-border: #b2ddd8;
+  --navy: #0B1320;
+  --navy-mid: #111C2E;
+  --slate: #334155;
+  --muted: #64748b;
+  --light: #94a3b8;
+  --border: #e2e8f0;
+  --white: #ffffff;
+  --bg: #f8fafc;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+}
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--navy);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+
+.nav-links {
+  display: flex; gap: 8px; align-items: center;
+}
+
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--muted);
+  text-decoration: none; padding: 8px 14px; border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-link:hover { color: var(--navy); background: var(--bg); }
+
+.nav-cta {
+  font-size: 14px; font-weight: 600; color: #fff;
+  background: var(--teal); text-decoration: none;
+  padding: 9px 18px; border-radius: 10px;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: #0d6b5e; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0f1923 0%, #0f3a52 50%, #0f4c3a 100%);
+  padding: 100px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(24,199,181,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(24,199,181,0.12);
+  border: 1px solid rgba(24,199,181,0.25);
+  color: #5eead4;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  text-transform: uppercase; padding: 6px 14px; border-radius: 20px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 400; line-height: 1.1;
+  color: #fff; letter-spacing: -0.5px;
+  max-width: 780px; margin: 0 auto 20px;
+}
+
+.hero h1 em {
+  font-style: italic; color: #5eead4;
+}
+
+.hero-sub {
+  font-size: 18px; color: rgba(255,255,255,0.7);
+  max-width: 560px; margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.hero-products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.hero-product {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  text-align: left;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-product:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(24,199,181,0.4);
+  transform: translateY(-2px);
+}
+
+.hero-product-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; margin-bottom: 10px;
+  display: block;
+}
+
+.hero-product.koper .hero-product-tag { color: #5eead4; }
+.hero-product.verkoper .hero-product-tag { color: #fcd34d; }
+
+.hero-product h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; font-weight: 400; color: #fff;
+  margin-bottom: 8px;
+}
+
+.hero-product p {
+  font-size: 14px; color: rgba(255,255,255,0.65);
+  line-height: 1.6; margin-bottom: 16px;
+}
+
+.hero-product-price {
+  font-size: 20px; font-weight: 700; color: #fff;
+  display: flex; align-items: baseline; gap: 6px;
+}
+
+.hero-product-price small {
+  font-size: 12px; font-weight: 400;
+  color: rgba(255,255,255,0.5);
+}
+
+.hero-product-arrow {
+  position: absolute; bottom: 24px; right: 24px;
+  font-size: 20px; color: rgba(255,255,255,0.35);
+  transition: color 0.15s, transform 0.15s;
+}
+
+.hero-product:hover .hero-product-arrow {
+  color: #5eead4; transform: translate(3px, -3px);
+}
+
+.hero-trust {
+  display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+}
+
+.trust-item {
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.trust-item span { color: #5eead4; font-weight: 600; }
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 80px 24px; }
+.section-inner { max-width: 1040px; margin: 0 auto; }
+
+.section-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 400; line-height: 1.2;
+  letter-spacing: -0.3px; margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 17px; color: var(--muted);
+  max-width: 560px; line-height: 1.7; margin-bottom: 48px;
+}
+
+/* ── HOE WERKT HET ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.step-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.step-num {
+  width: 36px; height: 36px;
+  background: var(--teal); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; margin-bottom: 16px;
+}
+
+.step-card h3 {
+  font-size: 16px; font-weight: 600; margin-bottom: 8px;
+}
+
+.step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── PRODUCT CARDS ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.product-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.product-card-header {
+  padding: 36px 36px 28px;
+}
+
+.product-card.koper .product-card-header {
+  background: linear-gradient(135deg, #0f3a52 0%, #0f4c3a 100%);
+}
+
+.product-card.verkoper .product-card-header {
+  background: linear-gradient(135deg, #1a1a3a 0%, #2a1a4a 100%);
+}
+
+.product-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+  margin-bottom: 16px; display: inline-block;
+}
+
+.product-card.koper .product-tag {
+  background: rgba(94,234,212,0.15);
+  border: 1px solid rgba(94,234,212,0.3);
+  color: #5eead4;
+}
+
+.product-card.verkoper .product-tag {
+  background: rgba(252,211,77,0.15);
+  border: 1px solid rgba(252,211,77,0.3);
+  color: #fcd34d;
+}
+
+.product-card-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px; font-weight: 400; color: #fff; margin-bottom: 8px;
+}
+
+.product-card-header p {
+  font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 20px;
+}
+
+.product-price {
+  font-size: 28px; font-weight: 700; color: #fff;
+}
+.product-price small {
+  font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.5);
+}
+
+.product-card-body {
+  background: var(--white);
+  padding: 28px 36px 32px;
+}
+
+.feature-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 24px;
+}
+
+.feature-list li {
+  font-size: 14px; color: var(--slate);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+
+.feature-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--green-bg);
+  border: 1px solid #86efac;
+  color: var(--green);
+  font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.btn-product {
+  display: block; width: 100%; text-align: center;
+  padding: 14px 24px; border-radius: var(--radius-sm);
+  font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all 0.15s;
+}
+
+.btn-product.koper {
+  background: var(--teal); color: #fff;
+  box-shadow: 0 4px 20px rgba(15,124,110,0.25);
+}
+
+.btn-product.koper:hover { background: #0d6b5e; }
+
+.btn-product.verkoper {
+  background: #312e81; color: #fff;
+  box-shadow: 0 4px 20px rgba(49,46,129,0.25);
+}
+
+.btn-product.verkoper:hover { background: #1e1b4b; }
+
+/* ── SOCIAL PROOF / CASES ── */
+.cases-section { background: var(--bg); }
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.case-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.case-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px;
+}
+
+.case-title {
+  font-size: 15px; font-weight: 600; color: var(--navy);
+  margin-bottom: 8px; line-height: 1.4;
+}
+
+.case-text {
+  font-size: 13px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.case-metrics {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+.case-metric {
+  text-align: center;
+}
+
+.case-metric-val {
+  font-size: 20px; font-weight: 700;
+  display: block; margin-bottom: 2px;
+}
+
+.case-metric-val.green { color: var(--green); }
+.case-metric-val.amber { color: var(--amber); }
+.case-metric-val.teal { color: var(--teal); }
+
+.case-metric-label {
+  font-size: 10px; color: var(--light); text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── WHY SECTION ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.why-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 22px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+
+.why-icon {
+  width: 40px; height: 40px;
+  background: var(--teal-bg);
+  border: 1px solid var(--teal-border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+
+.why-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.why-item p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── AVILOO BADGE SECTION ── */
+.aviloo-section {
+  background: linear-gradient(135deg, #0f1923 0%, #0f3a52 100%);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.aviloo-inner { max-width: 640px; margin: 0 auto; }
+
+.aviloo-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(24,199,181,0.1);
+  border: 1px solid rgba(24,199,181,0.25);
+  border-radius: 14px;
+  padding: 12px 20px;
+  margin-bottom: 28px;
+}
+
+.aviloo-badge-text {
+  text-align: left;
+}
+
+.aviloo-badge-title {
+  font-size: 13px; font-weight: 700; color: #5eead4;
+  letter-spacing: 0.3px;
+}
+
+.aviloo-badge-sub {
+  font-size: 11px; color: rgba(255,255,255,0.5);
+}
+
+.aviloo-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px; font-weight: 400; color: #fff;
+  margin-bottom: 14px; line-height: 1.25;
+}
+
+.aviloo-section p {
+  font-size: 16px; color: rgba(255,255,255,0.65);
+  line-height: 1.7; margin-bottom: 32px;
+}
+
+.aviloo-stats {
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.aviloo-stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; font-weight: 400; color: #5eead4;
+  display: block;
+}
+
+.aviloo-stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.45);
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.btn-aviloo {
+  display: inline-block;
+  background: #5eead4; color: #0f1923;
+  font-size: 15px; font-weight: 700;
+  padding: 14px 32px; border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.btn-aviloo:hover { background: #2dd4bf; }
+
+/* ── FAQ ── */
+.faq-list {
+  display: flex; flex-direction: column; gap: 2px;
+  max-width: 720px;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.faq-q {
+  width: 100%; background: none; border: none;
+  padding: 18px 22px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500; color: var(--navy);
+  cursor: pointer; text-align: left;
+  transition: background 0.15s;
+}
+
+.faq-q:hover { background: var(--bg); }
+
+.faq-arrow {
+  font-size: 18px; color: var(--light);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+.faq-a {
+  display: none;
+  padding: 0 22px 18px;
+  font-size: 14px; color: var(--muted); line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA BOTTOM ── */
+.cta-bottom {
+  background: var(--teal-bg);
+  border-top: 1px solid var(--teal-border);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.cta-bottom h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; font-weight: 400; color: var(--navy);
+  margin-bottom: 14px; line-height: 1.25;
+}
+
+.cta-bottom p {
+  font-size: 17px; color: var(--muted);
+  max-width: 500px; margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.cta-buttons {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+
+.btn-main {
+  display: inline-block;
+  background: var(--teal); color: #fff;
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(15,124,110,0.25);
+  transition: background 0.15s;
+}
+.btn-main:hover { background: #0d6b5e; }
+
+.btn-secondary {
+  display: inline-block;
+  background: var(--white); color: var(--navy);
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: var(--bg); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 48px 24px;
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+}
+
+.footer-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+
+.footer-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: rgba(255,255,255,0.8);
+}
+
+.footer-logo span { color: #5eead4; }
+
+.footer-links {
+  display: flex; gap: 20px;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.4); text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff;
+  font-size: 14px; font-weight: 600;
+  padding: 13px 20px; border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.wa-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero-products { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .aviloo-stats { gap: 24px; }
+  nav .nav-links .nav-link { display: none; }
+  .hero { padding: 70px 20px 60px; }
+  .section { padding: 60px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Zeker<span>OpWeg</span></a>
+  <div class="nav-links">
+    <a href="#producten" class="nav-link">Producten</a>
+    <a href="#waarom" class="nav-link">Waarom wij</a>
+    <a href="#faq" class="nav-link">Vragen</a>
+    <a href="https://zekeropweg.nu/rapport.html" class="nav-cta">AccuRisico Rapport →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✓ AVILOO-gecertificeerd meetpartner · TÜV-gecertificeerd</div>
+  <h1>Koop of verkoop een EV <em>met zekerheid</em></h1>
+  <p class="hero-sub">De accu is het duurste onderdeel van elke elektrische auto. Wij maken de staat ervan begrijpelijk — voor koper én verkoper.</p>
+
+  <div class="hero-products">
+    <a href="https://zekeropweg.nu/rapport.html" class="hero-product koper">
+      <span class="hero-product-tag">Voor kopers</span>
+      <h3>AccuRisico Rapport</h3>
+      <p>Onafhankelijke inschatting van de accuconditie vóór je een bod doet. Inclusief degradatieanalyse en ADAC-normvergelijking.</p>
+      <div class="hero-product-price">€19,95 <small>eenmalig</small></div>
+      <span class="hero-product-arrow">↗</span>
+    </a>
+    <a href="https://zekeropweg.nu/verkooprapport.html" class="hero-product verkoper">
+      <span class="hero-product-tag">Voor verkopers</span>
+      <h3>VerkoopRapport</h3>
+      <p>Laat je koper zien wat je accu echt waard is. Verhoog vertrouwen, versnell de verkoop en voorkom discussie achteraf.</p>
+      <div class="hero-product-price">€24,95 <small>eenmalig</small></div>
+      <span class="hero-product-arrow">↗</span>
+    </a>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item">✅ <span>1.200+</span> rapporten gegenereerd</div>
+    <div class="trust-item">🔒 <span>Veilig</span> via Stripe</div>
+    <div class="trust-item">⚡ <span>Direct</span> beschikbaar</div>
+    <div class="trust-item">📋 <span>Geen</span> abonnement</div>
+  </div>
+</section>
+
+<!-- HOE WERKT HET -->
+<section class="section" id="hoe">
+  <div class="section-inner">
+    <div class="section-label">Hoe het werkt</div>
+    <h2 class="section-title">Binnen 2 minuten inzicht in de accu</h2>
+    <p class="section-sub">Geen afspraak. Geen wachttijd. Gewoon kenteken invullen en direct een gefundeerde inschatting ontvangen.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Vul het kenteken in</h3>
+        <p>Wij koppelen direct aan de RDW-database. Merk, model, bouwjaar en brandstoftype worden automatisch opgehaald.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Ontvang je rapport</h3>
+        <p>Op basis van AVILOO-meetdata van vergelijkbare voertuigen berekenen we de verwachte accuconditie, degradatiefase en ADAC-normvergelijking.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Maak een betere beslissing</h3>
+        <p>Als koper: weet wat je koopt. Als verkoper: bouw vertrouwen op en verkoop sneller. Beide rapporten zijn direct downloadbaar als PDF.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTEN -->
+<section class="section" id="producten" style="background:var(--bg); padding-top:0;">
+  <div class="section-inner">
+    <div class="section-label">Onze producten</div>
+    <h2 class="section-title">Kies het rapport dat bij jou past</h2>
+    <p class="section-sub">Twee producten, één doel: transparantie over de accu — het enige onderdeel dat niet zichtbaar is in een proefrit.</p>
+
+    <div class="products-grid">
+      <!-- KOPER -->
+      <div class="product-card koper">
+        <div class="product-card-header">
+          <div class="product-tag">AccuRisico Rapport</div>
+          <h2>Voor de koper</h2>
+          <p>Jij overweegt een EV of hybride te kopen. Weet vóór je bod wat de accu werkelijk waard is.</p>
+          <div class="product-price">€19,95 <small>/ eenmalig</small></div>
+        </div>
+        <div class="product-card-body">
+          <ul class="feature-list">
+            <li><span class="feature-check">✓</span>Accuconditie inschatting in % (SoH)</li>
+            <li><span class="feature-check">✓</span>Degradatiebandbreedte goed/normaal/slecht gebruik</li>
+            <li><span class="feature-check">✓</span>Vergelijking met ADAC-minimumnorm</li>
+            <li><span class="feature-check">✓</span>Degradatiefase-analyse (fase 1, 2 of 3)</li>
+            <li><span class="feature-check">✓</span>Cel-anomalie risicosignaal bij hoge km</li>
+            <li><span class="feature-check">✓</span>Proefrit- en aankooptips op maat</li>
+            <li><span class="feature-check">✓</span>Downloadbaar als PDF</li>
+          </ul>
+          <a href="https://zekeropweg.nu/rapport.html" class="btn-product koper">AccuRisico Rapport aanvragen →</a>
+        </div>
+      </div>
+
+      <!-- VERKOPER -->
+      <div class="product-card verkoper">
+        <div class="product-card-header">
+          <div class="product-tag">VerkoopRapport</div>
+          <h2>Voor de verkoper</h2>
+          <p>Jij verkoopt een EV of hybride. Geef je koper zekerheid en voorkom twijfel die deals laat afspringen.</p>
+          <div class="product-price">€24,95 <small>/ eenmalig</small></div>
+        </div>
+        <div class="product-card-body">
+          <ul class="feature-list">
+            <li><span class="feature-check">✓</span>SoH-inschatting als verkoopargument</li>
+            <li><span class="feature-check">✓</span>Degradatie uitgelegd in begrijpelijke tankanalyse</li>
+            <li><span class="feature-check">✓</span>Markvergelijking met AVILOO-gecertificeerde modellen</li>
+            <li><span class="feature-check">✓</span>Toekomstprognose 2027, 2029 en 2031</li>
+            <li><span class="feature-check">✓</span>Professioneel opgemaakt voor bijlage bij advertentie</li>
+            <li><span class="feature-check">✓</span>Optioneel met bedrijfsnaam</li>
+            <li><span class="feature-check">✓</span>Downloadbaar als PDF</li>
+          </ul>
+          <a href="https://zekeropweg.nu/verkooprapport.html" class="btn-product verkoper">VerkoopRapport aanvragen →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="section cases-section" id="cases">
+  <div class="section-inner">
+    <div class="section-label">Praktijkdata</div>
+    <h2 class="section-title">Waarom kilometerstand niet genoeg is</h2>
+    <p class="section-sub">Drie voorbeelden uit onze AVILOO-meetdata die laten zien waarom inzicht in de accu essentieel is.</p>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-label">Audi Q5 TFSIe · AVILOO</div>
+        <div class="case-title">99.500 km — 21% onder de ADAC-norm</div>
+        <p class="case-text">Op het dashboard: prima. In de diagnose: SoH van 79,1%. Bij 99.500 km hoort minimaal 88% SoH. Het verschil vertegenwoordigt een waardeverschil van meer dan €4.000.</p>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-val amber">79,1%</span>
+            <span class="case-metric-label">Gemeten SoH</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val green">88%</span>
+            <span class="case-metric-label">ADAC-norm</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val amber">€4.000+</span>
+            <span class="case-metric-label">Waardegat</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-label">BMW X5 45e · AVILOO</div>
+        <div class="case-title">72.000 km — ruim boven de norm</div>
+        <p class="case-text">Zelfde leeftijdscategorie, ander laadgedrag. SoH van 91,6% bij 72.000 km. Ruim boven de ADAC-norm van 90%. Een rapport als dit maakt van twijfelende kopers overtuigde kopers.</p>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-val green">91,6%</span>
+            <span class="case-metric-label">Gemeten SoH</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val teal">90%</span>
+            <span class="case-metric-label">ADAC-norm</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val green">✓ Boven</span>
+            <span class="case-metric-label">Normstatus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-label">Nissan Leaf · AVILOO</div>
+        <div class="case-title">Dealer: 100% — AVILOO: cel 13 defect</div>
+        <p class="case-text">Dealer toonde 100% SoH. Bosch: 91%. Moba: 91%. AVILOO-diagnose: cel 13 vertoont een anomalie. Geen enkele andere methode had dit zichtbaar gemaakt. Alleen een diagnose op celniveau onthult dit.</p>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-val amber">Cel 13</span>
+            <span class="case-metric-label">Defect gevonden</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val green">100%</span>
+            <span class="case-metric-label">Dealer claimde</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-val teal">AVILOO</span>
+            <span class="case-metric-label">Ontsluierde het</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAAROM -->
+<section class="section" id="waarom">
+  <div class="section-inner">
+    <div class="section-label">Waarom ZekerOpWeg</div>
+    <h2 class="section-title">Onafhankelijk, transparant en eerlijk</h2>
+    <p class="section-sub">Wij verkopen geen auto's. Wij geven inzicht. Dat maakt ons anders dan elke dealer of garagecheck.</p>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🔬</div>
+        <div>
+          <h3>AVILOO-gecertificeerd</h3>
+          <p>Onze rapporten zijn gebaseerd op gecertificeerde AVILOO-meetdata. Dezelfde methodiek die leasemaatschappijen en autobedrijven gebruiken voor objectieve accuwaardering.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚖️</div>
+        <div>
+          <h3>Volledig onafhankelijk</h3>
+          <p>Wij hebben geen belang bij de verkoop van de auto. Onze inschatting is objectief en gebaseerd op data, niet op commerciële belangen van de verkopende partij.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📖</div>
+        <div>
+          <h3>Begrijpelijke taal</h3>
+          <p>Geen technisch jargon. Wij vertalen accudata naar begrijpelijke conclusies. Inclusief de tankanalyse: zo groot is het verschil in de dagelijkse praktijk.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <div>
+          <h3>Direct beschikbaar</h3>
+          <p>Geen afspraak. Geen wachttijd. Vul het kenteken in, betaal veilig via Stripe en ontvang direct je rapport als PDF. Binnen 2 minuten klaar.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🛡️</div>
+        <div>
+          <h3>Eerlijk over grenzen</h3>
+          <p>Onze rapporten zijn statistische inschattingen, geen gecertificeerde metingen. We zijn daar expliciet over. Voor een gecertificeerde meting op celniveau verwijzen wij door naar een AccuCheck.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💬</div>
+        <div>
+          <h3>Persoonlijk advies via WhatsApp</h3>
+          <p>Twijfels? Stuur het kenteken via WhatsApp. Pepijn kijkt direct mee en geeft onafhankelijk advies op basis van zijn AVILOO-certificering en automotive expertise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVILOO -->
+<section class="aviloo-section">
+  <div class="aviloo-inner">
+    <div class="aviloo-badge">
+      <span style="font-size:28px;">🔬</span>
+      <div class="aviloo-badge-text">
+        <div class="aviloo-badge-title">AVILOO-gecertificeerd meetpartner</div>
+        <div class="aviloo-badge-sub">TÜV-gecertificeerde diagnosemethodiek</div>
+      </div>
+    </div>
+    <h2>Gebaseerd op echte meetdata</h2>
+    <p>AVILOO is de Europese standaard voor gecertificeerde accudiagnose. Onze rapporten zijn geijkt op meetdata van honderden vergelijkbare voertuigen. Dezelfde methodiek die wordt gebruikt door leasemaatschappijen en autobedrijven voor objectieve accuwaardering.</p>
+    <div class="aviloo-stats">
+      <div>
+        <span class="aviloo-stat-val">47+</span>
+        <span class="aviloo-stat-label">Gecertificeerde meetpunten</span>
+      </div>
+      <div>
+        <span class="aviloo-stat-val">1.200+</span>
+        <span class="aviloo-stat-label">Rapporten gegenereerd</span>
+      </div>
+      <div>
+        <span class="aviloo-stat-val">50+</span>
+        <span class="aviloo-stat-label">Ondersteunde modellen</span>
+      </div>
+    </div>
+    <a href="https://zekeropweg.nu/rapport.html" class="btn-aviloo">Bekijk je AccuRisico Rapport →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-label">Veelgestelde vragen</div>
+    <h2 class="section-title">Antwoorden op je vragen</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is dit rapport een echte accumeting?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">Nee. Onze rapporten zijn statistische inschattingen op basis van leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen. Ze geven een gefundeerde indicatie maar zijn geen vervanging voor een gecertificeerde meting op celniveau. Voor dat laatste bieden wij een AccuCheck aan via een fysieke meting op locatie.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Welke voertuigen worden ondersteund?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">Wij ondersteunen alle gangbare EV's en plug-in hybrides op de Nederlandse markt. Denk aan Tesla, BMW, Audi, Volkswagen, Hyundai, Kia, Mercedes, Volvo, Polestar en meer dan 50 andere merken en modellen. Volledig benzine of diesel voertuigen worden niet ondersteund.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wat is het verschil tussen AccuRisico en VerkoopRapport?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">Het AccuRisico Rapport is gericht op kopers: het geeft een risicoscore, degradatieanalyse en aankoopadvies. Het VerkoopRapport is gericht op verkopers: het presenteert de accuconditie op een begrijpelijke manier voor de koper, inclusief een markvergelijking en toekomstprognose. Beide rapporten zijn gebaseerd op dezelfde AVILOO-data.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wat is de SoH en waarom is die belangrijk?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">SoH staat voor State of Health: de verhouding tussen de huidige capaciteit van de accu en de originele capaciteit toen de auto nieuw was. Een SoH van 90% betekent dat de accu nog 90% van zijn originele capaciteit heeft. Dit bepaalt direct het rijbereik en de waarde van het voertuig. Een accu met 80% SoH heeft 20% minder bereik dan een nieuwe accu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wat is de ADAC-norm?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">De ADAC (de grootste automobilistenvereniging van Europa) heeft per kilometerklasse minimumdrempels vastgesteld voor accugezondheid. Een voertuig op 90.000 km hoort minimaal 85-88% SoH te hebben, afhankelijk van het accutype. Een voertuig onder deze norm heeft een hogere kans op merkbare rijbereikvermindering en kan in waarde zijn gedaald.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hoe snel ontvang ik het rapport?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">Direct. Na betaling via Stripe word je automatisch doorgestuurd naar je volledige rapport. Je kunt het direct bekijken en als PDF downloaden. Er is geen wachttijd en geen handmatige verwerking.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kan ik ook een fysieke AccuCheck laten uitvoeren?
+          <span class="faq-arrow">⌄</span>
+        </button>
+        <div class="faq-a">Ja. Een digitaal rapport geeft een eerste inschatting. Als je zekerheid wilt op celniveau, bieden wij een AccuCheck aan waarbij wij op locatie komen meten met gecertificeerde AVILOO-apparatuur. Neem contact op via WhatsApp om een AccuCheck in te plannen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="cta-bottom">
+  <h2>Klaar om te starten?</h2>
+  <p>Kies je rapport en ontvang binnen 2 minuten inzicht in de accu — voor of na aankoop.</p>
+  <div class="cta-buttons">
+    <a href="https://zekeropweg.nu/rapport.html" class="btn-main">AccuRisico Rapport — €19,95 →</a>
+    <a href="https://zekeropweg.nu/verkooprapport.html" class="btn-secondary">VerkoopRapport — €24,95 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Zeker<span>OpWeg</span></div>
+      <div style="margin-top:6px;">KvK 99323575 · Barendrecht · zekeropweg.nu</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://zekeropweg.nu/rapport.html">AccuRisico</a>
+      <a href="https://zekeropweg.nu/verkooprapport.html">VerkoopRapport</a>
+      <a href="https://wa.me/31623452349">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/31623452349?text=Hoi%2C%20ik%20heb%20een%20vraag%20over%20de%20accu%20van%20mijn%20auto." class="wa-float" target="_blank">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Stuur kenteken via WhatsApp
+</a>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
