@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>EV AccuCheck Rotterdam | Onafhankelijke accutest op locatie | ZekerOpWeg</title>
+
+  <meta name="description" content="EV AccuCheck in Rotterdam en omgeving. ZekerOpWeg komt naar u toe vanuit Barendrecht, direct aan de rand van Rotterdam. Gecertificeerde AVILOO-meting op locatie. Rapport dezelfde dag.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://zekeropweg.nu#org",
+        "name": "ZekerOpWeg",
+        "url": "https://zekeropweg.nu",
+        "telephone": "+31623452349",
+        "description": "Onafhankelijk EV en hybride aankoopadviseur en AccuCheck specialist. Gecertificeerde AVILOO-accumetingen op locatie in Rotterdam en omgeving.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Barendrecht",
+          "addressRegion": "Zuid-Holland",
+          "addressCountry": "NL"
+        },
+        "areaServed": [
+          "Rotterdam",
+          "Barendrecht",
+          "Capelle aan den IJssel",
+          "Ridderkerk",
+          "Spijkenisse",
+          "Dordrecht",
+          "Gorinchem",
+          "Schiedam",
+          "Vlaardingen",
+          "Zuid-Holland"
+        ],
+        "knowsAbout": [
+          "EV AccuCheck Rotterdam",
+          "AVILOO gecertificeerde accutest",
+          "tweedehands EV aankoopadvies Rotterdam",
+          "accu degradatie meting",
+          "SoH meting elektrische auto"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Komt ZekerOpWeg naar Rotterdam voor een AccuCheck?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. ZekerOpWeg is gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid. Wij komen op locatie bij u, bij de dealer of bij de particulier die de auto aanbiedt. Geen reiskosten binnen Rotterdam en directe omgeving."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe lang duurt een EV AccuCheck in Rotterdam?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een gecertificeerde AVILOO-AccuCheck duurt twee tot drie uur. U ontvangt het rapport dezelfde dag. De meting vindt plaats op de locatie van het voertuig, u hoeft de auto niet te verplaatsen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat kost een EV AccuCheck in Rotterdam?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een AccuCheck op locatie kost €95 tot €129, afhankelijk van het voertuigtype. Geen verborgen kosten. U ontvangt een officieel AVILOO-accucertificaat inclusief SoH-waarde en risico-inschatting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welke wijken en gebieden in Rotterdam bedient ZekerOpWeg?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZekerOpWeg bedient heel Rotterdam, inclusief Rotterdam-Zuid, Rotterdam-Noord, Kralingen, IJsselmonde, Prins Alexander, Hillegersberg, Schiedam, Capelle aan den IJssel, Ridderkerk en Spijkenisse."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/luxury.css" />
+  <link rel="stylesheet" href="css/components.css" />
+
+  <style>
+    .local-hero {
+      background: linear-gradient(135deg, #071a2b 0%, #0a2d4a 100%);
+      padding: 5rem 0 4rem;
+      color: #fff;
+    }
+    .local-hero h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      max-width: 800px;
+    }
+    .local-hero .hero-intro {
+      font-size: 1.05rem;
+      opacity: .85;
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .local-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .local-body h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--color-heading, #071a2b);
+      margin: 3rem 0 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid #e8f0f7;
+    }
+    .local-body h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-heading, #071a2b);
+      margin: 2rem 0 .75rem;
+    }
+    .local-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text, #3a3a3a);
+      margin-bottom: 1.4rem;
+    }
+    .local-body ul {
+      margin: 0 0 1.4rem 1.2rem;
+    }
+    .local-body ul li {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text, #3a3a3a);
+      margin-bottom: .5rem;
+    }
+    .local-infobox {
+      background: #e8f4ee;
+      border-left: 4px solid #0a6e4a;
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
+    }
+    .local-infobox p {
+      margin: 0;
+      font-size: .95rem;
+      color: #0a3d2a;
+    }
+    .local-warnbox {
+      background: #fdf3e3;
+      border-left: 4px solid #c87c00;
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
+    }
+    .local-warnbox p {
+      margin: 0;
+      font-size: .95rem;
+      color: #6b4200;
+    }
+    .local-cta {
+      background: #071a2b;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 3rem 0;
+      color: #fff;
+      text-align: center;
+    }
+    .local-cta h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 .6rem;
+    }
+    .local-cta p {
+      font-size: .95rem;
+      color: rgba(255,255,255,.8);
+      margin: 0 0 1.2rem;
+    }
+    .gebied-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin: 1.5rem 0;
+    }
+    .gebied-item {
+      background: #f7f9fc;
+      border: 1px solid #e0e8f0;
+      border-radius: 8px;
+      padding: .65rem 1rem;
+      font-size: .9rem;
+      color: #071a2b;
+      font-weight: 500;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 1.2rem 0;
+    }
+    .faq-item h3 {
+      margin: 0 0 .5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #071a2b;
+    }
+    .faq-item p {
+      margin: 0;
+      font-size: .95rem;
+      line-height: 1.75;
+      color: #3a3a3a;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .8rem 0;
+      border-bottom: 1px solid #e8f0f7;
+      font-size: .95rem;
+    }
+    .price-row:last-child { border: none; }
+    .price-row strong { color: #071a2b; }
+    .price-amount { font-weight: 700; color: #0a6e4a; }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
+</head>
+
+<body class="fade-in">
+
+<!-- HEADER -->
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <div class="zop-dropdown">
+        <a href="ev-accucheck.html" class="zop-drop-label active">AccuCheck</a>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck.html">EV AccuCheck</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+        </div>
+      </div>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+      <a href="bezwaarservice.html">Bezwaar</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+  </div>
+</header>
+
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Menu sluiten">×</button>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+    <a href="automatisering.html">Automatisering</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="menu-overlay"></div>
+
+<main class="page-content">
+
+<!-- HERO -->
+<section class="local-hero">
+  <div class="container">
+    <span class="hero-eyebrow">EV AccuCheck Rotterdam en omgeving</span>
+    <h1>EV accu controleren in Rotterdam? ZekerOpWeg komt naar u toe.</h1>
+    <p class="hero-intro">
+      Gecertificeerde AVILOO-AccuCheck op locatie in heel Rotterdam en omgeving.
+      ZekerOpWeg is gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid.
+      Geen reiskosten. Rapport dezelfde dag.
+    </p>
+    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+  </div>
+</section>
+
+<div class="local-body">
+
+  <h2>Onafhankelijke EV AccuCheck in Rotterdam</h2>
+  <p>
+    ZekerOpWeg voert gecertificeerde AVILOO-accumetingen uit op locatie in Rotterdam en de directe
+    omgeving. Wij zijn gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid, en zijn binnen
+    15 tot 30 minuten bij u, bij de dealer of bij de particulier die de auto aanbiedt.
+  </p>
+  <p>
+    U hoeft de auto niet te verplaatsen. De meting vindt plaats op de locatie van het voertuig.
+    Na afloop ontvangt u een officieel AVILOO-accucertificaat met de SoH-waarde, een celanalyse
+    en een risico-inschatting. Alles op dezelfde dag.
+  </p>
+
+  <div class="local-infobox">
+    <p>
+      ZekerOpWeg is officieel AVILOO-partner en TÜV-gecertificeerd. Een AccuCheck op locatie
+      in Rotterdam kost €95 tot €129. Stuur het kenteken of de advertentielink via WhatsApp
+      naar 06 23452349 en u hoort dezelfde dag van ons.
+    </p>
+  </div>
+
+  <h2>Waarom een AccuCheck vóór aankoop?</h2>
+  <p>
+    De boordcomputer van een elektrische auto toont een SoH-percentage op basis van wat de
+    boordsoftware registreert. Dat percentage kan een defecte cel missen. Een gecertificeerde
+    AccuCheck meet de werkelijke laadcapaciteit van elke individuele cel.
+  </p>
+
+  <div class="local-warnbox">
+    <p>
+      In een test door Bright en KNAC (2026) rapporteerde een Moba-meting een SoH van 90,85 procent
+      op een Nissan Leaf. Een AVILOO-meting detecteerde een defecte cel in diezelfde accu.
+      Herstelkosten: circa €6.500. De software-uitlezing miste het probleem volledig.
+    </p>
+  </div>
+
+  <p>
+    Een EV-accu vervangen kost tussen de €5.000 en €15.000, afhankelijk van merk en model.
+    Een AccuCheck bij ZekerOpWeg kost €95 tot €129. Die afweging is eenvoudig.
+  </p>
+
+  <h2>Tarieven</h2>
+  <div class="price-row">
+    <strong>AccuCheck op locatie (EV)</strong>
+    <span class="price-amount">€95 - €129</span>
+  </div>
+  <div class="price-row">
+    <strong>AccuCheck op locatie (PHEV / hybride)</strong>
+    <span class="price-amount">€95 - €129</span>
+  </div>
+  <div class="price-row">
+    <strong>AccuRisico Rapport (digitaal, op basis van kenteken)</strong>
+    <span class="price-amount">€19,95</span>
+  </div>
+  <div class="price-row">
+    <strong>Aankoopadvies inclusief AccuCheck (Basis pakket)</strong>
+    <span class="price-amount">€249</span>
+  </div>
+
+  <div class="local-cta">
+    <h3>AccuCheck aanvragen in Rotterdam</h3>
+    <p>Stuur het kenteken of de advertentielink via WhatsApp. U hoort dezelfde dag van ons.</p>
+    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+  </div>
+
+  <h2>Servicegebied Rotterdam en omgeving</h2>
+  <p>
+    ZekerOpWeg bedient heel Rotterdam en de directe omgeving vanuit Barendrecht.
+    Onderstaande gebieden vallen binnen ons standaard servicegebied zonder extra reiskosten:
+  </p>
+
+  <div class="gebied-grid">
+    <div class="gebied-item">Rotterdam-Zuid</div>
+    <div class="gebied-item">Rotterdam-Noord</div>
+    <div class="gebied-item">Kralingen</div>
+    <div class="gebied-item">IJsselmonde</div>
+    <div class="gebied-item">Prins Alexander</div>
+    <div class="gebied-item">Hillegersberg</div>
+    <div class="gebied-item">Barendrecht</div>
+    <div class="gebied-item">Ridderkerk</div>
+    <div class="gebied-item">Capelle a/d IJssel</div>
+    <div class="gebied-item">Schiedam</div>
+    <div class="gebied-item">Vlaardingen</div>
+    <div class="gebied-item">Spijkenisse</div>
+    <div class="gebied-item">Dordrecht</div>
+    <div class="gebied-item">Gorinchem</div>
+    <div class="gebied-item">Zwijndrecht</div>
+  </div>
+
+  <p>
+    Buiten dit gebied komen wij ook. Neem contact op via WhatsApp voor de mogelijkheden.
+  </p>
+
+  <h2>Hoe werkt de AccuCheck?</h2>
+  <p>
+    De AVILOO-AccuCheck werkt anders dan een standaard OBD-uitlezing. Het meetsysteem laadt de
+    accu volledig op en meet vervolgens de werkelijke energieopbrengst onder gecertificeerde
+    omstandigheden. Dit detecteert:
+  </p>
+  <ul>
+    <li>Defecte of zwakke cellen die de boordsoftware niet rapporteert</li>
+    <li>Capaciteitsverlies dat afwijkt van het gerapporteerde SoH-percentage</li>
+    <li>Asymmetrische degradatie tussen modules</li>
+    <li>Risico op plotseling bereiksverlies bij koude temperaturen</li>
+  </ul>
+  <p>
+    Na afloop ontvangt u een officieel AVILOO-accucertificaat. Dit certificaat is objectief,
+    herleidbaar en direct bruikbaar bij onderhandelingen of bij de verzekeraar.
+  </p>
+
+  <h2>Veelgestelde vragen</h2>
+
+  <div class="faq-item">
+    <h3>Komt ZekerOpWeg naar Rotterdam voor een AccuCheck?</h3>
+    <p>Ja. ZekerOpWeg is gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid. Wij komen op locatie bij u, bij de dealer of bij de particulier die de auto aanbiedt. Geen reiskosten binnen Rotterdam en directe omgeving.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Hoe lang duurt een EV AccuCheck in Rotterdam?</h3>
+    <p>Een gecertificeerde AVILOO-AccuCheck duurt twee tot drie uur. U ontvangt het rapport dezelfde dag. De meting vindt plaats op de locatie van het voertuig, u hoeft de auto niet te verplaatsen.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Wat kost een EV AccuCheck in Rotterdam?</h3>
+    <p>Een AccuCheck op locatie kost €95 tot €129, afhankelijk van het voertuigtype. Geen verborgen kosten. U ontvangt een officieel AVILOO-accucertificaat inclusief SoH-waarde en risico-inschatting.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Welke wijken en gebieden in Rotterdam bedient ZekerOpWeg?</h3>
+    <p>ZekerOpWeg bedient heel Rotterdam, inclusief Rotterdam-Zuid, Rotterdam-Noord, Kralingen, IJsselmonde, Prins Alexander, Hillegersberg, Schiedam, Capelle aan den IJssel, Ridderkerk en Spijkenisse.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Wat is het verschil tussen ZekerOpWeg en een OBD-uitlezing?</h3>
+    <p>Een OBD-uitlezing leest de data uit die de boordsoftware beschikbaar stelt. Een gecertificeerde AVILOO-AccuCheck meet de werkelijke laadcapaciteit van elke individuele cel. Dit detecteert defecte cellen die een OBD-uitlezing mist. Het verschil kan oplopen tot €6.500 aan onverwachte herstelkosten.</p>
+  </div>
+
+  <h2>Meer lezen</h2>
+  <ul>
+    <li><a href="ev-accucheck.html">EV AccuCheck: alles over de gecertificeerde AVILOO-meting</a></li>
+    <li><a href="tweedehands-ev-kopen.html">Tweedehands elektrische auto kopen: complete gids en checklist</a></li>
+    <li><a href="aankoopadvies.html">Onafhankelijk aankoopadvies elektrische auto</a></li>
+    <li><a href="contact.html">Contact opnemen of kenteken doorsturen</a></li>
+  </ul>
+
+  <div class="local-cta">
+    <h3>Voorkom een miskoop vóór u tekent</h3>
+    <p>
+      Gevestigd in Barendrecht, actief in heel Rotterdam en omgeving.
+      Stuur het kenteken via WhatsApp en u weet dezelfde dag waar u aan toe bent.
+    </p>
+    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+  </div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>© 2026 ZekerOpWeg</p>
+      <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
+        Handelsnaam van Pepijn Westhoff<br>
+        KvK 99323575<br>
+        BTW NL005381985B31<br>
+        IBAN NL22 INGB 0116 6008 02
+      </p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p>
+        <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>
+        Algemene vragen en eerste contact
+      </p>
+      <p>
+        <a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>
+        Facturatie en administratie
+      </p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Diensten</p>
+      <p>
+        <a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a><br>
+        Persoonlijk aankoopadvies
+      </p>
+      <p>
+        <a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>
+        EV AccuCheck
+      </p>
+      <p>
+        <a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br>
+        Bezwaarservice
+      </p>
+    </div>
+  </div>
+  <div style="margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <p class="footer-legal">
+        Diensten worden geleverd conform Nederlandse wetgeving.
+        ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/menu.js" defer></script>
+
+</body>
+</html>
