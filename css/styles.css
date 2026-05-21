@@ -1710,7 +1710,37 @@ body.menu-open{ overflow:hidden; }
 
 <link rel="stylesheet" href="css/components.css">
 
+/* FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+}
 
+.faq-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 1.4rem 0;
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-heading, #071a2b);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.faq-answer {
+  font-size: 0.95rem;
+  color: var(--color-text, #3a3a3a);
+  line-height: 1.75;
+  max-width: 72ch;
+}
 
 
 
