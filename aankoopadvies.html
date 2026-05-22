@@ -3,42 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Onafhankelijk Aankoopadvies | ZekerOpWeg</title>
-  <meta name="description" content="Onafhankelijk aankoopadvies voor occasions en nieuwe auto's. Rust, overzicht en zekerheid bij uw volgende auto, zonder verkooppraat of belangen." />
+  <title>Onafhankelijk aankoopadvies occasions, EV en hybride | ZekerOpWeg Barendrecht</title>
+ <meta name="description" content="Onafhankelijk aankoopadvies voor occasions, elektrische auto's en hybrides. BeslisCheck vanaf €49. Gespecialiseerd in EV en PHEV aankoopkeuring. Actief in regio Rotterdam en Zuid-Holland. Geen verkoopbelang." />
 
-  <script type="application/ld+json">
+ <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["LocalBusiness", "AutoRepair"],
       "@id": "https://zekeropweg.nu#org",
       "name": "ZekerOpWeg",
       "url": "https://zekeropweg.nu",
       "logo": "https://zekeropweg.nu/assets/logo.png",
-      "description": "Onafhankelijk preventief adviesinstituut voor automobilisten en bedrijven.",
-      "founder": { "@type": "Person", "name": "Pepijn Westhoff" },
-      "areaServed": { "@type": "Country", "name": "Nederland" }
+      "description": "Onafhankelijk aankoopadvies voor occasions, elektrische auto's en hybrides. Gespecialiseerd in EV en PHEV aankoopkeuring. Actief in de regio Rotterdam, Zuid-Holland en Noord-Brabant.",
+      "telephone": "+31623452349",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Barendrecht",
+        "addressRegion": "Zuid-Holland",
+        "addressCountry": "NL"
+      },
+      "areaServed": [
+        "Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Pepijn Westhoff",
+        "url": "https://zekeropweg.nu/over.html"
+      }
     },
     {
       "@type": "Service",
-      "name": "Aankoopadvies auto",
+      "name": "BeslisCheck aankoopadvies",
       "provider": { "@id": "https://zekeropweg.nu#org" },
-      "areaServed": "Netherlands",
+      "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
       "url": "https://zekeropweg.nu/aankoopadvies.html",
-      "description": "Onafhankelijk aankoopadvies voor gebruikte en nieuwe voertuigen, inclusief selectie, beoordeling en begeleiding zonder verkoopbelang."
+      "description": "Onafhankelijke analyse van een advertentie en voertuig vóór bezichtiging. Concreet advies: kopen, onderhandelen of laten staan. Voor occasions, elektrische auto's en hybrides.",
+      "offers": {
+        "@type": "Offer",
+        "price": "49",
+        "priceCurrency": "EUR"
+      }
     },
     {
       "@type": "Service",
-      "name": "EV AccuCheck",
+      "name": "Aankoopadvies Premium EV en hybride",
       "provider": { "@id": "https://zekeropweg.nu#org" },
-      "areaServed": "Netherlands",
-      "url": "https://zekeropweg.nu/ev-accucheck.html",
-      "description": "TÜV gecertificeerde accudiagnose op locatie voor elektrische en hybride voertuigen met objectief accucertificaat."
+      "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
+      "url": "https://zekeropweg.nu/aankoopadvies.html",
+      "description": "Fysieke bezichtiging en technische controle van een occasion, elektrische auto of hybride op locatie. Inclusief proefrit en onderhandelingsadvies. Gespecialiseerd in EV en PHEV.",
+      "offers": {
+        "@type": "Offer",
+        "price": "349",
+        "priceCurrency": "EUR"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "EV AccuCheck combinatie aankoopadvies",
+      "provider": { "@id": "https://zekeropweg.nu#org" },
+      "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
+      "url": "https://zekeropweg.nu/aankoopadvies.html",
+      "description": "Aankoopadvies inclusief gecertificeerde AVILOO Flash Test op locatie. Voor kopers van een tweedehands elektrische auto of plug-in hybride. Combinatieprijs vanaf €449.",
+      "offers": {
+        "@type": "Offer",
+        "price": "449",
+        "priceCurrency": "EUR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wat kost onafhankelijk aankoopadvies voor een occasion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck, waarbij een advertentie en voertuig op afstand worden beoordeeld. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AccuCheck vanaf €449."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is een BeslisCheck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De BeslisCheck is een onafhankelijke analyse van een advertentie en voertuig vóór bezichtiging. Op basis van het kenteken en de advertentie geeft ZekerOpWeg een concreet advies: kopen, onderhandelen of laten staan. De BeslisCheck kost €49 en wordt verrekend bij een vervolgpakket."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Geeft ZekerOpWeg ook aankoopadvies voor elektrische auto's en hybrides?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. ZekerOpWeg is gespecialiseerd in aankoopadvies voor tweedehands elektrische auto's en plug-in hybrides. Bij Premium en Full Service kan een gecertificeerde AVILOO AccuCheck worden toegevoegd voor een combinatieprijs. De AccuCheck en bezichtiging worden in één bezoek uitgevoerd op locatie in de regio Rotterdam en Zuid-Holland."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe werkt onafhankelijk aankoopadvies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "U stuurt het kenteken of de advertentielink via WhatsApp. ZekerOpWeg analyseert het voertuig en geeft een eerste beoordeling. Bij een Premium of Full Service pakket wordt een afspraak gemaakt voor een fysieke bezichtiging op de locatie van de auto. U ontvangt altijd een schriftelijk advies met aandachtspunten, risico's en een concrete aanbeveling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Werkt ZekerOpWeg ook buiten Barendrecht?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. ZekerOpWeg is actief in de regio Rotterdam, Zuid-Holland en Noord-Brabant. Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen. Buiten deze regio geldt €0,35 per kilometer, berekend vanaf de locatie van de auto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ZekerOpWeg echt onafhankelijk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platforms. Het advies is uitsluitend in het belang van de koper, ook als dat betekent dat de auto wordt afgeraden."
+          }
+        }
+      ]
     }
   ]
 }
 </script>
+
 
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
   <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
