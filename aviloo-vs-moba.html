@@ -1,1 +1,567 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>EV accu controleren: niet het percentage, maar de cellen | ZekerOpWeg</title>
+
+  <meta name="description" content="Een SoH-percentage zegt niet of de accu gezond is. Wat telt zijn de individuele cellen. Alleen AVILOO meet dit. Zo voorkomt u een miskoop van duizenden euro's.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "EV accu controleren: niet het percentage, maar de cellen",
+        "description": "Waarom een SoH-percentage onvoldoende is bij de aankoop van een tweedehands EV, en waarom celgezondheid de enige vraag is die ertoe doet.",
+        "author": {
+          "@type": "Person",
+          "name": "Pepijn Westhoff",
+          "url": "https://zekeropweg.nu/over.html"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZekerOpWeg",
+          "url": "https://zekeropweg.nu"
+        },
+        "datePublished": "2025-06-01",
+        "dateModified": "2025-06-01",
+        "url": "https://zekeropweg.nu/aviloo-vs-moba.html"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Waarom is een SoH-percentage niet genoeg bij de aankoop van een tweedehands EV?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een SoH-percentage geeft aan hoeveel capaciteit de accu als geheel nog heeft. Het zegt niets over de gezondheid van individuele cellen. Een accu met een SoH van 88 procent kan één cel bevatten die op het punt van falen staat. Die cel wordt niet zichtbaar in een percentage. Alleen een celanalyse maakt dat inzichtelijk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat is het verschil tussen een SoH-meting en een celanalyse?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een SoH-meting geeft een gemiddeld percentage over de hele accu. Een celanalyse kijkt naar elke individuele cel afzonderlijk. Een zwakke of defecte cel kan door de omliggende cellen worden gemaskeerd in het totaalpercentage, maar valt wel op in een celanalyse. AVILOO is de enige onafhankelijke accutest die een volledige celanalyse uitvoert."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welke accutest meet de celgezondheid van een EV?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AVILOO is de enige onafhankelijke accutest die celgezondheid meet via een uitgebreide dataanalyse op celniveau. Andere systemen zoals Moba en Bosch meten een SoH-percentage op basis van BMS-data. Dat geeft een indicatie van de capaciteit maar geen inzicht in de gezondheid van individuele cellen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan een accu met een hoge SoH toch defect zijn?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. In een praktijktest op een Nissan Leaf rapporteerden Moba en Bosch een SoH die geen ernstig probleem aangaf. AVILOO detecteerde een defecte cel, cel 13, die door de andere systemen niet werd opgemerkt. De herstelkosten voor die accu bedroegen circa 6.500 euro. Bron: Autoblog en Bright, maart 2026."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/luxury.css" />
+  <link rel="stylesheet" href="css/components.css" />
+
+  <style>
+    .pillar-hero {
+      background: linear-gradient(135deg, #071a2b 0%, #0a2d4a 100%);
+      padding: 5rem 0 4rem;
+      color: #fff;
+    }
+    .pillar-hero h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      max-width: 800px;
+    }
+    .pillar-hero .hero-intro {
+      font-size: 1.05rem;
+      opacity: .85;
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .pillar-meta {
+      margin-top: 2rem;
+      font-size: .85rem;
+      opacity: .55;
+    }
+    .pillar-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .pillar-body h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--color-heading, #071a2b);
+      margin: 3rem 0 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid #e8f0f7;
+    }
+    .pillar-body h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-heading, #071a2b);
+      margin: 2rem 0 .75rem;
+    }
+    .pillar-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text, #3a3a3a);
+      margin-bottom: 1.4rem;
+    }
+    .pillar-body ul {
+      margin: 0 0 1.4rem 1.2rem;
+    }
+    .pillar-body ul li {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text, #3a3a3a);
+      margin-bottom: .5rem;
+    }
+    .pillar-infobox {
+      background: #e8f4ee;
+      border-left: 4px solid #0a6e4a;
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
+    }
+    .pillar-infobox p { margin: 0; font-size: .95rem; color: #0a3d2a; }
+    .pillar-warnbox {
+      background: #fdf3e3;
+      border-left: 4px solid #c87c00;
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
+    }
+    .pillar-warnbox p { margin: 0; font-size: .95rem; color: #6b4200; }
+    .pillar-cta {
+      background: #071a2b;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 3rem 0;
+      color: #fff;
+      text-align: center;
+    }
+    .pillar-cta h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0 0 .6rem; }
+    .pillar-cta p { font-size: .95rem; color: rgba(255,255,255,.8); margin: 0 0 1.2rem; }
+    .verdict-block {
+      background: #071a2b;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      color: #fff;
+    }
+    .verdict-block h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0 0 .8rem; }
+    .verdict-block p { font-size: .95rem; color: rgba(255,255,255,.8); margin: 0; line-height: 1.75; }
+    .case-block {
+      background: #f7f9fc;
+      border: 1px solid #e0e8f0;
+      border-radius: 12px;
+      padding: 1.6rem;
+      margin: 2rem 0;
+    }
+    .case-block h3 { font-size: 1rem; font-weight: 700; color: #071a2b; margin: 0 0 1rem; }
+    .case-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: .75rem;
+      align-items: flex-start;
+      font-size: .95rem;
+    }
+    .case-label { min-width: 160px; font-weight: 600; color: #071a2b; flex-shrink: 0; }
+    .case-value { color: #3a3a3a; line-height: 1.6; }
+    .case-value.bad { color: #b52a00; font-weight: 600; }
+    .case-value.ok  { color: #c87c00; font-weight: 600; }
+    .case-value.good { color: #0a6e4a; font-weight: 600; }
+    .source-note { font-size: .82rem; color: #888; margin-top: .5rem; font-style: italic; }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: .93rem;
+    }
+    .compare-table th {
+      padding: .8rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: .85rem;
+    }
+    .compare-table th:first-child { background: #f7f9fc; color: #071a2b; }
+    .compare-table th.col-other { background: #fdf3e3; color: #6b4200; }
+    .compare-table th.col-aviloo { background: #e8f4ee; color: #0a3d2a; }
+    .compare-table td {
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #e8f0f7;
+      vertical-align: top;
+    }
+    .compare-table td:first-child { font-weight: 500; color: #071a2b; background: #f7f9fc; }
+    .compare-table td.col-other { background: #fffbf5; color: #5a3a00; }
+    .compare-table td.col-aviloo { background: #f5fbf8; color: #0a3d2a; }
+    .compare-table tr:last-child td { border: none; }
+    .faq-item { border-bottom: 1px solid rgba(0,0,0,.08); padding: 1.2rem 0; }
+    .faq-item:last-child { border: none; }
+    .faq-item h3 { font-size: 1rem; font-weight: 600; color: #071a2b; margin: 0 0 .5rem; }
+    .faq-item p { margin: 0; font-size: .95rem; line-height: 1.75; color: #3a3a3a; }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
+</head>
+
+<body class="fade-in">
+
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <div class="zop-dropdown">
+        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck.html">EV AccuCheck</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+        </div>
+      </div>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+      <a href="bezwaarservice.html">Bezwaar</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+  </div>
+</header>
+
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Menu sluiten">×</button>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+    <a href="automatisering.html">Automatisering</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="menu-overlay"></div>
+
+<main class="page-content">
+
+<section class="pillar-hero">
+  <div class="container">
+    <span class="hero-eyebrow">EV accu controleren</span>
+    <h1>Bij een tweedehands EV wilt u geen percentage. U wilt weten of de cellen gezond zijn.</h1>
+    <p class="hero-intro">
+      De meeste accutests geven u een SoH-percentage. Dat klinkt geruststellend, maar het
+      beantwoordt de verkeerde vraag. De enige vraag die telt bij aankoop: zijn de individuele
+      cellen gezond? Alleen AVILOO beantwoordt die vraag.
+    </p>
+    <p class="pillar-meta">Door Pepijn Westhoff, ZekerOpWeg &nbsp;|&nbsp; Bijgewerkt juni 2025</p>
+  </div>
+</section>
+
+<div class="pillar-body">
+
+  <h2>De vraag die iedereen stelt, en de vraag die telt</h2>
+  <p>
+    Wie een tweedehands elektrische auto koopt, wil weten hoe de accu erbij staat. Dat is
+    begrijpelijk. Maar de manier waarop die vraag doorgaans wordt beantwoord, is onvolledig.
+  </p>
+  <p>
+    De meeste accutests geven een SoH-percentage: State of Health. Een getal dat aangeeft
+    hoeveel capaciteit de accu als geheel nog heeft ten opzichte van nieuw. 88 procent.
+    91 procent. Dat klinkt concreet.
+  </p>
+  <p>
+    Maar dat percentage beantwoordt een andere vraag dan u denkt. Het zegt hoeveel er nog
+    van de totale capaciteit over is. Het zegt niets over de gezondheid van de individuele
+    cellen waaruit de accu is opgebouwd.
+  </p>
+
+  <div class="verdict-block">
+    <h3>De juiste volgorde bij een accucheck</h3>
+    <p>
+      Vraag 1: zijn de cellen gezond? Dit is de vraag die bepaalt of u een risico koopt.<br><br>
+      Vraag 2: hoeveel capaciteit is er nog? Dit is pas relevant als vraag 1 met ja is beantwoord.<br><br>
+      De meeste accutests beginnen bij vraag 2. Alleen AVILOO beantwoordt vraag 1.
+    </p>
+  </div>
+
+  <h2>Waarom een percentage tekortschiet</h2>
+  <p>
+    Een accu bestaat uit honderden tot duizenden individuele cellen, gegroepeerd in modules.
+    Het Battery Management System (BMS) bewaakt die cellen en berekent op basis van gemiddelden
+    en algoritmes een totaalpercentage.
+  </p>
+  <p>
+    Het probleem: een cel die zwakker wordt dan de rest, of een cel die op het punt van falen
+    staat, wordt door het BMS gecompenseerd. De omliggende cellen vangen het verschil op.
+    Het totaalpercentage blijft acceptabel. De defecte cel blijft onzichtbaar.
+  </p>
+  <p>
+    Tot het te laat is. Totdat de schade groot genoeg is dat het systeem het niet langer
+    kan maskeren. En dan is er geen sprake meer van een onderhandeling. Dan is er sprake
+    van een rekening.
+  </p>
+
+  <div class="pillar-warnbox">
+    <p>
+      Een SoH van 88 procent kan een accu beschrijven die jarenlang zorgeloos rijdt.
+      Het kan ook een accu beschrijven met een cel die op het punt van falen staat.
+      Het percentage alleen maakt dat onderscheid niet.
+    </p>
+  </div>
+
+  <h2>Wat andere systemen meten</h2>
+  <p>
+    Systemen zoals Moba en Bosch sluiten een dongle aan op de OBD-poort van het voertuig
+    en lezen de BMS-data uit. Dat geeft binnen enkele minuten een SoH-percentage dat
+    rechtstreeks uit het batterijmanagementsysteem van de auto komt.
+  </p>
+  <p>
+    BOVAG en de Vereniging Elektrische Rijders concludeerden in december 2024 na onderzoek
+    in 185 testronden op 24 automodellen dat zowel Moba als AVILOO betrouwbare alternatieven
+    zijn voor de officiële fabrikanttest. Dat klopt, voor het meten van capaciteitsverlies.
+  </p>
+  <p>
+    Maar capaciteitsverlies en celgezondheid zijn niet hetzelfde. En dat onderscheid is
+    precies wat zichtbaar werd in de praktijk.
+  </p>
+
+  <h2>Praktijktest: Nissan Leaf</h2>
+  <p>
+    Autoblog en Bright testten een Nissan Leaf met drie verschillende accutestsystemen.
+    Achteraf bleek dat cel 13 in het accupakket defect was.
+  </p>
+
+  <div class="case-block">
+    <h3>Drie systemen, dezelfde auto, drie uitkomsten</h3>
+    <div class="case-row">
+      <span class="case-label">Voertuig</span>
+      <span class="case-value">Nissan Leaf, occasion</span>
+    </div>
+    <div class="case-row">
+      <span class="case-label">Bosch-meting</span>
+      <span class="case-value ok">Capaciteitsverlies gezien -- geen alarm op defecte cel</span>
+    </div>
+    <div class="case-row">
+      <span class="case-label">Moba-meting</span>
+      <span class="case-value ok">Capaciteitsverlies gezien -- geen alarm op defecte cel</span>
+    </div>
+    <div class="case-row">
+      <span class="case-label">AVILOO Flash Test</span>
+      <span class="case-value good">Cel 13 gedetecteerd als defect -- geen betrouwbare SoH af te geven</span>
+    </div>
+    <div class="case-row">
+      <span class="case-label">Werkelijke situatie</span>
+      <span class="case-value bad">Defecte cel -- herstelkosten circa €6.500</span>
+    </div>
+    <p class="source-note">Bron: Autoblog.nl en Bright, gepubliceerd maart 2026</p>
+  </div>
+
+  <p>
+    Moba en Bosch zagen dat er iets niet klopte. Maar zonder celanalyse konden zij niet
+    zeggen wat er precies aan de hand was. AVILOO gaf niet alleen een alarm, maar weigerde
+    ook een SoH-percentage af te geven zolang de celgezondheid niet in orde was. Dat is
+    de juiste volgorde.
+  </p>
+
+  <h2>Hoe AVILOO celgezondheid meet</h2>
+  <p>
+    AVILOO sluit de AVILOO Box aan op de OBD-poort. Tijdens de meting worden duizenden
+    datapunten verzameld: spanning, stroom, temperatuur en de balans van elke individuele cel.
+    Die gegevens worden in real-time naar de AVILOO-servers gestuurd.
+  </p>
+  <p>
+    Daar worden de meetgegevens vergeleken met een database van miljoenen eerdere metingen
+    van bekende gezonde accu's van hetzelfde model. Die vergelijking maakt afwijkingen
+    op celniveau zichtbaar die in een totaalpercentage niet te zien zijn.
+  </p>
+  <p>
+    De uitkomst is niet alleen een SoH-score maar ook een celanalyse, een benchmark ten
+    opzichte van andere voertuigen van hetzelfde model en een rode vlag als er afwijkingen
+    zijn die nader onderzoek vereisen. De meetmethode is gecertificeerd door TÜV Austria.
+  </p>
+
+  <div class="pillar-infobox">
+    <p>
+      AVILOO is de enige onafhankelijke accutest die celgezondheid als uitgangspunt neemt.
+      ZekerOpWeg is officieel AVILOO-partner en voert gecertificeerde Flash Tests uit op locatie
+      in de regio Rotterdam, Zuid-Holland en Noord-Brabant.
+      <a href="ev-accucheck.html">Meer over de AccuCheck</a>.
+    </p>
+  </div>
+
+  <h2>Vergelijking: wat meet welk systeem?</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="col-other">Moba / Bosch / OBD-tools</th>
+        <th class="col-aviloo">AVILOO Flash Test</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Aansluiting</td>
+        <td class="col-other">OBD-dongle</td>
+        <td class="col-aviloo">OBD-dongle (AVILOO Box)</td>
+      </tr>
+      <tr>
+        <td>Primaire uitkomst</td>
+        <td class="col-other">SoH-percentage (capaciteit)</td>
+        <td class="col-aviloo">Celgezondheid + SoH-percentage</td>
+      </tr>
+      <tr>
+        <td>Celanalyse</td>
+        <td class="col-other">Nee</td>
+        <td class="col-aviloo">Ja -- individuele cellen gemonitord</td>
+      </tr>
+      <tr>
+        <td>Vergelijkingsdatabase</td>
+        <td class="col-other">Nee</td>
+        <td class="col-aviloo">Ja -- miljoenen metingen van gezonde accu's</td>
+      </tr>
+      <tr>
+        <td>Rode vlag bij defecte cel</td>
+        <td class="col-other">Niet altijd</td>
+        <td class="col-aviloo">Ja -- expliciet alarm en geen SoH afgeven</td>
+      </tr>
+      <tr>
+        <td>TÜV-gecertificeerd</td>
+        <td class="col-other">Nee</td>
+        <td class="col-aviloo">Ja -- TÜV Austria</td>
+      </tr>
+      <tr>
+        <td>Aanbevolen door BOVAG</td>
+        <td class="col-other">Moba: ja. Bosch: beperkt.</td>
+        <td class="col-aviloo">Ja</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pillar-cta">
+    <h3>Wilt u weten of de cellen gezond zijn?</h3>
+    <p>Stuur het kenteken via WhatsApp. ZekerOpWeg voert een gecertificeerde AVILOO Flash Test uit op locatie in Rotterdam en omgeving.</p>
+    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+  </div>
+
+  <h2>Veelgestelde vragen</h2>
+
+  <div class="faq-item">
+    <h3>Waarom is een SoH-percentage niet genoeg bij de aankoop van een tweedehands EV?</h3>
+    <p>Een SoH-percentage geeft aan hoeveel capaciteit de accu als geheel nog heeft. Het zegt niets over de gezondheid van individuele cellen. Een accu met een SoH van 88 procent kan één cel bevatten die op het punt van falen staat. Die cel wordt niet zichtbaar in een percentage. Alleen een celanalyse maakt dat inzichtelijk.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Wat is het verschil tussen een SoH-meting en een celanalyse?</h3>
+    <p>Een SoH-meting geeft een gemiddeld percentage over de hele accu. Een celanalyse kijkt naar elke individuele cel afzonderlijk. Een zwakke of defecte cel kan door de omliggende cellen worden gemaskeerd in het totaalpercentage, maar valt wel op in een celanalyse. AVILOO is de enige onafhankelijke accutest die een volledige celanalyse uitvoert.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Welke accutest meet de celgezondheid van een EV?</h3>
+    <p>AVILOO is de enige onafhankelijke accutest die celgezondheid meet via een uitgebreide data-analyse op celniveau. Andere systemen zoals Moba en Bosch meten een SoH-percentage op basis van BMS-data. Dat geeft een indicatie van de capaciteit maar geen inzicht in de gezondheid van individuele cellen.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Kan een accu met een acceptabele SoH toch defect zijn?</h3>
+    <p>Ja. In een praktijktest op een Nissan Leaf rapporteerden Moba en Bosch een SoH die geen ernstig probleem aangaf. AVILOO detecteerde een defecte cel, cel 13, die door de andere systemen niet werd opgemerkt. De herstelkosten voor die accu bedroegen circa €6.500. Bron: Autoblog en Bright, maart 2026.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Is Moba dan onbetrouwbaar?</h3>
+    <p>Nee. Moba is een serieus systeem dat door BOVAG en de Vereniging Elektrische Rijders is erkend als betrouwbaar alternatief voor de fabrikanttest. Voor het meten van capaciteitsverlies is het een goede indicatie. Het mist alleen de celanalyse die nodig is om verborgen celschade te detecteren.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Gebruikt ZekerOpWeg AVILOO?</h3>
+    <p>Ja. ZekerOpWeg is officieel AVILOO-partner en voert uitsluitend gecertificeerde AVILOO Flash Tests uit op locatie. U ontvangt een TÜV-gecertificeerd accucertificaat met celanalyse, SoH-score en benchmark ten opzichte van andere voertuigen van hetzelfde model.</p>
+  </div>
+
+  <h2>Meer lezen</h2>
+  <ul>
+    <li><a href="ev-accucheck.html">EV AccuCheck: gecertificeerde AVILOO-meting op locatie</a></li>
+    <li><a href="tweedehands-ev-kopen.html">Tweedehands elektrische auto kopen: complete gids en checklist</a></li>
+    <li><a href="ev-check-rotterdam.html">EV AccuCheck Rotterdam en omgeving</a></li>
+    <li><a href="aankoopadvies.html">Onafhankelijk aankoopadvies elektrische auto</a></li>
+  </ul>
+
+  <div class="pillar-cta">
+    <h3>Voorkom een miskoop vóór u tekent</h3>
+    <p>Stuur het kenteken of de advertentielink via WhatsApp. ZekerOpWeg voert een gecertificeerde AVILOO Flash Test uit op locatie in Rotterdam, Barendrecht en omgeving.</p>
+    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>© 2026 ZekerOpWeg</p>
+      <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
+        Handelsnaam van Pepijn Westhoff<br>
+        KvK 99323575<br>
+        BTW NL005381985B31<br>
+        IBAN NL22 INGB 0116 6008 02
+      </p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+      <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>Facturatie en administratie</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Diensten</p>
+      <p><a href="mailto:advies@zekeropweg.nu">advies@zekeropweg.nu</a><br>Persoonlijk aankoopadvies</p>
+      <p><a href="mailto:accucheck@zekeropweg.nu">accucheck@zekeropweg.nu</a><br>EV AccuCheck</p>
+      <p><a href="mailto:bezwaarsupport@zekeropweg.nu">bezwaarsupport@zekeropweg.nu</a><br>Bezwaarservice</p>
+    </div>
+  </div>
+  <div style="margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <p class="footer-legal">
+        Diensten worden geleverd conform Nederlandse wetgeving.
+        ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/menu.js" defer></script>
+</body>
+</html>
