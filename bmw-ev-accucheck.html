@@ -1,1 +1,454 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMW EV & PHEV AccuCheck | i4, X5 45e, X5 50e, X3 30e, 330e, 530e | ZekerOpWeg</title>
+  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor BMW elektrische en hybride modellen. i4, X5 45e, X5 50e, X3 30e, 330e en 530e. Defecte cellen direct zichtbaar. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.">
+  <link rel="canonical" href="https://zekeropweg.nu/bmw-ev-accucheck.html" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "BMW EV & PHEV AccuCheck",
+    "provider": {"@id": "https://zekeropweg.nu#org"},
+    "description": "Onafhankelijke AVILOO Flash Test voor BMW i4, X5 45e, X5 50e, X3 30e, 330e en 530e. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.",
+    "url": "https://zekeropweg.nu/bmw-ev-accucheck.html",
+    "areaServed": ["Barendrecht","Rotterdam","Zuid-Holland","Noord-Brabant"],
+    "offers": {"@type": "Offer", "price": "129", "priceCurrency": "EUR"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hoe betrouwbaar is de BMW Battery Health Quick Report?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BMW schrijft zelf op hun Battery Health Quick Report: 'De snelle evaluatie is gebaseerd op algoritmes van de software van de hoogvoltaccu in het voertuig en toont geen bindend resultaat, maar geeft slechts een indicatie.' Het is een schatting op basis van de BMS-software, geen onafhankelijke meting op celniveau."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat is het verschil tussen een BMW dealer uitlezing en een AVILOO Flash Test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Een BMW dealer uitlezing leest de waarde uit die de boordcomputer zelf berekent. BMW noemt dit expliciet een indicatie, geen bindend resultaat. De AVILOO Flash Test analyseert elke individuele cel onafhankelijk van de BMW-software en detecteert defecte cellen direct als Red Flag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke BMW modellen kunnen getest worden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor BMW i4, X5 xDrive45e, X5 xDrive50e, X3 xDrive30e, 330e en 530e. Alle modellen op locatie in de regio Rotterdam en Zuid-Holland."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/luxury.css" />
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/assets/images/logos/favicon/favicon.png">
+
+  <style>
+  .model-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .model-nav-item{font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid rgba(0,0,0,0.1);color:#0a3d62;text-decoration:none;transition:all 0.15s;white-space:nowrap}
+  .model-nav-item:hover{background:#0a3d62;color:#fff;border-color:#0a3d62}
+  .model-blok{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.75rem 2rem 2rem;margin-bottom:1.5rem;scroll-margin-top:80px}
+  .model-blok:hover{border-color:rgba(0,0,0,0.15)}
+  .model-header{margin-bottom:1.25rem}
+  .model-type-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px}
+  .badge-phev{background:#fffdf0;color:#856404}
+  .badge-ev{background:#eef3f8;color:#1a6091}
+  .model-naam{font-size:1.4rem;font-weight:600;color:#0d1b2a;margin:0;line-height:1.3}
+  .model-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+  @media(max-width:560px){.model-specs-grid{grid-template-columns:1fr}}
+  .spec-item{background:#f9f9fb;border-radius:8px;padding:12px 16px}
+  .spec-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 4px}
+  .spec-val{font-size:14px;font-weight:500;color:#0d1b2a;margin:0;line-height:1.4}
+  .model-sectie-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+  .model-sectie{padding:12px 16px;border-radius:8px;background:#f9f9fb;border-left:3px solid rgba(0,0,0,0.08)}
+  .model-sectie-risico{border-left-color:#e0a800;background:#fffdf0}
+  .model-sectie-check{border-left-color:#1a6091;background:#f0f7ff}
+  .sectie-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 5px}
+  .sectie-label-risico{color:#856404}
+  .sectie-label-check{color:#0a3d62}
+  .sectie-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
+  .model-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .model-check-btn{background:transparent;border:1.5px solid #0a3d62;color:#0a3d62;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.15s;display:inline-block}
+  .model-check-btn:hover{background:#0a3d62;color:#fff}
+  .page-intro{font-size:1rem;line-height:1.8;color:#333;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .bmw-disclaimer-blok{background:#fff8e1;border:1px solid rgba(224,168,0,0.3);border-left:3px solid #e0a800;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+  .bmw-disclaimer-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#856404;margin:0 0 8px}
+  .bmw-disclaimer-quote{font-size:14px;color:#333;line-height:1.75;font-style:italic;margin:0 0 8px}
+  .bmw-disclaimer-source{font-size:11px;color:#888;margin:0;font-style:normal}
+  .artikel-link-blok{background:#f4f5f7;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .artikel-link-tekst{flex:1;min-width:200px}
+  .artikel-link-tekst p{font-size:0.85rem;color:#888;margin:0 0 3px}
+  .artikel-link-tekst strong{font-size:0.95rem;color:#0d1b2a;display:block}
+  </style>
+</head>
+
+<body class="fade-in">
+
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <div class="zop-dropdown">
+        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck.html">EV AccuCheck</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+        </div>
+      </div>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+      <a href="bezwaarservice.html">Bezwaar</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
+  </div>
+</header>
+
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Sluiten">&times;</button>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="menu-overlay"></div>
+
+<main class="page-content">
+
+<section class="hero hero-standard">
+  <div class="hero-content">
+    <span class="hero-eyebrow">AVILOO Flash Test &middot; TUV-gecertificeerd &middot; Op locatie Rotterdam</span>
+    <h1>BMW EV &amp; PHEV AccuCheck</h1>
+    <p>Onafhankelijke accumeting voor BMW i4, X5 45e, X5 50e, X3 30e, 330e en 530e. AVILOO Flash Test op celniveau. Niet afhankelijk van BMW-software of dealer uitlezing.</p>
+    <div class="hero-actions">
+      <a href="intake.html?dienst=ev-accucheck&model=bmw" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+    </div>
+    <div class="hero-trust" style="margin-top:1.5rem">
+      <span>&#10003; Officieel AVILOO-partner</span>
+      <span>&#10003; TUV-gecertificeerd</span>
+      <span>&#10003; Op locatie bij de auto</span>
+      <span>&#10003; 16 jaar automotive ervaring</span>
+    </div>
+  </div>
+</section>
+
+<section class="services-section container">
+
+  <p class="page-intro">
+    BMW biedt een breed scala aan elektrische en plug-in hybride modellen. De i4 is volledig elektrisch, de X5 45e en 50e, X3 30e, 330e en 530e zijn plug-in hybride. Al deze modellen komen als occasion op de markt en allemaal hebben ze dezelfde onbekende: de werkelijke accustaat. Een BMW Battery Health Quick Report van de dealer geeft een indicatie. Geen onafhankelijke meting. Een AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau.
+  </p>
+
+  <div class="bmw-disclaimer-blok">
+    <p class="bmw-disclaimer-label">BMW zegt het zelf &mdash; Battery Health Quick Report</p>
+    <p class="bmw-disclaimer-quote">"De snelle evaluatie is gebaseerd op algoritmes van de software van de hoogvoltaccu in het voertuig en toont geen bindend resultaat, maar geeft slechts een indicatie van de actuele restcapaciteit van de hoogvoltaccu. Met name is het bericht geen vervanging voor een gedetailleerde meting."</p>
+    <p class="bmw-disclaimer-source">Bron: BMW Battery Health Quick Report (standaard dealerdocument)</p>
+  </div>
+
+  <nav class="model-nav" aria-label="BMW modellen">
+    <a href="#bmw-i4" class="model-nav-item">BMW i4</a>
+    <a href="#bmw-x5-45e" class="model-nav-item">X5 xDrive45e</a>
+    <a href="#bmw-x5-50e" class="model-nav-item">X5 xDrive50e</a>
+    <a href="#bmw-x3-30e" class="model-nav-item">X3 xDrive30e</a>
+    <a href="#bmw-330e" class="model-nav-item">330e</a>
+    <a href="#bmw-530e" class="model-nav-item">530e</a>
+  </nav>
+
+  <div class="artikel-link-blok">
+    <div class="artikel-link-tekst">
+      <p>Kennisartikel</p>
+      <strong>Moba vs. AVILOO Flash Test: wat is het verschil?</strong>
+    </div>
+    <a href="bms-vs-celniveau.html" class="btn-info">Lees het artikel &rarr;</a>
+  </div>
+
+  <!-- BMW i4 -->
+  <div class="model-blok" id="bmw-i4">
+    <div class="model-header">
+      <span class="model-type-badge badge-ev">Volledig elektrisch</span>
+      <h2 class="model-naam">BMW i4</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">70,2 kWh (eDrive40) of 83,9 kWh (M50)</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">WLTP bereik</p>
+        <p class="spec-val">510 km (eDrive40) of 455 km (M50)</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Gemiddeld 2 tot 3% per jaar bij normaal gebruik. Na 3 jaar doorgaans 90 tot 94% SoH. Het accupakket van de i4 presteert over het algemeen stabiel.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Vroege bouwjaren (2021-2022) kennen software-gerelateerde SoH-afwijkingen. Na een BMW software-update kan de BMS-waarde veranderen zonder dat de accu is aangeraakt. BMW noemt de dealer uitlezing zelf een indicatie, geen bindend resultaat. Intensief snelladen boven 150 kW en gebruik in extreme temperaturen versnelt degradatie.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse van alle individuele cellen, onafhankelijk van BMW-software. Detectie van celspanningsafwijkingen en Red Flags. Vergelijking met BMW i4 referentiedata in de AVILOO database. Niet beïnvloed door dealer updates.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-i4" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-i4" class="model-check-btn">Plan AccuCheck voor de i4</a>
+    </div>
+  </div>
+
+  <!-- BMW X5 45e -->
+  <div class="model-blok" id="bmw-x5-45e">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">BMW X5 xDrive45e</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">24 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 77 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Na 4 jaar gemiddeld 75 tot 85% restcapaciteit. Sterk afhankelijk van laadgedrag. Bij regelmatig laden stabielere degradatie.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">De X5 45e is een populaire zakelijke leaseauto. Eigenaren die zelden laden rijden feitelijk op benzine terwijl de accu ongebruikt degradeert. Dit is niet zichtbaar in de BMW Battery Health Quick Report omdat die alleen een indicatie geeft op basis van BMS-software. Controleer altijd het laadhistorie.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse detecteert afwijkingen die ontstaan door langdurig niet laden. Vergelijking met X5 45e referentiedata in de AVILOO database geeft direct context. Onafhankelijk van BMW-software en dealer updates.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-x5-45e" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-x5-45e" class="model-check-btn">Plan AccuCheck voor de X5 45e</a>
+    </div>
+  </div>
+
+  <!-- BMW X5 50e -->
+  <div class="model-blok" id="bmw-x5-50e">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">BMW X5 xDrive50e</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">29,5 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 90 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Nieuwer model met groter accupakket. Bij regelmatig laden stabiele degradatie van 1 tot 2% per jaar. Minder degradatiedata beschikbaar dan de 45e vanwege recentere introductie.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Jonger model met beperkte meethistorie in de markt. Juist daarom is een onafhankelijke meting extra belangrijk. De BMW Battery Health Quick Report geeft slechts een indicatie op basis van BMS-algoritmes. Geen bindend resultaat, zoals BMW zelf aangeeft.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse en vergelijking met groeiende X5 50e database in AVILOO. Onafhankelijk van BMW-software. Geeft eerlijk inzicht ook bij modellen met beperkte markthistorie.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-x5-50e" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-x5-50e" class="model-check-btn">Plan AccuCheck voor de X5 50e</a>
+    </div>
+  </div>
+
+  <!-- BMW X3 30e -->
+  <div class="model-blok" id="bmw-x3-30e">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">BMW X3 xDrive30e</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">12 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 46 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Kleinere accu degradeert sneller in percentage bij intensief gebruik. Na 5 jaar gemiddeld 70 tot 82% restcapaciteit. Sterk afhankelijk van laadgedrag.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Kleinere PHEV-accu's zijn gevoeliger voor diepe ontlading en onregelmatig laadgedrag. Veel zakelijke rijders laden nauwelijks, waardoor degradatie versnelt. De BMW Battery Health Quick Report toont alleen een indicatie op basis van BMS-software. Dat getal zegt niets over hoe de accu feitelijk is gebruikt.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Toont de werkelijke restcapaciteit en vergelijkt met X3 30e referentiedata in de AVILOO database. Bijzonder relevant bij zakelijke occasions waarbij laadgedrag sterk varieert.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-x3-30e" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-x3-30e" class="model-check-btn">Plan AccuCheck voor de X3 30e</a>
+    </div>
+  </div>
+
+  <!-- BMW 330e -->
+  <div class="model-blok" id="bmw-330e">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">BMW 330e</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">12 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 60 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Populaire zakelijke leaseauto. Na leaseperiode van 4 jaar doorgaans 65 tot 80% restcapaciteit. Sterk afhankelijk van laadgedrag van de vorige eigenaar.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">De 330e is een van de meest voorkomende leaseretours op de occasionmarkt. Leaserijders laden vaak niet, wat leidt tot versnelde degradatie. Dit is zelden zichtbaar in de BMW Battery Health Quick Report. BMW geeft zelf aan dat dit rapport geen vervanging is voor een gedetailleerde meting.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse toont direct of de accu is gebruikt als hybride of feitelijk als benzineauto is gereden. Vergelijking met 330e referentiedata in de AVILOO database. Essentieel bij deze occasionklasse.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-330e" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-330e" class="model-check-btn">Plan AccuCheck voor de 330e</a>
+    </div>
+  </div>
+
+  <!-- BMW 530e -->
+  <div class="model-blok" id="bmw-530e">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">BMW 530e</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">12 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 54 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Zelfde accukarakteristiek als de 330e. Zakelijk gebruik met weinig laden leidt tot snellere degradatie. Na 4 jaar gemiddeld 65 tot 80% restcapaciteit.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Populaire zakelijke occasion in het premiumsegment. Dezelfde risico's als de 330e: laadgedrag bepaalt alles. De BMW Battery Health Quick Report geeft slechts een indicatie op basis van BMS-software. Geen bindend resultaat. Geen vervanging voor een gedetailleerde meting, aldus BMW zelf.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Vergelijkt de gemeten accustaat met 530e referentiedata in de AVILOO database en detecteert celafwijkingen direct. Onafhankelijk van BMW-software en dealer updates.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=bmw-530e" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=bmw-530e" class="model-check-btn">Plan AccuCheck voor de 530e</a>
+    </div>
+  </div>
+
+  <!-- DONKER CTA BLOK -->
+  <div style="background:#0d1b2a;border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
+    <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">ZekerOpWeg &middot; Officieel AVILOO-partner &middot; 16 jaar automotive ervaring</p>
+    <h3 style="font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3;">Klaar voor zekerheid over uw BMW?</h3>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 1.5rem;line-height:1.7;">Een BMW Battery Health Quick Report is een indicatie. Geen bindend resultaat. De AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau. Op locatie in Rotterdam en omgeving.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="intake.html?dienst=ev-accucheck&model=bmw" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+      <a href="rapport.html" style="background:transparent;border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">AccuRisico Rapport &middot; &euro;19,95</a>
+    </div>
+  </div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>&copy; 2025 ZekerOpWeg</p>
+      <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">Handelsnaam van Pepijn Westhoff<br>KvK 99323575<br>BTW NL005381985B31</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Meer modellen</p>
+      <p><a href="audi-ev-accucheck.html">Audi AccuCheck</a></p>
+      <p><a href="vw-ev-accucheck.html">Volkswagen AccuCheck</a></p>
+      <p><a href="tesla-ev-accucheck.html">Tesla AccuCheck</a></p>
+      <p><a href="porsche-ev-accucheck.html">Porsche AccuCheck</a></p>
+      <p><a href="ev-accucheck.html">Alle modellen</a></p>
+    </div>
+  </div>
+  <div style="margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <p class="footer-legal">Diensten worden geleverd conform Nederlandse wetgeving. ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/menu.js" defer></script>
+</body>
+</html>
