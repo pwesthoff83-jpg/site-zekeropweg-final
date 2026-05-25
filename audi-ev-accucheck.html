@@ -1,1 +1,386 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audi EV & PHEV AccuCheck | Q4 e-tron, e-tron 55, A3 PHEV, Q5 PHEV | ZekerOpWeg</title>
+  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor Audi elektrische en hybride modellen. Q4 e-tron, e-tron 55, A3 PHEV en Q5 PHEV. Defecte cellen direct zichtbaar. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.">
+  <link rel="canonical" href="https://zekeropweg.nu/audi-ev-accucheck.html" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Audi EV & PHEV AccuCheck",
+    "provider": {"@id": "https://zekeropweg.nu#org"},
+    "description": "Onafhankelijke AVILOO Flash Test voor Audi Q4 e-tron, e-tron 55, A3 PHEV en Q5 PHEV. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.",
+    "url": "https://zekeropweg.nu/audi-ev-accucheck.html",
+    "areaServed": ["Barendrecht","Rotterdam","Zuid-Holland","Noord-Brabant"],
+    "offers": {"@type": "Offer", "price": "129", "priceCurrency": "EUR"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is het verschil tussen een Audi dealer uitlezing en een AVILOO Flash Test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Een Audi dealer uitlezing leest de SoH-waarde uit die de boordcomputer zelf berekent op basis van fabrieksalgoritmes. Net als bij BMW is dit een indicatie, geen onafhankelijke meting. De AVILOO Flash Test analyseert elke individuele cel onafhankelijk van Audi-software en detecteert defecte cellen direct als Red Flag."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke Audi modellen kunnen getest worden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor Audi Q4 e-tron, e-tron 55, A3 PHEV (40 TFSI e) en Q5 PHEV (55 TFSI e). Alle modellen op locatie in de regio Rotterdam en Zuid-Holland."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Heeft de Audi Q4 e-tron dezelfde accuproblemen als de VW ID.4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De Audi Q4 e-tron deelt zijn platform met de VW ID.4. Vroege bouwjaren kennen software-gerelateerde SoH-afwijkingen waarbij de BMS-waarde na een update significant kan veranderen zonder dat de accu is aangeraakt. Een onafhankelijke AVILOO Flash Test is bij beide modellen extra relevant."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/luxury.css" />
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/assets/images/logos/favicon/favicon.png">
+
+  <style>
+  .model-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .model-nav-item{font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid rgba(0,0,0,0.1);color:#0a3d62;text-decoration:none;transition:all 0.15s;white-space:nowrap}
+  .model-nav-item:hover{background:#0a3d62;color:#fff;border-color:#0a3d62}
+  .model-blok{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.75rem 2rem 2rem;margin-bottom:1.5rem;scroll-margin-top:80px}
+  .model-blok:hover{border-color:rgba(0,0,0,0.15)}
+  .model-header{margin-bottom:1.25rem}
+  .model-type-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px}
+  .badge-phev{background:#fffdf0;color:#856404}
+  .badge-ev{background:#eef3f8;color:#1a6091}
+  .model-naam{font-size:1.4rem;font-weight:600;color:#0d1b2a;margin:0;line-height:1.3}
+  .model-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+  @media(max-width:560px){.model-specs-grid{grid-template-columns:1fr}}
+  .spec-item{background:#f9f9fb;border-radius:8px;padding:12px 16px}
+  .spec-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 4px}
+  .spec-val{font-size:14px;font-weight:500;color:#0d1b2a;margin:0;line-height:1.4}
+  .model-sectie-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+  .model-sectie{padding:12px 16px;border-radius:8px;background:#f9f9fb;border-left:3px solid rgba(0,0,0,0.08)}
+  .model-sectie-risico{border-left-color:#e0a800;background:#fffdf0}
+  .model-sectie-check{border-left-color:#1a6091;background:#f0f7ff}
+  .sectie-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 5px}
+  .sectie-label-risico{color:#856404}
+  .sectie-label-check{color:#0a3d62}
+  .sectie-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
+  .model-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .model-check-btn{background:transparent;border:1.5px solid #0a3d62;color:#0a3d62;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.15s;display:inline-block}
+  .model-check-btn:hover{background:#0a3d62;color:#fff}
+  .page-intro{font-size:1rem;line-height:1.8;color:#333;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .audi-foto-blok{width:100%;border-radius:12px;overflow:hidden;margin-bottom:2rem}
+  .audi-foto-blok img{width:100%;max-height:340px;object-fit:cover;object-position:center;display:block}
+  .audi-foto-blok p{font-size:12px;color:#888;padding:8px 14px;background:#f9f9fb;font-style:italic;margin:0}
+  .artikel-link-blok{background:#f4f5f7;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .artikel-link-tekst{flex:1;min-width:200px}
+  .artikel-link-tekst p{font-size:0.85rem;color:#888;margin:0 0 3px}
+  .artikel-link-tekst strong{font-size:0.95rem;color:#0d1b2a;display:block}
+  .info-blok{background:#f0f7ff;border:1px solid rgba(10,61,98,0.15);border-left:3px solid #0a3d62;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+  .info-blok-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0a3d62;margin:0 0 8px}
+  .info-blok-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
+  </style>
+</head>
+
+<body class="fade-in">
+
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <div class="zop-dropdown">
+        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck.html">EV AccuCheck</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+        </div>
+      </div>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          <a href="automatisering.html">Automatisering</a>
+        </div>
+      </div>
+      <a href="bezwaarservice.html">Bezwaar</a>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
+  </div>
+</header>
+
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Sluiten">&times;</button>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+    <a href="bezwaarservice.html">Bezwaar</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="menu-overlay"></div>
+
+<main class="page-content">
+
+<section class="hero hero-standard">
+  <div class="hero-content">
+    <span class="hero-eyebrow">AVILOO Flash Test &middot; TUV-gecertificeerd &middot; Op locatie Rotterdam</span>
+    <h1>Audi EV &amp; PHEV AccuCheck</h1>
+    <p>Onafhankelijke accumeting voor Audi Q4 e-tron, e-tron 55, A3 PHEV en Q5 PHEV. AVILOO Flash Test op celniveau. Niet afhankelijk van Audi-software of dealer uitlezing.</p>
+    <div class="hero-actions">
+      <a href="intake.html?dienst=ev-accucheck&model=audi" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+    </div>
+    <div class="hero-trust" style="margin-top:1.5rem">
+      <span>&#10003; Officieel AVILOO-partner</span>
+      <span>&#10003; TUV-gecertificeerd</span>
+      <span>&#10003; Op locatie bij de auto</span>
+      <span>&#10003; 16 jaar automotive ervaring</span>
+    </div>
+  </div>
+</section>
+
+<section class="services-section container">
+
+  <div class="audi-foto-blok">
+    <img src="assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg" alt="AVILOO Flash Test Audi op locatie ZekerOpWeg Rotterdam" loading="lazy">
+    <p>AVILOO Flash Test uitgevoerd in een Audi op locatie &middot; ZekerOpWeg</p>
+  </div>
+
+  <p class="page-intro">
+    Audi biedt zowel volledig elektrische modellen als een brede PHEV-lijn. De Q4 e-tron deelt zijn platform met de VW ID.4 maar heeft eigen accukarakteristieken. De PHEV-modellen zijn populair als zakelijke leaseauto en komen in grote aantallen als occasion op de markt. Een dealer uitlezing geeft een indicatie op basis van de Audi-software. Een AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau, onafhankelijk van wat de auto zelf rapporteert.
+  </p>
+
+  <div class="info-blok">
+    <p class="info-blok-label">Waarom een onafhankelijke meting bij Audi essentieel is</p>
+    <p class="info-blok-tekst">Net als bij andere merken is de SoH-waarde die een Audi dealer uitleest afhankelijk van de fabrieksalgoritmes in de boordcomputer. AVILOO documenteerde in hun whitepaper dat een BMS-waarde van 80% na een reguliere software-update bij de dealer plotseling 100% kan tonen, zonder dat de accu is aangeraakt. De AVILOO Flash Test staat volledig los van de auto en wordt niet beïnvloed door software-updates.</p>
+  </div>
+
+  <nav class="model-nav" aria-label="Audi modellen">
+    <a href="#audi-q4-etron" class="model-nav-item">Q4 e-tron</a>
+    <a href="#audi-etron-55" class="model-nav-item">e-tron 55</a>
+    <a href="#audi-a3-phev" class="model-nav-item">A3 PHEV</a>
+    <a href="#audi-q5-phev" class="model-nav-item">Q5 PHEV</a>
+  </nav>
+
+  <div class="artikel-link-blok">
+    <div class="artikel-link-tekst">
+      <p>Kennisartikel</p>
+      <strong>Moba vs. AVILOO Flash Test: wat is het verschil?</strong>
+    </div>
+    <a href="bms-vs-celniveau.html" class="btn-info">Lees het artikel &rarr;</a>
+  </div>
+
+  <!-- Audi Q4 e-tron -->
+  <div class="model-blok" id="audi-q4-etron">
+    <div class="model-header">
+      <span class="model-type-badge badge-ev">Volledig elektrisch</span>
+      <h2 class="model-naam">Audi Q4 e-tron</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">52 kWh of 77 kWh (netto)</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">WLTP bereik</p>
+        <p class="spec-val">340 km (52 kWh) of 520 km (77 kWh)</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Deelt platform met VW ID.4. Vergelijkbare degradatiepatronen: gemiddeld 2 tot 3% per jaar. Na 3 jaar doorgaans 90 tot 94% SoH. Het 77 kWh pakket presteert stabiel bij normaal gebruik.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Vroege Q4 e-tron modellen (2021-2022) kennen software-gerelateerde SoH-afwijkingen. Na een Audi software-update kan de BMS-waarde significant veranderen zonder dat de accu is aangeraakt. Dit is hetzelfde patroon als bij de VW ID.4 vanwege het gedeelde platform. Een onafhankelijke meting is bij vroege bouwjaren extra relevant.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse van alle individuele cellen, onafhankelijk van Audi-software. Vergelijking met Q4 e-tron referentiedata in de AVILOO database. Platform-specifieke normwaarden beschikbaar. Niet beïnvloed door software-updates.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=audi-q4-etron" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=audi-q4-etron" class="model-check-btn">Plan AccuCheck voor de Q4 e-tron</a>
+    </div>
+  </div>
+
+  <!-- Audi e-tron 55 -->
+  <div class="model-blok" id="audi-etron-55">
+    <div class="model-header">
+      <span class="model-type-badge badge-ev">Volledig elektrisch</span>
+      <h2 class="model-naam">Audi e-tron 55</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">95 kWh bruto (86,5 kWh netto)</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">WLTP bereik</p>
+        <p class="spec-val">Circa 440 km</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Groot accupakket degradeert trager in percentage. Na 4 jaar gemiddeld 88 tot 94% SoH. AVILOO meetdata bevestigt stabiele prestaties bij normaal gebruik en laadgedrag.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Zwaar voertuig met hoog stroomverbruik. Intensief snelladen en gebruik in extreme temperaturen versnelt degradatie. Bij een groot accupakket van bijna 87 kWh netto kunnen zelfs kleine celafwijkingen een merkbare impact hebben op het praktische bereik. Controleer laadgeschiedenis en gebruik.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Celanalyse van het volledige e-tron 55 accupakket. Vergelijking met e-tron 55 referentiedata in de AVILOO database. Groot pakket betekent dat kleine celafwijkingen relatief grote impact kunnen hebben op bereik en restwaarde.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=audi-etron-55" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=audi-etron-55" class="model-check-btn">Plan AccuCheck voor de e-tron 55</a>
+    </div>
+  </div>
+
+  <!-- Audi A3 PHEV -->
+  <div class="model-blok" id="audi-a3-phev">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">Audi A3 PHEV (40 TFSI e)</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">10,4 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 67 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Populaire zakelijke leaseauto. Na 4 jaar gemiddeld 65 tot 80% restcapaciteit bij typisch zakelijk gebruik met weinig laden. Bij regelmatig laden stabielere degradatie van 2 tot 3% per jaar.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Zelfde laadgedrag-risico als andere zakelijke PHEV-modellen. De dealer uitlezing geeft alleen de BMS-waarde door, afhankelijk van de Audi-software. Dat getal zegt niets over hoe de accu feitelijk is gebruikt. Veel A3 PHEV occasions van voormalige zakelijke rijders hebben nauwelijks geladen.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Toont werkelijke restcapaciteit onafhankelijk van de Audi-software. Essentieel bij A3 PHEV occasions van voormalige zakelijke rijders. Vergelijking met A3 PHEV referentiedata in de AVILOO database.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=audi-a3-phev" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=audi-a3-phev" class="model-check-btn">Plan AccuCheck voor de A3 PHEV</a>
+    </div>
+  </div>
+
+  <!-- Audi Q5 PHEV -->
+  <div class="model-blok" id="audi-q5-phev">
+    <div class="model-header">
+      <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
+      <h2 class="model-naam">Audi Q5 PHEV (55 TFSI e)</h2>
+    </div>
+    <div class="model-specs-grid">
+      <div class="spec-item">
+        <p class="spec-label">Accupakket</p>
+        <p class="spec-val">14,4 kWh netto bruikbaar</p>
+      </div>
+      <div class="spec-item">
+        <p class="spec-label">Elektrisch bereik (WLTP)</p>
+        <p class="spec-val">Circa 57 km elektrisch</p>
+      </div>
+    </div>
+    <div class="model-sectie-grid">
+      <div class="model-sectie">
+        <p class="sectie-label">Typische degradatie</p>
+        <p class="sectie-tekst">Grotere PHEV-accu dan A3. Bij regelmatig laden stabielere degradatie. Na 4 jaar gemiddeld 72 tot 85% restcapaciteit. Premium zakelijke occasion waarbij accustaat direct de restwaarde bepaalt.</p>
+      </div>
+      <div class="model-sectie model-sectie-risico">
+        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
+        <p class="sectie-tekst">Populaire premium zakelijke occasion. Laadgedrag bepalend voor accustaat. De dealer uitlezing geeft alleen de BMS-waarde door, die afhankelijk is van de Audi-fabrieksalgoritmes. Bij een aankoopprijs van meer dan €60.000 is een onafhankelijke meting geen overbodige luxe maar een basisvereiste.</p>
+      </div>
+      <div class="model-sectie model-sectie-check">
+        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
+        <p class="sectie-tekst">Vergelijkt gemeten restcapaciteit met Q5 PHEV referentiedata in de AVILOO database. Detecteert celafwijkingen direct. Onafhankelijk van Audi-software en dealer updates.</p>
+      </div>
+    </div>
+    <div class="model-cta-row">
+      <a href="rapport.html?model=audi-q5-phev" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
+      <a href="intake.html?dienst=ev-accucheck&model=audi-q5-phev" class="model-check-btn">Plan AccuCheck voor de Q5 PHEV</a>
+    </div>
+  </div>
+
+  <!-- DONKER CTA BLOK -->
+  <div style="background:#0d1b2a;border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
+    <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">ZekerOpWeg &middot; Officieel AVILOO-partner &middot; 16 jaar automotive ervaring</p>
+    <h3 style="font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3;">Klaar voor zekerheid over uw Audi?</h3>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 1.5rem;line-height:1.7;">Een Audi dealer uitlezing geeft een indicatie op basis van de boordcomputer. De AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau. Op locatie in Rotterdam en omgeving. Onafhankelijk, zonder verkoopbelang.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="intake.html?dienst=ev-accucheck&model=audi" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+      <a href="rapport.html" style="background:transparent;border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">AccuRisico Rapport &middot; &euro;19,95</a>
+    </div>
+  </div>
+
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>&copy; 2025 ZekerOpWeg</p>
+      <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">Handelsnaam van Pepijn Westhoff<br>KvK 99323575<br>BTW NL005381985B31</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Meer modellen</p>
+      <p><a href="bmw-ev-accucheck.html">BMW AccuCheck</a></p>
+      <p><a href="vw-ev-accucheck.html">Volkswagen AccuCheck</a></p>
+      <p><a href="tesla-ev-accucheck.html">Tesla AccuCheck</a></p>
+      <p><a href="porsche-ev-accucheck.html">Porsche AccuCheck</a></p>
+      <p><a href="ev-accucheck.html">Alle modellen</a></p>
+    </div>
+  </div>
+  <div style="margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <p class="footer-legal">Diensten worden geleverd conform Nederlandse wetgeving. ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/menu.js" defer></script>
+</body>
+</html>
