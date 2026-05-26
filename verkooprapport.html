@@ -1859,9 +1859,8 @@ for (const entry of phevWhitelist) {
     const rapportScreen = document.getElementById('rapport-screen');
     rapportScreen.style.display = 'block';
     document.getElementById('rapport-content').innerHTML = `
-    <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
+   <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
   <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#d97706;margin-bottom:12px;">🔍 Praktijkvoorbeeld: AVILOO-meting — 8 jaar, 130.000 km</div>
-
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
     <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
       <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px">Leeftijd</div>
@@ -1876,14 +1875,11 @@ for (const entry of phevWhitelist) {
       <div style="font-size:15px;font-weight:600;color:#16a34a;">87%</div>
     </div>
   </div>
-
   <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:14px;">
     Een gecertificeerde AVILOO-meting toont 87% SoH na 8 jaar en 130.000 km. Wat betekent dat in de praktijk? Om het begrijpelijk te maken vertalen we het naar een benzine-analogie.
   </p>
-
   <div style="background:#fff;border:1px solid #fcd34d;border-radius:10px;padding:16px 18px;margin-bottom:12px;">
     <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#d97706;margin-bottom:12px;">⛽ Stel: een auto met een tank van 45 liter, rijdt 1 op 13</div>
-
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
       <span style="font-size:13px;color:#334155;min-width:160px;">Nieuw (100%)</span>
       <div style="flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;">
@@ -1891,7 +1887,6 @@ for (const entry of phevWhitelist) {
       </div>
       <span style="font-size:13px;font-weight:600;color:#0f172a;min-width:110px;text-align:right;">45 ltr · 585 km</span>
     </div>
-
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
       <span style="font-size:13px;color:#334155;min-width:160px;">Na 8 jr / 130k km (87%)</span>
       <div style="flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;">
@@ -1899,7 +1894,6 @@ for (const entry of phevWhitelist) {
       </div>
       <span style="font-size:13px;font-weight:600;color:#d97706;min-width:110px;text-align:right;">39 ltr · 507 km</span>
     </div>
-
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
         <div>
@@ -1917,11 +1911,10 @@ for (const entry of phevWhitelist) {
       </div>
     </div>
   </div>
-
   <p style="font-size:13px;color:#334155;line-height:1.65;font-weight:500;">
     De auto rijdt er niet minder om. Je laadt alleen wat eerder bij. Dat is wat 87% SoH betekent in de praktijk.
   </p>
-</div>  `;
+</div>
     return;
   }
 
@@ -2031,35 +2024,61 @@ const tankPct        = Math.round(sohMid);
       </div>
 
       <div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#d97706;margin-bottom:12px;">🔍 Praktijkvoorbeeld: Tesla Model X 100D — AVILOO gemeten</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-          <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">Leeftijd</div>
-            <div style="font-size:15px;font-weight:600;color:#0f172a;">8 jaar</div>
-          </div>
-          <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">Kilometerstand</div>
-            <div style="font-size:15px;font-weight:600;color:#0f172a;">130.000 km</div>
-          </div>
-          <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
-            <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">AVILOO SoH</div>
-            <div style="font-size:15px;font-weight:600;color:#16a34a;">87,3%</div>
-          </div>
-        </div>
-        <div class="tank-box" style="background:#fff;border-color:#fcd34d;">
-       <div class="tank-title" style="color:#d97706;">⚡ Tesla Model X 100D — rijbereik WLTP</div>
-     <div class="tank-row">
-       <span class="tank-label">Nieuw (100%)</span>
-       <div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div>
-       <span class="tank-val">580 km WLTP</span>
-     </div>
-     <div class="tank-row">
-       <span class="tank-label">Na 8jr / 130k km (87,3%)</span>
-       <div class="tank-bar-wrap"><div class="tank-bar-fill degraded" style="width:87%"></div></div>
-       <span class="tank-val">506 km WLTP</span>
-     </div>
+  <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#d97706;margin-bottom:12px;">🔍 Praktijkvoorbeeld: AVILOO-meting — 8 jaar, 130.000 km</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
+    <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px">Leeftijd</div>
+      <div style="font-size:15px;font-weight:600;color:#0f172a;">8 jaar</div>
     </div>
-        <p style="font-size:12px;color:#94a3b8;margin-top:10px;line-height:1.6;"><p>Na 8 jaar en 130.000 km heeft de Tesla nog 87,3% van zijn originele capaciteit. Degradatie is 12,7%. Dat scheelt 74 km rijbereik op een volle accu. De auto rijdt precies hetzelfde. Je laadt eerder bij.</p>
+    <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px">Kilometerstand</div>
+      <div style="font-size:15px;font-weight:600;color:#0f172a;">130.000 km</div>
+    </div>
+    <div style="background:#fff;border:1px solid #fcd34d;border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px">AVILOO SoH</div>
+      <div style="font-size:15px;font-weight:600;color:#16a34a;">87%</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:14px;">
+    Een gecertificeerde AVILOO-meting toont 87% SoH na 8 jaar en 130.000 km. Wat betekent dat in de praktijk? Om het begrijpelijk te maken vertalen we het naar een benzine-analogie.
+  </p>
+  <div style="background:#fff;border:1px solid #fcd34d;border-radius:10px;padding:16px 18px;margin-bottom:12px;">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#d97706;margin-bottom:12px;">⛽ Stel: een auto met een tank van 45 liter, rijdt 1 op 13</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+      <span style="font-size:13px;color:#334155;min-width:160px;">Nieuw (100%)</span>
+      <div style="flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;">
+        <div style="width:100%;height:100%;background:linear-gradient(90deg,#0d6b5e,#0f7c6e);border-radius:5px;"></div>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:#0f172a;min-width:110px;text-align:right;">45 ltr · 585 km</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="font-size:13px;color:#334155;min-width:160px;">Na 8 jr / 130k km (87%)</span>
+      <div style="flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;">
+        <div style="width:87%;height:100%;background:linear-gradient(90deg,#b45309,#d97706);border-radius:5px;"></div>
+      </div>
+      <span style="font-size:13px;font-weight:600;color:#d97706;min-width:110px;text-align:right;">39 ltr · 507 km</span>
+    </div>
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center;">
+        <div>
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">Effectieve tank</div>
+          <div style="font-size:15px;font-weight:600;color:#d97706;">39 liter</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">Bereik per tank</div>
+          <div style="font-size:15px;font-weight:600;color:#d97706;">507 km</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:3px;">Verschil</div>
+          <div style="font-size:15px;font-weight:600;color:#334155;">78 km minder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#334155;line-height:1.65;font-weight:500;">
+    De auto rijdt er niet minder om. Je laadt alleen wat eerder bij. Dat is wat 87% SoH betekent in de praktijk.
+  </p>
+</div>
 
       <!-- AUDI A6 PRAKTIJKVOORBEELD -->
       <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:18px 20px;margin-bottom:16px;">
