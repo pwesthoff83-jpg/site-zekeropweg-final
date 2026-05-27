@@ -2143,18 +2143,32 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     //        Maar: cap op 22% want zelfs Leaf op 120k zit op 22% verlies
     // ═══════════════════════════════════════════════════════════════
 
-    const km10 = km / 10000;
+  const km10 = km / 10000;
 
-    // Onderkant: Kia/Mercedes EQ/BMW iX kwaliteit
-    const verliesMin = leeftijd * 0.3 + km10 * 0.4;
+// Merkcorrectie op basis van praktijkdata
+// Tesla: 1.25x (iets snellere degradatie dan formule voorspelt bij jonge auto's)
+// Nissan Leaf / Zoe: 1.60x (geen thermisch beheer)
+// Kia/Hyundai: 0.85x (buffer + goed thermisch beheer)
+const modelKeyLow = (modelKey || '').toLowerCase();
+let merkFactor = 1.0;
+if (modelKeyLow.includes('leaf') || modelKeyLow.includes('zoe')) {
+  merkFactor = 1.60;
+} else if (modelKeyLow.includes('jaguar')) {
+  merkFactor = 1.30;
+} else if (modelKeyLow.includes('tesla')) {
+  merkFactor = 1.20;
+} else if (modelKeyLow.includes('kia') || modelKeyLow.includes('hyundai') || modelKeyLow.includes('ioniq')) {
+  merkFactor = 0.85;
+}
 
-    // Midden: VW ID.3 / Hyundai Kona / Tesla normaal gebruik
-    const verliesMid = leeftijd * 0.6 + km10 * 0.7;
+// Onderkant: beste presteerders
+const verliesMin = (leeftijd * 0.3 + km10 * 0.4) * merkFactor;
 
-    // Bovenkant: Leaf-curve + slecht laadgedrag
-    // Intensiteit telt licht mee: meer km/jr = meer laadcycli
-    const verliesMax = leeftijd * 1.0 + km10 * 1.4 * Math.min(intensiteit, 1.5);
+// Midden: normaal gebruik
+const verliesMid = (leeftijd * 0.6 + km10 * 0.7) * merkFactor;
 
+// Bovenkant: slecht laadgedrag
+const verliesMax = (leeftijd * 1.0 + km10 * 1.4 * Math.min(intensiteit, 1.5)) * merkFactor;
     const min = Math.max(2, Math.round(verliesMin));
     const midVal = Math.round(verliesMid);
     const max = Math.round(verliesMax);
