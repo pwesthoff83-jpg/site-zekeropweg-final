@@ -1441,6 +1441,8 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
       merkFactor = 1.60; // Nissan Leaf: geen thermisch beheer
     } else if (modelKeyLow.includes('zoe') || modelKeyLow.includes('jaguar')) {
       merkFactor = 1.30;
+    } else if (modelKeyLow.includes('tesla')) {
+      merkFactor = 1.20;
     }
 
     const verliesMin = (leeftijd * 0.25 + km10 * 0.25) * merkFactor;
@@ -2459,16 +2461,9 @@ ${isEV ? `
         </div>`;
       }).join('')}
 
-      <div class="vergelijk-row" style="background:#f0f9f7;border-radius:8px;padding:10px 12px;margin-top:8px;border:1px solid #b2ddd8;">
-        <div class="vergelijk-model highlight">⭐ ${autoNaam} (dit voertuig)</div>
-        <div class="vergelijk-bar-wrap">
-          <div class="vergelijk-bar-fill" style="width:${sohMid}%;background:${getSohColor(sohMid)};"></div>
-        </div>
-        <div class="vergelijk-soh" style="color:${getSohColor(sohMid)}">~${sohMid}%</div>
-      </div>
-
-      <p style="font-size:12px;color:#94a3b8;margin-top:12px;">Vergelijkingsdata op basis van gecertificeerde AVILOO-metingen. Werkelijke waarden kunnen afwijken per individueel voertuig.</p>
-    </div>
+       <p style="font-size:12px;color:#94a3b8;margin-top:14px;line-height:1.6;">
+        Bovenstaande metingen zijn gecertificeerde AVILOO-resultaten van vergelijkbare voertuigen. Ze dienen als marktcontext. De accuconditie van dit voertuig staat vermeld in de sectie hierboven en is een statistische schatting, geen gemeten waarde.
+      </p>
 
     <!-- TOEKOMSTPROGNOSE -->
     <div class="card">
