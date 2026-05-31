@@ -1944,7 +1944,8 @@ if (gebruikInput === 'zeer_intensief' || jaarKm > 50000) {
     if (modelKey.includes('audi') && driveType === 'phev') {
       score += 5;
       factoren.push({ kleur: 'amber', tekst: "Audi PHEV: in de praktijk de grootste spreiding van alle merken. Twee identieke Audi's kunnen op dezelfde km meer dan 10 procentpunt SoH van elkaar verschillen, afhankelijk van laadgedrag." });
-     if ((modelKey.includes('volkswagen golf gte') || modelKey.includes('golf gte')) && driveType === 'phev') {
+     }
+      if ((modelKey.includes('volkswagen golf gte') || modelKey.includes('golf gte')) && driveType === 'phev') {
       score += 0;
       factoren.push({ kleur: 'amber', tekst: "VW Golf GTE: ZekerOpWeg AVILOO-metingen tonen een groot verschil bij vergelijkbare leeftijd: 89,6% bij 56.120 km versus 96,4% bij 35.877 km. Laadgedrag bepaalt hier meer dan de kilometerstand." });
     }
@@ -2152,6 +2153,7 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     //   Tesla Model 3 55kWh 2021, 59.797 km → 91,1% SoH (mei 2026)
     //     Formule met merkFactor 1.20: mid=(0.6*5+0.7*5.98)*1.20=8.02% → SoH ~92%
     //     Gemeten 91,1% ✓ Tesla 1.20x factor bevestigd
+    //
     // CRUCIALE BEVINDING:
     // - Min stijgt NIET sterk met km: Kia e-Niro 60k → 3%, EQA 126k → 5.5%
     // - EV-min is laag en relatief vlak: ~0.4-0.5%/10k bij goed gebruik
