@@ -960,6 +960,7 @@ const batteryDB = {
   "ford f-150 lightning sr": [{"variant": "F-150 Lightning SR", "kwh": 98.0, "dbDriveType": "ev"}],
   "ford kuga 2.5 phev": [{"variant": "Kuga 2.5 PHEV", "kwh": 14.4, "dbDriveType": "phev"}],
   "ford mustang mach-e awd": [{"variant": "Mustang Mach-E AWD", "kwh": 72.6, "dbDriveType": "ev"}],
+  "ford mustang mach-e extended awd": [{"variant": "Mustang Mach-E Extended AWD", "kwh": 98.0, "dbDriveType": "ev"}],
   "ford mustang mach-e gt": [{"variant": "Mustang Mach-E GT", "kwh": 98.7, "dbDriveType": "ev"}],
   "ford mustang mach-e rwd": [{"variant": "Mustang Mach-E RWD", "kwh": 72.6, "dbDriveType": "ev"}],
   "genesis g80": [{"variant": "G80 EV", "kwh": 87.2, "dbDriveType": "ev"}],
@@ -1436,7 +1437,7 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
     const modelKeyLow = (modelKey || '').toLowerCase();
     let merkFactor = 1.0;
     if (modelKeyLow.includes('kia') || modelKeyLow.includes('hyundai') || modelKeyLow.includes('ioniq')) {
-      merkFactor = 0.80; // Kia/Hyundai: 20% minder verlies
+      merkFactor = 0.85; // Kia/Hyundai: 15% minder verlies
     } else if (modelKeyLow.includes('leaf')) {
       merkFactor = 1.60; // Nissan Leaf: geen thermisch beheer
     } else if (modelKeyLow.includes('zoe') || modelKeyLow.includes('jaguar')) {
@@ -1445,8 +1446,8 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
       merkFactor = 1.20;
     }
 
-    const verliesMin = (leeftijd * 0.25 + km10 * 0.25) * merkFactor;
-    const verliesMid = (leeftijd * 0.65 + km10 * 0.50) * merkFactor;
+    const verliesMin = (leeftijd * 0.3 + km10 * 0.4) * merkFactor;
+    const verliesMid = (leeftijd * 0.6 + km10 * 0.70) * merkFactor;
     const verliesMax = (leeftijd * 1.0 + km10 * 1.2 * Math.min(intensiteit, 1.5)) * merkFactor;
 
     const min = Math.max(2, Math.round(verliesMin));
