@@ -1932,10 +1932,21 @@ if (gebruikInput === 'zeer_intensief' || jaarKm > 50000) {
       score -= 3;
       factoren.push({ kleur: 'green', tekst: 'Mustang Mach-E Extended AWD 98kWh: AVILOO toont 94,9% bij 72.267 km. Sterk resultaat.' });
     }
+    if (modelKey.includes('peugeot e-208') || modelKey.includes('peugeot e-2008')) {
+      score -= 2;
+      factoren.push({ kleur: 'green', tekst: "Peugeot e-208: ZekerOpWeg AVILOO-meting toont 92,6% SoH bij 99.387 km (2020). Stabiele degradatie binnen verwachting." });
+    }
+    if (modelKey.includes('tesla model 3') && driveType === 'ev') {
+      score += 2;
+      factoren.push({ kleur: 'amber', tekst: "Tesla Model 3: ZekerOpWeg AVILOO-meting toont 91,1% SoH bij 59.797 km (2021). Iets snellere degradatie dan gemiddeld in deze km-klasse." });
+    }
     // Audi PHEV: grootste spreiding van alle merken (82-100% SoH bij zelfde km/leeftijd)
     if (modelKey.includes('audi') && driveType === 'phev') {
       score += 5;
       factoren.push({ kleur: 'amber', tekst: "Audi PHEV: in de praktijk de grootste spreiding van alle merken. Twee identieke Audi's kunnen op dezelfde km meer dan 10 procentpunt SoH van elkaar verschillen, afhankelijk van laadgedrag." });
+     if ((modelKey.includes('volkswagen golf gte') || modelKey.includes('golf gte')) && driveType === 'phev') {
+      score += 0;
+      factoren.push({ kleur: 'amber', tekst: "VW Golf GTE: ZekerOpWeg AVILOO-metingen tonen een groot verschil bij vergelijkbare leeftijd: 89,6% bij 56.120 km versus 96,4% bij 35.877 km. Laadgedrag bepaalt hier meer dan de kilometerstand." });
     }
   }
 
@@ -2006,6 +2017,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     //
     // Q5 59.9k/4jr op 87.1% is opvallend, zelfde model als Q5 121k op 100.1%.
     // Bevestigt: laadgedrag bepaalt alles, niet de kilometerstand.
+    //
+    // VW Golf GTE (13 kWh) ZekerOpWeg eigen metingen:
+    //   Golf 8 GTE Travel Assist, 2021, 56.120 km → 89,6% SoH (Bunschoten-Spakenburg)
+    //   Golf 1.4 eHybrid GTE, 2022, 35.877 km → 96,4% SoH (Leeuwarden)
+    // Verschil van 6,8 procentpunt bij vergelijkbare leeftijd, sterk verschil in gebruik.
+    // Golf GTE past in de normale PHEV-formule. Geen extra correctiefactor nodig.
+    // ═══════════════════════════════════════════════════════════════
     // ═══════════════════════════════════════════════════════════════
     //
     // Onderkant (goed gebruik, gecorrigeerd voor Feser-selectiebias):
@@ -2127,6 +2145,13 @@ function getDegradatie(driveType, leeftijd, km, jaarGebruik, modelKey, kwh) {
     // Verlies per 10k km: 0.23% (beste: EQC, iX) tot 1.89% (slechtste: Leaf)
     // Nissan Leaf: GEEN thermisch beheer → structurele outlier, niet representatief
     //
+    // ZekerOpWeg eigen AVILOO-metingen (gecertificeerd):
+    //   Peugeot e-208 50kWh 2020, 99.387 km → 92,6% SoH (Gorinchem, mei 2026)
+    //     Formule: min=(0.3*6+0.4*9.94)=5.76%, mid=(0.6*6+0.7*9.94)=10.56% → SoH ~93%
+    //     Gemeten 92,6% ✓ formule klopt goed
+    //   Tesla Model 3 55kWh 2021, 59.797 km → 91,1% SoH (mei 2026)
+    //     Formule met merkFactor 1.20: mid=(0.6*5+0.7*5.98)*1.20=8.02% → SoH ~92%
+    //     Gemeten 91,1% ✓ Tesla 1.20x factor bevestigd
     // CRUCIALE BEVINDING:
     // - Min stijgt NIET sterk met km: Kia e-Niro 60k → 3%, EQA 126k → 5.5%
     // - EV-min is laag en relatief vlak: ~0.4-0.5%/10k bij goed gebruik
