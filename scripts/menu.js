@@ -4,29 +4,54 @@ document.addEventListener("DOMContentLoaded", () => {
      MOBILE MENU
   ========================= */
 
-  const toggle = document.querySelector(".menu-toggle");
+ const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".zop-nav");
+
+  // Variant A: nieuwe pagina's met mobileMenu/overlay structuur
   const menu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("menuOverlay");
-
   if (toggle && menu && overlay) {
-
     const closeBtn = menu.querySelector(".close-menu");
-
     const openMenu = () => {
       menu.classList.add("open");
       overlay.classList.add("active");
       document.body.classList.add("menu-open");
     };
-
     const closeMenu = () => {
       menu.classList.remove("open");
       overlay.classList.remove("active");
       document.body.classList.remove("menu-open");
     };
-
     toggle.addEventListener("click", openMenu);
     overlay.addEventListener("click", closeMenu);
     closeBtn?.addEventListener("click", closeMenu);
+  }
+
+  // Variant B: pagina's zonder mobileMenu — toggle klapt .zop-nav open
+  if (toggle && nav && !menu) {
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      nav.classList.toggle("open");
+    });
+    document.addEventListener("click", function (e) {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove("open");
+        document.querySelectorAll(".zop-dropdown.open").forEach(d => d.classList.remove("open"));
+      }
+    });
+    document.querySelectorAll(".zop-dropdown").forEach(function (dropdown) {
+      const label = dropdown.querySelector(".zop-drop-label");
+      if (!label) return;
+      label.addEventListener("click", function (e) {
+        if (window.innerWidth >= 900) return;
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelectorAll(".zop-dropdown.open").forEach(function (d) {
+          if (d !== dropdown) d.classList.remove("open");
+        });
+        dropdown.classList.toggle("open");
+      });
+    });
   }
 
 
