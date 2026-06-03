@@ -1,1 +1,535 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Einde Garantie Check | Controleer je EV-accu vóór garantie verloopt | ZekerOpWeg</title>
+  <meta name="description" content="De accugarantie van je elektrische auto verloopt. Controleer nu de accustaat met een onafhankelijke AVILOO Flash Test. Zit de accu onder 70%? Dan heb je recht op vervanging. ZekerOpWeg, Barendrecht." />
+  <link rel="canonical" href="https://zekeropweg.nu/einde-garantie-check" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Einde Garantie Check",
+    "description": "Onafhankelijke AVILOO Flash Test om de accustaat te controleren vóór het verlopen van de fabrieksgarantie. Voor eigenaren van elektrische auto's van 2017 tot 2020.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "ZekerOpWeg",
+      "telephone": "+31623452349",
+      "url": "https://zekeropweg.nu"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "129",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Zuid-Holland" },
+      { "@type": "AdministrativeArea", "name": "Noord-Brabant" },
+      { "@type": "AdministrativeArea", "name": "Utrecht" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0b1220;
+      --ink-soft: #3a4050;
+      --ink-muted: #6b7280;
+      --gold: #c6a86a;
+      --gold-light: #f5edd8;
+      --red: #c0392b;
+      --red-light: #fdf0ee;
+      --green: #1a6b3c;
+      --green-light: #e8f5ee;
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,18,32,0.97);
+      backdrop-filter: blur(12px);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--ink);
+      padding: 8px 18px; border-radius: 8px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      padding: 80px 24px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(198,168,106,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(198,168,106,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(198,168,106,0.3);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5.5vw, 56px);
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--ink);
+      padding: 15px 28px; border-radius: 10px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .hero-cta:hover { background: #d4b87a; }
+    .hero-trust {
+      margin-top: 28px;
+      display: flex; flex-wrap: wrap; gap: 16px;
+    }
+    .hero-trust span {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .hero-trust span::before { content: '✓ '; color: var(--gold); }
+
+    /* URGENCY STRIP */
+    .urgency-strip {
+      background: var(--red);
+      padding: 16px 24px;
+      text-align: center;
+    }
+    .urgency-strip p {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .urgency-strip strong { font-weight: 800; }
+
+    /* CONTENT */
+    .content { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .section { margin: 64px 0; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 36px);
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; }
+
+    /* WHAT IS AT STAKE */
+    .stake-block {
+      background: var(--red-light);
+      border: 1px solid rgba(192,57,43,0.2);
+      border-left: 4px solid var(--red);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .stake-block strong { color: var(--red); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+    .stake-block p { color: var(--ink-soft); font-size: 15px; margin: 0; }
+
+    /* MERK TABEL */
+    .merk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    @media (max-width: 560px) { .merk-grid { grid-template-columns: 1fr; } }
+
+    .merk-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .merk-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .merk-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .merk-naam { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 8px; }
+    .merk-model { font-size: 13px; color: var(--ink-muted); margin-bottom: 12px; }
+    .merk-specs { display: flex; flex-direction: column; gap: 6px; }
+    .merk-spec { display: flex; justify-content: space-between; font-size: 13px; }
+    .merk-spec-label { color: var(--ink-muted); }
+    .merk-spec-value { font-weight: 600; color: var(--ink); }
+    .merk-target {
+      margin-top: 12px;
+      background: var(--gold-light);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #7a5c1e;
+      font-weight: 600;
+    }
+    .merk-target::before { content: '⚠ '; }
+
+    /* PROCESS */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .process-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .process-step strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .process-step p { font-size: 13px; color: var(--ink-muted); margin: 0; }
+
+    /* PRICE CARD */
+    .price-card {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: 40px 36px;
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .price-left h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .price-left p { color: rgba(255,255,255,0.6); font-size: 14px; margin: 0; }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .price-amount span { font-size: 18px; font-family: 'Sora', sans-serif; font-weight: 400; color: rgba(255,255,255,0.5); }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: var(--gold-light);
+      border: 1px solid rgba(198,168,106,0.3);
+      border-radius: 20px;
+      padding: 40px 36px;
+      margin: 48px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cta-strip h2 { font-size: clamp(20px, 3vw, 26px); color: var(--ink); margin-bottom: 8px; }
+    .cta-strip p { color: var(--ink-soft); font-size: 14px; margin: 0; }
+    .btn-wa {
+      background: #25d366; color: #fff;
+      padding: 14px 28px; border-radius: 10px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      white-space: nowrap; display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .btn-wa:hover { background: #1db954; }
+
+    /* CLAIM SECTIE */
+    .claim-block {
+      background: var(--green-light);
+      border: 1px solid rgba(26,107,60,0.2);
+      border-left: 4px solid var(--green);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .claim-block strong { color: var(--green); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+    .claim-block p { color: var(--ink-soft); font-size: 15px; margin: 0; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--ink-muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* STICKY WA */
+    .sticky-wa {
+      position: fixed; bottom: 24px; right: 24px;
+      background: #25d366; color: #fff;
+      border-radius: 50px; padding: 13px 22px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      z-index: 9999; transition: transform 0.2s;
+    }
+    .sticky-wa:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="https://zekeropweg.nu">Zeker<span>OpWeg</span></a>
+    <a class="nav-cta" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Einde%20Garantie%20Check%20aanvragen">Plan Garantie Check</a>
+  </nav>
+
+  <div class="urgency-strip">
+    <p>EV's van 2017 tot 2019 naderen het einde van hun accugarantie. <strong>Na verloop kun je geen claim meer indienen.</strong></p>
+  </div>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Einde Garantie Check</div>
+      <h1>Controleer je accu vóórdat je <em>garantie verloopt</em></h1>
+      <p class="hero-sub">De meeste EV-eigenaren weten niet dat ze recht hebben op een nieuwe accu als de accugezondheid onder 70% zakt. Na het verlopen van de garantie is dat recht voorgoed weg.</p>
+      <a class="hero-cta" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Einde%20Garantie%20Check%20aanvragen">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Stuur kenteken, ik check direct
+      </a>
+      <div class="hero-trust">
+        <span>TÜV-gecertificeerde meting</span>
+        <span>Resultaat dezelfde dag</span>
+        <span>Op locatie bij de auto</span>
+        <span>Certificaat geldig bij garantieclaim</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="section reveal">
+      <h2>Wat staat er op het spel?</h2>
+      <p>Bijna elke fabrikant geeft 8 jaar garantie op de accu van een elektrische auto. De voorwaarde: de accugezondheid mag niet onder 70% zakken. Zakt hij daar wel onder, dan heb je recht op vervanging of reparatie. Maar alleen zolang de garantie nog geldig is.</p>
+
+      <div class="stake-block">
+        <strong>Het probleem</strong>
+        <p>De meeste eigenaren controleren hun accu nooit. Ze rijden rustig door terwijl de garantie verloopt. En de accu? Die slijt geruisloos, zonder waarschuwing op het dashboard. Op het moment dat de klachten merkbaar worden, is de garantie al verlopen.</p>
+      </div>
+
+      <p>Een accuvervanging kost tussen de €8.000 en €20.000 afhankelijk van het model. Dat bedrag betaal je zelf als de garantie verlopen is. Een meting van €129 nu kan je dat besparen.</p>
+    </div>
+
+    <div class="section reveal">
+      <h2>Accugarantie per merk</h2>
+      <p>Controleer hieronder wanneer de garantie van jouw auto verloopt en welke actie je nu nog kunt ondernemen.</p>
+
+      <div class="merk-grid">
+
+        <div class="merk-card">
+          <div class="merk-naam">Audi</div>
+          <div class="merk-model">e-tron / Q4 e-tron</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie</span><span class="merk-spec-value">8 jaar / 160.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Grens</span><span class="merk-spec-value">Onder 70% SoH</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2019 / 2020</span></div>
+          </div>
+          <div class="merk-target">Garantie loopt af in 2027. Controleer nu als km-stand de 160.000 nadert.</div>
+        </div>
+
+        <div class="merk-card">
+          <div class="merk-naam">BMW</div>
+          <div class="merk-model">i3 / iX3 / i4</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie</span><span class="merk-spec-value">8 jaar / 160.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Grens</span><span class="merk-spec-value">Onder 70% SoH</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2017 / 2018</span></div>
+          </div>
+          <div class="merk-target">BMW i3 van 2017/2018: garantie loopt dit jaar of volgend jaar af.</div>
+        </div>
+
+        <div class="merk-card">
+          <div class="merk-naam">Hyundai</div>
+          <div class="merk-model">Kona Electric / Ioniq Electric</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie Kona</span><span class="merk-spec-value">8 jaar / 160.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Garantie Ioniq</span><span class="merk-spec-value">8 jaar / 200.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2018 / 2019</span></div>
+          </div>
+          <div class="merk-target">Kona van 2018: garantie verloopt in 2026.</div>
+        </div>
+
+        <div class="merk-card">
+          <div class="merk-naam">Kia</div>
+          <div class="merk-model">e-Niro / Soul EV / EV6</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie</span><span class="merk-spec-value">7 jaar / 150.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Grens</span><span class="merk-spec-value">Onder 70% SoH</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2018 / 2019</span></div>
+          </div>
+          <div class="merk-target">e-Niro van 2019: garantie verloopt in 2026. Controleer ook de km-grens.</div>
+        </div>
+
+        <div class="merk-card">
+          <div class="merk-naam">Nissan</div>
+          <div class="merk-model">Leaf (alle generaties)</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie</span><span class="merk-spec-value">8 jaar / 160.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Grens</span><span class="merk-spec-value">Onder 70/75% SoH</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2017 / 2018 / 2019</span></div>
+          </div>
+          <div class="merk-target">Leaf heeft geen actieve accukoeling. Hogere kans op degradatie en claim.</div>
+        </div>
+
+        <div class="merk-card">
+          <div class="merk-naam">Volkswagen</div>
+          <div class="merk-model">ID.3 / ID.4 / e-Golf</div>
+          <div class="merk-specs">
+            <div class="merk-spec"><span class="merk-spec-label">Garantie</span><span class="merk-spec-value">8 jaar / 160.000 km</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Grens</span><span class="merk-spec-value">Onder 70% SoH</span></div>
+            <div class="merk-spec"><span class="merk-spec-label">Risicovolle bouwjaren</span><span class="merk-spec-value">2020 / 2021</span></div>
+          </div>
+          <div class="merk-target">ID.3 van 2020: garantie loopt tot 2028, maar km-grens relevant bij hoog gebruik.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section reveal">
+      <h2>Hoe de Einde Garantie Check werkt</h2>
+      <p>De meting wordt uitgevoerd met de AVILOO Flash Test. TÜV-gecertificeerd, op locatie bij jouw auto. Het certificaat is geldig als bewijs bij een garantieclaim bij de fabrikant of dealer.</p>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <strong>Aansluiten</strong>
+          <p>AVILOO Box via OBD-poort. Geen demontage. Geen ingreep.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <strong>Flash Test (~3 min)</strong>
+          <p>Meting op celniveau. Alle cellen individueel gemeten.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <strong>Uitslag ter plaatse</strong>
+          <p>Direct uitleg van de resultaten en wat ze betekenen.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <strong>Certificaat direct</strong>
+          <p>Na betaling direct het officiële AVILOO-certificaat digitaal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="claim-block reveal">
+      <strong>Als de accu onder de garantiegrens zit</strong>
+      <p>Zit de accu onder 70% SoH en valt de auto nog binnen de garantieperiode? Dan heb je recht op vervanging of reparatie van de accu door de fabrikant. Mijn AVILOO-certificaat is het onafhankelijke bewijs dat je nodig hebt om die claim in te dienen. Ik leg ook uit hoe je de claim het beste kunt indienen.</p>
+    </div>
+
+    <div class="section reveal">
+      <div class="price-card">
+        <div class="price-left">
+          <h3>Einde Garantie Check</h3>
+          <p>AVILOO Flash Test op locatie · TÜV-gecertificeerd certificaat · Uitleg ter plaatse · Geldig bij garantieclaim</p>
+        </div>
+        <div>
+          <div class="price-amount">€129 <span>incl. BTW</span></div>
+        </div>
+      </div>
+      <p style="font-size:13px; color: var(--ink-muted); text-align:center;">Binnen 40 km rondom Barendrecht. Werkgebied: Zuid-Holland, Noord-Brabant en Utrecht.</p>
+    </div>
+
+    <div class="cta-strip reveal">
+      <div>
+        <h2>Stuur je kenteken.</h2>
+        <p>Ik check direct of jouw auto nog binnen de garantie valt en wanneer je moet handelen.</p>
+      </div>
+      <a class="btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Einde%20Garantie%20Check%20aanvragen">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        App via WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>ZekerOpWeg · Onafhankelijk aankoopadvies en EV AccuCheck · Barendrecht</p>
+    <p style="margin-top:6px;"><a href="https://zekeropweg.nu" style="color:var(--ink-muted); text-decoration:none;">zekeropweg.nu</a></p>
+  </footer>
+
+  <a class="sticky-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Einde%20Garantie%20Check%20aanvragen">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    App mij direct
+  </a>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
