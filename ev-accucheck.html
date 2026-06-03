@@ -560,7 +560,8 @@
       gtag('event', 'accucheck_barendrecht_click', { event_category: 'engagement', event_label: 'Plan AccuCheck Barendrecht button' });
     }
   </script>
-  <script type="application/ld+json">
+  
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -568,18 +569,24 @@
       "@type": "LocalBusiness",
       "@id": "https://zekeropweg.nu/#business",
       "name": "ZekerOpWeg",
-      "description": "Onafhankelijke EV AccuCheck en aankoopadvies. Officieel AVILOO-partner. TUV-gecertificeerde accudiagnose op locatie in Rotterdam, Barendrecht, Dordrecht en omgeving.",
+      "description": "Onafhankelijke EV AccuCheck en aankoopadvies. Officieel AVILOO-partner. TÜV-gecertificeerde accudiagnose op locatie in Rotterdam, Barendrecht, Dordrecht en omgeving.",
       "url": "https://zekeropweg.nu",
-      "telephone": "06-23452349",
+      "telephone": "+31623452349",
       "email": "info@zekeropweg.nu",
+      "image": [
+        "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
+        "https://zekeropweg.nu/images/Aankoopadvies-ZekerOpWeg-Barendrecht.png",
+        "https://zekeropweg.nu/images/aviloo-box.jpg"
+      ],
+      "logo": "https://zekeropweg.nu/assets/logo.png",
       "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Barendrecht",
-      "addressLocality": "Barendrecht",
-      "postalCode": "2990",
-      "addressRegion": "Zuid-Holland",
-      "addressCountry": "NL"
-     },
+        "@type": "PostalAddress",
+        "streetAddress": "Barendrecht",
+        "addressLocality": "Barendrecht",
+        "postalCode": "2990",
+        "addressRegion": "Zuid-Holland",
+        "addressCountry": "NL"
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 51.8606,
@@ -599,7 +606,57 @@
         "closes": "20:00"
       },
       "priceRange": "€95 - €499",
-      "image": "https://zekeropweg.nu/assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "MikBerr Kaya"
+          },
+          "reviewBody": "Vandaag een SoH-meting laten uitvoeren aan mijn ID.3 op locatie. Erg fijne ervaring gehad. Meneer kwam zeer deskundig en ervaren over, nam de tijd voor uitleg en wist duidelijk waar hij over praatte. Daarnaast ook vriendelijk en professioneel in de omgang. De meting en uitleg hebben mij echt goed geholpen. Zeker aan te raden!",
+          "datePublished": "2026-04-01"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Werner Branderhorst"
+          },
+          "reviewBody": "Vandaag een AVILOO test op locatie laten doen. Snelle service, 's ochtends contact, met middaguur de uitslag. Test goed uitgevoerd en rapport netjes uitgelegd.",
+          "datePublished": "2026-04-15"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Elder Silva"
+          },
+          "reviewBody": "Ik heb via ZekerOpWeg mijn hybride accu laten testen en ben erg tevreden over hoe dit is gegaan. Ik kreeg een duidelijk rapport met de SOH-waarde en het elektrische rijbereik, inclusief TÜV-certificaat. Alles was professioneel en snel geregeld.",
+          "datePublished": "2026-05-01"
+        }
+      ],
       "sameAs": [
         "https://www.linkedin.com/company/zekeropweg"
       ]
@@ -608,25 +665,114 @@
       "@type": "Service",
       "@id": "https://zekeropweg.nu/ev-accucheck.html#service",
       "name": "EV AccuCheck op locatie",
-      "description": "TUV-gecertificeerde AVILOO Flash Test op locatie. Meting op celniveau. Officieel AVILOO-certificaat. Uitvoering bij particulier, dealer of autobedrijf.",
+      "description": "TÜV-gecertificeerde AVILOO Flash Test op locatie. Meting op celniveau. Officieel AVILOO-certificaat. Uitvoering bij particulier, dealer of autobedrijf.",
+      "image": [
+        "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
+        "https://zekeropweg.nu/images/aviloo-box.jpg",
+        "https://zekeropweg.nu/images/aviloo-certificaat-overzicht.jpg"
+      ],
       "provider": {
         "@id": "https://zekeropweg.nu/#business"
       },
-      "areaServed": "Zuid-Holland",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Zuid-Holland" },
+        { "@type": "AdministrativeArea", "name": "Noord-Brabant" },
+        { "@type": "AdministrativeArea", "name": "Utrecht" }
+      ],
       "offers": [
         {
           "@type": "Offer",
           "name": "EV AccuCheck op locatie",
           "price": "129",
           "priceCurrency": "EUR",
-          "description": "AVILOO Flash Test op locatie bij de auto. Inclusief certificaat."
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://zekeropweg.nu/ev-accucheck.html",
+          "description": "AVILOO Flash Test op locatie bij de auto. Inclusief TÜV-gecertificeerd AVILOO-certificaat.",
+          "seller": {
+            "@type": "LocalBusiness",
+            "name": "ZekerOpWeg"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "EUR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "NL"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "NL",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+            "merchantReturnDays": 0
+          }
         },
         {
           "@type": "Offer",
           "name": "EV AccuCheck in Barendrecht",
           "price": "95",
           "priceCurrency": "EUR",
-          "description": "AVILOO Flash Test in Barendrecht. U rijdt naar ons toe. Inclusief certificaat."
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://zekeropweg.nu/ev-accucheck.html",
+          "description": "AVILOO Flash Test in Barendrecht. U rijdt naar ons toe. Inclusief TÜV-gecertificeerd AVILOO-certificaat.",
+          "seller": {
+            "@type": "LocalBusiness",
+            "name": "ZekerOpWeg"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "EUR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "NL"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "NL",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+            "merchantReturnDays": 0
+          }
         }
       ]
     },
@@ -662,10 +808,10 @@
           "name": "Komt ZekerOpWeg naar mijn locatie?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ja. ZekerOpWeg voert AccuChecks uit op locatie bij de auto. Of de auto nu staat bij een particulier, autobedrijf, merkdealer of occasionhandelaar. ZekerOpWeg reist naar de auto toe in een straal van 40 kilometer rondom Barendrecht: Rotterdam, Dordrecht, Schiedam, Ridderkerk, Capelle aan den IJssel, Spijkenisse, Vlaardingen, Den Haag, Delft, Zoetermeer en omgeving."
+            "text": "Ja. ZekerOpWeg voert AccuChecks uit op locatie bij de auto in een straal van 40 kilometer rondom Barendrecht: Rotterdam, Dordrecht, Schiedam, Ridderkerk, Capelle aan den IJssel, Spijkenisse, Vlaardingen, Den Haag, Delft, Zoetermeer en omgeving."
           }
         },
-      {
+        {
           "@type": "Question",
           "name": "Hoe lang duurt een EV AccuCheck?",
           "acceptedAnswer": {
@@ -674,58 +820,11 @@
           }
         }
       ]
-    },
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@id": "https://zekeropweg.nu/#business"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "MikBerr Kaya"
-      },
-      "reviewBody": "Vandaag een SoH-meting laten uitvoeren aan mijn ID.3 op locatie. Erg fijne ervaring gehad. Meneer kwam zeer deskundig en ervaren over, nam de tijd voor uitleg en wist duidelijk waar hij over praatte. Daarnaast ook vriendelijk en professioneel in de omgang. De meting en uitleg hebben mij echt goed geholpen. Zeker aan te raden!"
-    },
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@id": "https://zekeropweg.nu/#business"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Werner Branderhorst"
-      },
-      "reviewBody": "Vandaag een AVILOO test op locatie laten doen. Snelle service, 's ochtends contact, met middaguur de uitslag. Test goed uitgevoerd en rapport netjes uitgelegd."
-    },
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@id": "https://zekeropweg.nu/#business"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Elder Silva"
-      },
-      "reviewBody": "Ik heb via ZekerOpWeg mijn hybride accu laten testen en ben erg tevreden over hoe dit is gegaan. Ik kreeg een duidelijk rapport met de SOH-waarde en het elektrische rijbereik, inclusief TÜV-certificaat. Alles was professioneel en snel geregeld."
     }
   ]
 }
 </script>
+ 
 </head>
 
 <body class="page-ev-accucheck">
