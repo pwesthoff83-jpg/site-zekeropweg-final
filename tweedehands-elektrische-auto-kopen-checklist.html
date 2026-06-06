@@ -69,7 +69,6 @@
       font-size: 16px;
     }
 
-    /* NAV */
     nav {
       background: var(--ink);
       padding: 16px 24px;
@@ -88,7 +87,6 @@
       font-size: 13px; font-weight: 600; text-decoration: none;
     }
 
-    /* HERO */
     .hero {
       background: var(--ink);
       padding: 72px 24px 0;
@@ -148,10 +146,7 @@
       font-weight: 700;
       text-decoration: none;
     }
-    .hero-img {
-      position: relative;
-      padding-bottom: 60px;
-    }
+    .hero-img { position: relative; padding-bottom: 60px; }
     .hero-img img {
       width: 100%;
       border-radius: 16px 16px 0 0;
@@ -160,7 +155,6 @@
       display: block;
     }
 
-    /* CONTENT */
     .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
     .section { margin: 64px 0; }
 
@@ -172,15 +166,9 @@
       margin-bottom: 20px;
       letter-spacing: -0.5px;
     }
-    h3 {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
+    h3 { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
     p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; line-height: 1.75; }
 
-    /* CHECKLIST */
     .checklist-group { margin-bottom: 40px; }
     .checklist-label {
       font-size: 11px;
@@ -200,8 +188,7 @@
     }
     .check-item:last-child { border-bottom: none; }
     .check-box {
-      width: 24px;
-      height: 24px;
+      width: 24px; height: 24px;
       border: 2px solid var(--border);
       border-radius: 6px;
       flex-shrink: 0;
@@ -213,16 +200,8 @@
       justify-content: center;
       background: #fff;
     }
-    .check-box.checked {
-      background: var(--green);
-      border-color: var(--green);
-    }
-    .check-box.checked::after {
-      content: '✓';
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-    }
+    .check-box.checked { background: var(--green); border-color: var(--green); }
+    .check-box.checked::after { content: '✓'; color: #fff; font-size: 13px; font-weight: 700; }
     .check-content { flex: 1; }
     .check-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
     .check-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
@@ -240,7 +219,6 @@
     .tag-belangrijk { background: #fef3c7; color: #b45309; }
     .tag-handig { background: var(--green-light); color: var(--green); }
 
-    /* PEPIJN SECTIE */
     .pepijn-section {
       background: var(--ink);
       border-radius: 20px;
@@ -248,227 +226,85 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
-    .pepijn-img { position: relative; }
-    .pepijn-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      min-height: 320px;
-    }
-    .pepijn-text {
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .pepijn-eyebrow {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .pepijn-text h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 26px;
-      color: #fff;
-      margin-bottom: 14px;
-    }
+    .pepijn-img img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 320px; }
+    .pepijn-text { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .pepijn-eyebrow { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .pepijn-text h2 { font-family: 'Fraunces', serif; font-size: 26px; color: #fff; margin-bottom: 14px; }
     .pepijn-text p { color: rgba(255,255,255,0.65); font-size: 14px; }
-    .pepijn-list {
-      list-style: none;
-      margin: 16px 0 24px;
-    }
-    .pepijn-list li {
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-      padding: 5px 0;
-      display: flex;
-      gap: 8px;
-    }
+    .pepijn-list { list-style: none; margin: 16px 0 24px; }
+    .pepijn-list li { font-size: 14px; color: rgba(255,255,255,0.8); padding: 5px 0; display: flex; gap: 8px; }
     .pepijn-list li::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
     .pepijn-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25d366;
-      color: #fff;
-      padding: 12px 22px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      align-self: flex-start;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #25d366; color: #fff;
+      padding: 12px 22px; border-radius: 10px;
+      font-size: 14px; font-weight: 700; text-decoration: none; align-self: flex-start;
     }
 
-    /* ACCU SECTIE */
-    .accu-section {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
+    .accu-section { background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
     .accu-header {
       background: linear-gradient(135deg, #0b1220 0%, #1a2540 100%);
-      padding: 32px 36px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
+      padding: 32px 36px; display: flex; align-items: center; gap: 20px;
     }
     .accu-header img { height: 36px; filter: brightness(10); }
     .accu-header-text h3 { color: #fff; font-size: 18px; margin-bottom: 4px; }
     .accu-header-text p { color: rgba(255,255,255,0.6); font-size: 13px; margin: 0; }
     .accu-body { padding: 32px 36px; }
-    .accu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-    .accu-card {
-      background: var(--bg);
-      border-radius: 12px;
-      padding: 20px;
-    }
+    .accu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .accu-card { background: var(--bg); border-radius: 12px; padding: 20px; }
     .accu-card-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .accu-card-value { font-family: 'Fraunces', serif; font-size: 28px; color: var(--green); line-height: 1; margin-bottom: 4px; }
     .accu-card-desc { font-size: 12px; color: var(--muted); }
+    .accu-photo { border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+    .accu-photo img { width: 100%; height: 240px; object-fit: cover; display: block; }
 
-    .accu-photo {
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .accu-photo img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-    }
+    .cert-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+    .cert-img img { width: 100%; border-radius: 14px; border: 1px solid var(--border); }
 
-    /* CERT SECTIE */
-    .cert-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: center;
-    }
-    .cert-img img {
-      width: 100%;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-    .cert-text {}
-
-    /* WAARSCHUWING */
     .warning-box {
-      background: #fff8e6;
-      border: 1px solid #f0d080;
-      border-left: 4px solid var(--gold);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 24px 0;
+      background: #fff8e6; border: 1px solid #f0d080;
+      border-left: 4px solid var(--gold); border-radius: 12px;
+      padding: 20px 24px; margin: 24px 0;
     }
     .warning-box strong { color: #8a6400; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; display: block; margin-bottom: 6px; }
     .warning-box p { color: var(--ink-soft); font-size: 14px; margin: 0; }
 
-    /* PROGRESS */
-    .progress-wrap {
-      background: #e4e2dc;
-      border-radius: 4px;
-      height: 6px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--green);
-      transition: width 0.5s ease;
-    }
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
+    .progress-wrap { background: #e4e2dc; border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; background: var(--green); transition: width 0.5s ease; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 20px; }
 
-    /* CTA */
-    .cta-final {
-      background: var(--ink);
-      border-radius: 20px;
-      padding: 48px 40px;
-      text-align: center;
-      margin: 48px 0;
-    }
+    .cta-final { background: var(--ink); border-radius: 20px; padding: 48px 40px; text-align: center; margin: 48px 0; }
     .cta-final h2 { color: #fff; margin-bottom: 12px; }
     .cta-final p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 28px; }
     .cta-wa {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #25d366;
-      color: #fff;
-      padding: 15px 30px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: #fff;
+      padding: 15px 30px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
     }
-    .trust-row {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
+    .trust-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
     .trust-row span { font-size: 13px; color: rgba(255,255,255,0.45); }
     .trust-row span::before { content: '✓ '; color: var(--gold); }
 
-    /* STICKY */
     .sticky-wa {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #25d366;
-      color: #fff;
-      border-radius: 50px;
-      padding: 13px 22px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      z-index: 9999;
+      position: fixed; bottom: 24px; right: 24px;
+      background: #25d366; color: #fff;
+      border-radius: 50px; padding: 13px 22px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999;
     }
 
-    /* COUNTER */
     .counter-bar {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      gap: 16px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px; gap: 16px;
     }
     .counter-text { font-size: 14px; color: var(--ink-soft); }
     .counter-num { font-family: 'Fraunces', serif; font-size: 28px; color: var(--green); }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-    }
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); }
 
     @media (max-width: 640px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -477,6 +313,7 @@
       .pepijn-img { height: 260px; }
       .accu-grid { grid-template-columns: 1fr; }
       .cert-section { grid-template-columns: 1fr; }
+      .accu-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -487,7 +324,6 @@
   <a class="nav-cta" href="https://wa.me/31623452349?text=Ik%20wil%20advies%20bij%20aankoop%20elektrische%20auto">Vraag advies</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-text">
@@ -533,6 +369,40 @@
 
     <h2>De volledige checklist</h2>
     <p style="margin-bottom:32px;">Vink af wat je hebt gecontroleerd. Gebruik dit als leidraad bij elke bezichtiging.</p>
+
+    <!-- VERGELIJKING METING METHODES -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:28px;">
+      <div style="padding:24px 28px; border-bottom:1px solid var(--border);">
+        <h3 style="font-size:17px; margin-bottom:4px;">Niet elke accumeting is hetzelfde</h3>
+        <p style="font-size:14px; color:var(--muted); margin:0;">Wat de dealer of garage je toont is niet hetzelfde als een onafhankelijke celmeting.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr;">
+        <div style="padding:20px; border-right:1px solid var(--border);">
+          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Dealer / Bosch / Moba</div>
+          <div style="font-size:13px; color:var(--ink-soft); line-height:1.65;">Leest de software van de auto zelf uit. De auto rapporteert zijn eigen SoH via het BMS. Dit kan 100% tonen terwijl individuele cellen al afwijken.</div>
+        </div>
+        <div style="padding:20px; border-right:1px solid var(--border); background:#fff8e6;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#b45309; margin-bottom:8px;">OBD-tool of app</div>
+          <div style="font-size:13px; color:var(--ink-soft); line-height:1.65;">Hetzelfde als dealer uitlezing maar via een goedkoop apparaatje. Raadpleegt nog steeds de BMS-software van de auto, geen eigen meting.</div>
+        </div>
+        <div style="padding:20px; background:var(--green-light);">
+          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--green); margin-bottom:8px;">AVILOO Flash Test</div>
+          <div style="font-size:13px; color:var(--ink-soft); line-height:1.65;">Meet de spanning van elke individuele cel onafhankelijk. TÜV-gecertificeerd. Kan afwijkende cellen detecteren die de auto zelf niet rapporteert.</div>
+        </div>
+      </div>
+      <div style="padding:16px 24px; background:#f8f7f4; border-top:1px solid var(--border); font-size:13px; color:var(--muted); line-height:1.65;">
+        Moba's eigen website stelt dat de SoH altijd gelijk is aan de fabriekswaarde. BMW's eigen Battery Health Quick Report vermeldt dat het geen bindend resultaat geeft. Een AVILOO-meting meet onafhankelijk van de auto's eigen software.
+      </div>
+    </div>
+
+    <!-- AVILOO PARTNER BADGE -->
+    <div style="background:var(--ink); border-radius:14px; padding:20px 24px; margin-bottom:32px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <img src="images/AVILOO-certified.png" alt="AVILOO gecertificeerd partner ZekerOpWeg" style="height:56px; flex-shrink:0;" />
+      <div>
+        <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">ZekerOpWeg is officieel AVILOO-partner</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6;">Als gecertificeerd AVILOO-partner voer ik Flash Tests uit met de originele AVILOO-apparatuur. Het certificaat is TÜV-gecertificeerd en geldig bij garantieclaims en bij verkoop. Werkgebied: Zuid-Holland, Noord-Brabant en Utrecht.</div>
+      </div>
+    </div>
 
     <!-- ACCU -->
     <div class="checklist-group">
@@ -680,7 +550,6 @@
           <div class="check-desc">Verouderde software kan energiebeheer en rijbereik beïnvloeden. Vraag de verkoper of alle updates zijn doorgevoerd.</div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -781,7 +650,7 @@
     <div class="trust-row">
       <span>Volledig onafhankelijk</span>
       <span>16 jaar automotive ervaring</span>
-      <span>TÜV-gecertificeerde AccuCheck</span>
+      <span>Officieel AVILOO-partner</span>
     </div>
   </div>
 
@@ -797,12 +666,12 @@
 </a>
 
 <script>
-let checked = 0;
-const total = document.querySelectorAll('.check-box').length;
+let total = document.querySelectorAll('.check-box').length;
+document.getElementById('counter').textContent = '0 / ' + total;
 
 function toggleCheck(el) {
   el.classList.toggle('checked');
-  checked = document.querySelectorAll('.check-box.checked').length;
+  const checked = document.querySelectorAll('.check-box.checked').length;
   document.getElementById('counter').textContent = checked + ' / ' + total;
   document.getElementById('progress').style.width = (checked / total * 100) + '%';
 }
