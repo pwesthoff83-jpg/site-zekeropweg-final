@@ -3,385 +3,531 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Porsche PHEV & EV AccuCheck | Cayenne, Taycan, Panamera | ZekerOpWeg</title>
-  <meta name="description" content="AVILOO Flash Test voor Porsche elektrische en hybride modellen. Cayenne E-Hybrid, Cayenne Turbo S E-Hybrid, Taycan en Panamera E-Hybrid. Onafhankelijke celanalyse in 3 minuten. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.">
+  <title>Porsche AccuCheck | Cayenne E-Hybrid, Taycan, Panamera | ZekerOpWeg</title>
+  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor Porsche Cayenne E-Hybrid, Taycan en Panamera E-Hybrid. TÜV-gecertificeerd op celniveau. Eigen meting: Cayenne e-Hybrid 93,6% SoH, geen afwijkingen. Op locatie in Zuid-Holland." />
   <link rel="canonical" href="https://zekeropweg.nu/porsche-ev-accucheck.html" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Porsche PHEV & EV AccuCheck",
-    "provider": {"@id": "https://zekeropweg.nu#org"},
-    "description": "AVILOO Flash Test voor Porsche Cayenne E-Hybrid, Taycan en Panamera E-Hybrid. Onafhankelijke celanalyse op celniveau in 3 minuten.",
-    "url": "https://zekeropweg.nu/porsche-ev-accucheck.html",
-    "areaServed": ["Barendrecht","Rotterdam","Zuid-Holland","Noord-Brabant"],
-    "offers": {"@type": "Offer", "price": "129", "priceCurrency": "EUR"}
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://zekeropweg.nu#org",
+        "name": "ZekerOpWeg",
+        "url": "https://zekeropweg.nu",
+        "telephone": "+31623452349",
+        "image": "https://zekeropweg.nu/images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_01.jpeg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Barendrecht",
+          "addressRegion": "Zuid-Holland",
+          "addressCountry": "NL"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Porsche AccuCheck",
+        "provider": { "@id": "https://zekeropweg.nu#org" },
+        "description": "Onafhankelijke AVILOO Flash Test voor Porsche Cayenne E-Hybrid, Taycan en Panamera E-Hybrid. TÜV-gecertificeerd op celniveau. Op locatie in Rotterdam en omgeving.",
+        "url": "https://zekeropweg.nu/porsche-ev-accucheck.html",
+        "areaServed": ["Rotterdam", "Barendrecht", "Zuid-Holland", "Noord-Brabant"],
+        "offers": { "@type": "Offer", "price": "129", "priceCurrency": "EUR" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Waarom is een accucheck bij een Porsche PHEV zo belangrijk?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Porsche PHEV-modellen zoals de Cayenne E-Hybrid zijn populaire zakelijke leaseauto's. Veel zakelijke rijders laden nauwelijks, waardoor de accu structureel ontladen meereist. Dit leidt tot versnelde degradatie die onzichtbaar is in een BMS-uitlezing. De AVILOO Flash Test meet elke cel individueel en detecteert afwijkingen direct."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat was de uitkomst van jullie eigen Porsche Cayenne meting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZekerOpWeg mat een Porsche Cayenne e-Hybrid 25,9 kWh op 06-04-2026 met 44.961 km. Uitkomst: 93,6% SoH. Geen afwijkingen. Goede gezondheid. TÜV-gecertificeerd certificaat direct beschikbaar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Welke Porsche modellen kunnen getest worden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor Porsche Cayenne E-Hybrid, Cayenne Turbo S E-Hybrid, Taycan en Panamera E-Hybrid. Op locatie in Rotterdam, Barendrecht en heel Zuid-Holland, Noord-Brabant en Utrecht."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
-  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
-  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
-  <link rel="stylesheet" href="css/zop-stability.css" />
-  <link rel="stylesheet" href="css/luxury.css" />
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="shortcut icon" href="/assets/images/logos/favicon/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
-  .model-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(0,0,0,0.08)}
-  .model-nav-item{font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid rgba(0,0,0,0.1);color:#0a3d62;text-decoration:none;transition:all 0.15s;white-space:nowrap}
-  .model-nav-item:hover{background:#0a3d62;color:#fff;border-color:#0a3d62}
-  .model-blok{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:0;margin-bottom:2rem;overflow:hidden;scroll-margin-top:80px}
-  .model-blok:hover{border-color:rgba(0,0,0,0.15)}
-  .model-foto{width:100%;height:280px;object-fit:cover;object-position:center;display:block}
-  .model-foto-caption{font-size:11px;color:#888;padding:8px 16px;background:#f9f9fb;border-bottom:1px solid rgba(0,0,0,0.06);font-style:italic}
-  .model-content{padding:1.75rem 2rem 2rem}
-  .model-header{margin-bottom:1.25rem}
-  .model-type-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px}
-  .badge-phev{background:#fffdf0;color:#856404}
-  .badge-ev{background:#eef3f8;color:#1a6091}
-  .model-naam{font-size:1.5rem;font-weight:600;color:#0d1b2a;margin:0;line-height:1.3}
-  .model-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
-  @media(max-width:560px){.model-specs-grid{grid-template-columns:1fr}}
-  .spec-item{background:#f9f9fb;border-radius:8px;padding:12px 16px}
-  .spec-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 4px}
-  .spec-val{font-size:14px;font-weight:500;color:#0d1b2a;margin:0;line-height:1.4}
-  .model-sectie-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
-  .model-sectie{padding:12px 16px;border-radius:8px;background:#f9f9fb;border-left:3px solid rgba(0,0,0,0.08)}
-  .model-sectie-risico{border-left-color:#e0a800;background:#fffdf0}
-  .model-sectie-check{border-left-color:#1a6091;background:#f0f7ff}
-  .sectie-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 5px}
-  .sectie-label-risico{color:#856404}
-  .sectie-label-check{color:#0a3d62}
-  .sectie-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
-  .model-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .model-check-btn{background:transparent;border:1.5px solid #0a3d62;color:#0a3d62;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.15s}
-  .model-check-btn:hover{background:#0a3d62;color:#fff}
-  .page-intro{font-size:1rem;line-height:1.8;color:#333;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.08)}
-  .foto-bewijs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:2rem 0}
-  @media(max-width:560px){.foto-bewijs-grid{grid-template-columns:1fr}}
-  .foto-bewijs-item img{width:100%;height:220px;object-fit:cover;border-radius:10px;display:block}
-  .foto-bewijs-item p{font-size:12px;color:#888;margin:6px 0 0;font-style:italic;text-align:center}
-  .artikel-link-blok{background:#f4f5f7;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-  .artikel-link-tekst{flex:1;min-width:200px}
-  .artikel-link-tekst p{font-size:0.85rem;color:#888;margin:0 0 3px}
-  .artikel-link-tekst strong{font-size:0.95rem;color:#0d1b2a;display:block}
-  .hero-foto{width:100%;max-height:420px;object-fit:cover;object-position:center 30%}
-  .ervaringen-blok{background:#f9f9fb;border-radius:14px;padding:2rem;margin:2rem 0}
-  .ervaringen-titel{font-size:1rem;font-weight:600;color:#0d1b2a;margin-bottom:1rem}
-  .ervaring-item{padding:1rem 0;border-bottom:1px solid rgba(0,0,0,0.07)}
-  .ervaring-item:last-child{border-bottom:none;padding-bottom:0}
-  .ervaring-auto{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0a3d62;margin-bottom:4px}
-  .ervaring-tekst{font-size:14px;color:#333;line-height:1.7;margin:0}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0b1220;
+      --ink-soft: #3d4558;
+      --muted: #6b7585;
+      --gold: #c6a86a;
+      --gold-light: #f7f0e3;
+      --bg: #f8f7f4;
+      --white: #ffffff;
+      --border: #e4e2dc;
+      --green: #1a6b3c;
+      --green-light: #eaf5ef;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --red: #dc2626;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px; }
+
+    nav { background: var(--ink); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 18px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: var(--ink); padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+    /* HERO */
+    .hero { background: var(--ink); min-height: 86vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .hero-text-side { padding: 80px 48px 80px 10%; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    .hero-img-side { position: relative; overflow: hidden; }
+    .hero-img-side img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; opacity: 0.9; }
+    .hero-img-side::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--ink) 0%, transparent 30%); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(198,168,106,0.15); border: 1px solid rgba(198,168,106,0.3); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; width: fit-content; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(34px, 5vw, 54px); color: #fff; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 480px; margin-bottom: 32px; line-height: 1.7; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 14px 26px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+    .hero-trust span { font-size: 12px; color: rgba(255,255,255,0.45); }
+    .hero-trust span::before { content: '✓ '; color: var(--gold); }
+
+    .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .section { margin: 72px 0; }
+    h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 4vw, 36px); color: var(--ink); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.5px; }
+    p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; line-height: 1.75; }
+
+    /* EIGEN METING */
+    .meting-box { background: var(--green-light); border: 1px solid rgba(26,107,60,0.25); border-left: 4px solid var(--green); border-radius: 14px; overflow: hidden; margin-top: 24px; }
+    .meting-header { padding: 24px 28px 0; }
+    .meting-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; display: block; }
+    .meting-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 28px 20px; }
+    .meting-item { background: #fff; border-radius: 10px; padding: 14px; text-align: center; }
+    .meting-item-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .meting-item-value { font-family: 'Fraunces', serif; font-size: 22px; color: var(--green); line-height: 1; }
+    .meting-item-value.groot { font-size: 30px; }
+    .meting-cert { width: 100%; display: block; border-top: 1px solid rgba(26,107,60,0.15); }
+    .meting-cert img { width: 100%; display: block; }
+
+    /* PHEV UITLEG */
+    .phev-box { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 14px; padding: 28px 32px; margin-top: 24px; }
+    .phev-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; display: block; }
+
+    /* MODELLEN */
+    .model-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .model-tab { font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); color: var(--ink-soft); text-decoration: none; background: var(--white); }
+    .model-tab:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .model-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px; scroll-margin-top: 80px; }
+    .model-card-img { width: 100%; height: 260px; object-fit: cover; object-position: center; display: block; }
+    .model-card-header { padding: 24px 28px 0; }
+    .model-badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 8px; }
+    .badge-phev { background: #fffbeb; color: var(--amber); }
+    .badge-ev { background: #eff6ff; color: #1d4ed8; }
+    .model-naam { font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink); margin-bottom: 0; }
+    .model-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 28px; }
+    .model-spec { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
+    .model-spec-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .model-spec-value { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+    .model-blokken { display: flex; flex-direction: column; gap: 10px; padding: 0 28px; }
+    .model-blok { padding: 14px 16px; border-radius: 10px; }
+    .model-blok-neutraal { background: var(--bg); border-left: 3px solid var(--border); }
+    .model-blok-risico { background: var(--amber-light); border-left: 3px solid var(--amber); }
+    .model-blok-check { background: var(--green-light); border-left: 3px solid var(--green); }
+    .model-blok-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+    .model-blok-neutraal .model-blok-label { color: var(--muted); }
+    .model-blok-risico .model-blok-label { color: var(--amber); }
+    .model-blok-check .model-blok-label { color: var(--green); }
+    .model-blok p { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.65; }
+    .model-cta { padding: 20px 28px 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .model-btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; }
+    .model-btn-rapport { display: inline-flex; align-items: center; gap: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--ink-soft); padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .model-btn-rapport:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    /* PEPIJN */
+    .pepijn-strip { background: var(--ink); border-radius: 20px; padding: 36px 40px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .pepijn-strip img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--gold); }
+    .pepijn-strip-text h3 { font-family: 'Fraunces', serif; font-size: 20px; color: #fff; margin-bottom: 6px; }
+    .pepijn-strip-text p { font-size: 14px; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.6; }
+    .pepijn-btn { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; margin-top: 12px; }
+
+    /* PRIJZEN */
+    .prijs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .prijs-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; }
+    .prijs-card.featured { border-color: var(--gold); background: var(--gold-light); }
+    .prijs-badge { position: absolute; top: 16px; right: 16px; background: var(--gold); color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+    .prijs-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .prijs-amount { font-family: 'Fraunces', serif; font-size: 36px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+    .prijs-desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+    .prijs-list { list-style: none; }
+    .prijs-list li { font-size: 13px; color: var(--ink-soft); padding: 4px 0; display: flex; gap: 7px; border-bottom: 1px solid #f0ede8; }
+    .prijs-list li:last-child { border-bottom: none; }
+    .prijs-list li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
+
+    /* CTA */
+    .cta-final { background: var(--ink); border-radius: 20px; padding: 56px 40px; text-align: center; margin: 64px 0; }
+    .cta-final h2 { color: #fff; margin-bottom: 12px; }
+    .cta-final p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 28px; }
+    .trust-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .trust-row span { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .trust-row span::before { content: '✓ '; color: var(--gold); }
+
+    .sticky-wa { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; border-radius: 50px; padding: 13px 22px; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999; }
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-img-side { display: none; }
+      .hero-text-side { padding: 60px 24px; }
+      .meting-grid { grid-template-columns: 1fr 1fr; }
+      .model-specs { grid-template-columns: 1fr; }
+      .prijs-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-<body class="fade-in">
+<body>
 
-<header class="zop-header">
-  <div class="zop-header-inner">
-    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-    <nav class="zop-nav">
-      <a href="index.html">Home</a>
-      <a href="aankoopadvies.html">Aankoopadvies</a>
-      <div class="zop-dropdown">
-        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
-        </div>
-      </div>
-      <div class="zop-dropdown">
-        <span class="zop-drop-label">Voor bedrijven</span>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-          <a href="automatisering.html">Automatisering</a>
-        </div>
-      </div>
-      <a href="bezwaarservice.html">Bezwaar</a>
-      <a href="over.html">Over</a>
-      <a href="contact.html" class="zop-contact">Contact</a>
-    </nav>
-    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
+<nav>
+  <a class="nav-logo" href="https://zekeropweg.nu">Zeker<span>OpWeg</span></a>
+  <a class="nav-cta" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20AccuCheck%20aanvragen">Plan AccuCheck</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text-side">
+    <div class="hero-tag">Porsche AccuCheck</div>
+    <h1>Porsche PHEV of EV? <em>Meet de accu onafhankelijk.</em></h1>
+    <p class="hero-sub">Bij Porsche PHEV-modellen bepaalt het laadgedrag van de vorige eigenaar de werkelijke accustaat. Een BMS-uitlezing maakt dat niet zichtbaar. Een AVILOO Flash Test wel.</p>
+    <a class="btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20AccuCheck%20aanvragen">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+      Stuur kenteken, ik kijk direct mee
+    </a>
+    <div class="hero-trust">
+      <span>Officieel AVILOO-partner</span>
+      <span>TÜV-gecertificeerd</span>
+      <span>16 jaar ervaring</span>
+      <span>Op locatie bij de auto</span>
+    </div>
   </div>
-</header>
-
-<div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" aria-label="Sluiten">&times;</button>
-  <nav class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-    <a href="bezwaarservice.html">Bezwaar</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <div class="hero-img-side">
+    <img src="images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_01.jpeg" alt="Pepijn Westhoff voert AVILOO Flash Test uit in Porsche Cayenne S" />
+  </div>
 </div>
-<div id="menuOverlay" class="menu-overlay"></div>
 
-<main class="page-content">
+<div class="wrap">
 
-<section class="hero hero-standard">
-  <div class="hero-content">
-    <span class="hero-eyebrow">AVILOO Flash Test &middot; TUV-gecertificeerd &middot; Op locatie</span>
-    <h1>Porsche PHEV &amp; EV AccuCheck</h1>
-    <p>Onafhankelijke accumeting voor Porsche Cayenne E-Hybrid, Taycan en Panamera E-Hybrid. AVILOO Flash Test op celniveau. In 3 minuten. Niet afhankelijk van Porsche-software.</p>
-    <div class="hero-actions">
-      <a href="intake.html?dienst=ev-accucheck&model=porsche" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
-    </div>
-    <div class="hero-trust" style="margin-top:1.5rem">
-      <span>&#10003; Officieel AVILOO-partner</span>
-      <span>&#10003; TUV-gecertificeerd</span>
-      <span>&#10003; Op locatie bij de auto</span>
-      <span>&#10003; 3 minuten meting</span>
-    </div>
-  </div>
-</section>
+  <!-- PHEV UITLEG -->
+  <div class="section">
+    <h2>Waarom een Porsche PHEV extra aandacht verdient</h2>
+    <p>De Cayenne E-Hybrid en Panamera E-Hybrid zijn populaire zakelijke leaseauto's. Ze komen in grote aantallen als leaseretour op de occasionmarkt. Het probleem: veel zakelijke rijders laden nauwelijks. De accu reist als ballast mee in een benzineauto.</p>
 
-<section class="services-section container">
-
-  <p class="page-intro">
-    Porsche PHEV-modellen zijn premium occasion-auto's met een hoge aankoopwaarde. Juist daarom is een onafhankelijke accucheck essentieel. De Cayenne E-Hybrid en Panamera E-Hybrid komen als zakelijke leaseretour in grote aantallen op de occasionmarkt. Het laadgedrag van de vorige eigenaar bepaalt grotendeels de werkelijke accustaat, en dat is zelden zichtbaar in het BMS-getal. De AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau, onafhankelijk van Porsche-software en eventuele updates.
-  </p>
-
-  <nav class="model-nav" aria-label="Modellen">
-    <a href="#cayenne-e-hybrid" class="model-nav-item">Cayenne E-Hybrid</a>
-    <a href="#cayenne-turbo-s" class="model-nav-item">Cayenne Turbo S E-Hybrid</a>
-    <a href="#taycan" class="model-nav-item">Taycan</a>
-    <a href="#panamera-e-hybrid" class="model-nav-item">Panamera E-Hybrid</a>
-  </nav>
-
-  <div class="foto-bewijs-grid">
-    <div class="foto-bewijs-item">
-      <img src="assets/images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_04.jpeg" alt="AVILOO Flash Test Porsche Cayenne op locatie ZekerOpWeg" loading="lazy">
-      <p>AVILOO Flash Test uitgevoerd in een Porsche Cayenne S op locatie</p>
-    </div>
-    <div class="foto-bewijs-item">
-      <img src="assets/images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_07.jpeg" alt="AVILOO meetapparatuur Porsche Cayenne interieur" loading="lazy">
-      <p>AVILOO meetapparatuur aangesloten tijdens de AccuCheck</p>
+    <div class="phev-box">
+      <span class="phev-label">Wat het BMS niet vertelt</span>
+      <p style="margin:0 0 12px;">Een BMS-uitlezing toont het gemiddelde van het accupakket. Afwijkende cellen door structurele ontlading zijn onzichtbaar totdat ze merkbaar worden in het elektrische rijbereik. Bij een aankoopprijs van €80.000 tot €180.000 is dat een onaangenaam moment.</p>
+      <p style="margin:0;">De AVILOO Flash Test meet de spanning van elke individuele cel, onafhankelijk van Porsche-software en eventuele updates. In 15 minuten op locatie.</p>
     </div>
   </div>
 
-  <div class="artikel-link-blok">
-    <div class="artikel-link-tekst">
-      <p>Kennisartikel</p>
-      <strong>Moba vs. AVILOO Flash Test: wat is het verschil?</strong>
-    </div>
-    <a href="bms-vs-celniveau.html" class="btn-info">Lees het artikel &rarr;</a>
-  </div>
+  <!-- EIGEN METING -->
+  <div class="section">
+    <h2>Eigen meting uit de praktijk</h2>
+    <p>ZekerOpWeg voert AVILOO Flash Tests uit op Porsche occasions. Dit is een gecertificeerde meting die we zelf hebben uitgevoerd.</p>
 
-  <!-- MODEL 1: Cayenne E-Hybrid -->
-  <div class="model-blok" id="cayenne-e-hybrid">
-    <img class="model-foto" src="assets/images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_04.jpeg" alt="Porsche Cayenne E-Hybrid AVILOO AccuCheck op locatie" loading="lazy">
-    <p class="model-foto-caption">Porsche Cayenne S &middot; AVILOO Flash Test op locatie &middot; ZekerOpWeg</p>
-    <div class="model-content">
-      <div class="model-header">
-        <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
-        <h2 class="model-naam">Porsche Cayenne E-Hybrid</h2>
+    <div class="meting-box">
+      <div class="meting-header">
+        <span class="meting-label">Gecertificeerde AVILOO-meting door ZekerOpWeg · 06-04-2026</span>
       </div>
-      <div class="model-specs-grid">
-        <div class="spec-item">
-          <p class="spec-label">Accupakket</p>
-          <p class="spec-val">17,9 kWh netto bruikbaar</p>
+      <div class="meting-grid">
+        <div class="meting-item">
+          <div class="meting-item-label">Model</div>
+          <div class="meting-item-value" style="font-size:13px; padding-top:4px;">Cayenne e-Hybrid 25,9 kWh</div>
         </div>
-        <div class="spec-item">
-          <p class="spec-label">Elektrisch bereik (WLTP)</p>
-          <p class="spec-val">Circa 54 km elektrisch</p>
+        <div class="meting-item">
+          <div class="meting-item-label">Kilometerstand</div>
+          <div class="meting-item-value" style="font-size:18px; padding-top:4px;">44.961 km</div>
         </div>
-      </div>
-      <div class="model-sectie-grid">
-        <div class="model-sectie">
-          <p class="sectie-label">Typische degradatie</p>
-          <p class="sectie-tekst">Bij regelmatig laden degradeert de Cayenne E-Hybrid accu gemiddeld 2 tot 3% per jaar. Na 4 jaar zakelijk gebruik ligt de restcapaciteit doorgaans tussen 72 en 85%, sterk afhankelijk van laadgedrag. De grotere accuomvang van 17,9 kWh biedt meer buffer dan kleinere PHEV-pakketten.</p>
+        <div class="meting-item">
+          <div class="meting-item-label">SoH uitkomst</div>
+          <div class="meting-item-value groot">93,6%</div>
         </div>
-        <div class="model-sectie model-sectie-risico">
-          <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-          <p class="sectie-tekst">De Cayenne E-Hybrid is een populaire zakelijke leaseauto. Veel zakelijke rijders laden nauwelijks, waardoor de accu feitelijk als ballast meereist in een benzineauto. Dit leidt tot versnelde degradatie die niet zichtbaar is in het BMS-getal. Een BMS-uitlezing toont het gemiddelde over het pakket. Afwijkende cellen door structurele ontlading blijven onzichtbaar totdat ze merkbaar worden in het rijbereik.</p>
-        </div>
-        <div class="model-sectie model-sectie-check">
-          <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-          <p class="sectie-tekst">De Flash Test analyseert alle individuele cellen van het Cayenne E-Hybrid accupakket en detecteert afwijkingen en Red Flags direct. Vergelijking met vergelijkbare Cayenne E-Hybrid modellen in de AVILOO database geeft direct context bij de gemeten waarden. Niet beïnvloed door Porsche-software of recente updates.</p>
+        <div class="meting-item">
+          <div class="meting-item-label">Celafwijkingen</div>
+          <div class="meting-item-value" style="font-size:14px; padding-top:6px; color:var(--green);">Geen</div>
         </div>
       </div>
-      <div class="model-cta-row">
-        <a href="rapport.html?model=porsche-cayenne-ehybrid" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-        <a href="intake.html?dienst=ev-accucheck&model=cayenne-ehybrid" class="model-check-btn">Plan AccuCheck voor de Cayenne</a>
+      <p style="font-size:13px; color:var(--green); font-weight:600; padding:0 28px 12px;">Goede gezondheid · Geen afwijkingen · AVILOO Certified</p>
+      <div class="meting-cert">
+        <img src="images/AVILOO-certificaat-porsche-cayenne-ehybrid.jpeg" alt="AVILOO certificaat Porsche Cayenne e-Hybrid 93,6% SoH ZekerOpWeg" />
       </div>
     </div>
   </div>
 
-  <!-- MODEL 2: Cayenne Turbo S E-Hybrid -->
-  <div class="model-blok" id="cayenne-turbo-s">
-    <img class="model-foto" src="assets/images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_07.jpeg" alt="Porsche Cayenne Turbo S E-Hybrid AVILOO meetapparatuur" loading="lazy">
-    <p class="model-foto-caption">AVILOO meetapparatuur aangesloten in Porsche Cayenne S &middot; ZekerOpWeg</p>
-    <div class="model-content">
-      <div class="model-header">
-        <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
-        <h2 class="model-naam">Porsche Cayenne Turbo S E-Hybrid</h2>
+  <!-- MODELLEN -->
+  <div class="section">
+    <h2>Welke Porsche modellen meet ik?</h2>
+    <p>AVILOO ondersteunt alle gangbare Porsche PHEV en EV modellen. Dit zijn de meest voorkomende occasions.</p>
+
+    <div class="model-tabs">
+      <a href="#cayenne-ehybrid" class="model-tab">Cayenne E-Hybrid</a>
+      <a href="#cayenne-turbo-s" class="model-tab">Cayenne Turbo S</a>
+      <a href="#taycan" class="model-tab">Taycan</a>
+      <a href="#panamera" class="model-tab">Panamera E-Hybrid</a>
+    </div>
+
+    <!-- CAYENNE E-HYBRID -->
+    <div class="model-card" id="cayenne-ehybrid">
+      <img class="model-card-img" src="images/2026-04-05_Porsche-Cayenne_AccuCheck_locatie_07.jpeg" alt="AVILOO Flash Test Porsche Cayenne E-Hybrid ZekerOpWeg" />
+      <div class="model-card-header">
+        <div class="model-badge badge-phev">Plug-in hybride</div>
+        <div class="model-naam">Porsche Cayenne E-Hybrid</div>
       </div>
-      <div class="model-specs-grid">
-        <div class="spec-item">
-          <p class="spec-label">Accupakket</p>
-          <p class="spec-val">25,9 kWh netto bruikbaar</p>
+      <div class="model-specs">
+        <div class="model-spec">
+          <div class="model-spec-label">Accupakket</div>
+          <div class="model-spec-value">17,9 kWh of 25,9 kWh netto</div>
         </div>
-        <div class="spec-item">
-          <p class="spec-label">Elektrisch bereik (WLTP)</p>
-          <p class="spec-val">Circa 66 km elektrisch</p>
-        </div>
-      </div>
-      <div class="model-sectie-grid">
-        <div class="model-sectie">
-          <p class="sectie-label">Typische degradatie</p>
-          <p class="sectie-tekst">Het grotere 25,9 kWh accupakket van de Turbo S E-Hybrid biedt meer degradatiebuffer. Bij regelmatig laden gemiddeld 1,5 tot 2,5% per jaar. Na 4 jaar doorgaans 78 tot 88% restcapaciteit. De hogere aankoopwaarde van dit model maakt een onafhankelijke meting extra relevant.</p>
-        </div>
-        <div class="model-sectie model-sectie-risico">
-          <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-          <p class="sectie-tekst">Als topversie van de Cayenne-lijn heeft de Turbo S E-Hybrid een hoge restwaarde waarbij accustaat direct de prijs bepaalt. Een BMS-uitlezing geeft alleen het gemiddelde van het pakket. Bij een accu van 25,9 kWh kan zelfs een klein percentage afwijkende cellen een merkbare impact hebben op het praktisch bereik en de restwaarde.</p>
-        </div>
-        <div class="model-sectie model-sectie-check">
-          <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-          <p class="sectie-tekst">Celanalyse van het volledige 25,9 kWh pakket. Detectie van Red Flags en afwijkende cellen. Vergelijking met Cayenne Turbo S E-Hybrid referentiedata in de AVILOO database. Volledig onafhankelijk van Porsche-software en OTA-updates.</p>
+        <div class="model-spec">
+          <div class="model-spec-label">Elektrisch bereik WLTP</div>
+          <div class="model-spec-value">Circa 54 tot 69 km elektrisch</div>
         </div>
       </div>
-      <div class="model-cta-row">
-        <a href="rapport.html?model=porsche-cayenne-turbo-s" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-        <a href="intake.html?dienst=ev-accucheck&model=cayenne-turbo-s" class="model-check-btn">Plan AccuCheck voor de Turbo S</a>
+      <div class="model-blokken">
+        <div class="model-blok model-blok-neutraal">
+          <span class="model-blok-label">Degradatiepatroon</span>
+          <p>Bij regelmatig laden degradeert de Cayenne E-Hybrid accu gemiddeld 2 tot 3% per jaar. Na 4 jaar zakelijk gebruik ligt de restcapaciteit doorgaans tussen 72 en 88%, sterk afhankelijk van laadgedrag. De grotere 25,9 kWh variant biedt meer buffer.</p>
+        </div>
+        <div class="model-blok model-blok-risico">
+          <span class="model-blok-label">Aandachtspunt</span>
+          <p>De Cayenne E-Hybrid is een populaire zakelijke leaseauto. Veel zakelijke rijders laden nauwelijks, waardoor de accu als ballast meereist in een benzineauto. Dit leidt tot versnelde degradatie die niet zichtbaar is in het BMS-getal. Afwijkende cellen door structurele ontlading blijven onzichtbaar totdat ze merkbaar worden in het rijbereik.</p>
+        </div>
+        <div class="model-blok model-blok-check">
+          <span class="model-blok-label">Wat de AVILOO Flash Test controleert</span>
+          <p>Celanalyse van alle individuele cellen van het Cayenne E-Hybrid accupakket. Detectie van afwijkingen direct zichtbaar. Vergelijking met vergelijkbare Cayenne E-Hybrid modellen in de AVILOO database. Niet beïnvloed door Porsche-software of updates.</p>
+        </div>
+      </div>
+      <div class="model-cta">
+        <a class="model-btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20Cayenne%20AccuCheck%20aanvragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+          AccuCheck aanvragen · €129
+        </a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+      </div>
+    </div>
+
+    <!-- CAYENNE TURBO S -->
+    <div class="model-card" id="cayenne-turbo-s">
+      <div class="model-card-header" style="padding-top:24px;">
+        <div class="model-badge badge-phev">Plug-in hybride</div>
+        <div class="model-naam">Porsche Cayenne Turbo S E-Hybrid</div>
+      </div>
+      <div class="model-specs">
+        <div class="model-spec">
+          <div class="model-spec-label">Accupakket</div>
+          <div class="model-spec-value">25,9 kWh netto</div>
+        </div>
+        <div class="model-spec">
+          <div class="model-spec-label">Elektrisch bereik WLTP</div>
+          <div class="model-spec-value">Circa 66 km elektrisch</div>
+        </div>
+      </div>
+      <div class="model-blokken">
+        <div class="model-blok model-blok-neutraal">
+          <span class="model-blok-label">Degradatiepatroon</span>
+          <p>Het grotere 25,9 kWh accupakket biedt meer buffer. Bij regelmatig laden gemiddeld 1,5 tot 2,5% per jaar. Na 4 jaar doorgaans 78 tot 88% restcapaciteit. De hogere aankoopwaarde maakt een onafhankelijke meting extra relevant.</p>
+        </div>
+        <div class="model-blok model-blok-risico">
+          <span class="model-blok-label">Aandachtspunt</span>
+          <p>Als topversie van de Cayenne-lijn heeft de Turbo S E-Hybrid een hoge restwaarde waarbij accustaat direct de prijs bepaalt. Bij een accu van 25,9 kWh kan zelfs een klein percentage afwijkende cellen een merkbare impact hebben op het praktisch bereik en de restwaarde.</p>
+        </div>
+        <div class="model-blok model-blok-check">
+          <span class="model-blok-label">Wat de AVILOO Flash Test controleert</span>
+          <p>Celanalyse van het volledige 25,9 kWh pakket. Detectie van afwijkende cellen. Vergelijking met Cayenne Turbo S E-Hybrid referentiedata in de AVILOO database. Volledig onafhankelijk van Porsche-software.</p>
+        </div>
+      </div>
+      <div class="model-cta">
+        <a class="model-btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20Cayenne%20Turbo%20S%20AccuCheck%20aanvragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+          AccuCheck aanvragen · €129
+        </a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+      </div>
+    </div>
+
+    <!-- TAYCAN -->
+    <div class="model-card" id="taycan">
+      <div class="model-card-header" style="padding-top:24px;">
+        <div class="model-badge badge-ev">Volledig elektrisch</div>
+        <div class="model-naam">Porsche Taycan</div>
+      </div>
+      <div class="model-specs">
+        <div class="model-spec">
+          <div class="model-spec-label">Accupakket</div>
+          <div class="model-spec-value">79,2 kWh of 93,4 kWh (Performance Battery Plus)</div>
+        </div>
+        <div class="model-spec">
+          <div class="model-spec-label">Typische degradatie</div>
+          <div class="model-spec-value">Na 3 jaar gemiddeld 90 tot 94% SoH</div>
+        </div>
+      </div>
+      <div class="model-blokken">
+        <div class="model-blok model-blok-neutraal">
+          <span class="model-blok-label">Degradatiepatroon</span>
+          <p>De Taycan degradeert gemiddeld 2 tot 3% per jaar. AVILOO meetdata bevestigt stabiele prestaties bij normaal gebruik. De Taycan ondersteunt 800V laden wat bij intensief gebruik de thermische belasting verhoogt.</p>
+        </div>
+        <div class="model-blok model-blok-risico">
+          <span class="model-blok-label">Bijzonder aandachtspunt: BMS-divergentie</span>
+          <p>De Taycan is een van de weinige modellen waarbij de BMS-waarde en de AVILOO-meting significant kunnen afwijken. Een Taycan kan 84% BMS-SoH tonen terwijl de AVILOO-meting 91% geeft, of omgekeerd. Porsche past via software-updates regelmatig de BMS-kalibratie aan. Bij dit model is een onafhankelijke meting extra relevant juist vanwege deze bekende divergentie.</p>
+        </div>
+        <div class="model-blok model-blok-check">
+          <span class="model-blok-label">Wat de AVILOO Flash Test controleert</span>
+          <p>Celanalyse van het volledige Taycan accupakket, onafhankelijk van Porsche-software. Detectie van celspanningsafwijkingen. Vergelijking met de AVILOO Taycan database. Bijzonder relevant bij dit model vanwege de bekende BMS-divergentie.</p>
+        </div>
+      </div>
+      <div style="background:var(--green-light); border-radius:10px; padding:14px 16px; margin:0 28px;">
+        <p style="font-size:13px; color:var(--green); font-weight:600; margin:0 0 4px;">Eigen meting Taycan · Onafhankelijke verificatie</p>
+        <p style="font-size:13px; color:var(--ink-soft); margin:0; line-height:1.6;">BMS-waarde van de dealer toonde 91% SoH. AVILOO Flash Test bevestigde 91,6% met stabiele celspanningen. Geen afwijkingen. Koper kocht met volledig inzicht.</p>
+      </div>
+      <div class="model-cta">
+        <a class="model-btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20Taycan%20AccuCheck%20aanvragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+          AccuCheck aanvragen · €129
+        </a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+      </div>
+    </div>
+
+    <!-- PANAMERA -->
+    <div class="model-card" id="panamera">
+      <div class="model-card-header" style="padding-top:24px;">
+        <div class="model-badge badge-phev">Plug-in hybride</div>
+        <div class="model-naam">Porsche Panamera E-Hybrid</div>
+      </div>
+      <div class="model-specs">
+        <div class="model-spec">
+          <div class="model-spec-label">Accupakket</div>
+          <div class="model-spec-value">17,9 kWh of 25,9 kWh (Turbo S)</div>
+        </div>
+        <div class="model-spec">
+          <div class="model-spec-label">Elektrisch bereik WLTP</div>
+          <div class="model-spec-value">Circa 51 tot 56 km elektrisch</div>
+        </div>
+      </div>
+      <div class="model-blokken">
+        <div class="model-blok model-blok-neutraal">
+          <span class="model-blok-label">Degradatiepatroon</span>
+          <p>De Panamera E-Hybrid deelt zijn accuarchitectuur met de Cayenne E-Hybrid. Bij regelmatig laden gemiddeld 2 tot 3% per jaar. Na 4 jaar doorgaans 72 tot 85% restcapaciteit.</p>
+        </div>
+        <div class="model-blok model-blok-risico">
+          <span class="model-blok-label">Aandachtspunt</span>
+          <p>Populaire zakelijke occasion in het premium segment. Hetzelfde laadgedrag-risico als de Cayenne: zakelijke rijders die nauwelijks laden laten de accu structureel ontladen. Bij een aankoopprijs van €80.000 tot €150.000 is een onafhankelijke accucheck geen overbodige luxe maar een basisvereiste.</p>
+        </div>
+        <div class="model-blok model-blok-check">
+          <span class="model-blok-label">Wat de AVILOO Flash Test controleert</span>
+          <p>Celanalyse van het volledige Panamera E-Hybrid accupakket. Detectie van afwijkende cellen. Vergelijking met Panamera E-Hybrid referentiedata in de AVILOO database. Onafhankelijk van Porsche-software en updates.</p>
+        </div>
+      </div>
+      <div class="model-cta">
+        <a class="model-btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20Panamera%20AccuCheck%20aanvragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+          AccuCheck aanvragen · €129
+        </a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
       </div>
     </div>
   </div>
 
-  <!-- MODEL 3: Taycan -->
-  <div class="model-blok" id="taycan">
-    <img class="model-foto" src="assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg" alt="AVILOO Flash Test Porsche Taycan op locatie ZekerOpWeg" loading="lazy">
-    <p class="model-foto-caption">AVILOO Flash Test op locatie &middot; ZekerOpWeg</p>
-    <div class="model-content">
-      <div class="model-header">
-        <span class="model-type-badge badge-ev">Volledig elektrisch</span>
-        <h2 class="model-naam">Porsche Taycan</h2>
-      </div>
-      <div class="model-specs-grid">
-        <div class="spec-item">
-          <p class="spec-label">Accupakket</p>
-          <p class="spec-val">79,2 kWh of 93,4 kWh (Performance Battery Plus)</p>
-        </div>
-        <div class="spec-item">
-          <p class="spec-label">WLTP bereik</p>
-          <p class="spec-val">431 km (79,2 kWh) of 484 km (93,4 kWh)</p>
-        </div>
-      </div>
-      <div class="model-sectie-grid">
-        <div class="model-sectie">
-          <p class="sectie-label">Typische degradatie</p>
-          <p class="sectie-tekst">De Taycan degradeert gemiddeld 2 tot 3% per jaar. Na 3 jaar doorgaans 90 tot 94% SoH. AVILOO meetdata bevestigt stabiele prestaties bij normaal gebruik. De Taycan ondersteunt 800V laden wat bij intensief gebruik de thermische belasting verhoogt.</p>
-        </div>
-        <div class="model-sectie model-sectie-risico">
-          <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-          <p class="sectie-tekst">De Taycan is een van de weinige modellen waarbij BMS-waarde en AVILOO-meting significant kunnen afwijken. In een forum-case toonde een Taycan 84% BMS SoH terwijl de AVILOO meting 91% toonde. Omgekeerd is ook aangetoond. Porsche past via software-updates regelmatig de BMS-kalibratie aan. Een onafhankelijke meting is bij de Taycan extra relevant juist vanwege deze bekende divergentie.</p>
-        </div>
-        <div class="model-sectie model-sectie-check">
-          <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-          <p class="sectie-tekst">Celanalyse van het volledige Taycan accupakket, onafhankelijk van Porsche-software. Detectie van celspanningsafwijkingen en Red Flags. Vergelijking met de AVILOO Taycan database. Bijzonder relevant bij dit model vanwege de bekende BMS-divergentie.</p>
-        </div>
-      </div>
-      <div class="model-cta-row">
-        <a href="rapport.html?model=porsche-taycan" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-        <a href="intake.html?dienst=ev-accucheck&model=taycan" class="model-check-btn">Plan AccuCheck voor de Taycan</a>
+  <!-- PEPIJN -->
+  <div class="section">
+    <div class="pepijn-strip">
+      <img src="images/Aankoopadvies-pepijn-inspectie.png" alt="Pepijn Westhoff ZekerOpWeg Porsche AccuCheck" />
+      <div class="pepijn-strip-text">
+        <h3>Pepijn Westhoff</h3>
+        <p>16 jaar automotive en dealerervaring. Officieel AVILOO-partner. Ik kom naar de locatie van de auto. Werkgebied: Zuid-Holland, Noord-Brabant en Utrecht.</p>
+        <a class="pepijn-btn" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20AccuCheck%20aanvragen">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+          Plan een Porsche AccuCheck
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- MODEL 4: Panamera E-Hybrid -->
-  <div class="model-blok" id="panamera-e-hybrid">
-    <img class="model-foto" src="assets/images/ev-accudiagnose-apparatuur-interieur.jpeg" alt="AVILOO accudiagnose apparatuur Porsche Panamera" loading="lazy">
-    <p class="model-foto-caption">AVILOO meetapparatuur tijdens AccuCheck &middot; ZekerOpWeg</p>
-    <div class="model-content">
-      <div class="model-header">
-        <span class="model-type-badge badge-phev">Plug-in hybride (PHEV)</span>
-        <h2 class="model-naam">Porsche Panamera E-Hybrid</h2>
+  <!-- PRIJZEN -->
+  <div class="section">
+    <h2>Tarieven</h2>
+    <div class="prijs-grid">
+      <div class="prijs-card">
+        <div class="prijs-label">AccuRisico Rapport</div>
+        <div class="prijs-amount">€19,95</div>
+        <div class="prijs-desc">Risico-inschatting op basis van kenteken en km. Direct beschikbaar.</div>
+        <ul class="prijs-list">
+          <li>Statistische SoH-inschatting</li>
+          <li>Vergelijking ADAC-normen</li>
+          <li>Marktcijfers vergelijkbare Porsche</li>
+          <li>Toekomstprognose 2027-2031</li>
+        </ul>
       </div>
-      <div class="model-specs-grid">
-        <div class="spec-item">
-          <p class="spec-label">Accupakket</p>
-          <p class="spec-val">17,9 kWh (Sport Turismo) of 25,9 kWh (Turbo S)</p>
-        </div>
-        <div class="spec-item">
-          <p class="spec-label">Elektrisch bereik (WLTP)</p>
-          <p class="spec-val">Circa 51 tot 56 km elektrisch</p>
-        </div>
+      <div class="prijs-card featured">
+        <div class="prijs-badge">Aanbevolen</div>
+        <div class="prijs-label">AVILOO Flash Test</div>
+        <div class="prijs-amount">€129</div>
+        <div class="prijs-desc">Onafhankelijke celmeting op locatie. TÜV-gecertificeerd certificaat.</div>
+        <ul class="prijs-list">
+          <li>Celspanningsmeting alle cellen</li>
+          <li>Onafhankelijk van Porsche-software</li>
+          <li>Afwijkende cellen direct zichtbaar</li>
+          <li>TÜV-gecertificeerd certificaat</li>
+          <li>Resultaat dezelfde dag</li>
+          <li>Op locatie bij de auto</li>
+        </ul>
       </div>
-      <div class="model-sectie-grid">
-        <div class="model-sectie">
-          <p class="sectie-label">Typische degradatie</p>
-          <p class="sectie-tekst">De Panamera E-Hybrid deelt zijn accuarchitectuur met de Cayenne E-Hybrid. Bij regelmatig laden gemiddeld 2 tot 3% per jaar. Na 4 jaar doorgaans 72 tot 85% restcapaciteit. Premium zakelijke occasion waarbij accustaat direct de restwaarde bepaalt.</p>
-        </div>
-        <div class="model-sectie model-sectie-risico">
-          <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-          <p class="sectie-tekst">Populaire zakelijke occasion in het premium segment. Hetzelfde laadgedrag-risico als de Cayenne: zakelijke rijders die nauwelijks laden laten de accu structureel ontladen. Het BMS-getal geeft geen eerlijk beeld van werkelijk gebruik. Bij een aankoopprijs van &euro;80.000 tot &euro;150.000 is een onafhankelijke accucheck geen overbodige luxe maar een basisvereiste.</p>
-        </div>
-        <div class="model-sectie model-sectie-check">
-          <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-          <p class="sectie-tekst">Celanalyse van het volledige Panamera E-Hybrid accupakket. Detectie van Red Flags en celafwijkingen. Vergelijking met Panamera E-Hybrid referentiedata in de AVILOO database. Onafhankelijk van Porsche-software en updates.</p>
-        </div>
-      </div>
-      <div class="model-cta-row">
-        <a href="rapport.html?model=porsche-panamera-ehybrid" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-        <a href="intake.html?dienst=ev-accucheck&model=panamera-ehybrid" class="model-check-btn">Plan AccuCheck voor de Panamera</a>
-      </div>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:14px; text-align:center;">Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-final">
+    <h2>Porsche gevonden die je wilt kopen?</h2>
+    <p>Stuur het kenteken via WhatsApp. Ik kijk direct met je mee en plan een AccuCheck in.</p>
+    <a class="btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20AccuCheck%20aanvragen">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+      Stuur kenteken, ik kijk direct mee
+    </a>
+    <div class="trust-row">
+      <span>Officieel AVILOO-partner</span>
+      <span>TÜV-gecertificeerd</span>
+      <span>16 jaar automotive ervaring</span>
+      <span>Geen verkoopbelang</span>
     </div>
   </div>
 
-  <!-- ERVARINGEN -->
-  <div class="ervaringen-blok">
-    <p class="ervaringen-titel">Uitgevoerd door ZekerOpWeg</p>
-    <div class="ervaring-item">
-      <p class="ervaring-auto">Porsche Cayenne S &middot; Op locatie</p>
-      <p class="ervaring-tekst">AVILOO Flash Test uitgevoerd op locatie bij de aanbieder. Resultaat binnen 3 minuten beschikbaar. Celanalyse toonde een gezond accupakket zonder Red Flags. Koper kon met zekerheid beslissen.</p>
-    </div>
-    <div class="ervaring-item">
-      <p class="ervaring-auto">Porsche Taycan &middot; Onafhankelijke meting</p>
-      <p class="ervaring-tekst">BMS-waarde van de dealer toonde 91% SoH. AVILOO Flash Test bevestigde 91,6% met stabiele celspanningen. Geen afwijkingen. Koper kocht met volledig inzicht.</p>
-    </div>
-  </div>
+</div>
 
-  <!-- DONKER CTA BLOK -->
-  <div style="background:#0d1b2a;border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
-    <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">ZekerOpWeg &middot; Officieel AVILOO partner</p>
-    <h3 style="font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3;">Klaar voor zekerheid over uw Porsche?</h3>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto 1.5rem;line-height:1.7;">ZekerOpWeg voert AVILOO Flash Tests uit op locatie in de regio Zuid-Holland en Noord-Brabant. 3 minuten. TUV-gecertificeerd. Defecte cellen direct zichtbaar. Niet beïnvloed door Porsche-software.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="intake.html?dienst=ev-accucheck&model=porsche" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
-      <a href="rapport.html" style="background:transparent;border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">AccuRisico Rapport &middot; &euro;19,95</a>
-    </div>
-  </div>
-
-</section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <p class="footer-title">ZekerOpWeg</p>
-      <p>&copy; 2025 ZekerOpWeg</p>
-      <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">Handelsnaam van Pepijn Westhoff<br>KvK 99323575<br>BTW NL005381985B31</p>
-    </div>
-    <div class="footer-col">
-      <p class="footer-title">Contact</p>
-      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
-    </div>
-    <div class="footer-col">
-      <p class="footer-title">Meer modellen</p>
-      <p><a href="bmw-ev-accucheck.html">BMW AccuCheck</a></p>
-      <p><a href="audi-ev-accucheck.html">Audi AccuCheck</a></p>
-      <p><a href="tesla-ev-accucheck.html">Tesla AccuCheck</a></p>
-      <p><a href="ev-accucheck.html">Alle modellen</a></p>
-    </div>
-  </div>
-  <div style="margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08);">
-    <div class="container">
-      <p class="footer-legal">Diensten worden geleverd conform Nederlandse wetgeving. ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.</p>
-    </div>
-  </div>
+<footer>
+  <p>ZekerOpWeg · Porsche AccuCheck · Barendrecht · <a href="https://zekeropweg.nu" style="color:var(--muted);">zekeropweg.nu</a></p>
 </footer>
 
-<script src="scripts/menu.js" defer></script>
+<a class="sticky-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Porsche%20AccuCheck%20aanvragen">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+  App mij direct
+</a>
+
 </body>
 </html>
-
