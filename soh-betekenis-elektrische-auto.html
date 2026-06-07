@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wat betekent SOH bij een elektrische auto? | ZekerOpWeg</title>
+  <meta name="description" content="SOH staat voor State of Health en geeft de accugezondheid aan als percentage. Maar wat betekent 85% SoH in de praktijk? En wanneer is een EV-accu nog goed genoeg? ZekerOpWeg legt het uit." />
+  <link rel="canonical" href="https://zekeropweg.nu/soh-betekenis-elektrische-auto.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is SOH bij een elektrische auto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SOH staat voor State of Health en geeft aan hoeveel capaciteit de accu van een elektrische auto nog heeft ten opzichte van nieuw. Een SOH van 90% betekent dat de accu nog 90% van de originele capaciteit heeft. De auto rijdt hetzelfde, maar het rijbereik is afgenomen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat is een goede SOH voor een tweedehands EV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Boven 90% SoH is uitstekend. Tussen 82% en 90% is normaal voor een auto van 3 tot 6 jaar oud. Onder 80% is een aandachtspunt. De ADAC-norm stelt minimaal 84% bij 150.000 km en minimaal 88% bij 100.000 km."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan een accu met 90% SOH slechter zijn dan een accu met 82% SOH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Een SOH-percentage is het gemiddelde van alle cellen in het accupakket. Als één cel significant afwijkt maar meegaat in het gemiddelde, is dat onzichtbaar. Een accu met 90% SOH maar een defecte cel is minder betrouwbaar dan een accu met 82% SOH en volledig gezonde cellen. Alleen een onafhankelijke celmeting maakt dit zichtbaar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat betekent 85% SOH in de praktijk?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bij 85% SOH is het rijbereik afgenomen met 15% ten opzichte van nieuw. Een auto met 400 km WLTP nieuw rijdt dan nog circa 340 km. De auto rijdt identiek, je laadt alleen iets eerder bij. Er is geen defect, het is normale slijtage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe wordt SOH gemeten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Er zijn twee methoden. Een BMS-uitlezing leest de software van de auto zelf uit. Dit getal kan veranderen na een software-update zonder dat de accu fysiek is veranderd. Een onafhankelijke celmeting zoals een AVILOO Flash Test meet de spanning van elke individuele cel, onafhankelijk van de software van de auto. Dat geeft een objectief, TÜV-gecertificeerd resultaat."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0b1220;
+      --ink-soft: #3d4558;
+      --muted: #6b7585;
+      --gold: #c6a86a;
+      --gold-light: #f7f0e3;
+      --bg: #f8f7f4;
+      --white: #ffffff;
+      --border: #e4e2dc;
+      --green: #1a6b3c;
+      --green-light: #eaf5ef;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --red: #dc2626;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px; }
+
+    nav { background: var(--ink); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 18px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: var(--ink); padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+    /* HERO */
+    .hero { background: var(--ink); padding: 80px 24px; }
+    .hero-inner { max-width: 720px; margin: 0 auto; }
+    .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(32px, 5vw, 54px); color: #fff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 580px; }
+
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .section { margin: 64px 0; }
+    h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 4vw, 34px); color: var(--ink); line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.5px; }
+    h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+    p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; line-height: 1.75; }
+
+    /* DEFINITIE BOX */
+    .definitie-box { background: var(--ink); border-radius: 20px; padding: 36px 40px; margin: 32px 0; }
+    .definitie-term { font-family: 'Fraunces', serif; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .definitie-uitleg { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 0; }
+    .definitie-uitleg strong { color: #fff; }
+
+    /* SOH BALK */
+    .soh-schaal { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; margin: 24px 0; }
+    .soh-schaal-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: block; }
+    .soh-rij { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .soh-rij:last-child { margin-bottom: 0; }
+    .soh-pct { font-family: 'Fraunces', serif; font-size: 20px; min-width: 60px; }
+    .soh-bar-wrap { flex: 1; height: 10px; background: #f0ede8; border-radius: 5px; overflow: hidden; min-width: 100px; }
+    .soh-bar { height: 100%; border-radius: 5px; }
+    .soh-label { font-size: 13px; color: var(--ink-soft); min-width: 140px; }
+    .soh-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+    .tag-top { background: var(--green-light); color: var(--green); }
+    .tag-goed { background: #e8f5e9; color: #2e7d32; }
+    .tag-normaal { background: #e3f2fd; color: #1565c0; }
+    .tag-acceptabel { background: var(--amber-light); color: var(--amber); }
+    .tag-aandacht { background: #fce4ec; color: #c62828; }
+
+    /* PRAKTIJK GRID */
+    .praktijk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 24px; }
+    .praktijk-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 22px; text-align: center; }
+    .praktijk-soh { font-family: 'Fraunces', serif; font-size: 36px; line-height: 1; margin-bottom: 6px; }
+    .praktijk-bereik { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .praktijk-km { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .praktijk-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* CEL UITLEG */
+    .cel-box { background: var(--amber-light); border: 1px solid #fcd34d; border-left: 4px solid var(--amber); border-radius: 12px; padding: 24px 28px; margin: 24px 0; }
+    .cel-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; display: block; }
+
+    /* ADAC */
+    .adac-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+    .adac-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+    .adac-km { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .adac-norm { font-family: 'Fraunces', serif; font-size: 28px; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .adac-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* METING VERGELIJKING */
+    .meting-tabel { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 24px; }
+    .meting-header { display: grid; grid-template-columns: 1.5fr 1fr 1fr; background: var(--ink); }
+    .meting-header div { padding: 14px 18px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.6); }
+    .meting-header div:last-child { color: var(--gold); }
+    .meting-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+    .meting-row:last-child { border-bottom: none; }
+    .meting-row div { padding: 14px 18px; font-size: 13.5px; color: var(--ink-soft); }
+    .meting-row div:first-child { font-weight: 600; color: var(--ink); }
+    .meting-row div.nee { color: var(--red); }
+    .meting-row div.ja { color: var(--green); font-weight: 600; }
+    .meting-row.alt { background: #fafaf8; }
+
+    /* EIGEN DATA */
+    .eigen-data { background: var(--green-light); border: 1px solid rgba(26,107,60,0.25); border-left: 4px solid var(--green); border-radius: 14px; padding: 24px 28px; margin-top: 24px; }
+    .eigen-data-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; display: block; }
+    .eigen-data-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(26,107,60,0.12); flex-wrap: wrap; gap: 6px; }
+    .eigen-data-row:last-child { border-bottom: none; }
+    .eigen-data-auto { font-size: 14px; color: var(--ink-soft); }
+    .eigen-data-soh { font-size: 15px; font-weight: 700; color: var(--green); }
+
+    /* FAQ */
+    .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; margin-bottom: 12px; }
+    .faq-vraag { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+    .faq-antwoord { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
+
+    /* CTA */
+    .cta-final { background: var(--ink); border-radius: 20px; padding: 56px 40px; text-align: center; margin: 64px 0; }
+    .cta-final h2 { color: #fff; margin-bottom: 12px; }
+    .cta-final p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 28px; }
+    .cta-grid { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--ink); padding: 14px 26px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 14px 26px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; }
+    .trust-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .trust-row span { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .trust-row span::before { content: '✓ '; color: var(--gold); }
+
+    .sticky-wa { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; border-radius: 50px; padding: 13px 22px; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999; }
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 640px) {
+      .praktijk-grid { grid-template-columns: 1fr; }
+      .adac-grid { grid-template-columns: 1fr 1fr; }
+      .meting-header, .meting-row { grid-template-columns: 1fr 1fr; }
+      .meting-header div:first-child, .meting-row div:first-child { display: none; }
+      .definitie-box { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://zekeropweg.nu">Zeker<span>OpWeg</span></a>
+  <a class="nav-cta" href="https://wa.me/31623452349?text=Ik%20heb%20een%20vraag%20over%20SOH">Stel een vraag</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Kennisartikel · Accugezondheid EV</span>
+    <h1>Wat betekent <em>SOH</em> bij een elektrische auto?</h1>
+    <p class="hero-sub">SOH staat voor State of Health. Het is het belangrijkste getal bij elke tweedehands EV of hybride. Maar wat betekent het in de praktijk en wanneer is het goed genoeg?</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- DEFINITIE -->
+  <div class="section">
+    <div class="definitie-box">
+      <div class="definitie-term">SOH</div>
+      <p class="definitie-uitleg"><strong>State of Health</strong> : het percentage van de originele accucapaciteit dat nog beschikbaar is. Een SOH van 90% betekent dat de accu nog 90% van zijn originele capaciteit heeft. De auto rijdt hetzelfde. Het rijbereik is 10% afgenomen.</p>
+    </div>
+
+    <p>Elke accu verliest over tijd een deel van zijn capaciteit. Dat is normaal, onvermijdelijk en geldt voor elk merk en elk model. SOH is de maatstaf om die achteruitgang te meten.</p>
+    <p>Het getal lijkt eenvoudig. Maar er zit meer achter dan de meeste kopers en verkopers weten.</p>
+  </div>
+
+  <!-- WAT IS EEN GOEDE SOH -->
+  <div class="section">
+    <h2>Wat is een goede SOH?</h2>
+    <p>Dat hangt af van de leeftijd en kilometerstand van de auto. Een SOH van 88% bij een auto van 5 jaar oud met 100.000 km is prima. Diezelfde 88% bij een auto van 1 jaar oud met 15.000 km is een aandachtspunt.</p>
+
+    <div class="soh-schaal">
+      <span class="soh-schaal-label">SOH-schaal bij tweedehands EV</span>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#15803d;">98%+</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:98%; background:#15803d;"></div></div>
+        <span class="soh-label">0 tot 30.000 km</span>
+        <span class="soh-tag tag-top">Uitstekend</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#16a34a;">94%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:94%; background:#16a34a;"></div></div>
+        <span class="soh-label">30.000 tot 60.000 km</span>
+        <span class="soh-tag tag-goed">Goed</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#1d4ed8;">88%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:88%; background:#1d4ed8;"></div></div>
+        <span class="soh-label">60.000 tot 100.000 km</span>
+        <span class="soh-tag tag-normaal">Normaal</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#d97706;">84%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:84%; background:#d97706;"></div></div>
+        <span class="soh-label">100.000 tot 150.000 km</span>
+        <span class="soh-tag tag-acceptabel">Acceptabel</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#ea580c;">80%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:80%; background:#ea580c;"></div></div>
+        <span class="soh-label">150.000+ km</span>
+        <span class="soh-tag tag-aandacht">Aandachtspunt</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#c62828;">70%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:70%; background:#c62828;"></div></div>
+        <span class="soh-label">Garantiegrens</span>
+        <span class="soh-tag" style="background:#fce4ec;color:#c62828;">Garantiegrens</span>
+      </div>
+      <div class="soh-rij">
+        <span class="soh-pct" style="color:#7f0000;">65%</span>
+        <div class="soh-bar-wrap"><div class="soh-bar" style="width:65%; background:#7f0000;"></div></div>
+        <span class="soh-label">End of life</span>
+        <span class="soh-tag" style="background:#ffcdd2;color:#7f0000;">End of life</span>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:14px;">De meeste fabrikanten hanteren 70% SoH als garantiegrens. Zakt de accu hieronder binnen de garantieperiode, dan heeft de eigenaar recht op vervanging. Onder 65% SoH is een accu end of life en niet meer geschikt voor normaal gebruik.</p>
+  </div>
+
+  <!-- PRAKTIJK -->
+  <div class="section">
+    <h2>Wat betekent SOH in de praktijk?</h2>
+    <p>Veel mensen denken dat een lagere SOH betekent dat er iets mis is met de auto. Dat klopt niet. Een accu met 85% SOH rijdt identiek aan een nieuwe auto. Alleen het rijbereik is afgenomen. Vergelijk het met een brandstoftank die iets kleiner is geworden.</p>
+    <p>Stel: een EV heeft nieuw een WLTP-bereik van 400 km.</p>
+
+    <div class="praktijk-grid">
+      <div class="praktijk-card">
+        <div class="praktijk-soh" style="color:#15803d;">100%</div>
+        <div class="praktijk-bereik">400 km</div>
+        <div class="praktijk-km">Nieuw · volledig bereik</div>
+        <div class="praktijk-desc">Fabriekswaarde. Maximaal accupakket.</div>
+      </div>
+      <div class="praktijk-card">
+        <div class="praktijk-soh" style="color:#1d4ed8;">87%</div>
+        <div class="praktijk-bereik">348 km</div>
+        <div class="praktijk-km">Na 5 jaar normaal gebruik</div>
+        <div class="praktijk-desc">52 km minder. Auto rijdt identiek. Je laadt iets eerder bij. Geen defect.</div>
+      </div>
+      <div class="praktijk-card">
+        <div class="praktijk-soh" style="color:#ea580c;">78%</div>
+        <div class="praktijk-bereik">312 km</div>
+        <div class="praktijk-km">Verhoogde slijtage</div>
+        <div class="praktijk-desc">88 km minder. Merkbaar in dagelijks gebruik. Oorzaak onderzoeken.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CEL UITLEG -->
+  <div class="section">
+    <h2>Waarom SOH niet het hele verhaal is</h2>
+    <p>Dit is het punt dat de meeste kopers en verkopers niet weten. En het is precies waarom een celmeting zo belangrijk is.</p>
+
+    <div class="cel-box">
+      <span class="cel-label">Belangrijk inzicht</span>
+      <h3 style="color:var(--amber); margin-bottom:10px;">Een accu met 90% SOH kan slechter zijn dan een accu met 82% SOH</h3>
+      <p style="margin:0 0 12px;">Een accupakket bestaat uit honderden individuele cellen. Het dashboard en de BMS-software tonen het gemiddelde van al die cellen als één percentage. Maar als één cel defect is of significant afwijkt, verdwijnt dat in het gemiddelde.</p>
+      <p style="margin:0;">Een defecte cel die meegaat in een gemiddelde van 90% is onzichtbaar. Maar die cel zorgt voor verminderde prestaties, snellere verdere degradatie en uiteindelijk een onverwachte storing. Alleen een celmeting maakt dit zichtbaar.</p>
+    </div>
+  </div>
+
+  <!-- ADAC NORMEN -->
+  <div class="section">
+    <h2>De ADAC-norm als objectieve maatstaf</h2>
+    <p>De ADAC, de grootste automobielclub van Europa, heeft normen vastgesteld voor de minimale accugezondheid per kilometerstand. Dit zijn de normen die als referentie worden gebruikt bij aankoopkeuringen en garantieclaims.</p>
+
+    <div class="adac-grid">
+      <div class="adac-card">
+        <div class="adac-km">tot 25.000 km</div>
+        <div class="adac-norm">93%</div>
+        <div class="adac-label">min. SoH</div>
+      </div>
+      <div class="adac-card">
+        <div class="adac-km">tot 50.000 km</div>
+        <div class="adac-norm">91%</div>
+        <div class="adac-label">min. SoH</div>
+      </div>
+      <div class="adac-card">
+        <div class="adac-km">tot 100.000 km</div>
+        <div class="adac-norm">88%</div>
+        <div class="adac-label">min. SoH</div>
+      </div>
+      <div class="adac-card">
+        <div class="adac-km">tot 150.000 km</div>
+        <div class="adac-norm">84%</div>
+        <div class="adac-label">min. SoH</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:14px;">Valt de SOH onder de ADAC-norm voor de kilometerstand, dan is dat een signaal dat de degradatie sneller verloopt dan verwacht. Dit kan een reden zijn voor garantieclaim bij de fabrikant.</p>
+  </div>
+
+  <!-- PHEV VS EV DEGRADATIE -->
+  <div class="section">
+    <h2>Plug-in hybride versus volledig elektrisch: verschil in degradatie</h2>
+    <p>Een plug-in hybride (PHEV) heeft doorgaans een hogere degradatie dan een volledig elektrische auto. Dat klinkt misschien niet logisch, maar heeft een duidelijke oorzaak.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;">
+      <div style="background:var(--amber-light); border:1px solid #fcd34d; border-left:4px solid var(--amber); border-radius:14px; padding:24px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--amber); margin-bottom:10px;">Plug-in hybride (PHEV)</div>
+        <p style="font-size:14px; color:var(--ink-soft); margin-bottom:10px; line-height:1.65;">Veel PHEV-rijders laden nauwelijks. De accu reist als ballast mee in een benzineauto. Structurele diepontlading versnelt degradatie aanzienlijk.</p>
+        <p style="font-size:14px; color:var(--ink-soft); margin:0; line-height:1.65;">Gemiddelde degradatie: <strong style="color:var(--amber);">2 tot 4% per jaar</strong> bij weinig laden. De accu van een 4 jaar oude zakelijke PHEV kan al op 75 tot 82% SoH zitten.</p>
+      </div>
+      <div style="background:var(--green-light); border:1px solid rgba(26,107,60,0.25); border-left:4px solid var(--green); border-radius:14px; padding:24px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--green); margin-bottom:10px;">Volledig elektrisch (EV)</div>
+        <p style="font-size:14px; color:var(--ink-soft); margin-bottom:10px; line-height:1.65;">Een EV wordt dagelijks geladen en gebruikt. De accu wordt regelmatig gecycleerd, wat paradoxaal genoeg beter is voor de levensduur dan structurele diepontlading.</p>
+        <p style="font-size:14px; color:var(--ink-soft); margin:0; line-height:1.65;">Gemiddelde degradatie: <strong style="color:var(--green);">0,5 tot 2% per jaar</strong> bij normaal gebruik. Een EV van 4 jaar oud staat doorgaans op 90 tot 96% SoH.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-top:16px;">
+      <p style="font-size:14px; color:var(--ink-soft); margin:0; line-height:1.7;"><strong style="color:var(--ink);">Praktijkvoorbeeld:</strong> Een Porsche Cayenne E-Hybrid van 4 jaar oud als zakelijke leaseretour kan door weinig laadgedrag al op 75% SoH zitten, terwijl een Tesla Model 3 van dezelfde leeftijd met normaal gebruik nog op 92% staat. Beide auto's zien er hetzelfde uit in een advertentie. Alleen een celmeting maakt het verschil zichtbaar.</p>
+    </div>
+  </div>
+
+  <!-- HOE WORDT SOH GEMETEN -->
+  <div class="section">
+    <h2>Hoe wordt SOH gemeten?</h2>
+    <p>Er zijn twee fundamenteel verschillende methoden. Het verschil is groter dan de meeste mensen denken.</p>
+
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:24px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--ink); border-radius:12px; overflow:hidden; padding:14px 18px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.5);">BMS-uitlezing</div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold);">Celmeting</div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">Onafhankelijk van auto-software</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--red); font-weight:600;">Nee</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Ja</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">Individuele celspanning zichtbaar</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--red); font-weight:600;">Nee</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Ja</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">Defecte cel detecteerbaar</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--red); font-weight:600;">Nee</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Ja</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">Verandert na software-update</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--amber); font-weight:600;">Ja</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Nee</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">TÜV-gecertificeerd resultaat</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--red); font-weight:600;">Nee</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Ja</div>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+        <div style="padding:10px 18px; background:#f8f7f4; font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border);">Geldig bij garantieclaim</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+          <div style="padding:14px 18px; border-right:1px solid var(--border); font-size:14px; color:var(--red); font-weight:600;">Nee</div>
+          <div style="padding:14px 18px; font-size:14px; color:var(--green); font-weight:600;">Ja</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:16px;">Een BMS-uitlezing via de dealer, Moba of een OBD-tool raadpleegt de software van de auto zelf. Na een software-update kan de SOH-waarde veranderen zonder dat de accu fysiek is veranderd. Een onafhankelijke celmeting meet de spanning van elke individuele cel, ongeacht welke software er in de auto staat.</p>
+  </div>
+
+  <!-- EIGEN MEETDATA -->
+  <div class="section">
+    <h2>SOH in de praktijk: eigen meetdata</h2>
+    <p>ZekerOpWeg voert zelf celmetingen uit op locatie. Dit zijn gecertificeerde uitkomsten uit de praktijk.</p>
+
+    <div class="eigen-data">
+      <span class="eigen-data-label">Gecertificeerde celmetingen door ZekerOpWeg</span>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">Tesla Model 3 Performance 2019 · 182.000 km · Hoogvliet</span>
+        <span class="eigen-data-soh">86,3%</span>
+      </div>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">Tesla Model 3 55kWh 2021 · 59.797 km</span>
+        <span class="eigen-data-soh">91,1%</span>
+      </div>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">Peugeot e-208 50kWh 2020 · 99.387 km · Gorinchem</span>
+        <span class="eigen-data-soh">92,6%</span>
+      </div>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">Porsche Cayenne e-Hybrid 25,9kWh · 44.961 km</span>
+        <span class="eigen-data-soh">93,6%</span>
+      </div>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">Polestar 2 78kWh 2022 · 66.050 km</span>
+        <span class="eigen-data-soh">94,7%</span>
+      </div>
+      <div class="eigen-data-row">
+        <span class="eigen-data-auto">BMW i4 · Jaarsma data</span>
+        <span class="eigen-data-soh">93,5%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Veelgestelde vragen over SOH</h2>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Kan ik de SOH zelf controleren?</div>
+      <p class="faq-antwoord">Via een OBD-tool of de auto-app kun je een getal opvragen. Maar dat getal komt uit de BMS-software van de auto zelf en kan veranderen na een software-update. Voor een objectief resultaat is een onafhankelijke celmeting nodig.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Is een SOH van 80% nog acceptabel?</div>
+      <p class="faq-antwoord">Dat hangt af van de kilometerstand. Bij 200.000 km is 80% normaal. Bij 80.000 km is het een aandachtspunt. Gebruik de ADAC-norm als referentie en laat altijd een celmeting uitvoeren voordat je een beslissing neemt.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Kan de SOH nog verbeteren?</div>
+      <p class="faq-antwoord">De werkelijke capaciteit van de accu verbetert niet. Maar de BMS-waarde kan stijgen na een software-update. Dit is een van de redenen waarom een BMS-uitlezing geen betrouwbaar bewijs is van de werkelijke accustaat.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Wanneer is een accu end of life?</div>
+      <p class="faq-antwoord">Onder 65% SoH is een accu end of life en niet meer geschikt voor normaal dagelijks gebruik. Het rijbereik is dan zo sterk afgenomen dat de auto zijn praktische functie verliest. De meeste fabrikanten hanteren 70% SoH als garantiegrens. Zakt de accu hieronder binnen de garantieperiode, dan heeft de eigenaar recht op vervanging of reparatie.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Wat is het verschil tussen SOH en SoC?</div>
+      <p class="faq-antwoord">SoC staat voor State of Charge en geeft aan hoe vol de accu op dit moment is, vergelijkbaar met een brandstofmeter. SOH geeft aan hoeveel van de originele maximale capaciteit nog beschikbaar is. SoC verandert elke keer dat je laadt of rijdt. SOH verandert langzaam over maanden en jaren.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-vraag">Wat is een goede SOH bij een Nissan Leaf?</div>
+      <p class="faq-antwoord">De Nissan Leaf heeft geen actieve accukoeling, waardoor hij sneller degradeert dan modellen met thermisch beheer. Bij 80.000 km is 85% SOH normaal voor een Leaf. Bij modellen met actieve koeling zoals Kia, Hyundai of Tesla mag je bij dezelfde kilometerstand 90% of meer verwachten.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-final">
+    <h2>Wil je de SOH weten van een specifieke auto?</h2>
+    <p>Stuur het kenteken via WhatsApp voor een directe inschatting. Of vraag een AccuRisico Rapport aan voor €19,95.</p>
+    <div class="cta-grid">
+      <a class="btn-gold" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+      <a class="btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20de%20SOH%20weten%20van%20een%20elektrische%20auto">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+        Stuur kenteken via WhatsApp
+      </a>
+    </div>
+    <div class="trust-row">
+      <span>Volledig onafhankelijk</span>
+      <span>16 jaar automotive ervaring</span>
+      <span>Eigen meetdata uit de praktijk</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>ZekerOpWeg · SOH betekenis elektrische auto · Barendrecht · <a href="https://zekeropweg.nu" style="color:var(--muted);">zekeropweg.nu</a></p>
+</footer>
+
+<a class="sticky-wa" href="https://wa.me/31623452349?text=Ik%20heb%20een%20vraag%20over%20SOH">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
+  App mij direct
+</a>
+
+</body>
+</html>
