@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV Batterij Defect | Symptomen, oorzaken en oplossingen | ZekerOpWeg</title>
+  <meta name="description" content="EV batterij defect? Lees wat de symptomen zijn, hoe een defecte EV batterijcel wordt gedetecteerd en wat u kunt doen. ZekerOpWeg voert onafhankelijke AVILOO celanalyse uit op locatie in Rotterdam en omgeving.">
+  <link rel="canonical" href="https://zekeropweg.nu/ev-batterij-defect.html" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/zop-luxury-polish.css" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/ev-accucheck.css" />
+
+  <style>
+    .hero-location {
+      font-size: 13px;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 1rem;
+      letter-spacing: .02em;
+    }
+    .cta-center {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+    .symptomen-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .symptomen-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 12px;
+    }
+    .symptomen-intro {
+      text-align: center;
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .symptomen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .symptoom-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 14px;
+      padding: 24px;
+      border-left: 4px solid var(--zop-gold, #c6a86a);
+    }
+    .symptoom-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 8px;
+    }
+    .symptoom-card p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .uitleg-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .uitleg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .uitleg-tekst h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .uitleg-tekst p {
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .uitleg-tekst ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 0 0 16px;
+    }
+    .uitleg-tekst ul li {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      padding: 6px 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .uitleg-tekst ul li::before {
+      content: "→";
+      color: var(--zop-gold, #c6a86a);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .uitleg-aside {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    .uitleg-aside h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 16px;
+    }
+    .uitleg-aside p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.7;
+      margin: 0 0 12px;
+    }
+    .uitleg-aside .risico-getal {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--zop-gold, #c6a86a);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .uitleg-aside .risico-label {
+      font-size: 12px;
+      color: var(--zop-muted, #5a6472);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .oorzaken-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .oorzaken-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .oorzaken-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .oorzaak-card {
+      background: #f6f5f1;
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .oorzaak-card .oorzaak-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .oorzaak-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 8px;
+    }
+    .oorzaak-card p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .actie-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .actie-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 12px;
+    }
+    .actie-intro {
+      text-align: center;
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .actie-stappen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+    .actie-stap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+    }
+    .actie-stap .stap-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-gold, #c6a86a);
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .actie-stap strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 8px;
+    }
+    .actie-stap p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .kosten-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .kosten-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .kosten-tabel {
+      max-width: 760px;
+      margin: 0 auto 32px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    }
+    .kosten-rij {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0;
+    }
+    .kosten-rij.header {
+      background: #0b1220;
+    }
+    .kosten-rij.header span {
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 14px 20px;
+    }
+    .kosten-rij:not(.header) {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .kosten-rij:not(.header):last-child {
+      border-bottom: none;
+    }
+    .kosten-rij:not(.header) span {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      padding: 14px 20px;
+    }
+    .kosten-rij:not(.header) span:first-child {
+      font-weight: 600;
+      color: var(--zop-ink, #0b1220);
+    }
+    .kosten-rij:not(.header) span:last-child {
+      color: #e05252;
+      font-weight: 700;
+    }
+    .authority-strip {
+      background: #0b1220;
+      padding: 28px 0;
+    }
+    .authority-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+    }
+    .authority-items span::before {
+      content: "✓ ";
+      color: var(--zop-gold, #c6a86a);
+      font-weight: 600;
+    }
+    .faq-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .faq-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: 24px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin: 0 0 10px;
+    }
+    .faq-item p {
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.7;
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .uitleg-grid { grid-template-columns: 1fr; }
+      .kosten-rij { grid-template-columns: 1fr 1fr; }
+      .kosten-rij .kosten-rij-midden { display: none; }
+    }
+  </style>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://zekeropweg.nu/#business",
+        "name": "ZekerOpWeg",
+        "description": "Onafhankelijke EV accu diagnose en aankoopadvies. Officieel AVILOO-partner. TÜV-gecertificeerde accudiagnose op locatie in Rotterdam, Barendrecht, Dordrecht en omgeving.",
+        "url": "https://zekeropweg.nu",
+        "telephone": "+31623452349",
+        "email": "info@zekeropweg.nu",
+        "image": [
+          "https://zekeropweg.nu/assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg",
+          "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg"
+        ],
+        "logo": "https://zekeropweg.nu/assets/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Barendrecht",
+          "postalCode": "2990",
+          "addressRegion": "Zuid-Holland",
+          "addressCountry": "NL"
+        },
+        "priceRange": "€95 - €499",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1",
+          "reviewCount": "7"
+        }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://zekeropweg.nu/ev-batterij-defect.html#article",
+        "headline": "EV Batterij Defect: symptomen, oorzaken en wat u kunt doen",
+        "description": "Uitleg over defecte EV batterijcellen: hoe herken je het, wat zijn de oorzaken, wat zijn de kosten en hoe detecteert een AVILOO Flash Test een defecte cel die een BMS mist.",
+        "author": {
+          "@type": "Person",
+          "name": "Pepijn Westhoff",
+          "jobTitle": "EV aankoopadviseur en accudiagnose specialist",
+          "url": "https://zekeropweg.nu/over.html"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZekerOpWeg",
+          "url": "https://zekeropweg.nu",
+          "logo": "https://zekeropweg.nu/assets/logo.png"
+        },
+        "datePublished": "2026-06-13",
+        "dateModified": "2026-06-13",
+        "url": "https://zekeropweg.nu/ev-batterij-defect.html",
+        "mainEntityOfPage": "https://zekeropweg.nu/ev-batterij-defect.html"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hoe herken ik een defecte EV batterij?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Symptomen van een defecte EV batterij zijn: plotselinge daling van het rijbereik, afwijkend laadgedrag (laad niet volledig op of stopt vroeg), onregelmatige SoH-weergave op het dashboard, foutmeldingen gerelateerd aan het batterijsysteem, en een accu die sneller leegloopt dan verwacht. Let op: een defecte cel is niet altijd zichtbaar op het dashboard. Een AVILOO Flash Test op celniveau detecteert afwijkingen die de boordcomputer mist."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan een defecte EV batterijcel onzichtbaar zijn bij normale uitlezing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. Een defecte cel in een accupakket van 96 of meer cellen kan volledig onzichtbaar zijn voor de boordcomputer (BMS). Het BMS berekent een gemiddeld percentage op basis van het totale pakket. Een enkele cel met afwijkende spanning verdwijnt in dat gemiddelde. Alleen een meting op celniveau, zoals de AVILOO Flash Test, detecteert deze afwijking."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat kost het vervangen van een defecte EV batterij?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Accuvervanging kost bij een Nissan Leaf €6.000 tot €8.000, bij een Volkswagen ID.3 €8.000 tot €12.000, bij een Tesla Model 3 €8.000 tot €13.000 en bij een Audi e-tron €15.000 tot €20.000. Een AVILOO Flash Test kost €95 tot €129 en detecteert een defect vóór aankoop."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan ik een EV met een defecte batterijcel nog rijden?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dat hangt af van de ernst van het defect. Bij een lichte celafwijking is de auto vaak nog rijdbaar maar met verminderd bereik. Bij een ernstig defect kan het BMS de auto in veiligheidsstand zetten of het laden beperken. Een AVILOO Flash Test geeft u exact inzicht in de ernst van de afwijking en de risico's."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe detecteert ZekerOpWeg een defecte EV batterijcel?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ZekerOpWeg voert de AVILOO Flash Test uit: een TÜV-gecertificeerde meting die de spanning van elke individuele cel in het accupakket meet, onafhankelijk van het boordcomputersysteem. De test duurt circa 3 minuten en detecteert afwijkingen op celniveau die een BMS-uitlezing niet ziet. U ontvangt dezelfde dag een officieel AVILOO-certificaat."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="page-ev-accucheck">
+
+  <!-- HEADER -->
+  <header class="zop-header">
+    <div class="zop-header-inner">
+      <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+      <nav class="zop-nav">
+        <a href="index.html">Home</a>
+        <a href="aankoopadvies.html">Aankoopadvies</a>
+        <div class="zop-dropdown">
+          <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck.html">EV AccuCheck</a>
+            <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+          </div>
+        </div>
+        <div class="zop-dropdown">
+          <span class="zop-drop-label">Voor bedrijven</span>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+            <a href="automatisering.html">Automatisering</a>
+          </div>
+        </div>
+        <a href="bezwaarservice.html">Bezwaar</a>
+        <a href="over.html">Over</a>
+        <a href="contact.html" class="zop-contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-ev">
+      <div class="container">
+        <p class="hero-eyebrow">EV BATTERIJ DEFECT</p>
+        <p class="hero-location">ZekerOpWeg detecteert defecte EV batterijcellen op locatie in Rotterdam, Barendrecht, Dordrecht, Ridderkerk, Schiedam, Den Haag, Delft, Zoetermeer en omgeving. Bel of WhatsApp: 06 23452349.</p>
+        <h1>EV batterij defect: symptomen, oorzaken en wat u kunt doen</h1>
+        <p class="hero-sub">Een defecte cel is onzichtbaar voor de boordcomputer. AVILOO Flash Test detecteert wat een BMS mist.</p>
+        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck €129</a>
+        <div class="hero-trust">
+          <span>✓ Celanalyse op celniveau</span>
+          <span>✓ Officieel AVILOO-partner</span>
+          <span>✓ Detecteert wat BMS mist</span>
+          <span>✓ TÜV-gecertificeerd</span>
+          <span>✓ Uitvoering op locatie</span>
+        </div>
+        <p class="cta-trust">Vrijblijvende aanvraag · afspraak wordt eerst bevestigd</p>
+        <p class="hero-meta">€129 · Op locatie · TÜV-gecertificeerd · Dezelfde dag mogelijk</p>
+      </div>
+    </section>
+
+    <!-- SYMPTOMEN -->
+    <section class="symptomen-section">
+      <div class="container">
+        <h2>Symptomen van een defecte EV batterij</h2>
+        <p class="symptomen-intro">Niet elk symptoom wijst direct op een defect. Maar combinaties van onderstaande signalen rechtvaardigen altijd een onafhankelijke diagnose vóórdat u beslissingen neemt.</p>
+        <div class="symptomen-grid">
+          <div class="symptoom-card">
+            <strong>Plotselinge bereikdaling</strong>
+            <p>Het rijbereik daalt sneller dan normaal op basis van kilometer en leeftijd. Of het bereik varieert sterk per rit zonder duidelijke reden.</p>
+          </div>
+          <div class="symptoom-card">
+            <strong>Afwijkend laadgedrag</strong>
+            <p>De accu laadt niet volledig op, stopt vroeg of duurt opvallend lang. De laadcurve wijkt af van wat voor dit model normaal is.</p>
+          </div>
+          <div class="symptoom-card">
+            <strong>Sprongen in het SoH-percentage</strong>
+            <p>Het SoH-percentage op het dashboard springt of schommelt sterk, ook zonder intensief gebruik. Dit kan duiden op een instabiele cel.</p>
+          </div>
+          <div class="symptoom-card">
+            <strong>Foutmeldingen batterijsysteem</strong>
+            <p>Waarschuwingen op het dashboard gerelateerd aan het batterijsysteem, de hoogspanningsaccu of het laadsysteem.</p>
+          </div>
+          <div class="symptoom-card">
+            <strong>Accu warmer dan normaal</strong>
+            <p>Overmatige warmteontwikkeling tijdens rijden of laden kan wijzen op een defecte cel die meer weerstand geeft dan omliggende cellen.</p>
+          </div>
+          <div class="symptoom-card">
+            <strong>Onverwacht lage SoH na dealer update</strong>
+            <p>Na een software-update bij de dealer is de SoH gedaald terwijl er niets is veranderd. Of andersom: gestegen zonder duidelijke reden.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAAROM EEN DEFECTE CEL ONZICHTBAAR IS -->
+    <section class="uitleg-section">
+      <div class="container">
+        <div class="uitleg-grid">
+          <div class="uitleg-tekst">
+            <h2>Waarom een defecte cel onzichtbaar is voor de boordcomputer</h2>
+            <p>Een EV-accu bestaat uit tientallen tot honderden individuele cellen die samen het accupakket vormen. Het Battery Management System (BMS) bewaakt dit pakket, maar berekent een gemiddeld percentage op basis van het totaal.</p>
+            <p>Een enkele cel met afwijkende spanning of capaciteit verdwijnt in dat gemiddelde. Het BMS geeft dan een SoH van bijvoorbeeld 91% terwijl één cel al op 60% presteert. Die cel belast het hele pakket en kan op termijn leiden tot plotselinge bereikdaling, laadproblemen of uitval.</p>
+            <p>Wat een BMS-uitlezing niet ziet:</p>
+            <ul>
+              <li>Cellen met afwijkende spanningsbalans</li>
+              <li>Cellen met hogere interne weerstand</li>
+              <li>Thermische hotspots in het pakket</li>
+              <li>Vroege stadia van lithiumplating</li>
+            </ul>
+            <p>De AVILOO Flash Test meet elke cel afzonderlijk, onafhankelijk van het BMS. Zo worden afwijkingen op celniveau zichtbaar die een standaard uitlezing mist.</p>
+            <a href="bms-vs-celniveau.html" style="font-size:14px; color:var(--zop-gold,#c6a86a); font-weight:600; text-decoration:none;">Lees het volledige artikel: BMS vs celniveau meting &rarr;</a>
+          </div>
+          <div class="uitleg-aside">
+            <h3>Hoe groot is het risico?</h3>
+            <div class="risico-getal">1 op 100</div>
+            <div class="risico-label">EV accu's heeft een defect</div>
+            <p>Onafhankelijk onderzoek toont dat circa 1 op de 100 EV-accu's een defect heeft dat alleen op celniveau detecteerbaar is.</p>
+            <div class="risico-getal" style="margin-top:20px;">91 pt</div>
+            <div class="risico-label">Maximale BMS-afwijking</div>
+            <p>In extreme gevallen kan een BMS tot 91 procentpunten afwijken van de werkelijke celcapaciteit. Een auto die 91% SoH toont kan in werkelijkheid al sterk gedegradeerd zijn.</p>
+            <div class="risico-getal" style="margin-top:20px;">€8.000+</div>
+            <div class="risico-label">Gemiddelde accuvervanging</div>
+            <p>Accuvervanging kost bij de meeste populaire modellen €8.000 tot €13.000. Een diagnose kost €95 tot €129 en detecteert dit risico vooraf.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OORZAKEN -->
+    <section class="oorzaken-section">
+      <div class="container">
+        <h2>Meest voorkomende oorzaken van een defecte EV batterij</h2>
+        <div class="oorzaken-grid">
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">⚡</span>
+            <strong>Intensief snelladen</strong>
+            <p>Regelmatig snelladen boven 80% of bij lage temperaturen versnelt de degradatie en verhoogt het risico op lithiumplating in individuele cellen.</p>
+          </div>
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">🌡️</span>
+            <strong>Extreme temperaturen</strong>
+            <p>Laden of rijden in extreme hitte of kou belast de cellen onevenredig. Modellen zonder thermisch management (zoals de Nissan Leaf) zijn extra gevoelig.</p>
+          </div>
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">🔋</span>
+            <strong>Volledig leeg of vol rijden</strong>
+            <p>Structureel laden tot 100% of rijden tot 0% versnelt celveroudering. De optimale bandbreedte is 20-80% voor dagelijks gebruik.</p>
+          </div>
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">⏱️</span>
+            <strong>Lange opslagperiodes</strong>
+            <p>Een EV lang opslaan bij lage of hoge laadtoestand degradeert cellen sneller. Ideale opslagtoestand is 50% bij kamertemperatuur.</p>
+          </div>
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">🔧</span>
+            <strong>Productiefout of celdefect</strong>
+            <p>Een klein percentage accu's heeft een productiefout in een individuele cel die pas na duizenden laadcycli zichtbaar wordt.</p>
+          </div>
+          <div class="oorzaak-card">
+            <span class="oorzaak-icon">💥</span>
+            <strong>Aanrijding of stootschade</strong>
+            <p>Een aanrijding kan het accupakket beschadigen zonder zichtbare schade aan de carrosserie. Een diagnose na een ongeluk geeft zekerheid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHORITY STRIP -->
+    <section class="authority-strip">
+      <div class="container authority-items">
+        <span>Celanalyse op celniveau</span>
+        <span>Officieel AVILOO-partner</span>
+        <span>TÜV-gecertificeerd</span>
+        <span>Detecteert wat BMS mist</span>
+      </div>
+    </section>
+
+    <!-- WAT KUNT U DOEN -->
+    <section class="actie-section">
+      <div class="container">
+        <h2>Wat kunt u doen bij vermoeden van een defecte EV batterij?</h2>
+        <p class="actie-intro">Vermoeden van een defect? Volg deze stappen voordat u een beslissing neemt over aankoop, verkoop of reparatie.</p>
+        <div class="actie-stappen">
+          <div class="actie-stap">
+            <span class="stap-num">1</span>
+            <strong>Plan een onafhankelijke diagnose</strong>
+            <p>Een AVILOO Flash Test op celniveau geeft binnen 15 minuten uitsluitsel. Onafhankelijk van wat de dealer of verkoper zegt.</p>
+          </div>
+          <div class="actie-stap">
+            <span class="stap-num">2</span>
+            <strong>Vraag het AVILOO-certificaat op</strong>
+            <p>Het officiële AVILOO-certificaat is rechtsgeldig bij garantieclaims, onderhandelingen en wederverkoop. U heeft bewijs in handen.</p>
+          </div>
+          <div class="actie-stap">
+            <span class="stap-num">3</span>
+            <strong>Gebruik de data in onderhandeling</strong>
+            <p>Objectieve celdata versterkt uw positie bij prijsonderhandeling, garantieclaim of aankoopbeslissing. Geen discussie, alleen feiten.</p>
+          </div>
+          <div class="actie-stap">
+            <span class="stap-num">4</span>
+            <strong>Koop, onderhandel of zoek verder</strong>
+            <p>Op basis van de diagnose neemt u een gefundeerde beslissing. Pepijn legt de uitkomst direct ter plaatse uit.</p>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck op locatie</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KOSTEN OVERZICHT -->
+    <section class="kosten-section">
+      <div class="container">
+        <h2>Wat kost een defecte EV batterij u werkelijk?</h2>
+        <div class="kosten-tabel">
+          <div class="kosten-rij header">
+            <span>Model</span>
+            <span>Accu kWh</span>
+            <span>Accuvervanging</span>
+          </div>
+          <div class="kosten-rij">
+            <span>Nissan Leaf</span>
+            <span>40 / 62 kWh</span>
+            <span>€6.000 - €8.000</span>
+          </div>
+          <div class="kosten-rij">
+            <span>Volkswagen ID.3</span>
+            <span>45 / 58 / 77 kWh</span>
+            <span>€8.000 - €12.000</span>
+          </div>
+          <div class="kosten-rij">
+            <span>Tesla Model 3</span>
+            <span>55 / 75 kWh</span>
+            <span>€8.000 - €13.000</span>
+          </div>
+          <div class="kosten-rij">
+            <span>Hyundai Ioniq 5</span>
+            <span>58 / 77 kWh</span>
+            <span>€10.000 - €15.000</span>
+          </div>
+          <div class="kosten-rij">
+            <span>Audi e-tron / Q4</span>
+            <span>71 / 95 kWh</span>
+            <span>€15.000 - €20.000</span>
+          </div>
+          <div class="kosten-rij" style="background:#f6f5f1;">
+            <span>AVILOO Flash Test ZekerOpWeg</span>
+            <span>Alle modellen</span>
+            <span style="color:var(--zop-gold,#c6a86a) !important;">€95 - €129</span>
+          </div>
+        </div>
+        <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); max-width:560px; margin:0 auto; line-height:1.7;">Een AVILOO Flash Test detecteert een defect vóór aankoop en voorkomt onverwachte kosten achteraf. De diagnose betaalt zichzelf terug bij één voorkomen miskoop.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Veelgestelde vragen over defecte EV batterijen</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Hoe herken ik een defecte EV batterij?</h3>
+            <p>Symptomen zijn: plotselinge bereikdaling, afwijkend laadgedrag, schommelend SoH-percentage, foutmeldingen op het dashboard, en een accu die sneller leegloopt dan verwacht. Een defecte cel is echter niet altijd zichtbaar op het dashboard. Een AVILOO Flash Test op celniveau detecteert afwijkingen die de boordcomputer niet ziet.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Kan een defecte batterijcel echt onzichtbaar zijn?</h3>
+            <p>Ja. Een defecte cel in een pakket van 96 of meer cellen verdwijnt in het gemiddelde dat het BMS berekent. Het dashboard toont dan 91% SoH terwijl één cel al op 60% presteert. Alleen een meting op celniveau zoals de AVILOO Flash Test detecteert deze afwijking.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Wat kost het vervangen van een defecte EV batterij?</h3>
+            <p>Accuvervanging kost afhankelijk van het model €6.000 tot €20.000. Bij een Nissan Leaf €6.000 tot €8.000, bij een Tesla Model 3 €8.000 tot €13.000, bij een Audi e-tron €15.000 tot €20.000. Een AVILOO Flash Test bij ZekerOpWeg kost €95 tot €129 en detecteert een defect vóór aankoop.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Kan ik nog rijden met een defecte batterijcel?</h3>
+            <p>Dat hangt af van de ernst. Bij een lichte afwijking is de auto vaak nog rijdbaar maar met verminderd bereik. Bij een ernstig defect kan het BMS de auto in veiligheidsstand zetten. Een AVILOO Flash Test geeft u precies inzicht in de ernst van de afwijking.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Welke modellen zijn het meest gevoelig voor accu-defecten?</h3>
+            <p>De Nissan Leaf is het meest bekend vanwege gebrek aan actief thermisch management, waardoor hitte en kou direct inwerken op de cellen. Maar elk EV-model kan met celafwijkingen te maken krijgen, afhankelijk van laadgedrag, gebruik en leeftijd. Een diagnose geeft altijd zekerheid ongeacht het model.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Hoe detecteert ZekerOpWeg een defecte batterijcel?</h3>
+            <p>ZekerOpWeg voert de AVILOO Flash Test uit: een TÜV-gecertificeerde meting die de spanning van elke individuele cel meet, onafhankelijk van het BMS. De test duurt circa 3 minuten en detecteert afwijkingen op celniveau. U ontvangt dezelfde dag een officieel AVILOO-certificaat met volledige celanalyse.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GERELATEERDE ARTIKELEN -->
+    <section style="background:#f6f5f1; padding:48px 0;">
+      <div class="container">
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin-bottom:16px; font-weight:600; text-align:center;">Meer lezen</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:860px; margin:0 auto;">
+          <a href="ev-accu-diagnose.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">EV accu diagnose</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Wat is het, wanneer nodig en wat kost het?</p>
+          </a>
+          <a href="aviloo-vs-moba.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Vergelijking</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">AVILOO vs Moba</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Wat detecteert Moba niet dat AVILOO wel ziet?</p>
+          </a>
+          <a href="bms-vs-celniveau.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">BMS vs celniveau</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Waarom een OBD-uitlezing een defecte cel mist.</p>
+          </a>
+          <a href="ev-accucheck.html" style="background:#0b1220; border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Dienst</p>
+            <p style="font-size:15px; font-weight:700; color:#fff; margin:0 0 6px;">AccuCheck plannen</p>
+            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">€95 Barendrecht · €129 op locatie · Dezelfde dag mogelijk.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">ZekerOpWeg</p>
+        <p>© 2026 ZekerOpWeg</p>
+        <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">
+          Handelsnaam van Pepijn Westhoff<br />
+          KvK 99323575<br />
+          BTW NL005381985B31<br />
+          IBAN NL22 INGB 0116 6008 02
+        </p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br />Algemene vragen en eerste contact</p>
+        <p><a href="https://wa.me/31623452349">WhatsApp: 06 23452349</a><br />Snelste manier voor afspraken</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Diensten</p>
+        <p><a href="ev-accucheck.html">EV AccuCheck</a></p>
+        <p><a href="aankoopadvies.html">Aankoopadvies</a></p>
+        <p><a href="accurisico-rapport.html">AccuRisico Rapport</a></p>
+        <p><a href="over.html">Over ZekerOpWeg</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/menu.js" defer></script>
+</body>
+</html>
