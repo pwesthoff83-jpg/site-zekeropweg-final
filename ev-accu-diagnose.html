@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV Accu Diagnose | Professionele accudiagnose op locatie | ZekerOpWeg</title>
+  <meta name="description" content="Professionele EV accu diagnose op locatie door officieel AVILOO-partner. Celanalyse op celniveau, TÜV-gecertificeerd. Wat is een accu diagnose, wanneer heb je het nodig en wat kost het? ZekerOpWeg Barendrecht.">
+  <link rel="canonical" href="https://zekeropweg.nu/ev-accu-diagnose.html" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/zop-luxury-polish.css" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="stylesheet" href="css/ev-accucheck.css" />
+
+  <style>
+    .hero-location {
+      font-size: 13px;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 1rem;
+      letter-spacing: .02em;
+    }
+    .cta-center {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+    .kennisblok-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .kennisblok-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .kennisblok-tekst h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .kennisblok-tekst p {
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .kennisblok-aside {
+      background: #f6f5f1;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .kennisblok-aside p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.7;
+      margin: 0 0 12px;
+    }
+    .kennisblok-aside p:last-child { margin: 0; }
+    .kennisblok-aside strong {
+      color: var(--zop-ink, #0b1220);
+      display: block;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .verschil-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .verschil-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .verschil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .verschil-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    .verschil-card .verschil-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--zop-gold, #c6a86a);
+      margin-bottom: 10px;
+    }
+    .verschil-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 14px;
+    }
+    .verschil-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .verschil-card ul li {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .verschil-card ul li:last-child { border-bottom: none; }
+    .verschil-card ul li::before {
+      content: "✓";
+      color: var(--zop-gold, #c6a86a);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .verschil-card.negatief ul li::before {
+      content: "✗";
+      color: #e05252;
+    }
+    .wanneer-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .wanneer-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .wanneer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .wanneer-card {
+      background: #f6f5f1;
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .wanneer-card .wanneer-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--zop-gold, #c6a86a);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .wanneer-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 8px;
+    }
+    .wanneer-card p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .stappen-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .stappen-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .stappen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stap-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    .stap-card .stap-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-gold, #c6a86a);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .stap-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 8px;
+    }
+    .stap-card p {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .faq-section {
+      background: #fff;
+      padding: 80px 0;
+    }
+    .faq-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: 24px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin: 0 0 10px;
+    }
+    .faq-item p {
+      font-size: 15px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .authority-strip {
+      background: #0b1220;
+      padding: 28px 0;
+    }
+    .authority-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+    }
+    .authority-items span::before {
+      content: "✓ ";
+      color: var(--zop-gold, #c6a86a);
+      font-weight: 600;
+    }
+    .kosten-section {
+      background: #f6f5f1;
+      padding: 80px 0;
+    }
+    .kosten-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      margin-bottom: 40px;
+    }
+    .kosten-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto 32px;
+    }
+    .kosten-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    }
+    .kosten-card .kosten-prijs {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--zop-ink, #0b1220);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .kosten-card .kosten-label {
+      font-size: 14px;
+      color: var(--zop-muted, #5a6472);
+      margin-bottom: 16px;
+    }
+    .kosten-card p {
+      font-size: 13px;
+      color: var(--zop-muted, #5a6472);
+      line-height: 1.6;
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .kennisblok-grid { grid-template-columns: 1fr; }
+      .verschil-grid { grid-template-columns: 1fr; }
+      .kosten-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://zekeropweg.nu/#business",
+        "name": "ZekerOpWeg",
+        "description": "Onafhankelijke EV accu diagnose en aankoopadvies. Officieel AVILOO-partner. TÜV-gecertificeerde accudiagnose op locatie in Rotterdam, Barendrecht, Dordrecht en omgeving.",
+        "url": "https://zekeropweg.nu",
+        "telephone": "+31623452349",
+        "email": "info@zekeropweg.nu",
+        "image": [
+          "https://zekeropweg.nu/assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg",
+          "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
+          "https://zekeropweg.nu/images/aviloo-box.jpg"
+        ],
+        "logo": "https://zekeropweg.nu/assets/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Barendrecht",
+          "postalCode": "2990",
+          "addressRegion": "Zuid-Holland",
+          "addressCountry": "NL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.8606,
+          "longitude": 4.5328
+        },
+        "areaServed": [
+          "Rotterdam", "Barendrecht", "Dordrecht", "Ridderkerk", "Schiedam",
+          "Capelle aan den IJssel", "Vlaardingen", "Spijkenisse", "Den Haag",
+          "Delft", "Zoetermeer", "Zwijndrecht", "Papendrecht"
+        ],
+        "priceRange": "€95 - €499",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1",
+          "reviewCount": "7"
+        }
+      },
+      {
+        "@type": "Article",
+        "@id": "https://zekeropweg.nu/ev-accu-diagnose.html#article",
+        "headline": "EV Accu Diagnose: wat is het, wanneer heb je het nodig en wat kost het?",
+        "description": "Professionele uitleg over EV accu diagnose op celniveau. Verschil met BMS-uitlezing, wanneer nodig, wat het kost en hoe ZekerOpWeg het uitvoert als officieel AVILOO-partner.",
+        "author": {
+          "@type": "Person",
+          "name": "Pepijn Westhoff",
+          "jobTitle": "EV aankoopadviseur en accudiagnose specialist",
+          "url": "https://zekeropweg.nu/over.html"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "ZekerOpWeg",
+          "url": "https://zekeropweg.nu",
+          "logo": "https://zekeropweg.nu/assets/logo.png"
+        },
+        "datePublished": "2026-06-13",
+        "dateModified": "2026-06-13",
+        "url": "https://zekeropweg.nu/ev-accu-diagnose.html",
+        "image": "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
+        "mainEntityOfPage": "https://zekeropweg.nu/ev-accu-diagnose.html"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wat is een EV accu diagnose?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een EV accu diagnose is een professionele meting van de werkelijke gezondheid van de hoogspanningsaccu in een elektrische auto of hybride. De diagnose meet de State of Health (SoH): hoeveel capaciteit de accu nog heeft ten opzichte van de originele capaciteit bij fabricage. Een betrouwbare diagnose meet elke individuele cel, niet alleen het totaalgetal dat het boordcomputersysteem (BMS) rapporteert."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat is het verschil tussen een EV accu diagnose en een BMS-uitlezing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een BMS-uitlezing leest de schatting die de auto zelf maakt via interne software. Dit getal kan afwijken van de werkelijkheid en kan defecte cellen missen. Een professionele accu diagnose via de AVILOO Flash Test meet de spanning van elke individuele cel onafhankelijk van het BMS. Zo worden afwijkingen en defecte cellen zichtbaar die een BMS-uitlezing niet detecteert."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wanneer heb ik een EV accu diagnose nodig?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Een EV accu diagnose is zinvol bij aankoop van een tweedehands EV of hybride, bij twijfel over het rijbereik, vóór het aflopen van de fabrieksgarantie, bij verkoop van een EV om de waarde te onderbouwen, of bij vermoeden van een defecte cel. Een diagnose kost €95 tot €129 en voorkomt een miskoop van duizenden euro's."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wat kost een professionele EV accu diagnose?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bij ZekerOpWeg kost een AVILOO Flash Test op locatie €129 inclusief btw. ZekerOpWeg komt naar de auto toe binnen 40 kilometer rondom Barendrecht. Rijdt u zelf naar Barendrecht, dan is het tarief €95. Beide varianten zijn inclusief officieel TÜV-gecertificeerd AVILOO-certificaat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe lang duurt een EV accu diagnose?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "De AVILOO Flash Test duurt ongeveer 3 minuten. Inclusief aansluiten, identificeren en nabespreking bent u in totaal circa 15 minuten verder. U ontvangt het officiële AVILOO-certificaat dezelfde dag digitaal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan een AVILOO tester zelf worden gekocht?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "De AVILOO Flash Test apparatuur is uitsluitend beschikbaar voor gecertificeerde AVILOO-partners en niet te koop voor particulieren. ZekerOpWeg is officieel AVILOO-partner in de regio Rotterdam en omgeving. Een meting laten uitvoeren kost €95 tot €129 inclusief officieel AVILOO-certificaat."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="page-ev-accucheck">
+
+  <!-- HEADER -->
+  <header class="zop-header">
+    <div class="zop-header-inner">
+      <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+      <nav class="zop-nav">
+        <a href="index.html">Home</a>
+        <a href="aankoopadvies.html">Aankoopadvies</a>
+        <div class="zop-dropdown">
+          <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck.html">EV AccuCheck</a>
+            <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+          </div>
+        </div>
+        <div class="zop-dropdown">
+          <span class="zop-drop-label">Voor bedrijven</span>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+            <a href="automatisering.html">Automatisering</a>
+          </div>
+        </div>
+        <a href="bezwaarservice.html">Bezwaar</a>
+        <a href="over.html">Over</a>
+        <a href="contact.html" class="zop-contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-ev">
+      <div class="container">
+        <p class="hero-eyebrow">EV ACCU DIAGNOSE</p>
+        <p class="hero-location">ZekerOpWeg voert professionele accu diagnoses uit op locatie in Rotterdam, Barendrecht, Dordrecht, Ridderkerk, Schiedam, Capelle aan den IJssel, Den Haag, Delft, Zoetermeer en omgeving. Bel of WhatsApp: 06 23452349.</p>
+        <h1>EV accu diagnose op celniveau</h1>
+        <p class="hero-sub">Wat is een accu diagnose, wanneer heb je het nodig en wat kost het?</p>
+        <p class="hero-sub">Meting op celniveau door officieel AVILOO-partner. TÜV-gecertificeerd.</p>
+        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck €129</a>
+        <div class="hero-trust">
+          <span>✓ Officieel AVILOO-partner</span>
+          <span>✓ TÜV-gecertificeerde meting op celniveau</span>
+          <span>✓ Onafhankelijk van BMS-software</span>
+          <span>✓ Uitvoering op locatie bij de auto</span>
+          <span>✓ Officieel AVILOO-certificaat inbegrepen</span>
+        </div>
+        <p class="cta-trust">Vrijblijvende aanvraag · afspraak wordt eerst bevestigd</p>
+        <p class="hero-meta">€129 · Op locatie · TÜV-gecertificeerd</p>
+      </div>
+    </section>
+
+    <!-- WAT IS EEN ACCU DIAGNOSE -->
+    <section class="kennisblok-section">
+      <div class="container">
+        <div class="kennisblok-grid">
+          <div class="kennisblok-tekst">
+            <h2>Wat is een EV accu diagnose?</h2>
+            <p>Een EV accu diagnose is een professionele meting van de werkelijke gezondheid van de hoogspanningsaccu in een elektrische auto of hybride. Het centrale getal is de State of Health (SoH): hoeveel capaciteit de accu nog heeft ten opzichte van de originele capaciteit bij fabricage.</p>
+            <p>Een accu met een SoH van 92% heeft nog 92% van zijn originele capaciteit. Dat betekent een evenredig kleiner rijbereik en een lagere restwaarde. Een defecte cel kan dit percentage kunstmatig hoog houden terwijl het werkelijke bereik al sterk is afgenomen.</p>
+            <p>Betrouwbare diagnose vereist meting op celniveau: elke individuele cel wordt afzonderlijk gemeten, onafhankelijk van wat het boordcomputersysteem (BMS) rapporteert. Dat is wat de AVILOO Flash Test doet.</p>
+            <a href="soh-betekenis-elektrische-auto.html" style="font-size:14px; color:var(--zop-gold,#c6a86a); font-weight:600; text-decoration:none;">Lees meer over State of Health (SoH) &rarr;</a>
+          </div>
+          <div class="kennisblok-aside">
+            <strong>Wat een accu diagnose meet</strong>
+            <p>De spanning van elke individuele cel in het accupakket, onafhankelijk van de boordcomputer.</p>
+            <strong>Wat je ermee weet</strong>
+            <p>De werkelijke accucapaciteit, eventuele celafwijkingen, het praktisch verwachte rijbereik en een vergelijking met vergelijkbare voertuigen.</p>
+            <strong>Wat het certificaat bewijst</strong>
+            <p>Het officiële AVILOO-certificaat is TÜV-gecertificeerd en rechtsgeldig bij garantieclaims, verzekeringskwesties en wederverkoop.</p>
+            <strong>Wie het uitvoert</strong>
+            <p>Pepijn Westhoff, officieel AVILOO-partner en EV-adviseur met 16 jaar automotive ervaring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERSCHIL BMS VS AVILOO -->
+    <section class="verschil-section">
+      <div class="container">
+        <h2>Accu diagnose via BMS of via AVILOO Flash Test?</h2>
+        <div class="verschil-grid">
+          <div class="verschil-card negatief">
+            <div class="verschil-label">BMS-uitlezing via OBD</div>
+            <h3>Wat de auto zelf zegt</h3>
+            <ul>
+              <li>Leest de schatting van de boordcomputer</li>
+              <li>Kan defecte cellen missen</li>
+              <li>Na software-update kan SoH springen van 80% naar 100% zonder fysieke verandering</li>
+              <li>Geen celanalyse, geen inzicht per cel</li>
+              <li>Geen officieel certificaat</li>
+              <li>Niet TÜV-gecertificeerd</li>
+            </ul>
+          </div>
+          <div class="verschil-card">
+            <div class="verschil-label">AVILOO Flash Test op celniveau</div>
+            <h3>Wat de accu werkelijk doet</h3>
+            <ul>
+              <li>Meet elke individuele cel onafhankelijk</li>
+              <li>Detecteert defecte cellen die BMS mist</li>
+              <li>Onafhankelijk van software-updates en fabrikantsinstellingen</li>
+              <li>Volledig celanalyse inclusief spanningsafwijkingen</li>
+              <li>Officieel AVILOO-certificaat inclusief</li>
+              <li>TÜV-gecertificeerde meetmethodiek</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); margin-top:28px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.7;">In de praktijk kan een BMS tot 91 procentpunten afwijken van de werkelijke celcapaciteit. Eén defecte cel in een pakket van 96 cellen is onzichtbaar voor een BMS-uitlezing maar detecteerbaar via de AVILOO Flash Test.</p>
+        <div style="text-align:center; margin-top:24px;">
+          <a href="bms-vs-celniveau.html" style="font-size:14px; color:var(--zop-gold,#c6a86a); font-weight:600; text-decoration:none;">Lees het volledige artikel: BMS vs celniveau meting &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WANNEER NODIG -->
+    <section class="wanneer-section">
+      <div class="container">
+        <h2>Wanneer is een EV accu diagnose nodig?</h2>
+        <div class="wanneer-grid">
+          <div class="wanneer-card">
+            <div class="wanneer-num">01</div>
+            <strong>Vóór aankoop van een gebruikte EV</strong>
+            <p>De accu is het duurste onderdeel van een EV. Een diagnose vóór aankoop voorkomt een miskoop van €8.000 tot €20.000 aan accuvervangingskosten.</p>
+          </div>
+          <div class="wanneer-card">
+            <div class="wanneer-num">02</div>
+            <strong>Bij twijfel over het rijbereik</strong>
+            <p>Als de auto minder ver rijdt dan het BMS aangeeft, kan een defecte cel de oorzaak zijn. Een diagnose maakt dit zichtbaar.</p>
+          </div>
+          <div class="wanneer-card">
+            <div class="wanneer-num">03</div>
+            <strong>Vóór aflopen fabrieksgarantie</strong>
+            <p>De meeste fabrikanten garanderen minimaal 70% SoH. Een onafhankelijke diagnose vóór aflopen van de garantie geeft u een claim als de accu te ver is gedegradeerd.</p>
+          </div>
+          <div class="wanneer-card">
+            <div class="wanneer-num">04</div>
+            <strong>Bij verkoop van uw EV</strong>
+            <p>Een officieel AVILOO-certificaat verhoogt de verkoopwaarde gemiddeld €550 tot €1.100. Kopers betalen meer voor zekerheid.</p>
+          </div>
+          <div class="wanneer-card">
+            <div class="wanneer-num">05</div>
+            <strong>Na een ongeluk</strong>
+            <p>Een aanrijding kan de accu beschadigen zonder zichtbare schade. Een diagnose na een ongeluk geeft zekerheid over de staat van het accupakket.</p>
+          </div>
+          <div class="wanneer-card">
+            <div class="wanneer-num">06</div>
+            <strong>Bij vermoeden van een defecte cel</strong>
+            <p>Onregelmatig laadgedrag, plotselinge bereikdalingen of foutmeldingen kunnen wijzen op een defecte cel. Een diagnose op celniveau bevestigt of sluit dit uit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHORITY STRIP -->
+    <section class="authority-strip">
+      <div class="container authority-items">
+        <span>Officieel AVILOO-partner Nederland</span>
+        <span>TÜV-gecertificeerde Flash Test</span>
+        <span>Meting op celniveau</span>
+        <span>Onafhankelijk van BMS</span>
+      </div>
+    </section>
+
+    <!-- HOE VERLOOPT HET -->
+    <section class="stappen-section">
+      <div class="container">
+        <h2>Hoe verloopt een EV accu diagnose bij ZekerOpWeg?</h2>
+        <div class="stappen-grid">
+          <div class="stap-card">
+            <span class="stap-num">1</span>
+            <strong>Aansluiten (~2 min)</strong>
+            <p>De AVILOO Box wordt via de OBD-poort verbonden met de auto. Het systeem leest het chassisnummer en identificeert de aanwezige accu. Geen demontage.</p>
+          </div>
+          <div class="stap-card">
+            <span class="stap-num">2</span>
+            <strong>Flash Test (~3 min)</strong>
+            <p>De AVILOO Box meet alle individuele cellen. Het systeem maakt automatisch verbinding met AVILOO in Oostenrijk. Het certificaat wordt gegenereerd.</p>
+          </div>
+          <div class="stap-card">
+            <span class="stap-num">3</span>
+            <strong>Uitleg ter plaatse</strong>
+            <p>Pepijn bespreekt de uitkomst direct met u. U begrijpt wat de SoH-score betekent voor uw specifieke situatie: kopen, onderhandelen of verder zoeken.</p>
+          </div>
+          <div class="stap-card">
+            <span class="stap-num">4</span>
+            <strong>Certificaat digitaal</strong>
+            <p>Na betaling ontvangt u direct het officiële AVILOO-certificaat digitaal. TÜV-gecertificeerd en rechtsgeldig bij garantie en wederverkoop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KOSTEN -->
+    <section class="kosten-section">
+      <div class="container">
+        <h2>Wat kost een EV accu diagnose?</h2>
+        <div class="kosten-grid">
+          <div class="kosten-card">
+            <div class="kosten-prijs">€129</div>
+            <div class="kosten-label">Op locatie bij de auto</div>
+            <p>ZekerOpWeg komt naar de auto toe. Binnen 40 km rondom Barendrecht. Inclusief officieel AVILOO-certificaat. Vaak dezelfde dag beschikbaar.</p>
+          </div>
+          <div class="kosten-card" style="background:#f9f8f5;">
+            <div class="kosten-prijs">€95</div>
+            <div class="kosten-label">In Barendrecht</div>
+            <p>U rijdt naar Barendrecht. Direct aan de A15/A29. Inclusief officieel AVILOO-certificaat. Dezelfde dag uitvoering mogelijk.</p>
+          </div>
+        </div>
+        <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); max-width:560px; margin:0 auto 32px; line-height:1.7;">Een accu diagnose kost €95 tot €129. Accuvervanging bij een Nissan Leaf kost €6.000 tot €8.000. Bij een Tesla Model 3 €8.000 tot €13.000. De diagnose voorkomt dit risico vooraf.</p>
+        <div style="text-align:center;">
+          <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Veelgestelde vragen over EV accu diagnose</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Wat is een EV accu diagnose precies?</h3>
+            <p>Een EV accu diagnose is een professionele meting van de werkelijke gezondheid van de hoogspanningsaccu in een elektrische auto of hybride. Het centrale getal is de State of Health (SoH): hoeveel capaciteit de accu nog heeft ten opzichte van nieuw. Een betrouwbare diagnose meet elke individuele cel onafhankelijk van het boordcomputersysteem.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Wat is het verschil tussen een diagnose en een BMS-uitlezing?</h3>
+            <p>Een BMS-uitlezing leest wat de auto zelf berekent via interne software. Dit getal kan sterk afwijken van de werkelijkheid en kan defecte cellen missen. Een professionele diagnose via de AVILOO Flash Test meet elke cel onafhankelijk. Zo worden afwijkingen zichtbaar die een BMS-uitlezing niet detecteert.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Hoe lang duurt een EV accu diagnose?</h3>
+            <p>De AVILOO Flash Test duurt circa 3 minuten. Inclusief aansluiten, identificatie en nabespreking bent u in totaal circa 15 minuten verder. U ontvangt het officiële AVILOO-certificaat dezelfde dag digitaal.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Kan een AVILOO tester zelf worden gekocht?</h3>
+            <p>Nee. De AVILOO Flash Test apparatuur is uitsluitend beschikbaar voor gecertificeerde AVILOO-partners en niet te koop voor particulieren. ZekerOpWeg is officieel AVILOO-partner in de regio Rotterdam en omgeving. Een meting laten uitvoeren kost €95 tot €129 inclusief officieel AVILOO-certificaat.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Werkt de diagnose ook voor hybride voertuigen?</h3>
+            <p>Ja. ZekerOpWeg voert AVILOO Flash Tests uit op volledig elektrische voertuigen (EV) én plug-in hybrides (PHEV). De AVILOO Flash Test ondersteunt meer dan 95% van alle gangbare EV- en PHEV-modellen op de Nederlandse markt.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is de Jaguar I-PACE ook geschikt voor een AVILOO diagnose?</h3>
+            <p>Nee. De Jaguar I-PACE valt buiten de ondersteuning van de AVILOO Flash Test. Dit is een harde uitsluiting. Voor de I-PACE is een diagnose via een andere methode nodig. Neem contact op voor advies over alternatieven.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Komt ZekerOpWeg ook naar mijn werklocatie?</h3>
+            <p>Ja. ZekerOpWeg voert diagnoses uit op elke locatie waar de auto staat: thuis, bij de dealer, op uw werk of op een andere locatie binnen 40 kilometer rondom Barendrecht. U hoeft de auto niet te verplaatsen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GERELATEERDE ARTIKELEN -->
+    <section style="background:#f6f5f1; padding:48px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
+      <div class="container">
+        <p style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin-bottom:16px; font-weight:600; text-align:center;">Meer lezen</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:860px; margin:0 auto;">
+          <a href="bms-vs-celniveau.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">BMS vs celniveau meting</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Waarom een OBD-uitlezing een defecte cel mist.</p>
+          </a>
+          <a href="soh-betekenis-elektrische-auto.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">Wat is State of Health (SoH)?</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Betekenis, normen en wat het voor u betekent.</p>
+          </a>
+          <a href="aviloo-vs-moba.html" style="background:#fff; border-radius:12px; padding:20px 22px; text-decoration:none; display:block; box-shadow:0 4px 12px rgba(0,0,0,.05);">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Vergelijking</p>
+            <p style="font-size:15px; font-weight:700; color:var(--zop-ink,#0b1220); margin:0 0 6px;">AVILOO vs Moba</p>
+            <p style="font-size:13px; color:var(--zop-muted,#5a6472); margin:0; line-height:1.5;">Wat is het verschil en waarom maakt het uit?</p>
+          </a>
+          <a href="ev-accucheck.html" style="background:#0b1220; border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+            <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Dienst</p>
+            <p style="font-size:15px; font-weight:700; color:#fff; margin:0 0 6px;">EV AccuCheck plannen</p>
+            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">€95 Barendrecht · €129 op locatie · Zelfde dag mogelijk.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">ZekerOpWeg</p>
+        <p>© 2026 ZekerOpWeg</p>
+        <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">
+          Handelsnaam van Pepijn Westhoff<br />
+          KvK 99323575<br />
+          BTW NL005381985B31<br />
+          IBAN NL22 INGB 0116 6008 02
+        </p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br />Algemene vragen en eerste contact</p>
+        <p><a href="https://wa.me/31623452349">WhatsApp: 06 23452349</a><br />Snelste manier voor afspraken</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Diensten</p>
+        <p><a href="ev-accucheck.html">EV AccuCheck</a></p>
+        <p><a href="aankoopadvies.html">Aankoopadvies</a></p>
+        <p><a href="accurisico-rapport.html">AccuRisico Rapport</a></p>
+        <p><a href="over.html">Over ZekerOpWeg</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/menu.js" defer></script>
+</body>
+</html>
