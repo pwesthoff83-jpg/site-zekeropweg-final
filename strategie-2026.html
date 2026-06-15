@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg — Strategische Analyse 2026–2030</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #0d0f14;
+    --paper: #f5f4f0;
+    --mid: #6b6b6b;
+    --accent: #00c07f;
+    --accent-dim: #00c07f22;
+    --warn: #e05c1a;
+    --warn-dim: #e05c1a18;
+    --blue: #1a5ce0;
+    --blue-dim: #1a5ce018;
+    --rule: #e0dfd8;
+    --card: #ffffff;
+    --tag-bg: #efefeb;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 52px; overflow-x: auto;
+  }
+  nav a {
+    color: #a0a0a0; text-decoration: none;
+    font-size: .75rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; white-space: nowrap;
+    transition: color .15s;
+  }
+  nav a:hover, nav a.active { color: var(--accent); }
+  .nav-logo { color: #fff; font-weight: 700; font-size: .85rem; margin-right: auto; white-space: nowrap; }
+
+  /* ─── HERO ────────────────────────────────────────────────── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 5rem 2rem 4rem;
+    max-width: 100%;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; letter-spacing: .15em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem; color: #a0a0a0;
+    max-width: 640px; line-height: 1.7;
+  }
+  .hero-meta {
+    margin-top: 2.5rem;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .meta-item { font-size: .75rem; color: #666; }
+  .meta-item strong { display: block; color: #fff; font-size: .9rem; }
+
+  /* ─── LAYOUT ──────────────────────────────────────────────── */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  section { padding-top: 4rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: .75rem;
+  }
+
+  h2 {
+    font-size: 1.65rem; font-weight: 700;
+    margin-bottom: .5rem; line-height: 1.2;
+  }
+  h3 {
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: .5rem; margin-top: 1.75rem;
+    color: var(--ink);
+  }
+  h4 {
+    font-size: .85rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--mid); margin-top: 1.25rem; margin-bottom: .4rem;
+  }
+  p { margin-bottom: .9rem; color: #2a2a2a; font-size: .95rem; }
+
+  .divider {
+    border: none; border-top: 1px solid var(--rule);
+    margin: 3rem 0;
+  }
+
+  /* ─── CARDS ───────────────────────────────────────────────── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+  .card.accent-left { border-left: 3px solid var(--accent); }
+  .card.warn-left { border-left: 3px solid var(--warn); }
+  .card.blue-left { border-left: 3px solid var(--blue); }
+
+  /* ─── STAKEHOLDER TABLE ───────────────────────────────────── */
+  .stakeholder-block {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .stakeholder-header {
+    background: var(--ink);
+    color: #fff;
+    padding: .75rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .stakeholder-header .sh-name {
+    font-weight: 700; font-size: 1rem;
+  }
+  .stakeholder-header .sh-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--accent); color: var(--ink);
+    padding: .15rem .5rem; border-radius: 3px;
+  }
+  .stakeholder-header .sh-tag.warn { background: var(--warn); color: #fff; }
+  .stakeholder-header .sh-tag.neutral { background: #444; color: #ccc; }
+  .stakeholder-body { padding: 1.25rem; }
+  .sh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem 1.5rem;
+  }
+  .sh-item-label {
+    font-size: .65rem; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--mid);
+    margin-bottom: .2rem;
+    font-family: 'DM Mono', monospace;
+  }
+  .sh-item-value { font-size: .88rem; }
+
+  /* ─── THREAT TABLE ────────────────────────────────────────── */
+  .threat-row {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: .75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .threat-badges { display: flex; gap: .4rem; margin-top: .4rem; flex-wrap: wrap; }
+  .badge {
+    font-size: .65rem; font-family: 'DM Mono', monospace;
+    padding: .2rem .5rem; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .badge-kans-hoog { background: #fde8e8; color: #c00; }
+  .badge-kans-mid { background: #fef3e2; color: #a05000; }
+  .badge-kans-laag { background: #e8f5e9; color: #1a6e2e; }
+  .badge-impact-hoog { background: #e8f0fe; color: #1a3c9e; }
+  .badge-impact-mid { background: var(--tag-bg); color: #444; }
+  .threat-counter {
+    font-size: .7rem; color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+  }
+
+  /* ─── ROADMAP ─────────────────────────────────────────────── */
+  .roadmap-phase {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+  .roadmap-header {
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .phase-num {
+    width: 36px; height: 36px;
+    background: var(--ink); color: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem;
+    flex-shrink: 0;
+  }
+  .phase-title { font-weight: 700; font-size: 1rem; }
+  .phase-period {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; color: var(--mid);
+  }
+  .roadmap-body {
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .roadmap-col h4 { margin-top: 0; }
+  .roadmap-col ul { list-style: none; }
+  .roadmap-col li {
+    font-size: .83rem; padding: .25rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: #2a2a2a;
+  }
+  .roadmap-col li:last-child { border-bottom: none; }
+  .kpi-highlight {
+    background: var(--accent-dim);
+    border-left: 2px solid var(--accent);
+    padding: .75rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: .83rem;
+    margin-top: .75rem;
+  }
+
+  /* ─── NETWORK TIER ────────────────────────────────────────── */
+  .tier-label {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: .75rem; margin-top: 1.5rem;
+  }
+  .tier-badge {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .8rem; flex-shrink: 0;
+  }
+  .tier-1 { background: var(--accent); color: var(--ink); }
+  .tier-2 { background: var(--blue); color: #fff; }
+  .tier-3 { background: var(--tag-bg); color: var(--mid); }
+  .tier-label span { font-weight: 600; font-size: .9rem; }
+
+  .network-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .75rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: .6rem;
+  }
+  .network-card .org { font-weight: 600; font-size: .9rem; grid-column: 1 / -1; }
+
+  /* ─── OBJECTIONS ──────────────────────────────────────────── */
+  .objection-row {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: .6rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .75rem;
+    align-items: start;
+  }
+  .obj-num {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem; color: var(--warn);
+    font-weight: 700; padding-top: .15rem;
+  }
+  .obj-text { font-size: .88rem; }
+
+  /* ─── FINAL CALLOUTS ──────────────────────────────────────── */
+  .callout {
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .callout-green { background: var(--accent-dim); border-left: 4px solid var(--accent); }
+  .callout-red { background: var(--warn-dim); border-left: 4px solid var(--warn); }
+  .callout-blue { background: var(--blue-dim); border-left: 4px solid var(--blue); }
+  .callout-label {
+    font-size: .65rem; text-transform: uppercase;
+    letter-spacing: .1em; font-family: 'DM Mono', monospace;
+    color: var(--mid); margin-bottom: .5rem;
+  }
+  .callout-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; }
+
+  /* ─── POSITIONING STATEMENT ───────────────────────────────── */
+  .positioning-box {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .positioning-box .pos-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem; letter-spacing: .15em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .positioning-box .pos-statement {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700; line-height: 1.4;
+    max-width: 680px; margin: 0 auto;
+  }
+
+  /* ─── WEEK ACTIONS ────────────────────────────────────────── */
+  .action-item {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: .75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .action-num {
+    width: 32px; height: 32px;
+    background: var(--accent); color: var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem;
+    flex-shrink: 0;
+  }
+  .action-title { font-weight: 600; margin-bottom: .3rem; }
+  .action-detail { font-size: .83rem; color: #444; }
+
+  /* ─── RESPONSIVE ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .sh-grid { grid-template-columns: 1fr; }
+    .roadmap-body { grid-template-columns: 1fr; }
+    .network-card { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+    nav { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">ZekerOpWeg Strategie</span>
+  <a href="#waardeketen">Waardeketen</a>
+  <a href="#wetgeving">Wetgeving</a>
+  <a href="#bedreigingen">Bedreigingen</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#netwerk">Netwerk</a>
+  <a href="#bezwaren">Bezwaren</a>
+  <a href="#positie">Positie</a>
+  <a href="#acties">Acties</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Strategische Analyse 2026 — 2030</div>
+    <h1>ZekerOpWeg als<br><em>infrastructuurlaag</em><br>voor batterijtransparantie</h1>
+    <p class="hero-sub">Een volledige strategische doorlichting van de waardeketen, wetgeving, bedreigingen, routekaart en positionering. Niet als rapportbedrijf. Als toekomstige marktstandaard.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>7 stappen</strong>Volledige analyse</div>
+      <div class="meta-item"><strong>20+ bezwaren</strong>Concurrent-perspectief</div>
+      <div class="meta-item"><strong>4 fases</strong>0 — 60 maanden</div>
+      <div class="meta-item"><strong>3 acties</strong>Deze week uitvoeren</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="waardeketen">
+  <div class="section-label">Stap 1</div>
+  <h2>De volledige waardeketen van gebruikte EV's</h2>
+  <p>Iedere partij in de keten heeft eigen belangen, eigen pijn en eigen weerstand. Wie de standaard wil worden, moet van iedere partij begrijpen wat hen beweegt en wat hen blokkeert.</p>
+
+  <!-- CONSUMENTEN -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Consumenten</span>
+      <span class="sh-tag">Directe afnemer</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Zekerheid bij aankoop. Geen financieel verlies door verborgen accuschade. Vergelijkbaarheid tussen voertuigen.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">SOH-percentage is onbegrijpelijk. Dealerinfo is niet onafhankelijk. Risico op miskoop is groot bij hogere bedragen.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Bereid te betalen voor rust. Willen snel weten of een auto veilig is om te kopen. Emotionele beslissing met rationeel risico.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Prijsgevoeligheid. Onbekendheid met het product. Denken dat dealer het al regelt. Begrijpen nut pas na uitleg.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEALERS -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Individuele dealers</span>
+      <span class="sh-tag warn">Kritieke schakel</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Snel verkopen. Minder retourklaims. Hoge marge per voertuig. Geen reputatieschade door slechte auto's.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">Weten zelf niet wat een accu waard is bij inkoop. Klanten stellen steeds meer technische vragen. EV's zijn moeilijker te taxeren dan ICE.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Als ZekerOpWeg-rapport aantoonbaar leidt tot hogere conversie of minder onderhandeling: directe win. ESG als bijkomstigheid.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Transparantie over slechte accu's kan verkoop bemoeilijken. Kostenpost voelt als extra drempel. Geloven niet altijd in added value.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEALERHOLDINGS -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Dealerholdings</span>
+      <span class="sh-tag">Schaalpartner</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Consistente processen over vestigingen heen. Compliance en reputatiebescherming. Differentiatie van concurrenten.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">Inkoopers hebben geen tool om EV-accu's objectief te waarderen. Waardeverlieskansen bij inruilpanden.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">API-koppeling of SaaS-abonnement maakt proces schaalbaar. Board-niveau ESG-rapportage wordt steeds relevanter.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Lange beslissingstijden. ICT-integratie complex. Inkoopverantwoordelijken zijn conservatief.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEASEBEDRIJVEN -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Leasebedrijven</span>
+      <span class="sh-tag warn">Hoog potentieel</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Accurate restwaardebepaling van EV's. Vermijden van grote afschrijvingsrisico's bij retour. Portfoliobewaking op accugezondheid.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">EV-restwaarden zijn onzekerder dan ICE. Accu is de grootste onbekende post bij retourwaardering. Geen onafhankelijke standaard beschikbaar.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Elke procentpunt betere restwaardebepaling is miljoenen waard op portfolioniveau. Compliance met CSRD-rapportage.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Eigen systemen gebouwd voor ICE. Vertrouwen nieuw in externe partij. Willen gevestigde naam, geen startup.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERZEKERAARS -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Verzekeraars</span>
+      <span class="sh-tag neutral">Sluimerende kans</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Correcte premieberekening op basis van werkelijke accustaat. Claimbeheer bij accu-incidenten. Differentiatie op EV-producten.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">Accuvervanging is de duurste schadecategorie voor EV's. Geen onafhankelijke maatstaf voor accustaat bij aanvang polis.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">ZekerOpWeg-score kan input worden voor EV-specifieke premiemodellen. Reductie van moreel risico bij EV-dekking.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Traag in adoptie van nieuwe dataproviders. Eigen actuariaat wil data valideren. Certificering en aansprakelijkheid zijn drempels.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANKEN / FINANCIERS -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Banken en financiers</span>
+      <span class="sh-tag neutral">Langetermijn kans</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Betrouwbare onderpandwaarde bij EV-financiering. Risicobeheer in groeiende EV-leningportefeuille.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Problemen</div>
+          <div class="sh-item-value">Accu bepaalt 40-60% van EV-waarde maar is onzichtbaar in standaard taxatiemodellen.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">ZekerOpWeg-score als onderdeel van financieringsaanvraag. Accurate LTV-berekening bij EV-object.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Afhankelijk van gereguleerde partijen. Vereist lange integratietijd. Geen haast zolang EV-markt klein is.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VEILINGHUIZEN -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Veilinghuizen (BCA, ADESA, Openlane)</span>
+      <span class="sh-tag">B2B kans</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Hogere veilinguitslagen door transparantere EV-informatie. Minder afkeur bij verkopen. Vertrouwen bij zakelijke kopers.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Batterijscore in veilingbeschrijving als premium kenmerk. Gedifferentieerde catalogus EV vs. EV met certificaat.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Schaal vereist hoge meetcapaciteit. Logistiek van meten bij veilinghal. Huidige volumes nog beperkt.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Eerste stap</div>
+          <div class="sh-item-value">Pilot met 10 EV's op veiling: meten of gecertificeerde auto's hogere opbrengst genereren.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCCASIONPLATFORMEN -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Occasionplatformen (Marktplaats, AutoScout24, AutoTrader)</span>
+      <span class="sh-tag warn">Dubbelzijdig risico</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Meer conversie op EV-listings. Hogere advertentiewaarde bij vertrouwenfeatures. Differentiatiedruk van concurrenten.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Risico's</div>
+          <div class="sh-item-value">Kunnen ZekerOpWeg zelf kopiëren zodra het bewezen is. Data-eigendom ligt bij het platform als ze integreren.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Badge of keurmerk in listing verhoogt klikratio. Partnership kan snel volume genereren.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Eigen data-agenda. Willen controle over het keurmerk. Kunnen eigen versie bouwen op basis van OBD/BMS-uitlezing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OEM's -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">OEM's (Volkswagen, Stellantis, Hyundai, Tesla)</span>
+      <span class="sh-tag warn">Grootste weerstand</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Belangen</div>
+          <div class="sh-item-value">Controle over het merkimago van hun batterij. Beschermen van gecertificeerde tweedehandsmarkt (CPO-programma's). Data-eigendom BMS-informatie.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Risico's</div>
+          <div class="sh-item-value">Lage SOH-scores schaden merkimago. Onafhankelijke standaard ondermijnt CPO-programma's.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Incentives</div>
+          <div class="sh-item-value">Hoge AVILOO-scores versterken batterijkwaliteitsperceptie. Premium OEM's kunnen baat hebben bij onafhankelijke bevestiging.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Weerstand</div>
+          <div class="sh-item-value">Zullen eigen batterijpaspoorten lanceren. Lobbyen mogelijk tegen verplichte onafhankelijke meting. Grootste bedreiging op langere termijn.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERHEID / RDW / ACM -->
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Overheid, RDW, ACM, ANWB, Consumentenbond</span>
+      <span class="sh-tag">Legitimatielaag</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Overheid / RDW</div>
+          <div class="sh-item-value">Willen consumentenbescherming. RDW beheert voertuigdata maar is geen meetinstantie. Zullen eerder certificeren dan zelf meten.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">ACM</div>
+          <div class="sh-item-value">Waakt over eerlijke marktinformatie. Kan onjuiste accuclaims in advertenties aanpakken. ZekerOpWeg als onafhankelijke verifica tie-instantie past in hun mandaat.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">ANWB</div>
+          <div class="sh-item-value">Hoge consumentenvertrouwen. Wil relevant blijven bij EV-transitie. Eigen rijtest/taxatiediensten zijn potentieel concurrerend of complementair.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Consumentenbond</div>
+          <div class="sh-item-value">Sterk belang bij transparantie. Kunnen ZekerOpWeg aanbevelen of testen. Endorsement is onbetaalbare geloofwaardigheid.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="wetgeving">
+  <div class="section-label">Stap 2</div>
+  <h2>Wetgeving 2027: wat er waarschijnlijk komt</h2>
+  <p>De EU Battery Regulation (2023/1542) is al aangenomen. Vanaf 2026 gelden voor nieuwe EV-batterijen verplichte "State of Health" rapportagevereisten. De occasionmarkt is de volgende stap.</p>
+
+  <div class="card-grid">
+    <div class="card accent-left">
+      <h4>EU Battery Passport</h4>
+      <p style="font-size:.85rem">Vanaf 2026 verplicht voor nieuwe EV-batterijen boven 2 kWh. Digitaal paspoort met SoH, herkomst, CO2-voetafdruk. Tweedehandsmarkt volgt vermoedelijk 2028-2029.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>CSRD-rapportage</h4>
+      <p style="font-size:.85rem">Grote bedrijven moeten vanaf 2026 rapporteren over circulaire economie en productlevensduur. EV-vloten worden een specifieke categorie. Leasebedrijven en holdings worden gedwongen klanten.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Consumentenbeschermingsrichtlijn</h4>
+      <p style="font-size:.85rem">EU dringt aan op nauwkeurigere informatieverstrekking bij tweedehandsauto's. "Battery health disclosure" kan verplicht worden bij occasionverkoop boven bepaald bedrag.</div>
+    </div>
+    <div class="card blue-left">
+      <h4>Wie certificeert?</h4>
+      <p style="font-size:.85rem">Vermoedelijk een combinatie van TUV/Kiwa-achtige instanties en erkende testpartners. AVILOO heeft al TUV-erkenning. ZekerOpWeg als AVILOO-partner zit daarmee in de juiste keten.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>Welke data wordt verplicht?</h4>
+      <p style="font-size:.85rem">SoH (State of Health), SoC (State of Charge), maximale laadcapaciteit vs. origineel, celspanningsdelta, historisch gebruik, laadcyclus-teller.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>Rol van ZekerOpWeg</h4>
+      <p style="font-size:.85rem">Positie als erkende meetpartner en rapportage-interface richting eindgebruiker. Niet zelf de norm, maar de leesbare vertaling ervan. Precies zoals KEMA niet zelf de energielabels uitreikt maar wel de onderbouwing levert.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:1.5rem">
+    <div class="callout-label">Strategische conclusie wetgeving</div>
+    <div class="callout-text">ZekerOpWeg hoeft wetgeving niet af te wachten. Elke maand voorsprong op verplichte rapportage is een jaar data-voorsprong op wie daarna instapt. De wet maakt de markt. ZekerOpWeg moet de markt al hebben als de wet aankomt.</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="bedreigingen">
+  <div class="section-label">Stap 3</div>
+  <h2>De grootste bedreigingen</h2>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">OEM's bouwen eigen batterijpaspoorten</h3>
+      <p style="font-size:.85rem">Tesla My App, Volkswagen We Connect, BMW Connected. Ze hebben de data al. Ze kunnen morgen een SOH-score publiceren in elke advertentie.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-hoog">Kans: hoog</span>
+        <span class="badge badge-impact-hoog">Impact: hoog</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> OEM-data komt uit het BMS van hetzelfde merk. ZekerOpWeg meet onafhankelijk, cross-brand, op celniveau. Dat is structureel onvervangbaar. Positioneer expliciet als "het enige onafhankelijke oordeel" zodra OEM-data beschikbaar komt.</p>
+    </div>
+  </div>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">RDW of overheid bouwt eigen standaard</h3>
+      <p style="font-size:.85rem">RDW beheert al het voertuigregister. Een uitbreiding met verplichte SOH-rapportage bij APK is een logische stap.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-mid">Kans: middel</span>
+        <span class="badge badge-impact-hoog">Impact: hoog</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> Word de input-leverancier van de RDW, niet de concurrent. Bied aan om meetdata te leveren aan de RDW-database. Partner worden van het systeem is beter dan ertegen concurreren.</p>
+    </div>
+  </div>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">AutoScout24 of Marktplaats lanceert eigen badge</h3>
+      <p style="font-size:.85rem">Platforms hebben het bereik en de adverteerdersdataset. Een "Batterijscore" badge in listings is voor hen een product feature.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-mid">Kans: middel</span>
+        <span class="badge badge-impact-hoog">Impact: hoog</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> Wees al aanwezig op het platform als erkend partner voordat zij het zelf bouwen. Zorg dat de "Geverifieerd door ZekerOpWeg" badge al in listings staat voordat zij hun eigen versie lanceren. Snelheid is hier alles.</p>
+    </div>
+  </div>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">Grote dealerholding bouwt intern systeem</h3>
+      <p style="font-size:.85rem">Stern, Louwman, Van Mossel: als een van hen een eigen batterijcheckproces internaliseert, verdwijnt potentieel 20% van de markt.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-laag">Kans: laag/middel</span>
+        <span class="badge badge-impact-mid">Impact: middel</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> Houd data centraal bij ZekerOpWeg, niet bij de dealer. Wie de dataset beheert, beheert de benchmark. De dealer wil de uitkomst, niet de last van het systeem beheren.</p>
+    </div>
+  </div>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">Verzekeraars eisen eigen meetmethode</h3>
+      <p style="font-size:.85rem">Achmea, NN of Allianz kunnen eigen EV-risicoscore bouwen en meting via eigen netwerk verplichten.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-laag">Kans: laag</span>
+        <span class="badge badge-impact-mid">Impact: middel</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> Wees eerder dan zij. Bied een white-label dataproduct aan zodat hun score door ZekerOpWeg-data wordt gevoed, niet door een eigen systeem.</p>
+    </div>
+  </div>
+
+  <div class="threat-row">
+    <div>
+      <h3 style="margin-top:0">AI maakt batterijtransparantie een commodity</h3>
+      <p style="font-size:.85rem">Iemand traint een model op rijdata, laadpatronen en kenteken-info en genereert een "AI-batterijscore" zonder fysieke meting. €0,50 per rapport.</p>
+      <div class="threat-badges">
+        <span class="badge badge-kans-hoog">Kans: hoog</span>
+        <span class="badge badge-impact-mid">Impact: middel-hoog</span>
+      </div>
+      <p style="font-size:.82rem; margin-top:.75rem; color:#333"><strong>Tegenstrategie:</strong> Het verschil zit in gecertificeerde onafhankelijkheid, niet in de score zelf. Een AI-score is een schatting. Een AVILOO-meting is een bewijs. Positioneer het verschil actief: "Een AI raadt. Wij meten."</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="section-label">Stap 4</div>
+  <h2>Route naar de facto standaard: 5 jaar</h2>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">1</div>
+      <div>
+        <div class="phase-title">Bewijs & eerste marktpositie</div>
+        <div style="font-size:.78rem; color:var(--mid)">Verdien het recht om een standaard te worden</div>
+      </div>
+      <div class="phase-period">0 — 12 maanden</div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Product</h4>
+        <ul>
+          <li>AccuRisicoRapport schaalbaar via kenteken</li>
+          <li>VerkoopRapport met dealermodule</li>
+          <li>Eerste classificatiemodel (A/B/C score)</li>
+          <li>Mobiele check-app voor eigen gebruik</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Distributie</h4>
+        <ul>
+          <li>5+ actieve dealerrelaties</li>
+          <li>Marktplaats-outreach schaalbaar</li>
+          <li>LinkedIn autoriteitsopbouw</li>
+          <li>Eerste partnership occasionplatform</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Data Moat</h4>
+        <ul>
+          <li>100+ AVILOO-metingen eigen database</li>
+          <li>Benchmarkdata per model/bouwjaar/km</li>
+          <li>Eerste statistisch onderbouwde norm</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Verdienmodel</h4>
+        <ul>
+          <li>B2C rapporten: €19,95 / €24,95</li>
+          <li>B2B AbonnemenT dealer: €199/mnd</li>
+          <li>AccuCheck op locatie: €95 / €129</li>
+          <li>Aankoopadvies: €49 — €499</li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding: 0 1.5rem 1.25rem">
+      <div class="kpi-highlight">KPI's: 500 rapporten verkocht / 10 dealercontracten / €60.000 ARR / eigen benchmark op 5 modellen</div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">2</div>
+      <div>
+        <div class="phase-title">Classificatiestandaard & partnernetwerk</div>
+        <div style="font-size:.78rem; color:var(--mid)">Van meten naar classificeren</div>
+      </div>
+      <div class="phase-period">12 — 24 maanden</div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Product</h4>
+        <ul>
+          <li>ZekerOpWeg BatterijScore lanceren (A-G)</li>
+          <li>Dashboard voor dealers met portfolio-overzicht</li>
+          <li>API beschikbaar voor platforms</li>
+          <li>White-label rapport voor partners</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Partnerships</h4>
+        <ul>
+          <li>Tim Coronel als ambassadeur actief</li>
+          <li>Arjan / Circular Clarity MOU getekend</li>
+          <li>Eerste leasepartner (pilot)</li>
+          <li>ANWB of Consumentenbond exploratie</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Data Moat</h4>
+        <ul>
+          <li>1.000+ metingen in database</li>
+          <li>Modelbrede benchmarks gepubliceerd</li>
+          <li>Eerste wetenschappelijke validatie</li>
+          <li>Jaarlijkse "EV Accumarkt Rapport" NL</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Merk</h4>
+        <ul>
+          <li>Mediaoptredens rondom EV-transparantie</li>
+          <li>Bright / RTL / NRC positioning</li>
+          <li>BatterijScore als begrip in markt</li>
+          <li>Eerste beleidsmakers bereikt</li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding: 0 1.5rem 1.25rem">
+      <div class="kpi-highlight">KPI's: 3.000 rapporten / 40 dealercontracten / €200.000 ARR / BatterijScore herkend door 1 grote platform</div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">3</div>
+      <div>
+        <div class="phase-title">Institutionele adoptie & Europese verankering</div>
+        <div style="font-size:.78rem; color:var(--mid)">Onmisbaar worden voor professionele partijen</div>
+      </div>
+      <div class="phase-period">24 — 36 maanden</div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Product</h4>
+        <ul>
+          <li>SaaS-platform voor leasebedrijven</li>
+          <li>Portfolioscan op fleet-niveau</li>
+          <li>Verzekeraar-integratie (data feed)</li>
+          <li>RDW-datakoppeling exploreren</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Partnerships</h4>
+        <ul>
+          <li>1-2 grote leasebedrijven (LeasePlan, Arval)</li>
+          <li>Veilinghuisintegratie (BCA of Openlane)</li>
+          <li>EU Battery Passport pilot</li>
+          <li>Europese AVILOO-expansie benut</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Data Moat</h4>
+        <ul>
+          <li>10.000+ meetpunten</li>
+          <li>Predictief degradatiemodel gevalideerd</li>
+          <li>Cross-border data (BE, DE, FR)</li>
+          <li>Dataset als licentieproduct</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Verdienmodel</h4>
+        <ul>
+          <li>SaaS fleet (€500-2.500/mnd)</li>
+          <li>API-licenties platforms</li>
+          <li>Datalicenties verzekeraars</li>
+          <li>Certificeringsfee per voertuig</li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding: 0 1.5rem 1.25rem">
+      <div class="kpi-highlight">KPI's: €1M ARR / 2 leasepartners / 1 verzekeraar / erkend door RDW of ministerie</div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">4</div>
+      <div>
+        <div class="phase-title">Marktstandaard & exit-voorbereiding</div>
+        <div style="font-size:.78rem; color:var(--mid)">De BatterijScore is het nieuwe energielabel</div>
+      </div>
+      <div class="phase-period">36 — 60 maanden</div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Positie</h4>
+        <ul>
+          <li>BatterijScore in occasionadvertenties norm</li>
+          <li>Wetgever verwijst naar ZekerOpWeg-methodiek</li>
+          <li>Europese rollout via AVILOO-netwerk</li>
+          <li>Franchise / licentiemodel NL</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Verdienmodel</h4>
+        <ul>
+          <li>Platform fee per gecertificeerde auto</li>
+          <li>Licenties in 3+ EU-landen</li>
+          <li>API-abonnementen SaaS</li>
+          <li>Data-insights als product</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Exit-voorbereiding</h4>
+        <ul>
+          <li>Strategische acquirer: AutoScout, Cox, BCA</li>
+          <li>Of: institutioneel PE in mobility</li>
+          <li>Of: beursgang als dataplatform</li>
+          <li>Rapporten BV gescheiden van platform BV</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Merk</h4>
+        <ul>
+          <li>ZekerOpWeg = batterijtransparantie NL</li>
+          <li>BatterijScore = nieuwe marktterm</li>
+          <li>Erkend door ANWB, ACM of RDW</li>
+          <li>Europese persnaam</li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding: 0 1.5rem 1.25rem">
+      <div class="kpi-highlight">KPI's: €5M ARR / 3 EU-landen / exitgesprekken gestart / BatterijScore in 30%+ EV-occasionadvertenties NL</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="netwerk">
+  <div class="section-label">Stap 5</div>
+  <h2>Netwerkkaart: wie moet bondgenoot worden?</h2>
+
+  <div class="tier-label">
+    <div class="tier-badge tier-1">1</div>
+    <span>Tier 1 — Cruciaal (zonder hen geen standaard)</span>
+  </div>
+
+  <div class="network-card">
+    <div class="org">AVILOO Austria / Marcel NL</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Meetmethode-eigenaar. Europees netwerk. TUV-certificering. Zonder AVILOO geen onafhankelijke claim.</div></div>
+    <div><div class="sh-item-label">Wat zij winnen</div><div class="sh-item-value" style="font-size:.83rem">ZekerOpWeg brengt volume en merkbekendheid in NL. Snelste groeier in hun partnernetwerk worden.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">Exclusiviteitsclausule NL bevestigen. Gezamenlijk persbericht bij BatterijScore-lancering.</div></div>
+  </div>
+
+  <div class="network-card">
+    <div class="org">Tim Coronel</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Bereik, geloofwaardigheid, automotive netwerk. Ambassadeur opent deuren die jaren kosten.</div></div>
+    <div><div class="sh-item-label">Wat hij wint</div><div class="sh-item-value" style="font-size:.83rem">Equity in iets dat groeit. Zinvolle mission. Ondernemer blijven naast racing.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">Mail met het grotere plaatje deze week. Beweging, niet rapporten. Zie sectie Acties.</div></div>
+  </div>
+
+  <div class="network-card">
+    <div class="org">Arjan van Jaaren (Circular Clarity)</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Standaardisatie-expertise. NEN-kennis. Stakeholdermanagement met corporates en overheid.</div></div>
+    <div><div class="sh-item-label">Wat hij wint</div><div class="sh-item-value" style="font-size:.83rem">Meest concrete toepassing van zijn missie. Bewijs dat standaardisatie in automotive werkt.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">MOU tekenen. Gezamenlijke roadmap schrijven voor BatterijScore classificatiemodel.</div></div>
+  </div>
+
+  <div class="tier-label" style="margin-top:2rem">
+    <div class="tier-badge tier-2">2</div>
+    <span>Tier 2 — Belangrijk (versnellers en validatoren)</span>
+  </div>
+
+  <div class="network-card">
+    <div class="org">Consumentenbond</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Aanbeveling door Consumentenbond is onbetaalbare legitimatie bij consumenten.</div></div>
+    <div><div class="sh-item-label">Wat zij winnen</div><div class="sh-item-value" style="font-size:.83rem">Relevant blijven bij EV-vragen van leden. Concrete tool om te verwijzen.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">Koude benadering via redactie bij eerste EV-gerelateerd artikel. Gratis testrapport aanbieden.</div></div>
+  </div>
+
+  <div class="network-card">
+    <div class="org">Leasebedrijf (pilot: Alphabet, Athlon of Arval)</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Volume, recurring revenue, institutionele geloofwaardigheid, ESG-bewijs.</div></div>
+    <div><div class="sh-item-label">Wat zij winnen</div><div class="sh-item-value" style="font-size:.83rem">Betere retourwaardering. CSRD-input. Klantvertrouwen bij tweedehandsprogramma's.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">Pilot van 25 retourvoertuigen aanbieden tegen gereduceerd tarief. ROI-berekening meesturen.</div></div>
+  </div>
+
+  <div class="network-card">
+    <div class="org">BCA / Openlane Veilinghuizen</div>
+    <div><div class="sh-item-label">Waarom</div><div class="sh-item-value" style="font-size:.83rem">Doorstroom van duizenden EV's per jaar. BatterijScore in veilingcatalogus = massabereik.</div></div>
+    <div><div class="sh-item-label">Eerste stap</div><div class="sh-item-value" style="font-size:.83rem">Pilot 10 voertuigen. Meten of gecertificeerde auto's hogere hamerslagen krijgen.</div></div>
+  </div>
+
+  <div class="tier-label" style="margin-top:2rem">
+    <div class="tier-badge tier-3">3</div>
+    <span>Tier 3 — Nuttig (bereik en legitimatie)</span>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Bright / RTL Nieuws</h4>
+      <p style="font-size:.83rem">Mediapartner voor EV-verhalen. Bram van Dijk is al warm contact. Elk gepubliceerd stuk is organische SEO en autoriteit.</p>
+    </div>
+    <div class="card">
+      <h4>ANWB</h4>
+      <p style="font-size:.83rem">Groot vertrouwen bij autokopers. Potentieel verwijzingspartner. Niet als concurrent maar als doorverwijzer.</p>
+    </div>
+    <div class="card">
+      <h4>RAI Vereniging / BOVAG</h4>
+      <p style="font-size:.83rem">Brancheorganisaties die standaarden kunnen adopteren of aanbevelen. Toegang tot honderden dealers tegelijk.</p>
+    </div>
+    <div class="card">
+      <h4>Ministerie van Infrastructuur</h4>
+      <p style="font-size:.83rem">Beleidsmakers achter EV-transitie. Batterijtransparantie sluit aan op hun EV-adoptiedoelstellingen.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="bezwaren">
+  <div class="section-label">Stap 6</div>
+  <h2>Val de visie aan: 20 serieuze bezwaren</h2>
+  <p>Denk als een concurrent, investeerder of sceptische dealerdirecteur.</p>
+
+  <div class="objection-row"><div class="obj-num">01</div><div class="obj-text"><strong>Je hebt geen data.</strong> Zonder historische dataset over duizenden voertuigen kun je geen benchmark zijn. Wie beslist dat jouw 100 metingen representatief zijn voor de Nederlandse markt?</div></div>
+  <div class="objection-row"><div class="obj-num">02</div><div class="obj-text"><strong>AVILOO kan je vervangen.</strong> Zodra AVILOO groot genoeg is in NL, werkt het zelf rechtstreeks met dealers. Jij bent een distributiepartner, geen eigenaar van de technologie.</div></div>
+  <div class="objection-row"><div class="obj-num">03</div><div class="obj-text"><strong>De markt is te vroeg.</strong> De meeste Nederlanders kopen nog geen EV. De tweedehandsmarkt is klein. Jij bouwt een standaard voor een markt die er nog nauwelijks is.</div></div>
+  <div class="objection-row"><div class="obj-num">04</div><div class="obj-text"><strong>Dealers willen geen transparantie.</strong> Transparantie over slechte accu's maakt het moeilijker om die auto te verkopen. Dealers zullen weerstand bieden zolang het hen pijn doet.</div></div>
+  <div class="objection-row"><div class="obj-num">05</div><div class="obj-text"><strong>AutoScout kan het sneller bouwen.</strong> Ze hebben het bereik, de data en het geld. Als zij besluiten een batterijscore te lanceren, ben je binnen zes maanden irrelevant.</div></div>
+  <div class="objection-row"><div class="obj-num">06</div><div class="obj-text"><strong>OEM's blokkeren je.</strong> Tesla, Volkswagen en Stellantis hebben er belang bij dat hun eigen CPO-programma de standaard wordt. Ze kunnen actief lobbyen tegen onafhankelijke certificering.</div></div>
+  <div class="objection-row"><div class="obj-num">07</div><div class="obj-text"><strong>Je bent een eenmansbedrijf.</strong> Geen team, geen kapitaal, geen schaalbaarheid. Standaarden worden gebouwd door organisaties met juridisch, technisch en politiek gewicht. Niet door een ZZP'er.</div></div>
+  <div class="objection-row"><div class="obj-num">08</div><div class="obj-text"><strong>Aansprakelijkheid is dodelijk.</strong> Als jouw rapport aangeeft dat een accu gezond is en die uitvalt na drie maanden, wie is er dan aansprakelijk? Dat risico maakt schaal onmogelijk.</div></div>
+  <div class="objection-row"><div class="obj-num">09</div><div class="obj-text"><strong>Consumenten betalen niet voor informatie.</strong> Ze betalen voor de auto. Ze verwachten dat de informatie er gratis bij zit, net als een CARFAX-rapport bij een Amerikaanse dealer.</div></div>
+  <div class="objection-row"><div class="obj-num">10</div><div class="obj-text"><strong>AI maakt het gratis.</strong> Binnen twee jaar kan elke ChatGPT-gebruiker een VIN invoeren en een gedetailleerde accuschatting krijgen op basis van openbare data. Jouw rapporten worden commodity.</div></div>
+  <div class="objection-row"><div class="obj-num">11</div><div class="obj-text"><strong>Classificatie is politiek.</strong> Wie bepaalt dat A beter is dan B? Zodra er claims zijn die geld kosten (lagere verkoopprijs, afwijzing financiering), gaan partijen juridisch aanvechten.</div></div>
+  <div class="objection-row"><div class="obj-num">12</div><div class="obj-text"><strong>RDW gaat het doen.</strong> De RDW heeft al voertuigdata. Een uitbreiding van het APK-systeem met SOH-verplicht is logischer dan een private standaard.</div></div>
+  <div class="objection-row"><div class="obj-num">13</div><div class="obj-text"><strong>Schaal vereist meetcapaciteit die je niet hebt.</strong> 10.000 metingen per jaar vereist een netwerk van meetpunten. Dat kost geld en mensen die je niet hebt.</div></div>
+  <div class="objection-row"><div class="obj-num">14</div><div class="obj-text"><strong>Tim Coronel is entertainmentwaarde, geen zakelijk anker.</strong> Een endorsement van een bekende Nederlander helpt voor consumentenbereik. Het overtuigt geen CFO van een leasebedrijf.</div></div>
+  <div class="objection-row"><div class="obj-num">15</div><div class="obj-text"><strong>De ESG-insteek is te vroeg.</strong> CSRD-compliance is voor bedrijven boven 250 medewerkers. De meeste dealers zijn te klein om hierop actief te sturen.</div></div>
+  <div class="objection-row"><div class="obj-num">16</div><div class="obj-text"><strong>Wetgeving neemt te lang.</strong> EU Battery Passport voor tweedehands duurt tot 2028+. Tot die tijd is er geen externe dwang en blijft adoptie vrijwillig en traag.</div></div>
+  <div class="objection-row"><div class="obj-num">17</div><div class="obj-text"><strong>Je meetmethode is niet neutraal.</strong> Je bent gebonden aan AVILOO. Als een concurrent of overheid een andere methode erkent, is jouw gehele basis ondermijnd.</div></div>
+  <div class="objection-row"><div class="obj-num">18</div><div class="obj-text"><strong>Margin erosie bij schaal.</strong> Meer klanten vereist meer metingen, meer personeel, meer logistiek. De marge per meting daalt. Schaal is niet automatisch winstgevend.</div></div>
+  <div class="objection-row"><div class="obj-num">19</div><div class="obj-text"><strong>Classificatiemodellen zijn subjectief.</strong> Welke norm gebruik je voor "A"? SOH boven 95%? Of gecorrigeerd voor leeftijd en kilometrage? Elke keuze is aanvechtbaar.</div></div>
+  <div class="objection-row"><div class="obj-num">20</div><div class="obj-text"><strong>De markt heeft al teveel keurmerken.</strong> Consumenten begrijpen APK, NAP, ANWB-controle al nauwelijks. Een extra keurmerk voegt verwarring toe in plaats van vertrouwen.</div></div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="positie">
+  <div class="section-label">Stap 7</div>
+  <h2>De herbouwde visie: de meest verdedigbare positie</h2>
+
+  <p>Alle bezwaren hierboven zijn serieus. Maar ze worden beantwoord door dezelfde kern: <strong>wie de referentiedataset bezit, bepaalt de standaard.</strong> Dat is de les van NAP, BKR, en Funda. Niet het mooiste product wint. De meest gebruikte dataset wint.</p>
+
+  <div class="card-grid">
+    <div class="card accent-left">
+      <h4>Wat NAP ons leert</h4>
+      <p style="font-size:.84rem">NAP begon als een eenvoudig schaderegister. De waarde zit niet in de interface. De waarde zit in het feit dat iedereen ernaar verwijst. Zodra iedereen ernaar verwijst, kan niemand er meer omheen.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Wat Carfax ons leert</h4>
+      <p style="font-size:.84rem">Carfax begon met basisdata die publiek beschikbaar was. Ze aggregeerden het. Ze maakten het toegankelijk. Ze werden de standaard doordat dealers het als referentie gingen gebruiken. Kopers gingen erom vragen. Dealers konden niet meer zonder.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Wat EuroNCAP ons leert</h4>
+      <p style="font-size:.84rem">EuroNCAP werd niet groot door de overheid. Ze testten onafhankelijk en publiceerden eerlijk. Media ging erover schrijven. Consumenten gingen erom vragen. OEM's werden gedwongen het te verbeteren.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>De les voor ZekerOpWeg</h4>
+      <p style="font-size:.84rem">Word niet de testinstantie. Word de referentie. Elke meting die je doet, voegt toe aan de enige dataset die de Nederlandse EV-accumarkt objectief beschrijft. Die dataset is de moat. Niet de app, niet het rapport.</p>
+    </div>
+  </div>
+
+  <div class="positioning-box">
+    <div class="pos-label">De beste strategische positionering in één zin</div>
+    <div class="pos-statement">"ZekerOpWeg is de onafhankelijke referentiedatabase voor batterijgezondheid van gebruikte elektrische voertuigen in Nederland, en de enige partij die die data vertaalt naar begrijpelijke beslisinformatie voor iedere schakel in de waardeketen."</div>
+  </div>
+
+  <h3>De grootste fout die ZekerOpWeg nu dreigt te maken</h3>
+  <div class="callout callout-red">
+    <div class="callout-label">Kritieke fout om te vermijden</div>
+    <div class="callout-text">Denken dat het product het bedrijf is. Het rapport is slechts de ingang. De data die bij elke meting ontstaat, is het eigenlijke bedrijf. Wie zijn meetdata niet structureel opslaat, analyseert en publiceert als benchmark, bouwt een dienst. Geen standaard.</div>
+  </div>
+
+  <p>Concreet: elke AccuCheck en elk VerkoopRapport dat je verkoopt moet bijdragen aan een groeiende, gestructureerde dataset. Die dataset moet jaarlijks gepubliceerd worden als "De Staat van de Nederlandse EV-Accu". Dat document maakt je tot expert. Dat document maakt je tot referentie. Dat document maakt je onvervangbaar.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="acties">
+  <div class="section-label">Deze week</div>
+  <h2>De drie hoogste ROI-acties nu</h2>
+
+  <div class="action-item">
+    <div class="action-num">1</div>
+    <div>
+      <div class="action-title">Stuur Tim Coronel de bewegingsmail</div>
+      <div class="action-detail">
+        Niet over rapporten. Over de missie. Kern van de boodschap: "Wij willen de EV-markt net zo transparant maken als de woningmarkt met energielabels. Ik zoek een ambassadeur die gelooft dat eerlijkheid in de automarkt geen grap is." Voeg drie concrete dingen toe die hij nu al kan doen. Geef hem een gevoel van urgentie: de markt groeit en de standaard wordt nu gebouwd. Hij kan erbij zijn of ernaar kijken.
+      </div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">2</div>
+    <div>
+      <div class="action-title">Publiceer de eerste BatterijScore benchmark</div>
+      <div class="action-detail">
+        Pak de data die je al hebt: Peugeot e-208, Tesla Model 3, Hyundai Kona, Polestar 2 en de Lme Cars-dataset. Maak een eenpagina "Staat van de Nederlandse EV-Accu Q2 2026". Gemiddelde SOH per model, afwijking per bouwjaar, wat normaal is. Publiceer dit op LinkedIn als document. Dit positioneert je als databedrijf, niet als rapportbedrijf. Dit is het zaadje van de standaard.
+      </div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">3</div>
+    <div>
+      <div class="action-title">Bel Arjan: MOU en classificatiemodel</div>
+      <div class="action-detail">
+        Zet de samenwerking formeel. Concrete agenda voor het gesprek: (1) hoe ziet de BatterijScore A t/m G eruit? (2) welke NEN/ISO-norm sluit aan? (3) wie zijn de drie eerste institutionele partners die we samen benaderen? Arjan heeft standaardisatie-netwerk. Jij hebt de data en het product. Dit is de combinatie die een private standaard kan worden. Zonder dit gesprek blijft het twee losse ondernemers.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="callout callout-blue">
+    <div class="callout-label">Dashboard en app-strategie</div>
+    <div class="callout-text">Het dealer-dashboard en de consumentenapp zijn fase 2-producten, maar begin nu met de datastructuur. Elke meting die je niet gestructureerd opslaat is een meting die je niet kunt terugvinden als je het dashboard bouwt. Gebruik Supabase als database, sla kenteken, datum, SOH, celdelta, model, bouwjaar en klanttype op bij iedere meting. Dat is de fundering van alles wat daarna komt.</div>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<footer style="background:var(--ink); color:#666; padding:2rem; text-align:center; font-size:.75rem; font-family:'DM Mono', monospace;">
+  ZekerOpWeg Strategische Analyse — Vertrouwelijk — Juni 2026
+</footer>
+
+</body>
+</html>
