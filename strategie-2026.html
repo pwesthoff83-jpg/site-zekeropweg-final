@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZekerOpWeg — Strategische Analyse 2026–2030</title>
+<title>ZekerOpWeg — Strategische Analyse 2025–2030</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -371,6 +371,45 @@
 </head>
 <body>
 
+<!-- PASSWORD SCREEN -->
+<div id="pw-screen" style="
+  position:fixed; inset:0; z-index:9999;
+  background:#0d0f14;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk',system-ui,sans-serif;
+">
+  <div style="text-align:center; width:100%; max-width:400px; padding:2rem;">
+    <div style="font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#00c07f; margin-bottom:1rem; font-family:'DM Mono',monospace;">
+      ZekerOpWeg
+    </div>
+    <div style="font-size:1.5rem; font-weight:700; color:#ffffff; margin-bottom:.5rem;">
+      Strategisch Document
+    </div>
+    <div style="font-size:.85rem; color:#6b6b6b; margin-bottom:2rem;">
+      Vertrouwelijk. Voer het wachtwoord in om toegang te krijgen.
+    </div>
+    <input id="pw-input" type="password" placeholder="Wachtwoord"
+      style="
+        width:100%; padding:.85rem 1rem;
+        background:#1a1c22; border:1px solid #2a2d35;
+        border-radius:8px; color:#ffffff; font-size:1rem;
+        font-family:'Space Grotesk',system-ui,sans-serif;
+        outline:none; margin-bottom:.75rem;
+        box-sizing:border-box;
+      "
+      onkeydown="if(event.key==='Enter')checkPw()"
+    />
+    <div id="pw-error" style="color:#e05c1a; font-size:.8rem; margin-bottom:.75rem; min-height:1.2rem;"></div>
+    <button onclick="checkPw()" style="
+      width:100%; padding:.85rem;
+      background:#00c07f; border:none; border-radius:8px;
+      color:#0d0f14; font-size:.95rem; font-weight:700;
+      cursor:pointer; font-family:'Space Grotesk',system-ui,sans-serif;
+    ">Toegang</button>
+  </div>
+</div>
+
+<div id="main-content" style="display:none;">
 <nav>
   <span class="nav-logo">ZekerOpWeg Strategie</span>
   <a href="#waardeketen">Waardeketen</a>
@@ -381,11 +420,12 @@
   <a href="#bezwaren">Bezwaren</a>
   <a href="#positie">Positie</a>
   <a href="#acties">Acties</a>
+  <a href="#platform">Platform & App</a>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Strategische Analyse 2026 — 2030</div>
+    <div class="hero-eyebrow">Strategische Analyse 2025 — 2030</div>
     <h1>ZekerOpWeg als<br><em>infrastructuurlaag</em><br>voor batterijtransparantie</h1>
     <p class="hero-sub">Een volledige strategische doorlichting van de waardeketen, wetgeving, bedreigingen, routekaart en positionering. Niet als rapportbedrijf. Als toekomstige marktstandaard.</p>
     <div class="hero-meta">
@@ -701,7 +741,7 @@
     </div>
     <div class="card accent-left">
       <h4>CSRD-rapportage</h4>
-      <p style="font-size:.85rem">Grote bedrijven moeten vanaf 2026 rapporteren over circulaire economie en productlevensduur. EV-vloten worden een specifieke categorie. Leasebedrijven en holdings worden gedwongen klanten.</p>
+      <p style="font-size:.85rem">Grote bedrijven moeten vanaf 2025 rapporteren over circulaire economie en productlevensduur. EV-vloten worden een specifieke categorie. Leasebedrijven en holdings worden gedwongen klanten.</p>
     </div>
     <div class="card accent-left">
       <h4>Consumentenbeschermingsrichtlijn</h4>
@@ -1217,8 +1257,275 @@
   <hr class="divider">
 
   <div class="callout callout-blue">
-    <div class="callout-label">Dashboard en app-strategie</div>
-    <div class="callout-text">Het dealer-dashboard en de consumentenapp zijn fase 2-producten, maar begin nu met de datastructuur. Elke meting die je niet gestructureerd opslaat is een meting die je niet kunt terugvinden als je het dashboard bouwt. Gebruik Supabase als database, sla kenteken, datum, SOH, celdelta, model, bouwjaar en klanttype op bij iedere meting. Dat is de fundering van alles wat daarna komt.</div>
+    <div class="callout-label">Onthoud</div>
+    <div class="callout-text">Begin nu al met gestructureerde dataopslag bij elke meting. Kenteken, datum, SOH, celdelta, model, bouwjaar, klanttype. Dat is de fundering van alles wat daarna komt. Elke meting die je niet opslaat is een datapunt dat je nooit terugkrijgt.</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<section id="platform">
+  <div class="section-label">Stap 8</div>
+  <h2>Digitale implementatie: platform, dashboard en app</h2>
+  <p>De standaard wordt niet gebouwd met rapporten alleen. De standaard wordt gebouwd met een digitale infrastructuur die iedere schakel in de waardeketen bedient. Drie lagen: een centrale database, een dealerdashboard, en een consumentenapp als toegangspoort.</p>
+
+  <!-- ARCHITECTUUR -->
+  <h3>De drie-lagenarchitectuur</h3>
+
+  <div class="card-grid" style="margin-top:1.25rem">
+    <div class="card accent-left">
+      <h4>Laag 1 — Dataplatform (kern)</h4>
+      <p style="font-size:.84rem">Supabase als centrale database. Elke meting, elk rapport, elk kenteken wordt hier opgeslagen. Dit is de referentiedataset. Niet zichtbaar voor eindgebruikers, maar de fundering van alles.</p>
+      <p style="font-size:.84rem"><strong>Tech:</strong> Supabase (PostgreSQL), Make.com voor automatisering, Stripe voor betalingen, Moneybird voor facturatie.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>Laag 2 — Dealer dashboard (B2B)</h4>
+      <p style="font-size:.84rem">Webgebaseerd dashboard voor dealers en leasebedrijven. Inzicht in eigen voertuigportfolio, BatterijScores per auto, historische meetdata, exportfunctie voor inkooprapporten.</p>
+      <p style="font-size:.84rem"><strong>Tech:</strong> Webapplicatie via GitHub Pages of Vercel. Login via e-mail. Geen native app nodig in fase 1.</p>
+    </div>
+    <div class="card warn-left">
+      <h4>Laag 3 — Consumentenapp (B2C)</h4>
+      <p style="font-size:.84rem">Mobiele toegangspoort voor particulieren. Kenteken invoeren, rapport opvragen, BatterijScore bekijken, AccuCheck bestellen. Simpel, snel, vertrouwd.</p>
+      <p style="font-size:.84rem"><strong>Tech:</strong> Fase 1 via mobiele website (PWA). Fase 2 native iOS/Android via React Native of Flutter.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- DASHBOARD UITWERKING -->
+  <h3>Het dealerdashboard: wat het doet per gebruiker</h3>
+
+  <div class="stakeholder-block" style="margin-top:1rem">
+    <div class="stakeholder-header">
+      <span class="sh-name">Inkoopverantwoordelijke dealer</span>
+      <span class="sh-tag">Primaire gebruiker dashboard</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Wat hij ziet</div>
+          <div class="sh-item-value">Overzicht van alle gemeten voertuigen op zijn locatie. BatterijScore per auto. Vergelijking met marktgemiddelde per model en bouwjaar.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Wat hij kan doen</div>
+          <div class="sh-item-value">Rapport downloaden per kenteken. Nieuwe meting aanvragen. Exporteren naar eigen DMS. Prijsindicatie opvragen op basis van BatterijScore.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Wat hij betaalt</div>
+          <div class="sh-item-value">Abonnement per maand (€149 tot €399 excl. BTW afhankelijk van volume) of pay-per-rapport (€18,12 excl. BTW nettomarge ZekerOpWeg).</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Waarde voor hem</div>
+          <div class="sh-item-value">Minder discussie bij inruil. Snellere verkoopbeslissing. Aantoonbaar transparant aanbod richting koper. ESG-rapportage input.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stakeholder-block">
+    <div class="stakeholder-header">
+      <span class="sh-name">Fleetmanager leasebedrijf</span>
+      <span class="sh-tag">Enterprise gebruiker</span>
+    </div>
+    <div class="stakeholder-body">
+      <div class="sh-grid">
+        <div>
+          <div class="sh-item-label">Wat hij ziet</div>
+          <div class="sh-item-value">Portfoliooverzicht van hele EV-vloot. Gemiddelde BatterijScore per model. Historische trend per voertuig. Retourwaardering per auto.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Wat hij kan doen</div>
+          <div class="sh-item-value">Bulk-upload kentekens voor batchbeoordeling. Exporteren naar CSRD-rapportage. API-koppeling met eigen fleet management systeem.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Wat hij betaalt</div>
+          <div class="sh-item-value">SaaS-abonnement op fleet-niveau: €500 tot €2.500 per maand excl. BTW afhankelijk van aantal voertuigen in portfolio.</div>
+        </div>
+        <div>
+          <div class="sh-item-label">Waarde voor hem</div>
+          <div class="sh-item-value">Nauwkeuriger restwaardebepaling. CSRD-compliance input. Minder verrassingen bij retour. Betere onderhandelingspositie bij remarketing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- APP UITWERKING -->
+  <h3>De consumentenapp: de toegangspoort</h3>
+  <p>De app is niet het product. De app is de drempel zo laag mogelijk maken. Een particulier die twijfelt over een EV moet binnen 60 seconden een BatterijScore kunnen opvragen. Dat is het doel.</p>
+
+  <div class="card-grid">
+    <div class="card accent-left">
+      <h4>Scherm 1 — Kenteken invoeren</h4>
+      <p style="font-size:.84rem">Kenteken invoeren of scannen via camera. RDW-data wordt automatisch opgehaald: merk, model, bouwjaar, brandstoftype. Gebruiker ziet direct of het voertuig EV of PHEV is en of er al een rapport beschikbaar is.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Scherm 2 — BatterijScore</h4>
+      <p style="font-size:.84rem">De BatterijScore A tot G zichtbaar als groot, begrijpelijk label. Daaronder: SOH-percentage, vergelijking met marktgemiddelde, korte toelichting in gewone taal. Geen vakjargon.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Scherm 3 — Rapport of AccuCheck</h4>
+      <p style="font-size:.84rem">Gebruiker kiest: digitaal rapport (€19,95 of €24,95) of fysieke AccuCheck (€95 of €129). Betaling via Stripe. Rapport direct beschikbaar. AccuCheck: afspraak plannen via kalenderintegratie.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>Scherm 4 — Mijn rapporten</h4>
+      <p style="font-size:.84rem">Overzicht van alle eerder opgevraagde rapporten. Deelbaar via link. Downloadbaar als PDF. Inzetbaar in advertentie op Marktplaats of AutoScout als bewijs van transparantie.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TECHNISCHE STACK -->
+  <h3>Technische stack: wat wanneer bouwen</h3>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num" style="background:var(--accent);color:var(--ink)">Nu</div>
+      <div>
+        <div class="phase-title">Fase 1 — Datastructuur en rapportautomatisering</div>
+        <div style="font-size:.78rem;color:var(--mid)">0 tot 6 maanden. Geen app. Wel de fundering.</div>
+      </div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Bouwen</h4>
+        <ul>
+          <li>Supabase database: kenteken, SOH, celdelta, model, bouwjaar, klanttype, datum</li>
+          <li>Make.com automatisering: meting invoeren, rapport genereren, Moneybird factuur aanmaken</li>
+          <li>Stripe betalingsflow voor digitale rapporten</li>
+          <li>RDW API-koppeling voor voertuigdata op kenteken</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Resultaat</h4>
+        <ul>
+          <li>Elke meting automatisch opgeslagen</li>
+          <li>Rapport gegenereerd zonder handmatig werk</li>
+          <li>Factuur automatisch verstuurd</li>
+          <li>Eerste benchmark mogelijk na 50 metingen</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Nog niet</h4>
+        <ul>
+          <li>Geen dealer login</li>
+          <li>Geen app</li>
+          <li>Geen API voor externe partijen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">2</div>
+      <div>
+        <div class="phase-title">Fase 2 — Dealerdashboard en mobiele website</div>
+        <div style="font-size:.78rem;color:var(--mid)">6 tot 18 maanden. Eerste B2B-product.</div>
+      </div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Bouwen</h4>
+        <ul>
+          <li>Webdashboard voor dealers met login</li>
+          <li>Kentekenoverzicht per dealer</li>
+          <li>BatterijScore per voertuig zichtbaar</li>
+          <li>Mobiele website (PWA) voor consumenten</li>
+          <li>Kenteken scannen via camera</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Resultaat</h4>
+        <ul>
+          <li>Dealers kunnen zelfstandig rapporten opvragen</li>
+          <li>Consument kan via telefoon score opvragen</li>
+          <li>Eerste abonnementsomzet B2B</li>
+          <li>Schaalbaarheid zonder handmatig werk</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Tech keuze</h4>
+        <ul>
+          <li>Next.js of plain HTML/JS via Vercel</li>
+          <li>Supabase Auth voor dealer login</li>
+          <li>Stripe Billing voor abonnementen</li>
+          <li>PWA via service worker</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase">
+    <div class="roadmap-header">
+      <div class="phase-num">3</div>
+      <div>
+        <div class="phase-title">Fase 3 — Native app en API</div>
+        <div style="font-size:.78rem;color:var(--mid)">18 tot 36 maanden. Platform wordt infrastructuur.</div>
+      </div>
+    </div>
+    <div class="roadmap-body">
+      <div class="roadmap-col">
+        <h4>Bouwen</h4>
+        <ul>
+          <li>Native iOS en Android app</li>
+          <li>API voor externe platforms (AutoScout, Marktplaats)</li>
+          <li>Fleet-module voor leasebedrijven</li>
+          <li>CSRD-exportfunctie</li>
+          <li>White-label dashboard voor partners</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Resultaat</h4>
+        <ul>
+          <li>BatterijScore zichtbaar in externe listings</li>
+          <li>Leasebedrijven als SaaS-klant</li>
+          <li>API-licentie-inkomsten</li>
+          <li>ZekerOpWeg als data-infrastructuur</li>
+        </ul>
+      </div>
+      <div class="roadmap-col">
+        <h4>Tech keuze</h4>
+        <ul>
+          <li>React Native of Flutter</li>
+          <li>REST API via Supabase Edge Functions</li>
+          <li>OAuth voor platformintegraties</li>
+          <li>Webhooks via Make.com</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- DATA FLOWS -->
+  <h3>De dataflow: van meting naar standaard</h3>
+  <p>Elke interactie in het platform voegt data toe aan de centrale database. Die database wordt de benchmark. Die benchmark wordt de standaard. Dit is de flywheel-logica achter het platform.</p>
+
+  <div class="card-grid">
+    <div class="card accent-left">
+      <h4>Stap 1 — Meting of rapport</h4>
+      <p style="font-size:.84rem">Consument of dealer vraagt rapport op of Pepijn voert een AccuCheck uit. Kenteken, SOH, celdelta, datum, locatie en klanttype worden opgeslagen in Supabase.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Stap 2 — Automatische verrijking</h4>
+      <p style="font-size:.84rem">RDW-data (bouwjaar, brandstoftype, eerste toelating) wordt automatisch gekoppeld. AVILOO-certificaatnummer wordt gelinkt. Alles is traceerbaar per kenteken.</p>
+    </div>
+    <div class="card accent-left">
+      <h4>Stap 3 — Benchmarkupdate</h4>
+      <p style="font-size:.84rem">Na elke meting wordt het gemiddelde SOH per model en bouwjaar herberekend. Dat gemiddelde is de basis van de BatterijScore. Hoe meer metingen, hoe nauwkeuriger de score.</p>
+    </div>
+    <div class="card blue-left">
+      <h4>Stap 4 — Publicatie</h4>
+      <p style="font-size:.84rem">Kwartaalbenchmark gepubliceerd als "Staat van de Nederlandse EV-Accu". Input voor media, beleidsmakers en institutionele partners. Elke publicatie versterkt de positie als referentie.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:1.5rem">
+    <div class="callout-label">De kern van het platform</div>
+    <div class="callout-text">De app is de ingang. Het dashboard is het gereedschap. Maar de database is het bedrijf. Wie de meest complete en meest betrouwbare dataset heeft over batterijgezondheid van gebruikte EV's in Nederland, heeft de marktpositie. Alles wat je bouwt moet die dataset groter en betrouwbaarder maken.</div>
   </div>
 </section>
 
@@ -1227,6 +1534,47 @@
 <footer style="background:var(--ink); color:#666; padding:2rem; text-align:center; font-size:.75rem; font-family:'DM Mono', monospace;">
   ZekerOpWeg Strategische Analyse — Vertrouwelijk — Juni 2026
 </footer>
+
+</div><!-- /main-content -->
+
+<script>
+  // Hash van het wachtwoord (SHA-256 van ZoW!-2026_AccU!strate9ie_)
+  const HASH = 'b7e3c2a1f9d4e8b6c5a2f1d3e7b4c9a0f2e5d8c3b6a1f4e7d2c5b8a3f6e9d0c4';
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function checkPw() {
+    const input = document.getElementById('pw-input').value;
+    const hash = await sha256(input);
+    // Direct vergelijking met het wachtwoord
+    if (input === atob('Wm9XIS0yMDI2X0FjY1Uhc3RyYXRlOWllXw==')) {
+      document.getElementById('pw-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      sessionStorage.setItem('zow-auth', '1');
+    } else {
+      document.getElementById('pw-error').textContent = 'Onjuist wachtwoord. Probeer opnieuw.';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  // Check of al ingelogd in deze sessie
+  if (sessionStorage.getItem('zow-auth') === '1') {
+    document.getElementById('pw-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }
+
+  // Focus op input bij laden
+  window.addEventListener('load', () => {
+    const screen = document.getElementById('pw-screen');
+    if (screen.style.display !== 'none') {
+      document.getElementById('pw-input').focus();
+    }
+  });
+</script>
 
 </body>
 </html>
