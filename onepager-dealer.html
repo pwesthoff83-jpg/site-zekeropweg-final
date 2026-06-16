@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg | Batterijpaspoort voor dealers</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0f0f0d;
+  --paper: #f7f5f0;
+  --green: #00875a;
+  --green-dim: #00875a12;
+  --gold: #c8a84b;
+  --mid: #7a7a72;
+  --rule: #e2e0d8;
+  --white: #ffffff;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+/* HEADER */
+header { background: var(--ink); }
+.header-inner {
+  max-width: 900px; margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: end; gap: 2rem;
+}
+.brand {
+  font-family: 'DM Mono', monospace; font-size: .7rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: .75rem;
+}
+.header-headline {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300; line-height: 1.1; color: var(--white);
+  max-width: 520px;
+}
+.header-headline em { font-style: italic; color: var(--gold); }
+.header-right { text-align: right; }
+.margin-stat {
+  font-family: 'Fraunces', serif; font-size: 3.5rem;
+  font-weight: 600; color: var(--gold); line-height: 1;
+}
+.margin-label {
+  font-size: .72rem; color: #888;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: .08em; text-transform: uppercase; margin-top: .3rem;
+}
+
+/* WET BANNER */
+.wet-banner { background: var(--gold); }
+.wet-banner-inner {
+  max-width: 900px; margin: 0 auto; width: 100%;
+  padding: .85rem 2rem;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.wet-tag {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  background: var(--ink); color: var(--gold);
+  padding: .2rem .6rem; border-radius: 3px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.wet-text { font-size: .85rem; color: var(--ink); font-weight: 500; }
+
+/* OPENER */
+.opener { padding: 2.5rem 0; border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; }
+.opener p { font-size: 1.1rem; color: #2a2a26; max-width: 700px; line-height: 1.75; }
+.opener p + p { margin-top: .9rem; }
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: .6rem;
+}
+
+/* PIJN */
+.pain-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule); border-radius: 10px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.pain-item { background: var(--white); padding: 1.5rem; }
+.pain-icon { font-size: 1.4rem; margin-bottom: .6rem; }
+.pain-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.3; }
+.pain-body { font-size: .85rem; color: var(--mid); line-height: 1.6; }
+
+/* ONAFHANKELIJKHEID BANNER */
+.independent-banner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 3rem;
+}
+.ind-item {
+  border-radius: 8px; padding: 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.ind-item.aviloo {
+  background: var(--ink); color: var(--white);
+}
+.ind-item.cc {
+  background: var(--green-dim);
+  border: 1px solid var(--green);
+}
+.ind-icon { font-size: 1.8rem; flex-shrink: 0; }
+.ind-title { font-weight: 600; font-size: .95rem; margin-bottom: .3rem; }
+.ind-title.white { color: var(--white); }
+.ind-title.green { color: var(--green); }
+.ind-body { font-size: .8rem; line-height: 1.55; }
+.ind-body.gray { color: #888; }
+.ind-body.dark { color: var(--mid); }
+.ind-sub {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .06em; margin-top: .5rem;
+}
+.ind-sub.gold { color: var(--gold); }
+.ind-sub.green { color: var(--green); }
+
+/* PASPOORT PRODUCT */
+.passport-block {
+  background: var(--ink); border-radius: 12px;
+  padding: 2.5rem; margin-bottom: 3rem;
+}
+.passport-block .section-label { color: var(--gold); }
+.passport-title {
+  font-family: 'Fraunces', serif; font-size: 2rem;
+  font-weight: 400; color: var(--white);
+  margin-bottom: .4rem; line-height: 1.2;
+}
+.passport-price {
+  font-family: 'Fraunces', serif; font-size: 3rem;
+  font-weight: 600; color: var(--gold);
+  margin-bottom: .3rem; line-height: 1;
+}
+.passport-sub {
+  font-size: .82rem; color: #888;
+  font-family: 'DM Mono', monospace; margin-bottom: 2rem;
+}
+.passport-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 2rem;
+}
+.passport-item {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px; padding: 1.1rem;
+}
+.passport-item-icon { font-size: 1.2rem; margin-bottom: .4rem; }
+.passport-item-title { font-weight: 500; font-size: .88rem; color: var(--white); margin-bottom: .25rem; }
+.passport-item-body { font-size: .78rem; color: #888; line-height: 1.5; }
+
+.verdeling-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: .6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: .85rem;
+}
+.verdeling-row:last-child { border-bottom: none; }
+.verdeling-row .v-label { color: #888; }
+.verdeling-row .v-value { color: var(--white); font-weight: 500; }
+.verdeling-row.gold .v-label { color: var(--gold); }
+.verdeling-row.gold .v-value { color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+
+/* DRIE LAGEN */
+.layers-block { margin-bottom: 3rem; }
+.layers-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.25rem; }
+.layer-item {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 1.25rem; align-items: start;
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1.25rem; margin-bottom: .75rem;
+}
+.layer-tag {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .25rem .6rem; border-radius: 4px;
+  white-space: nowrap; font-weight: 500;
+}
+.tag-now { background: var(--green-dim); color: var(--green); }
+.tag-soon { background: #fef9e7; color: var(--gold); }
+.tag-future { background: #eef2ff; color: #3b5bdb; }
+.layer-title { font-weight: 500; font-size: .95rem; margin-bottom: .3rem; }
+.layer-body { font-size: .83rem; color: var(--mid); line-height: 1.55; }
+
+/* KTS */
+.kts-block {
+  background: var(--green-dim); border: 1px solid var(--green);
+  border-radius: 10px; padding: 2rem; margin-bottom: 3rem;
+}
+.kts-block h2 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
+.kts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+.kts-item { text-align: center; }
+.kts-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--green); line-height: 1; margin-bottom: .3rem; }
+.kts-label { font-size: .78rem; color: var(--mid); line-height: 1.4; }
+
+/* HOE */
+.how-block { margin-bottom: 3rem; }
+.how-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.25rem; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.step { text-align: center; padding: 1.25rem .75rem; background: var(--white); border: 1px solid var(--rule); border-radius: 8px; }
+.step-num {
+  width: 32px; height: 32px; background: var(--green);
+  color: var(--white); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: .75rem;
+  margin: 0 auto .75rem;
+}
+.step-title { font-weight: 500; font-size: .85rem; margin-bottom: .3rem; }
+.step-body { font-size: .78rem; color: var(--mid); line-height: 1.5; }
+
+/* DATA */
+.data-block {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 10px; overflow: hidden; margin-bottom: 3rem;
+}
+.data-header {
+  background: var(--ink); padding: 1rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.data-header-title { font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+.data-header-badge { font-family: 'DM Mono', monospace; font-size: .65rem; color: #666; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--mid); padding: .6rem 1.5rem; text-align: left;
+  border-bottom: 1px solid var(--rule); background: #fafaf7;
+}
+.data-table td { padding: .75rem 1.5rem; font-size: .83rem; border-bottom: 1px solid var(--rule); color: #2a2a26; }
+.data-table tr:last-child td { border-bottom: none; }
+.soh-top { color: #00875a; font-weight: 600; }
+.soh-good { color: #2e7d52; font-weight: 500; }
+.soh-ok { color: #c8a84b; font-weight: 500; }
+.type-badge {
+  display: inline-block; padding: .1rem .45rem;
+  border-radius: 3px; font-family: 'DM Mono', monospace;
+  font-size: .62rem; font-weight: 500; letter-spacing: .04em;
+}
+.type-ev { background: #e8f5ee; color: var(--green); }
+.type-phev { background: #fef9e7; color: #a07828; }
+.score-badge {
+  display: inline-block; padding: .15rem .5rem;
+  border-radius: 3px; font-family: 'DM Mono', monospace;
+  font-size: .7rem; font-weight: 600;
+}
+.score-a-plus { background: #00875a; color: white; }
+.score-a { background: #e8f5ee; color: var(--green); }
+
+/* CTA */
+.cta-block {
+  background: var(--green); border-radius: 10px;
+  padding: 2.5rem; text-align: center; margin-bottom: 2rem;
+}
+.cta-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); margin-bottom: .75rem; }
+.cta-block p { font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-items { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+.cta-item { color: var(--white); }
+.cta-item-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .2rem; }
+.cta-item-value { font-size: 1rem; font-weight: 500; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+.footer-meta { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--mid); letter-spacing: .06em; }
+
+@media (max-width: 640px) {
+  .header-inner { grid-template-columns: 1fr; }
+  .independent-banner { grid-template-columns: 1fr; }
+  .passport-grid { grid-template-columns: 1fr; }
+  .kts-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">ZekerOpWeg | Batterijpaspoort voor dealers</div>
+      <h1 class="header-headline">
+        Meer marge.<br>
+        Hogere klanttevredenheid.<br>
+        <em>Eerste in de markt.</em>
+      </h1>
+    </div>
+    <div class="header-right">
+      <div class="margin-stat">1,2%</div>
+      <div class="margin-label">Gemiddeld dealerrendement</div>
+    </div>
+  </div>
+</header>
+
+<div class="wet-banner">
+  <div class="wet-banner-inner">
+    <span class="wet-tag">EU wetgeving</span>
+    <span class="wet-text">Batterijpaspoort wordt verplicht voor nieuwe auto's. Dealers die nu beginnen lopen voor op de concurrentie en trekken klanten die zekerheid zoeken.</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="opener">
+    <p>Bij een gemiddeld rendement van 1 tot 1,5% is elke discussie over een EV-batterij directe pijn. Een koper die twijfelt, twijfelt over prijs. Een retourklacht kost de marge van meerdere auto's in één keer. En klanttevredenheid staat rechtstreeks in verband met uw bonusstructuur via merkprogramma's.</p>
+    <p>Het Batterijpaspoort van ZekerOpWeg lost dit op. Onafhankelijk gemeten. Onafhankelijk gevalideerd. Doorberekend in de afleverkosten. U verdient mee. Uw klant koopt met vertrouwen.</p>
+  </div>
+
+  <!-- DUBBELE ONAFHANKELIJKHEID -->
+  <div class="section-label">Dubbel onafhankelijk</div>
+  <div class="independent-banner">
+    <div class="ind-item aviloo">
+      <div class="ind-icon">🔬</div>
+      <div>
+        <div class="ind-title white">Gemeten door ZekerOpWeg</div>
+        <div class="ind-body gray">Met AVILOO meetapparatuur. TUV-gecertificeerde meting op celniveau. Volledig onafhankelijk van merk, dealer en BMS. Niet een schatting uit de boordcomputer. Een bewijs.</div>
+        <div class="ind-sub gold">TUV-gecertificeerd | CARA Approved | AVILOO Partner</div>
+      </div>
+    </div>
+    <div class="ind-item cc">
+      <div class="ind-icon">🌿</div>
+      <div>
+        <div class="ind-title green">Gevalideerd door Circular Clarity</div>
+        <div class="ind-body dark">Elk Batterijpaspoort draagt het stempel van Circular Clarity, specialist in duurzaamheidsstandaarden. Onafhankelijke bevestiging dat uw dealer duurzaam en transparant onderneemt.</div>
+        <div class="ind-sub green">Duurzaam ondernemen | ESG-validatie</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIJN -->
+  <div class="section-label">De pijn die u kent</div>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-icon">⚡</div>
+      <div class="pain-title">De batterij is onzichtbaar bij inkoop</div>
+      <div class="pain-body">Bij een ICE-auto taxeert u op gevoel en ervaring. Bij een EV of plug-in hybride bepaalt de accu 40 tot 60% van de restwaarde. Zonder onafhankelijke meting gokt u bij elke transactie.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">💬</div>
+      <div class="pain-title">Koper onderhandelt op onzekerheid</div>
+      <div class="pain-body">SOH 91% zegt de koper niets. Dat onbegrip wordt gebruikt om de prijs omlaag te praten. Elke onnodige korting is marge die u kwijt bent en nooit terugverdient.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">⭐</div>
+      <div class="pain-title">Klanttevredenheid raakt uw marge direct</div>
+      <div class="pain-body">Merkprogramma's koppelen uw bonusstructuur aan klanttevredenheidsscores. Een koper die met vertrouwen en volledig begrip koopt, geeft een hogere score. Dat is direct rendement.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">🏆</div>
+      <div class="pain-title">Concurrent doet het straks ook</div>
+      <div class="pain-body">Batterijtransparantie wordt de norm. De dealer die het eerst serieus neemt pikt het vertrouwen van premium EV-kopers weg. De rest haalt in met achterstand.</div>
+    </div>
+  </div>
+
+  <!-- PASPOORT -->
+  <div class="passport-block">
+    <div class="section-label">Het product</div>
+    <div class="passport-title">Batterijpaspoort</div>
+    <div class="passport-price">€249 <span style="font-size:1rem;font-weight:300;color:#888">incl. BTW</span></div>
+    <div class="passport-sub">Doorberekend in afleverkosten. Geen kostenpost voor de dealer.</div>
+
+    <div class="passport-grid">
+      <div class="passport-item">
+        <div class="passport-item-icon">🔬</div>
+        <div class="passport-item-title">Echte accugezondheid op celniveau</div>
+        <div class="passport-item-body">TUV-gecertificeerde AVILOO-meting. Niet een BMS-getal. Onafhankelijk bewijs van wat de accu werkelijk doet, los van merk en software.</div>
+      </div>
+      <div class="passport-item">
+        <div class="passport-item-icon">📊</div>
+        <div class="passport-item-title">SOH in begrijpelijke taal</div>
+        <div class="passport-item-body">Geen vakjargon. Wat betekent 91,6% SoH voor deze auto, op deze leeftijd, bij deze kilometerstand? Uitgelegd zodat iedere koper het snapt.</div>
+      </div>
+      <div class="passport-item">
+        <div class="passport-item-icon">🔮</div>
+        <div class="passport-item-title">Wat de accu over 5 jaar doet</div>
+        <div class="passport-item-body">Verwachte degradatie op basis van bewezen modellen per merk en type. Hoeveel bereik blijft er over? Wat kost accuvervanging? Concreet antwoord.</div>
+      </div>
+      <div class="passport-item">
+        <div class="passport-item-icon">💡</div>
+        <div class="passport-item-title">Goed en slecht voor de accu</div>
+        <div class="passport-item-body">Praktische adviezen over laadgedrag, temperatuur en gebruik. Wat verlengt de levensduur? Wat versnelt degradatie? Bruikbaar voor iedere EV-rijder.</div>
+      </div>
+    </div>
+
+    <div class="section-label" style="color:var(--gold);margin-top:1.5rem">Verdeling per transactie</div>
+    <div class="verdeling-row">
+      <span class="v-label">Verkoopprijs incl. BTW</span>
+      <span class="v-value">€ 249,00</span>
+    </div>
+    <div class="verdeling-row">
+      <span class="v-label">BTW (21%)</span>
+      <span class="v-value">€ 43,22</span>
+    </div>
+    <div class="verdeling-row">
+      <span class="v-label">Netto omzet</span>
+      <span class="v-value">€ 205,78</span>
+    </div>
+    <div class="verdeling-row">
+      <span class="v-label">10% bedrijfsreserve (groei en doorontwikkeling)</span>
+      <span class="v-value">€ 20,58</span>
+    </div>
+    <div class="verdeling-row gold">
+      <span class="v-label">Uw vergoeding per paspoort</span>
+      <span class="v-value">€ 60,00</span>
+    </div>
+    <div class="verdeling-row gold">
+      <span class="v-label">ZekerOpWeg</span>
+      <span class="v-value">€ 125,20</span>
+    </div>
+  </div>
+
+  <!-- DRIE LAGEN -->
+  <div class="layers-block">
+    <div class="section-label">Waarom nu</div>
+    <h2>Drie lagen van voordeel.</h2>
+    <div class="layer-item">
+      <span class="layer-tag tag-now">Vandaag</span>
+      <div>
+        <div class="layer-title">€60 extra per transactie. Hogere klanttevredenheid. Minder discussie over prijs.</div>
+        <div class="layer-body">Het Batterijpaspoort zit in de afleverkosten. Geen kostenpost voor u. U verdient mee per auto. En een koper die volledig begrijpt wat hij koopt geeft een hogere tevredenheidsscore. Dat raakt uw bonusstructuur rechtstreeks.</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-tag tag-soon">Binnenkort</span>
+      <div>
+        <div class="layer-title">Eerste dealer in de regio met Batterijpaspoort op premium occasions.</div>
+        <div class="layer-body">Kopers van een BMW i4, Audi e-tron of BMW X5 45e zoeken actief naar zekerheid. Een dealer die een volledig onafhankelijk Batterijpaspoort meelevert bij zijn Premium Selectie trekt die koper. Uw concurrent biedt op dat moment nog niets.</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-tag tag-future">Overmorgen</span>
+      <div>
+        <div class="layer-title">EU Battery Passport wordt verplicht. U heeft het al ingevoerd.</div>
+        <div class="layer-body">De Europese wetgeving verplicht een digitaal Batterijpaspoort voor nieuwe EV's. De occasionmarkt volgt. Dealers die nu beginnen staan voor op de concurrentie en vermijden een verplichte inhaalslag straks. U loopt voor, niet achter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KTS -->
+  <div class="kts-block">
+    <div class="section-label">Klanttevredenheid en marge</div>
+    <h2>Een hogere score heeft directe margewaarde</h2>
+    <div class="kts-grid">
+      <div class="kts-item">
+        <div class="kts-num">1-1,5%</div>
+        <div class="kts-label">Gemiddeld dealerrendement per auto</div>
+      </div>
+      <div class="kts-item">
+        <div class="kts-num">+€60</div>
+        <div class="kts-label">Directe vergoeding per Batterijpaspoort</div>
+      </div>
+      <div class="kts-item">
+        <div class="kts-num">€0</div>
+        <div class="kts-label">Kostenpost voor u. Zit in afleverkosten.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA TABEL -->
+  <div class="data-block">
+    <div class="data-header">
+      <span class="data-header-title">Eigen metingen ZekerOpWeg — Premium voertuigen 2026</span>
+      <span class="data-header-badge">TUV-gecertificeerd via AVILOO</span>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Voertuig</th>
+          <th>Type</th>
+          <th>Km-stand</th>
+          <th>SoH</th>
+          <th>Celdelta</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Audi Q8 TFSIe Quattro</strong> 25,9 kWh</td>
+          <td><span class="type-badge type-phev">PHEV</span></td>
+          <td>7.751 km</td>
+          <td class="soh-top">98,7%</td>
+          <td>—</td>
+          <td><span class="score-badge score-a-plus">A+</span></td>
+        </tr>
+        <tr>
+          <td><strong>BMW i4</strong> 83,9 kWh</td>
+          <td><span class="type-badge type-ev">EV</span></td>
+          <td>17.895 km</td>
+          <td class="soh-top">94,8%</td>
+          <td>7mV</td>
+          <td><span class="score-badge score-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Audi e-tron 55</strong> 86,5 kWh</td>
+          <td><span class="type-badge type-ev">EV</span></td>
+          <td>70.165 km</td>
+          <td class="soh-good">93,6%</td>
+          <td>4mV</td>
+          <td><span class="score-badge score-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>BMW X5 xDrive45e</strong> 24 kWh</td>
+          <td><span class="type-badge type-phev">PHEV</span></td>
+          <td>72.282 km</td>
+          <td class="soh-good">91,6%</td>
+          <td>7mV</td>
+          <td><span class="score-badge score-a">A</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HOE HET WERKT -->
+  <div class="how-block">
+    <div class="section-label">Hoe het werkt</div>
+    <h2>Vier stappen. Geen gedoe.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Samenwerking</div>
+        <div class="step-body">U meldt EV's of PHEV's aan. Afspraak binnen 48 uur, vaak eerder.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Meting</div>
+        <div class="step-body">ZekerOpWeg komt op locatie. TUV-gecertificeerde AVILOO-meting. 30 minuten per voertuig.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Paspoort</div>
+        <div class="step-body">Klant ontvangt volledig Batterijpaspoort met CC-validatiestempel. Begrijpelijk, visueel, compleet.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Afrekening</div>
+        <div class="step-body">€249 in afleverkosten. €60 naar u. Maandelijks afgerekend.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Eerste in uw regio met het Batterijpaspoort?</h2>
+    <p>Neem contact op voor een vrijblijvend gesprek. Geen grote agenda. Gewoon kijken hoe het past in uw verkoopproces.</p>
+    <div class="cta-items">
+      <div class="cta-item">
+        <div class="cta-item-label">Bellen</div>
+        <div class="cta-item-value">06 - 23 45 23 49</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-item-label">E-mail</div>
+        <div class="cta-item-value">info@zekeropweg.nu</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-item-label">Website</div>
+        <div class="cta-item-value">zekeropweg.nu</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">ZekerOpWeg</div>
+    <div class="footer-meta">TUV-gecertificeerde accudiagnose (AVILOO Partner) | In samenwerking met Circular Clarity | Barendrecht | KvK 99323575</div>
+  </footer>
+
+</div>
+</body>
+</html>
