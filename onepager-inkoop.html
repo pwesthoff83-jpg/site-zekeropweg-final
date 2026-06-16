@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg | Voor opkoopdiensten</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0f0f0d;
+  --paper: #f7f5f0;
+  --green: #00875a;
+  --green-dim: #00875a12;
+  --gold: #c8a84b;
+  --mid: #7a7a72;
+  --rule: #e2e0d8;
+  --white: #ffffff;
+  --warn: #e05c1a;
+  --warn-dim: #e05c1a12;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+header { background: var(--ink); }
+.header-inner {
+  max-width: 900px; margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: end; gap: 2rem;
+}
+.brand { font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--green); margin-bottom: .75rem; }
+.header-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.1; color: var(--white); max-width: 520px; }
+.header-headline em { font-style: italic; color: var(--gold); }
+.header-right { text-align: right; }
+.header-stat { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1; }
+.header-stat-label { font-size: .72rem; color: #888; font-family: 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; margin-top: .3rem; }
+
+.section-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--green); margin-bottom: .6rem; }
+
+.opener { padding: 2.5rem 0; border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; }
+.opener p { font-size: 1.1rem; color: #2a2a26; max-width: 700px; line-height: 1.75; }
+.opener p + p { margin-top: .9rem; }
+
+/* PROBLEEM BLOK */
+.probleem-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule); border-radius: 10px;
+  overflow: hidden; margin-bottom: 3rem;
+}
+.probleem-item { background: var(--white); padding: 1.5rem; }
+.probleem-icon { font-size: 1.4rem; margin-bottom: .6rem; }
+.probleem-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.3; }
+.probleem-body { font-size: .85rem; color: var(--mid); line-height: 1.6; }
+
+/* HOE HET WERKT FLOW */
+.flow-block { margin-bottom: 3rem; }
+.flow-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.5rem; }
+
+.flow-steps { display: flex; flex-direction: column; gap: .75rem; }
+.flow-step {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 1.25rem; align-items: start;
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1.25rem;
+}
+.flow-step.highlight { border-left: 4px solid var(--green); }
+.flow-num {
+  width: 36px; height: 36px; background: var(--green);
+  color: var(--white); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: .8rem;
+  font-weight: 500; flex-shrink: 0;
+}
+.flow-num.gold { background: var(--gold); color: var(--ink); }
+.flow-title { font-weight: 500; font-size: .95rem; margin-bottom: .3rem; }
+.flow-body { font-size: .83rem; color: var(--mid); line-height: 1.55; }
+.flow-tag {
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: .15rem .5rem; border-radius: 3px; margin-bottom: .4rem;
+}
+.tag-zow { background: var(--green-dim); color: var(--green); }
+.tag-klant { background: #fef9e7; color: #a07828; }
+.tag-opkoop { background: #eef2ff; color: #3b5bdb; }
+
+/* MAIL VOORBEELD */
+.mail-block { margin-bottom: 3rem; }
+.mail-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.25rem; }
+
+.mail-preview {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 10px; overflow: hidden;
+}
+.mail-header-bar {
+  background: #f0eeea; padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex; gap: 1rem; align-items: center;
+}
+.mail-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mail-fields { padding: 1rem 1.25rem; border-bottom: 1px solid var(--rule); }
+.mail-field { display: flex; gap: .75rem; padding: .35rem 0; font-size: .83rem; border-bottom: 1px solid var(--rule); }
+.mail-field:last-child { border-bottom: none; }
+.mail-field-label { color: var(--mid); min-width: 60px; flex-shrink: 0; }
+.mail-field-value { color: var(--ink); }
+.mail-body { padding: 1.25rem; font-size: .88rem; line-height: 1.75; color: #2a2a26; }
+.mail-highlight {
+  background: var(--green-dim); border-left: 3px solid var(--green);
+  border-radius: 0 6px 6px 0; padding: .75rem 1rem;
+  margin: .75rem 0; font-size: .85rem;
+}
+
+/* WAAROM BLOCK */
+.waarom-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 3rem;
+}
+.waarom-item {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1.25rem;
+}
+.waarom-item.green { border-left: 3px solid var(--green); }
+.waarom-item.gold { border-left: 3px solid var(--gold); }
+.waarom-title { font-weight: 500; font-size: .9rem; margin-bottom: .4rem; }
+.waarom-body { font-size: .82rem; color: var(--mid); line-height: 1.55; }
+
+/* AVILOO BLOCK */
+.aviloo-block {
+  background: var(--ink); border-radius: 10px;
+  padding: 2rem; margin-bottom: 3rem;
+}
+.aviloo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+.aviloo-item-title { font-weight: 500; font-size: .88rem; color: var(--white); margin-bottom: .3rem; }
+.aviloo-item-body { font-size: .78rem; color: #888; line-height: 1.5; }
+
+/* CTA */
+.cta-block {
+  background: var(--green); border-radius: 10px;
+  padding: 2.5rem; text-align: center; margin-bottom: 2rem;
+}
+.cta-block h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); margin-bottom: .75rem; }
+.cta-block p { font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-items { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+.cta-item { color: var(--white); }
+.cta-item-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .2rem; }
+.cta-item-value { font-size: 1rem; font-weight: 500; }
+
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+.footer-meta { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--mid); letter-spacing: .06em; }
+
+@media (max-width: 640px) {
+  .header-inner { grid-template-columns: 1fr; }
+  .probleem-grid { grid-template-columns: 1fr; }
+  .waarom-grid { grid-template-columns: 1fr; }
+  .aviloo-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">ZekerOpWeg | Voor opkoopdiensten</div>
+      <h1 class="header-headline">
+        Bied met zekerheid.<br>
+        Koop zonder<br>
+        <em>verborgen risico.</em>
+      </h1>
+    </div>
+    <div class="header-right">
+      <div class="header-stat">€0</div>
+      <div class="header-stat-label">Kosten voor u</div>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <div class="opener">
+    <p>U koopt EV's en plug-in hybrides in op basis van foto's en een vraagprijs. De accu bepaalt 40 tot 60% van de restwaarde, maar is onzichtbaar in het proces. Een bod uitbrengen zonder accuzekerheid is een risico dat u elke keer neemt.</p>
+    <p>ZekerOpWeg lost dit op zonder dat u er iets voor hoeft te doen. Geen extra werk. Geen kosten. Alleen een regel tekst in uw bodmail.</p>
+  </div>
+
+  <!-- PROBLEEM -->
+  <div class="section-label">Het risico dat u nu neemt</div>
+  <div class="probleem-grid">
+    <div class="probleem-item">
+      <div class="probleem-icon">⚡</div>
+      <div class="probleem-title">U wordt eigenaar van de accu</div>
+      <div class="probleem-body">Bij een opkoopdienst wordt u eigenaar van het voertuig. Een accu met 78% SoH heeft een wezenlijk andere restwaarde dan een accu met 93%. Dat verschil kan oplopen tot duizenden euro's per voertuig.</div>
+    </div>
+    <div class="probleem-item">
+      <div class="probleem-icon">🔍</div>
+      <div class="probleem-title">BMS-uitlezing mist wat er echt speelt</div>
+      <div class="probleem-body">Een gewone uitlezing via de boordcomputer toont een schatting van de fabrikant. Defecte cellen worden structureel gemist. U koopt op basis van een getal dat de auto zelf berekent.</div>
+    </div>
+    <div class="probleem-item">
+      <div class="probleem-icon">📉</div>
+      <div class="probleem-title">Onzekerheid verlaagt uw bod</div>
+      <div class="probleem-body">Zonder accuzekerheid bouwt u een risicopremie in uw bod. U biedt lager dan nodig. De klant krijgt minder. U mist voertuigen aan concurrenten die wel zekerheid bieden.</div>
+    </div>
+    <div class="probleem-item">
+      <div class="probleem-icon">🔄</div>
+      <div class="probleem-title">Slechte accu schaadt uw doorverkoop</div>
+      <div class="probleem-body">Een voertuig dat u inkoopt met onbekende accustaat kan bij doorverkoop problemen geven. Retourklachten, lagere veilingopbrengst of een onverkoopbaar voertuig in uw voorraad.</div>
+    </div>
+  </div>
+
+  <!-- HOE HET WERKT -->
+  <div class="flow-block">
+    <div class="section-label">Hoe het werkt</div>
+    <h2>Eén extra stap in uw bodmail. Dat is alles.</h2>
+    <div class="flow-steps">
+
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <div class="flow-tag tag-klant">Klant</div>
+          <div class="flow-title">Klant biedt EV of hybride aan via uw platform</div>
+          <div class="flow-body">Foto's, kenteken, kilometerstand. Het gebruikelijke proces. Niets verandert aan uw kant.</div>
+        </div>
+      </div>
+
+      <div class="flow-step highlight">
+        <div class="flow-num gold">2</div>
+        <div>
+          <div class="flow-tag tag-opkoop">Uw bodmail</div>
+          <div class="flow-title">U voegt één zin toe aan uw bodmail</div>
+          <div class="flow-body">Voor een definitief bod op uw EV of plug-in hybride hebben wij een onafhankelijk accucertificaat nodig. U kunt hiervoor een afspraak maken met ZekerOpWeg via 06 - 23 45 23 49 of info@zekeropweg.nu. De meting vindt plaats bij u thuis in Zuid-Holland.</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div>
+          <div class="flow-tag tag-zow">ZekerOpWeg</div>
+          <div class="flow-title">Klant maakt afspraak met ZekerOpWeg</div>
+          <div class="flow-body">De klant neemt contact op en plant de meting. Wij komen bij de klant thuis, ook 's avonds en op korte termijn. De klant betaalt de meting zelf.</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div>
+          <div class="flow-tag tag-zow">ZekerOpWeg</div>
+          <div class="flow-title">U ontvangt het AVILOO-certificaat</div>
+          <div class="flow-body">Het TUV-gecertificeerde AVILOO-certificaat wordt gedeeld met u en de klant. U weet de exacte accustaat op celniveau. Uw bod is gebaseerd op feiten, niet op aannames.</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div>
+          <div class="flow-tag tag-opkoop">Uw bod</div>
+          <div class="flow-title">U brengt een definitief bod uit met accuzekerheid</div>
+          <div class="flow-body">U koopt met volledige zekerheid over de accustaat. Betere inkoopbeslissing. Minder risico. Hogere doorverkoopwaarde.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIL VOORBEELD -->
+  <div class="mail-block">
+    <div class="section-label">Zo ziet het eruit in de praktijk</div>
+    <h2>De bodmail met accucertificaat</h2>
+    <div class="mail-preview">
+      <div class="mail-header-bar">
+        <div class="mail-dot" style="background:#ff5f57"></div>
+        <div class="mail-dot" style="background:#ffbd2e"></div>
+        <div class="mail-dot" style="background:#28c840"></div>
+      </div>
+      <div class="mail-fields">
+        <div class="mail-field">
+          <span class="mail-field-label">Van</span>
+          <span class="mail-field-value">noreply@wijkopenautos.nl</span>
+        </div>
+        <div class="mail-field">
+          <span class="mail-field-label">Aan</span>
+          <span class="mail-field-value">klant@email.nl</span>
+        </div>
+        <div class="mail-field">
+          <span class="mail-field-label">Onderwerp</span>
+          <span class="mail-field-value">Uw bod op de Tesla Model 3 | Kenteken XX-000-X</span>
+        </div>
+      </div>
+      <div class="mail-body">
+        <p>Geachte heer/mevrouw,</p>
+        <br>
+        <p>Bedankt voor het aanbieden van uw Tesla Model 3 via ons platform. Op basis van de ontvangen informatie zijn wij geïnteresseerd in de aankoop van uw voertuig.</p>
+        <br>
+        <div class="mail-highlight">
+          Voor een definitief bod op uw elektrische voertuig hebben wij een onafhankelijk accucertificaat nodig. U kunt hiervoor een afspraak maken met ZekerOpWeg via:<br><br>
+          <strong>06 - 23 45 23 49 | info@zekeropweg.nu</strong><br><br>
+          De meting vindt plaats bij u thuis in Zuid-Holland en duurt circa 30 minuten. Na ontvangst van het certificaat brengen wij u binnen 24 uur een definitief bod uit.
+        </div>
+        <br>
+        <p>Met vriendelijke groet,<br>Het team van WijKopenAuto's</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WAAROM -->
+  <div class="section-label">Wat u wint</div>
+  <div class="waarom-grid">
+    <div class="waarom-item green">
+      <div class="waarom-title">Beter bod, minder risico</div>
+      <div class="waarom-body">U weet wat u koopt voordat u definitief bod uitbrengt. Geen verrassingen achteraf. Een accu met 93% SoH is meer waard dan een accu met 81% SoH. U betaalt wat het waard is.</div>
+    </div>
+    <div class="waarom-item green">
+      <div class="waarom-title">Hogere doorverkoopwaarde</div>
+      <div class="waarom-body">Een EV met AVILOO-certificaat is aantoonbaar beter te verkopen. Bij doorverkoop via veiling of platform heeft u bewijs van de accustaat. Dat geeft een hogere opbrengst.</div>
+    </div>
+    <div class="waarom-item gold">
+      <div class="waarom-title">Geen extra werk voor u</div>
+      <div class="waarom-body">U voegt één zin toe aan uw bodmail. De klant regelt de afspraak. ZekerOpWeg meet. U ontvangt het certificaat. Het kost u geen tijd, geen geld en geen moeite.</div>
+    </div>
+    <div class="waarom-item gold">
+      <div class="waarom-title">Schaalbaar naar heel Nederland</div>
+      <div class="waarom-body">ZekerOpWeg is actief in Zuid-Holland. Via het gecertificeerde AVILOO-partnernetwerk is dit model uitrolbaar naar andere regio's zodra u daar behoefte aan heeft.</div>
+    </div>
+  </div>
+
+  <!-- AVILOO -->
+  <div class="aviloo-block">
+    <div class="section-label" style="color:var(--gold)">Waarom AVILOO</div>
+    <div style="font-family:'Fraunces',serif;font-size:1.3rem;font-weight:400;color:var(--white);margin-bottom:.5rem">De enige meting die ook defecte cellen detecteert</div>
+    <div class="aviloo-grid">
+      <div class="aviloo-item">
+        <div class="aviloo-item-title">Meting op celniveau</div>
+        <div class="aviloo-item-body">AVILOO meet elke individuele cel in de accu. Niet een gemiddelde. Niet een schatting. De werkelijke staat van elke cel, inclusief uitschieters die de auto zelf verbergt.</div>
+      </div>
+      <div class="aviloo-item">
+        <div class="aviloo-item-title">Onafhankelijk van BMS</div>
+        <div class="aviloo-item-body">De boordcomputer berekent SOH via een algoritme van de fabrikant. Dat getal kan gunstig zijn afgesteld. AVILOO meet fysiek, onafhankelijk van wat de auto zelf rapporteert.</div>
+      </div>
+      <div class="aviloo-item">
+        <div class="aviloo-item-title">TUV-gecertificeerd</div>
+        <div class="aviloo-item-body">Het AVILOO-certificaat is TUV-gecertificeerd en CARA Approved. Geldig voor garantieclaims en erkend door verzekeringspartijen en importeurs.</div>
+      </div>
+      <div class="aviloo-item">
+        <div class="aviloo-item-title">Uitgevoerd door ZekerOpWeg</div>
+        <div class="aviloo-item-body">ZekerOpWeg is officieel AVILOO-partner in Zuid-Holland. Alle metingen worden uitgevoerd met gecertificeerde AVILOO-meetapparatuur door Pepijn Westhoff, met 16 jaar verkoopervaring bij autodealers. Hij weet wat een inkoper nodig heeft om met vertrouwen een bod uit te brengen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Klaar om beter in te kopen?</h2>
+    <p>Neem contact op voor een kort gesprek over hoe we dit inrichten voor uw platform. Geen grote agenda. Alleen kijken hoe het past.</p>
+    <div class="cta-items">
+      <div class="cta-item">
+        <div class="cta-item-label">Bellen</div>
+        <div class="cta-item-value">06 - 23 45 23 49</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-item-label">E-mail</div>
+        <div class="cta-item-value">info@zekeropweg.nu</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-item-label">Website</div>
+        <div class="cta-item-value">zekeropweg.nu</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">ZekerOpWeg</div>
+    <div class="footer-meta">TUV-gecertificeerde accudiagnose (AVILOO Partner) | Barendrecht | KvK 99323575</div>
+  </footer>
+
+</div>
+</body>
+</html>
