@@ -15,6 +15,30 @@
   <style>
     /* ---- INLINE FIXES: secties die geen class in ev-accucheck.css hebben ---- */
 
+    /* HERO FIX: te hoog en te druk, kleiner en rustiger maken met donkere overlay */
+    .hero-ev {
+      position: relative;
+      min-height: unset !important;
+      height: auto !important;
+      padding: 72px 0 !important;
+      background-size: cover !important;
+      background-position: center 30% !important;
+    }
+    .hero-ev::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,18,32,0.82) 0%, rgba(11,18,32,0.88) 60%, rgba(11,18,32,0.92) 100%);
+      z-index: 0;
+    }
+    .hero-ev .container {
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 760px) {
+      .hero-ev { padding: 48px 0 !important; }
+    }
+
    .hero-location {
      font-size: 13px;
      color: rgba(255,255,255,.65);
