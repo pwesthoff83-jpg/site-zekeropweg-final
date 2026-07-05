@@ -1,69 +1,885 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZekerOpWeg — Website in voorbereiding</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Koppeling naar CSS -->
-    <link rel="stylesheet" href="css/offline-style.css" />
-    <!-- Google tag (gtag.js) -->
+  <title>ZekerOpWeg | Batterijstandaard voor de Nederlandse occasionmarkt</title>
+  <meta name="description" content="ZekerOpWeg maakt batterijwaarde zichtbaar. Onafhankelijke accudiagnose op celniveau en aankoopadvies voor EV-kopers, dealers en leasebedrijven. TUV-gecertificeerd. Geen verkoopbelang. Regio Rotterdam en Zuid-Holland.">
+
+  <link rel="canonical" href="https://zekeropweg.nu/" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@id": "https://zekeropweg.nu#org",
+      "name": "ZekerOpWeg",
+      "url": "https://zekeropweg.nu",
+      "logo": "https://zekeropweg.nu/assets/logo.png",
+      "description": "ZekerOpWeg maakt batterijwaarde zichtbaar voor de Nederlandse occasionmarkt. Onafhankelijke accudiagnose op celniveau via TUV-gecertificeerde AVILOO Flash Test. Aankoopadvies voor EV-kopers, dealers en leasebedrijven in Rotterdam, Zuid-Holland en Noord-Brabant. Geen verkoopbelang. Opgericht door Pepijn Westhoff met 16 jaar ervaring in het dealerkanaal.",
+      "telephone": "+31623452349",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Barendrecht",
+        "addressRegion": "Zuid-Holland",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.8564,
+        "longitude": 4.5353
+      },
+      "areaServed": [
+        "Barendrecht", "Rotterdam", "Rotterdam-Rijnmond",
+        "Zuid-Holland", "Ridderkerk", "Capelle aan den IJssel",
+        "Dordrecht", "Schiedam", "Den Haag", "Noord-Brabant"
+      ],
+      "knowsAbout": [
+        "AVILOO Flash Test", "EV accudiagnose", "State of Health meting",
+        "tweedehands EV aankoopadvies", "hybride accu check",
+        "aankoopkeuring EV", "accu degradatie meting",
+        "onafhankelijk autoadvies", "accugezondheid elektrische auto",
+        "AVILOO gecertificeerde meting Nederland"
+        "batterijstandaard occasionmarkt",
+        "batterijwaarde EV zichtbaar maken"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Pepijn Westhoff",
+        "jobTitle": "Onafhankelijk EV aankoopadviseur en AccuCheck specialist",
+        "url": "https://zekeropweg.nu/over.html"
+      },
+      "priceRange": "€€",
+      "sameAs": ["https://www.linkedin.com/in/pepijn-westhoff-77240939"]
+    },
+    {
+      "@type": "Service",
+      "name": "Onafhankelijk aankoopadvies EV en hybride",
+      "provider": { "@id": "https://zekeropweg.nu#org" },
+      "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
+      "url": "https://zekeropweg.nu/aankoopadvies.html",
+      "description": "Onafhankelijk aankoopadvies voor tweedehands elektrische en hybride auto's inclusief AVILOO Flash Test, RDW-controle en schriftelijk advies zonder verkoopbelang. Pepijn Westhoff, 16 jaar ervaring in het dealerkanaal.",
+      "offers": { "@type": "Offer", "price": "49", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "Service",
+      "name": "AVILOO Flash Test EV AccuCheck op locatie",
+      "provider": { "@id": "https://zekeropweg.nu#org" },
+      "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
+      "url": "https://zekeropweg.nu/ev-accucheck.html",
+      "description": "TUV-gecertificeerde AVILOO Flash Test op locatie. Batterijwaarde zichtbaar op celniveau. SOH-meting, celanalyse en officieel EV batterijcertificaat voor elektrische en hybride voertuigen in de regio Rotterdam en Zuid-Holland.",
+      "offers": { "@type": "Offer", "price": "95", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "Service",
+      "name": "AccuRisico Rapport op kenteken",
+      "provider": { "@id": "https://zekeropweg.nu#org" },
+      "areaServed": "Netherlands",
+      "url": "https://zekeropweg.nu/rapport.html",
+      "description": "Onafhankelijk accurapport op kenteken voor particulieren op basis van AVILOO meetdata van vergelijkbare voertuigen. Direct PDF, geen bezoek nodig.",
+      "offers": { "@type": "Offer", "price": "19.95", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://zekeropweg.nu#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hoe weet ik of de accu van een tweedehands elektrische auto nog goed is?",
+          "acceptedAnswer": { "@type": "Answer", "text": "De enige betrouwbare manier is een onafhankelijke AccuCheck. De boordcomputer toont een percentage op basis van interne software, maar kan een defecte cel missen. Een gecertificeerde AVILOO-meting test de werkelijke laadcapaciteit van elke individuele cel. ZekerOpWeg voert deze test op locatie uit in de regio Rotterdam en Zuid-Holland." }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat kost het vervangen van een EV-accu?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Een nieuwe accupack kost tussen de 5.000 en 15.000 euro afhankelijk van model en capaciteit. Voor een Nissan Leaf ligt dit rond 6.000 tot 8.000 euro, voor een Tesla Model 3 tussen 8.000 en 13.000 euro. Een AccuCheck bij ZekerOpWeg kost 95 tot 129 euro en voorkomt dit risico vooraf." }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is accu degradatie bij een elektrische auto?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Accu degradatie is het geleidelijk verminderen van de laadcapaciteit over tijd. Een elektrische auto verliest gemiddeld 2 tot 3 procent capaciteit per jaar. Na vijf jaar heeft een auto normaal gesproken nog 85 tot 90 procent van het originele bereik. Problemen ontstaan bij snellere degradatie door defecte cellen, onjuist laden of extreme temperaturen." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is een tweedehands elektrische auto betrouwbaar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Een occasion EV is betrouwbaar als de accu in goede staat is. Het enige kritieke onderdeel is de hoogspanningsaccu. Met een onafhankelijke AVILOO AccuCheck en aankoopadvies van ZekerOpWeg koopt u een occasion EV met zekerheid vooraf." }
+        },
+        {
+          "@type": "Question",
+          "name": "Werkt ZekerOpWeg op locatie?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ja. ZekerOpWeg komt naar de locatie van het voertuig in de regio Zuid-Holland en Noord-Brabant binnen circa 40 kilometer rondom Barendrecht. U hoeft de auto niet te verplaatsen. De AccuCheck duurt twee tot drie uur en u ontvangt het rapport dezelfde dag." }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat controleert ZekerOpWeg bij een aankoopkeuring?",
+          "acceptedAnswer": { "@type": "Answer", "text": "ZekerOpWeg controleert de SoH via gecertificeerde AVILOO-meting op celniveau, het laadvermogen, de laadgeschiedenis, carrosserietoestand, remmen, banden, software-updates en de volledige APK-historie via RDW. U ontvangt een schriftelijk rapport met risico-inschatting en een duidelijk advies: kopen, onderhandelen of afzien." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="css/styles.css?v=2.0.1" />
+<link rel="stylesheet" href="css/zop-buttons.css?v=3" />
+<link rel="stylesheet" href="css/zop-stability.css" />
+<link rel="stylesheet" href="css/luxury.css" />
+<link rel="stylesheet" href="css/components.css">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'AW-17962185957');
- </script>
+</script>
 </head>
 
-<body>
+<body class="fade-in" data-page="home">
 
-    <section class="hero-offline" aria-label="ZekerOpWeg website in voorbereiding">
-        <div class="hero-rays"></div>
-
-        <div class="hero-content">
-            <h1 class="hero-title">ZekerOpWeg wenst u warme feestdagen</h1>
-            <p class="hero-subtitle">en een voorspoedig ZekerOpWeg 2026</p>
-
-            <p class="hero-text">
-                De nieuwe website wordt zorgvuldig voorbereid en gaat in 2026 volledig open. 
-                Tot die tijd blijft deze pagina rustig offline beschikbaar.
-            </p>
-
-            <div class="countdown-wrap">
-                <div class="countdown-label">Aftel tot 2026</div>
-
-                <div class="countdown-row">
-                    <div class="count-unit">
-                        <span class="count-value" id="days">00</span>
-                        <span class="count-label">Dagen</span>
-                    </div>
-
-                    <div class="count-unit">
-                        <span class="count-value" id="hours">00</span>
-                        <span class="count-label">Uren</span>
-                    </div>
-
-                    <div class="count-unit">
-                        <span class="count-value" id="minutes">00</span>
-                        <span class="count-label">Minuten</span>
-                    </div>
-
-                    <div class="count-unit">
-                        <span class="count-value" id="seconds">00</span>
-                        <span class="count-label">Seconden</span>
-                    </div>
-                </div>
-            </div>
+<!-- ================= HEADER ================= -->
+<header class="zop-header">
+  <div class="zop-header-inner">
+    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+    <nav class="zop-nav">
+      <a href="index.html">Home</a>
+      <a href="aankoopadvies.html">Aankoopadvies</a>
+      <div class="zop-dropdown">
+        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck.html">EV AccuCheck</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
         </div>
-    </section>
+      </div>
+      <div class="zop-dropdown">
+        <span class="zop-drop-label">Voor bedrijven</span>
+        <div class="zop-drop-menu">
+          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+         </div>
+      </div>
+      <a href="over.html">Over</a>
+      <a href="contact.html" class="zop-contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+  </div>
+</header>
 
-    <!-- JS -->
-   <script src="scripts/offline-script.js"></script>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-menu" aria-label="Menu sluiten">×</button>
+  <nav class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="aankoopadvies.html">Aankoopadvies</a>
+    <a href="ev-accucheck.html">EV AccuCheck</a>
+    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+    <a href="over.html">Over</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="menu-overlay"></div>
 
+<main class="page-content">
+
+<!-- ================= HERO ================= -->
+<section class="hero hero-standard hero-home">
+  <div class="hero-content">
+   <span class="hero-eyebrow">De batterijstandaard voor de Nederlandse occasionmarkt</span>
+    <h1>De accu bepaalt de waarde van een EV.<br>ZekerOpWeg maakt die zichtbaar.</h1>
+    <p>
+      Onafhankelijke batterijdiagnose op celniveau en aankoopadvies voor EV-kopers,
+      dealers en leasebedrijven. TUV-gecertificeerd. Geen verkoopbelang.
+    </p>
+    <div class="hero-actions">
+      <a href="aankoopadvies.html" class="btn-primary">Bekijk aankoopadvies</a>
+      <a href="ev-accucheck.html" class="btn-secondary" style="margin-left:12px;">Bekijk EV AccuCheck</a>
+    </div>
+    <p style="margin-top:1.4rem; font-size:0.8rem; opacity:0.6; letter-spacing:0.04em;">
+     TUV-gecertificeerd &nbsp;·&nbsp; Officieel AVILOO-partner &nbsp;·&nbsp; Onafhankelijk zonder verkoopbelang
+    </p>
+  </div>
+</section>
+
+<!-- ================= TRUST BAR ================= -->
+<section style="background:#f4f6f8; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06); padding:1.4rem 0;">
+  <div class="container">
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; align-items:center;">
+      <div style="display:flex; align-items:center; gap:0.6rem;">
+        <span style="color:#f5a623; font-size:1.1rem; letter-spacing:1px;">★★★★★</span>
+        <span style="font-size:0.85rem; color:#444; font-weight:500;">5,0 op Google &nbsp;<span style="font-weight:400; opacity:0.65;">(7 reviews)</span></span>
+      </div>
+      <div style="width:1px; height:20px; background:rgba(0,0,0,0.15);"></div>
+      <div style="font-size:0.85rem; color:#444; font-weight:500;">
+        <span style="color:#1a6091; font-weight:700;">AVILOO</span> officieel partner Nederland
+      </div>
+      <div style="width:1px; height:20px; background:rgba(0,0,0,0.15);"></div>
+      <div style="font-size:0.85rem; color:#444; font-weight:500;">
+        TÜV-gecertificeerde accumeting
+      </div>
+      <div style="width:1px; height:20px; background:rgba(0,0,0,0.15);"></div>
+      <div style="font-size:0.85rem; color:#444; font-weight:500;">
+        Regio Rotterdam &amp; Zuid-Holland
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VOOR WIE ================= -->
+<section class="services-section container">
+  <h2 class="section-title">Herkent u dit?</h2>
+  <p class="section-subtitle">ZekerOpWeg is er specifiek voor mensen in deze situaties.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem; margin-top:2.5rem;">
+
+    <div style="border:1px solid rgba(0,0,0,0.09); border-radius:10px; padding:1.75rem; background:#fff;">
+      <div style="font-size:1.4rem; margin-bottom:0.75rem;">🚗</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.6rem; color:#0d1b2a;">U heeft een auto op het oog</h3>
+      <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:1.25rem;">U heeft een concrete occasion gevonden maar twijfelt of u het kunt vertrouwen. U wilt weten of de prijs klopt en of er verborgen problemen zijn.</p>
+      <a href="aankoopadvies.html" style="font-size:0.82rem; color:#1a6091; font-weight:600; text-decoration:none;">Bekijk aankoopadvies &rarr;</a>
+    </div>
+
+    <div style="border:1px solid rgba(0,0,0,0.09); border-radius:10px; padding:1.75rem; background:#fff;">
+      <div style="font-size:1.4rem; margin-bottom:0.75rem;">⚡</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.6rem; color:#0d1b2a;">U koopt een EV of hybride</h3>
+      <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:1.25rem;">U maakt zich zorgen over de accu. De verkoper zegt dat alles in orde is. Maar hoe weet u dat zeker? Een defecte cel is onzichtbaar zonder de juiste meting.</p>
+      <a href="ev-accucheck.html" style="font-size:0.82rem; color:#1a6091; font-weight:600; text-decoration:none;">Bekijk EV AccuCheck &rarr;</a>
+    </div>
+
+    <div style="border:1px solid rgba(0,0,0,0.09); border-radius:10px; padding:1.75rem; background:#fff;">
+      <div style="font-size:1.4rem; margin-bottom:0.75rem;">🔍</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:0.6rem; color:#0d1b2a;">U weet niet wat u zoekt</h3>
+      <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:1.25rem;">Elektrisch, hybride of benzine? Welk model past bij uw gebruik en budget? U wilt eerst overzicht voordat u iets concreets gaat bekijken.</p>
+      <a href="aankoopadvies.html" style="font-size:0.82rem; color:#1a6091; font-weight:600; text-decoration:none;">Bekijk aankoopadvies &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TWEE FOCUSDIENSTEN ================= -->
+<section class="services-section section-bg-soft">
+  <div class="container">
+    <h2 class="section-title">Twee diensten. Één doel: batterijwaarde zichtbaar maken.</h2>
+    <p class="section-subtitle">Voor kopers die zekerheid willen, en voor bedrijven die vertrouwen uitstralen.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem;">
+
+      <!-- AANKOOPADVIES -->
+      <div style="border:1px solid rgba(0,0,0,0.1); border-radius:12px; padding:2.25rem; background:#fff; display:flex; flex-direction:column;">
+        <div style="display:inline-block; font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; background:rgba(26,96,145,0.08); color:#1a6091; padding:4px 12px; border-radius:20px; margin-bottom:1.5rem; width:fit-content;">Aankoopadvies</div>
+        <h3 style="font-size:1.35rem; font-weight:600; color:#0d1b2a; line-height:1.3; margin-bottom:1rem;">Weet of u moet kopen, onderhandelen of laten staan.</h3>
+        <p style="font-size:0.9rem; color:#444; line-height:1.7; margin-bottom:1.5rem;">
+          Van snelle advertentiecheck tot volledige begeleiding op locatie. Inclusief
+          RDW-controle, technische beoordeling en een eerlijk advies zonder verkoopbelang.
+        </p>
+        <ul style="list-style:none; padding:0; margin:0 0 1.5rem 0; display:flex; flex-direction:column; gap:0.55rem; flex:1;">
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> BeslisCheck vanaf €49 &mdash; advertentieanalyse op afstand</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> Premium €349 &mdash; fysieke keuring op locatie</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> Full Service €499 &mdash; begeleiding tot sleuteloverdracht</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> Eerder betaald bedrag wordt altijd verrekend</li>
+        </ul>
+        <a href="aankoopadvies.html" class="btn-primary" style="text-align:center; display:block;">Bekijk aankoopadvies</a>
+      </div>
+
+      <!-- EV ACCUCHECK -->
+      <div style="border:1px solid rgba(0,0,0,0.1); border-radius:12px; padding:2.25rem; background:#fff; display:flex; flex-direction:column;">
+        <div style="display:inline-block; font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; background:rgba(26,96,145,0.08); color:#1a6091; padding:4px 12px; border-radius:20px; margin-bottom:1.5rem; width:fit-content;">EV AccuCheck</div>
+        <h3 style="font-size:1.35rem; font-weight:600; color:#0d1b2a; line-height:1.3; margin-bottom:1rem;">De werkelijke batterijwaarde. Onafhankelijk gemeten.</h3>
+        <p style="font-size:0.9rem; color:#444; line-height:1.7; margin-bottom:1.5rem;">
+          AVILOO-gecertificeerde meting op celniveau. Detecteert wat een OBD-uitlezer mist:
+          defecte cellen, verborgen degradatie en een onbetrouwbaar bereik. Met officieel TÜV-certificaat.
+        </p>
+        <ul style="list-style:none; padding:0; margin:0 0 1.5rem 0; display:flex; flex-direction:column; gap:0.55rem; flex:1;">
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> AccuCheck €95 &mdash; op locatie in Barendrecht</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> AccuCheck €129 &mdash; bij u op locatie (tot 40km)</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> Officieel AVILOO-certificaat, zelfde dag</li>
+          <li style="font-size:0.87rem; color:#333; padding-left:1.3rem; position:relative;"><span style="position:absolute; left:0; color:#1a6091; font-weight:700;">✓</span> Meting op celniveau &mdash; niet alleen het BMS-percentage</li>
+        </ul>
+        <a href="ev-accucheck.html" class="btn-primary" style="text-align:center; display:block;">Bekijk EV AccuCheck</a>
+      </div>
+
+    </div>
+
+    <!-- COMBINATIEAANBOD -->
+    <div style="margin-top:1.5rem; border:1.5px solid rgba(26,96,145,0.25); border-radius:12px; padding:1.75rem 2rem; background:rgba(26,96,145,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.25rem;">
+      <div style="display:flex; align-items:flex-start; gap:1rem; flex:1; min-width:260px;">
+        <div style="font-size:1.3rem; flex-shrink:0; margin-top:2px;">⚡</div>
+        <div>
+          <p style="font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#1a6091; margin-bottom:0.3rem;">Combinatievoordeel</p>
+          <p style="font-size:0.95rem; font-weight:600; color:#0d1b2a; margin-bottom:0.35rem;">Aankoopadvies + EV AccuCheck in één bezoek</p>
+          <p style="font-size:0.85rem; color:#555; line-height:1.6;">Bij Premium of Full Service bent u toch al op locatie bij de auto. Voeg een AVILOO AccuCheck toe en betaal minder dan los afnemen. De keuring en meting worden in één afspraak uitgevoerd.</p>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem; flex-shrink:0; min-width:200px;">
+        <div style="background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:8px; padding:0.75rem 1.1rem; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          <span style="font-size:0.83rem; color:#444;">Premium + AccuCheck</span>
+          <span style="font-size:0.9rem; font-weight:700; color:#0d1b2a; white-space:nowrap;"><span style="text-decoration:line-through; font-weight:400; font-size:0.75rem; color:#999; margin-right:4px;">€478</span>€449</span>
+        </div>
+        <div style="background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:8px; padding:0.75rem 1.1rem; display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+          <span style="font-size:0.83rem; color:#444;">Full Service + AccuCheck</span>
+          <span style="font-size:0.9rem; font-weight:700; color:#0d1b2a; white-space:nowrap;"><span style="text-decoration:line-through; font-weight:400; font-size:0.75rem; color:#999; margin-right:4px;">€628</span>€599</span>
+        </div>
+        <a href="aankoopadvies.html#ev-accucheck" style="font-size:0.82rem; color:#1a6091; font-weight:600; text-decoration:none; text-align:right; padding-right:2px; border-bottom:1px solid rgba(26,96,145,0.3); align-self:flex-end;">Meer over combinatiepakketten &rarr;</a>
+      </div>
+    </div>
+
+    <!-- RESPONSIVE FALLBACK FOR MOBILE -->
+    <style>
+      @media (max-width: 640px) {
+        .diensten-grid { grid-template-columns: 1fr !important; }
+      }
+    </style>
+  </div>
+</section>
+
+<!-- ================= VOOR BEDRIJVEN SIGNAALBLOK ================= -->
+<section style="background:#0d1b2a; padding:2.5rem 0;">
+  <div class="container" style="max-width:820px; text-align:center;">
+    <p style="font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem;">Voor autobedrijven en leasemaatschappijen</p>
+    <h2 style="font-size:1.35rem; font-weight:600; color:#ffffff; line-height:1.4; margin-bottom:1rem;">
+      Batterijwaarde bepaalt steeds vaker de inruilprijs,<br>de verkoopsnelheid en de restwaarde van een EV.
+    </h2>
+    <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.75; margin-bottom:1.75rem;">
+      ZekerOpWeg levert onafhankelijke accudiagnose als vast onderdeel van uw inkoop- en verkoopproces. TUV-gecertificeerd. Direct inzetbaar in advertentie of dossier.
+    </p>
+    <a href="ev-accucheck-zakelijk.html" style="display:inline-block; background:#1a6091; color:#fff; font-size:0.88rem; font-weight:600; padding:0.75rem 1.75rem; border-radius:6px; text-decoration:none; letter-spacing:0.02em;">Bekijk zakelijke dienstverlening &rarr;</a>
+  </div>
+</section>
+  
+<!-- ================= PEPIJN / VERTROUWENSLAAG ================= -->
+<section class="services-section container">
+  <div style="display:grid; grid-template-columns:1fr 1.8fr; gap:3.5rem; align-items:center; max-width:880px; margin:0 auto;">
+
+    <div style="text-align:center;">
+      <img
+        src="assets/images/foto-pepijn.jpeg"
+        alt="Pepijn Westhoff - ZekerOpWeg"
+        style="width:180px; height:180px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid rgba(26,96,145,0.15); display:block; margin:0 auto 1.25rem;"
+      />
+      <p style="font-size:0.92rem; font-weight:600; color:#0d1b2a; margin-bottom:0.2rem;">Pepijn Westhoff</p>
+      <p style="font-size:0.78rem; color:#888; letter-spacing:0.04em;">Oprichter ZekerOpWeg</p>
+    </div>
+
+    <div>
+      <p style="font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#1a6091; margin-bottom:0.75rem;">De persoon achter ZekerOpWeg</p>
+     <h2 style="font-size:1.4rem; font-weight:600; color:#0d1b2a; line-height:1.35; margin-bottom:1.1rem;">
+      16 jaar automotive ervaring.<br>Nu de onafhankelijke batterijstandaard.
+     </h2>
+      <p style="font-size:0.9rem; color:#444; line-height:1.75; margin-bottom:1.1rem;">
+        Binnen het dealerkanaal draait het om snelheid, marges en doorloop. Pepijn kiest bewust
+        de andere kant: de kant van de koper. Als officieel AVILOO-partner voert hij
+        TÜV-gecertificeerde accumetingen uit die detecteren wat een standaard OBD-uitlezing mist.
+      </p>
+      <p style="font-size:0.9rem; color:#444; line-height:1.75; margin-bottom:1.5rem;">
+       Geen provisies. Geen samenwerkingen die het advies beïnvloeden. U krijgt het advies dat
+       u verdient: eerlijk, onderbouwd en uitsluitend in uw belang. Batterijwaarde is geen bijzaak meer. ZekerOpWeg maakt die standaard zichtbaar.
+      </p>
+      <a href="over.html" style="font-size:0.85rem; color:#1a6091; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(26,96,145,0.3); padding-bottom:2px;">Meer over ZekerOpWeg &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= AUTORITEITSLAAG ================= -->
+<section style="background:#f4f6f8; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06); padding:2.5rem 0;">
+  <div class="container">
+    <p style="text-align:center; font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#888; margin-bottom:2rem;">Waarom AVILOO-meting en niet een gewone OBD-uitlezer</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; max-width:860px; margin:0 auto;">
+
+      <div style="text-align:center; padding:1.5rem;">
+        <div style="font-size:1.6rem; margin-bottom:0.6rem;">🔬</div>
+        <p style="font-size:0.88rem; font-weight:600; color:#0d1b2a; margin-bottom:0.4rem;">Meting op celniveau</p>
+        <p style="font-size:0.82rem; color:#666; line-height:1.6;">OBD leest wat de auto zelf rapporteert. AVILOO test elke individuele cel. Een defecte cel bij 90% SoH is onzichtbaar voor een OBD-uitlezer.</p>
+      </div>
+
+      <div style="text-align:center; padding:1.5rem;">
+        <div style="font-size:1.6rem; margin-bottom:0.6rem;">📋</div>
+        <p style="font-size:0.88rem; font-weight:600; color:#0d1b2a; margin-bottom:0.4rem;">Officieel TÜV-certificaat</p>
+        <p style="font-size:0.82rem; color:#666; line-height:1.6;">Na elke meting ontvangt u een officieel AVILOO-certificaat met celanalyse en SoH-percentage. Inzetbaar als bewijs bij verkoop of aankoop.</p>
+      </div>
+
+      <div style="text-align:center; padding:1.5rem;">
+        <div style="font-size:1.6rem; margin-bottom:0.6rem;">🛡️</div>
+        <p style="font-size:0.88rem; font-weight:600; color:#0d1b2a; margin-bottom:0.4rem;">Update-onafhankelijk</p>
+        <p style="font-size:0.82rem; color:#666; line-height:1.6;">Software-updates bij de dealer beïnvloeden de AVILOO-meting niet. De meting staat los van het BMS van de fabrikant.</p>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="bms-vs-celniveau.html" style="font-size:0.82rem; color:#1a6091; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(26,96,145,0.3); padding-bottom:2px;">Lees: waarom een OBD-uitlezer een defecte cel mist &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="services-section container">
+
+  <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;">
+    <div>
+      <h2 class="section-title" style="margin-bottom:0.5rem;">Wat klanten zeggen</h2>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="color:#f5a623; font-size:1.1rem; letter-spacing:2px;">★★★★★</span>
+        <span style="font-size:0.82rem; color:#666;">5,0 &mdash; 7 reviews op Google</span>
+      </div>
+    </div>
+    <a href="https://g.page/r/CdsDVYBzb4_LEBM" target="_blank" rel="noopener" style="font-size:0.82rem; color:#1a6091; font-weight:500; text-decoration:none; border-bottom:1px solid rgba(26,96,145,0.3); padding-bottom:2px; white-space:nowrap;">Alle reviews op Google &rarr;</a>
+  </div>
+
+  <!-- FEATURED REVIEW - GROOT -->
+  <div style="border:1px solid rgba(26,96,145,0.15); border-radius:12px; padding:2rem 2.25rem; background:#fff; margin-bottom:1.5rem; position:relative;">
+    <div style="color:#f5a623; font-size:0.9rem; letter-spacing:2px; margin-bottom:1rem;">★★★★★</div>
+    <p style="font-size:1rem; color:#0d1b2a; line-height:1.8; font-style:italic; margin-bottom:1.25rem;">
+      "Ik heb zelf weinig verstand van auto's en vond het best spannend om een andere auto te kopen. Pepijn is met mij meegegaan naar de dealer en heeft mij onafhankelijk begeleid bij de aankoop. Hij keek kritisch mee naar de staat van de auto en gaf duidelijke uitleg. Ook tijdens de onderhandeling gaf hij rust en zekerheid. Dankzij zijn deskundig en onafhankelijk advies heb ik vol vertrouwen mijn beslissing kunnen nemen."
+    </p>
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#1a6091,#0d1b2a); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.8rem; font-weight:600; flex-shrink:0;">MC</div>
+      <div>
+        <p style="font-size:0.88rem; font-weight:600; color:#0d1b2a; margin:0;">M. Catshoek</p>
+        <p style="font-size:0.77rem; color:#888; margin:0;">Aankoopbegeleiding &mdash; Volvo ingeruild voor kleinere auto</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRIE KLEINERE REVIEWS -->
+  <div class="testimonial-grid">
+
+    <div class="testimonial-card">
+      <div style="color:#f5a623; font-size:0.85rem; letter-spacing:2px; margin-bottom:0.75rem;">★★★★★</div>
+      <p style="font-size:0.88rem; line-height:1.7;">"Pepijn heeft veel ervaring in deze branche. Hij stond mij bij bij mijn onderhandeling en zorgde voor een betere prijs, maar vooral de zekerheid dat ik een goede, veilige auto had gekocht."</p>
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-top:1rem;">
+        <div style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#1a6091,#0d3a5c); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.7rem; font-weight:600; flex-shrink:0;">MK</div>
+        <div>
+          <p style="font-size:0.82rem; font-weight:600; color:#0d1b2a; margin:0;">Marinka Klijn</p>
+          <p style="font-size:0.74rem; color:#888; margin:0;">Aankoopbegeleiding &amp; onderhandeling</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div style="color:#f5a623; font-size:0.85rem; letter-spacing:2px; margin-bottom:0.75rem;">★★★★★</div>
+      <p style="font-size:0.88rem; line-height:1.7;">"Vandaag een SoH-meting laten uitvoeren aan mijn ID.3. Erg fijne ervaring. Meneer kwam zeer deskundig en ervaren over, nam de tijd voor uitleg. De meting en uitleg hebben mij echt goed geholpen."</p>
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-top:1rem;">
+        <div style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#1a6091,#0d3a5c); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.7rem; font-weight:600; flex-shrink:0;">MB</div>
+        <div>
+          <p style="font-size:0.82rem; font-weight:600; color:#0d1b2a; margin:0;">MikBerr Kaya</p>
+          <p style="font-size:0.74rem; color:#888; margin:0;">AVILOO AccuCheck &mdash; Volkswagen ID.3</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div style="color:#f5a623; font-size:0.85rem; letter-spacing:2px; margin-bottom:0.75rem;">★★★★★</div>
+      <p style="font-size:0.88rem; line-height:1.7;">"Ik heb mijn hybride accu laten testen en ben erg tevreden. Ik kreeg een duidelijk rapport met de SOH-waarde en het elektrische rijbereik, inclusief TÜV-certificaat. Alles was professioneel en snel geregeld."</p>
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-top:1rem;">
+        <div style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#1a6091,#0d3a5c); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.7rem; font-weight:600; flex-shrink:0;">ES</div>
+        <div>
+          <p style="font-size:0.82rem; font-weight:600; color:#0d1b2a; margin:0;">Elder Silva</p>
+          <p style="font-size:0.74rem; color:#888; margin:0;">AVILOO AccuCheck &mdash; hybride voertuig</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center; margin-top:1.75rem;">
+    <a href="https://g.page/r/CdsDVYBzb4_LEBM" target="_blank" rel="noopener" style="font-size:0.82rem; color:#1a6091; font-weight:500; text-decoration:none; border-bottom:1px solid rgba(26,96,145,0.3); padding-bottom:2px;">Bekijk alle reviews op Google &rarr;</a>
+  </p>
+
+</section>
+
+<!-- ================= ACCURISICO RAPPORT - PARTICULIEREN ================= -->
+<section class="services-section section-bg-soft">
+  <div class="container">
+    <div class="rapport-split-block rapport-particulier">
+      <div class="rapport-split-label">Voor particulieren &mdash; geen afspraak nodig</div>
+      <div class="rapport-split-inner">
+        <div class="rapport-split-text">
+          <h2 class="rapport-split-title">
+            Al twijfels over de accu vóór u gaat kijken?
+          </h2>
+          <p class="rapport-split-body">
+            Het AccuRisico Rapport geeft u direct inzicht in de verwachte accustaat
+            op basis van kenteken, leeftijd en kilometerstand. Gebaseerd op AVILOO
+            meetdata van vergelijkbare voertuigen. Geen bezoek nodig.
+          </p>
+          <ul class="rapport-split-list">
+            <li>Direct beschikbaar op kenteken</li>
+            <li>Gebaseerd op onafhankelijke AVILOO meetdata</li>
+            <li>Begrijpelijk uitgelegd, geen technische kennis nodig</li>
+            <li>Inclusief degradatieprognose</li>
+          </ul>
+          <div class="rapport-split-price">€19,95 <span>incl. btw &mdash; direct PDF</span></div>
+          <div class="rapport-cta-row">
+            <a href="rapport.html" class="btn-primary">Direct rapport genereren</a>
+            <a href="accurisico-rapport.html" class="btn-info">Meer informatie</a>
+          </div>
+        </div>
+        <div class="rapport-split-aside">
+          <div class="rapport-aside-card">
+            <div class="rac-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <p class="rac-title">Onafhankelijk</p>
+            <p class="rac-body">Niet gebonden aan de auto of de dealer. Externe referentiedata.</p>
+          </div>
+          <div class="rapport-aside-card">
+            <div class="rac-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <p class="rac-title">Direct klaar</p>
+            <p class="rac-body">Geen afspraak. Geen wachttijd. PDF binnen enkele minuten.</p>
+          </div>
+          <div class="rapport-aside-card">
+            <div class="rac-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <p class="rac-title">€19,95</p>
+            <p class="rac-body">Minder dan een tankbeurt. Voorkomt een verkeerde aankoop van duizenden euro's.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ (GEFOCUST, 4 VRAGEN) ================= -->
+<section class="services-section container">
+  <div class="container" style="max-width:760px;">
+    <h2 class="section-title">Veelgestelde vragen</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <h3 class="faq-question">Hoe weet ik of de accu van een tweedehands EV nog goed is?</h3>
+        <p class="faq-answer">
+          De boordcomputer toont een percentage op basis van interne software, maar kan een defecte cel missen.
+          Een gecertificeerde AVILOO-meting test de werkelijke laadcapaciteit van elke individuele cel.
+          ZekerOpWeg voert deze meting op locatie uit en geeft u dezelfde dag het officiële certificaat.
+        </p>
+        <a href="bms-vs-celniveau.html" style="font-size:0.82rem; color:#1a6091; font-weight:500;">Lees: waarom een OBD-uitlezer een defecte cel mist &rarr;</a>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Wat kost het vervangen van een EV-accu?</h3>
+        <p class="faq-answer">
+          Een nieuwe accupack kost tussen de €5.000 en €15.000, afhankelijk van model en capaciteit.
+          Voor een Nissan Leaf rond €6.000 tot €8.000, voor een Tesla Model 3 tussen €8.000 en €13.000.
+          Een AccuCheck bij ZekerOpWeg kost €95 tot €129 en voorkomt dit risico vooraf.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Werkt ZekerOpWeg op locatie of moet ik naar Barendrecht?</h3>
+        <p class="faq-answer">
+          Beide opties zijn beschikbaar. Een AccuCheck op locatie in Barendrecht kost €95.
+          Komt ZekerOpWeg naar u toe (tot 40km rondom Barendrecht), dan is het tarief €129.
+          U hoeft de auto niet te verplaatsen. Het rapport ontvangt u dezelfde dag.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-question">Wat kost aankoopadvies en wat krijg ik daarvoor?</h3>
+        <p class="faq-answer">
+          Aankoopadvies start bij €49 voor een BeslisCheck op afstand tot €499 voor Full Service
+          inclusief fysieke keuring, onderhandeling en begeleiding tot sleuteloverdracht.
+          Eerder betaald bedrag wordt altijd verrekend wanneer u opschaalt.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= KENNISARTIKELEN ================= -->
+<section class="services-section container">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#888; margin-bottom:1rem; text-align:center;">Kennisartikelen</p>
+    <h2 class="section-title" style="text-align:center; margin-bottom:2rem;">Meer weten over EV accu's?</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+      <a href="ev-accu-diagnose.html" style="background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#1a6091; margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+        <p style="font-size:15px; font-weight:700; color:#0d1b2a; margin:0 0 6px;">EV accu diagnose</p>
+        <p style="font-size:13px; color:#555; margin:0; line-height:1.5;">Wat is het, wanneer nodig en wat kost het?</p>
+      </a>
+      <a href="ev-batterij-defect.html" style="background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#1a6091; margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+        <p style="font-size:15px; font-weight:700; color:#0d1b2a; margin:0 0 6px;">EV batterij defect</p>
+        <p style="font-size:13px; color:#555; margin:0; line-height:1.5;">Symptomen, oorzaken en wat u kunt doen.</p>
+      </a>
+      <a href="bms-vs-celniveau.html" style="background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#1a6091; margin:0 0 8px; font-weight:600;">Kennisartikel</p>
+        <p style="font-size:15px; font-weight:700; color:#0d1b2a; margin:0 0 6px;">BMS vs celniveau meting</p>
+        <p style="font-size:13px; color:#555; margin:0; line-height:1.5;">Waarom een OBD-uitlezer een defecte cel mist.</p>
+      </a>
+      <a href="aviloo-vs-moba.html" style="background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#1a6091; margin:0 0 8px; font-weight:600;">Vergelijking</p>
+        <p style="font-size:15px; font-weight:700; color:#0d1b2a; margin:0 0 6px;">AVILOO vs Moba</p>
+        <p style="font-size:13px; color:#555; margin:0; line-height:1.5;">Wat detecteert Moba niet dat AVILOO wel ziet?</p>
+      </a>
+    </div>
+  </div>
+</section>
+  
+<!-- ================= CLOSING CTA ================= -->
+<section class="services-section section-bg-soft">
+  <div class="container" style="max-width:680px; text-align:center;">
+    <p style="font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#888; margin-bottom:1rem;">Eén bericht is genoeg.</p>
+    <h2 style="font-size:1.6rem; font-weight:600; color:#0d1b2a; line-height:1.3; margin-bottom:1rem;">
+      Stuur het kenteken. Dan kijken we samen wat de accu werkelijk waard is.
+    </h2>
+    <p style="font-size:0.9rem; color:#555; line-height:1.7; margin-bottom:2rem;">
+      Geen verplichtingen. Geen lange procedure. Gewoon een eerste eerlijk oordeel.
+      Als het niets is, zeg ik dat ook.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="https://wa.me/31623452349" class="btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Stel een vraag via WhatsApp
+      </a>
+      <a href="aankoopadvies.html" class="btn-secondary">Bekijk aankoopadvies</a>
+    </div>
+    <p style="font-size:0.77rem; color:#999; margin-top:1.4rem;">Regio Rotterdam · Zuid-Holland · Noord-Brabant &nbsp;·&nbsp; Binnen 40km op locatie</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <p class="footer-title">ZekerOpWeg</p>
+      <p>© 2026 ZekerOpWeg</p>
+      <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
+        Handelsnaam van Pepijn Westhoff<br>
+        KvK 99323575<br>
+        BTW NL005381985B31<br>
+        IBAN NL22 INGB 0116 6008 02
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-title">Contact</p>
+      <p>
+        <a href="https://wa.me/31623452349">WhatsApp: 06 23 45 23 49</a><br>
+        Snelste manier voor vragen
+      </p>
+      <p style="margin-top:0.8rem;">
+        <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>
+        Algemene vragen
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-title">Diensten</p>
+      <p><a href="aankoopadvies.html">Aankoopadvies</a></p>
+      <p><a href="ev-accucheck.html">EV AccuCheck</a></p>
+      <p><a href="rapport.html">AccuRisico Rapport</a></p>
+      <p><a href="over.html">Over ZekerOpWeg</a></p>
+    </div>
+
+  </div>
+
+  <div style="margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid rgba(255,255,255,.08);">
+    <div class="container">
+      <p class="footer-legal">
+        Diensten worden geleverd conform Nederlandse wetgeving.
+        ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/menu.js" defer></script>
+
+<style>
+/* ===== RAPPORT SPLIT BLOKKEN ===== */
+.rapport-split-block {
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  border-radius: 12px !important;
+  padding: 3rem !important;
+  background: #f9f9f9 !important;
+}
+.rapport-split-label {
+  display: inline-block !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 5px 14px !important;
+  border-radius: 20px !important;
+  margin-bottom: 2rem !important;
+  background: rgba(0,0,0,0.06) !important;
+  color: #444444 !important;
+}
+.rapport-split-inner {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3rem !important;
+  align-items: start !important;
+}
+@media (max-width: 768px) {
+  .rapport-split-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .rapport-split-block { padding: 2rem 1.5rem !important; }
+}
+.rapport-split-title {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 1.2rem !important;
+  color: #0d1b2a !important;
+}
+.rapport-split-body {
+  font-size: 0.95rem !important;
+  line-height: 1.75 !important;
+  color: #333333 !important;
+  margin-bottom: 1.5rem !important;
+}
+.rapport-split-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 2rem 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.6rem !important;
+}
+.rapport-split-list li {
+  font-size: 0.9rem !important;
+  color: #333333 !important;
+  padding-left: 1.4rem !important;
+  position: relative !important;
+  line-height: 1.5 !important;
+}
+.rapport-split-list li::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.55em !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #1a6091 !important;
+}
+.rapport-split-price {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #0d1b2a !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1.2 !important;
+}
+.rapport-split-price span {
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: #666666 !important;
+  margin-left: 6px !important;
+}
+.rapport-cta-row {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+.rapport-split-aside {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+.rapport-aside-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.09) !important;
+  border-radius: 10px !important;
+  padding: 1.25rem 1.5rem !important;
+  display: grid !important;
+  grid-template-columns: 36px 1fr !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 1rem !important;
+  row-gap: 0.3rem !important;
+  align-items: start !important;
+}
+.rac-icon {
+  grid-row: 1 / 3 !important;
+  color: #1a6091 !important;
+  padding-top: 2px !important;
+}
+.rac-title {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: #0d1b2a !important;
+  margin: 0 !important;
+}
+.rac-body {
+  font-size: 0.82rem !important;
+  color: #555555 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 640px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { text-align: center; margin-left: 0 !important; }
+}
+@media (max-width: 768px) {
+  div[style*="grid-template-columns:1fr 1.8fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr"][class=""] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== COOKIE BANNER ===== */
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #071a2b;
+  color: #ffffff;
+  padding: 18px 24px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px;
+  width: 90%;
+  font-size: 14px;
+  z-index: 9999;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+#cookie-banner a { color: #4da3ff; text-decoration: none; }
+#cookie-banner a:hover { text-decoration: underline; }
+#cookie-banner button {
+  background: linear-gradient(135deg, #0a3d62, #1e6091);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+</style>
+
+<div id="cookie-banner">
+  <div>
+    Wij gebruiken cookies voor analyse en marketing (Google Ads).
+    Lees onze <a href="/privacyverklaring">privacyverklaring</a>.
+  </div>
+  <button onclick="acceptCookies()">Akkoord</button>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem("cookiesAccepted", "true");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+if (localStorage.getItem("cookiesAccepted")) {
+  document.getElementById("cookie-banner").style.display = "none";
+}
+</script>
 
 </body>
 </html>
-
