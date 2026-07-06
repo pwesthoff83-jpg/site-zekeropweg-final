@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aankoopadvies occasion | ZekerOpWeg – Onafhankelijk autoadvies</title>
-<meta name="description" content="Onafhankelijk aankoopadvies voor elke occasion. 16 jaar dealerervaring. Geen auto te verkopen. EV, hybride of benzine – ik kijk met je mee voordat je tekent.">
+<title>Aankoopadvies occasion | ZekerOpWeg: Onafhankelijk autoadvies</title>
+<meta name="description" content="Onafhankelijk aankoopadvies voor elke occasion. 16 jaar dealerervaring. Geen auto te verkopen. EV, hybride of benzine: ik kijk met je mee voordat je tekent. Nu incl. AVILOO batterijgarantie tot €3.000.">
 <meta name="keywords" content="aankoopadvies auto, occasion advies, tweedehands auto kopen, aankoopbegeleiding, elektrische auto advies, hybride occasion, onafhankelijk autoadvies, Zuid-Holland">
 <link rel="canonical" href="https://zekeropweg.nu/aankoopadvies-occasion.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
       "name": "Onafhankelijk aankoopadvies occasion",
       "provider": { "@id": "https://zekeropweg.nu#org" },
       "url": "https://zekeropweg.nu/aankoopadvies-occasion.html",
-      "description": "Onafhankelijk aankoopadvies voor occasions, EV en hybride. BeslisCheck €49, Premium €349, Full Service €499. ZekerOpWeg bezoekt de auto op locatie in regio Rotterdam en Zuid-Holland.",
+      "description": "Onafhankelijk aankoopadvies voor occasions, EV en hybride. BeslisCheck €49, Premium €349, Full Service €499. Bij EV of hybride inclusief AVILOO accumeting met batterijgarantie tot €3.000. ZekerOpWeg bezoekt de auto op locatie in regio Rotterdam en Zuid-Holland.",
       "areaServed": ["Rotterdam", "Barendrecht", "Dordrecht", "Zuid-Holland"],
       "offers": [
         {
@@ -99,6 +99,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Een ANWB-keuring kijkt technisch naar de auto in een garage. ZekerOpWeg kijkt als voormalig dealer naar prijs, verhaal van de verkoper, aandachtspunten en bij EV of hybride ook de accuconditie via TÜV-gecertificeerde AVILOO-meting. Andere focus, andere waarde."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zit er een batterijgarantie bij de AVILOO-meting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Bij Premium en Full Service inclusief AVILOO accumeting zit een AVILOO batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO."
           }
         }
       ]
@@ -296,6 +304,35 @@
   }
 
   .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+  /* ── GARANTIEBOX ── */
+  .garantie-box {
+    max-width: 640px;
+    margin: 0 auto 48px;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .garantie-box strong {
+    display: block;
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .garantie-box p {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.55;
+    margin: 0;
+  }
 
   /* ── SECTION ── */
   section {
@@ -497,6 +534,16 @@
   .pakket-features li.highlight {
     color: var(--white);
     font-weight: 500;
+  }
+
+  .pakket-features li.garantie::before {
+    content: '✓';
+    color: var(--amber);
+  }
+
+  .pakket-features li.garantie {
+    color: var(--white);
+    font-weight: 600;
   }
 
   .pakket-cta {
@@ -770,6 +817,14 @@
   <h1>Je koopt een auto.<br><em>Niet het probleem erbij.</em></h1>
   <p>16 jaar dealerervaring. Geen auto te verkopen. Geen garage-belang. Ik kijk met je mee voordat je tekent, bij elke occasion, EV, hybride of benzine.</p>
 
+  <div class="garantie-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+    <div>
+      <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
+      <p>Bij Premium en Full Service inclusief AVILOO accumeting zit een batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
+    </div>
+  </div>
+
   <div class="hero-stats">
     <div class="hero-stat">
       <span class="hero-stat-num">16</span>
@@ -782,6 +837,10 @@
     <div class="hero-stat">
       <span class="hero-stat-num">€49</span>
       <span class="hero-stat-label">Vanaf</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">€3.000</span>
+      <span class="hero-stat-label">AVILOO garantie</span>
     </div>
   </div>
 
@@ -811,7 +870,7 @@
     <div class="prop-card">
       <span class="prop-icon">🔋</span>
       <div class="prop-title">EV en hybride specialist</div>
-      <p class="prop-text">Als enige in de regio bied ik TÜV-gecertificeerde AVILOO accumetingen aan. Ideale combinatie met aankoopadvies voor elektrische occasions.</p>
+      <p class="prop-text">Als enige in de regio bied ik TÜV-gecertificeerde AVILOO accumetingen aan, inclusief een batterijgarantie tot €3.000. Ideale combinatie met aankoopadvies voor elektrische occasions.</p>
     </div>
   </div>
 </section>
@@ -860,6 +919,7 @@
           <li>Eerlijke waardebepaling</li>
           <li>Advies: kopen of niet, en waarom</li>
           <li class="highlight">Inclusief accuscan bij EV of hybride</li>
+          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
         </ul>
         <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20het%20Premium%20pakket%20voor%20kenteken%3A" class="pakket-cta primary">Boek Premium →</a>
       </div>
@@ -881,6 +941,7 @@
           <li>Controle koopcontract</li>
           <li>Begeleiding tot overdracht</li>
           <li class="highlight">Inclusief AVILOO accumeting bij EV/hybride</li>
+          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
         </ul>
         <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20het%20Full%20Service%20pakket%20voor%20kenteken%3A" class="pakket-cta secondary">Boek Full Service →</a>
       </div>
@@ -945,7 +1006,7 @@
         <li>Je begrijpt het SoH-getal niet en wil uitleg</li>
         <li>Je wil een gecertificeerde AVILOO accumeting</li>
         <li>Je wil weten wat de accu over 3 of 5 jaar doet</li>
-        <li>Je wil zekerheid die de dealer je niet kan geven</li>
+        <li>Je wil zekerheid die de dealer je niet kan geven, inclusief een batterijgarantie tot €3.000</li>
       </ul>
     </div>
   </div>
@@ -973,7 +1034,7 @@
       </div>
       <div class="expertise-punt">
         <div class="expertise-num">04</div>
-        <div class="expertise-tekst"><strong>Bij EV en hybride: gecertificeerde accumeting.</strong> Via TÜV-gecertificeerde AVILOO apparatuur. Volledig onafhankelijk van de auto's eigen software.</div>
+        <div class="expertise-tekst"><strong>Bij EV en hybride: gecertificeerde accumeting.</strong> Via TÜV-gecertificeerde AVILOO apparatuur, inclusief een batterijgarantie tot €3.000. Volledig onafhankelijk van de auto's eigen software.</div>
       </div>
     </div>
 
@@ -1015,6 +1076,10 @@
     <div class="faq-item">
       <div class="faq-vraag">Wat is het verschil met een ANWB-keuring?</div>
       <div class="faq-antwoord">Een ANWB-keuring kijkt technisch naar de auto in een garage. Ik kijk naar de auto als voormalig dealer: is de prijs eerlijk, wat klopt er niet in het verhaal van de verkoper, wat zijn de aandachtspunten voor jou als koper, en bij EV of hybride ook de accuconditie. Andere focus, andere waarde.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-vraag">Zit er een batterijgarantie bij de AVILOO-meting?</div>
+      <div class="faq-antwoord">Ja. Bij Premium en Full Service inclusief AVILOO accumeting zit een AVILOO batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</div>
     </div>
   </div>
 </section>
