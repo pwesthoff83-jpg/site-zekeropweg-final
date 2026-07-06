@@ -801,6 +801,77 @@
     .stappen-grid { grid-template-columns: 1fr; }
     .hero h1 { font-size: 32px; }
   }
+  /* ── COMBI-TARIEF ── */
+  .combi-section {
+    background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+    padding: 96px 24px;
+  }
+  .combi-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .combi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+    text-align: left;
+  }
+  @media (max-width: 700px) { .combi-grid { grid-template-columns: 1fr; } }
+  .combi-card {
+    background: var(--card);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+  }
+  .combi-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  .combi-prijs-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .combi-prijs-nieuw {
+    font-family: 'DM Serif Display', serif;
+    font-size: 44px;
+    color: var(--white);
+  }
+  .combi-prijs-oud { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+  .combi-breakdown { font-size: 14px; color: var(--slate); margin-bottom: 24px; }
+  .combi-divider { height: 1px; background: var(--border); margin: 0 0 20px; }
+  .combi-features { list-style: none; margin-bottom: 28px; }
+  .combi-features li {
+    font-size: 14px;
+    color: var(--slate);
+    padding: 6px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .combi-features li::before { content: '✓'; color: var(--teal-light); font-weight: 700; flex-shrink: 0; }
+  .combi-features li.garantie { color: var(--white); font-weight: 600; }
+  .combi-features li.garantie::before { color: var(--amber); }
+  .combi-garantie-badge {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.35);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 18px 0 22px;
+  }
+  .combi-garantie-badge strong {
+    display: block;
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .combi-garantie-badge span {
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
 </style>
 </head>
 <body>
@@ -919,7 +990,6 @@
           <li>Eerlijke waardebepaling</li>
           <li>Advies: kopen of niet, en waarom</li>
           <li class="highlight">Inclusief accuscan bij EV of hybride</li>
-          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
         </ul>
         <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20het%20Premium%20pakket%20voor%20kenteken%3A" class="pakket-cta primary">Boek Premium →</a>
       </div>
@@ -941,11 +1011,72 @@
           <li>Controle koopcontract</li>
           <li>Begeleiding tot overdracht</li>
           <li class="highlight">Inclusief AVILOO accumeting bij EV/hybride</li>
-          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
         </ul>
         <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20het%20Full%20Service%20pakket%20voor%20kenteken%3A" class="pakket-cta secondary">Boek Full Service →</a>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- COMBI-TARIEF PREMIUM/FULL + ACCUCHECK -->
+<div class="combi-section" id="combi-tarief">
+  <div class="combi-inner">
+    <div class="section-label">Combinatie-optie</div>
+    <h2 class="section-title">Koopt u een EV of hybride? Voeg een AccuCheck toe</h2>
+    <p class="section-sub" style="margin: 0 auto;">
+      Bij Premium of Full Service ben ik toch al bij de auto. Voeg een AVILOO AccuCheck
+      toe en u betaalt minder dan wanneer u de diensten los afneemt.
+    </p>
+
+    <div class="combi-grid">
+      <div class="combi-card">
+        <div class="combi-tag">Premium + EV AccuCheck</div>
+        <div class="combi-prijs-row">
+          <span class="combi-prijs-nieuw">€449</span>
+          <span class="combi-prijs-oud">€478</span>
+        </div>
+        <div class="combi-breakdown">U bespaart €29 ten opzichte van los</div>
+        <div class="combi-divider"></div>
+        <div class="combi-garantie-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div>
+            <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
+            <span>Wanneer het voertuig aan de voorwaarden voldoet. Verstrekt door AVILOO.</span>
+          </div>
+        </div>
+        <ul class="combi-features">
+          <li>Alles uit Premium (€349)</li>
+          <li>Onafhankelijke AVILOO AccuCheck op locatie</li>
+          <li>TÜV-gecertificeerde accumeting</li>
+          <li>Digitaal accucertificaat inbegrepen</li>
+        </ul>
+        <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20Premium%20%2B%20AccuCheck%20voor%20kenteken%3A" class="pakket-cta primary">Boek Premium + AccuCheck →</a>
+      </div>
+
+      <div class="combi-card">
+        <div class="combi-tag">Full Service + EV AccuCheck</div>
+        <div class="combi-prijs-row">
+          <span class="combi-prijs-nieuw">€599</span>
+          <span class="combi-prijs-oud">€628</span>
+        </div>
+        <div class="combi-breakdown">U bespaart €29 ten opzichte van los</div>
+        <div class="combi-divider"></div>
+        <div class="combi-garantie-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div>
+            <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
+            <span>Wanneer het voertuig aan de voorwaarden voldoet. Verstrekt door AVILOO.</span>
+          </div>
+        </div>
+        <ul class="combi-features">
+          <li>Alles uit Full Service (€499)</li>
+          <li>Onafhankelijke AVILOO AccuCheck op locatie</li>
+          <li>TÜV-gecertificeerde accumeting</li>
+          <li>Digitaal accucertificaat inbegrepen</li>
+        </ul>
+        <a href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20Full%20Service%20%2B%20AccuCheck%20voor%20kenteken%3A" class="pakket-cta secondary">Boek Full Service + AccuCheck →</a>
+      </div>
     </div>
   </div>
 </div>
