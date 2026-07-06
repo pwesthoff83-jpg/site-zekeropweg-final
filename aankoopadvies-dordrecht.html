@@ -54,7 +54,7 @@
             "name": "Wat kost aankoopadvies in Dordrecht?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie in Dordrecht kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AVILOO AccuCheck vanaf €449, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet."
+              "text": "ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie in Dordrecht kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride kan het Basis advies gecombineerd worden met een AVILOO AccuCheck voor €249 in totaal, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet."
             }
           },
           {
@@ -235,10 +235,10 @@
     .overview-sub { font-size: .95rem; color: #5a6472; margin-bottom: 1.8rem; }
     .advies-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-    @media (max-width: 760px) { .advies-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) { .advies-grid { grid-template-columns: 1fr; } }
     .advies-card {
       background: #fff;
       border-radius: 12px;
@@ -255,8 +255,7 @@
     .combo-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c6a86a; margin-bottom: .6rem; }
     .combo-section h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: .6rem; border: none; padding: 0; }
     .combo-intro { font-size: .95rem; color: rgba(255,255,255,.75); max-width: 620px; margin-bottom: 2rem; line-height: 1.7; }
-    .combo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 700px) { .combo-grid { grid-template-columns: 1fr; } }
+    .combo-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 520px; margin: 0 auto; }
     .combo-card {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.12);
@@ -366,11 +365,6 @@
         <div class="desc">Analyse op afstand vóór bezichtiging</div>
       </div>
       <div class="advies-card">
-        <div class="naam">Basis</div>
-        <div class="prijs">€249</div>
-        <div class="desc">Telefonisch of digitaal advies</div>
-      </div>
-      <div class="advies-card">
         <div class="naam">Premium</div>
         <div class="prijs">€349</div>
         <div class="desc">Fysieke bezichtiging op locatie in Dordrecht</div>
@@ -384,47 +378,13 @@
   </div>
 </section>
 
-<section class="combo-section">
-  <div class="container">
-    <div class="combo-eyebrow">Combinatie-optie</div>
-    <h2>Koopt u een EV of hybride? Voeg een AccuCheck toe</h2>
-    <p class="combo-intro">
-      Bij Premium of Full Service is ZekerOpWeg toch al bij de auto in Dordrecht. Voeg een
-      AVILOO AccuCheck toe en u betaalt minder dan wanneer u de diensten los afneemt.
-      Bezichtiging en meting in één bezoek, inclusief AVILOO batterijgarantie tot €3.000.
-    </p>
-    <div class="combo-grid">
-      <div class="combo-card">
-        <div class="tag">Premium + EV AccuCheck</div>
-        <h3>Bezichtiging en AccuCheck in één</h3>
-        <div class="prijs-row"><span class="prijs-nieuw">€449</span><span class="prijs-oud">€478</span></div>
-        <div class="bespaar">U bespaart €29 ten opzichte van los</div>
-        <ul>
-          <li>Alles uit Premium (€349)</li>
-          <li>Onafhankelijke AVILOO AccuCheck op locatie</li>
-          <li>TÜV-gecertificeerde accumeting</li>
-          <li>Digitaal accucertificaat inbegrepen</li>
-          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
-        </ul>
-        <a href="https://wa.me/31623452349" class="btn-primary" style="display:block;text-align:center;">Plan Premium + AccuCheck</a>
-      </div>
-      <div class="combo-card">
-        <div class="tag">Full Service + EV AccuCheck</div>
-        <h3>Volledige begeleiding inclusief AccuCheck</h3>
-        <div class="prijs-row"><span class="prijs-nieuw">€599</span><span class="prijs-oud">€628</span></div>
-        <div class="bespaar">U bespaart €29 ten opzichte van los</div>
-        <ul>
-          <li>Alles uit Full Service (€499)</li>
-          <li>Onafhankelijke AVILOO AccuCheck op locatie</li>
-          <li>TÜV-gecertificeerde accumeting</li>
-          <li>Digitaal accucertificaat inbegrepen</li>
-          <li class="garantie">AVILOO batterijgarantie tot €3.000 inbegrepen</li>
-        </ul>
-        <a href="https://wa.me/31623452349" class="btn-primary" style="display:block;text-align:center;">Plan Full Service + AccuCheck</a>
-      </div>
-    </div>
-    <p style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:1.5rem;text-align:center;">
-      AccuCheck wordt uitgevoerd op dezelfde locatie als de bezichtiging in Dordrecht. Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.
+<section class="overview-section" style="padding-top:0;">
+  <div class="container" style="max-width:900px;">
+    <p style="font-size:.95rem;color:#5a6472;line-height:1.7;">
+      Koopt u een EV of plug-in hybride? Op de pagina van de
+      <a href="ev-accucheck.html" style="color:#0a6e4a;font-weight:600;">EV AccuCheck</a>
+      kunt u naast de accumeting ook meteen het Basis aankoopadvies laten meenemen, voor
+      €120 extra bovenop de €129 van de meting. Inclusief AVILOO batterijgarantie tot €3.000.
     </p>
   </div>
 </section>
@@ -512,7 +472,7 @@
   </p>
   <p>
     Een EV-accu vervangen kost tussen de €5.000 en €15.000. Een AccuCheck op locatie
-    in Dordrecht kost €129, of vanaf €449 gecombineerd met aankoopadvies. Dat verschil
+    in Dordrecht kost €129, of vanaf €249 gecombineerd met het Basis aankoopadvies. Dat verschil
     is de reden dat ZekerOpWeg bestaat.
   </p>
 
@@ -544,7 +504,7 @@
 
   <div class="faq-item">
     <h3>Wat kost aankoopadvies in Dordrecht?</h3>
-    <p>ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AVILOO AccuCheck vanaf €449, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
+    <p>ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride kan het Basis advies gecombineerd worden met een AVILOO AccuCheck voor €249 in totaal, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
   </div>
 
   <div class="faq-item">
