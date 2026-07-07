@@ -67,7 +67,7 @@
       "provider": { "@id": "https://zekeropweg.nu#org" },
       "areaServed": ["Barendrecht", "Rotterdam", "Zuid-Holland", "Noord-Brabant"],
       "url": "https://zekeropweg.nu/aankoopadvies.html",
-      "description": "Aankoopadvies inclusief gecertificeerde AVILOO Flash Test op locatie. Voor kopers van een tweedehands elektrische auto of plug-in hybride. Combinatieprijs vanaf €449.",
+      "description": "Aankoopadvies inclusief gecertificeerde AVILOO Flash Test op locatie, met AVILOO batterijgarantie tot €3.000 inbegrepen. Voor kopers van een tweedehands elektrische auto of plug-in hybride. Combinatieprijs vanaf €449.",
       "offers": {
         "@type": "Offer",
         "price": "449",
@@ -82,7 +82,7 @@
           "name": "Wat kost onafhankelijk aankoopadvies voor een occasion?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck, waarbij een advertentie en voertuig op afstand worden beoordeeld. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AccuCheck vanaf €449."
+            "text": "ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck, waarbij een advertentie en voertuig op afstand worden beoordeeld. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AccuCheck vanaf €449, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "Geeft ZekerOpWeg ook aankoopadvies voor elektrische auto's en hybrides?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ja. ZekerOpWeg is gespecialiseerd in aankoopadvies voor tweedehands elektrische auto's en plug-in hybrides. Bij Premium en Full Service kan een gecertificeerde AVILOO AccuCheck worden toegevoegd voor een combinatieprijs. De AccuCheck en bezichtiging worden in één bezoek uitgevoerd op locatie in de regio Rotterdam en Zuid-Holland."
+            "text": "Ja. ZekerOpWeg is gespecialiseerd in aankoopadvies voor tweedehands elektrische auto's en plug-in hybrides. Bij Premium en Full Service kan een gecertificeerde AVILOO AccuCheck worden toegevoegd voor een combinatieprijs, inclusief een AVILOO batterijgarantie tot €3.000. De AccuCheck en bezichtiging worden in één bezoek uitgevoerd op locatie in de regio Rotterdam en Zuid-Holland."
           }
         },
         {
@@ -123,6 +123,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platforms. Het advies is uitsluitend in het belang van de koper, ook als dat betekent dat de auto wordt afgeraden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zit er een batterijgarantie bij de EV AccuCheck combinatie?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Bij Premium of Full Service gecombineerd met een EV AccuCheck zit een AVILOO batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO."
           }
         }
       ]
@@ -439,6 +447,27 @@
       color: #c6a86a;
       flex-shrink: 0;
     }
+    .combo-garantie-badge {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: rgba(198,168,106,.12);
+      border: 1px solid rgba(198,168,106,.4);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 4px 0 16px;
+    }
+    .combo-garantie-badge strong {
+      display: block;
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .combo-garantie-badge span {
+      font-size: 11.5px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.5;
+    }
     .combo-note {
       font-size: 12px;
       color: rgba(255,255,255,.45);
@@ -552,7 +581,279 @@
     </div>
   </section>
 
-<!-- REVIEWS -->
+<!-- BESLISCHECK -->
+  <!-- WIJZIGING 1: BeslisCheck sectie herschreven -->
+  <section class="services-section container">
+    <div class="premium-card">
+      <span class="premium-eyebrow">BeslisCheck</span>
+      <h3>Twijfel over deze auto?</h3>
+      <div class="price-block">
+        <strong>€49</strong>
+        <span>direct inzicht vóórdat je gaat kijken</span>
+      </div>
+      <p class="section-subtitle" style="margin-top:10px;">
+        Stuur me het kenteken of de advertentie. Ik vertel je vandaag nog of je deze moet kopen of laten staan.
+      </p>
+      <ul class="lux-list">
+        <li>Analyse van de advertentie en het verhaal van de verkoper</li>
+        <li>Verborgen risico's en aandachtspunten in beeld</li>
+        <li>Concreet advies: kopen, onderhandelen of laten staan</li>
+      </ul>
+      <p class="guardian-text">
+        Je hebt een auto gevonden. Je wilt niet voor niks gaan kijken. En je wilt het zeker weten voordat je besluit.
+      </p>
+      <a href="https://wa.me/31623452349" class="btn-primary">
+        Stuur kenteken, ik kijk direct met je mee
+      </a>
+      <div class="trust-compact" style="margin-top: 20px;">
+      <p>✔ Dagelijks gebruikt bij auto's van €10.000 – €80.000</p>
+     </div>
+
+      <div style="margin-top:20px; padding:14px 18px; background:#f6f5f1; border-left:3px solid #c6a86a; border-radius:0 8px 8px 0; font-size:14px; line-height:1.65; color:#0b1220;">
+        De €49 wordt volledig verrekend als je daarna kiest voor Premium of Full Service. Zo is de eerste stap altijd de goedkoopste stap.
+      </div>
+     
+    </div>
+  </section>
+
+  <!-- ROUTE INDICATOR -->
+  <section style="padding: 0 0 48px;">
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; max-width:700px; margin:0 auto;">
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 1</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">BeslisCheck</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€49</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Weten of de auto de moeite waard is</div>
+        </div>
+
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 2</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">Premium</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€349 <span style="font-size:11px;">(of €300 na BeslisCheck)</span></div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Fysieke bezichtiging bij de auto</div>
+        </div>
+
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 3</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">Full Service</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€499</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Begeleiding tot sleuteloverdracht</div>
+        </div>
+
+        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
+
+        <div style="text-align:center; padding:16px 20px; min-width:130px;">
+          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Optioneel</div>
+          <div style="font-size:15px; font-weight:650; color:#0b1220;">+ AccuCheck</div>
+          <div style="font-size:13px; color:#5a6472; margin-top:3px;">Vanaf €449 totaal</div>
+          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Incl. AVILOO garantie tot €3.000</div>
+        </div>
+
+      </div>
+      <p style="text-align:center; font-size:12px; color:#888; margin-top:12px;">
+        U kunt op elk moment instappen of opschalen. Eerder betaald wordt verrekend.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAKKETTEN -->
+  <!-- WIJZIGING 3: Volgorde aangepast , Premium eerst, dan Full Service, dan Basis -->
+  <section class="services-section section-bg-soft" id="pakketten">
+    <div class="container">
+      <h2 class="section-title">Pakketten en tarieven</h2>
+      <p class="section-subtitle">
+        Afhankelijk van hoeveel begeleiding u wenst, kiest u een passend adviesniveau.
+        Elk pakket is bedoeld om onzekerheden weg te nemen op het moment dat ze ontstaan.
+        Premium bevat Basis. Full Service bevat Premium.
+      </p>
+      <p class="accentline accentline--compact">
+        U kiest geen pakket om sneller te kopen, maar om betere beslissingen te nemen op het juiste moment.
+      </p>
+
+      <div class="packages-section">
+
+        <!-- PREMIUM , nu als eerste -->
+        <div class="package-card featured">
+          <span class="badge">Meest gekozen</span>
+          <div class="package-body">
+            <h3>Premium</h3>
+            <p class="price">€349</p>
+            <p class="description">
+              Voor wie zekerheid wil bij de auto zelf, vóórdat de beslissing definitief wordt.
+            </p>
+            <ul>
+              <li>Alles uit Basis</li>
+              <li>Fysieke bezichtiging (1 locatie)</li>
+              <li>Optische en technische controle</li>
+              <li>Proefrit en rijbeleving</li>
+              <li>Heldere terugkoppeling met advies</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Locatie van de auto wordt vooraf afgestemd.</p>
+          </div>
+          <div class="package-cta">
+            <!-- WIJZIGING 2: CTA-tekst aangepast -->
+            <a href="start-aankoopadvies.html?pakket=Premium" class="btn-package btn-package--primary">
+              Ik kom naar de auto toe
+            </a>
+          </div>
+        </div>
+
+        <!-- FULL SERVICE , nu als tweede -->
+        <div class="package-card">
+          <div class="package-body">
+            <h3>Full Service</h3>
+            <p class="price">€499</p>
+            <p class="description">Volledige begeleiding bij complexere of waardevollere aankopen.</p>
+            <ul>
+              <li>Alles uit Premium</li>
+              <li>Tweede bezoek voor onderhandeling</li>
+              <li>Begeleiding tijdens aankoopgesprek</li>
+              <li>Controle afspraken en voorwaarden</li>
+              <li>Zekerheid tot sleuteloverdracht</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Ideaal wanneer u niets wilt laten liggen.</p>
+          </div>
+          <div class="package-cta">
+            <!-- WIJZIGING 2: CTA-tekst aangepast -->
+            <a href="start-aankoopadvies.html?pakket=Full" class="btn-package">
+              Ik begeleid je tot de sleutels in je hand
+            </a>
+          </div>
+        </div>
+
+        <!-- BASIS , nu als derde -->
+        <div class="package-card">
+          <div class="package-body">
+            <h3>Basis</h3>
+            <p class="price">€249</p>
+            <p class="description">Voor wie eerst inzicht en richting wil voordat verdere stappen worden gezet.</p>
+            <ul>
+              <li>Bespreking van wensen en gebruik</li>
+              <li>Analyse van advertentie en marktpositie</li>
+              <li>Inzicht in aandachtspunten en risico's</li>
+              <li>Telefonisch of digitaal advies</li>
+            </ul>
+            <div class="result-block">
+              <p><strong>Resultaat:</strong></p>
+              <ul>
+                <li>✔ Je weet of je moet kopen</li>
+                <li>✔ Je voorkomt verborgen kosten</li>
+                <li>✔ Je staat sterker in onderhandeling</li>
+              </ul>
+            </div>
+            <p class="note-small">Geen fysieke bezichtiging inbegrepen.</p>
+          </div>
+          <div class="package-cta">
+            <!-- WIJZIGING 2: CTA-tekst aangepast -->
+            <a href="start-aankoopadvies.html?pakket=Basis" class="btn-package">Stuur kenteken, ik kijk vandaag mee</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMBINATIEPRIJZEN -->
+  <section class="combo-section">
+    <div class="container combo-inner">
+
+      <p class="combo-eyebrow">EV AccuCheck combinatieprijs</p>
+      <h2>Koopt u een EV of hybride?</h2>
+      <p class="combo-intro">
+        Bij Premium en Full Service ben ik toch al bij de auto. Voeg een EV AccuCheck toe
+        en u betaalt minder dan wanneer u de diensten los afneemt.
+        De AccuCheck en het aankoopadvies worden in één bezoek uitgevoerd.
+      </p>
+
+      <div class="combo-grid">
+
+        <!-- Premium + AccuCheck -->
+        <div class="combo-card">
+          <p class="combo-pakket">Premium + EV AccuCheck</p>
+          <h3>Bezichtiging en accucheck in één</h3>
+          <div class="combo-prijzen">
+            <span class="combo-nieuw">€449</span>
+            <span class="combo-oud">€478</span>
+          </div>
+          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
+          <div class="combo-garantie-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c6a86a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div>
+              <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
+              <span>Wanneer het voertuig aan de voorwaarden voldoet. Verstrekt door AVILOO.</span>
+            </div>
+          </div>
+          <ul>
+            <li>Alles uit Premium (€349)</li>
+            <li>Onafhankelijke EV AccuCheck op locatie</li>
+            <li>TÜV-gecertificeerde accumeting</li>
+            <li>Digitaal accucertificaat inbegrepen</li>
+          </ul>
+          <a href="start-aankoopadvies.html?pakket=Premium-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
+            Plan Premium + AccuCheck
+          </a>
+        </div>
+
+        <!-- Full Service + AccuCheck -->
+        <div class="combo-card">
+          <p class="combo-pakket">Full Service + EV AccuCheck</p>
+          <h3>Volledige begeleiding inclusief accucheck</h3>
+          <div class="combo-prijzen">
+            <span class="combo-nieuw">€599</span>
+            <span class="combo-oud">€628</span>
+          </div>
+          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
+          <div class="combo-garantie-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c6a86a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div>
+              <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
+              <span>Wanneer het voertuig aan de voorwaarden voldoet. Verstrekt door AVILOO.</span>
+            </div>
+          </div>
+          <ul>
+            <li>Alles uit Full Service (€499)</li>
+            <li>Onafhankelijke EV AccuCheck op locatie</li>
+            <li>TÜV-gecertificeerde accumeting</li>
+            <li>Digitaal accucertificaat inbegrepen</li>
+          </ul>
+          <a href="start-aankoopadvies.html?pakket=FullService-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
+            Plan Full Service + AccuCheck
+          </a>
+        </div>
+
+      </div>
+
+      <p class="combo-note">
+        Accucheck wordt uitgevoerd op dezelfde locatie als de bezichtiging.
+        Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
 <section style="background:#f6f5f1;padding:56px 0;border-bottom:1px solid rgba(0,0,0,.06);">
   <div class="container">
     <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c6a86a;font-weight:600;text-align:center;margin-bottom:8px;">
@@ -661,87 +962,6 @@
   </div>
 </section> 
   
-  <!-- BESLISCHECK -->
-  <!-- WIJZIGING 1: BeslisCheck sectie herschreven -->
-  <section class="services-section container">
-    <div class="premium-card">
-      <span class="premium-eyebrow">BeslisCheck</span>
-      <h3>Twijfel over deze auto?</h3>
-      <div class="price-block">
-        <strong>€49</strong>
-        <span>direct inzicht vóórdat je gaat kijken</span>
-      </div>
-      <p class="section-subtitle" style="margin-top:10px;">
-        Stuur me het kenteken of de advertentie. Ik vertel je vandaag nog of je deze moet kopen of laten staan.
-      </p>
-      <ul class="lux-list">
-        <li>Analyse van de advertentie en het verhaal van de verkoper</li>
-        <li>Verborgen risico's en aandachtspunten in beeld</li>
-        <li>Concreet advies: kopen, onderhandelen of laten staan</li>
-      </ul>
-      <p class="guardian-text">
-        Je hebt een auto gevonden. Je wilt niet voor niks gaan kijken. En je wilt het zeker weten voordat je besluit.
-      </p>
-      <a href="https://wa.me/31623452349" class="btn-primary">
-        Stuur kenteken, ik kijk direct met je mee
-      </a>
-      <div class="trust-compact" style="margin-top: 20px;">
-      <p>✔ Dagelijks gebruikt bij auto's van €10.000 – €80.000</p>
-     </div>
-
-      <div style="margin-top:20px; padding:14px 18px; background:#f6f5f1; border-left:3px solid #c6a86a; border-radius:0 8px 8px 0; font-size:14px; line-height:1.65; color:#0b1220;">
-        De €49 wordt volledig verrekend als je daarna kiest voor Premium of Full Service. Zo is de eerste stap altijd de goedkoopste stap.
-      </div>
-     
-    </div>
-  </section>
-
-  <!-- ROUTE INDICATOR -->
-  <section style="padding: 0 0 48px;">
-    <div class="container">
-      <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; max-width:700px; margin:0 auto;">
-
-        <div style="text-align:center; padding:16px 20px; min-width:130px;">
-          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 1</div>
-          <div style="font-size:15px; font-weight:650; color:#0b1220;">BeslisCheck</div>
-          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€49</div>
-          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Weten of de auto de moeite waard is</div>
-        </div>
-
-        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
-
-        <div style="text-align:center; padding:16px 20px; min-width:130px;">
-          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 2</div>
-          <div style="font-size:15px; font-weight:650; color:#0b1220;">Premium</div>
-          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€349 <span style="font-size:11px;">(of €300 na BeslisCheck)</span></div>
-          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Fysieke bezichtiging bij de auto</div>
-        </div>
-
-        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
-
-        <div style="text-align:center; padding:16px 20px; min-width:130px;">
-          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Stap 3</div>
-          <div style="font-size:15px; font-weight:650; color:#0b1220;">Full Service</div>
-          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€499</div>
-          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Begeleiding tot sleuteloverdracht</div>
-        </div>
-
-        <div style="font-size:20px; color:#c6a86a; padding:0 4px; flex-shrink:0;">›</div>
-
-        <div style="text-align:center; padding:16px 20px; min-width:130px;">
-          <div style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#c6a86a; margin-bottom:6px;">Optioneel</div>
-          <div style="font-size:15px; font-weight:650; color:#0b1220;">+ AccuCheck</div>
-          <div style="font-size:13px; color:#5a6472; margin-top:3px;">€109 combinatieprijs</div>
-          <div style="font-size:12px; color:#5a6472; margin-top:4px; line-height:1.5;">Bij EV of hybride</div>
-        </div>
-
-      </div>
-      <p style="text-align:center; font-size:12px; color:#888; margin-top:12px;">
-        U kunt op elk moment instappen of opschalen. Eerder betaald wordt verrekend.
-      </p>
-    </div>
-  </section>
-
   <!-- INTRO -->
   <section class="services-section container">
     <h2 class="section-title">Aankoopadvies zoals het bedoeld is</h2>
@@ -826,183 +1046,6 @@
     </div>
   </section>
 
-  <!-- PAKKETTEN -->
-  <!-- WIJZIGING 3: Volgorde aangepast — Premium eerst, dan Full Service, dan Basis -->
-  <section class="services-section section-bg-soft" id="pakketten">
-    <div class="container">
-      <h2 class="section-title">Pakketten en tarieven</h2>
-      <p class="section-subtitle">
-        Afhankelijk van hoeveel begeleiding u wenst, kiest u een passend adviesniveau.
-        Elk pakket is bedoeld om onzekerheden weg te nemen op het moment dat ze ontstaan.
-        Premium bevat Basis. Full Service bevat Premium.
-      </p>
-      <p class="accentline accentline--compact">
-        U kiest geen pakket om sneller te kopen, maar om betere beslissingen te nemen op het juiste moment.
-      </p>
-
-      <div class="packages-section">
-
-        <!-- PREMIUM — nu als eerste -->
-        <div class="package-card featured">
-          <span class="badge">Meest gekozen</span>
-          <div class="package-body">
-            <h3>Premium</h3>
-            <p class="price">€349</p>
-            <p class="description">
-              Voor wie zekerheid wil bij de auto zelf, vóórdat de beslissing definitief wordt.
-            </p>
-            <ul>
-              <li>Alles uit Basis</li>
-              <li>Fysieke bezichtiging (1 locatie)</li>
-              <li>Optische en technische controle</li>
-              <li>Proefrit en rijbeleving</li>
-              <li>Heldere terugkoppeling met advies</li>
-            </ul>
-            <div class="result-block">
-              <p><strong>Resultaat:</strong></p>
-              <ul>
-                <li>✔ Je weet of je moet kopen</li>
-                <li>✔ Je voorkomt verborgen kosten</li>
-                <li>✔ Je staat sterker in onderhandeling</li>
-              </ul>
-            </div>
-            <p class="note-small">Locatie van de auto wordt vooraf afgestemd.</p>
-          </div>
-          <div class="package-cta">
-            <!-- WIJZIGING 2: CTA-tekst aangepast -->
-            <a href="start-aankoopadvies.html?pakket=Premium" class="btn-package btn-package--primary">
-              Ik kom naar de auto toe
-            </a>
-          </div>
-        </div>
-
-        <!-- FULL SERVICE — nu als tweede -->
-        <div class="package-card">
-          <div class="package-body">
-            <h3>Full Service</h3>
-            <p class="price">€499</p>
-            <p class="description">Volledige begeleiding bij complexere of waardevollere aankopen.</p>
-            <ul>
-              <li>Alles uit Premium</li>
-              <li>Tweede bezoek voor onderhandeling</li>
-              <li>Begeleiding tijdens aankoopgesprek</li>
-              <li>Controle afspraken en voorwaarden</li>
-              <li>Zekerheid tot sleuteloverdracht</li>
-            </ul>
-            <div class="result-block">
-              <p><strong>Resultaat:</strong></p>
-              <ul>
-                <li>✔ Je weet of je moet kopen</li>
-                <li>✔ Je voorkomt verborgen kosten</li>
-                <li>✔ Je staat sterker in onderhandeling</li>
-              </ul>
-            </div>
-            <p class="note-small">Ideaal wanneer u niets wilt laten liggen.</p>
-          </div>
-          <div class="package-cta">
-            <!-- WIJZIGING 2: CTA-tekst aangepast -->
-            <a href="start-aankoopadvies.html?pakket=Full" class="btn-package">
-              Ik begeleid je tot de sleutels in je hand
-            </a>
-          </div>
-        </div>
-
-        <!-- BASIS — nu als derde -->
-        <div class="package-card">
-          <div class="package-body">
-            <h3>Basis</h3>
-            <p class="price">€249</p>
-            <p class="description">Voor wie eerst inzicht en richting wil voordat verdere stappen worden gezet.</p>
-            <ul>
-              <li>Bespreking van wensen en gebruik</li>
-              <li>Analyse van advertentie en marktpositie</li>
-              <li>Inzicht in aandachtspunten en risico's</li>
-              <li>Telefonisch of digitaal advies</li>
-            </ul>
-            <div class="result-block">
-              <p><strong>Resultaat:</strong></p>
-              <ul>
-                <li>✔ Je weet of je moet kopen</li>
-                <li>✔ Je voorkomt verborgen kosten</li>
-                <li>✔ Je staat sterker in onderhandeling</li>
-              </ul>
-            </div>
-            <p class="note-small">Geen fysieke bezichtiging inbegrepen.</p>
-          </div>
-          <div class="package-cta">
-            <!-- WIJZIGING 2: CTA-tekst aangepast -->
-            <a href="start-aankoopadvies.html?pakket=Basis" class="btn-package">Stuur kenteken, ik kijk vandaag mee</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- COMBINATIEPRIJZEN -->
-  <section class="combo-section">
-    <div class="container combo-inner">
-
-      <p class="combo-eyebrow">EV AccuCheck combinatieprijs</p>
-      <h2>Koopt u een EV of hybride?</h2>
-      <p class="combo-intro">
-        Bij Premium en Full Service ben ik toch al bij de auto. Voeg een EV AccuCheck toe
-        en u betaalt minder dan wanneer u de diensten los afneemt.
-        De AccuCheck en het aankoopadvies worden in één bezoek uitgevoerd.
-      </p>
-
-      <div class="combo-grid">
-
-        <!-- Premium + AccuCheck -->
-        <div class="combo-card">
-          <p class="combo-pakket">Premium + EV AccuCheck</p>
-          <h3>Bezichtiging en accucheck in één</h3>
-          <div class="combo-prijzen">
-            <span class="combo-nieuw">€449</span>
-            <span class="combo-oud">€478</span>
-          </div>
-          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
-          <ul>
-            <li>Alles uit Premium (€349)</li>
-            <li>Onafhankelijke EV AccuCheck op locatie</li>
-            <li>TÜV-gecertificeerde accumeting</li>
-            <li>Digitaal accucertificaat inbegrepen</li>
-          </ul>
-          <a href="start-aankoopadvies.html?pakket=Premium-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
-            Plan Premium + AccuCheck
-          </a>
-        </div>
-
-        <!-- Full Service + AccuCheck -->
-        <div class="combo-card">
-          <p class="combo-pakket">Full Service + EV AccuCheck</p>
-          <h3>Volledige begeleiding inclusief accucheck</h3>
-          <div class="combo-prijzen">
-            <span class="combo-nieuw">€599</span>
-            <span class="combo-oud">€628</span>
-          </div>
-          <p class="combo-besparing">U bespaart €29 ten opzichte van los</p>
-          <ul>
-            <li>Alles uit Full Service (€499)</li>
-            <li>Onafhankelijke EV AccuCheck op locatie</li>
-            <li>TÜV-gecertificeerde accumeting</li>
-            <li>Digitaal accucertificaat inbegrepen</li>
-          </ul>
-          <a href="start-aankoopadvies.html?pakket=FullService-AccuCheck" class="btn-primary" style="display:inline-block; margin-top:4px;">
-            Plan Full Service + AccuCheck
-          </a>
-        </div>
-
-      </div>
-
-      <p class="combo-note">
-        Accucheck wordt uitgevoerd op dezelfde locatie als de bezichtiging.
-        Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen.
-      </p>
-
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section class="services-section container">
     <h2 class="section-title">Veelgestelde vragen</h2>
@@ -1062,9 +1105,19 @@
         <p>
          Ja. Voor EV's en hybrides kan aanvullend een onafhankelijke
          AVILOO Flash Test worden uitgevoerd. De meting duurt ongeveer
-         3 minuten en geeft een TÜV-gecertificeerd accucertificaat.
+         3 minuten en geeft een TÜV-gecertificeerd accucertificaat, inclusief
+         een AVILOO batterijgarantie tot €3.000.
          Bij Premium en Full Service geldt een combinatieprijs en wordt
          alles in één bezoek afgerond.
+        </p>
+      </div>
+
+      <div class="usp-item">
+        <h3>Zit er een batterijgarantie bij de EV AccuCheck combinatie?</h3>
+        <p>
+          Ja. Bij Premium of Full Service gecombineerd met een EV AccuCheck zit
+          een AVILOO batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig
+          aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.
         </p>
       </div>
 
