@@ -1,1 +1,646 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg | Trust Standard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1b2a; --green: #00875a; --gold: #c8a84b;
+  --white: #ffffff; --gray: #6b6b63; --light: #f7f5f0;
+  --lgreen: #e8f5ee; --rule: #e2e0d8; --dark: #060f18;
+}
+html { font-size: 14px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #d8d6d0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.page {
+  width: 210mm; min-height: 297mm;
+  margin: 8mm auto; background: var(--white);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* HERO */
+.hero {
+  background: var(--dark);
+  padding: 8mm 11mm 6mm;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -30%; right: -10%;
+  width: 70%; height: 160%;
+  background: radial-gradient(ellipse, rgba(0,135,90,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-top {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: start; gap: 4mm; margin-bottom: 4mm;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 2mm; display: block;
+}
+.hero-title {
+  font-family: 'Fraunces', serif; font-size: 20pt;
+  font-weight: 700; color: var(--white); line-height: 1.08; margin-bottom: 1.5mm;
+}
+.hero-title .gold { color: var(--gold); }
+.hero-title .tm { font-size: 8pt; vertical-align: super; color: var(--gold); }
+.hero-tagline {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 9pt; color: rgba(255,255,255,.55); line-height: 1.5; margin-bottom: 2mm;
+}
+.hero-nap {
+  font-family: 'DM Mono', monospace; font-size: 6pt;
+  letter-spacing: .06em; color: rgba(255,255,255,.3);
+}
+.hero-nap span { color: var(--gold); }
+.hero-stat-box {
+  background: rgba(0,135,90,.15); border: 1px solid rgba(0,135,90,.3);
+  border-radius: 6px; padding: 4mm 5mm; text-align: center; min-width: 32mm;
+}
+.hero-stat-num {
+  font-family: 'Fraunces', serif; font-size: 18pt;
+  font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 1mm;
+}
+.hero-stat-label {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); line-height: 1.4;
+}
+.hero-badges {
+  display: flex; gap: 2mm; flex-wrap: wrap;
+}
+.badge {
+  font-family: 'DM Mono', monospace; font-size: 5pt;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 1.5mm 3mm; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.45);
+}
+.badge.g { background: rgba(0,135,90,.18); border-color: rgba(0,135,90,.35); color: #4ecca3; }
+.badge.gold { background: rgba(200,168,75,.15); border-color: rgba(200,168,75,.35); color: var(--gold); }
+
+/* BODY */
+.body { padding: 6mm 11mm; flex: 1; display: flex; flex-direction: column; gap: 5mm; }
+
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 2.5mm; display: block;
+}
+
+/* UITDAGING + OPLOSSING */
+.uitdaging-row {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 4mm;
+}
+.uitdaging-box {
+  background: #fdf5e8; border: 1px solid rgba(200,168,75,.25);
+  border-left: 3px solid var(--gold); border-radius: 3px; padding: 4mm;
+}
+.uitdaging-title {
+  font-weight: 700; font-size: 8pt; color: var(--ink); margin-bottom: 2mm;
+}
+.uitdaging-item {
+  font-size: 7pt; color: var(--gray); padding: 1mm 0;
+  display: flex; gap: 2mm; line-height: 1.4; border-bottom: 1px solid var(--rule);
+}
+.uitdaging-item:last-child { border-bottom: none; }
+.uitdaging-item::before { content: '✗'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+/* FLOW */
+.flow-box {
+  background: var(--ink); border-radius: 4px; padding: 4mm 5mm;
+}
+.flow-title { font-weight: 700; font-size: 8pt; color: var(--white); margin-bottom: 3mm; }
+.flow-steps {
+  display: flex; align-items: center; gap: 1.5mm; flex-wrap: wrap;
+}
+.flow-step {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 3px; padding: 2mm 3mm; text-align: center; flex: 1; min-width: 20mm;
+}
+.flow-step-icon { font-size: 10pt; display: block; margin-bottom: 1mm; }
+.flow-step-name { font-size: 6.5pt; font-weight: 600; color: var(--white); line-height: 1.3; }
+.flow-arrow { color: var(--green); font-size: 10pt; font-weight: 700; flex-shrink: 0; }
+
+/* 3-LAAGS MODEL */
+.lagen-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm;
+}
+.laag {
+  border-radius: 4px; overflow: hidden;
+}
+.laag-header {
+  padding: 3mm 4mm; text-align: center;
+}
+.laag-header.l1 { background: var(--ink); }
+.laag-header.l2 { background: var(--green); }
+.laag-header.l3 { background: var(--gold); }
+.laag-num {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.5); margin-bottom: 1mm;
+}
+.laag-header.l3 .laag-num { color: rgba(13,27,42,.5); }
+.laag-title {
+  font-weight: 700; font-size: 8.5pt; color: var(--white); line-height: 1.2;
+}
+.laag-header.l3 .laag-title { color: var(--ink); }
+.laag-body {
+  background: var(--light); padding: 3mm 4mm;
+}
+.laag-item {
+  font-size: 7pt; color: var(--ink); padding: 1mm 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex; gap: 2mm; line-height: 1.4;
+}
+.laag-item:last-child { border-bottom: none; }
+.laag-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* MOEILIJK TE KOPIEREN */
+.moeilijk-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4mm;
+}
+.moeilijk-left {
+  background: var(--ink); border-radius: 4px; padding: 4mm 5mm;
+}
+.moeilijk-left-title {
+  font-weight: 700; font-size: 8pt; color: rgba(255,255,255,.5);
+  margin-bottom: 2mm; line-height: 1.4;
+}
+.moeilijk-item-no {
+  font-size: 7pt; color: rgba(255,255,255,.4); padding: 1mm 0;
+  display: flex; gap: 2mm; line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.moeilijk-item-no:last-child { border-bottom: none; }
+.moeilijk-item-no::before { content: '✗'; color: rgba(200,168,75,.5); font-weight: 700; flex-shrink: 0; }
+.moeilijk-right {
+  background: var(--lgreen); border: 1px solid rgba(0,135,90,.25);
+  border-left: 3px solid var(--green); border-radius: 3px; padding: 4mm 5mm;
+}
+.moeilijk-right-title {
+  font-weight: 700; font-size: 8pt; color: var(--green); margin-bottom: 2mm;
+}
+.moeilijk-item-yes {
+  font-size: 7pt; color: var(--ink); padding: 1mm 0;
+  display: flex; gap: 2mm; line-height: 1.4; border-bottom: 1px solid var(--rule);
+}
+.moeilijk-item-yes:last-child { border-bottom: none; }
+.moeilijk-item-yes::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.quote-small {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 7.5pt; color: var(--gold); margin-top: 2mm; line-height: 1.45;
+  text-align: center; padding: 2.5mm 4mm;
+  background: var(--ink); border-radius: 3px;
+}
+
+/* REFERENTIES + IMPACT */
+.ref-impact-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4mm;
+}
+
+/* REFERENTIES */
+.ref-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2mm;
+}
+.ref-item {
+  background: var(--light); border-radius: 3px; padding: 3mm 4mm;
+  display: flex; align-items: center; gap: 3mm;
+}
+.ref-icon { font-size: 11pt; flex-shrink: 0; }
+.ref-name { font-size: 7.5pt; font-weight: 700; color: var(--ink); margin-bottom: .5mm; }
+.ref-sub { font-size: 6.5pt; color: var(--gray); line-height: 1.3; }
+.ref-arrow {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink); border-radius: 3px; padding: 3mm 4mm;
+  font-family: 'Fraunces', serif; font-size: 8pt; font-style: italic;
+  color: var(--green); text-align: center; line-height: 1.4;
+  grid-column: 1 / -1;
+}
+
+/* IMPACT */
+.impact-col { display: flex; flex-direction: column; gap: 2mm; }
+.impact-item {
+  background: var(--light); border-radius: 3px; padding: 3mm 4mm;
+  display: flex; align-items: flex-start; gap: 3mm;
+}
+.impact-icon { font-size: 11pt; flex-shrink: 0; }
+.impact-title { font-size: 7.5pt; font-weight: 700; color: var(--ink); margin-bottom: .5mm; }
+.impact-sub { font-size: 6.5pt; color: var(--gray); line-height: 1.35; }
+
+/* VISIE TIJDLIJN */
+.visie-flow {
+  display: flex; align-items: center; gap: 0;
+  background: var(--ink); border-radius: 4px; overflow: hidden;
+}
+.visie-step {
+  flex: 1; padding: 3.5mm 3mm; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.06);
+  position: relative;
+}
+.visie-step:last-child { border-right: none; background: rgba(0,135,90,.15); }
+.visie-year {
+  font-family: 'DM Mono', monospace; font-size: 6pt;
+  color: rgba(255,255,255,.35); margin-bottom: 1.5mm; letter-spacing: .05em;
+}
+.visie-title {
+  font-weight: 700; font-size: 7.5pt; color: var(--white);
+  margin-bottom: 1mm; line-height: 1.3;
+}
+.visie-step:last-child .visie-title { color: var(--gold); }
+.visie-sub { font-size: 6pt; color: rgba(255,255,255,.4); line-height: 1.35; }
+.visie-arrow {
+  position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+  color: var(--green); font-size: 9pt; font-weight: 700; z-index: 2;
+}
+
+/* KVK BLOCK */
+.kvk-block {
+  background: linear-gradient(135deg, var(--ink) 0%, #0d2d1a 100%);
+  border: 1px solid rgba(0,135,90,.3); border-radius: 4px;
+  padding: 3.5mm 5mm;
+  display: flex; align-items: center; gap: 4mm;
+}
+.kvk-icon { font-size: 18pt; flex-shrink: 0; }
+.kvk-content { flex: 1; }
+.kvk-label {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 1mm;
+}
+.kvk-title { font-weight: 700; font-size: 8.5pt; color: var(--white); margin-bottom: 1.5mm; }
+.kvk-cats { display: flex; gap: 2mm; flex-wrap: wrap; }
+.kvk-cat {
+  font-size: 6.5pt; color: var(--white);
+  background: rgba(0,135,90,.2); border: 1px solid rgba(0,135,90,.3);
+  padding: 1mm 2.5mm; border-radius: 2px;
+}
+
+/* ACADEMY */
+.academy-block {
+  background: var(--light); border-radius: 4px; padding: 3.5mm 5mm;
+  display: flex; align-items: center; gap: 4mm;
+}
+.academy-icon { font-size: 16pt; flex-shrink: 0; }
+.academy-content { flex: 1; }
+.academy-title { font-weight: 700; font-size: 8pt; color: var(--ink); margin-bottom: 1.5mm; }
+.academy-items { display: flex; gap: 2mm; flex-wrap: wrap; }
+.academy-item {
+  font-size: 6.5pt; color: var(--green);
+  background: var(--lgreen); border: 1px solid rgba(0,135,90,.2);
+  padding: 1mm 2.5mm; border-radius: 2px; font-weight: 600;
+}
+
+/* AFSLUITING */
+.afsluiting {
+  background: var(--green); padding: 4mm 11mm;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 4mm;
+}
+.afsluiting-text {
+  font-family: 'Fraunces', serif; font-size: 9.5pt;
+  font-style: italic; color: var(--white); line-height: 1.5;
+}
+.afsluiting-text span { color: rgba(255,255,255,.65); font-size: 8pt; display: block; margin-top: 1mm; }
+.afsluiting-cta {
+  font-family: 'DM Mono', monospace; font-size: 6.5pt;
+  color: rgba(255,255,255,.7); text-align: right; line-height: 1.8;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--dark); padding: 2.5mm 11mm;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-brand {
+  font-family: 'Fraunces', serif; font-size: 8.5pt;
+  font-weight: 600; color: var(--white);
+}
+.footer-meta {
+  font-family: 'DM Mono', monospace; font-size: 5pt;
+  color: rgba(255,255,255,.2); letter-spacing: .04em; text-align: right; line-height: 1.7;
+}
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; width: 210mm; min-height: 297mm; }
+}
+@page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <span class="hero-eyebrow">ZekerOpWeg &nbsp;·&nbsp; Strategische onepager &nbsp;·&nbsp; Vertrouwelijk</span>
+        <div class="hero-title">
+          ZekerOpWeg Trust Standard<span class="tm">™</span><br>
+          <span class="gold">De vertrouwensinfrastructuur voor gebruikte EV's.</span>
+        </div>
+        <div class="hero-tagline">Niet een product. Een standaard. Net zoals de NAP de norm werd voor kilometerstanden.</div>
+        <div class="hero-nap">Visie: het <span>Nationale Accu Paspoort</span> &nbsp;·&nbsp; De batterijstandaard voor de Nederlandse occasionmarkt</div>
+      </div>
+      <div class="hero-stat-box">
+        <div class="hero-stat-num">€1,84M</div>
+        <div class="hero-stat-label">Omzet<br>potentieel<br>2030</div>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <span class="badge g">TUV-gecertificeerd</span>
+      <span class="badge g">AVILOO Partner</span>
+      <span class="badge gold">Visie: Nationaal Accu Paspoort</span>
+      <span class="badge">Circular Clarity</span>
+      <span class="badge">EU Batterijpaspoort 2027</span>
+      <span class="badge">ESG-gevalideerd</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- UITDAGING + FLOW -->
+    <div class="uitdaging-row">
+      <div>
+        <span class="section-label">De uitdaging</span>
+        <div class="uitdaging-box">
+          <div class="uitdaging-title">Wat ontbreekt vandaag</div>
+          <div class="uitdaging-item">Objectieve accugezondheid</div>
+          <div class="uitdaging-item">Onafhankelijke restwaarde</div>
+          <div class="uitdaging-item">Financiele batterijgarantie</div>
+          <div class="uitdaging-item">Financierbaarheid EV's</div>
+          <div class="uitdaging-item">Gestandaardiseerde taal</div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Onze oplossing &nbsp;·&nbsp; Van data naar ecosysteem</span>
+        <div class="flow-box">
+          <div class="flow-steps">
+            <div class="flow-step">
+              <span class="flow-step-icon">🔬</span>
+              <div class="flow-step-name">Batterij­data</div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span class="flow-step-icon">📋</span>
+              <div class="flow-step-name">Accu Paspoort</div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span class="flow-step-icon">⭐</span>
+              <div class="flow-step-name">Trust Score™</div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span class="flow-step-icon">🛡️</span>
+              <div class="flow-step-name">Garantie</div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span class="flow-step-icon">💶</span>
+              <div class="flow-step-name">Financiering</div>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span class="flow-step-icon">🌐</span>
+              <div class="flow-step-name">Ecosysteem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-LAAGS MODEL -->
+    <div>
+      <span class="section-label">3-laags model &nbsp;·&nbsp; Product naar platform naar standaard</span>
+      <div class="lagen-grid">
+        <div class="laag">
+          <div class="laag-header l1">
+            <div class="laag-num">Laag 1</div>
+            <div class="laag-title">Product</div>
+          </div>
+          <div class="laag-body">
+            <div class="laag-item">AVILOO meting op celniveau</div>
+            <div class="laag-item">Accu Garantie Paspoort</div>
+            <div class="laag-item">Jaarlijkse controle</div>
+            <div class="laag-item">AVILOO Battery Warranty €3.000</div>
+          </div>
+        </div>
+        <div class="laag">
+          <div class="laag-header l2">
+            <div class="laag-num">Laag 2</div>
+            <div class="laag-title">Platform</div>
+          </div>
+          <div class="laag-body">
+            <div class="laag-item">Battery Trust Score™</div>
+            <div class="laag-item">Historisch accudossier</div>
+            <div class="laag-item">Degradatieprognose</div>
+            <div class="laag-item">Benchmarkdata</div>
+            <div class="laag-item">Restwaarde-inzicht</div>
+          </div>
+        </div>
+        <div class="laag">
+          <div class="laag-header l3">
+            <div class="laag-num">Laag 3</div>
+            <div class="laag-title">Standaard</div>
+          </div>
+          <div class="laag-body">
+            <div class="laag-item">Dealers &amp; holdings</div>
+            <div class="laag-item">Financiers</div>
+            <div class="laag-item">Verzekeraars</div>
+            <div class="laag-item">Leasemaatschappijen</div>
+            <div class="laag-item">Consumenten</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOEILIJK TE KOPIEREN + REFERENTIES -->
+    <div class="ref-impact-row">
+      <div>
+        <span class="section-label">Waarom moeilijk te kopieren</span>
+        <div class="moeilijk-row">
+          <div class="moeilijk-left">
+            <div class="moeilijk-left-title">Iedereen kan dit kopen</div>
+            <div class="moeilijk-item-no">Een meetkast</div>
+            <div class="moeilijk-item-no">Een rapport</div>
+            <div class="moeilijk-item-no">Een certificaat</div>
+          </div>
+          <div class="moeilijk-right">
+            <div class="moeilijk-right-title">Wat niet te kopieren is</div>
+            <div class="moeilijk-item-yes">Trust Score™</div>
+            <div class="moeilijk-item-yes">Historische database</div>
+            <div class="moeilijk-item-yes">Benchmarkdata</div>
+            <div class="moeilijk-item-yes">Garantie-ecosysteem</div>
+            <div class="moeilijk-item-yes">Standaardisatie</div>
+          </div>
+        </div>
+        <div class="quote-small">"Open voor metingen. Gesloten voor interpretatie."</div>
+      </div>
+
+      <!-- REFERENTIES -->
+      <div>
+        <span class="section-label">Waarom dit groot kan worden</span>
+        <div class="ref-grid">
+          <div class="ref-item">
+            <span class="ref-icon">🚗</span>
+            <div>
+              <div class="ref-name">NAP</div>
+              <div class="ref-sub">Kilometerhistorie standaard</div>
+            </div>
+          </div>
+          <div class="ref-item">
+            <span class="ref-icon">🏠</span>
+            <div>
+              <div class="ref-name">Funda / NEN</div>
+              <div class="ref-sub">Woninginformatie standaard</div>
+            </div>
+          </div>
+          <div class="ref-item">
+            <span class="ref-icon">🌍</span>
+            <div>
+              <div class="ref-name">Carfax</div>
+              <div class="ref-sub">Voertuigdata standaard</div>
+            </div>
+          </div>
+          <div class="ref-item">
+            <span class="ref-icon">⚡</span>
+            <div>
+              <div class="ref-name" style="color:var(--green);">ZekerOpWeg</div>
+              <div class="ref-sub">Batterijtransparantie standaard</div>
+            </div>
+          </div>
+          <div class="ref-arrow">De volgende marktstandaard wordt nu gebouwd.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPACT + ACADEMY + KVK -->
+    <div class="ref-impact-row">
+      <div>
+        <span class="section-label">Maatschappelijke impact</span>
+        <div class="impact-col">
+          <div class="impact-item">
+            <span class="impact-icon">⚡</span>
+            <div>
+              <div class="impact-title">Energietransitie</div>
+              <div class="impact-sub">Meer vertrouwen in gebruikte EV's versnelt de transitie naar elektrisch rijden.</div>
+            </div>
+          </div>
+          <div class="impact-item">
+            <span class="impact-icon">♻️</span>
+            <div>
+              <div class="impact-title">Circulaire economie</div>
+              <div class="impact-sub">Langere levensduur voertuigen. Second-life accu-economie. Minder verspilling.</div>
+            </div>
+          </div>
+          <div class="impact-item">
+            <span class="impact-icon">👥</span>
+            <div>
+              <div class="impact-title">Arbeidsmarkt</div>
+              <div class="impact-sub">ZekerOpWeg Academy: nieuwe generatie batterijspecialisten via praktijkroute.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3mm;">
+        <div>
+          <span class="section-label">ZekerOpWeg Academy</span>
+          <div class="academy-block">
+            <span class="academy-icon">🎓</span>
+            <div class="academy-content">
+              <div class="academy-title">Praktijkroute voor jongeren in EV-techniek</div>
+              <div class="academy-items">
+                <span class="academy-item">EV-techniek</span>
+                <span class="academy-item">Batterijdiagnostiek</span>
+                <span class="academy-item">Data-analyse</span>
+                <span class="academy-item">Circulariteit</span>
+                <span class="academy-item">Klantadvies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="section-label">KVK Innovatie Top 100</span>
+          <div class="kvk-block">
+            <span class="kvk-icon">🏆</span>
+            <div class="kvk-content">
+              <div class="kvk-label">Geschikte categorieën</div>
+              <div class="kvk-title">ZekerOpWeg als innovatieve marktstandaard</div>
+              <div class="kvk-cats">
+                <span class="kvk-cat">Arbeidsmarkt &amp; Samenleving</span>
+                <span class="kvk-cat">Energietransitie</span>
+                <span class="kvk-cat">Circulaire Economie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISIE 2030 -->
+    <div>
+      <span class="section-label">Visie 2030 &nbsp;·&nbsp; Van meting naar Europese standaard</span>
+      <div class="visie-flow">
+        <div class="visie-step">
+          <div class="visie-year">Vandaag</div>
+          <div class="visie-title">Batterijen meten</div>
+          <div class="visie-sub">Gecertificeerde metingen op locatie</div>
+          <span class="visie-arrow">→</span>
+        </div>
+        <div class="visie-step">
+          <div class="visie-year">2027</div>
+          <div class="visie-title">Accu Paspoorten beheren</div>
+          <div class="visie-sub">Platform live. EU-paspoort klaar.</div>
+          <span class="visie-arrow">→</span>
+        </div>
+        <div class="visie-step">
+          <div class="visie-year">2028-2029</div>
+          <div class="visie-title">Battery Trust Platform™</div>
+          <div class="visie-sub">Dealernetwerk. Data-ecosysteem.</div>
+          <span class="visie-arrow">→</span>
+        </div>
+        <div class="visie-step">
+          <div class="visie-year">2030</div>
+          <div class="visie-title">Batterijstandaard Europa</div>
+          <div class="visie-sub">€1,84M omzet. 3+ markten.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AFSLUITING -->
+  <div class="afsluiting">
+    <div class="afsluiting-text">
+      Wij bouwen niet alleen een product. Wij bouwen vertrouwen.
+      <span>De accu bepaalt de waarde. ZekerOpWeg maakt die zichtbaar.</span>
+    </div>
+    <div class="afsluiting-cta">
+      info@zekeropweg.nu<br>
+      06 23 45 23 49<br>
+      zekeropweg.nu
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">ZekerOpWeg &nbsp;·&nbsp; Trust Standard™</div>
+    <div class="footer-meta">
+      TUV-gecertificeerd via AVILOO &nbsp;·&nbsp; Gevalideerd door Circular Clarity &nbsp;·&nbsp; KvK 99323575<br>
+      Vertrouwelijk document &nbsp;·&nbsp; Niet voor verspreiding zonder toestemming
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
