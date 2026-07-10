@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZekerOpWeg | Accu Garantie Paspoort</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1b2a; --green: #00875a; --gold: #c8a84b;
+  --white: #ffffff; --gray: #6b6b63; --light: #f7f5f0;
+  --lgreen: #e8f5ee; --rule: #e2e0d8; --dark: #091523;
+}
+html { font-size: 15px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #dddbd5;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.page {
+  width: 210mm; min-height: 297mm;
+  margin: 8mm auto; background: var(--white);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* HERO */
+.hero {
+  background: var(--dark);
+  padding: 9mm 12mm 7mm;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 60%; height: 100%;
+  background: linear-gradient(135deg, transparent 40%, rgba(0,135,90,.12) 100%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 6pt;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 3mm; display: block;
+}
+.hero-title {
+  font-family: 'Fraunces', serif; font-size: 22pt;
+  font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 2mm;
+}
+.hero-title span { color: var(--gold); }
+.hero-tm {
+  font-size: 9pt; vertical-align: super; color: var(--gold);
+}
+.hero-sub {
+  font-size: 9pt; color: rgba(255,255,255,.55); line-height: 1.5;
+  max-width: 140mm;
+}
+.hero-badges {
+  display: flex; gap: 2mm; flex-wrap: wrap; margin-top: 4mm;
+}
+.badge {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 1.5mm 3mm; border-radius: 2px;
+  border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.55);
+}
+.badge.g {
+  background: rgba(0,135,90,.2); border-color: rgba(0,135,90,.4);
+  color: #4ecca3;
+}
+
+/* PROBLEEM BAR */
+.prob-bar {
+  background: var(--gold); padding: 3.5mm 12mm;
+  display: flex; align-items: center; gap: 3mm;
+}
+.prob-label {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); opacity: .6; flex-shrink: 0;
+}
+.prob-items {
+  display: flex; gap: 4mm; flex-wrap: wrap;
+}
+.prob-item {
+  font-size: 7.5pt; font-weight: 600; color: var(--ink);
+  display: flex; align-items: center; gap: 1.5mm;
+}
+.prob-item::before {
+  content: '✗'; color: rgba(13,27,42,.5); font-size: 8pt;
+}
+
+/* BODY */
+.body { padding: 7mm 12mm; flex: 1; }
+
+/* PROCES DIAGRAM */
+.process-section { margin-bottom: 6mm; }
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: 6pt;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 3mm; display: block;
+}
+.process-flow {
+  display: flex; align-items: stretch; gap: 0;
+  background: var(--ink); border-radius: 6px; overflow: hidden;
+}
+.process-step {
+  flex: 1; padding: 4mm 3mm; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.08);
+  position: relative;
+}
+.process-step:last-child { border-right: none; }
+.process-step::after {
+  content: '→';
+  position: absolute; right: -5px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--green); font-size: 10pt; z-index: 2;
+}
+.process-step:last-child::after { display: none; }
+.process-icon { font-size: 14pt; margin-bottom: 1.5mm; display: block; }
+.process-name {
+  font-size: 7pt; font-weight: 600; color: var(--white);
+  line-height: 1.3; margin-bottom: 1mm;
+}
+.process-sub { font-size: 6pt; color: rgba(255,255,255,.4); line-height: 1.3; }
+
+/* PRIJS DRIE KOLOMMEN */
+.prijs-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 3mm; margin-bottom: 6mm;
+}
+.prijs-card { border-radius: 6px; overflow: hidden; }
+.prijs-header {
+  padding: 3.5mm 4mm; text-align: center;
+}
+.prijs-header.first { background: var(--ink); }
+.prijs-header.year { background: var(--green); }
+.prijs-header.sub { background: var(--gold); }
+.prijs-tag {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 1.5mm; display: block;
+}
+.prijs-amount {
+  font-family: 'Fraunces', serif; font-size: 22pt;
+  font-weight: 700; color: var(--white); line-height: 1;
+}
+.prijs-period {
+  font-size: 7pt; color: rgba(255,255,255,.5); margin-top: 1mm;
+}
+.prijs-body {
+  background: var(--light); padding: 3.5mm 4mm;
+}
+.prijs-item {
+  font-size: 7.5pt; color: var(--ink); padding: 1mm 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: flex-start; gap: 2mm; line-height: 1.4;
+}
+.prijs-item:last-child { border-bottom: none; }
+.prijs-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* WAARDE VOOR WIE */
+.wie-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 3mm; margin-bottom: 6mm;
+}
+.wie-card {
+  border-top: 3px solid var(--green); background: var(--light);
+  border-radius: 3px; padding: 4mm;
+}
+.wie-icon { font-size: 14pt; margin-bottom: 2mm; display: block; }
+.wie-title { font-weight: 700; font-size: 8.5pt; color: var(--ink); margin-bottom: 2mm; }
+.wie-item {
+  font-size: 7.5pt; color: var(--gray); padding: 1mm 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex; gap: 2mm; align-items: flex-start; line-height: 1.4;
+}
+.wie-item:last-child { border-bottom: none; }
+.wie-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 8pt; }
+
+/* TIJDLIJN */
+.tijdlijn { margin-bottom: 6mm; }
+.tijdlijn-flow {
+  display: flex; align-items: flex-start; gap: 0; position: relative;
+}
+.tijdlijn-flow::before {
+  content: '';
+  position: absolute; left: 16mm; right: 16mm; top: 7mm;
+  height: 1px; background: linear-gradient(to right, var(--rule), var(--green), var(--rule));
+}
+.tijdlijn-step { flex: 1; text-align: center; position: relative; z-index: 1; }
+.tijdlijn-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--green); margin: 0 auto 2.5mm;
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 3px var(--green);
+}
+.tijdlijn-year {
+  font-family: 'DM Mono', monospace; font-size: 6.5pt;
+  font-weight: 700; color: var(--ink); margin-bottom: 1.5mm;
+}
+.tijdlijn-desc {
+  font-size: 6.5pt; color: var(--gray); line-height: 1.45;
+}
+.tijdlijn-desc strong { color: var(--ink); display: block; font-size: 7pt; }
+
+/* QUOTE */
+.quote-box {
+  background: var(--ink); border-radius: 4px;
+  padding: 4mm 6mm; margin-bottom: 4mm; text-align: center;
+}
+.quote-text {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 9pt; color: rgba(255,255,255,.85); line-height: 1.55;
+}
+.quote-text span { color: var(--gold); }
+
+/* BEZWAAR */
+.bezwaar-section { margin-bottom: 5mm; }
+.bezwaar-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 3mm;
+  align-items: center;
+}
+.bezwaar-col {
+  background: var(--light); border-radius: 4px; padding: 4mm;
+}
+.bezwaar-col.platform {
+  background: var(--ink); border: 1px solid rgba(0,135,90,.3);
+}
+.bezwaar-label {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 2mm;
+}
+.bezwaar-col.platform .bezwaar-label { color: var(--green); }
+.bezwaar-title {
+  font-weight: 700; font-size: 8pt; color: var(--ink); margin-bottom: 2mm;
+}
+.bezwaar-col.platform .bezwaar-title { color: var(--white); }
+.bezwaar-item {
+  font-size: 7pt; color: var(--gray); padding: 1mm 0;
+  display: flex; gap: 2mm; line-height: 1.4;
+}
+.bezwaar-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.bezwaar-item.dark::before { color: var(--gold); }
+.bezwaar-col.platform .bezwaar-item { color: rgba(255,255,255,.7); }
+.bezwaar-arrow {
+  text-align: center; font-size: 16pt; color: var(--green);
+  font-weight: 700;
+}
+
+/* AFSLUITING */
+.afsluiting {
+  background: var(--green); padding: 4mm 12mm;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.afsluiting-text {
+  font-family: 'Fraunces', serif; font-size: 9pt;
+  font-style: italic; color: var(--white); line-height: 1.4;
+}
+.afsluiting-cta {
+  font-family: 'DM Mono', monospace; font-size: 7pt;
+  color: rgba(255,255,255,.7); text-align: right; line-height: 1.7;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink); padding: 3mm 12mm;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-brand {
+  font-family: 'Fraunces', serif; font-size: 9pt;
+  font-weight: 600; color: var(--white);
+}
+.footer-meta {
+  font-family: 'DM Mono', monospace; font-size: 5.5pt;
+  color: rgba(255,255,255,.25); letter-spacing: .05em; text-align: right; line-height: 1.7;
+}
+
+@media print {
+  body { background: white; }
+  .page { margin: 0; width: 210mm; min-height: 297mm; }
+}
+@page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-eyebrow">ZekerOpWeg &nbsp;·&nbsp; Productpresentatie &nbsp;·&nbsp; Vertrouwelijk</span>
+    <div class="hero-title">
+      Accu Garantie Paspoort<span class="hero-tm">™</span><br>
+      <span>De onafhankelijke batterijstandaard.</span>
+    </div>
+    <div class="hero-sub">Voor gebruikte elektrische voertuigen. Onafhankelijk gemeten. Jaarlijks waardevoller. Financieel gedekt.</div>
+    <div class="hero-badges">
+      <span class="badge g">TUV-gecertificeerd</span>
+      <span class="badge g">AVILOO Battery Warranty €3.000</span>
+      <span class="badge">Circular Clarity gevalideerd</span>
+      <span class="badge">EU Batterijpaspoort klaar</span>
+    </div>
+  </div>
+
+  <!-- PROBLEEM BAR -->
+  <div class="prob-bar">
+    <span class="prob-label">Probleem</span>
+    <div class="prob-items">
+      <span class="prob-item">Werkelijke accugezondheid onbekend</span>
+      <span class="prob-item">Toekomstige degradatie onzichtbaar</span>
+      <span class="prob-item">Financieel risico onderschat</span>
+      <span class="prob-item">Geen garantie</span>
+      <span class="prob-item">Restwaarde onbepaald</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- PROCES -->
+    <div class="process-section">
+      <span class="section-label">Hoe het werkt &nbsp;·&nbsp; 6 stappen</span>
+      <div class="process-flow">
+        <div class="process-step">
+          <span class="process-icon">🔬</span>
+          <div class="process-name">AVILOO Meting</div>
+          <div class="process-sub">Cel-niveau diagnose</div>
+        </div>
+        <div class="process-step">
+          <span class="process-icon">📋</span>
+          <div class="process-name">Accu Garantie Paspoort</div>
+          <div class="process-sub">Digitaal certificaat</div>
+        </div>
+        <div class="process-step">
+          <span class="process-icon">⭐</span>
+          <div class="process-name">Battery Trust Score™</div>
+          <div class="process-sub">Begrijpelijke score</div>
+        </div>
+        <div class="process-step">
+          <span class="process-icon">🛡️</span>
+          <div class="process-name">€3.000 Garantie</div>
+          <div class="process-sub">AVILOO Battery Warranty</div>
+        </div>
+        <div class="process-step">
+          <span class="process-icon">💶</span>
+          <div class="process-name">Financierbaarheid</div>
+          <div class="process-sub">Onderbouwde restwaarde</div>
+        </div>
+        <div class="process-step">
+          <span class="process-icon">📈</span>
+          <div class="process-name">Jaarlijkse Monitoring</div>
+          <div class="process-sub">Dossier groeit mee</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIJSMODEL -->
+    <div class="section-label">Prijsmodel &nbsp;·&nbsp; Drie niveaus</div>
+    <div class="prijs-grid">
+      <div class="prijs-card">
+        <div class="prijs-header first">
+          <span class="prijs-tag">Eerste uitgifte</span>
+          <div class="prijs-amount">€299</div>
+          <div class="prijs-period">eenmalig</div>
+        </div>
+        <div class="prijs-body">
+          <div class="prijs-item">Onafhankelijke batterijdiagnose</div>
+          <div class="prijs-item">Digitaal Accu Garantie Paspoort</div>
+          <div class="prijs-item">Battery Trust Score™</div>
+          <div class="prijs-item">AVILOO Warranty tot €3.000*</div>
+          <div class="prijs-item">Digitaal certificaat</div>
+        </div>
+      </div>
+      <div class="prijs-card">
+        <div class="prijs-header year">
+          <span class="prijs-tag">Jaarlijkse verlenging</span>
+          <div class="prijs-amount">€149</div>
+          <div class="prijs-period">per jaar</div>
+        </div>
+        <div class="prijs-body">
+          <div class="prijs-item">Nieuwe batterijmeting</div>
+          <div class="prijs-item">Nieuw certificaat</div>
+          <div class="prijs-item">Toevoeging accudossier</div>
+          <div class="prijs-item">Nieuwe Trust Score™</div>
+          <div class="prijs-item">Garantieverlenging*</div>
+          <div class="prijs-item">ZekerOpWeg Verified™ stempel</div>
+        </div>
+      </div>
+      <div class="prijs-card">
+        <div class="prijs-header sub">
+          <span class="prijs-tag">Abonnement</span>
+          <div class="prijs-amount">€10</div>
+          <div class="prijs-period">per maand</div>
+        </div>
+        <div class="prijs-body">
+          <div class="prijs-item">Jaarlijkse batterijcontrole</div>
+          <div class="prijs-item">Jaarlijkse certificering</div>
+          <div class="prijs-item">Doorlopend Accu Paspoort</div>
+          <div class="prijs-item">Garantieverlenging*</div>
+          <div class="prijs-item">Historische monitoring</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAARDE VOOR WIE -->
+    <div class="section-label">Waarde voor de hele keten</div>
+    <div class="wie-grid">
+      <div class="wie-card">
+        <span class="wie-icon">👤</span>
+        <div class="wie-title">Consument</div>
+        <div class="wie-item">Minder aankooprisico</div>
+        <div class="wie-item">Meer zekerheid bij aankoop</div>
+        <div class="wie-item">Batterijhistorie inzichtelijk</div>
+        <div class="wie-item">Restwaarde inzicht</div>
+        <div class="wie-item">Financieel gedekte garantie</div>
+      </div>
+      <div class="wie-card">
+        <span class="wie-icon">🏢</span>
+        <div class="wie-title">Dealer</div>
+        <div class="wie-item">Meer vertrouwen bij koper</div>
+        <div class="wie-item">Snellere verkoop</div>
+        <div class="wie-item">Minder prijsdiscussie</div>
+        <div class="wie-item">Hogere klanttevredenheid</div>
+        <div class="wie-item">Sterkere advertentie</div>
+      </div>
+      <div class="wie-card">
+        <span class="wie-icon">📊</span>
+        <div class="wie-title">Financier &amp; Investeerder</div>
+        <div class="wie-item">Objectief risico-inzicht</div>
+        <div class="wie-item">Lager waarderingsrisico</div>
+        <div class="wie-item">Betere waardebepaling</div>
+        <div class="wie-item">Schaalbare databron</div>
+        <div class="wie-item">First mover positie</div>
+      </div>
+    </div>
+
+    <!-- TIJDLIJN WAARDEOPBOUW -->
+    <div class="tijdlijn">
+      <span class="section-label">Waarom het ieder jaar waardevoller wordt</span>
+      <div class="tijdlijn-flow">
+        <div class="tijdlijn-step">
+          <div class="tijdlijn-dot"></div>
+          <div class="tijdlijn-year">Jaar 1</div>
+          <div class="tijdlijn-desc"><strong>Accu Paspoort</strong>Eerste meting. Baseline vastgelegd. Garantie actief.</div>
+        </div>
+        <div class="tijdlijn-step">
+          <div class="tijdlijn-dot"></div>
+          <div class="tijdlijn-year">Jaar 2</div>
+          <div class="tijdlijn-desc"><strong>Verlenging</strong>Nieuwe meting. Nieuw certificaat. Garantie verlengd. Trend zichtbaar.</div>
+        </div>
+        <div class="tijdlijn-step">
+          <div class="tijdlijn-dot"></div>
+          <div class="tijdlijn-year">Jaar 3</div>
+          <div class="tijdlijn-desc"><strong>Historie opgebouwd</strong>Degradatietrend zichtbaar. Restwaarde beter te bepalen.</div>
+        </div>
+        <div class="tijdlijn-step">
+          <div class="tijdlijn-dot"></div>
+          <div class="tijdlijn-year">Jaar 4+</div>
+          <div class="tijdlijn-desc"><strong>Volledig dossier</strong>Batterijverleden compleet. Sterkste restwaardeprognose mogelijk.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">"Een batterijmeting is een momentopname. <span>Een ZekerOpWeg Accu Garantie Paspoort wordt ieder jaar waardevoller."</span></div>
+    </div>
+
+    <!-- BEZWAAR -->
+    <div class="bezwaar-section">
+      <span class="section-label">Veelgehoord bezwaar &nbsp;·&nbsp; "Wij hebben zelf al een batterijtester"</span>
+      <div class="bezwaar-grid">
+        <div class="bezwaar-col">
+          <div class="bezwaar-label">Dealer gebruikt eigen data voor</div>
+          <div class="bezwaar-item dark">Inkoop en voorraadbeheer</div>
+          <div class="bezwaar-item dark">Interne monitoring</div>
+          <div class="bezwaar-item dark">Prijsbepaling</div>
+        </div>
+        <div class="bezwaar-arrow">+</div>
+        <div class="bezwaar-col platform">
+          <div class="bezwaar-label">Bij verkoop ontvangt klant via ZekerOpWeg</div>
+          <div class="bezwaar-item">Onafhankelijke AVILOO meting</div>
+          <div class="bezwaar-item">Accu Garantie Paspoort™</div>
+          <div class="bezwaar-item">Battery Trust Score™</div>
+          <div class="bezwaar-item">AVILOO Battery Warranty</div>
+          <div class="bezwaar-item">Historisch accudossier</div>
+        </div>
+      </div>
+      <div class="quote-box" style="margin-top:3mm;margin-bottom:0;">
+        <div class="quote-text">"Wij concurreren niet met meetapparatuur. <span>Wij bouwen de standaard waarin meetdata samenkomt."</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AFSLUITING -->
+  <div class="afsluiting">
+    <div class="afsluiting-text">
+      Wij verkopen geen accutest.<br>
+      Wij bouwen de onafhankelijke batterijstandaard voor de Nederlandse occasionmarkt.
+    </div>
+    <div class="afsluiting-cta">
+      info@zekeropweg.nu<br>
+      06 23 45 23 49<br>
+      zekeropweg.nu
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">ZekerOpWeg &nbsp;·&nbsp; Accu Garantie Paspoort™</div>
+    <div class="footer-meta">
+      TUV-gecertificeerd via AVILOO &nbsp;·&nbsp; Gevalideerd door Circular Clarity &nbsp;·&nbsp; KvK 99323575<br>
+      * AVILOO Battery Warranty: 1 jaar, 20.000 km, tot €3.000 compensatie. Voorwaarden van toepassing.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
