@@ -1,0 +1,640 @@
+import { useState } from "react";
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+} from "recharts";
+import {
+  ShieldCheck, ShieldAlert, ShieldX, Car, Users, Store, FileText, Calendar,
+  Plus, Battery, ChevronDown, Gauge, TrendingUp, Building2, CircleDollarSign,
+  PackageSearch, Clock, Download, ArrowUpRight,
+} from "lucide-react";
+
+/* ---------------------------------------------------------------------- */
+/* Demo data                                                              */
+/* ---------------------------------------------------------------------- */
+
+const today = new Date("2026-07-13");
+
+const daysBetween = (a, b) => Math.round((new Date(a) - b) / 86400000);
+
+const initialVehicles = [
+  {
+    id: "v1",
+    merk: "Volkswagen", model: "Golf GTE", bouwjaar: 2022,
+    kenteken: "34-KLD-8", vin: "WVWZZZAUZNW118823",
+    km: 41230, capaciteitKwh: 10.4, soh: 91, trustScore: 88,
+    dealer: "AutoPark Rotterdam",
+    warranty: { status: "actief", start: "2026-01-18", end: "2027-01-18" },
+    lastMeting: "2026-01-18", nextCheck: "2027-01-18",
+    sohHistory: [
+      { date: "2023-06", soh: 97 }, { date: "2024-01", soh: 95 },
+      { date: "2024-09", soh: 93 }, { date: "2025-06", soh: 92 },
+      { date: "2026-01", soh: 91 },
+    ],
+    timeline: [
+      { date: "2026-01-18", label: "Paspoort aangemaakt" },
+      { date: "2026-01-18", label: "AccuCheck uitgevoerd — SoH 91%" },
+      { date: "2026-01-18", label: "AVILOO certificaat uitgegeven" },
+    ],
+    documents: [
+      { name: "AVILOO Certificaat.pdf", date: "2026-01-18" },
+      { name: "Garantiedocument.pdf", date: "2026-01-18" },
+      { name: "Factuur ZekerOpWeg.pdf", date: "2026-01-18" },
+    ],
+    prijs: 299,
+  },
+  {
+    id: "v2",
+    merk: "Audi", model: "Q4 e-tron", bouwjaar: 2023,
+    kenteken: "77-TPN-2", vin: "WA1AAAFZ4P2004471",
+    km: 22870, capaciteitKwh: 76.6, soh: 96, trustScore: 96,
+    dealer: "EV Huis Zuid-Holland",
+    warranty: { status: "actief", start: "2026-05-02", end: "2027-05-02" },
+    lastMeting: "2026-05-02", nextCheck: "2027-05-02",
+    sohHistory: [
+      { date: "2024-05", soh: 99 }, { date: "2025-01", soh: 98 },
+      { date: "2025-09", soh: 97 }, { date: "2026-05", soh: 96 },
+    ],
+    timeline: [
+      { date: "2026-05-02", label: "Paspoort aangemaakt" },
+      { date: "2026-05-02", label: "AccuCheck uitgevoerd — SoH 96%" },
+      { date: "2026-05-02", label: "AVILOO certificaat uitgegeven" },
+    ],
+    documents: [
+      { name: "AVILOO Certificaat.pdf", date: "2026-05-02" },
+      { name: "Garantiedocument.pdf", date: "2026-05-02" },
+    ],
+    prijs: 299,
+  },
+  {
+    id: "v3",
+    merk: "Tesla", model: "Model 3", bouwjaar: 2021,
+    kenteken: "19-FGH-5", vin: "5YJ3E1EA0MF012345",
+    km: 68410, capaciteitKwh: 75, soh: 93, trustScore: 92,
+    dealer: "AutoPark Rotterdam",
+    warranty: { status: "verloopt_binnenkort", start: "2025-07-28", end: "2026-07-28" },
+    lastMeting: "2025-07-28", nextCheck: "2026-07-28",
+    sohHistory: [
+      { date: "2023-01", soh: 98 }, { date: "2024-01", soh: 96 },
+      { date: "2025-01", soh: 94 }, { date: "2025-07", soh: 93 },
+    ],
+    timeline: [
+      { date: "2025-07-28", label: "Garantie verlengd" },
+      { date: "2025-07-28", label: "AccuCheck uitgevoerd — SoH 93%" },
+      { date: "2024-07-15", label: "Eerste AccuCheck — SoH 96%" },
+      { date: "2024-07-15", label: "Paspoort aangemaakt" },
+    ],
+    documents: [
+      { name: "AVILOO Certificaat 2025.pdf", date: "2025-07-28" },
+      { name: "AVILOO Certificaat 2024.pdf", date: "2024-07-15" },
+    ],
+    prijs: 149,
+  },
+  {
+    id: "v4",
+    merk: "BMW", model: "330e", bouwjaar: 2020,
+    kenteken: "88-BXR-1", vin: "WBA5R7C05LFH23456",
+    km: 94500, capaciteitKwh: 12, soh: 85, trustScore: 79,
+    dealer: "EV Huis Zuid-Holland",
+    warranty: { status: "verlopen", start: "2024-11-05", end: "2025-11-05" },
+    lastMeting: "2024-11-05", nextCheck: "2025-11-05",
+    sohHistory: [
+      { date: "2022-11", soh: 94 }, { date: "2023-11", soh: 90 },
+      { date: "2024-11", soh: 85 },
+    ],
+    timeline: [
+      { date: "2024-11-05", label: "AccuCheck uitgevoerd — SoH 85%" },
+      { date: "2023-11-10", label: "Garantie verlengd" },
+      { date: "2022-11-01", label: "Paspoort aangemaakt" },
+    ],
+    documents: [
+      { name: "AVILOO Certificaat 2024.pdf", date: "2024-11-05" },
+    ],
+    prijs: 149,
+  },
+  {
+    id: "v5",
+    merk: "Renault", model: "Zoe", bouwjaar: 2019,
+    kenteken: "45-NDV-9", vin: "VF1AGVYB0K1234567",
+    km: 87200, capaciteitKwh: 41, soh: 81, trustScore: 74,
+    dealer: "AutoPark Rotterdam",
+    warranty: { status: "actief", start: "2026-03-11", end: "2027-03-11" },
+    lastMeting: "2026-03-11", nextCheck: "2027-03-11",
+    sohHistory: [
+      { date: "2022-03", soh: 91 }, { date: "2023-03", soh: 87 },
+      { date: "2024-03", soh: 84 }, { date: "2026-03", soh: 81 },
+    ],
+    timeline: [
+      { date: "2026-03-11", label: "Garantie verlengd" },
+      { date: "2026-03-11", label: "AccuCheck uitgevoerd — SoH 81%" },
+      { date: "2019-04-02", label: "Paspoort aangemaakt" },
+    ],
+    documents: [
+      { name: "AVILOO Certificaat 2026.pdf", date: "2026-03-11" },
+    ],
+    prijs: 10,
+  },
+];
+
+/* ---------------------------------------------------------------------- */
+/* Helpers                                                                 */
+/* ---------------------------------------------------------------------- */
+
+function trustCategory(score) {
+  if (score >= 95) return { label: "Uitstekend", color: "var(--gold)" };
+  if (score >= 90) return { label: "Zeer goed", color: "#7BAE7F" };
+  if (score >= 85) return { label: "Goed", color: "#8FBF8F" };
+  if (score >= 80) return { label: "Normaal", color: "#D9B25C" };
+  if (score >= 75) return { label: "Verhoogd risico", color: "#D98A4A" };
+  return { label: "Aandacht nodig", color: "#C4593F" };
+}
+
+function warrantyMeta(status) {
+  if (status === "actief") return { label: "Actief", icon: ShieldCheck, tone: "ok" };
+  if (status === "verloopt_binnenkort") return { label: "Verloopt binnenkort", icon: ShieldAlert, tone: "warn" };
+  return { label: "Verlopen", icon: ShieldX, tone: "bad" };
+}
+
+const fmtDate = (d) => new Date(d).toLocaleDateString("nl-NL", { day: "2-digit", month: "short", year: "numeric" });
+
+/* ---------------------------------------------------------------------- */
+/* Small UI pieces                                                        */
+/* ---------------------------------------------------------------------- */
+
+function TrustGauge({ score }) {
+  const cat = trustCategory(score);
+  const r = 54, c = 2 * Math.PI * r;
+  const offset = c - (score / 100) * c;
+  return (
+    <div className="gauge-wrap">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r={r} fill="none" stroke="rgba(11,18,32,0.08)" strokeWidth="10" />
+        <circle
+          cx="70" cy="70" r={r} fill="none" stroke={cat.color} strokeWidth="10"
+          strokeDasharray={c} strokeDashoffset={offset} strokeLinecap="round"
+          transform="rotate(-90 70 70)" style={{ transition: "stroke-dashoffset 0.6s ease" }}
+        />
+      </svg>
+      <div className="gauge-center">
+        <div className="gauge-score">{score}</div>
+        <div className="gauge-label" style={{ color: cat.color }}>{cat.label}</div>
+      </div>
+    </div>
+  );
+}
+
+function WarrantyCard({ vehicle, onExtend }) {
+  const meta = warrantyMeta(vehicle.warranty.status);
+  const Icon = meta.icon;
+  const remaining = daysBetween(vehicle.warranty.end, today);
+  return (
+    <div className="card">
+      <div className="card-head">
+        <span className="eyebrow">Batterijgarantie</span>
+        <span className={`badge badge-${meta.tone}`}><Icon size={14} /> {meta.label}</span>
+      </div>
+      <div className="warranty-dates">
+        <div><span className="muted">Start</span><div>{fmtDate(vehicle.warranty.start)}</div></div>
+        <div><span className="muted">Einde</span><div>{fmtDate(vehicle.warranty.end)}</div></div>
+        <div><span className="muted">Resterend</span><div>{remaining > 0 ? `${remaining} dagen` : "verlopen"}</div></div>
+      </div>
+      <button className="btn-gold" onClick={() => onExtend(vehicle.id)}>
+        Garantie verlengen — €149 / jaar
+      </button>
+    </div>
+  );
+}
+
+function SohChart({ data }) {
+  return (
+    <div className="card">
+      <div className="card-head"><span className="eyebrow">Accu historie · State of Health</span></div>
+      <ResponsiveContainer width="100%" height={190}>
+        <LineChart data={data} margin={{ top: 8, right: 12, left: -18, bottom: 0 }}>
+          <CartesianGrid stroke="rgba(11,18,32,0.06)" vertical={false} />
+          <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#5b6472" }} axisLine={false} tickLine={false} />
+          <YAxis domain={[70, 100]} tick={{ fontSize: 11, fill: "#5b6472" }} axisLine={false} tickLine={false} width={34} />
+          <Tooltip contentStyle={{ fontFamily: "var(--font-body)", fontSize: 12, borderRadius: 8, border: "1px solid rgba(11,18,32,0.1)" }} />
+          <Line type="monotone" dataKey="soh" stroke="var(--gold)" strokeWidth={2.5} dot={{ r: 3, fill: "var(--navy)" }} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function Timeline({ events }) {
+  return (
+    <div className="card">
+      <div className="card-head"><span className="eyebrow">Levensloopdossier</span></div>
+      <ul className="timeline">
+        {events.map((e, i) => (
+          <li key={i}>
+            <div className="timeline-dot" />
+            <div>
+              <div className="timeline-date">{fmtDate(e.date)}</div>
+              <div className="timeline-label">{e.label}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function Documents({ docs }) {
+  return (
+    <div className="card">
+      <div className="card-head"><span className="eyebrow">Documenten</span></div>
+      <ul className="doclist">
+        {docs.map((d, i) => (
+          <li key={i}>
+            <FileText size={16} />
+            <span className="doc-name">{d.name}</span>
+            <span className="muted doc-date">{fmtDate(d.date)}</span>
+            <Download size={15} className="doc-download" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------- */
+/* Views                                                                   */
+/* ---------------------------------------------------------------------- */
+
+function ConsumentView({ vehicle, onExtend }) {
+  return (
+    <div className="view-grid">
+      <div className="card hero-card">
+        <div className="hero-photo">
+          <Car size={46} strokeWidth={1.2} />
+        </div>
+        <div className="hero-info">
+          <div className="eyebrow">Digitaal Accu Paspoort</div>
+          <h2>{vehicle.merk} {vehicle.model}</h2>
+          <div className="hero-sub">{vehicle.bouwjaar} · {vehicle.kenteken} · {vehicle.km.toLocaleString("nl-NL")} km</div>
+          <div className="hero-stats">
+            <div><span className="muted">VIN</span><div className="mono">{vehicle.vin}</div></div>
+            <div><span className="muted">Accucapaciteit</span><div>{vehicle.capaciteitKwh} kWh</div></div>
+            <div><span className="muted">Huidige SoH</span><div>{vehicle.soh}%</div></div>
+            <div><span className="muted">Laatste meting</span><div>{fmtDate(vehicle.lastMeting)}</div></div>
+          </div>
+        </div>
+        <TrustGauge score={vehicle.trustScore} />
+      </div>
+
+      <div className="view-row">
+        <WarrantyCard vehicle={vehicle} onExtend={onExtend} />
+        <SohChart data={vehicle.sohHistory} />
+      </div>
+      <div className="view-row">
+        <Timeline events={vehicle.timeline} />
+        <Documents docs={vehicle.documents} />
+      </div>
+    </div>
+  );
+}
+
+function KpiCard({ icon: Icon, label, value, sub }) {
+  return (
+    <div className="kpi-card">
+      <div className="kpi-icon"><Icon size={18} /></div>
+      <div>
+        <div className="kpi-value">{value}</div>
+        <div className="kpi-label">{label}</div>
+        {sub && <div className="kpi-sub">{sub}</div>}
+      </div>
+    </div>
+  );
+}
+
+function DealerView({ vehicles, dealerName, onSelectVehicle, selectedId, onExtend }) {
+  const mine = vehicles.filter((v) => v.dealer === dealerName);
+  const aflopend = mine.filter((v) => v.warranty.status !== "actief").length;
+  const omzet = mine.reduce((s, v) => s + v.prijs, 0);
+
+  return (
+    <div className="view-grid">
+      <div className="kpi-row">
+        <KpiCard icon={PackageSearch} label="Actieve paspoorten" value={mine.length} />
+        <KpiCard icon={ShieldAlert} label="Aflopende garanties" value={aflopend} />
+        <KpiCard icon={Car} label="Voertuigen in voorraad" value={mine.length} sub="demo-waarde" />
+        <KpiCard icon={CircleDollarSign} label="Omzet uit paspoorten" value={`€${omzet}`} />
+      </div>
+
+      <div className="card">
+        <div className="card-head">
+          <span className="eyebrow">Voertuigen · {dealerName}</span>
+          <button className="btn-ghost"><Plus size={15} /> Voertuig toevoegen</button>
+        </div>
+        <table className="table">
+          <thead>
+            <tr><th>Kenteken</th><th>Model</th><th>SoH</th><th>Trust Score</th><th>Garantie</th><th></th></tr>
+          </thead>
+          <tbody>
+            {mine.map((v) => {
+              const meta = warrantyMeta(v.warranty.status);
+              return (
+                <tr key={v.id} className={v.id === selectedId ? "row-active" : ""} onClick={() => onSelectVehicle(v.id)}>
+                  <td className="mono">{v.kenteken}</td>
+                  <td>{v.merk} {v.model}</td>
+                  <td>{v.soh}%</td>
+                  <td>{v.trustScore}</td>
+                  <td><span className={`badge badge-${meta.tone}`}>{meta.label}</span></td>
+                  <td><ArrowUpRight size={15} /></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {mine.find((v) => v.id === selectedId) && (
+        <div className="view-row">
+          <WarrantyCard vehicle={mine.find((v) => v.id === selectedId)} onExtend={onExtend} />
+          <SohChart data={mine.find((v) => v.id === selectedId).sohHistory} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AdminView({ vehicles }) {
+  const dealers = [...new Set(vehicles.map((v) => v.dealer))];
+  const totalOmzet = vehicles.reduce((s, v) => s + v.prijs, 0);
+  const activeWarranties = vehicles.filter((v) => v.warranty.status === "actief").length;
+  const avgTrust = Math.round(vehicles.reduce((s, v) => s + v.trustScore, 0) / vehicles.length);
+
+  return (
+    <div className="view-grid">
+      <div className="kpi-row">
+        <KpiCard icon={Car} label="Totaal paspoorten" value={vehicles.length} />
+        <KpiCard icon={ShieldCheck} label="Actieve garanties" value={activeWarranties} />
+        <KpiCard icon={Building2} label="Aangesloten dealers" value={dealers.length} />
+        <KpiCard icon={TrendingUp} label="Gem. Trust Score" value={avgTrust} />
+      </div>
+
+      <div className="card">
+        <div className="card-head"><span className="eyebrow">Dealers</span></div>
+        <table className="table">
+          <thead><tr><th>Dealer</th><th>Voertuigen</th><th>Actieve garanties</th><th>Omzet</th></tr></thead>
+          <tbody>
+            {dealers.map((d) => {
+              const set = vehicles.filter((v) => v.dealer === d);
+              return (
+                <tr key={d}>
+                  <td>{d}</td>
+                  <td>{set.length}</td>
+                  <td>{set.filter((v) => v.warranty.status === "actief").length}</td>
+                  <td>€{set.reduce((s, v) => s + v.prijs, 0)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="card">
+        <div className="card-head"><span className="eyebrow">Alle voertuigen</span></div>
+        <table className="table">
+          <thead><tr><th>Kenteken</th><th>Model</th><th>Dealer</th><th>SoH</th><th>Trust</th><th>Garantie</th></tr></thead>
+          <tbody>
+            {vehicles.map((v) => {
+              const meta = warrantyMeta(v.warranty.status);
+              return (
+                <tr key={v.id}>
+                  <td className="mono">{v.kenteken}</td>
+                  <td>{v.merk} {v.model}</td>
+                  <td>{v.dealer}</td>
+                  <td>{v.soh}%</td>
+                  <td>{v.trustScore}</td>
+                  <td><span className={`badge badge-${meta.tone}`}>{meta.label}</span></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div className="footnote">Totale jaaromzet uit paspoorten (demo-data): €{totalOmzet}</div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------- */
+/* App                                                                     */
+/* ---------------------------------------------------------------------- */
+
+export default function App() {
+  const [vehicles, setVehicles] = useState(initialVehicles);
+  const [role, setRole] = useState("consument");
+  const [vehicleId, setVehicleId] = useState(initialVehicles[0].id);
+  const dealers = [...new Set(initialVehicles.map((v) => v.dealer))];
+  const [dealerName, setDealerName] = useState(dealers[0]);
+
+  const vehicle = vehicles.find((v) => v.id === vehicleId) || vehicles[0];
+
+  const handleExtend = (id) => {
+    setVehicles((prev) =>
+      prev.map((v) => {
+        if (v.id !== id) return v;
+        const newEnd = new Date(v.warranty.end);
+        newEnd.setFullYear(newEnd.getFullYear() + 1);
+        return {
+          ...v,
+          warranty: { status: "actief", start: v.warranty.end, end: newEnd.toISOString().slice(0, 10) },
+          timeline: [{ date: today.toISOString().slice(0, 10), label: "Garantie verlengd" }, ...v.timeline],
+        };
+      })
+    );
+  };
+
+  return (
+    <div className="app">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@400;500;700&display=swap');
+
+        :root {
+          --navy: #0B1220;
+          --gold: #C6A86A;
+          --cream: #FDFBF6;
+          --ink: #232A36;
+          --font-display: 'Fraunces', serif;
+          --font-body: 'DM Sans', sans-serif;
+        }
+        .app {
+          font-family: var(--font-body);
+          background: var(--cream);
+          color: var(--ink);
+          min-height: 100%;
+          display: flex;
+        }
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 500; margin: 0; }
+        .muted { color: #7a8290; font-size: 12px; }
+        .mono { font-family: 'DM Sans', monospace; letter-spacing: 0.02em; }
+        .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #7a8290; font-weight: 700; }
+
+        /* Sidebar */
+        .sidebar {
+          width: 220px; background: var(--navy); color: var(--cream);
+          padding: 24px 16px; display: flex; flex-direction: column; gap: 28px;
+          flex-shrink: 0;
+        }
+        .brand { font-family: var(--font-display); font-size: 19px; letter-spacing: 0.01em; }
+        .brand span { color: var(--gold); }
+        .nav-group { display: flex; flex-direction: column; gap: 4px; }
+        .nav-btn {
+          display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+          border: none; background: transparent; color: rgba(253,251,246,0.65); font-family: var(--font-body);
+          font-size: 13.5px; cursor: pointer; text-align: left;
+        }
+        .nav-btn:hover { background: rgba(253,251,246,0.06); color: var(--cream); }
+        .nav-btn.active { background: rgba(198,168,106,0.16); color: var(--gold); }
+        .sidebar-foot { margin-top: auto; font-size: 11px; color: rgba(253,251,246,0.35); }
+
+        /* Main */
+        .main { flex: 1; padding: 28px 36px; overflow-y: auto; }
+        .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .topbar h1 { font-size: 22px; }
+        select {
+          font-family: var(--font-body); font-size: 13px; padding: 8px 12px; border-radius: 8px;
+          border: 1px solid rgba(11,18,32,0.15); background: white; color: var(--ink);
+        }
+
+        .view-grid { display: flex; flex-direction: column; gap: 18px; }
+        .view-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        @media (max-width: 860px) { .view-row { grid-template-columns: 1fr; } }
+
+        .card {
+          background: white; border-radius: 14px; padding: 20px 22px;
+          border: 1px solid rgba(11,18,32,0.06); box-shadow: 0 1px 2px rgba(11,18,32,0.03);
+        }
+        .card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+
+        .hero-card { display: flex; align-items: center; gap: 26px; }
+        .hero-photo {
+          width: 92px; height: 92px; border-radius: 12px; background: linear-gradient(160deg, var(--navy), #1c2740);
+          color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .hero-info { flex: 1; }
+        .hero-sub { color: #5b6472; font-size: 13px; margin-top: 2px; }
+        .hero-stats { display: grid; grid-template-columns: repeat(4, auto); gap: 22px; margin-top: 16px; }
+        .hero-stats > div > div { font-size: 14px; margin-top: 2px; }
+
+        .gauge-wrap { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+        .gauge-center {
+          position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .gauge-score { font-family: var(--font-display); font-size: 30px; color: var(--navy); }
+        .gauge-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+
+        .badge {
+          display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600;
+          padding: 4px 10px; border-radius: 999px;
+        }
+        .badge-ok { background: rgba(123,174,127,0.15); color: #4d7a51; }
+        .badge-warn { background: rgba(217,138,74,0.15); color: #a35d29; }
+        .badge-bad { background: rgba(196,89,63,0.15); color: #a3402a; }
+
+        .warranty-dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+        .warranty-dates > div > div { font-size: 14px; margin-top: 2px; }
+
+        .btn-gold {
+          width: 100%; background: var(--gold); color: var(--navy); border: none; border-radius: 9px;
+          padding: 11px 16px; font-family: var(--font-body); font-weight: 700; font-size: 13.5px; cursor: pointer;
+        }
+        .btn-gold:hover { background: #b6976a; }
+        .btn-ghost {
+          display: flex; align-items: center; gap: 6px; background: transparent; border: 1px solid rgba(11,18,32,0.15);
+          border-radius: 8px; padding: 7px 12px; font-size: 12.5px; font-family: var(--font-body); cursor: pointer; color: var(--ink);
+        }
+        .btn-ghost:hover { background: rgba(11,18,32,0.03); }
+
+        .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+        .timeline li { display: flex; align-items: flex-start; gap: 12px; }
+        .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-top: 5px; flex-shrink: 0; }
+        .timeline-date { font-size: 11px; color: #7a8290; }
+        .timeline-label { font-size: 13.5px; }
+
+        .doclist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .doclist li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--ink); }
+        .doc-name { flex: 1; }
+        .doc-date { flex-shrink: 0; }
+        .doc-download { color: #7a8290; cursor: pointer; }
+
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        @media (max-width: 860px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+        .kpi-card {
+          background: white; border-radius: 14px; padding: 16px 18px; border: 1px solid rgba(11,18,32,0.06);
+          display: flex; align-items: flex-start; gap: 12px;
+        }
+        .kpi-icon {
+          width: 34px; height: 34px; border-radius: 9px; background: rgba(198,168,106,0.14); color: #9c7f45;
+          display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .kpi-value { font-family: var(--font-display); font-size: 22px; }
+        .kpi-label { font-size: 12px; color: #5b6472; }
+        .kpi-sub { font-size: 10.5px; color: #a3a9b3; margin-top: 2px; }
+
+        .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #7a8290; padding: 8px 10px; border-bottom: 1px solid rgba(11,18,32,0.08); }
+        .table td { padding: 10px 10px; border-bottom: 1px solid rgba(11,18,32,0.05); }
+        .table tbody tr { cursor: pointer; }
+        .table tbody tr:hover { background: rgba(198,168,106,0.06); }
+        .row-active { background: rgba(198,168,106,0.1) !important; }
+
+        .footnote { font-size: 11.5px; color: #7a8290; text-align: right; }
+      `}</style>
+
+      <aside className="sidebar">
+        <div className="brand">Zeker<span>OpWeg</span></div>
+        <div className="nav-group">
+          <div className="muted" style={{ marginBottom: 4, paddingLeft: 12 }}>Weergave</div>
+          <button className={`nav-btn ${role === "consument" ? "active" : ""}`} onClick={() => setRole("consument")}>
+            <Users size={16} /> Consument
+          </button>
+          <button className={`nav-btn ${role === "dealer" ? "active" : ""}`} onClick={() => setRole("dealer")}>
+            <Store size={16} /> Dealer
+          </button>
+          <button className={`nav-btn ${role === "admin" ? "active" : ""}`} onClick={() => setRole("admin")}>
+            <Building2 size={16} /> ZekerOpWeg Admin
+          </button>
+        </div>
+        <div className="sidebar-foot">Accu Garantie Paspoort™ — MVP demo</div>
+      </aside>
+
+      <main className="main">
+        <div className="topbar">
+          <h1>
+            {role === "consument" && "Mijn Accu Paspoort"}
+            {role === "dealer" && "Dealer Dashboard"}
+            {role === "admin" && "Admin Dashboard"}
+          </h1>
+          {role === "consument" && (
+            <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)}>
+              {vehicles.map((v) => (
+                <option key={v.id} value={v.id}>{v.merk} {v.model} — {v.kenteken}</option>
+              ))}
+            </select>
+          )}
+          {role === "dealer" && (
+            <select value={dealerName} onChange={(e) => setDealerName(e.target.value)}>
+              {dealers.map((d) => <option key={d} value={d}>{d}</option>)}
+            </select>
+          )}
+        </div>
+
+        {role === "consument" && <ConsumentView vehicle={vehicle} onExtend={handleExtend} />}
+        {role === "dealer" && (
+          <DealerView
+            vehicles={vehicles}
+            dealerName={dealerName}
+            onSelectVehicle={setVehicleId}
+            selectedId={vehicleId}
+            onExtend={handleExtend}
+          />
+        )}
+        {role === "admin" && <AdminView vehicles={vehicles} />}
+      </main>
+    </div>
+  );
+}
