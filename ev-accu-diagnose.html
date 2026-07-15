@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/zop-luxury-polish.css" />
   <link rel="stylesheet" href="css/zop-stability.css" />
   <link rel="stylesheet" href="css/ev-accucheck.css" />
-
   <style>
     .hero-location {
       font-size: 13px;
@@ -317,7 +316,6 @@
       .kosten-grid { grid-template-columns: 1fr; }
     }
   </style>
-
   <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
@@ -326,11 +324,18 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zekeropweg.nu" },
+          { "@type": "ListItem", "position": 2, "name": "EV AccuCheck", "item": "https://zekeropweg.nu/ev-accucheck.html" },
+          { "@type": "ListItem", "position": 3, "name": "EV Accu Diagnose", "item": "https://zekeropweg.nu/ev-accu-diagnose.html" }
+        ]
+      },
       {
         "@type": "LocalBusiness",
         "@id": "https://zekeropweg.nu/#business",
@@ -339,6 +344,11 @@
         "url": "https://zekeropweg.nu",
         "telephone": "+31623452349",
         "email": "info@zekeropweg.nu",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "KvK",
+          "value": "99323575"
+        },
         "image": [
           "https://zekeropweg.nu/assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg",
           "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
@@ -357,10 +367,18 @@
           "latitude": 51.8606,
           "longitude": 4.5328
         },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          }
+        ],
         "areaServed": [
           "Rotterdam", "Barendrecht", "Dordrecht", "Ridderkerk", "Schiedam",
           "Capelle aan den IJssel", "Vlaardingen", "Spijkenisse", "Den Haag",
-          "Delft", "Zoetermeer", "Zwijndrecht", "Papendrecht"
+          "Delft", "Zoetermeer", "Zwijndrecht", "Papendrecht", "Leiden", "Gouda"
         ],
         "priceRange": "€95 - €499",
         "aggregateRating": {
@@ -389,7 +407,7 @@
           "logo": "https://zekeropweg.nu/assets/logo.png"
         },
         "datePublished": "2026-06-13",
-        "dateModified": "2026-06-13",
+        "dateModified": "2026-07-15",
         "url": "https://zekeropweg.nu/ev-accu-diagnose.html",
         "image": "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
         "mainEntityOfPage": "https://zekeropweg.nu/ev-accu-diagnose.html"
@@ -451,9 +469,7 @@
   }
   </script>
 </head>
-
 <body class="page-ev-accucheck">
-
   <!-- HEADER -->
   <header class="zop-header">
     <div class="zop-header-inner">
@@ -479,12 +495,10 @@
         <a href="over.html">Over</a>
         <a href="contact.html" class="zop-contact">Contact</a>
       </nav>
-      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
     </div>
   </header>
-
   <main>
-
     <!-- HERO -->
     <section class="hero-ev">
       <div class="container">
@@ -493,19 +507,18 @@
         <h1>EV accu diagnose op celniveau</h1>
         <p class="hero-sub">Wat is een accu diagnose, wanneer heb je het nodig en wat kost het?</p>
         <p class="hero-sub">Meting op celniveau door officieel AVILOO-partner. TÜV-gecertificeerd.</p>
-        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck €129</a>
+        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck &euro;129</a>
         <div class="hero-trust">
-          <span>✓ Officieel AVILOO-partner</span>
-          <span>✓ TÜV-gecertificeerde meting op celniveau</span>
-          <span>✓ Onafhankelijk van BMS-software</span>
-          <span>✓ Uitvoering op locatie bij de auto</span>
-          <span>✓ Officieel AVILOO-certificaat inbegrepen</span>
+          <span>&#10003; Officieel AVILOO-partner</span>
+          <span>&#10003; TÜV-gecertificeerde meting op celniveau</span>
+          <span>&#10003; Onafhankelijk van BMS-software</span>
+          <span>&#10003; Uitvoering op locatie bij de auto</span>
+          <span>&#10003; Officieel AVILOO-certificaat inbegrepen</span>
         </div>
-        <p class="cta-trust">Vrijblijvende aanvraag · afspraak wordt eerst bevestigd</p>
-        <p class="hero-meta">€129 · Op locatie · TÜV-gecertificeerd</p>
+        <p class="cta-trust">Vrijblijvende aanvraag &middot; afspraak wordt eerst bevestigd</p>
+        <p class="hero-meta">&euro;129 &middot; Op locatie &middot; TÜV-gecertificeerd</p>
       </div>
     </section>
-
     <!-- WAT IS EEN ACCU DIAGNOSE -->
     <section class="kennisblok-section">
       <div class="container">
@@ -530,7 +543,6 @@
         </div>
       </div>
     </section>
-
     <!-- VERSCHIL BMS VS AVILOO -->
     <section class="verschil-section">
       <div class="container">
@@ -567,7 +579,6 @@
         </div>
       </div>
     </section>
-
     <!-- WANNEER NODIG -->
     <section class="wanneer-section">
       <div class="container">
@@ -576,7 +587,7 @@
           <div class="wanneer-card">
             <div class="wanneer-num">01</div>
             <strong>Vóór aankoop van een gebruikte EV</strong>
-            <p>De accu is het duurste onderdeel van een EV. Een diagnose vóór aankoop voorkomt een miskoop van €8.000 tot €20.000 aan accuvervangingskosten.</p>
+            <p>De accu is het duurste onderdeel van een EV. Een diagnose vóór aankoop voorkomt een miskoop van &euro;8.000 tot &euro;20.000 aan accuvervangingskosten.</p>
           </div>
           <div class="wanneer-card">
             <div class="wanneer-num">02</div>
@@ -591,7 +602,7 @@
           <div class="wanneer-card">
             <div class="wanneer-num">04</div>
             <strong>Bij verkoop van uw EV</strong>
-            <p>Een officieel AVILOO-certificaat verhoogt de verkoopwaarde gemiddeld €550 tot €1.100. Kopers betalen meer voor zekerheid.</p>
+            <p>Een officieel AVILOO-certificaat verhoogt de verkoopwaarde gemiddeld &euro;550 tot &euro;1.100. Kopers betalen meer voor zekerheid.</p>
           </div>
           <div class="wanneer-card">
             <div class="wanneer-num">05</div>
@@ -606,7 +617,6 @@
         </div>
       </div>
     </section>
-
     <!-- AUTHORITY STRIP -->
     <section class="authority-strip">
       <div class="container authority-items">
@@ -616,7 +626,6 @@
         <span>Onafhankelijk van BMS</span>
       </div>
     </section>
-
     <!-- HOE VERLOOPT HET -->
     <section class="stappen-section">
       <div class="container">
@@ -645,30 +654,28 @@
         </div>
       </div>
     </section>
-
     <!-- KOSTEN -->
     <section class="kosten-section">
       <div class="container">
         <h2>Wat kost een EV accu diagnose?</h2>
         <div class="kosten-grid">
           <div class="kosten-card">
-            <div class="kosten-prijs">€129</div>
+            <div class="kosten-prijs">&euro;129</div>
             <div class="kosten-label">Op locatie bij de auto</div>
             <p>ZekerOpWeg komt naar de auto toe. Binnen 40 km rondom Barendrecht. Inclusief officieel AVILOO-certificaat. Vaak dezelfde dag beschikbaar.</p>
           </div>
           <div class="kosten-card" style="background:#f9f8f5;">
-            <div class="kosten-prijs">€95</div>
+            <div class="kosten-prijs">&euro;95</div>
             <div class="kosten-label">In Barendrecht</div>
             <p>U rijdt naar Barendrecht. Direct aan de A15/A29. Inclusief officieel AVILOO-certificaat. Dezelfde dag uitvoering mogelijk.</p>
           </div>
         </div>
-        <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); max-width:560px; margin:0 auto 32px; line-height:1.7;">Een accu diagnose kost €95 tot €129. Accuvervanging bij een Nissan Leaf kost €6.000 tot €8.000. Bij een Tesla Model 3 €8.000 tot €13.000. De diagnose voorkomt dit risico vooraf.</p>
+        <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); max-width:560px; margin:0 auto 32px; line-height:1.7;">Een accu diagnose kost &euro;95 tot &euro;129. Accuvervanging bij een Nissan Leaf kost &euro;6.000 tot &euro;8.000. Bij een Tesla Model 3 &euro;8.000 tot &euro;13.000. De diagnose voorkomt dit risico vooraf.</p>
         <div style="text-align:center;">
           <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck</a>
         </div>
       </div>
     </section>
-
     <!-- FAQ -->
     <section class="faq-section">
       <div class="container">
@@ -688,7 +695,7 @@
           </div>
           <div class="faq-item">
             <h3>Kan een AVILOO tester zelf worden gekocht?</h3>
-            <p>Nee. De AVILOO Flash Test apparatuur is uitsluitend beschikbaar voor gecertificeerde AVILOO-partners en niet te koop voor particulieren. ZekerOpWeg is officieel AVILOO-partner in de regio Rotterdam en omgeving. Een meting laten uitvoeren kost €95 tot €129 inclusief officieel AVILOO-certificaat.</p>
+            <p>Nee. De AVILOO Flash Test apparatuur is uitsluitend beschikbaar voor gecertificeerde AVILOO-partners en niet te koop voor particulieren. ZekerOpWeg is officieel AVILOO-partner in de regio Rotterdam en omgeving. Een meting laten uitvoeren kost &euro;95 tot &euro;129 inclusief officieel AVILOO-certificaat.</p>
           </div>
           <div class="faq-item">
             <h3>Werkt de diagnose ook voor hybride voertuigen?</h3>
@@ -705,7 +712,6 @@
         </div>
       </div>
     </section>
-
     <!-- GERELATEERDE ARTIKELEN -->
     <section style="background:#f6f5f1; padding:48px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
       <div class="container">
@@ -729,20 +735,18 @@
           <a href="ev-accucheck.html" style="background:#0b1220; border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
             <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Dienst</p>
             <p style="font-size:15px; font-weight:700; color:#fff; margin:0 0 6px;">EV AccuCheck plannen</p>
-            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">€95 Barendrecht · €129 op locatie · Zelfde dag mogelijk.</p>
+            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">&euro;95 Barendrecht &middot; &euro;129 op locatie &middot; Zelfde dag mogelijk.</p>
           </a>
         </div>
       </div>
     </section>
-
   </main>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <p class="footer-title">ZekerOpWeg</p>
-        <p>© 2026 ZekerOpWeg</p>
+        <p>&copy; 2026 ZekerOpWeg</p>
         <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">
           Handelsnaam van Pepijn Westhoff<br />
           KvK 99323575<br />
@@ -764,7 +768,6 @@
       </div>
     </div>
   </footer>
-
   <script src="scripts/menu.js" defer></script>
 </body>
 </html>
