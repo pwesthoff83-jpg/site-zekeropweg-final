@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/zop-luxury-polish.css" />
   <link rel="stylesheet" href="css/zop-stability.css" />
   <link rel="stylesheet" href="css/ev-accucheck.css" />
-
   <style>
     .hero-location {
       font-size: 13px;
@@ -108,7 +107,7 @@
       line-height: 1.5;
     }
     .uitleg-tekst ul li::before {
-      content: "→";
+      content: "\2192";
       color: var(--zop-gold, #c6a86a);
       font-weight: 700;
       flex-shrink: 0;
@@ -350,7 +349,6 @@
       .kosten-rij .kosten-rij-midden { display: none; }
     }
   </style>
-
   <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
@@ -359,11 +357,18 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zekeropweg.nu" },
+          { "@type": "ListItem", "position": 2, "name": "EV AccuCheck", "item": "https://zekeropweg.nu/ev-accucheck.html" },
+          { "@type": "ListItem", "position": 3, "name": "EV Batterij Defect", "item": "https://zekeropweg.nu/ev-batterij-defect.html" }
+        ]
+      },
       {
         "@type": "LocalBusiness",
         "@id": "https://zekeropweg.nu/#business",
@@ -372,9 +377,15 @@
         "url": "https://zekeropweg.nu",
         "telephone": "+31623452349",
         "email": "info@zekeropweg.nu",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "KvK",
+          "value": "99323575"
+        },
         "image": [
           "https://zekeropweg.nu/assets/images/ev-accu-test-voor-aankoop-op-locatie.jpeg",
-          "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg"
+          "https://zekeropweg.nu/images/ev-accucheck-aviloo-test-zekeropweg.jpeg",
+          "https://zekeropweg.nu/images/aviloo-box.jpg"
         ],
         "logo": "https://zekeropweg.nu/assets/logo.png",
         "address": {
@@ -384,6 +395,24 @@
           "addressRegion": "Zuid-Holland",
           "addressCountry": "NL"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.8606,
+          "longitude": 4.5328
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          }
+        ],
+        "areaServed": [
+          "Rotterdam", "Barendrecht", "Dordrecht", "Ridderkerk", "Schiedam",
+          "Capelle aan den IJssel", "Vlaardingen", "Spijkenisse", "Den Haag",
+          "Delft", "Zoetermeer", "Zwijndrecht", "Papendrecht", "Leiden", "Gouda"
+        ],
         "priceRange": "€95 - €499",
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -411,7 +440,7 @@
           "logo": "https://zekeropweg.nu/assets/logo.png"
         },
         "datePublished": "2026-06-13",
-        "dateModified": "2026-06-13",
+        "dateModified": "2026-07-15",
         "url": "https://zekeropweg.nu/ev-batterij-defect.html",
         "mainEntityOfPage": "https://zekeropweg.nu/ev-batterij-defect.html"
       },
@@ -464,9 +493,7 @@
   }
   </script>
 </head>
-
 <body class="page-ev-accucheck">
-
   <!-- HEADER -->
   <header class="zop-header">
     <div class="zop-header-inner">
@@ -492,12 +519,10 @@
         <a href="over.html">Over</a>
         <a href="contact.html" class="zop-contact">Contact</a>
       </nav>
-      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
     </div>
   </header>
-
   <main>
-
     <!-- HERO -->
     <section class="hero-ev">
       <div class="container">
@@ -505,19 +530,18 @@
         <p class="hero-location">ZekerOpWeg detecteert defecte EV batterijcellen op locatie in Rotterdam, Barendrecht, Dordrecht, Ridderkerk, Schiedam, Den Haag, Delft, Zoetermeer en omgeving. Bel of WhatsApp: 06 23452349.</p>
         <h1>EV batterij defect: symptomen, oorzaken en wat u kunt doen</h1>
         <p class="hero-sub">Een defecte cel is onzichtbaar voor de boordcomputer. AVILOO Flash Test detecteert wat een BMS mist.</p>
-        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck €129</a>
+        <a href="ev-accucheck.html" class="btn-primary">Plan AccuCheck &euro;129</a>
         <div class="hero-trust">
-          <span>✓ Celanalyse op celniveau</span>
-          <span>✓ Officieel AVILOO-partner</span>
-          <span>✓ Detecteert wat BMS mist</span>
-          <span>✓ TÜV-gecertificeerd</span>
-          <span>✓ Uitvoering op locatie</span>
+          <span>&#10003; Celanalyse op celniveau</span>
+          <span>&#10003; Officieel AVILOO-partner</span>
+          <span>&#10003; Detecteert wat BMS mist</span>
+          <span>&#10003; TÜV-gecertificeerd</span>
+          <span>&#10003; Uitvoering op locatie</span>
         </div>
-        <p class="cta-trust">Vrijblijvende aanvraag · afspraak wordt eerst bevestigd</p>
-        <p class="hero-meta">€129 · Op locatie · TÜV-gecertificeerd · Dezelfde dag mogelijk</p>
+        <p class="cta-trust">Vrijblijvende aanvraag &middot; afspraak wordt eerst bevestigd</p>
+        <p class="hero-meta">&euro;129 &middot; Op locatie &middot; TÜV-gecertificeerd &middot; Dezelfde dag mogelijk</p>
       </div>
     </section>
-
     <!-- SYMPTOMEN -->
     <section class="symptomen-section">
       <div class="container">
@@ -551,7 +575,6 @@
         </div>
       </div>
     </section>
-
     <!-- WAAROM EEN DEFECTE CEL ONZICHTBAAR IS -->
     <section class="uitleg-section">
       <div class="container">
@@ -578,53 +601,51 @@
             <div class="risico-getal" style="margin-top:20px;">91 pt</div>
             <div class="risico-label">Maximale BMS-afwijking</div>
             <p>In extreme gevallen kan een BMS tot 91 procentpunten afwijken van de werkelijke celcapaciteit. Een auto die 91% SoH toont kan in werkelijkheid al sterk gedegradeerd zijn.</p>
-            <div class="risico-getal" style="margin-top:20px;">€8.000+</div>
+            <div class="risico-getal" style="margin-top:20px;">&euro;8.000+</div>
             <div class="risico-label">Gemiddelde accuvervanging</div>
-            <p>Accuvervanging kost bij de meeste populaire modellen €8.000 tot €13.000. Een diagnose kost €95 tot €129 en detecteert dit risico vooraf.</p>
+            <p>Accuvervanging kost bij de meeste populaire modellen &euro;8.000 tot &euro;13.000. Een diagnose kost &euro;95 tot &euro;129 en detecteert dit risico vooraf.</p>
           </div>
         </div>
       </div>
     </section>
-
     <!-- OORZAKEN -->
     <section class="oorzaken-section">
       <div class="container">
         <h2>Meest voorkomende oorzaken van een defecte EV batterij</h2>
         <div class="oorzaken-grid">
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">⚡</span>
+            <span class="oorzaak-icon">&#9889;</span>
             <strong>Intensief snelladen</strong>
             <p>Regelmatig snelladen boven 80% of bij lage temperaturen versnelt de degradatie en verhoogt het risico op lithiumplating in individuele cellen.</p>
           </div>
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">🌡️</span>
+            <span class="oorzaak-icon">&#127777;&#65039;</span>
             <strong>Extreme temperaturen</strong>
             <p>Laden of rijden in extreme hitte of kou belast de cellen onevenredig. Modellen zonder thermisch management (zoals de Nissan Leaf) zijn extra gevoelig.</p>
           </div>
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">🔋</span>
+            <span class="oorzaak-icon">&#128267;</span>
             <strong>Volledig leeg of vol rijden</strong>
             <p>Structureel laden tot 100% of rijden tot 0% versnelt celveroudering. De optimale bandbreedte is 20-80% voor dagelijks gebruik.</p>
           </div>
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">⏱️</span>
+            <span class="oorzaak-icon">&#9201;</span>
             <strong>Lange opslagperiodes</strong>
             <p>Een EV lang opslaan bij lage of hoge laadtoestand degradeert cellen sneller. Ideale opslagtoestand is 50% bij kamertemperatuur.</p>
           </div>
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">🔧</span>
+            <span class="oorzaak-icon">&#128295;</span>
             <strong>Productiefout of celdefect</strong>
             <p>Een klein percentage accu's heeft een productiefout in een individuele cel die pas na duizenden laadcycli zichtbaar wordt.</p>
           </div>
           <div class="oorzaak-card">
-            <span class="oorzaak-icon">💥</span>
+            <span class="oorzaak-icon">&#128165;</span>
             <strong>Aanrijding of stootschade</strong>
             <p>Een aanrijding kan het accupakket beschadigen zonder zichtbare schade aan de carrosserie. Een diagnose na een ongeluk geeft zekerheid.</p>
           </div>
         </div>
       </div>
     </section>
-
     <!-- AUTHORITY STRIP -->
     <section class="authority-strip">
       <div class="container authority-items">
@@ -634,7 +655,6 @@
         <span>Detecteert wat BMS mist</span>
       </div>
     </section>
-
     <!-- WAT KUNT U DOEN -->
     <section class="actie-section">
       <div class="container">
@@ -667,7 +687,6 @@
         </div>
       </div>
     </section>
-
     <!-- KOSTEN OVERZICHT -->
     <section class="kosten-section">
       <div class="container">
@@ -681,38 +700,37 @@
           <div class="kosten-rij">
             <span>Nissan Leaf</span>
             <span>40 / 62 kWh</span>
-            <span>€6.000 - €8.000</span>
+            <span>&euro;6.000 - &euro;8.000</span>
           </div>
           <div class="kosten-rij">
             <span>Volkswagen ID.3</span>
             <span>45 / 58 / 77 kWh</span>
-            <span>€8.000 - €12.000</span>
+            <span>&euro;8.000 - &euro;12.000</span>
           </div>
           <div class="kosten-rij">
             <span>Tesla Model 3</span>
             <span>55 / 75 kWh</span>
-            <span>€8.000 - €13.000</span>
+            <span>&euro;8.000 - &euro;13.000</span>
           </div>
           <div class="kosten-rij">
             <span>Hyundai Ioniq 5</span>
             <span>58 / 77 kWh</span>
-            <span>€10.000 - €15.000</span>
+            <span>&euro;10.000 - &euro;15.000</span>
           </div>
           <div class="kosten-rij">
             <span>Audi e-tron / Q4</span>
             <span>71 / 95 kWh</span>
-            <span>€15.000 - €20.000</span>
+            <span>&euro;15.000 - &euro;20.000</span>
           </div>
           <div class="kosten-rij" style="background:#f6f5f1;">
             <span>AVILOO Flash Test ZekerOpWeg</span>
             <span>Alle modellen</span>
-            <span style="color:var(--zop-gold,#c6a86a) !important;">€95 - €129</span>
+            <span style="color:var(--zop-gold,#c6a86a) !important;">&euro;95 - &euro;129</span>
           </div>
         </div>
         <p style="text-align:center; font-size:14px; color:var(--zop-muted,#5a6472); max-width:560px; margin:0 auto; line-height:1.7;">Een AVILOO Flash Test detecteert een defect vóór aankoop en voorkomt onverwachte kosten achteraf. De diagnose betaalt zichzelf terug bij één voorkomen miskoop.</p>
       </div>
     </section>
-
     <!-- FAQ -->
     <section class="faq-section">
       <div class="container">
@@ -728,7 +746,7 @@
           </div>
           <div class="faq-item">
             <h3>Wat kost het vervangen van een defecte EV batterij?</h3>
-            <p>Accuvervanging kost afhankelijk van het model €6.000 tot €20.000. Bij een Nissan Leaf €6.000 tot €8.000, bij een Tesla Model 3 €8.000 tot €13.000, bij een Audi e-tron €15.000 tot €20.000. Een AVILOO Flash Test bij ZekerOpWeg kost €95 tot €129 en detecteert een defect vóór aankoop.</p>
+            <p>Accuvervanging kost afhankelijk van het model &euro;6.000 tot &euro;20.000. Bij een Nissan Leaf &euro;6.000 tot &euro;8.000, bij een Tesla Model 3 &euro;8.000 tot &euro;13.000, bij een Audi e-tron &euro;15.000 tot &euro;20.000. Een AVILOO Flash Test bij ZekerOpWeg kost &euro;95 tot &euro;129 en detecteert een defect vóór aankoop.</p>
           </div>
           <div class="faq-item">
             <h3>Kan ik nog rijden met een defecte batterijcel?</h3>
@@ -745,7 +763,6 @@
         </div>
       </div>
     </section>
-
     <!-- GERELATEERDE ARTIKELEN -->
     <section style="background:#f6f5f1; padding:48px 0;">
       <div class="container">
@@ -769,20 +786,18 @@
           <a href="ev-accucheck.html" style="background:#0b1220; border-radius:12px; padding:20px 22px; text-decoration:none; display:block;">
             <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--zop-gold,#c6a86a); margin:0 0 8px; font-weight:600;">Dienst</p>
             <p style="font-size:15px; font-weight:700; color:#fff; margin:0 0 6px;">AccuCheck plannen</p>
-            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">€95 Barendrecht · €129 op locatie · Dezelfde dag mogelijk.</p>
+            <p style="font-size:13px; color:rgba(255,255,255,.65); margin:0; line-height:1.5;">&euro;95 Barendrecht &middot; &euro;129 op locatie &middot; Dezelfde dag mogelijk.</p>
           </a>
         </div>
       </div>
     </section>
-
   </main>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
         <p class="footer-title">ZekerOpWeg</p>
-        <p>© 2026 ZekerOpWeg</p>
+        <p>&copy; 2026 ZekerOpWeg</p>
         <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">
           Handelsnaam van Pepijn Westhoff<br />
           KvK 99323575<br />
@@ -804,7 +819,6 @@
       </div>
     </div>
   </footer>
-
   <script src="scripts/menu.js" defer></script>
 </body>
 </html>
