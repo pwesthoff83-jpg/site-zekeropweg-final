@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AccuZeker Lease | Gecertificeerde EV Lease met Accugarantie</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #0B1C3D;
+  --navy-soft:  #112240;
+  --green:      #1A7A4A;
+  --green-mid:  #21965C;
+  --green-light:#E8F5EE;
+  --green-pale: #F2FAF5;
+  --gold:       #B8963E;
+  --gold-light: #F5EDD6;
+  --white:      #FFFFFF;
+  --off-white:  #F8FAFC;
+  --text:       #0B1C3D;
+  --text-mid:   #3D5A80;
+  --text-soft:  #6B7FA3;
+  --border:     #E2EAF4;
+  --shadow-sm:  0 2px 12px rgba(11,28,61,0.06);
+  --shadow-md:  0 8px 32px rgba(11,28,61,0.10);
+  --shadow-lg:  0 20px 60px rgba(11,28,61,0.14);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(11,28,61,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  height: 68px; padding: 0 6%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { text-decoration: none; display: flex; align-items: baseline; gap: 2px; }
+.nav-logo .logo-accu { font-size: 19px; font-weight: 900; color: #fff; letter-spacing: -0.3px; }
+.nav-logo .logo-zeker { font-size: 19px; font-weight: 900; color: var(--green-mid); letter-spacing: -0.3px; }
+.nav-logo .logo-lease { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.4); margin-left: 6px; letter-spacing: 1px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; letter-spacing: 0.1px; }
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: var(--green); color: #fff !important; font-weight: 600 !important;
+  padding: 9px 20px; border-radius: 6px; transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--green-mid) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  margin-top: 68px;
+  background: var(--navy);
+  padding: 96px 6% 88px;
+  position: relative; overflow: hidden;
+}
+/* subtiele grid overlay */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 55%; height: 100%;
+  background: radial-gradient(ellipse at 80% 40%, rgba(26,122,74,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1160px; margin: 0 auto; position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 460px; gap: 72px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
+  background: rgba(26,122,74,0.15); border: 1px solid rgba(26,122,74,0.35);
+  padding: 6px 14px; border-radius: 20px;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.hero-eyebrow span { font-size: 12px; font-weight: 600; color: var(--green-mid); letter-spacing: 0.8px; text-transform: uppercase; }
+.hero h1 {
+  font-size: clamp(32px, 4.2vw, 52px); font-weight: 800; color: #fff;
+  line-height: 1.12; letter-spacing: -0.8px; margin-bottom: 20px;
+}
+.hero h1 .accent { color: var(--green-mid); }
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 36px; max-width: 460px;
+}
+.hero-voordelen {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+.voordeel {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px; padding: 11px 14px;
+}
+.voordeel .v-icon { font-size: 18px; flex-shrink: 0; }
+.voordeel .v-title { font-size: 12.5px; font-weight: 700; color: #fff; display: block; }
+.voordeel .v-sub { font-size: 11px; color: rgba(255,255,255,0.5); display: block; margin-top: 1px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-green {
+  background: var(--green); color: #fff; padding: 15px 28px;
+  border-radius: 8px; font-weight: 700; font-size: 15px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  border: none; cursor: pointer; transition: all .2s; letter-spacing: 0.1px;
+}
+.btn-green:hover { background: var(--green-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,122,74,0.35); }
+.btn-ghost {
+  background: transparent; color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.2); padding: 15px 24px;
+  border-radius: 8px; font-weight: 600; font-size: 15px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: all .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+
+/* ─── HERO CALCULATOR ─── */
+.hero-calc {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.calc-head {
+  background: var(--navy-soft); padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.calc-head h3 { font-size: 14px; font-weight: 700; color: #fff; }
+.calc-head .calc-badge { font-size: 10px; font-weight: 600; background: rgba(26,122,74,0.25); color: var(--green-mid); padding: 3px 9px; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+.calc-body { padding: 24px; }
+.c-field { margin-bottom: 14px; }
+.c-field label { display: block; font-size: 11px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.c-field input, .c-field select {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 15px; color: var(--text);
+  background: var(--off-white); font-family: inherit; transition: border-color .2s;
+}
+.c-field input:focus, .c-field select:focus { outline: none; border-color: var(--green); background: #fff; }
+.c-result {
+  background: var(--navy); border-radius: 12px; padding: 20px;
+  text-align: center; margin: 4px 0 0;
+}
+.c-result .res-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+.c-result .res-amount { font-size: 46px; font-weight: 900; color: #fff; line-height: 1; display: block; }
+.c-result .res-freq { font-size: 13px; color: rgba(255,255,255,0.5); }
+.c-breakdown { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); }
+.c-breakdown span { font-size: 11px; color: rgba(255,255,255,0.45); }
+.c-breakdown .val { color: rgba(255,255,255,0.75); font-weight: 600; }
+.c-breakdown .val-green { color: var(--green-mid); font-weight: 600; }
+.c-footnote { font-size: 10px; color: var(--text-soft); line-height: 1.5; text-align: center; padding: 12px 0 4px; }
+.c-cta { width: 100%; background: var(--green); color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s; font-family: inherit; letter-spacing: 0.1px; margin-top: 4px; }
+.c-cta:hover { background: var(--green-mid); }
+
+/* ─── PARTNERBAR ─── */
+.partnerbar { background: #F0F4FA; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 6%; }
+.partnerbar-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 0; }
+.partner-label { font-size: 11px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; margin-right: 32px; padding-right: 32px; border-right: 1px solid var(--border); }
+.partner-items { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+.partner-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-mid); }
+.partner-item .p-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+/* ─── SECTIONS ─── */
+section { padding: 96px 6%; }
+.s-inner { max-width: 1160px; margin: 0 auto; }
+.s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; display: block; }
+.s-title { font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; color: var(--navy); line-height: 1.18; margin-bottom: 16px; letter-spacing: -0.5px; }
+.s-sub { font-size: 16px; color: var(--text-soft); max-width: 560px; line-height: 1.75; }
+
+/* ─── HOE HET WERKT ─── */
+.how { background: var(--off-white); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+.step {
+  background: #fff; border-radius: 14px; padding: 30px 24px;
+  border: 1px solid var(--border); position: relative;
+  box-shadow: var(--shadow-sm); transition: all .25s;
+}
+.step:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: #d0dced; }
+.step-num {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: var(--green-pale); border: 1px solid var(--green-light);
+  color: var(--green); font-size: 17px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.step h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.step p { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+.step-connector { position: absolute; right: -11px; top: 50px; z-index: 1; width: 22px; height: 22px; background: #fff; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.step-connector svg { width: 10px; height: 10px; color: var(--text-soft); }
+
+/* ─── ALLES INBEGREPEN ─── */
+.included { background: #fff; }
+.included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 56px; align-items: start; }
+.included-items { display: flex; flex-direction: column; gap: 6px; }
+.inc-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 20px; border-radius: 12px; border: 1.5px solid var(--border);
+  transition: all .2s; background: #fff;
+}
+.inc-item:hover { border-color: var(--green-light); background: var(--green-pale); }
+.inc-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.inc-text {}
+.inc-title { font-size: 15px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 3px; }
+.inc-desc { font-size: 13px; color: var(--text-soft); line-height: 1.55; display: block; }
+.inc-value {
+  display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 700;
+  color: var(--green); background: var(--green-pale); border: 1px solid var(--green-light);
+  padding: 2px 9px; border-radius: 10px;
+}
+
+/* ─── PRIJSKAART ─── */
+.price-showcase {
+  background: var(--navy); border-radius: 20px; padding: 36px;
+  box-shadow: var(--shadow-lg); position: sticky; top: 88px;
+}
+.ps-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.ps-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+.ps-example { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; margin-bottom: 16px; text-align: center; }
+.ps-example .ex-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 8px; display: block; }
+.ps-example .ex-amount { font-size: 52px; font-weight: 900; color: #fff; line-height: 1; display: block; }
+.ps-example .ex-freq { font-size: 13px; color: rgba(255,255,255,0.45); }
+.ps-breakdown { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px; margin-bottom: 16px; }
+.ps-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; }
+.ps-row .r-label { color: rgba(255,255,255,0.5); }
+.ps-row .r-val { color: #fff; font-weight: 600; }
+.ps-row .r-val.green { color: var(--green-mid); }
+.ps-fine { font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.6; margin-bottom: 16px; text-align: center; }
+.ps-cta { display: block; width: 100%; background: var(--green); color: #fff; text-align: center; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; transition: background .2s; }
+.ps-cta:hover { background: var(--green-mid); }
+.ps-guarantee { display: flex; align-items: center; gap: 8px; background: rgba(26,122,74,0.12); border: 1px solid rgba(26,122,74,0.2); border-radius: 8px; padding: 10px 14px; margin-top: 12px; }
+.ps-guarantee span { font-size: 12px; color: var(--green-mid); font-weight: 600; }
+
+/* ─── WAAROM ─── */
+.why { background: var(--off-white); }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+.why-card {
+  background: #fff; border-radius: 14px; padding: 30px 26px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: all .25s;
+}
+.why-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.why-card .wc-icon { font-size: 30px; margin-bottom: 16px; display: block; }
+.why-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.why-card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.68; }
+
+/* ─── PROFIEL ─── */
+.profiel { background: var(--navy); padding: 88px 6%; }
+.profiel-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.profiel-text .s-eyebrow { color: var(--green-mid); }
+.profiel-text .s-title { color: #fff; }
+.profiel-text .s-sub { color: rgba(255,255,255,0.6); max-width: 100%; }
+.profiel-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+.stat-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; }
+.stat-box .stat-num { font-size: 36px; font-weight: 900; color: var(--green-mid); line-height: 1; display: block; }
+.stat-box .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; display: block; }
+.profiel-quote {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 16px; padding: 32px; position: relative;
+}
+.profiel-quote::before { content: '"'; font-size: 80px; color: var(--green); opacity: .3; position: absolute; top: 8px; left: 20px; line-height: 1; font-family: Georgia, serif; }
+.pq-text { font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 24px; padding-top: 28px; }
+.pq-author { display: flex; align-items: center; gap: 14px; }
+.pq-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0; }
+.pq-name { font-size: 14px; font-weight: 700; color: #fff; display: block; }
+.pq-role { font-size: 12px; color: rgba(255,255,255,0.45); display: block; }
+
+/* ─── CTA BANNER ─── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--green) 0%, #155D3A 100%);
+  padding: 72px 6%; text-align: center;
+}
+.cta-banner h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: -0.4px; }
+.cta-banner p { font-size: 16px; color: rgba(255,255,255,0.75); margin-bottom: 36px; }
+.btn-white { background: #fff; color: var(--green); padding: 15px 32px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+.btn-white:hover { background: var(--green-pale); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+/* ─── CONTACT ─── */
+.contact { background: var(--off-white); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 56px; align-items: start; }
+.contact-info {}
+.contact-info h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+.contact-info p { font-size: 15px; color: var(--text-soft); line-height: 1.72; margin-bottom: 28px; }
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.ps { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.ps:last-child { border-bottom: none; }
+.ps-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--green-pale); border: 1.5px solid var(--green-light); color: var(--green); font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.ps-content {}
+.ps-content strong { font-size: 14px; color: var(--navy); font-weight: 700; display: block; }
+.ps-content span { font-size: 13px; color: var(--text-soft); }
+.contact-form-wrap {}
+.contact-form { background: #fff; border-radius: 16px; padding: 36px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+.contact-form h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 20px; }
+.f-group { margin-bottom: 14px; }
+.f-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px; }
+.f-group input, .f-group select, .f-group textarea {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-family: inherit; color: var(--text); background: var(--off-white);
+  transition: border-color .2s; resize: vertical;
+}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus { outline: none; border-color: var(--green); background: #fff; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.f-submit { width: 100%; padding: 14px; background: var(--navy); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s; font-family: inherit; margin-top: 6px; }
+.f-submit:hover { background: var(--navy-soft); }
+.f-success { display: none; background: var(--green-pale); border: 1px solid var(--green-light); border-radius: 10px; padding: 18px; text-align: center; color: var(--green); font-weight: 700; margin-top: 12px; }
+
+/* ─── FOOTER ─── */
+footer { background: var(--navy); padding: 40px 6%; }
+.footer-inner { max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-brand {}
+.footer-logo { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.footer-logo span { color: var(--green-mid); }
+.footer-tagline { font-size: 12px; color: rgba(255,255,255,0.35); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.75); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .hero-inner, .included-grid, .profiel-inner, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .step-connector { display: none; }
+  .nav-links { display: none; }
+  .price-showcase { position: static; }
+  .hero-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .steps { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .profiel-stats { grid-template-columns: 1fr 1fr; }
+  .hero-voordelen { grid-template-columns: 1fr; }
+  .f-row { grid-template-columns: 1fr; }
+  section { padding: 64px 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- Herbruikbaar schild SVG -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="zow-shield" viewBox="0 0 100 115">
+    <!-- Schild vorm -->
+    <path d="M50 4 C50 4 12 16 8 20 L8 58 C8 82 28 104 50 112 C72 104 92 82 92 58 L92 20 C88 16 50 4 50 4Z" fill="currentColor" stroke="none"/>
+    <!-- Z letter -->
+    <text x="50" y="74" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="52" fill="white" letter-spacing="-2">Z</text>
+  </symbol>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg width="28" height="32" style="flex-shrink:0;margin-right:8px"><use href="#zow-shield" color="#21965C"/></svg>
+    <span class="logo-accu">Accu</span><span class="logo-zeker">Zeker</span>
+    <span class="logo-lease">Lease</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hoe-het-werkt">Werkwijze</a></li>
+    <li><a href="#inbegrepen">Wat is inbegrepen</a></li>
+    <li><a href="#waarom">Waarom AccuZeker</a></li>
+    <li><a href="#contact" class="nav-cta">Aanvraag indienen</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="dot"></div>
+        <span>Nederland's eerste gecertificeerde EV-lease</span>
+      </div>
+      <h1>EV gevonden op Marktplaats?<br>Wij regelen de lease <span class="accent">én de garantie.</span></h1>
+      <p class="hero-sub">Jij kiest de auto. Wij meten de accu onafhankelijk, verstrekken het officieel AccuPaspoort en regelen de financial lease. Alles in één maandbedrag.</p>
+      <div class="hero-voordelen">
+        <div class="voordeel">
+          <svg width="22" height="25" style="flex-shrink:0"><use href="#zow-shield" color="#21965C"/></svg>
+          <div><span class="v-title">12 mnd / 20.000 km garantie</span><span class="v-sub">Accugarantie inbegrepen</span></div>
+        </div>
+        <div class="voordeel">
+          <span class="v-icon">📋</span>
+          <div><span class="v-title">Officieel AccuPaspoort</span><span class="v-sub">Gecertificeerd op kenteken</span></div>
+        </div>
+        <div class="voordeel">
+          <span class="v-icon">🔋</span>
+          <div><span class="v-title">Jaarlijkse accumeting</span><span class="v-sub">Garantie automatisch verlengd</span></div>
+        </div>
+        <div class="voordeel">
+          <span class="v-icon">💳</span>
+          <div><span class="v-title">Alles in één maandbedrag</span><span class="v-sub">Geen verborgen kosten</span></div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#aanvragen" class="btn-green">🚗 Stuur ons jouw EV</a>
+        <a href="#hoe-het-werkt" class="btn-ghost">Hoe werkt het? →</a>
+      </div>
+    </div>
+    <div class="hero-calc">
+      <div class="calc-head">
+        <h3>🧮 Bereken jouw maandbedrag</h3>
+        <span class="calc-badge">Indicatief</span>
+      </div>
+      <div class="calc-body">
+        <div class="c-field">
+          <label>Vraagprijs auto (€)</label>
+          <input type="number" id="calc-prijs" value="25000" min="5000" max="100000" step="500" oninput="bereken()">
+        </div>
+        <div class="c-field">
+          <label>Looptijd</label>
+          <select id="calc-looptijd" onchange="bereken()">
+            <option value="36">36 maanden</option>
+            <option value="48" selected>48 maanden</option>
+            <option value="60">60 maanden</option>
+          </select>
+        </div>
+        <div class="c-field">
+          <label>Aanbetaling (€)</label>
+          <input type="number" id="calc-aanbetaling" value="0" min="0" step="500" oninput="bereken()">
+        </div>
+        <div class="c-field">
+          <label>Kilometers per jaar</label>
+          <select id="calc-km" onchange="bereken()">
+            <option value="10000">10.000 km/jaar</option>
+            <option value="15000">15.000 km/jaar</option>
+            <option value="20000" selected>20.000 km/jaar</option>
+            <option value="25000">25.000 km/jaar</option>
+            <option value="30000">30.000 km/jaar</option>
+            <option value="35000">35.000 km/jaar</option>
+            <option value="40000">40.000 km/jaar</option>
+            <option value="50000">50.000 km/jaar</option>
+          </select>
+        </div>
+        <div class="c-result">
+          <span class="res-label">Alles-in-één maandbedrag</span>
+          <span class="res-amount" id="res-totaal">€ ..</span>
+          <div class="res-freq">per maand · incl. AccuZeker</div>
+          <div class="c-breakdown">
+            <div><span>Auto lease</span><br><span class="val" id="res-lease">...</span></div>
+            <div style="text-align:right"><span>AccuZeker</span><br><span class="val-green" id="res-accu">...</span></div>
+          </div>
+        </div>
+        <p class="c-footnote" id="c-footnote-text">AccuPaspoort t.w.v. €299 incl. · Jaarlijkse accucheck incl. garantieverlenging t.w.v. €149 incl.<br>Exacte berekening via FinanSI · 7% rente indicatief</p>
+        <button class="c-cta" onclick="document.getElementById('aanvragen').scrollIntoView({behavior:'smooth'})">Aanvraag indienen →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER BAR -->
+<div class="partnerbar">
+  <div class="partnerbar-inner">
+    <div class="partner-label">Samenwerking</div>
+    <div class="partner-items">
+      <div class="partner-item"><div class="p-dot"></div>FinanSI · Financial Lease</div>
+      <div class="partner-item"><div class="p-dot"></div>Onafhankelijke accudiagnose</div>
+      <div class="partner-item"><div class="p-dot"></div>Gecertificeerd AccuPaspoort</div>
+      <div class="partner-item"><div class="p-dot"></div>Elke EV, elke aanbieder</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOE HET WERKT -->
+<section class="how" id="hoe-het-werkt">
+  <div class="s-inner">
+    <span class="s-eyebrow">Werkwijze</span>
+    <h2 class="s-title">Van Marktplaats-link tot rijdende EV. Wij regelen de rest.</h2>
+    <p class="s-sub">Vier stappen. Geen gedoe. Binnen enkele werkdagen rijdt u in uw gecertificeerde EV.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Stuur ons de link</h3>
+        <p>U heeft een EV gevonden op Marktplaats, AutoScout24 of elders. Stuur ons de link of het kenteken via het aanvraagformulier.</p>
+        <div class="step-connector"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h4M5 3l2 2-2 2"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Wij meten de accu</h3>
+        <p>Onze specialist rijdt naar de auto toe. Volledige onafhankelijke batterijanalyse: AccuScore, degradatie, laadprofiel en risicoclassificatie.</p>
+        <div class="step-connector"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h4M5 3l2 2-2 2"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Lease + AccuPaspoort</h3>
+        <p>U ontvangt het officieel AccuPaspoort met 12 maanden / 20.000 km garantie. Het leasecontract wordt via FinanSI afgerond.</p>
+        <div class="step-connector"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h4M5 3l2 2-2 2"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Jaarlijks hervalidatie</h3>
+        <p>Elk jaar meten wij de accu opnieuw. De garantie wordt automatisch verlengd. U rijdt altijd met actuele en gedocumenteerde accuzekerheid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAT IS INBEGREPEN -->
+<section class="included" id="inbegrepen">
+  <div class="s-inner">
+    <div class="included-grid">
+      <div>
+        <span class="s-eyebrow">Wat is inbegrepen</span>
+        <h2 class="s-title">Eén maandbedrag. Alles inbegrepen.</h2>
+        <p class="s-sub">Geen losse facturen, geen verrassingen achteraf. Het AccuPaspoort en de jaarlijkse garantieverlenging zitten standaard in uw maandbedrag.</p>
+        <div class="included-items" style="margin-top: 36px;">
+          <div class="inc-item">
+            <span class="inc-icon">💳</span>
+            <div class="inc-text">
+              <span class="inc-title">Financial lease op uw EV</span>
+              <span class="inc-desc">Berekend op basis van voertuigwaarde, looptijd en uw situatie via FinanSI.</span>
+            </div>
+          </div>
+          <div class="inc-item">
+            <span class="inc-icon">📋</span>
+            <div class="inc-text">
+              <span class="inc-title">Officieel AccuPaspoort</span>
+              <span class="inc-desc">Onafhankelijke meting · AccuScore · risicoclassificatie · digitaal certificaat op kenteken.</span>
+              <span class="inc-value">t.w.v. €299 · inbegrepen</span>
+            </div>
+          </div>
+          <div class="inc-item">
+            <span class="inc-icon">🛡️</span>
+            <div class="inc-text">
+              <span class="inc-title">12 maanden / 20.000 km accugarantie</span>
+              <span class="inc-desc">Gecertificeerde en gedocumenteerde garantie op de batterij, direct geldig na meting.</span>
+            </div>
+          </div>
+          <div class="inc-item">
+            <span class="inc-icon">🔋</span>
+            <div class="inc-text">
+              <span class="inc-title">Jaarlijkse accumeting + garantieverlenging</span>
+              <span class="inc-desc">Elk jaar rijden wij naar u toe. Garantie verlengd. AccuPaspoort vernieuwd.</span>
+              <span class="inc-value">t.w.v. €149/jaar · inbegrepen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="price-showcase">
+          <span class="ps-label">Rekenvoorbeeld</span>
+          <div class="ps-title">EV van €25.000 · 48 maanden</div>
+          <div class="ps-example">
+            <span class="ex-label">Alles-in-één maandbedrag</span>
+            <span class="ex-amount">€ 606</span>
+            <div class="ex-freq">per maand · incl. garantie</div>
+          </div>
+          <div class="ps-breakdown">
+            <div class="ps-row"><span class="r-label">Auto lease (indicatief 7%)</span><span class="r-val">€ 590/mnd</span></div>
+            <div class="ps-row"><span class="r-label">AccuZeker compleet</span><span class="r-val green">€ 16/mnd</span></div>
+          </div>
+          <p class="ps-fine">AccuPaspoort t.w.v. €299 incl. · Jaarlijkse accucheck incl. garantieverlenging t.w.v. €149 incl. · Exacte berekening via FinanSI</p>
+          <a href="#aanvragen" class="ps-cta">Bereken mijn maandbedrag →</a>
+          <div class="ps-guarantee">
+            <svg width="18" height="21" style="flex-shrink:0"><use href="#zow-shield" color="#21965C"/></svg>
+            <span>Altijd onafhankelijk gecertificeerd door ZekerOpWeg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAAROM -->
+<section class="why" id="waarom">
+  <div class="s-inner">
+    <span class="s-eyebrow">Waarom AccuZeker Lease</span>
+    <h2 class="s-title">Niemand anders garandeert de accu</h2>
+    <p class="s-sub">Bij occasion-EV's is de batterij de grootste onzekerheid. Leasemaatschappijen meten niet. Dealers garanderen niet. Wij wel: onafhankelijk, gecertificeerd en doorlopend.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="wc-icon">🔬</span>
+        <h3>Volledig onafhankelijk</h3>
+        <p>Wij zijn niet verbonden aan de verkoper, dealer of leasemaatschappij. Onze meting is objectief. U krijgt de volledige, ongefiltreerde uitslag.</p>
+      </div>
+      <div class="why-card">
+        <span class="wc-icon">🛡️</span>
+        <h3>Gedocumenteerde garantie</h3>
+        <p>Geen belofte. Een gecertificeerde garantie vastgelegd in het AccuPaspoort op kenteken. 12 maanden of 20.000 km, elk jaar verlengd.</p>
+      </div>
+      <div class="why-card">
+        <span class="wc-icon">📊</span>
+        <h3>Volledige transparantie</h3>
+        <p>AccuScore, degradatiesnelheid, laadprofiel, risicoclassificatie. U weet precies waar u aan toe bent, vóór u tekent.</p>
+      </div>
+      <div class="why-card">
+        <span class="wc-icon">🔄</span>
+        <h3>Doorlopende zekerheid</h3>
+        <p>Geen eenmalige check. Jaarlijks meten wij opnieuw. De garantie blijft actueel voor de gehele leaseperiode.</p>
+      </div>
+      <div class="why-card">
+        <span class="wc-icon">💰</span>
+        <h3>Beschermde restwaarde</h3>
+        <p>Een volledig gedocumenteerd AccuPaspoort verhoogt de restwaarde van uw EV bij einde lease aantoonbaar. Minder discussie, meer opbrengst.</p>
+      </div>
+      <div class="why-card">
+        <span class="wc-icon">⚡</span>
+        <h3>Elke EV, elke aanbieder</h3>
+        <p>Of u de auto vindt op Marktplaats, AutoScout24 of ergens anders: wij meten elke EV. Volledige keuzevrijheid voor u.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIEL PEPIJN -->
+<section class="profiel">
+  <div class="profiel-inner">
+    <div class="profiel-text">
+      <span class="s-eyebrow">Uw partner</span>
+      <h2 class="s-title">Een specialist die u vertrouwen geeft</h2>
+      <p class="s-sub">AccuZeker Lease is onderdeel van ZekerOpWeg, gespecialiseerd in onafhankelijke EV-batterijanalyse. Geen verkoper. Geen dealer. Uitsluitend uw belang.</p>
+      <div class="profiel-stats">
+        <div class="stat-box">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Onafhankelijk gecertificeerd</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">20k</span>
+          <span class="stat-label">km accugarantie per jaar</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">1 dag</span>
+          <span class="stat-label">Reactie na uw aanvraag</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">NL</span>
+          <span class="stat-label">Heel Nederland beschikbaar</span>
+        </div>
+      </div>
+    </div>
+    <div class="profiel-quote">
+      <p class="pq-text">De accu is het hart van elke EV. Als niemand u vertelt wat de staat is, rijdt u blind. Wij zorgen dat u het weet, vóór u een handtekening zet.</p>
+      <div class="pq-author">
+        <div class="pq-avatar"><svg width="26" height="30"><use href="#zow-shield" color="rgba(255,255,255,0.9)"/></svg></div>
+        <div>
+          <span class="pq-name">Pepijn Westhoff</span>
+          <span class="pq-role">Oprichter · ZekerOpWeg / AccuZeker Lease</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>EV gevonden? Stuur ons de link.</h2>
+  <p>Stuur het kenteken of de advertentielink van de EV die u wil leasen. Wij nemen binnen 1 werkdag contact op.</p>
+  <a href="#aanvragen" class="btn-white">🚗 Aanvraag indienen →</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="s-inner">
+    <span class="s-eyebrow">Aanvraag</span>
+    <h2 class="s-title">Stuur ons uw EV</h2>
+    <div class="contact-grid" id="aanvragen">
+      <div class="contact-info">
+        <h3>Wat gebeurt er na uw aanvraag?</h3>
+        <p>Wij bekijken de auto, controleren de beschikbaarheid en nemen binnen 1 werkdag contact op met een concrete indicatie.</p>
+        <div class="process-steps">
+          <div class="ps">
+            <div class="ps-dot">1</div>
+            <div class="ps-content"><strong>Aanvraag ontvangen</strong><span>Wij bevestigen uw aanvraag direct per e-mail.</span></div>
+          </div>
+          <div class="ps">
+            <div class="ps-dot">2</div>
+            <div class="ps-content"><strong>Indicatie & terugbelafspraak</strong><span>Binnen 1 werkdag bellen wij u terug met een leaseindicatie.</span></div>
+          </div>
+          <div class="ps">
+            <div class="ps-dot">3</div>
+            <div class="ps-content"><strong>Onafhankelijke accumeting</strong><span>Bij akkoord meten onze specialist de auto op locatie.</span></div>
+          </div>
+          <div class="ps">
+            <div class="ps-dot">4</div>
+            <div class="ps-content"><strong>AccuPaspoort + leasecontract</strong><span>U ontvangt uw garantie. Leasecontract via FinanSI.</span></div>
+          </div>
+          <div class="ps">
+            <div class="ps-dot">5</div>
+            <div class="ps-content"><strong>Zeker rijden</strong><span>Jaarlijks meten wij opnieuw. Garantie blijft actueel.</span></div>
+          </div>
+        </div>
+        <div style="margin-top: 28px; padding: 18px 20px; background: #fff; border-radius: 12px; border: 1px solid var(--border);">
+          <div style="font-size: 12px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Direct contact</div>
+          <div style="font-size: 16px; font-weight: 700; color: var(--navy);">📧 info@zekeropweg.nu</div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="contact-form">
+          <h3>Aanvraag indienen</h3>
+          <form id="aanvraag-form" onsubmit="submitForm(event)">
+            <div class="f-row">
+              <div class="f-group">
+                <label>Naam *</label>
+                <input type="text" placeholder="Uw naam" required>
+              </div>
+              <div class="f-group">
+                <label>Bedrijfsnaam</label>
+                <input type="text" placeholder="Optioneel">
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-group">
+                <label>E-mail *</label>
+                <input type="email" placeholder="naam@bedrijf.nl" required>
+              </div>
+              <div class="f-group">
+                <label>Telefoon</label>
+                <input type="tel" placeholder="06 12 34 56 78">
+              </div>
+            </div>
+            <div class="f-group">
+              <label>Link of kenteken van de EV *</label>
+              <input type="text" placeholder="https://www.marktplaats.nl/... of kenteken" required>
+            </div>
+            <div class="f-row">
+              <div class="f-group">
+                <label>Gewenste looptijd</label>
+                <select>
+                  <option value="">Selecteer</option>
+                  <option value="36">36 maanden</option>
+                  <option value="48">48 maanden</option>
+                  <option value="60">60 maanden</option>
+                </select>
+              </div>
+              <div class="f-group">
+                <label>Aanbetaling</label>
+                <input type="text" placeholder="€ 0">
+              </div>
+            </div>
+            <div class="f-group">
+              <label>Opmerkingen</label>
+              <textarea rows="3" placeholder="Vragen, gewenste startdatum, ..."></textarea>
+            </div>
+            <button type="submit" class="f-submit">Aanvraag indienen · reactie binnen 1 werkdag</button>
+            <div class="f-success" id="form-success">✅ Bedankt voor uw aanvraag. We nemen binnen 1 werkdag contact op.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo" style="display:flex;align-items:center;gap:10px;">
+        <svg width="22" height="26"><use href="#zow-shield" color="#21965C"/></svg>
+        <span>Accu<span style="color:var(--green-mid)">Zeker</span> Lease · ZekerOpWeg</span>
+      </div>
+      <div class="footer-tagline">"Jij least de auto. Wij garanderen de accu."</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Algemene voorwaarden</a>
+      <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a>
+    </div>
+    <div class="footer-copy">© 2026 ZekerOpWeg · Barendrecht</div>
+  </div>
+</footer>
+
+<script>
+function bereken() {
+  const prijs = parseFloat(document.getElementById('calc-prijs').value) || 0;
+  const maanden = parseInt(document.getElementById('calc-looptijd').value) || 48;
+  const aanbetaling = parseFloat(document.getElementById('calc-aanbetaling').value) || 0;
+  const kmPerJaar = parseInt(document.getElementById('calc-km').value) || 20000;
+  const principal = Math.max(0, prijs - aanbetaling);
+  if (principal <= 0) {
+    document.getElementById('res-totaal').textContent = '€ ..';
+    document.getElementById('res-lease').textContent = '...';
+    document.getElementById('res-accu').textContent = '...';
+    return;
+  }
+  const r = 0.07 / 12;
+  const n = maanden;
+  const lease = principal * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n) - 1);
+
+  // Garantie vervalt na 12 mnd OF 20.000 km, wat eerder is.
+  // Bij 20k km/jaar = interval 12 mnd = €10/mnd basis.
+  // Bij hogere km raakt de 20k km-grens eerder → kortere interval → hogere maandprijs.
+  // Factor = hoe veel sneller de garantie verloopt t.o.v. 20k km/jaar.
+  const factor = Math.max(1, kmPerJaar / 20000);
+  const abonnementMaand = 10 * factor; // €10/mnd bij 20k km, schaalt lineair omhoog
+  const accu = (299 / maanden) + abonnementMaand;
+
+  const totaal = lease + accu;
+  document.getElementById('res-totaal').textContent = '€ ' + Math.round(totaal).toLocaleString('nl-NL');
+  document.getElementById('res-lease').textContent = '€ ' + Math.round(lease).toLocaleString('nl-NL') + '/mnd';
+  document.getElementById('res-accu').textContent = '€ ' + Math.round(accu * 10) / 10 + '/mnd';
+
+  // Verloopinterval tonen in voetnoot
+  const intervalMaanden = Math.round((20000 / kmPerJaar) * 12 * 10) / 10;
+  const intervalTekst = kmPerJaar <= 20000
+    ? 'Accucheck + garantieverlenging jaarlijks t.w.v. €149 incl.'
+    : 'Accucheck + garantieverlenging elke ca. ' + intervalMaanden + ' mnd t.w.v. €149 per beurt incl.';
+  document.getElementById('c-footnote-text').innerHTML =
+    'AccuPaspoort t.w.v. €299 incl. · ' + intervalTekst + '<br>Exacte berekening via FinanSI · 7% rente indicatief';
+}
+function submitForm(e) {
+  e.preventDefault();
+  const s = document.getElementById('form-success');
+  s.style.display = 'block';
+  e.target.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+  s.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+bereken();
+</script>
+</body>
+</html>
