@@ -129,6 +129,16 @@
     .doc { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: #fbfdff; }
     .doc button { border: 1px solid var(--line); background: var(--white); border-radius: 999px; padding: 8px 12px; cursor: pointer; }
     .planning { display: grid; gap: 12px; }
+    .handover { grid-template-columns: 1fr 0.8fr 1fr; align-items: stretch; }
+    .summary-card { display: grid; gap: 12px; }
+    .qr { width: 132px; height: 132px; border-radius: 18px; background:
+      linear-gradient(90deg, var(--navy) 10px, transparent 10px) 0 0 / 22px 22px,
+      linear-gradient(var(--navy) 10px, transparent 10px) 0 0 / 22px 22px,
+      var(--white); border: 10px solid #eef4fb; box-shadow: inset 0 0 0 1px var(--line); }
+    .customer-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .mini-stat { flex: 1 1 120px; padding: 12px; border-radius: 15px; background: #f7fafe; border: 1px solid var(--line); }
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .checklist li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
     .planning-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); }
     .check { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
     .modal { border: 0; border-radius: 24px; width: min(620px, calc(100vw - 28px)); padding: 0; box-shadow: var(--shadow); }
@@ -152,7 +162,7 @@
     }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; }
-      .nav, .kpis, .main-grid, .details, .field-grid { grid-template-columns: 1fr; }
+      .nav, .kpis, .main-grid, .details, .field-grid, .handover { grid-template-columns: 1fr; }
       .vehicle { align-items: flex-start; flex-direction: column; }
       .car { max-width: none; width: 100%; }
       .event { grid-template-columns: 1fr; }
@@ -192,6 +202,7 @@
         <a href="#garantie">✅ Garantie</a>
         <a href="#documenten">📄 Documenten</a>
         <a href="#planning">📅 Controleplanning</a>
+        <a href="#overdracht">🤝 Klantpreview</a>
       </nav>
       <div class="sidebar-card">
         <span class="label">Volgende controle</span>
@@ -212,6 +223,7 @@
           <button class="btn" data-action="print">Paspoort printen</button>
           <button class="btn secondary" data-action="share">Demo-link kopiëren</button>
           <button class="btn ghost" data-action="plan">Controle plannen</button>
+          <button class="btn secondary" data-action="customer-preview">Klantpreview</button>
         </div>
       </header>
 
@@ -310,6 +322,35 @@
           <div class="planning-item"><span class="check">3</span><div><strong>Garantiepaspoort bijwerken</strong><br><span class="label">Nieuwe meetwaarden worden in deze lokale demo als preview getoond.</span></div></div>
         </div>
       </section>
+
+      <section class="grid handover section" id="overdracht">
+        <article class="card summary-card">
+          <div>
+            <span class="eyebrow">Klantversie</span>
+            <h2>Klantpreview & overdracht</h2>
+            <p>Maak een begrijpelijke, deelbare samenvatting voor eigenaar, koper of leasemaatschappij.</p>
+          </div>
+          <div class="customer-strip">
+            <div class="mini-stat"><span class="label">Vertrouwen</span><strong>92/100</strong></div>
+            <div class="mini-stat"><span class="label">Accuconditie</span><strong>91% SOH</strong></div>
+            <div class="mini-stat"><span class="label">Garantie</span><strong>Actief</strong></div>
+          </div>
+          <button class="btn" data-action="customer-secondary">Open klantpreview</button>
+        </article>
+        <article class="card summary-card">
+          <h2>Lokale QR-preview</h2>
+          <div class="qr" aria-label="Decoratieve QR-code preview"></div>
+          <p class="label">Voorbeeld van een later deelbare paspoortlink. In deze demo blijft alles lokaal.</p>
+        </article>
+        <article class="card summary-card">
+          <h2>Overdrachtschecklist</h2>
+          <ul class="checklist">
+            <li><span class="check">✓</span><span>Technische meetwaarden vertaald naar klanttaal.</span></li>
+            <li><span class="check">✓</span><span>Garantieperiode en volgende controledatum duidelijk zichtbaar.</span></li>
+            <li><span class="check">✓</span><span>Documenten klaar voor lokale preview en latere export.</span></li>
+          </ul>
+        </article>
+      </section>
     </main>
   </div>
 
@@ -345,6 +386,21 @@
     </form>
   </dialog>
 
+  <dialog class="modal" id="customerModal">
+    <form method="dialog" class="modal-body">
+      <div class="modal-head">
+        <div><span class="eyebrow">Klantpreview</span><h2>Publieke samenvatting Audi e-tron</h2><p class="label">Heldere versie zonder interne workflowdetails.</p></div>
+        <button class="close" value="cancel" aria-label="Sluiten">×</button>
+      </div>
+      <p>Deze Audi e-tron heeft een Battery Trust Score van <strong>92/100</strong>. De laatst gemeten accugezondheid is <strong>91% SOH</strong> en de garantie is actief tot <strong>12 mei 2028</strong>.</p>
+      <div class="details">
+        <div class="detail"><span class="label">Advies</span><strong>Volgende controle plannen</strong></div>
+        <div class="detail"><span class="label">Datum</span><strong>15 oktober 2026</strong></div>
+      </div>
+      <div class="actions"><button class="btn" value="confirm" data-action="customer-export">Exporteer preview</button><button class="btn secondary" value="cancel">Sluiten</button></div>
+    </form>
+  </dialog>
+
   <div class="toast" role="status" aria-live="polite"></div>
   <script>
     const navLinks = [...document.querySelectorAll('.nav a')];
@@ -352,6 +408,7 @@
     const plannerModal = document.querySelector('#plannerModal');
     const documentModal = document.querySelector('#documentModal');
     const documentTitle = document.querySelector('#documentTitle');
+    const customerModal = document.querySelector('#customerModal');
     const documentText = document.querySelector('#documentText');
     const documentSummaries = {
       'Accudiagnose rapport': 'Preview van de accudiagnose met SOH, celbalans, laadgedrag, foutcodes en advies voor de volgende controle.',
@@ -390,7 +447,11 @@
     document.querySelectorAll('[data-action="plan"], [data-action="plan-secondary"]').forEach(button => {
       button.addEventListener('click', () => openDialog(plannerModal));
     });
+    document.querySelectorAll('[data-action="customer-preview"], [data-action="customer-secondary"]').forEach(button => {
+      button.addEventListener('click', () => openDialog(customerModal));
+    });
     document.querySelector('[data-action="confirm-plan"]').addEventListener('click', () => showToast('Controleafspraak lokaal bevestigd voor 15 oktober 2026'));
+    document.querySelector('[data-action="customer-export"]').addEventListener('click', () => showToast('Klantpreview lokaal klaargezet voor export'));
     document.querySelectorAll('[data-doc]').forEach(button => button.addEventListener('click', () => {
       documentTitle.textContent = button.dataset.doc;
       documentText.textContent = documentSummaries[button.dataset.doc];
