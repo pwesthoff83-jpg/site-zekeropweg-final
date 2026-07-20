@@ -147,6 +147,12 @@
     .recommendations { display: grid; gap: 12px; }
     .recommendation { padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); display: grid; gap: 6px; }
     .impact { display: inline-flex; width: fit-content; border-radius: 999px; padding: 5px 9px; font-size: 0.78rem; font-weight: 800; background: var(--green-soft); color: var(--green-dark); }
+    .audit-grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; }
+    .audit-list { display: grid; gap: 12px; }
+    .audit-entry { display: grid; grid-template-columns: 128px 1fr auto; gap: 12px; align-items: center; padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); }
+    .hash { font-family: var(--font-geist-mono), monospace; font-size: 0.82rem; color: var(--muted); }
+    .seal { min-height: 180px; border-radius: 20px; border: 1px dashed rgba(57, 184, 111, 0.6); background: radial-gradient(circle at top, var(--green-soft), #ffffff 62%); display: grid; place-items: center; text-align: center; padding: 18px; }
+    .seal b { display: block; font-size: 2.4rem; color: var(--green-dark); }
     .planning-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); }
     .check { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
     .modal { border: 0; border-radius: 24px; width: min(620px, calc(100vw - 28px)); padding: 0; box-shadow: var(--shadow); }
@@ -170,7 +176,7 @@
     }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; }
-      .nav, .kpis, .main-grid, .details, .field-grid, .handover, .advice-grid, .forecast-row { grid-template-columns: 1fr; }
+      .nav, .kpis, .main-grid, .details, .field-grid, .handover, .advice-grid, .audit-grid, .forecast-row, .audit-entry { grid-template-columns: 1fr; }
       .vehicle { align-items: flex-start; flex-direction: column; }
       .car { max-width: none; width: 100%; }
       .event { grid-template-columns: 1fr; }
@@ -212,6 +218,7 @@
         <a href="#planning">📅 Controleplanning</a>
         <a href="#overdracht">🤝 Klantpreview</a>
         <a href="#advies">🧭 Adviesrapport</a>
+        <a href="#audit">🔐 Audittrail</a>
       </nav>
       <div class="sidebar-card">
         <span class="label">Volgende controle</span>
@@ -234,6 +241,7 @@
           <button class="btn ghost" data-action="plan">Controle plannen</button>
           <button class="btn secondary" data-action="customer-preview">Klantpreview</button>
           <button class="btn ghost" data-action="advice-preview">Adviesrapport</button>
+          <button class="btn secondary" data-action="audit-preview">Audittrail</button>
         </div>
       </header>
 
@@ -386,6 +394,27 @@
           </div>
         </article>
       </section>
+
+      <section class="grid audit-grid section" id="audit">
+        <article class="card">
+          <div class="topbar">
+            <div><span class="eyebrow">Bewijsvoering</span><h2>Audittrail & compliance</h2><p>Controleerbare demo-log voor metingen, documenten en garantieacties.</p></div>
+            <button class="btn ghost" data-action="audit-secondary">Open audittrail</button>
+          </div>
+          <div class="audit-list">
+            <div class="audit-entry"><strong>20 jul 2026</strong><span>Adviesrapport aangemaakt voor interne beoordeling.</span><span class="hash">#ZOW-A91F</span></div>
+            <div class="audit-entry"><strong>12 jul 2026</strong><span>Accudiagnose gevalideerd door ZekerOpWeg Utrecht.</span><span class="hash">#BAT-7C20</span></div>
+            <div class="audit-entry"><strong>14 jul 2025</strong><span>Nulmeting gekoppeld aan garantiepaspoort.</span><span class="hash">#VIN-2684</span></div>
+          </div>
+        </article>
+        <article class="card summary-card">
+          <div class="seal"><div><b>✓</b><strong>Demo-integriteit OK</strong><br><span class="label">Alle onderdelen zijn lokaal, herleidbaar en zonder externe API verwerkt.</span></div></div>
+          <div class="details">
+            <div class="detail"><span class="label">Privacy</span><strong>Demo-data</strong></div>
+            <div class="detail"><span class="label">Databron</span><strong>Lokaal HTML</strong></div>
+          </div>
+        </article>
+      </section>
     </main>
   </div>
 
@@ -451,6 +480,21 @@
     </form>
   </dialog>
 
+  <dialog class="modal" id="auditModal">
+    <form method="dialog" class="modal-body">
+      <div class="modal-head">
+        <div><span class="eyebrow">Audittrail</span><h2>Controlelog Accu Garantie Paspoort</h2><p class="label">Lokale preview van bewijsvoering en compliance-status.</p></div>
+        <button class="close" value="cancel" aria-label="Sluiten">×</button>
+      </div>
+      <p>De demo bevat een herleidbare keten van nulmeting, accudiagnose, adviesrapport en klantoverdracht. Alle referenties zijn fictief en lokaal.</p>
+      <div class="details">
+        <div class="detail"><span class="label">Integriteit</span><strong>OK</strong></div>
+        <div class="detail"><span class="label">Laatste actie</span><strong>20 juli 2026</strong></div>
+      </div>
+      <div class="actions"><button class="btn" value="confirm" data-action="audit-export">Auditlog opslaan</button><button class="btn secondary" value="cancel">Sluiten</button></div>
+    </form>
+  </dialog>
+
   <div class="toast" role="status" aria-live="polite"></div>
   <script>
     const navLinks = [...document.querySelectorAll('.nav a')];
@@ -460,6 +504,7 @@
     const documentTitle = document.querySelector('#documentTitle');
     const customerModal = document.querySelector('#customerModal');
     const adviceModal = document.querySelector('#adviceModal');
+    const auditModal = document.querySelector('#auditModal');
     const documentText = document.querySelector('#documentText');
     const documentSummaries = {
       'Accudiagnose rapport': 'Preview van de accudiagnose met SOH, celbalans, laadgedrag, foutcodes en advies voor de volgende controle.',
@@ -504,9 +549,13 @@
     document.querySelectorAll('[data-action="advice-preview"], [data-action="advice-secondary"]').forEach(button => {
       button.addEventListener('click', () => openDialog(adviceModal));
     });
+    document.querySelectorAll('[data-action="audit-preview"], [data-action="audit-secondary"]').forEach(button => {
+      button.addEventListener('click', () => openDialog(auditModal));
+    });
     document.querySelector('[data-action="confirm-plan"]').addEventListener('click', () => showToast('Controleafspraak lokaal bevestigd voor 15 oktober 2026'));
     document.querySelector('[data-action="customer-export"]').addEventListener('click', () => showToast('Klantpreview lokaal klaargezet voor export'));
     document.querySelector('[data-action="advice-export"]').addEventListener('click', () => showToast('Adviesrapport lokaal opgeslagen'));
+    document.querySelector('[data-action="audit-export"]').addEventListener('click', () => showToast('Auditlog lokaal opgeslagen'));
     document.querySelectorAll('[data-doc]').forEach(button => button.addEventListener('click', () => {
       documentTitle.textContent = button.dataset.doc;
       documentText.textContent = documentSummaries[button.dataset.doc];
