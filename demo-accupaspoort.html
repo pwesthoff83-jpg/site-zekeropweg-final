@@ -172,6 +172,15 @@
     .field input, .field select { border: 1px solid var(--line); border-radius: 14px; padding: 12px; color: var(--navy); background: var(--white); }
     .toast { position: fixed; right: 22px; bottom: 22px; background: var(--navy); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px); transition: 0.2s; z-index: 10; }
     .toast.show { opacity: 1; transform: none; }
+    .locked .app { display: none; }
+    .lock-screen { min-height: 100vh; display: none; place-items: center; padding: 22px; background: linear-gradient(135deg, var(--navy), #0d315f 55%, #e8f8ef); }
+    .locked .lock-screen { display: grid; }
+    .lock-card { width: min(520px, 100%); background: var(--white); border-radius: 28px; padding: 28px; box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.5); }
+    .lock-card .brand { color: var(--navy); margin-bottom: 18px; }
+    .lock-card .brand span { color: var(--muted); }
+    .password-row { display: grid; gap: 10px; margin-top: 18px; }
+    .password-row input { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 14px 15px; color: var(--navy); }
+    .error { color: #b02a37; min-height: 1.2em; font-weight: 800; }
 
     @media (max-width: 980px) {
       .app { display: block; }
@@ -204,7 +213,29 @@
     }
   </style>
 </head>
-<body>
+<body class="locked">
+  <section class="lock-screen" aria-label="Interne toegang">
+    <form class="lock-card" id="passwordForm">
+      <div class="brand" aria-label="ZekerOpWeg beveiligde demo">
+        <svg class="shield" viewBox="0 0 64 76" role="img" aria-label="ZekerOpWeg schildlogo">
+          <path d="M32 3 58 13v20c0 18-10.5 31.5-26 39C16.5 64.5 6 51 6 33V13L32 3Z" fill="#071d3a"/>
+          <path d="M32 9 52 17v16c0 14-7.8 24.8-20 31-12.2-6.2-20-17-20-31V17l20-8Z" fill="#fff"/>
+          <path d="m21 36 7 7 16-20" fill="none" stroke="#39b86f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><strong>ZekerOpWeg</strong><span>Interne Accu Garantie Paspoort demo</span></div>
+      </div>
+      <span class="eyebrow">Alleen intern gebruik</span>
+      <h1>Wachtwoord vereist</h1>
+      <p>Voer het interne wachtwoord in om het Accu Garantie Paspoort te bekijken.</p>
+      <label class="password-row">
+        Wachtwoord
+        <input id="passwordInput" type="password" autocomplete="current-password" required />
+      </label>
+      <p class="error" id="passwordError" role="alert"></p>
+      <button class="btn" type="submit">Demo openen</button>
+    </form>
+  </section>
+
   <div class="app">
     <aside class="sidebar">
       <div class="brand" aria-label="ZekerOpWeg">
@@ -251,6 +282,7 @@
           <button class="btn ghost" data-action="advice-preview">Adviesrapport</button>
           <button class="btn secondary" data-action="audit-preview">Audittrail</button>
           <button class="btn ghost" data-action="tasks-focus">Takenbord</button>
+          <button class="btn secondary" data-action="lock-demo">Vergrendel</button>
         </div>
       </header>
 
@@ -554,6 +586,10 @@
   <script>
     const navLinks = [...document.querySelectorAll('.nav a')];
     const toast = document.querySelector('.toast');
+    const passwordForm = document.querySelector('#passwordForm');
+    const passwordInput = document.querySelector('#passwordInput');
+    const passwordError = document.querySelector('#passwordError');
+    const passwordHash = '24a7887b04ed698a676a5837c38fa2d32f5720924166b505827ee87ea54d4659';
     const plannerModal = document.querySelector('#plannerModal');
     const documentModal = document.querySelector('#documentModal');
     const documentTitle = document.querySelector('#documentTitle');
@@ -572,6 +608,36 @@
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2200);
     }
+
+    async function sha256(value) {
+      const data = new TextEncoder().encode(value);
+      const digest = await crypto.subtle.digest('SHA-256', data);
+      return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    function unlockDemo() {
+      document.body.classList.remove('locked');
+      sessionStorage.setItem('accuPaspoortAccess', 'granted');
+      passwordInput.value = '';
+      passwordError.textContent = '';
+    }
+
+    if (sessionStorage.getItem('accuPaspoortAccess') === 'granted') {
+      unlockDemo();
+    }
+
+    passwordForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      passwordError.textContent = '';
+      const enteredHash = await sha256(passwordInput.value);
+      if (enteredHash === passwordHash) {
+        unlockDemo();
+        showToast('Interne demo geopend');
+      } else {
+        passwordError.textContent = 'Onjuist wachtwoord';
+        passwordInput.select();
+      }
+    });
 
     function openDialog(dialog) {
       if (typeof dialog.showModal === 'function') {
@@ -614,6 +680,11 @@
     document.querySelector('[data-action="tasks-focus"]').addEventListener('click', () => {
       document.querySelector('#taken').scrollIntoView({ behavior: 'smooth' });
       showToast('Takenbord geopend');
+    });
+    document.querySelector('[data-action="lock-demo"]').addEventListener('click', () => {
+      sessionStorage.removeItem('accuPaspoortAccess');
+      document.body.classList.add('locked');
+      passwordInput.focus();
     });
     document.querySelector('[data-action="reset-tasks"]').addEventListener('click', () => {
       document.querySelectorAll('[data-task-card]').forEach(card => {
