@@ -139,6 +139,14 @@
     .mini-stat { flex: 1 1 120px; padding: 12px; border-radius: 15px; background: #f7fafe; border: 1px solid var(--line); }
     .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
     .checklist li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+    .advice-grid { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
+    .forecast { display: grid; gap: 12px; }
+    .forecast-row { display: grid; grid-template-columns: 84px 1fr auto; gap: 12px; align-items: center; }
+    .forecast-line { height: 10px; border-radius: 999px; background: #e8eef6; overflow: hidden; }
+    .forecast-line span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--green), var(--blue)); }
+    .recommendations { display: grid; gap: 12px; }
+    .recommendation { padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); display: grid; gap: 6px; }
+    .impact { display: inline-flex; width: fit-content; border-radius: 999px; padding: 5px 9px; font-size: 0.78rem; font-weight: 800; background: var(--green-soft); color: var(--green-dark); }
     .planning-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); }
     .check { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
     .modal { border: 0; border-radius: 24px; width: min(620px, calc(100vw - 28px)); padding: 0; box-shadow: var(--shadow); }
@@ -162,7 +170,7 @@
     }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; }
-      .nav, .kpis, .main-grid, .details, .field-grid, .handover { grid-template-columns: 1fr; }
+      .nav, .kpis, .main-grid, .details, .field-grid, .handover, .advice-grid, .forecast-row { grid-template-columns: 1fr; }
       .vehicle { align-items: flex-start; flex-direction: column; }
       .car { max-width: none; width: 100%; }
       .event { grid-template-columns: 1fr; }
@@ -203,6 +211,7 @@
         <a href="#documenten">📄 Documenten</a>
         <a href="#planning">📅 Controleplanning</a>
         <a href="#overdracht">🤝 Klantpreview</a>
+        <a href="#advies">🧭 Adviesrapport</a>
       </nav>
       <div class="sidebar-card">
         <span class="label">Volgende controle</span>
@@ -224,6 +233,7 @@
           <button class="btn secondary" data-action="share">Demo-link kopiëren</button>
           <button class="btn ghost" data-action="plan">Controle plannen</button>
           <button class="btn secondary" data-action="customer-preview">Klantpreview</button>
+          <button class="btn ghost" data-action="advice-preview">Adviesrapport</button>
         </div>
       </header>
 
@@ -351,6 +361,31 @@
           </ul>
         </article>
       </section>
+
+      <section class="grid advice-grid section" id="advies">
+        <article class="card">
+          <span class="eyebrow">Beslisadvies</span>
+          <h2>Accu-adviesrapport</h2>
+          <p>Lokale adviesmodule voor verkoop, garantieacceptatie en onderhoudsplanning.</p>
+          <div class="forecast">
+            <div class="forecast-row"><strong>Nu</strong><div class="forecast-line"><span style="width:91%"></span></div><b>91% SOH</b></div>
+            <div class="forecast-row"><strong>2027</strong><div class="forecast-line"><span style="width:88%"></span></div><b>88% SOH</b></div>
+            <div class="forecast-row"><strong>2028</strong><div class="forecast-line"><span style="width:85%"></span></div><b>85% SOH</b></div>
+          </div>
+          <p class="label">Projectie is fictief en bedoeld voor demo: gebaseerd op gelijkmatig gebruik, gematigd snelladen en periodieke controles.</p>
+        </article>
+        <article class="card">
+          <div class="topbar">
+            <div><span class="eyebrow">Aanbevelingen</span><h2>Prioriteiten voor opvolging</h2></div>
+            <button class="btn ghost" data-action="advice-secondary">Open adviesrapport</button>
+          </div>
+          <div class="recommendations">
+            <div class="recommendation"><span class="impact">Hoog vertrouwen</span><strong>Garantie behouden</strong><span class="label">Alle meetwaarden vallen binnen de ZekerOpWeg-acceptatiegrenzen.</span></div>
+            <div class="recommendation"><span class="impact">Preventief</span><strong>Snellaadprofiel monitoren</strong><span class="label">Snellaad-impact is laag, maar periodieke trendcontrole blijft aanbevolen.</span></div>
+            <div class="recommendation"><span class="impact">Commercieel</span><strong>Klantpreview delen bij overdracht</strong><span class="label">Gebruik de publieke samenvatting om vertrouwen bij verkoop of leasewissel te vergroten.</span></div>
+          </div>
+        </article>
+      </section>
     </main>
   </div>
 
@@ -401,6 +436,21 @@
     </form>
   </dialog>
 
+  <dialog class="modal" id="adviceModal">
+    <form method="dialog" class="modal-body">
+      <div class="modal-head">
+        <div><span class="eyebrow">Adviesrapport</span><h2>Beslisadvies Accu Garantie Paspoort</h2><p class="label">Lokale preview voor serviceadviseur en accountmanager.</p></div>
+        <button class="close" value="cancel" aria-label="Sluiten">×</button>
+      </div>
+      <p><strong>Advies:</strong> garantie actief houden, controleafspraak op 15 oktober 2026 bevestigen en klantpreview meesturen bij overdracht.</p>
+      <div class="details">
+        <div class="detail"><span class="label">Risico-inschatting</span><strong>Laag</strong></div>
+        <div class="detail"><span class="label">Commerciële waarde</span><strong>Hoog vertrouwen</strong></div>
+      </div>
+      <div class="actions"><button class="btn" value="confirm" data-action="advice-export">Advies opslaan</button><button class="btn secondary" value="cancel">Sluiten</button></div>
+    </form>
+  </dialog>
+
   <div class="toast" role="status" aria-live="polite"></div>
   <script>
     const navLinks = [...document.querySelectorAll('.nav a')];
@@ -409,6 +459,7 @@
     const documentModal = document.querySelector('#documentModal');
     const documentTitle = document.querySelector('#documentTitle');
     const customerModal = document.querySelector('#customerModal');
+    const adviceModal = document.querySelector('#adviceModal');
     const documentText = document.querySelector('#documentText');
     const documentSummaries = {
       'Accudiagnose rapport': 'Preview van de accudiagnose met SOH, celbalans, laadgedrag, foutcodes en advies voor de volgende controle.',
@@ -450,8 +501,12 @@
     document.querySelectorAll('[data-action="customer-preview"], [data-action="customer-secondary"]').forEach(button => {
       button.addEventListener('click', () => openDialog(customerModal));
     });
+    document.querySelectorAll('[data-action="advice-preview"], [data-action="advice-secondary"]').forEach(button => {
+      button.addEventListener('click', () => openDialog(adviceModal));
+    });
     document.querySelector('[data-action="confirm-plan"]').addEventListener('click', () => showToast('Controleafspraak lokaal bevestigd voor 15 oktober 2026'));
     document.querySelector('[data-action="customer-export"]').addEventListener('click', () => showToast('Klantpreview lokaal klaargezet voor export'));
+    document.querySelector('[data-action="advice-export"]').addEventListener('click', () => showToast('Adviesrapport lokaal opgeslagen'));
     document.querySelectorAll('[data-doc]').forEach(button => button.addEventListener('click', () => {
       documentTitle.textContent = button.dataset.doc;
       documentText.textContent = documentSummaries[button.dataset.doc];
