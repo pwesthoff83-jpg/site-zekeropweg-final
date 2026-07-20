@@ -153,6 +153,13 @@
     .hash { font-family: var(--font-geist-mono), monospace; font-size: 0.82rem; color: var(--muted); }
     .seal { min-height: 180px; border-radius: 20px; border: 1px dashed rgba(57, 184, 111, 0.6); background: radial-gradient(circle at top, var(--green-soft), #ffffff 62%); display: grid; place-items: center; text-align: center; padding: 18px; }
     .seal b { display: block; font-size: 2.4rem; color: var(--green-dark); }
+    .task-board { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+    .task-column { display: grid; gap: 10px; }
+    .task-column h3 { display: flex; justify-content: space-between; align-items: center; }
+    .task-card { padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); display: grid; gap: 10px; }
+    .task-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { width: fit-content; border-radius: 999px; padding: 5px 9px; font-size: 0.78rem; font-weight: 800; background: #eef4fb; color: var(--blue); }
+    .task-card.done { background: var(--green-soft); border-color: rgba(57, 184, 111, 0.45); }
     .planning-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px; border-radius: 16px; background: #fbfdff; border: 1px solid var(--line); }
     .check { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
     .modal { border: 0; border-radius: 24px; width: min(620px, calc(100vw - 28px)); padding: 0; box-shadow: var(--shadow); }
@@ -176,7 +183,7 @@
     }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; }
-      .nav, .kpis, .main-grid, .details, .field-grid, .handover, .advice-grid, .audit-grid, .forecast-row, .audit-entry { grid-template-columns: 1fr; }
+      .nav, .kpis, .main-grid, .details, .field-grid, .handover, .advice-grid, .audit-grid, .task-board, .forecast-row, .audit-entry { grid-template-columns: 1fr; }
       .vehicle { align-items: flex-start; flex-direction: column; }
       .car { max-width: none; width: 100%; }
       .event { grid-template-columns: 1fr; }
@@ -219,6 +226,7 @@
         <a href="#overdracht">🤝 Klantpreview</a>
         <a href="#advies">🧭 Adviesrapport</a>
         <a href="#audit">🔐 Audittrail</a>
+        <a href="#taken">🗂️ Takenbord</a>
       </nav>
       <div class="sidebar-card">
         <span class="label">Volgende controle</span>
@@ -242,6 +250,7 @@
           <button class="btn secondary" data-action="customer-preview">Klantpreview</button>
           <button class="btn ghost" data-action="advice-preview">Adviesrapport</button>
           <button class="btn secondary" data-action="audit-preview">Audittrail</button>
+          <button class="btn ghost" data-action="tasks-focus">Takenbord</button>
         </div>
       </header>
 
@@ -415,6 +424,52 @@
           </div>
         </article>
       </section>
+
+      <section class="section" id="taken">
+        <div class="topbar">
+          <div><span class="eyebrow">Operatie</span><h2>Takenbord voor opvolging</h2><p>Interne werkvoorraad voor serviceadviseur, garantieteam en klantcontact.</p></div>
+          <button class="btn secondary" data-action="reset-tasks">Reset demo-taken</button>
+        </div>
+        <div class="grid task-board">
+          <article class="card task-column">
+            <h3>Te doen <span class="pill warn">2</span></h3>
+            <div class="task-card" data-task-card="controle">
+              <div class="task-meta"><span class="tag">Service</span><span class="tag">SLA 7 dagen</span></div>
+              <strong>Controleafspraak bevestigen</strong>
+              <span class="label">Bel Demo Mobility B.V. en bevestig 15 oktober 2026.</span>
+              <button class="btn secondary" data-task="controle">Markeer gereed</button>
+            </div>
+            <div class="task-card" data-task-card="laadprofiel">
+              <div class="task-meta"><span class="tag">Data</span><span class="tag">Preventief</span></div>
+              <strong>Laadprofiel opvragen</strong>
+              <span class="label">Controleer snellaadpercentage voor adviesrapport.</span>
+              <button class="btn secondary" data-task="laadprofiel">Markeer gereed</button>
+            </div>
+          </article>
+          <article class="card task-column">
+            <h3>In behandeling <span class="pill">1</span></h3>
+            <div class="task-card" data-task-card="klantpreview">
+              <div class="task-meta"><span class="tag">Klant</span><span class="tag">Overdracht</span></div>
+              <strong>Klantpreview voorbereiden</strong>
+              <span class="label">Publieke samenvatting klaarzetten voor leasewissel.</span>
+              <button class="btn secondary" data-task="klantpreview">Markeer gereed</button>
+            </div>
+          </article>
+          <article class="card task-column">
+            <h3>Afgerond <span class="pill">2</span></h3>
+            <div class="task-card done">
+              <div class="task-meta"><span class="tag">Garantie</span></div>
+              <strong>Garantiestatus gevalideerd</strong>
+              <span class="label">Dekking actief tot 12 mei 2028.</span>
+            </div>
+            <div class="task-card done">
+              <div class="task-meta"><span class="tag">Audit</span></div>
+              <strong>Nulmeting gekoppeld</strong>
+              <span class="label">Referentie #VIN-2684 toegevoegd aan audittrail.</span>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -556,6 +611,23 @@
     document.querySelector('[data-action="customer-export"]').addEventListener('click', () => showToast('Klantpreview lokaal klaargezet voor export'));
     document.querySelector('[data-action="advice-export"]').addEventListener('click', () => showToast('Adviesrapport lokaal opgeslagen'));
     document.querySelector('[data-action="audit-export"]').addEventListener('click', () => showToast('Auditlog lokaal opgeslagen'));
+    document.querySelector('[data-action="tasks-focus"]').addEventListener('click', () => {
+      document.querySelector('#taken').scrollIntoView({ behavior: 'smooth' });
+      showToast('Takenbord geopend');
+    });
+    document.querySelector('[data-action="reset-tasks"]').addEventListener('click', () => {
+      document.querySelectorAll('[data-task-card]').forEach(card => {
+        card.classList.remove('done');
+        const button = card.querySelector('[data-task]');
+        if (button) button.textContent = 'Markeer gereed';
+      });
+      showToast('Demo-taken gereset');
+    });
+    document.querySelectorAll('[data-task]').forEach(button => button.addEventListener('click', () => {
+      button.closest('[data-task-card]').classList.add('done');
+      button.textContent = 'Gereed';
+      showToast('Taak lokaal bijgewerkt');
+    }));
     document.querySelectorAll('[data-doc]').forEach(button => button.addEventListener('click', () => {
       documentTitle.textContent = button.dataset.doc;
       documentText.textContent = documentSummaries[button.dataset.doc];
