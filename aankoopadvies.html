@@ -231,7 +231,7 @@
 
     /* ─── PEPIJN SECTIE ───────────────────────────────────────────── */
     .aa-pepijn { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
-    .aa-pepijn__text { flex: 1; min-width: 260px; }
+    .aa-pepijn__text { flex: 1.2; min-width: 280px; }
     .aa-pepijn__text p { font-size: .97rem; color: #334155; line-height: 1.8; margin-bottom: 1rem; }
     .aa-pepijn__author {
       display: flex; align-items: center; gap: 1rem;
@@ -239,14 +239,19 @@
       border-top: 1px solid #e8edf3;
     }
     .aa-pepijn__author img {
-      width: 56px; height: 56px; border-radius: 50%;
+      width: 48px; height: 48px; border-radius: 50%;
       object-fit: cover; object-position: center top;
       border: 2px solid #c9a96e; flex-shrink: 0;
     }
-    .aa-pepijn__author strong { display: block; font-size: .92rem; color: #071a2b; }
-    .aa-pepijn__author small { font-size: .78rem; color: #94a3b8; }
-    .aa-pepijn__photo { flex: 1; min-width: 260px; }
-    .aa-pepijn__photo img { width: 100%; border-radius: 14px; object-fit: cover; max-height: 340px; }
+    .aa-pepijn__author strong { display: block; font-size: .88rem; color: #071a2b; }
+    .aa-pepijn__author small { font-size: .75rem; color: #94a3b8; }
+    .aa-pepijn__photo { flex: 0.8; min-width: 220px; max-width: 340px; }
+    .aa-pepijn__photo img {
+      width: 100%; border-radius: 12px;
+      object-fit: cover; height: 260px;
+      object-position: center top;
+      filter: brightness(.95);
+    }
 
     /* ─── USP GRID ────────────────────────────────────────────────── */
     .aa-usp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
