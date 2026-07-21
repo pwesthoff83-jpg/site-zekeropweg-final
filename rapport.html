@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="Bereken het accurisico van een tweedehands EV of hybride op basis van kenteken. Gebaseerd op AVILOO-meetdata. Direct beschikbaar als PDF. &euro;19,95 eenmalig.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,7 +37,6 @@
   }
 }
 </script>
-
 <title>AccuRisico Rapport EV | ZekerOpWeg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -67,9 +66,7 @@
     --shadow: 0 1px 4px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 20px rgba(0,0,0,0.07);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
@@ -78,7 +75,6 @@
     line-height: 1.65;
     font-size: 15px;
   }
-
   /* FORM */
   #form-screen {
     min-height: 100vh;
@@ -89,11 +85,50 @@
     padding: 40px 20px;
     background: linear-gradient(160deg, #f0f9f7 0%, #e8f5f3 60%, #f0f9f7 100%);
   }
-
-  .logo-wrap { margin-bottom: 40px; text-align: center; }
+  .logo-wrap { margin-bottom: 16px; text-align: center; }
   .logo-text { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--navy); }
   .logo-text span { color: var(--teal); }
-
+  /* rr = rapport-risico — eigen namespace, styles.css nooit aangeraakt */
+  .rr-truststrip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    justify-content: center;
+    margin: 0 0 28px;
+    font-size: 13px;
+    color: rgba(15, 23, 42, 0.55);
+  }
+  .rr-truststrip span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .rr-sterren {
+    color: #d7b56d;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .rr-anchor-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    text-align: left;
+  }
+  .rr-wa-sub {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+  .rr-wa-sub a {
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+    text-decoration: underline;
+  }
   .form-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -103,7 +138,6 @@
     max-width: 520px;
     box-shadow: var(--shadow-md);
   }
-
   .form-badge {
     display: inline-flex;
     align-items: center;
@@ -119,7 +153,6 @@
     border-radius: 20px;
     margin-bottom: 16px;
   }
-
   .form-card h1 {
     font-family: 'DM Serif Display', serif;
     font-size: 26px;
@@ -128,11 +161,8 @@
     margin-bottom: 6px;
     color: var(--navy);
   }
-
   .form-card .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
-
   .field { margin-bottom: 18px; }
-
   label {
     display: block;
     font-size: 12px;
@@ -142,7 +172,6 @@
     color: var(--slate);
     margin-bottom: 7px;
   }
-
   input, select {
     width: 100%;
     background: var(--bg);
@@ -157,10 +186,8 @@
     -webkit-appearance: none;
     appearance: none;
   }
-
   input::placeholder { color: var(--light); }
   input:focus, select:focus { border-color: var(--teal); background: var(--teal-light); }
-
   .btn-primary {
     width: 100%;
     background: var(--teal);
@@ -179,11 +206,9 @@
     display: block;
     text-align: center;
   }
-
   .btn-primary:hover { background: #0d6b5e; }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
   .form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; }
-
   /* LOADING */
   #loading-screen {
     display: none;
@@ -194,7 +219,6 @@
     gap: 20px;
     background: var(--bg);
   }
-
   .spinner {
     width: 40px; height: 40px;
     border: 3px solid rgba(15,124,110,0.15);
@@ -202,11 +226,9 @@
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
-
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-text { color: var(--muted); font-size: 14px; animation: pulse 1.5s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
-
   /* RAPPORT */
   #rapport-screen {
     display: none;
@@ -214,7 +236,6 @@
     margin: 0 auto;
     padding: 32px 20px 80px;
   }
-
   /* Header */
   .rapport-header {
     background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%);
@@ -225,7 +246,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .rapport-header::before {
     content: '';
     position: absolute;
@@ -234,7 +254,6 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
   }
-
   .header-top {
     display: flex;
     justify-content: space-between;
@@ -243,7 +262,6 @@
     gap: 12px;
     margin-bottom: 24px;
   }
-
   .header-logo { font-family: 'DM Serif Display', serif; font-size: 16px; color: rgba(255,255,255,0.8); }
   .header-logo span { color: #5eead4; }
   .header-meta { font-size: 12px; color: rgba(255,255,255,0.6); text-align: right; line-height: 1.8; }
@@ -262,26 +280,21 @@
     border-radius: 20px;
     margin-bottom: 12px;
   }
-
   .header-title { font-family: 'DM Serif Display', serif; font-size: 30px; font-weight: 400; margin-bottom: 4px; }
   .header-car { color: #5eead4; font-size: 17px; font-weight: 500; margin-bottom: 20px; }
-
   .header-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
-
   .header-stat {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 10px;
     padding: 12px 14px;
   }
-
   .header-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
   .header-stat-value { font-size: 15px; font-weight: 500; color: #fff; }
-
   /* Cards */
   .card {
     background: var(--card);
@@ -291,7 +304,6 @@
     margin-bottom: 14px;
     box-shadow: var(--shadow);
   }
-
   .card-title {
     font-family: 'DM Serif Display', serif;
     font-size: 18px;
@@ -304,7 +316,6 @@
     align-items: center;
     gap: 10px;
   }
-
   .card-icon {
     width: 30px; height: 30px;
     border-radius: 8px;
@@ -316,7 +327,6 @@
     font-size: 14px;
     flex-shrink: 0;
   }
-
   /* Score banner */
   .score-banner {
     border-radius: var(--radius);
@@ -327,12 +337,10 @@
     gap: 20px;
     flex-wrap: wrap;
   }
-
   .score-banner.green { background: var(--green-bg); border: 1px solid var(--green-border); }
   .score-banner.amber { background: var(--amber-bg); border: 1px solid var(--amber-border); }
   .score-banner.blue { background: #eff6ff; border: 1px solid #93c5fd; }
   .score-banner.red { background: var(--red-bg); border: 1px solid var(--red-border); }
-
   .score-circle {
     width: 68px; height: 68px;
     border-radius: 50%;
@@ -344,15 +352,12 @@
     flex-shrink: 0;
     font-family: 'DM Serif Display', serif;
   }
-
   .score-circle.green { background: #dcfce7; color: var(--green); }
   .score-circle.amber { background: #fef3c7; color: var(--amber); }
   .score-circle.blue { background: #dbeafe; color: #1d4ed8; }
   .score-circle.red { background: #fee2e2; color: var(--red); }
-
   .score-info h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 4px; color: var(--navy); }
   .score-info p { color: var(--slate); font-size: 14px; max-width: 480px; }
-
   /* Info rows */
   .info-row {
     display: flex;
@@ -369,7 +374,6 @@
   .info-value.green { color: var(--green); }
   .info-value.teal { color: var(--teal); }
   .info-value.amber { color: var(--amber); }
-
   /* Tank analogie */
   .tank-box {
     background: var(--teal-light);
@@ -387,7 +391,6 @@
   .tank-bar-fill.full { background: linear-gradient(90deg, #0d6b5e, #0f7c6e); }
   .tank-bar-fill.degraded { background: linear-gradient(90deg, #b45309, #d97706); }
   .tank-val { font-size: 13px; font-weight: 600; color: var(--slate); min-width: 80px; text-align: right; }
-
   /* Fase */
   .fase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
   .fase-block { padding: 14px; border-radius: 10px; border: 1px solid var(--border); text-align: center; }
@@ -401,7 +404,6 @@
   .fase-block.f3 .fase-tag { color: var(--amber); }
   .fase-range { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
   .fase-desc { font-size: 11px; color: var(--muted); line-height: 1.45; }
-
   /* Vergelijking */
   .vergelijk-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
   .vergelijk-row:last-child { border-bottom: none; }
@@ -410,20 +412,17 @@
   .vergelijk-bar-wrap { width: 160px; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
   .vergelijk-bar-fill { height: 100%; border-radius: 4px; }
   .vergelijk-soh { font-size: 13px; font-weight: 600; min-width: 48px; text-align: right; }
-
   /* Toekomst */
   .toekomst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
   .toekomst-block { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
   .toekomst-jaar { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
   .toekomst-soh { font-size: 22px; font-weight: 600; color: var(--teal); margin-bottom: 4px; }
   .toekomst-label { font-size: 11px; color: var(--muted); }
-
   /* Boxes */
   .highlight-box { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13.5px; color: var(--slate); line-height: 1.6; margin-top: 14px; }
   .highlight-box strong { color: var(--amber); }
   .info-box { background: var(--teal-light); border: 1px solid var(--teal-border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13.5px; color: var(--slate); line-height: 1.6; margin-top: 14px; }
   .info-box strong { color: var(--teal); }
-
   /* CTA */
   .cta-card {
     background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%);
@@ -440,7 +439,6 @@
   .cta-btn { display: inline-block; background: #fff; color: #0f4c6e; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-weight: 700; font-size: 15px; transition: background 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.15); position: relative; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
   .cta-btn:hover { background: #f0f9f7; }
   .cta-sub { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.55); position: relative; }
-
   /* Unlock gate */
   .unlock-gate {
     background: linear-gradient(135deg, #0f4c6e 0%, #0f7c6e 100%);
@@ -454,7 +452,6 @@
   .btn-unlock { display: inline-block; background: #fff; color: #0f4c6e; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: 12px; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: background 0.2s; width: 100%; max-width: 380px; }
   .btn-unlock:hover { background: #f0f9f7; }
   .btn-unlock-sub { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 10px; }
-
   /* Garantie banner */
   .garantie-banner {
     background: linear-gradient(135deg, #0a3d62 0%, #1a6091 100%);
@@ -474,13 +471,10 @@
   .garantie-pills { display: flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
   .garantie-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; color: #fff; font-weight: 500; white-space: nowrap; }
   .garantie-pill.highlight { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); font-weight: 700; }
-
   .paid-banner { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: var(--radius-sm); padding: 14px 20px; font-size: 14px; color: var(--slate); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; max-width: 760px; margin-left: auto; margin-right: auto; }
   .btn-pdf { display: inline-flex; align-items: center; gap: 8px; background: var(--teal-light); border: 1px solid var(--teal-border); color: var(--teal); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: 9px; cursor: pointer; transition: background 0.2s; margin-left: auto; }
   .btn-pdf:hover { background: #e0f5f2; }
-
   .rapport-footer { text-align: center; font-size: 12px; color: var(--muted); padding-top: 20px; line-height: 1.8; border-top: 1px solid var(--border); }
-
   @media (max-width: 600px) {
     .form-card { padding: 28px 22px; }
     .rapport-header { padding: 28px 22px; }
@@ -491,7 +485,6 @@
     .header-title { font-size: 24px; }
     .garantie-pills { display: none; }
   }
-
   @media print {
     #form-screen, #loading-screen, .unlock-gate, .paid-banner, .cta-card, .btn-pdf, .no-print, .garantie-banner { display: none !important; }
     .card { page-break-inside: avoid !important; }
@@ -502,17 +495,23 @@
 </style>
 </head>
 <body>
-
 <!-- FORM SCREEN -->
 <div id="form-screen">
   <div class="logo-wrap">
     <div class="logo-text">Zeker<span>OpWeg</span></div>
   </div>
-  <div class="form-card">
-    <div class="form-badge">🔋 AccuRisico Rapport</div>
-    <h1>Wat is het accurisico van de EV die jij wilt kopen?</h1>
-    <p class="subtitle">Vul kenteken en kilometerstand in. Binnen 2 minuten een onderbouwde risico-inschatting als PDF.</p>
 
+  <div class="rr-truststrip">
+    <span><span class="rr-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp;5,0 op Google</span>
+    <span>120+ rapporten</span>
+    <span>AVILOO-meetdata</span>
+    <span>Onafhankelijk</span>
+  </div>
+
+  <div class="form-card">
+    <div class="form-badge">&#128267; AccuRisico Rapport</div>
+    <h1>Wat is het accurisico van de EV die jij wilt kopen?</h1>
+    <p class="subtitle">Gratis preview in 2 minuten op basis van kenteken en AVILOO-data. Volledig rapport beschikbaar voor &euro;19,95.</p>
     <div class="field">
       <label for="kenteken">Kenteken</label>
       <input type="text" id="kenteken" placeholder="bijv. AB-123-C" maxlength="9" autocomplete="off" autocapitalize="characters" />
@@ -535,23 +534,20 @@
       <input type="number" id="accukwh" placeholder="bijv. 77 of 17.9" min="1" max="200" step="0.1" />
       <div style="font-size:11px;color:#94a3b8;margin-top:5px;">Staat op de kentekencard of in de advertentie.</div>
     </div>
-    <button class="btn-primary" id="btn-start" onclick="startRapport()">Bekijk voorbeeld rapport</button>
-    <p class="form-note">Eenmalig · €19,95 · Geen abonnement · Direct beschikbaar</p>
+    <button class="btn-primary" id="btn-start" onclick="startRapport()">Bekijk gratis voorbeeld rapport</button>
+    <p class="form-note">Gratis voorbeeld &middot; Volledig rapport &euro;19,95 &middot; Geen abonnement</p>
   </div>
 </div>
-
 <!-- LOADING -->
 <div id="loading-screen" style="display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; gap:20px;">
   <div class="spinner"></div>
   <div class="loading-text" id="loading-text">Kenteken ophalen bij RDW...</div>
 </div>
-
 <!-- RAPPORT SCREEN -->
 <div id="rapport-screen">
   <div id="paid-banner" style="display:none;"></div>
   <div id="rapport-content"></div>
 </div>
-
 <script>
 // ── BATTERY DATABASE ────────────────────────────────────────────────────────
 const batteryDB = {
@@ -658,9 +654,7 @@ const batteryDB = {
   "volvo xc60": [{"variant": "XC60 Recharge T8", "kwh": 18.8, "dbDriveType": "phev"}],
   "volvo xc90": [{"variant": "XC90 Recharge T8", "kwh": 18.8, "dbDriveType": "phev"}]
 };
-
 const STRIPE_LINK = 'https://buy.stripe.com/fZu3cvcifbTDcVR2mg18c00';
-
 function formatKenteken(raw) { return raw.replace(/[-\s]/g, '').toUpperCase(); }
 function formatNumber(n) { if (!n) return 'onbekend'; return Number(n).toLocaleString('nl-NL'); }
 function parseDatum(datum) {
@@ -680,7 +674,6 @@ function calcLeeftijd(datum) {
   if (!d) return null;
   return Math.floor((Date.now() - d) / (365.25 * 24 * 3600 * 1000));
 }
-
 function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbruik) {
   const keys = Object.keys(batteryDB);
   const merkLow = (merk||'').toLowerCase().trim();
@@ -726,7 +719,6 @@ function getBattery(merk, handelsbenaming, brandstof, variant, wltpKm, wltpVerbr
   const midden = sorted[Math.floor(sorted.length/2)];
   return { ...midden, modelKey: bestKey, variantOnzeker: true };
 }
-
 function detectDriveType(brandstof, handelsbenaming, merk) {
   const b = (brandstof||'').toLowerCase();
   const h = (handelsbenaming||'').toLowerCase();
@@ -738,14 +730,12 @@ function detectDriveType(brandstof, handelsbenaming, merk) {
   if (b.includes('elektr')) return 'ev';
   return 'verbrandingsmotor';
 }
-
 function getDriveLabel(driveType) {
   if (driveType === 'ev') return 'Volledig elektrisch';
   if (driveType === 'phev') return 'Plug-in hybride';
   if (driveType === 'hybrid') return 'Hybride';
   return 'Verbrandingsmotor';
 }
-
 function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
   leeftijd = leeftijd || 0; km = km || 0;
   const jaarGebruik = leeftijd > 0 ? Math.round(km/leeftijd) : 15000;
@@ -786,7 +776,6 @@ function getDegradatie(driveType, leeftijd, km, kwh, modelKey) {
   }
   return { min:1, max:6, sohMid:97, adacNorm:null, adacLabel:null, onderNorm:false };
 }
-
 function getToekomstSoH(sohMid, driveType, jaarGebruik, km, leeftijd, kwh, modelKey) {
   const nu = new Date().getFullYear();
   return [2027,2029,2031].map(jaar => {
@@ -795,7 +784,6 @@ function getToekomstSoH(sohMid, driveType, jaarGebruik, km, leeftijd, kwh, model
     return { jaar, soh: Math.max(deg.sohMid,60) };
   });
 }
-
 function getVergelijkModellen(driveType, sohMid, modelKey, km) {
   const kmBracket = km>=130000?'hoog':km>=80000?'midden':'laag';
   const vergelijkData = {
@@ -813,7 +801,6 @@ function getVergelijkModellen(driveType, sohMid, modelKey, km) {
   const type = vergelijkData[driveType] || vergelijkData.phev;
   return (type[kmBracket] || type.midden);
 }
-
 function getCurrentFase(sohMid) { return sohMid>=90?1:sohMid>=75?2:3; }
 function getSohColor(soh) { return soh>=90?'#15803d':soh>=75?'#4ade80':'#ea580c'; }
 function getRisicoLabel(sohMid) {
@@ -821,9 +808,7 @@ function getRisicoLabel(sohMid) {
   if (sohMid>=82) return { label:'Goede basis', kleur:'blue', cijfer:'B' };
   return { label:'Aandachtspunt', kleur:'amber', cijfer:'C' };
 }
-
 function setLoadingText(txt) { const el=document.getElementById('loading-text'); if(el) el.textContent=txt; }
-
 function saveBeforeStripe() {
   const data = {
     kenteken: document.getElementById('kenteken').value.trim(),
@@ -836,23 +821,19 @@ function saveBeforeStripe() {
   };
   if (data.kenteken) localStorage.setItem('zow_restore_koper', JSON.stringify(data));
 }
-
 async function startRapport() {
   const kentekenRaw = document.getElementById('kenteken').value.trim();
   const naam = document.getElementById('naam').value.trim() || 'Koper';
   const email = document.getElementById('email').value.trim();
   const kmHandmatig = parseInt(document.getElementById('kmstand').value) || null;
   const accuKwhHandmatig = parseFloat(document.getElementById('accukwh').value) || null;
-
   if (!kentekenRaw) { alert('Vul een kenteken in.'); return; }
   if (!email || !email.includes('@')) { alert('Vul een geldig e-mailadres in.'); return; }
-
   const kenteken = formatKenteken(kentekenRaw);
   document.getElementById('btn-start').disabled = true;
   document.getElementById('form-screen').style.display = 'none';
   const ls = document.getElementById('loading-screen');
   ls.style.display = 'flex';
-
   let voertuigData = null;
   try {
     setLoadingText('Kenteken ophalen bij RDW...');
@@ -864,13 +845,11 @@ async function startRapport() {
     if (r1.ok) { const j1=await r1.json(); if(j1&&j1.length>0) voertuigData=j1[0]; }
     if (r2.ok) { const j2=await r2.json(); if(j2&&j2.length>0) voertuigData={...voertuigData,...j2[0]}; }
   } catch(e) { console.warn('RDW fetch mislukt:', e); }
-
   setLoadingText('Rapport samenstellen...');
   await new Promise(r => setTimeout(r, 600));
   ls.style.display = 'none';
   renderRapport(voertuigData, kenteken, naam, kmHandmatig, accuKwhHandmatig);
 }
-
 function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
   const merk = data?(data.merk||''):'';
   const handelsbenaming = data?(data.handelsbenaming||''):'';
@@ -893,7 +872,6 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
   if (driveType==='ev'&&kwh&&kwh<22) driveType='phev';
   if (driveType==='verbrandingsmotor'&&kwh&&kwh>6) driveType='phev';
   if (bsLow.includes('benzin')&&driveType==='ev'&&kwh&&kwh<35) driveType='phev';
-
   const jaarGebruik = km&&leeftijd?Math.round(km/leeftijd):15000;
   const degradatie = getDegradatie(driveType, leeftijd, km, kwh, battery?battery.modelKey:null);
   const sohMid = degradatie.sohMid;
@@ -905,47 +883,40 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
   const datumNu = new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'});
   const leeftijdTxt = leeftijd!==null?`${leeftijd} jaar`:'Onbekend';
   const kmTxt = km?`${formatNumber(km)} km`:'Niet beschikbaar';
-
   const isPHEV = driveType==='phev', isEV = driveType==='ev';
   const tankWltp = isEV?(kwh?Math.round(kwh*6.0):400):isPHEV?(kwh?Math.round(kwh*4.8):50):60;
   const tankNieuw = tankWltp;
   const tankDegradatie = Math.round(tankWltp*sohMid/100);
   const tankPct = Math.round(sohMid);
-
   const urlParams = new URLSearchParams(window.location.search);
   const isPaidNow = urlParams.get('paid')==='true';
   if (isPaidNow) window.history.replaceState({}, document.title, window.location.pathname);
-
   if (driveType==='verbrandingsmotor') {
     document.getElementById('rapport-screen').style.display='block';
     document.getElementById('rapport-content').innerHTML=`
       <div style="max-width:520px;margin:60px auto;text-align:center;padding:0 20px;">
-        <div style="font-size:48px;margin-bottom:16px;">🚗</div>
+        <div style="font-size:48px;margin-bottom:16px;">&#128663;</div>
         <h2 style="font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:12px;">Dit kenteken is een benzine of dieselauto</h2>
         <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">Het AccuRisico Rapport is uitsluitend beschikbaar voor elektrische voertuigen en plug-in hybrides. Voer een EV of PHEV-kenteken in.</p>
         <button onclick="location.reload()" style="background:#0f7c6e;color:#fff;border:none;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;">Opnieuw proberen</button>
       </div>`;
     return;
   }
-
   document.getElementById('rapport-screen').style.display='block';
-
   const pdfBtnHtml = isPaidNow?`
     <div style="display:flex;align-items:center;gap:12px;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 18px;margin-bottom:16px;" class="no-print">
-      <span style="font-size:18px;">✅</span>
+      <span style="font-size:18px;">&#9989;</span>
       <div style="flex:1;"><strong style="color:#16a34a;display:block;font-size:14px;">Rapport ontgrendeld</strong><span style="font-size:12px;color:#475569;">Volledig rapport beschikbaar. Gebruik de PDF-knop om op te slaan.</span></div>
-      <button onclick="window.print()" class="btn-pdf">⬇ PDF</button>
+      <button onclick="window.print()" class="btn-pdf">&#11015; PDF</button>
     </div>`:'';
-
   document.getElementById('rapport-content').innerHTML = `
     ${pdfBtnHtml}
-
     <div class="rapport-header">
       <div class="header-top">
         <div class="header-logo">Zeker<span>OpWeg</span></div>
         <div class="header-meta"><strong>AccuRisico Rapport</strong><br>${datumNu}<br>Kenteken: ${kenteken}</div>
       </div>
-      <div class="header-badge">🔋 AccuRisico Rapport · Voor kopers</div>
+      <div class="header-badge">&#128267; AccuRisico Rapport &middot; Voor kopers</div>
       <div class="header-title">Risico-inschatting accu</div>
       <div class="header-car">${autoNaam}</div>
       <div class="header-grid">
@@ -954,7 +925,6 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
         <div class="header-stat"><div class="header-stat-label">Kilometerstand</div><div class="header-stat-value">${kmTxt}</div></div>
       </div>
     </div>
-
     <div class="score-banner ${risico.kleur}">
       <div class="score-circle ${risico.kleur}">${risico.cijfer}</div>
       <div class="score-info">
@@ -962,10 +932,9 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
         <p>Op basis van leeftijd, kilometerstand en gebruik geeft deze accu een ${risico.label.toLowerCase()}. Hieronder zie je wat dat betekent in de praktijk.</p>
       </div>
     </div>
-
     ${!isPaidNow ? `
     <div class="card">
-      <div class="card-title"><span class="card-icon">🔋</span>Accuconditie inschatting</div>
+      <div class="card-title"><span class="card-icon">&#128267;</span>Accuconditie inschatting</div>
       <div style="display:flex;align-items:center;gap:24px;padding:16px 0 12px;border-bottom:1px solid #f1f5f9;margin-bottom:4px;">
         <div style="text-align:center;min-width:90px;">
           <div style="font-family:'DM Serif Display',serif;font-size:48px;color:#0f7c6e;line-height:1;">~${sohMid}%</div>
@@ -979,34 +948,35 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
       <div class="info-row"><span class="info-label">Verwacht capaciteitsverlies</span><span class="info-value">${degradatie.min}% tot ${degradatie.max}%</span></div>
       ${kwh?`<div class="info-row"><span class="info-label">Originele capaciteit</span><span class="info-value">${kwh} kWh</span></div>
       <div class="info-row"><span class="info-label">Geschatte restcapaciteit</span><span class="info-value teal">${(kwh*sohMid/100).toFixed(1)} kWh</span></div>`:''}
-      ${degradatie.adacNorm?`<div class="info-row"><span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span><span class="info-value ${degradatie.onderNorm?'amber':'green'}">${degradatie.adacNorm}% min. &nbsp;${degradatie.onderNorm?'⚠️ Onder norm':'✓ Boven norm'}</span></div>`:''}
-
+      ${degradatie.adacNorm?`<div class="info-row"><span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span><span class="info-value ${degradatie.onderNorm?'amber':'green'}">${degradatie.adacNorm}% min. &nbsp;${degradatie.onderNorm?'&#9888;&#65039; Onder norm':'&#10003; Boven norm'}</span></div>`:''}
       <div class="tank-box" style="margin-top:16px;">
-        <div class="tank-title">${isEV?'⚡ Rijbereik vergelijking':isPHEV?'🔌 Elektrisch rijbereik':'⛽ Tank-analogie'}</div>
+        <div class="tank-title">${isEV?'&#9889; Rijbereik vergelijking':isPHEV?'&#128268; Elektrisch rijbereik':'&#9981; Tank-analogie'}</div>
         <div class="tank-row"><span class="tank-label">Nieuw (100%)</span><div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div><span class="tank-val">${tankNieuw} ${isEV||isPHEV?'km':'ltr'}</span></div>
         <div class="tank-row"><span class="tank-label">Dit voertuig (~${sohMid}%)</span><div class="tank-bar-wrap"><div class="tank-bar-fill degraded" style="width:${tankPct}%"></div></div><span class="tank-val" style="filter:blur(4px);">${tankDegradatie} ${isEV||isPHEV?'km':'ltr'}</span></div>
       </div>
     </div>
-
     <div class="unlock-gate">
-      <div style="font-size:28px;margin-bottom:10px;">🔒</div>
+      <div style="font-size:28px;margin-bottom:10px;">&#128274;</div>
       <h3>Het volledige AccuRisico Rapport bevat:</h3>
       <p>Degradatiefases, markvergelijking met AVILOO-data, toekomstprognose 2027/2029/2031, proefrit checklist en aankoopadvies.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto;">
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ SoH inschatting in %</div>
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ Degradatiefases</div>
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ Markvergelijking</div>
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ Toekomstprognose</div>
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ Proefrit checklist</div>
-        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">✓ Aankoopadvies</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; SoH inschatting in %</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; Degradatiefases</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; Markvergelijking</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; Toekomstprognose</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; Proefrit checklist</div>
+        <div style="padding:8px 12px;background:rgba(255,255,255,0.1);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.85);">&#10003; Aankoopadvies</div>
       </div>
-      <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}_kp" onclick="saveBeforeStripe()">Ontgrendel rapport voor €19,95</a>
-      <p class="btn-unlock-sub">Eenmalig · Geen abonnement · Direct beschikbaar</p>
+      <div class="rr-anchor-box">
+        &#128161; Accuvervanging kost gemiddeld <strong>&euro;6.500 of meer.</strong> Dit rapport laat zien of dat risico relevant is &mdash; voor &euro;19,95.
+      </div>
+      <a class="btn-unlock" href="${STRIPE_LINK}?client_reference_id=${kenteken}_kp" onclick="saveBeforeStripe()">Volledig rapport ontgrendelen &middot; &euro;19,95</a>
+      <p class="btn-unlock-sub">Eenmalig &middot; Geen abonnement &middot; Direct beschikbaar</p>
+      <p class="rr-wa-sub">Liever persoonlijk advies? <a href="https://wa.me/31623452349?text=Ik%20wil%20een%20AccuRisico%20Rapport%20bespreken" target="_blank" rel="noopener">App via WhatsApp</a></p>
     </div>
     ` : `
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">🔋</span>Accuconditie inschatting</div>
+      <div class="card-title"><span class="card-icon">&#128267;</span>Accuconditie inschatting</div>
       <div style="display:flex;align-items:center;gap:24px;padding:16px 0 12px;border-bottom:1px solid #f1f5f9;margin-bottom:4px;">
         <div style="text-align:center;min-width:90px;">
           <div style="font-family:'DM Serif Display',serif;font-size:48px;color:#0f7c6e;line-height:1;">~${sohMid}%</div>
@@ -1020,13 +990,12 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
       <div class="info-row"><span class="info-label">Verwacht capaciteitsverlies</span><span class="info-value">${degradatie.min}% tot ${degradatie.max}%</span></div>
       ${kwh?`<div class="info-row"><span class="info-label">Originele capaciteit</span><span class="info-value">${kwh} kWh</span></div>
       <div class="info-row"><span class="info-label">Geschatte restcapaciteit</span><span class="info-value teal">${(kwh*sohMid/100).toFixed(1)} kWh</span></div>`:''}
-      ${degradatie.adacNorm?`<div class="info-row"><span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span><span class="info-value ${degradatie.onderNorm?'amber':'green'}">${degradatie.adacNorm}% min. &nbsp;${degradatie.onderNorm?'⚠️ Onder norm':'✓ Boven norm'}</span></div>`:''}
+      ${degradatie.adacNorm?`<div class="info-row"><span class="info-label">ADAC-norm bij ${degradatie.adacLabel}</span><span class="info-value ${degradatie.onderNorm?'amber':'green'}">${degradatie.adacNorm}% min. &nbsp;${degradatie.onderNorm?'&#9888;&#65039; Onder norm':'&#10003; Boven norm'}</span></div>`:''}
       ${variantOnzeker?`<div class="highlight-box"><strong>Accuvariant niet eenduidig:</strong> Dit model heeft meerdere accuvarianten. De meest voorkomende is gekozen (${kwh} kWh).</div>`:''}
       <div class="info-box" style="margin-top:14px;"><strong>Wat dit betekent:</strong> Geschatte accuconditie rond de ${sohMid}%. Dat is ${sohMid>=90?'uitstekend':sohMid>=82?'normaal':'iets onder gemiddeld'} voor een voertuig van ${leeftijdTxt} met ${kmTxt}.</div>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">${isEV?'⚡':isPHEV?'🔌':'⛽'}</span>Wat dit betekent in de praktijk</div>
+      <div class="card-title"><span class="card-icon">${isEV?'&#9889;':isPHEV?'&#128268;':'&#9981;'}</span>Wat dit betekent in de praktijk</div>
       <div class="tank-box">
         <div class="tank-title">${isEV?'Rijbereik vergelijking':isPHEV?'Elektrisch rijbereik':'Tank-analogie'}</div>
         <div class="tank-row"><span class="tank-label">Nieuw (100%)</span><div class="tank-bar-wrap"><div class="tank-bar-fill full" style="width:100%"></div></div><span class="tank-val">${tankNieuw} ${isEV||isPHEV?'km':'ltr'}</span></div>
@@ -1034,19 +1003,17 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
       </div>
       <p style="font-size:13px;color:#64748b;margin-top:12px;line-height:1.65;">Met ~${sohMid}% accucapaciteit ${isEV?`is het rijbereik ${tankDegradatie} km in plaats van ${tankNieuw} km nieuw. Verschil: ${tankNieuw-tankDegradatie} km.`:isPHEV?`is het elektrisch rijbereik afgenomen van ${tankNieuw} naar ${tankDegradatie} km.`:`is dat vergelijkbaar met een tank van ${tankDegradatie} liter.`} De auto rijdt er niet minder om.</p>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">📈</span>Degradatiefases</div>
+      <div class="card-title"><span class="card-icon">&#128200;</span>Degradatiefases</div>
       <div class="fase-grid">
-        <div class="fase-block f1 ${fase===1?'active-fase':''}"><div class="fase-tag">Fase 1</div><div class="fase-range">100% naar 90%</div><div class="fase-desc">Normaal voor jonge accu's.</div>${fase===1?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#16a34a;">← Dit voertuig</div>':''}</div>
-        <div class="fase-block f2 ${fase===2?'active-fase':''}"><div class="fase-tag">Fase 2</div><div class="fase-range">90% naar 75%</div><div class="fase-desc">Stabiele, langzame degradatie.</div>${fase===2?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#1d4ed8;">← Dit voertuig</div>':''}</div>
-        <div class="fase-block f3 ${fase===3?'active-fase':''}"><div class="fase-tag">Fase 3</div><div class="fase-range">Onder 75%</div><div class="fase-desc">Versnelde terugval.</div>${fase===3?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#d97706;">← Dit voertuig</div>':''}</div>
+        <div class="fase-block f1 ${fase===1?'active-fase':''}"><div class="fase-tag">Fase 1</div><div class="fase-range">100% naar 90%</div><div class="fase-desc">Normaal voor jonge accu's.</div>${fase===1?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#16a34a;">&larr; Dit voertuig</div>':''}</div>
+        <div class="fase-block f2 ${fase===2?'active-fase':''}"><div class="fase-tag">Fase 2</div><div class="fase-range">90% naar 75%</div><div class="fase-desc">Stabiele, langzame degradatie.</div>${fase===2?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#1d4ed8;">&larr; Dit voertuig</div>':''}</div>
+        <div class="fase-block f3 ${fase===3?'active-fase':''}"><div class="fase-tag">Fase 3</div><div class="fase-range">Onder 75%</div><div class="fase-desc">Versnelde terugval.</div>${fase===3?'<div style="margin-top:8px;font-size:11px;font-weight:700;color:#d97706;">&larr; Dit voertuig</div>':''}</div>
       </div>
       <div class="info-box" style="margin-top:14px;">Dit voertuig bevindt zich in fase ${fase}. ${fase===1?'De accu is nog jong.':fase===2?'De langste en meest stabiele fase.':'Verdere degradatie verloopt sneller.'}</div>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">📊</span>Vergelijking vergelijkbare modellen</div>
+      <div class="card-title"><span class="card-icon">&#128202;</span>Vergelijking vergelijkbare modellen</div>
       ${vergelijk.map((v,i) => `
         <div class="vergelijk-row">
           <div class="vergelijk-model ${v.soh===sohMid?'highlight':''}">${v.model} <span style="font-size:11px;color:#94a3b8;">(${v.km})</span></div>
@@ -1055,27 +1022,24 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
         </div>`).join('')}
       <p style="font-size:12px;color:#94a3b8;margin-top:14px;">Gecertificeerde AVILOO-meetdata. Dient als marktcontext.</p>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">🔭</span>Toekomstprognose</div>
+      <div class="card-title"><span class="card-icon">&#128301;</span>Toekomstprognose</div>
       <div class="toekomst-grid">
         ${toekomst.map(t=>`<div class="toekomst-block"><div class="toekomst-jaar">${t.jaar}</div><div class="toekomst-soh" style="color:${getSohColor(t.soh)};">${t.soh}%</div><div class="toekomst-label">verwachte SoH</div></div>`).join('')}
       </div>
       <p style="font-size:12px;color:#94a3b8;margin-top:14px;">Statistische schatting op basis van huidig rijpatroon.</p>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">✅</span>Proefrit checklist</div>
+      <div class="card-title"><span class="card-icon">&#9989;</span>Proefrit checklist</div>
       <div class="info-row"><span class="info-label">Controleer laadsnelheid</span><span class="info-value teal">Vraag naar laadgeschiedenis</span></div>
       <div class="info-row"><span class="info-label">Rij minstens 20 minuten</span><span class="info-value teal">Let op energieverbruik</span></div>
       <div class="info-row"><span class="info-label">Vraag naar software-updates</span><span class="info-value teal">Recent bij dealer geweest?</span></div>
       <div class="info-row"><span class="info-label">Controleer restbereik indicatie</span><span class="info-value teal">Klopt met lading %?</span></div>
       ${isEV||isPHEV?`<div class="info-row"><span class="info-label">Vraag om laadhistorie</span><span class="info-value teal">Snelladen = meer slijtage</span></div>`:''}
-      <div class="highlight-box" style="margin-top:12px;"><strong>Wil je zekerheid op celniveau?</strong> Dit rapport is een statistische inschatting. Een AVILOO Flash Test (€129 op locatie) geeft de werkelijke SoH per cel. <a href="https://zekeropweg.nu/ev-accucheck.html" style="color:#d97706;font-weight:600;">Bekijk AccuCheck</a></div>
+      <div class="highlight-box" style="margin-top:12px;"><strong>Wil je zekerheid op celniveau?</strong> Dit rapport is een statistische inschatting. Een AVILOO Flash Test (&#128205; op locatie) geeft de werkelijke SoH per cel. <a href="https://zekeropweg.nu/ev-accucheck.html" style="color:#d97706;font-weight:600;">Bekijk AccuCheck</a></div>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">🚗</span>Voertuiginformatie</div>
+      <div class="card-title"><span class="card-icon">&#128663;</span>Voertuiginformatie</div>
       <div class="info-row"><span class="info-label">Merk / Model</span><span class="info-value">${autoNaam}</span></div>
       <div class="info-row"><span class="info-label">Aandrijving</span><span class="info-value teal">${getDriveLabel(driveType)}</span></div>
       <div class="info-row"><span class="info-label">Eerste toelating</span><span class="info-value">${formatDatumStr(datum)}</span></div>
@@ -1083,9 +1047,8 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
       <div class="info-row"><span class="info-label">Kilometerstand</span><span class="info-value">${kmTxt} <span style="font-size:11px;color:#94a3b8;">(${kmBron})</span></span></div>
       ${kwh?`<div class="info-row"><span class="info-label">Batterijcapaciteit</span><span class="info-value">${kwh} kWh</span></div>`:''}
     </div>
-
     <div class="garantie-banner no-print">
-      <div class="garantie-banner-icon">🛡️</div>
+      <div class="garantie-banner-icon">&#128737;&#65039;</div>
       <div class="garantie-banner-text">
         <p>Nieuw van AVILOO</p>
         <h4>AVILOO Batterijgarantie bij AccuCheck op locatie</h4>
@@ -1094,39 +1057,33 @@ function renderRapport(data, kenteken, naam, kmHandmatig, accuKwhHandmatig) {
       <div class="garantie-pills">
         <div class="garantie-pill">1 jaar</div>
         <div class="garantie-pill">20.000 km</div>
-        <div class="garantie-pill highlight">€3.000</div>
+        <div class="garantie-pill highlight">&euro;3.000</div>
       </div>
     </div>
-
     <div class="cta-card">
       <h2>Wil je zekerheid in plaats van een inschatting?</h2>
       <p>Dit rapport geeft richting. Een AVILOO Flash Test op celniveau geeft de werkelijke accuconditie en een officieel TUV-certificaat.</p>
       <a class="cta-btn" href="https://zekeropweg.nu/ev-accucheck.html">Bekijk EV AccuCheck</a>
-      <p class="cta-sub">Eenmalig · €129 op locatie · Certificaat dezelfde dag</p>
+      <p class="cta-sub">Eenmalig &middot; &euro;129 op locatie &middot; Certificaat dezelfde dag</p>
     </div>
-
     <div class="card">
-      <div class="card-title"><span class="card-icon">📌</span>Over dit rapport</div>
+      <div class="card-title"><span class="card-icon">&#128204;</span>Over dit rapport</div>
       <p style="font-size:13px;color:#475569;line-height:1.65;margin-bottom:8px;">Dit rapport geeft een statistische risico-inschatting van de accuconditie op basis van leeftijd, kilometerstand en gecertificeerde AVILOO-meetdata van vergelijkbare voertuigen.</p>
       <p style="font-size:13px;color:#94a3b8;line-height:1.6;">De werkelijke accucapaciteit is uitsluitend vast te stellen via een gecertificeerde celmeting. Dit rapport is geen gemeten waarde. ZekerOpWeg aanvaardt geen aansprakelijkheid voor beslissingen op basis van dit rapport.</p>
     </div>
-
     <div class="rapport-footer">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
         <div style="font-family:'DM Serif Display',serif;font-size:14px;color:#0f172a;">Zeker<span style="color:#0f7c6e;">OpWeg</span></div>
-        <div style="font-size:11px;color:#94a3b8;">${datumNu} · Kenteken ${kenteken} · zekeropweg.nu</div>
+        <div style="font-size:11px;color:#94a3b8;">${datumNu} &middot; Kenteken ${kenteken} &middot; zekeropweg.nu</div>
       </div>
     </div>
     `}
   `;
-
   document.getElementById('rapport-screen').scrollIntoView({ behavior: 'smooth' });
 }
-
 // Kenteken input
 document.getElementById('kenteken').addEventListener('input', function() { this.value=this.value.toUpperCase(); });
 document.getElementById('kenteken').addEventListener('keydown', function(e) { if(e.key==='Enter') startRapport(); });
-
 // Herstel na Stripe redirect
 (function initNaStripe() {
   const urlParams = new URLSearchParams(window.location.search);
