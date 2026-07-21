@@ -103,6 +103,12 @@
       color: #888;
       margin-bottom: 16px;
     }
+    /* Placeholder strikethrough fix — overschrijft globale stijl uit styles.css */
+    #locatieAuto::placeholder,
+    .page-intake input::placeholder,
+    .page-intake textarea::placeholder {
+      text-decoration: none;
+    }
     @media (max-width: 480px) {
       .izk-doel-grid {
         grid-template-columns: 1fr;
@@ -311,16 +317,6 @@
       if (locatieVrijInput) locatieVrijInput.required = false;
       prijsBadge.textContent = "AccuCheck in Barendrecht · €95 incl. btw";
       paginaTitel.textContent = "AccuCheck aanvragen · Barendrecht";
-
-    } else if (dienstParam === "accuzeker-pakket") {
-      dienstField.value  = "accuzeker-pakket";
-      prijsField.value   = "149";
-      productField.value = "accuzeker-pakket-149";
-      locatieVast.style.display = "none";
-      locatieVrij.style.display = "block";
-      if (locatieVrijInput) locatieVrijInput.required = true;
-      prijsBadge.textContent = "AccuZeker Pakket · €149 incl. btw";
-      paginaTitel.textContent = "AccuZeker Pakket aanvragen";
 
     } else {
       dienstField.value  = dienstParam || "ev-accucheck";
