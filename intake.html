@@ -103,11 +103,17 @@
       color: #888;
       margin-bottom: 16px;
     }
-    /* Placeholder strikethrough fix — overschrijft globale stijl uit styles.css */
+    /* Strikethrough fix — overschrijft globale stijl uit styles.css */
     #locatieAuto::placeholder,
     .page-intake input::placeholder,
     .page-intake textarea::placeholder {
       text-decoration: none;
+    }
+    .izk-veld-hint,
+    .izk-veld-hint *,
+    .locatie-note,
+    .locatie-note * {
+      text-decoration: none !important;
     }
     @media (max-width: 480px) {
       .izk-doel-grid {
