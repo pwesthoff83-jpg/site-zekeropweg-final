@@ -3,13 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Onafhankelijk aankoopadvies Rotterdam | Occasion EV en hybride | ZekerOpWeg</title>
-
   <meta name="description" content="Onafhankelijk aankoopadvies voor occasions, elektrische auto's en hybrides in Rotterdam en omgeving. ZekerOpWeg komt naar u toe vanuit Barendrecht. BeslisCheck vanaf €49. Nu incl. AVILOO batterijgarantie tot €3.000. Geen verkoopbelang.">
-
   <link rel="canonical" href="https://zekeropweg.nu/aankoopadvies-rotterdam.html" />
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -95,13 +91,11 @@
     ]
   }
   </script>
-
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
   <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
   <link rel="stylesheet" href="css/zop-stability.css" />
   <link rel="stylesheet" href="css/luxury.css" />
   <link rel="stylesheet" href="css/components.css" />
-
   <style>
     .pillar-hero {
       background: linear-gradient(135deg, #071a2b 0%, #0a2d4a 100%);
@@ -179,7 +173,7 @@
     }
     .price-row:last-child { border: none; }
     .price-row strong { color: #071a2b; }
-    .price-amount { font-weight: 700; color: #0a6e4a; }
+    .price-amount { font-weight: 700; color: #0a6e4a; white-space: nowrap; padding-left: 1rem; }
     .price-note {
       font-size: .78rem;
       color: #8a6d1a;
@@ -233,8 +227,6 @@
     .faq-item:last-child { border: none; }
     .faq-item h3 { font-size: 1rem; font-weight: 600; color: #071a2b; margin: 0 0 .5rem; }
     .faq-item p { margin: 0; font-size: .95rem; line-height: 1.75; color: #3a3a3a; }
-
-    /* ===== AVILOO garantiebox ===== */
     .goldbox {
       background: #fdfbf6;
       border-left: 4px solid #c6a86a;
@@ -247,8 +239,55 @@
     }
     .goldbox strong { display: block; font-size: 1rem; color: #071a2b; margin-bottom: 2px; }
     .goldbox p { margin: 0; font-size: .9rem; color: #5a6472; line-height: 1.55; }
+    /* art- = aankoopadvies-rotterdam — eigen namespace, styles.css nooit aangeraakt */
+    .art-truststrip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-bottom: 1.8rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
+    }
+    .art-truststrip span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .art-sterren {
+      color: #d7b56d;
+      font-size: .95rem;
+      letter-spacing: 1px;
+    }
+    .art-loss {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: .85rem 1.1rem;
+      font-size: .92rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.55;
+      margin-bottom: 1.8rem;
+      max-width: 560px;
+    }
+    .art-loss strong { color: #fff; }
+    .art-reviews {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 2rem 0;
+    }
+    @media(max-width:560px){ .art-reviews { grid-template-columns: 1fr; } }
+    .art-review-card {
+      background: #f7f9fc;
+      border: 1px solid #e0e8f0;
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+    }
+    .art-review-stars { color: #d7b56d; font-size: .9rem; letter-spacing: 1px; margin-bottom: .5rem; }
+    .art-review-text { font-size: .88rem; color: #3a3a3a; line-height: 1.65; margin-bottom: .7rem; font-style: italic; }
+    .art-review-author { font-size: .8rem; font-weight: 600; color: #071a2b; }
+    .art-review-sub { font-size: .75rem; color: #8a9ab0; }
   </style>
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -257,9 +296,7 @@
     gtag('config', 'AW-17962185957');
   </script>
 </head>
-
 <body class="fade-in">
-
 <header class="zop-header">
   <div class="zop-header-inner">
     <a href="index.html" class="zop-logo">ZekerOpWeg</a>
@@ -270,7 +307,7 @@
         <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
         <div class="zop-drop-menu">
           <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck &ndash; BMW X5 45e / 50e</a>
         </div>
       </div>
       <div class="zop-dropdown">
@@ -284,17 +321,16 @@
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
-    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
   </div>
 </header>
-
 <div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" aria-label="Menu sluiten">×</button>
+  <button class="close-menu" aria-label="Menu sluiten">&times;</button>
   <nav class="mobile-nav">
     <a href="index.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
     <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck &ndash; BMW X5 45e / 50e</a>
     <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
     <a href="automatisering.html">Automatisering</a>
     <a href="bezwaarservice.html">Bezwaar</a>
@@ -303,30 +339,38 @@
   </nav>
 </div>
 <div id="menuOverlay" class="menu-overlay"></div>
-
 <main class="page-content">
-
 <section class="pillar-hero">
   <div class="container">
     <span class="hero-eyebrow">Aankoopadvies Rotterdam en omgeving</span>
     <h1>Onafhankelijk aankoopadvies in Rotterdam voor occasions, EV en hybride</h1>
+
+    <div class="art-truststrip">
+      <span><span class="art-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp;5,0 op Google</span>
+      <span>16 jaar automotive ervaring</span>
+      <span>Officieel AVILOO-partner</span>
+      <span>Geen verkoopbelang</span>
+    </div>
+
+    <div class="art-loss">
+      Een foute beslissing bij de aankoop van een tweedehands EV of hybride kost gemiddeld <strong>&euro;3.000 tot &euro;25.000.</strong> Ik voorkom dat voor <strong>&euro;49.</strong>
+    </div>
+
     <p class="hero-intro">
       ZekerOpWeg is gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid.
       Onafhankelijk aankoopadvies op locatie in heel Rotterdam en omgeving.
-      Geen verkoopbelang. BeslisCheck vanaf €49.
+      Geen verkoopbelang. BeslisCheck vanaf &euro;49.
     </p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
-    <p class="pillar-meta">ZekerOpWeg · Barendrecht · Actief in heel Rotterdam en omgeving</p>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Rotterdam" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+    <p class="pillar-meta">ZekerOpWeg &middot; Barendrecht &middot; Actief in heel Rotterdam en omgeving</p>
   </div>
 </section>
-
 <div class="pillar-body">
-
   <div class="goldbox">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c6a86a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
     <div>
-      <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
-      <p>Combineert u aankoopadvies met een AccuCheck in Rotterdam, dan zit er een batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
+      <strong>AVILOO Batterijgarantie tot &euro;3.000 inbegrepen</strong>
+      <p>Combineert u aankoopadvies met een AccuCheck in Rotterdam, dan zit er een batterijgarantie tot &euro;3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
     </div>
   </div>
 
@@ -340,7 +384,6 @@
     Geen verkoopbelang. Geen provisie van dealers of platforms. Het advies is uitsluitend in uw belang,
     ook als dat betekent dat de auto wordt afgeraden.
   </p>
-
   <div class="pillar-infobox">
     <p>
       ZekerOpWeg heeft zestien jaar ervaring in het dealerkanaal en is officieel AVILOO-partner
@@ -350,34 +393,28 @@
   </div>
 
   <h2>Wat kost aankoopadvies in Rotterdam?</h2>
-
   <div class="price-row">
-    <strong>BeslisCheck, analyse op afstand vóór bezichtiging</strong>
-    <span class="price-amount">€49</span>
+    <strong>BeslisCheck &mdash; analyse op afstand v&oacute;&oacute;r bezichtiging</strong>
+    <span class="price-amount">&euro;49</span>
   </div>
   <div class="price-row">
-    <strong>Basis, telefonisch of digitaal advies</strong>
-    <span class="price-amount">€249</span>
+    <strong>Premium &mdash; fysieke bezichtiging op locatie in Rotterdam</strong>
+    <span class="price-amount">&euro;349</span>
   </div>
   <div class="price-row">
-    <strong>Premium, fysieke bezichtiging op locatie in Rotterdam</strong>
-    <span class="price-amount">€349</span>
+    <strong>Full Service &mdash; begeleiding tot sleuteloverdracht</strong>
+    <span class="price-amount">&euro;499</span>
   </div>
   <div class="price-row">
-    <strong>Full Service, begeleiding tot sleuteloverdracht</strong>
-    <span class="price-amount">€499</span>
+    <strong>Premium + EV AccuCheck &mdash; bezichtiging en accutest in &eacute;&eacute;n bezoek</strong>
+    <span class="price-amount">&euro;449</span>
   </div>
-  <div class="price-row">
-    <strong>Premium + EV AccuCheck, bezichtiging en accutest in één bezoek</strong>
-    <span class="price-amount">€449</span>
-  </div>
-  <p class="price-note">Incl. AVILOO batterijgarantie tot €3.000, wanneer het voertuig aan de voorwaarden voldoet</p>
+  <p class="price-note">Incl. AVILOO Batterijgarantie tot &euro;3.000, wanneer het voertuig aan de voorwaarden voldoet</p>
   <div class="price-row">
     <strong>Full Service + EV AccuCheck</strong>
-    <span class="price-amount">€599</span>
+    <span class="price-amount">&euro;599</span>
   </div>
-  <p class="price-note">Incl. AVILOO batterijgarantie tot €3.000, wanneer het voertuig aan de voorwaarden voldoet</p>
-
+  <p class="price-note">Incl. AVILOO Batterijgarantie tot &euro;3.000, wanneer het voertuig aan de voorwaarden voldoet</p>
   <p style="font-size:.88rem; color:#5a6472; margin-top:.8rem;">
     Eerder betaald wordt verrekend bij een vervolgpakket. Reiskosten binnen 40 km rondom Barendrecht inbegrepen.
   </p>
@@ -385,11 +422,26 @@
   <div class="pillar-cta">
     <h3>Twijfelt u over een auto in Rotterdam?</h3>
     <p>Stuur het kenteken of de advertentielink via WhatsApp. ZekerOpWeg kijkt vandaag nog met u mee.</p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Rotterdam" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+  </div>
+
+  <h2>Wat klanten zeggen</h2>
+  <div class="art-reviews">
+    <div class="art-review-card">
+      <div class="art-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="art-review-text">"Pepijn is met mij meegegaan naar de dealer en heeft mij onafhankelijk begeleid. Hij keek kritisch mee en gaf duidelijke uitleg. Ook tijdens de onderhandeling gaf hij rust en zekerheid. Dankzij zijn advies heb ik vol vertrouwen mijn beslissing kunnen nemen."</p>
+      <div class="art-review-author">M. Catshoek</div>
+      <div class="art-review-sub">Aankoop occasion &middot; via Google</div>
+    </div>
+    <div class="art-review-card">
+      <div class="art-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="art-review-text">"Pepijn heeft mij bijgestaan bij mijn onderhandeling en aankoop, wat zorgde voor een betere prijs, maar vooral de zekerheid dat ik een goede, veilige auto had gekocht."</p>
+      <div class="art-review-author">Marinka Klijn</div>
+      <div class="art-review-sub">Aankoop tweedehands &middot; via Google</div>
+    </div>
   </div>
 
   <h2>Hoe werkt het?</h2>
-
   <div class="stappen-grid">
     <div class="stap-item">
       <p class="stap-num">Stap 1</p>
@@ -404,7 +456,7 @@
     <div class="stap-item">
       <p class="stap-num">Stap 3</p>
       <strong>AccuCheck (bij EV of hybride)</strong>
-      <p>Gecertificeerde AVILOO Flash Test op locatie. Celanalyse, SoH-meting, officieel accucertificaat en een AVILOO batterijgarantie tot €3.000. Combinatieprijs bij Premium of Full Service.</p>
+      <p>Gecertificeerde AVILOO Flash Test op locatie. Meettijd 15 tot 20 minuten. Celanalyse, SoH-meting, officieel accucertificaat en een AVILOO Batterijgarantie tot &euro;3.000. Combinatieprijs bij Premium of Full Service.</p>
     </div>
     <div class="stap-item">
       <p class="stap-num">Stap 4</p>
@@ -417,11 +469,12 @@
   <p>
     De meeste miskopen bij een tweedehands elektrische auto of hybride ontstaan door de accu.
     ZekerOpWeg combineert onafhankelijk aankoopadvies met een gecertificeerde AVILOO Flash Test,
-    inclusief een AVILOO batterijgarantie tot €3.000. Zo weet u niet alleen of de auto er goed
+    inclusief een AVILOO Batterijgarantie tot &euro;3.000. Zo weet u niet alleen of de auto er goed
     uitziet, maar ook of de accu gezond is, en staat u er niet alleen voor als dat achteraf tegenvalt.
   </p>
   <ul>
     <li>SoH-meting via AVILOO, geen BMS-uitlezing maar een celanalyse</li>
+    <li>Ondersteunt meer dan 95% van alle EV- en hybride voertuigen</li>
     <li>Controle laadgeschiedenis en laadgedrag</li>
     <li>APK-historie via RDW</li>
     <li>Carrosserietoestand, remmen, banden</li>
@@ -433,7 +486,6 @@
     ZekerOpWeg bedient heel Rotterdam en de directe omgeving vanuit Barendrecht.
     Alle onderstaande gebieden vallen binnen het standaard servicegebied zonder extra reiskosten:
   </p>
-
   <div class="gebied-grid">
     <div class="gebied-item">Rotterdam-Zuid</div>
     <div class="gebied-item">Rotterdam-Noord</div>
@@ -453,35 +505,29 @@
   </div>
 
   <h2>Veelgestelde vragen</h2>
-
   <div class="faq-item">
     <h3>Wat kost onafhankelijk aankoopadvies in Rotterdam?</h3>
-    <p>ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie in Rotterdam kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride geldt een combinatieprijs inclusief AVILOO AccuCheck vanaf €449, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
+    <p>ZekerOpWeg biedt aankoopadvies aan vanaf &euro;49 voor een BeslisCheck. De Premium bezichtiging op locatie in Rotterdam kost &euro;349. Full Service begeleiding tot sleuteloverdracht kost &euro;499. Bij EV of hybride geldt een combinatieprijs inclusief AVILOO AccuCheck vanaf &euro;449, met een AVILOO Batterijgarantie tot &euro;3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
   </div>
-
   <div class="faq-item">
     <h3>Komt ZekerOpWeg naar Rotterdam voor aankoopadvies?</h3>
     <p>Ja. ZekerOpWeg is gevestigd in Barendrecht, direct grenzend aan Rotterdam-Zuid, en is binnen 15 tot 30 minuten bij u, bij de dealer of bij de particulier die de auto aanbiedt. Geen reiskosten binnen Rotterdam en directe omgeving.</p>
   </div>
-
   <div class="faq-item">
     <h3>Geeft ZekerOpWeg ook aankoopadvies voor elektrische auto's in Rotterdam?</h3>
-    <p>Ja. ZekerOpWeg is gespecialiseerd in aankoopadvies voor tweedehands elektrische auto's en plug-in hybrides in Rotterdam en omgeving. Bij Premium en Full Service kan een gecertificeerde AVILOO AccuCheck worden toegevoegd voor een combinatieprijs, inclusief een AVILOO batterijgarantie tot €3.000 wanneer het voertuig aan de voorwaarden voldoet.</p>
+    <p>Ja. ZekerOpWeg is gespecialiseerd in aankoopadvies voor tweedehands elektrische auto's en plug-in hybrides in Rotterdam en omgeving. Bij Premium en Full Service kan een gecertificeerde AVILOO AccuCheck worden toegevoegd voor een combinatieprijs, inclusief een AVILOO Batterijgarantie tot &euro;3.000 wanneer het voertuig aan de voorwaarden voldoet.</p>
   </div>
-
   <div class="faq-item">
     <h3>Wat is een BeslisCheck?</h3>
-    <p>De BeslisCheck is een onafhankelijke analyse van een advertentie en voertuig vóór bezichtiging. Op basis van het kenteken en de advertentie geeft ZekerOpWeg een concreet advies: kopen, onderhandelen of laten staan. De BeslisCheck kost €49 en wordt verrekend bij een vervolgpakket.</p>
+    <p>De BeslisCheck is een onafhankelijke analyse van een advertentie en voertuig v&oacute;&oacute;r bezichtiging. Op basis van het kenteken en de advertentie geeft ZekerOpWeg een concreet advies: kopen, onderhandelen of laten staan. De BeslisCheck kost &euro;49 en wordt verrekend bij een vervolgpakket.</p>
   </div>
-
   <div class="faq-item">
     <h3>Is ZekerOpWeg echt onafhankelijk?</h3>
     <p>Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platforms. Het advies is uitsluitend in het belang van de koper, ook als dat betekent dat de auto wordt afgeraden.</p>
   </div>
-
   <div class="faq-item">
     <h3>Zit er een batterijgarantie bij de AVILOO AccuCheck in Rotterdam?</h3>
-    <p>Ja. Bij Premium of Full Service gecombineerd met een AVILOO AccuCheck zit een AVILOO batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
+    <p>Ja. Bij Premium of Full Service gecombineerd met een AVILOO AccuCheck zit een AVILOO Batterijgarantie tot &euro;3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
   </div>
 
   <h2>Meer lezen</h2>
@@ -493,19 +539,18 @@
   </ul>
 
   <div class="pillar-cta">
-    <h3>Voorkom een miskoop vóór u tekent</h3>
+    <h3>Voorkom een miskoop v&oacute;&oacute;r u tekent</h3>
     <p>Gevestigd in Barendrecht, actief in heel Rotterdam en omgeving. Stuur het kenteken via WhatsApp en u weet vandaag nog waar u aan toe bent.</p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Rotterdam" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+    <p style="font-size:.82rem; color:rgba(255,255,255,.45); margin:.8rem 0 0;">Of mail naar <a href="mailto:info@zekeropweg.nu" style="color:rgba(255,255,255,.6);">info@zekeropweg.nu</a></p>
   </div>
-
 </div>
 </main>
-
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-col">
       <p class="footer-title">ZekerOpWeg</p>
-      <p>© 2026 ZekerOpWeg</p>
+      <p>&copy; 2026 ZekerOpWeg</p>
       <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
         Handelsnaam van Pepijn Westhoff<br>
         KvK 99323575<br>
@@ -515,7 +560,11 @@
     </div>
     <div class="footer-col">
       <p class="footer-title">Contact</p>
-      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+      <p>
+        <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>
+        <a href="https://wa.me/31623452349">06 23 45 23 49</a><br>
+        Algemene vragen en eerste contact
+      </p>
       <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>Facturatie en administratie</p>
     </div>
     <div class="footer-col">
@@ -534,7 +583,6 @@
     </div>
   </div>
 </footer>
-
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
