@@ -3,13 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Onafhankelijk aankoopadvies Dordrecht | EV AccuCheck op locatie | ZekerOpWeg</title>
-
   <meta name="description" content="Onafhankelijk aankoopadvies en EV AccuCheck op locatie in Dordrecht en omgeving. ZekerOpWeg komt naar u toe. BeslisCheck vanaf €49. Nu incl. AVILOO batterijgarantie tot €3.000. Geen verkoopbelang.">
-
   <link rel="canonical" href="https://zekeropweg.nu/aankoopadvies-dordrecht.html" />
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -78,13 +74,11 @@
     ]
   }
   </script>
-
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
   <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
   <link rel="stylesheet" href="css/zop-stability.css" />
   <link rel="stylesheet" href="css/luxury.css" />
   <link rel="stylesheet" href="css/components.css" />
-
   <style>
     .pillar-hero {
       background: linear-gradient(135deg, #071a2b 0%, #0a2d4a 100%);
@@ -213,8 +207,6 @@
     .reiskosten-row:last-child { border: none; }
     .reiskosten-row span { color: #3a3a3a; }
     .reiskosten-row strong { color: #0a6e4a; }
-
-    /* ===== NIEUW: producten bovenaan + combinatie met AccuCheck ===== */
     .goldbox {
       background: #fdfbf6;
       border-left: 4px solid #c6a86a;
@@ -227,7 +219,6 @@
     }
     .goldbox strong { display: block; font-size: 1rem; color: #071a2b; margin-bottom: 2px; }
     .goldbox p { margin: 0; font-size: .9rem; color: #5a6472; line-height: 1.55; }
-
     .overview-section { background: #f7f9fc; padding: 3.5rem 0; }
     .overview-section .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
     .overview-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0a6e4a; margin-bottom: .6rem; }
@@ -249,31 +240,55 @@
     .advies-card .naam { font-size: .95rem; font-weight: 700; color: #071a2b; margin-bottom: .3rem; }
     .advies-card .prijs { font-size: 1.4rem; font-weight: 700; color: #0a6e4a; margin-bottom: .4rem; }
     .advies-card .desc { font-size: .78rem; color: #5a6472; line-height: 1.5; }
-
-    .combo-section { background: #071a2b; padding: 3.5rem 0; color: #fff; }
-    .combo-section .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
-    .combo-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c6a86a; margin-bottom: .6rem; }
-    .combo-section h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: .6rem; border: none; padding: 0; }
-    .combo-intro { font-size: .95rem; color: rgba(255,255,255,.75); max-width: 620px; margin-bottom: 2rem; line-height: 1.7; }
-    .combo-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 520px; margin: 0 auto; }
-    .combo-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      padding: 1.8rem 1.6rem;
+    /* add- = aankoopadvies-dordrecht — eigen namespace, styles.css nooit aangeraakt */
+    .add-truststrip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-bottom: 1.8rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
     }
-    .combo-card .tag { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #c6a86a; margin-bottom: .6rem; }
-    .combo-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: .7rem; }
-    .combo-card .prijs-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: .3rem; }
-    .combo-card .prijs-nieuw { font-size: 1.9rem; font-weight: 700; color: #c6a86a; }
-    .combo-card .prijs-oud { font-size: 1rem; color: rgba(255,255,255,.4); text-decoration: line-through; }
-    .combo-card .bespaar { font-size: .8rem; color: #6fcf97; margin-bottom: 1rem; }
-    .combo-card ul { list-style: none; padding: 0; margin: 0 0 1.3rem; }
-    .combo-card ul li { font-size: .85rem; color: rgba(255,255,255,.8); padding: 4px 0 4px 20px; position: relative; line-height: 1.5; }
-    .combo-card ul li::before { content: "\2713"; position: absolute; left: 0; color: #c6a86a; font-weight: 700; }
-    .combo-card ul li.garantie { color: #fff; font-weight: 600; }
+    .add-truststrip span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .add-sterren {
+      color: #d7b56d;
+      font-size: .95rem;
+      letter-spacing: 1px;
+    }
+    .add-loss {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: .85rem 1.1rem;
+      font-size: .92rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.55;
+      margin-bottom: 1.8rem;
+      max-width: 560px;
+    }
+    .add-loss strong { color: #fff; }
+    .add-reviews {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 2rem 0;
+    }
+    @media(max-width:560px){ .add-reviews { grid-template-columns: 1fr; } }
+    .add-review-card {
+      background: #f7f9fc;
+      border: 1px solid #e0e8f0;
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+    }
+    .add-review-stars { color: #d7b56d; font-size: .9rem; letter-spacing: 1px; margin-bottom: .5rem; }
+    .add-review-text { font-size: .88rem; color: #3a3a3a; line-height: 1.65; margin-bottom: .7rem; font-style: italic; }
+    .add-review-author { font-size: .8rem; font-weight: 600; color: #071a2b; }
+    .add-review-sub { font-size: .75rem; color: #8a9ab0; }
   </style>
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -282,9 +297,7 @@
     gtag('config', 'AW-17962185957');
   </script>
 </head>
-
 <body class="fade-in">
-
 <header class="zop-header">
   <div class="zop-header-inner">
     <a href="index.html" class="zop-logo">ZekerOpWeg</a>
@@ -295,7 +308,7 @@
         <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
         <div class="zop-drop-menu">
           <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck &ndash; BMW X5 45e / 50e</a>
         </div>
       </div>
       <div class="zop-dropdown">
@@ -309,17 +322,16 @@
       <a href="over.html">Over</a>
       <a href="contact.html" class="zop-contact">Contact</a>
     </nav>
-    <button class="menu-toggle" aria-label="Menu openen">☰</button>
+    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
   </div>
 </header>
-
 <div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" aria-label="Menu sluiten">×</button>
+  <button class="close-menu" aria-label="Menu sluiten">&times;</button>
   <nav class="mobile-nav">
     <a href="index.html">Home</a>
     <a href="aankoopadvies.html">Aankoopadvies</a>
     <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
+    <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck &ndash; BMW X5 45e / 50e</a>
     <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
     <a href="automatisering.html">Automatisering</a>
     <a href="bezwaarservice.html">Bezwaar</a>
@@ -328,69 +340,74 @@
   </nav>
 </div>
 <div id="menuOverlay" class="menu-overlay"></div>
-
 <main class="page-content">
-
 <section class="pillar-hero">
   <div class="container">
     <span class="hero-eyebrow">Aankoopadvies en AccuCheck Dordrecht</span>
     <h1>Onafhankelijk aankoopadvies in Dordrecht, ZekerOpWeg komt naar u toe</h1>
+
+    <div class="add-truststrip">
+      <span><span class="add-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp;5,0 op Google</span>
+      <span>16 jaar automotive ervaring</span>
+      <span>Officieel AVILOO-partner</span>
+      <span>Geen verkoopbelang</span>
+    </div>
+
+    <div class="add-loss">
+      Een foute beslissing bij de aankoop van een tweedehands EV of hybride kost gemiddeld <strong>&euro;3.000 tot &euro;25.000.</strong> Ik voorkom dat voor <strong>&euro;49.</strong>
+    </div>
+
     <p class="hero-intro">
       ZekerOpWeg rijdt naar de locatie van het voertuig in Dordrecht en omgeving.
       Onafhankelijk aankoopadvies, desgewenst gecombineerd met een gecertificeerde
-      AVILOO AccuCheck. Geen verkoopbelang. BeslisCheck vanaf €49.
+      AVILOO AccuCheck. Geen verkoopbelang. BeslisCheck vanaf &euro;49.
     </p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
-    <p class="pillar-meta">ZekerOpWeg · Barendrecht · Op locatie in Dordrecht en omgeving · Binnen 40 km geen reiskosten</p>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Dordrecht" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+    <p class="pillar-meta">ZekerOpWeg &middot; Barendrecht &middot; Op locatie in Dordrecht en omgeving &middot; Binnen 40 km geen reiskosten</p>
   </div>
 </section>
-
 <section class="overview-section">
   <div class="container">
     <div class="goldbox">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c6a86a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M12 2l8 3v6c0 5.5-3.8 8.5-8 11-4.2-2.5-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
       <div>
-        <strong>AVILOO batterijgarantie tot €3.000 inbegrepen</strong>
-        <p>Combineert u aankoopadvies met een AccuCheck in Dordrecht, dan zit er een batterijgarantie tot €3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
+        <strong>AVILOO Batterijgarantie tot &euro;3.000 inbegrepen</strong>
+        <p>Combineert u aankoopadvies met een AccuCheck in Dordrecht, dan zit er een batterijgarantie tot &euro;3.000 inbegrepen, wanneer het voertuig aan de voorwaarden voldoet. De garantie wordt verstrekt door AVILOO.</p>
       </div>
     </div>
-
-    <div class="overview-eyebrow">In één oogopslag</div>
+    <div class="overview-eyebrow">In &eacute;&eacute;n oogopslag</div>
     <h2>Aankoopadvies Dordrecht: kies uw niveau</h2>
     <p class="overview-sub">Van een eerste check op afstand tot volledige begeleiding tot sleuteloverdracht. Aankoopadvies staat voorop, een AccuCheck kunt u er hieronder aan toevoegen.</p>
     <div class="advies-grid">
       <div class="advies-card">
         <div class="naam">BeslisCheck</div>
-        <div class="prijs">€49</div>
-        <div class="desc">Analyse op afstand vóór bezichtiging</div>
+        <div class="prijs">&euro;49</div>
+        <div class="desc">Analyse op afstand v&oacute;&oacute;r bezichtiging</div>
       </div>
       <div class="advies-card">
         <div class="naam">Premium</div>
-        <div class="prijs">€349</div>
+        <div class="prijs">&euro;349</div>
         <div class="desc">Fysieke bezichtiging op locatie in Dordrecht</div>
       </div>
       <div class="advies-card">
         <div class="naam">Full Service</div>
-        <div class="prijs">€499</div>
+        <div class="prijs">&euro;499</div>
         <div class="desc">Begeleiding tot sleuteloverdracht</div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="overview-section" style="padding-top:0;">
   <div class="container" style="max-width:900px;">
     <p style="font-size:.95rem;color:#5a6472;line-height:1.7;">
       Koopt u een EV of plug-in hybride? Op de pagina van de
       <a href="ev-accucheck.html" style="color:#0a6e4a;font-weight:600;">EV AccuCheck</a>
       kunt u naast de accumeting ook meteen het Basis aankoopadvies laten meenemen, voor
-      €120 extra bovenop de €129 van de meting. Inclusief AVILOO batterijgarantie tot €3.000.
+      &euro;120 extra bovenop de &euro;129 van de meting. Inclusief AVILOO Batterijgarantie tot &euro;3.000.
     </p>
   </div>
 </section>
-
 <div class="pillar-body">
-
   <h2>ZekerOpWeg komt naar u toe in Dordrecht</h2>
   <p>
     ZekerOpWeg is gevestigd in Barendrecht en rijdt naar de locatie van het voertuig.
@@ -402,7 +419,6 @@
     of op een andere locatie in Dordrecht en directe omgeving. Na de bezichtiging of AccuCheck
     ontvangt u dezelfde dag een schriftelijk advies.
   </p>
-
   <div class="pillar-infobox">
     <p>
       Dordrecht ligt op circa 18 kilometer van Barendrecht. ZekerOpWeg is binnen 20 minuten
@@ -411,7 +427,6 @@
   </div>
 
   <h2>Reiskosten</h2>
-
   <div class="reiskosten-block">
     <h4>Transparant en vooraf afgestemd</h4>
     <div class="reiskosten-row">
@@ -424,10 +439,9 @@
     </div>
     <div class="reiskosten-row">
       <span>Buiten 40 km serviceradius</span>
-      <strong>€0,40 per gereden km</strong>
+      <strong>&euro;0,40 per gereden km</strong>
     </div>
   </div>
-
   <p style="font-size:.88rem; color:#5a6472;">
     Reiskosten buiten de standaard serviceradius worden altijd vooraf afgestemd.
     Nooit een verrassing achteraf.
@@ -436,7 +450,23 @@
   <div class="pillar-cta">
     <h3>Auto gevonden in Dordrecht?</h3>
     <p>Stuur het kenteken of de advertentielink via WhatsApp. ZekerOpWeg kijkt vandaag nog met u mee en rijdt naar de locatie toe.</p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Dordrecht" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+  </div>
+
+  <h2>Wat klanten zeggen</h2>
+  <div class="add-reviews">
+    <div class="add-review-card">
+      <div class="add-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="add-review-text">"Pepijn is met mij meegegaan naar de dealer en heeft mij onafhankelijk begeleid. Hij keek kritisch mee en gaf duidelijke uitleg. Ook tijdens de onderhandeling gaf hij rust en zekerheid. Dankzij zijn advies heb ik vol vertrouwen mijn beslissing kunnen nemen."</p>
+      <div class="add-review-author">M. Catshoek</div>
+      <div class="add-review-sub">Aankoop occasion &middot; via Google</div>
+    </div>
+    <div class="add-review-card">
+      <div class="add-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="add-review-text">"Pepijn heeft mij bijgestaan bij mijn onderhandeling en aankoop, wat zorgde voor een betere prijs, maar vooral de zekerheid dat ik een goede, veilige auto had gekocht."</p>
+      <div class="add-review-author">Marinka Klijn</div>
+      <div class="add-review-sub">Aankoop tweedehands &middot; via Google</div>
+    </div>
   </div>
 
   <h2>Wat doet ZekerOpWeg op locatie?</h2>
@@ -449,16 +479,15 @@
     <li>Optische en technische controle van het voertuig</li>
     <li>APK-historie controle via RDW</li>
     <li>Proefrit en beoordeling rijgedrag</li>
-    <li>Bij EV of hybride: AVILOO Flash Test op locatie</li>
+    <li>Bij EV of hybride: AVILOO Flash Test op locatie (15 tot 20 minuten)</li>
     <li>Onderhandelingsadvies op basis van de bevindingen</li>
     <li>Schriftelijk advies: kopen, onderhandelen of afzien</li>
   </ul>
-
   <div class="pillar-warnbox">
     <p>
       De meeste miskopen bij een occasion ontstaan niet bij de koop zelf, maar bij de
       aannames die onderweg worden gemaakt. ZekerOpWeg is er om die aannames te toetsen
-      vóórdat u tekent.
+      v&oacute;&oacute;rdat u tekent.
     </p>
   </div>
 
@@ -466,22 +495,27 @@
   <p>
     Bij een tweedehands elektrische auto of plug-in hybride is de accu het enige kritieke
     onderdeel. ZekerOpWeg combineert onafhankelijk aankoopadvies met een gecertificeerde
-    AVILOO Flash Test op locatie in Dordrecht, inclusief een AVILOO batterijgarantie tot
-    €3.000. Zo weet u niet alleen of de auto er goed uitziet, maar ook of de accu gezond is,
+    AVILOO Flash Test op locatie in Dordrecht, inclusief een AVILOO Batterijgarantie tot
+    &euro;3.000. Zo weet u niet alleen of de auto er goed uitziet, maar ook of de accu gezond is,
     en staat u er niet alleen voor als dat achteraf tegenvalt.
   </p>
   <p>
-    Een EV-accu vervangen kost tussen de €5.000 en €15.000. Een AccuCheck op locatie
-    in Dordrecht kost €129, of vanaf €249 gecombineerd met het Basis aankoopadvies. Dat verschil
+    Een EV-accu vervangen kost tussen de &euro;5.000 en &euro;15.000. Een AccuCheck op locatie
+    in Dordrecht kost &euro;129, of vanaf &euro;249 gecombineerd met het Basis aankoopadvies. Dat verschil
     is de reden dat ZekerOpWeg bestaat.
   </p>
+  <ul>
+    <li>SoH-meting via AVILOO, geen BMS-uitlezing maar een celanalyse</li>
+    <li>Ondersteunt meer dan 95% van alle EV- en hybride voertuigen</li>
+    <li>Controle laadgeschiedenis en laadgedrag</li>
+    <li>AVILOO Batterijgarantie tot &euro;3.000 inbegrepen</li>
+  </ul>
 
   <h2>Servicegebied Dordrecht en omgeving</h2>
   <p>
     Naast Dordrecht bedient ZekerOpWeg ook de volgende plaatsen binnen de standaard
     serviceradius zonder extra reiskosten:
   </p>
-
   <div class="gebied-grid">
     <div class="gebied-item">Dordrecht</div>
     <div class="gebied-item">Zwijndrecht</div>
@@ -496,27 +530,22 @@
   </div>
 
   <h2>Veelgestelde vragen</h2>
-
   <div class="faq-item">
     <h3>Komt ZekerOpWeg naar Dordrecht voor aankoopadvies of AccuCheck?</h3>
     <p>Ja. ZekerOpWeg rijdt naar de locatie van het voertuig in Dordrecht en omgeving. Dordrecht valt binnen de standaard serviceradius van 40 kilometer rondom Barendrecht. Geen extra reiskosten.</p>
   </div>
-
   <div class="faq-item">
     <h3>Wat kost aankoopadvies in Dordrecht?</h3>
-    <p>ZekerOpWeg biedt aankoopadvies aan vanaf €49 voor een BeslisCheck. De Premium bezichtiging op locatie kost €349. Full Service begeleiding tot sleuteloverdracht kost €499. Bij EV of hybride kan het Basis advies gecombineerd worden met een AVILOO AccuCheck voor €249 in totaal, met een AVILOO batterijgarantie tot €3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
+    <p>ZekerOpWeg biedt aankoopadvies aan vanaf &euro;49 voor een BeslisCheck. De Premium bezichtiging op locatie kost &euro;349. Full Service begeleiding tot sleuteloverdracht kost &euro;499. Bij EV of hybride kan het Basis advies gecombineerd worden met een AVILOO AccuCheck voor &euro;249 in totaal, met een AVILOO Batterijgarantie tot &euro;3.000 inbegrepen wanneer het voertuig aan de voorwaarden voldoet.</p>
   </div>
-
   <div class="faq-item">
     <h3>Wat kost een EV AccuCheck in Dordrecht?</h3>
-    <p>Een AVILOO Flash Test op locatie in Dordrecht kost €129. U ontvangt een TÜV-gecertificeerd accucertificaat met SoH-score, celanalyse en een AVILOO batterijgarantie tot €3.000, wanneer het voertuig aan de voorwaarden voldoet. Dordrecht valt binnen de standaard serviceradius zonder extra reiskosten.</p>
+    <p>Een AVILOO Flash Test op locatie in Dordrecht kost &euro;129. U ontvangt een TUV-gecertificeerd accucertificaat met SoH-score, celanalyse en een AVILOO Batterijgarantie tot &euro;3.000, wanneer het voertuig aan de voorwaarden voldoet. Dordrecht valt binnen de standaard serviceradius zonder extra reiskosten.</p>
   </div>
-
   <div class="faq-item">
     <h3>Wat zijn de reiskosten buiten Dordrecht?</h3>
-    <p>Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen. Buiten deze radius geldt €0,40 per gereden kilometer. Reiskosten worden altijd vooraf afgestemd.</p>
+    <p>Binnen 40 kilometer rondom Barendrecht zijn reiskosten inbegrepen. Buiten deze radius geldt &euro;0,40 per gereden kilometer. Reiskosten worden altijd vooraf afgestemd.</p>
   </div>
-
   <div class="faq-item">
     <h3>Is ZekerOpWeg echt onafhankelijk?</h3>
     <p>Ja. ZekerOpWeg ontvangt geen provisie van verkopers, dealers of platforms. Het advies is uitsluitend in het belang van de koper, ook als dat betekent dat de auto wordt afgeraden.</p>
@@ -532,19 +561,18 @@
   </ul>
 
   <div class="pillar-cta">
-    <h3>Voorkom een miskoop vóór u tekent</h3>
+    <h3>Voorkom een miskoop v&oacute;&oacute;r u tekent</h3>
     <p>ZekerOpWeg rijdt naar de locatie van het voertuig in Dordrecht en omgeving. Stuur het kenteken via WhatsApp en u weet vandaag nog waar u aan toe bent.</p>
-    <a href="https://wa.me/31623452349" class="btn-primary">Stuur kenteken via WhatsApp</a>
+    <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto%20in%20Dordrecht" class="btn-primary">Stuur kenteken via WhatsApp &middot; &euro;49</a>
+    <p style="font-size:.82rem; color:rgba(255,255,255,.45); margin:.8rem 0 0;">Of mail naar <a href="mailto:info@zekeropweg.nu" style="color:rgba(255,255,255,.6);">info@zekeropweg.nu</a></p>
   </div>
-
 </div>
 </main>
-
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-col">
       <p class="footer-title">ZekerOpWeg</p>
-      <p>© 2026 ZekerOpWeg</p>
+      <p>&copy; 2026 ZekerOpWeg</p>
       <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
         Handelsnaam van Pepijn Westhoff<br>
         KvK 99323575<br>
@@ -554,7 +582,11 @@
     </div>
     <div class="footer-col">
       <p class="footer-title">Contact</p>
-      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>Algemene vragen en eerste contact</p>
+      <p>
+        <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a><br>
+        <a href="https://wa.me/31623452349">06 23 45 23 49</a><br>
+        Algemene vragen en eerste contact
+      </p>
       <p><a href="mailto:facturen@zekeropweg.nu">facturen@zekeropweg.nu</a><br>Facturatie en administratie</p>
     </div>
     <div class="footer-col">
@@ -573,7 +605,6 @@
     </div>
   </div>
 </footer>
-
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
