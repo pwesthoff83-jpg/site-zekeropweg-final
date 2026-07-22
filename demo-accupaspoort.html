@@ -103,8 +103,8 @@
     .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
     .main-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; margin-top: 18px; }
     .vehicle { display: flex; gap: 18px; align-items: center; }
-    .car { width: 170px; max-width: 35%; aspect-ratio: 16 / 10; border-radius: 20px; background: linear-gradient(135deg, #e9eef5, var(--white)); display: grid; place-items: center; border: 1px solid var(--line); }
-    .car svg { width: 80%; }
+    .car { width: 240px; max-width: 42%; aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #e9eef5; box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
+    .car img { width: 100%; height: 100%; object-fit: cover; display: block; }
     h2 { margin: 0 0 16px; font-size: 1.35rem; }
     h3 { margin: 0 0 10px; }
     .details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
@@ -297,15 +297,9 @@
         <section class="card" id="voertuig">
           <h2>Voertuigoverzicht</h2>
           <div class="vehicle">
-            <div class="car">
-              <svg viewBox="0 0 320 170" aria-hidden="true">
-                <path d="M58 100h204l-23-42c-6-11-17-18-30-18h-86c-12 0-23 7-29 17L58 100Z" fill="#14508f"/>
-                <path d="M38 100h244c18 0 32 14 32 32v13H6v-13c0-18 14-32 32-32Z" fill="#071d3a"/>
-                <circle cx="78" cy="145" r="25" fill="#1c2f4a"/><circle cx="78" cy="145" r="11" fill="#fff"/>
-                <circle cx="238" cy="145" r="25" fill="#1c2f4a"/><circle cx="238" cy="145" r="11" fill="#fff"/>
-                <path d="M116 54h90c8 0 15 4 19 11l16 30H91l25-41Z" fill="#d7ecff"/>
-              </svg>
-            </div>
+            <figure class="car">
+              <img src="/audi-etron-demo.png" alt="Foto-impressie van een Audi e-tron 55 quattro" width="1200" height="720" loading="eager" />
+            </figure>
             <div>
               <span class="pill"><i class="dot"></i> Accupaspoort compleet</span>
               <h3>Audi e-tron 55 quattro Advanced</h3>
