@@ -27,7 +27,8 @@
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "Wat is de BeslisCheck?", "acceptedAnswer": { "@type": "Answer", "text": "Advies op afstand voor 49 euro. U stuurt het kenteken of de advertentie. Pepijn geeft dezelfde dag concreet advies: kopen, onderhandelen of laten staan. De 49 euro wordt verrekend als u daarna kiest voor Premium of Full Service." } },
-          { "@type": "Question", "name": "Wat is het KoopZeker Pakket?", "acceptedAnswer": { "@type": "Answer", "text": "Het KoopZeker Pakket combineert een AVILOO Flash Test op celniveau met een complete voertuigcheck voor 228 euro. Inclusief professionele lakdiktemeting, controle op schade en panelwisselingen, bandenprofiel, onderhoudsstaat en marktprijsanalyse. Geschikt voor wie objectieve data wil zonder uitgebreid begeleidingstraject. Ondersteunt meer dan 95 procent van alle EV- en hybride voertuigen." } },
+          { "@type": "Question", "name": "Wat is het KoopZeker Pakket?", "acceptedAnswer": { "@type": "Answer", "text": "Het KoopZeker Pakket levert een professioneel meetrapport voor 228 euro. Inclusief AVILOO Flash Test op celniveau, lakdiktemeting per paneel, bandenprofiel, onderhoudsstaat en marktprijsanalyse. Geen persoonlijk advies, alleen meetdata. U beslist zelf op basis van de resultaten. AVILOO Batterijgarantie tot 3000 euro is inbegrepen. Ondersteunt meer dan 95 procent van alle EV- en hybride voertuigen." } },
+          { "@type": "Question", "name": "Wat is het verschil tussen KoopZeker en Premium aankoopadvies?", "acceptedAnswer": { "@type": "Answer", "text": "KoopZeker levert meetdata, Premium levert een oordeel. Bij KoopZeker (228 euro) ontvangt u een meetrapport: batterij, lak, banden en onderhoud in cijfers. U interpreteert zelf. Bij Premium (349 euro) doet Pepijn dezelfde metingen, rijdt mee, en geeft concreet advies: kopen, onderhandelen of laten staan, inclusief onderbouwing." } },
           { "@type": "Question", "name": "Zit er een accucheck bij het aankoopadvies voor een EV?", "acceptedAnswer": { "@type": "Answer", "text": "Optioneel. Bij Premium en Full Service is Pepijn fysiek aanwezig bij de auto. U kunt een EV AccuCheck toevoegen. Premium plus AccuCheck kost 449 euro. Full Service plus AccuCheck kost 599 euro. Inclusief TUV-gecertificeerd accucertificaat en AVILOO Batterijgarantie tot 3000 euro." } },
           { "@type": "Question", "name": "Wat als de auto tegenvalt?", "acceptedAnswer": { "@type": "Answer", "text": "Dan krijgt u dat eerlijk te horen, inclusief onderbouwing. Het doel is een goede aankoop, niet het afronden van een transactie." } },
           { "@type": "Question", "name": "Werkt ZekerOpWeg ook voor plug-in hybrides?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. ZekerOpWeg is gespecialiseerd in zowel volledig elektrische voertuigen als plug-in hybrides. De EV AccuCheck ondersteunt meer dan 95% van alle EV- en hybride voertuigen." } }
@@ -166,6 +167,48 @@
     .aa-pakket__list li:last-child { border: none; }
     .aa-pakket__list li::before { content: "\2713"; color: #0a6e4a; font-weight: 700; flex-shrink: 0; }
     /* ─── KOOPZEKER PAKKET ────────────────────────────────────────── */
+    /* ─── WANNEER KIES JE WAT ───────────────────────────────────────── */
+    .aa-keuze-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+    @media (max-width: 720px) { .aa-keuze-grid { grid-template-columns: 1fr; } }
+    .aa-keuze-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      background: #fff;
+    }
+    .aa-keuze-card--highlight { border-color: #c9a96e; background: #fffdf7; }
+    .aa-keuze-card__label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #94a3b8;
+      margin-bottom: .5rem;
+    }
+    .aa-keuze-card--highlight .aa-keuze-card__label { color: #c9a96e; }
+    .aa-keuze-card__title {
+      font-size: 1rem; font-weight: 700; color: #071a2b;
+      margin-bottom: .2rem;
+    }
+    .aa-keuze-card__price {
+      font-size: .85rem; font-weight: 600; color: #0a6e4a;
+      margin-bottom: .9rem;
+    }
+    .aa-keuze-card__list {
+      list-style: none; padding: 0; margin: 0;
+      font-size: .84rem; color: #475569; line-height: 1.7;
+    }
+    .aa-keuze-card__list li::before {
+      content: "\2192"; color: #c9a96e; margin-right: .4rem;
+    }
+    .aa-keuze-card__not {
+      display: inline-block; margin-top: .75rem;
+      font-size: .78rem; color: #94a3b8;
+      border-top: 1px solid #f1f5f9; padding-top: .6rem; width: 100%;
+    }
+    /* ───────────────────────────────────────────────────────────────── */
     .aa-kz-wrap {
       background: linear-gradient(140deg, #0b2d44 0%, #183f5c 100%);
       border: 1px solid rgba(201,169,110,.28);
@@ -480,12 +523,15 @@
         <p class="aa-pakket__name">Premium</p>
         <p class="aa-pakket__price">&euro;349</p>
         <p class="aa-pakket__sub">Of &euro;300 na BeslisCheck</p>
+        <p style="font-size:.82rem; font-weight:600; color:#0a6e4a; margin:-0.6rem 0 1rem; letter-spacing:.01em;">Pepijn inspecteert, rijdt mee en adviseert persoonlijk</p>
         <ul class="aa-pakket__list">
           <li>Alles uit BeslisCheck</li>
           <li>Fysieke bezichtiging op locatie</li>
+          <li>Professionele lakdiktemeting per paneel</li>
+          <li>Bandenprofiel gemeten met gekalibreerde dieptemeter</li>
           <li>Technische en optische controle</li>
           <li>Proefrit en rijbeleving</li>
-          <li>Onderbouwd advies met aandachtspunten</li>
+          <li>Concreet advies: kopen, onderhandelen of laten staan</li>
         </ul>
         <a href="https://zekeropweg.nu/start-aankoopadvies.html?pakket=Premium" class="btn-primary" style="text-align:center;">Ik kom naar de auto toe</a>
       </div>
@@ -494,8 +540,9 @@
         <p class="aa-pakket__name">Full Service</p>
         <p class="aa-pakket__price">&euro;499</p>
         <p class="aa-pakket__sub">Volledige begeleiding tot sleuteloverdracht</p>
+        <p style="font-size:.82rem; font-weight:600; color:#071a2b; margin:-0.6rem 0 1rem; letter-spacing:.01em;">Pepijn is er van eerste inspectie tot en met de sleuteloverdracht</p>
         <ul class="aa-pakket__list">
-          <li>Alles uit Premium</li>
+          <li>Alles uit Premium (incl. lakdikte en bandenprofiel)</li>
           <li>Tweede bezoek voor onderhandeling</li>
           <li>Begeleiding tijdens aankoopgesprek</li>
           <li>Controle afspraken en voorwaarden</li>
@@ -511,15 +558,15 @@
 <section class="aa-section aa-section--alt">
   <div class="container">
     <p class="aa-eyebrow">EV &amp; Hybride &middot; Nieuw</p>
-    <h2 class="aa-h2">KoopZeker Pakket: batterij &eacute;n voertuig, zonder adviestraject</h2>
+    <h2 class="aa-h2">KoopZeker Pakket: professioneel meetrapport, zonder persoonlijk advies</h2>
     <hr class="aa-h2-rule" />
-    <p class="aa-lead">Wilt u objectieve data over de accu en de staat van de auto, maar heeft u geen uitgebreid begeleidingstraject nodig? Het KoopZeker Pakket geeft u alles wat u nodig heeft om zelf een goede beslissing te nemen &mdash; in &eacute;&eacute;n bezoek bij de auto.</p>
+    <p class="aa-lead">Wilt u de objectieve feiten over batterij en voertuig op papier, maar kunt u zelf de beslissing nemen? Het KoopZeker Pakket levert u een professioneel meetrapport met alle gemeten waarden &mdash; geen oordeel, geen advies. U beslist zelf op basis van de data.</p>
     <div class="aa-kz-wrap">
       <div class="aa-kz-head">
         <div>
-          <p class="aa-kz-badge">Nieuw &middot; EV &amp; Hybride &middot; Op locatie</p>
+          <p class="aa-kz-badge">EV &amp; Hybride &middot; Op locatie &middot; Meetrapport</p>
           <p class="aa-kz-name">KoopZeker Pakket</p>
-          <p style="font-size:.85rem; color:rgba(255,255,255,.45); margin-top:.25rem;">Batterij + complete voertuigstatus &middot; &eacute;&eacute;n bezoek &middot; geen abonnement</p>
+          <p style="font-size:.85rem; color:rgba(255,255,255,.45); margin-top:.25rem;">Gemeten data, geen advies &middot; &eacute;&eacute;n bezoek &middot; u beslist zelf</p>
         </div>
         <div>
           <p class="aa-kz-price">&euro;228</p>
@@ -532,20 +579,23 @@
         <li>AVILOO Batterijgarantie tot &euro;3.000 inbegrepen</li>
         <li>Professionele lakdiktemeting per paneel</li>
         <li>Controle op schade en panelwisselingen</li>
-        <li>Bandenprofiel gemeten met dieptemeter</li>
+        <li>Bandenprofiel gemeten met gekalibreerde dieptemeter</li>
         <li>Beoordeling onderhoudsstaat</li>
         <li>Marktprijsanalyse: is de vraagprijs marktconform?</li>
       </ul>
       <div style="margin-top:1.8rem; display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap;">
         <div class="aa-kz-anchor">
-          &#128161; Accuvervanging kost gemiddeld <strong>&euro;6.500 of meer.</strong> Lak- en schadeherstel dat niet is gemeld telt bij doorverkoop. Dit pakket laat zien of die risico&apos;s relevant zijn &mdash; voor &euro;228.
+          &#128161; Accuvervanging kost gemiddeld <strong>&euro;6.500 of meer.</strong> Lak- en schadeherstel dat niet is gemeld telt bij doorverkoop. Dit rapport laat u zien of die risico&apos;s aanwezig zijn &mdash; voor &euro;228.
         </div>
       </div>
       <div style="margin-top:1.4rem; display:flex; gap:.75rem; flex-wrap:wrap;">
         <a href="https://wa.me/31623452349?text=Ik%20wil%20het%20KoopZeker%20Pakket%20aanvragen" class="btn-primary" style="background:#c9a96e; border-color:#c9a96e; color:#071a2b;">KoopZeker Pakket plannen &middot; &euro;228</a>
         <a href="ev-accucheck.html" class="btn-secondary" style="border-color:rgba(201,169,110,.35); color:#c9a96e;">Meer over EV AccuCheck</a>
       </div>
-      <p style="margin-top:1rem; font-size:.78rem; color:rgba(255,255,255,.3); line-height:1.6;">Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen. AVILOO Flash Test ondersteunt meer dan 95% van alle EV&apos;s en hybrides. Batterijgarantie wordt verstrekt door AVILOO.</p>
+      <p style="margin-top:1.2rem; font-size:.84rem; color:rgba(255,255,255,.55); line-height:1.7; border-top:1px solid rgba(255,255,255,.1); padding-top:1rem;">
+        Wilt u ook weten wat de data voor <em>uw</em> aankoopbeslissing betekent? Dan is <strong style="color:#c9a96e;">Premium aankoopadvies (&euro;349)</strong> de volgende stap. Pepijn geeft u dan concreet advies: kopen, onderhandelen of laten staan.
+      </p>
+      <p style="margin-top:.6rem; font-size:.78rem; color:rgba(255,255,255,.3); line-height:1.6;">Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen. AVILOO Flash Test ondersteunt meer dan 95% van alle EV&apos;s en hybrides. Batterijgarantie wordt verstrekt door AVILOO.</p>
     </div>
   </div>
 </section>
@@ -740,7 +790,11 @@
       </div>
       <div class="aa-faq__item">
         <h3>Wat is het KoopZeker Pakket?</h3>
-        <p>Het KoopZeker Pakket combineert een AVILOO Flash Test op celniveau met een complete voertuigcheck in &eacute;&eacute;n bezoek voor &euro;228. Inclusief professionele lakdiktemeting, controle op schade en panelwisselingen, bandenprofiel, beoordeling onderhoudsstaat en marktprijsanalyse. Geschikt voor wie objectieve data wil zonder uitgebreid begeleidingstraject. De AVILOO Batterijgarantie tot &euro;3.000 is inbegrepen.</p>
+        <p>Het KoopZeker Pakket levert een professioneel meetrapport voor &euro;228, opgesteld na &eacute;&eacute;n bezoek bij de auto. U ontvangt gemeten waarden voor batterij (AVILOO Flash Test op celniveau), lakdikte per paneel, bandenprofiel per wiel, onderhoudsstaat en een marktprijsvergelijking. Geen persoonlijk advies, geen oordeel over de aankoop &mdash; alleen de feiten. U beslist zelf op basis van de data. De AVILOO Batterijgarantie tot &euro;3.000 is inbegrepen.</p>
+      </div>
+      <div class="aa-faq__item">
+        <h3>Wat is het verschil tussen KoopZeker en Premium aankoopadvies?</h3>
+        <p>KoopZeker levert meetdata. Premium levert een oordeel. Bij KoopZeker (&euro;228) meet Pepijn de batterij, lak, banden en onderhoudsstaat en legt dat vast in een rapport. U interpreteert de resultaten zelf. Bij Premium (&euro;349) doet Pepijn dezelfde metingen, rijdt ook mee, en geeft u concreet advies: is deze auto de prijs waard, wat zijn de risico&apos;s, en wat zou u bij onderhandeling kunnen terugvragen? Premium is voor wie niet alleen de cijfers wil, maar ook het oordeel van een onafhankelijke expert.</p>
       </div>
       <div class="aa-faq__item">
         <h3>Zit er een accucheck bij het aankoopadvies voor een EV?</h3>
