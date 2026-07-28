@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tesla AccuCheck | Model 3, Model Y, Model S | ZekerOpWeg</title>
-  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor Tesla Model 3, Model Y en Model S. Tesla OTA-updates beïnvloeden de BMS-waarde. Onafhankelijke celanalyse op celniveau. TÜV-gecertificeerd. Op locatie in Rotterdam en omgeving." />
-  <link rel="canonical" href="https://zekeropweg.nu/tesla-ev-accucheck.html" />
+  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor Tesla Model 3, Model Y en Model S. Tesla OTA-updates beïnvloeden de BMS-waarde. Onafhankelijke celanalyse op celniveau. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving." />
+  <link rel="canonical" href="https://zekeropweg.nu/tesla-ev-accucheck" />
 
   <script type="application/ld+json">
   {
@@ -17,6 +17,7 @@
         "name": "ZekerOpWeg",
         "url": "https://zekeropweg.nu",
         "telephone": "+31623452349",
+        "email": "info@zekeropweg.nu",
         "image": "https://zekeropweg.nu/images/Zekeropweg_Tesla_model_3_Aviloo_meting.png",
         "address": {
           "@type": "PostalAddress",
@@ -26,13 +27,43 @@
         }
       },
       {
+        "@type": "Person",
+        "@id": "https://zekeropweg.nu#pepijn",
+        "name": "Pepijn Westhoff",
+        "jobTitle": "Onafhankelijk EV-adviseur en AVILOO-partner",
+        "description": "16 jaar automotive en dealerervaring. Officieel AVILOO Flash Test partner.",
+        "worksFor": { "@id": "https://zekeropweg.nu#org" }
+      },
+      {
         "@type": "Service",
         "name": "Tesla AccuCheck",
         "provider": { "@id": "https://zekeropweg.nu#org" },
-        "description": "Onafhankelijke AVILOO Flash Test voor Tesla Model 3, Model Y en Model S. Niet afhankelijk van Tesla-software of OTA-updates. TÜV-gecertificeerd. Op locatie in Rotterdam en omgeving.",
-        "url": "https://zekeropweg.nu/tesla-ev-accucheck.html",
-        "areaServed": ["Rotterdam", "Barendrecht", "Zuid-Holland", "Noord-Brabant"],
-        "offers": { "@type": "Offer", "price": "129", "priceCurrency": "EUR" }
+        "description": "Onafhankelijke AVILOO Flash Test voor Tesla Model 3, Model Y en Model S. Niet afhankelijk van Tesla-software of OTA-updates. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.",
+        "url": "https://zekeropweg.nu/tesla-ev-accucheck",
+        "areaServed": ["Rotterdam", "Barendrecht", "Zuid-Holland", "Noord-Brabant", "Utrecht"],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "EV AccuCheck",
+            "price": "129",
+            "priceCurrency": "EUR",
+            "description": "AVILOO Flash Test op celniveau, TUV-gecertificeerd accucertificaat, AVILOO Batterijgarantie, 15 tot 20 minuten op locatie"
+          },
+          {
+            "@type": "Offer",
+            "name": "AccuZeker Pakket",
+            "price": "228",
+            "priceCurrency": "EUR",
+            "description": "AVILOO Flash Test, lakdiktemeting, bandenprofiel, technische en optische controle, onderhoudshistorie, remmen, beschadigingen, 12 maanden AVILOO Batterijgarantie"
+          },
+          {
+            "@type": "Offer",
+            "name": "Premium aankoopadvies inclusief AccuCheck",
+            "price": "449",
+            "priceCurrency": "EUR",
+            "description": "Volledige aankoopkeuring inclusief AVILOO Flash Test, proefrit en persoonlijk expert advies"
+          }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -42,7 +73,7 @@
             "name": "Waarom is een onafhankelijke accucheck bij een Tesla belangrijk?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Tesla werkt met frequente OTA-updates die de weergegeven accucapaciteit kunnen beïnvloeden zonder dat de accu fysiek is veranderd. De AVILOO Flash Test staat volledig los van de Tesla-software en geeft altijd dezelfde onafhankelijke uitkomst op celniveau. TÜV-gecertificeerd."
+              "text": "Tesla werkt met frequente OTA-updates die de weergegeven accucapaciteit kunnen beïnvloeden zonder dat de accu fysiek is veranderd. De AVILOO Flash Test staat volledig los van de Tesla-software en geeft altijd dezelfde onafhankelijke uitkomst op celniveau. TUV-gecertificeerd."
             }
           },
           {
@@ -58,7 +89,15 @@
             "name": "Welke Tesla modellen kunnen getest worden?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor Tesla Model 3, Model Y en Model S. Op locatie in Rotterdam, Barendrecht en heel Zuid-Holland, Noord-Brabant en Utrecht."
+              "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor Tesla Model 3, Model Y en Model S. De AVILOO Flash Test werkt op 95% van alle EV- en hybride voertuigen. Op locatie in Rotterdam, Barendrecht en heel Zuid-Holland, Noord-Brabant en Utrecht."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hoe lang duurt een AVILOO Flash Test bij een Tesla?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "De meting duurt 15 tot 20 minuten op locatie bij de auto. U ontvangt het TUV-gecertificeerde accucertificaat dezelfde dag digitaal. Geen demontage, geen ingreep in de auto."
             }
           }
         ]
@@ -71,12 +110,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* === tesla- prefix: Tesla AccuCheck pagina === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --ink: #0b1220;
       --ink-soft: #3d4558;
       --muted: #6b7585;
-      --gold: #c6a86a;
+      --gold: #c9a96e;
       --gold-light: #f7f0e3;
       --bg: #f8f7f4;
       --white: #ffffff;
@@ -88,7 +128,6 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 16px; }
-
     nav { background: var(--ink); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     .nav-logo { font-family: 'Fraunces', serif; font-size: 18px; color: #fff; text-decoration: none; }
     .nav-logo span { color: var(--gold); }
@@ -107,14 +146,16 @@
     .hero-img-side { position: relative; overflow: hidden; }
     .hero-img-side img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; opacity: 0.85; }
     .hero-img-side::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--ink) 0%, transparent 30%); }
-    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(198,168,106,0.15); border: 1px solid rgba(198,168,106,0.3); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; width: fit-content; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; width: fit-content; }
     .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 58px); color: #fff; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 20px; }
     .hero h1 em { color: var(--gold); font-style: italic; }
     .hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 480px; margin-bottom: 32px; line-height: 1.7; }
     .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 14px 26px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; }
-    .hero-trust { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; align-items: center; }
     .hero-trust span { font-size: 12px; color: rgba(255,255,255,0.45); }
     .hero-trust span::before { content: '✓ '; color: var(--gold); }
+    .tesla-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+    .tesla-stars-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-left: 4px; }
 
     .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
     .section { margin: 72px 0; }
@@ -137,7 +178,7 @@
 
     /* REVIEW */
     .review-box { background: #fff; border: 1px solid rgba(26,107,60,0.2); border-radius: 12px; padding: 20px 24px; margin-top: 16px; }
-    .review-stars { color: #f59e0b; font-size: 15px; margin-bottom: 8px; }
+    .review-stars { color: var(--gold); font-size: 15px; margin-bottom: 8px; letter-spacing: 1px; }
     .review-tekst { font-size: 14px; color: var(--ink-soft); font-style: italic; line-height: 1.7; margin-bottom: 10px; }
     .review-naam { font-size: 13px; font-weight: 700; color: var(--ink); }
     .review-sub { font-size: 12px; color: var(--muted); }
@@ -146,7 +187,6 @@
     .model-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
     .model-tab { font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); color: var(--ink-soft); text-decoration: none; background: var(--white); }
     .model-tab:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
-
     .model-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px; scroll-margin-top: 80px; }
     .model-card-header { padding: 24px 28px 0; }
     .model-badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; background: #eff6ff; color: #1d4ed8; margin-bottom: 8px; }
@@ -191,28 +231,30 @@
     .pepijn-btn { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; margin-top: 12px; }
 
     /* PRIJZEN */
-    .prijs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .prijs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 24px; }
     .prijs-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; }
     .prijs-card.featured { border-color: var(--gold); background: var(--gold-light); }
-    .prijs-badge { position: absolute; top: 16px; right: 16px; background: var(--gold); color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+    .prijs-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
     .prijs-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
     .prijs-amount { font-family: 'Fraunces', serif; font-size: 36px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
     .prijs-desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
     .prijs-list { list-style: none; }
-    .prijs-list li { font-size: 13px; color: var(--ink-soft); padding: 4px 0; display: flex; gap: 7px; border-bottom: 1px solid #f0ede8; }
+    .prijs-list li { font-size: 13px; color: var(--ink-soft); padding: 4px 0; display: flex; gap: 7px; align-items: flex-start; border-bottom: 1px solid #f0ede8; }
     .prijs-list li:last-child { border-bottom: none; }
-    .prijs-list li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
+    .prijs-list li::before { content: '✓'; color: var(--green); flex-shrink: 0; margin-top: 2px; }
 
     /* CTA */
     .cta-final { background: var(--ink); border-radius: 20px; padding: 56px 40px; text-align: center; margin: 64px 0; }
     .cta-final h2 { color: #fff; margin-bottom: 12px; }
     .cta-final p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 28px; }
+    .cta-reversal { font-size: 13px; color: rgba(255,255,255,0.4); font-style: italic; margin-top: 16px; }
     .trust-row { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
     .trust-row span { font-size: 13px; color: rgba(255,255,255,0.4); }
     .trust-row span::before { content: '✓ '; color: var(--gold); }
-
     .sticky-wa { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; border-radius: 50px; padding: 13px 22px; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999; }
-    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); }
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); line-height: 2; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
 
     @media (max-width: 640px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -222,7 +264,8 @@
       .model-specs { grid-template-columns: 1fr; }
       .vergelijk-header, .vergelijk-row { grid-template-columns: 1fr 1fr; }
       .vergelijk-header div:first-child, .vergelijk-row div:first-child { display: none; }
-      .prijs-grid { grid-template-columns: 1fr; }
+      .pepijn-strip { padding: 28px 24px; }
+      .cta-final { padding: 40px 24px; }
     }
   </style>
 </head>
@@ -244,8 +287,12 @@
       Stuur kenteken, ik kijk direct mee
     </a>
     <div class="hero-trust">
+      <span style="display:flex;align-items:center;gap:5px;">
+        <span class="tesla-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="tesla-stars-label">Google beoordelingen</span>
+      </span>
       <span>Officieel AVILOO-partner</span>
-      <span>TÜV-gecertificeerd</span>
+      <span>TUV-gecertificeerd</span>
       <span>16 jaar ervaring</span>
       <span>Op locatie bij de auto</span>
     </div>
@@ -261,19 +308,17 @@
   <div class="section">
     <h2>Waarom een Tesla-getal niet genoeg is</h2>
     <p>Tesla werkt met frequente OTA-updates die via internet worden doorgevoerd, ook zonder bezoek aan een werkplaats. Die updates kunnen de weergegeven accucapaciteit beïnvloeden zonder dat de accu zelf is veranderd.</p>
-
     <div class="ota-box">
       <span class="ota-label">Tesla OTA-updates en de SoH-waarde</span>
       <p style="margin:0 0 10px;">AVILOO documenteerde in hun whitepaper dat een BMS-waarde na een reguliere software-update bij de dealer significant kan veranderen zonder dat de accu is aangeraakt. Bij Tesla is dit extra relevant omdat updates volledig automatisch worden doorgevoerd via internet.</p>
-      <p style="margin:0;">Een Tesla-getal dat vandaag 91% toont kan na een update anders zijn. De AVILOO Flash Test staat volledig los van de Tesla-software en geeft altijd dezelfde onafhankelijke uitkomst, voor en na elke update.</p>
+      <p style="margin:0;">Een Tesla-getal dat vandaag 91% toont kan na een update anders zijn. De AVILOO Flash Test staat volledig los van de Tesla-software en geeft altijd dezelfde onafhankelijke uitkomst, voor en na elke update. De meting duurt 15 tot 20 minuten op locatie bij de auto.</p>
     </div>
   </div>
 
   <!-- EIGEN MEETDATA -->
   <div class="section">
     <h2>Eigen meting uit de praktijk</h2>
-    <p>ZekerOpWeg voert zelf AVILOO Flash Tests uit op Tesla occasions. Dit is een gecertificeerde meting die we hebben uitgevoerd.</p>
-
+    <p>ZekerOpWeg voert zelf AVILOO Flash Tests uit op Tesla occasions. Dit is een gecertificeerde meting die we hebben uitgevoerd. De AVILOO Flash Test werkt op 95% van alle EV- en hybride voertuigen.</p>
     <div class="meting-box">
       <span class="meting-label">Gecertificeerde AVILOO-meting door ZekerOpWeg · Hoogvliet · 06-06-2026</span>
       <div class="meting-grid">
@@ -294,12 +339,11 @@
           <div class="meting-item-value groot">86,3%</div>
         </div>
       </div>
-      <p style="font-size:13px; color:var(--green); font-weight:600; margin-bottom:8px;">Geen celafwijkingen · Normale degradatie · ADAC-norm minimaal 84% bij 150.000 km ✓</p>
+      <p style="font-size:13px; color:var(--green); font-weight:600; margin-bottom:8px;">Geen celafwijkingen · Normale degradatie · ADAC-norm minimaal 84% bij 150.000 km &#10003;</p>
       <p style="font-size:13px; color:var(--ink-soft); margin:0; line-height:1.65;">De auto gaf een nette en frisse indruk, zowel optisch als technisch. De degradatie is normaal en lineair voor een 7 jaar oude auto met 182.000 km. De koper wist precies wat hij kocht.</p>
-
       <div class="review-box" style="margin-top:16px;">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-tekst">"Onafhankelijk, duidelijk en transparant. Dat heb je bij tweedehands verkoop van een EV nodig. Pepijn was doortastend en veel uitgelegd. Bedankt en dat geeft kopers én verkopers een goed gevoel in de 2e hands EV markt die precies hier om vraagt. Top!"</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-tekst">"Onafhankelijk, duidelijk en transparant. Dat heb je bij tweedehands verkoop van een EV nodig. Pepijn was doortastend en heeft veel uitgelegd. Bedankt, dat geeft kopers en verkopers een goed gevoel in de tweedehands EV-markt die precies hier om vraagt. Top!"</div>
         <div class="review-naam">Circular Clarity</div>
         <div class="review-sub">Tesla Model 3 Performance · 182.000 km · Google Reviews · 06-06-2026</div>
       </div>
@@ -310,7 +354,6 @@
   <div class="section">
     <h2>Welke Tesla modellen meet ik?</h2>
     <p>AVILOO ondersteunt alle gangbare Tesla modellen op de Nederlandse markt. Dit zijn de meest voorkomende occasions.</p>
-
     <div class="model-tabs">
       <a href="#model3" class="model-tab">Model 3</a>
       <a href="#modely" class="model-tab">Model Y</a>
@@ -352,7 +395,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
           AccuCheck aanvragen · €129
         </a>
-        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport">AccuRisico Rapport · €19,95</a>
       </div>
     </div>
 
@@ -379,7 +422,7 @@
         </div>
         <div class="model-blok model-blok-risico">
           <span class="model-blok-label">Aandachtspunten</span>
-          <p>Zelfde OTA-update risico als de Model 3. Tesla kan via een automatische update de weergegeven accucapaciteit wijzigen zonder bezoek aan een werkplaats. Vroege productiemodellen van 2020-2022 hadden initieel hogere celspanningsafwijkingen die later via software zijn gecorrigeerd.</p>
+          <p>Zelfde OTA-update risico als de Model 3. Tesla kan via een automatische update de weergegeven accucapaciteit wijzigen zonder bezoek aan een werkplaats. Vroege productiemodellen van 2020 tot 2022 hadden initieel hogere celspanningsafwijkingen die later via software zijn gecorrigeerd.</p>
         </div>
         <div class="model-blok model-blok-check">
           <span class="model-blok-label">Wat de AVILOO Flash Test controleert</span>
@@ -391,7 +434,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
           AccuCheck aanvragen · €129
         </a>
-        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport">AccuRisico Rapport · €19,95</a>
       </div>
     </div>
 
@@ -414,7 +457,7 @@
       <div class="model-blokken">
         <div class="model-blok model-blok-neutraal">
           <span class="model-blok-label">Degradatiepatroon</span>
-          <p>Oudere Model S modellen van voor 2017 kennen meer degradatie. Nieuwere modellen presteren stabiel. Groot accupakket degradeert trager in percentage maar kleine afwijkingen hebben grote impact op bereik.</p>
+          <p>Oudere Model S modellen van voor 2017 kennen meer degradatie. Nieuwere modellen presteren stabiel. Groot accupakket degradeert trager in percentage, maar kleine afwijkingen hebben grote impact op bereik.</p>
         </div>
         <div class="model-blok model-blok-risico">
           <span class="model-blok-label">Aandachtspunten</span>
@@ -430,7 +473,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
           AccuCheck aanvragen · €129
         </a>
-        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport.html">AccuRisico Rapport · €19,95</a>
+        <a class="model-btn-rapport" href="https://zekeropweg.nu/accurisico-rapport">AccuRisico Rapport · €19,95</a>
       </div>
     </div>
   </div>
@@ -461,7 +504,7 @@
         <div class="ja">Ja</div>
       </div>
       <div class="vergelijk-row alt">
-        <div>TÜV-gecertificeerd certificaat</div>
+        <div>TUV-gecertificeerd certificaat</div>
         <div class="nee">Nee</div>
         <div class="ja">Ja</div>
       </div>
@@ -479,7 +522,7 @@
       <img src="images/Aankoopadvies-pepijn-inspectie.png" alt="Pepijn Westhoff ZekerOpWeg Tesla AccuCheck" />
       <div class="pepijn-strip-text">
         <h3>Pepijn Westhoff</h3>
-        <p>16 jaar automotive en dealerervaring. Officieel AVILOO-partner. Ik kom naar de locatie van de auto. Werkgebied: Zuid-Holland, Noord-Brabant en Utrecht.</p>
+        <p>16 jaar automotive en dealerervaring. Officieel AVILOO-partner. Ik kom naar de locatie van de auto. Werkgebied: Zuid-Holland, Noord-Brabant en Utrecht. Als de auto het niet is, zeg ik dat direct.</p>
         <a class="pepijn-btn" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Tesla%20AccuCheck%20aanvragen">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
           Plan een Tesla AccuCheck
@@ -491,57 +534,101 @@
   <!-- PRIJZEN -->
   <div class="section">
     <h2>Tarieven</h2>
-    <p>Kies wat past bij jouw situatie.</p>
+    <p>Kies het pakket dat bij uw situatie past. Alles wordt uitgevoerd op locatie bij de auto.</p>
     <div class="prijs-grid">
+
       <div class="prijs-card">
         <div class="prijs-label">AccuRisico Rapport</div>
         <div class="prijs-amount">€19,95</div>
-        <div class="prijs-desc">Risico-inschatting op basis van kenteken en km. Direct beschikbaar.</div>
+        <div class="prijs-desc">Digitaal. Geen fysiek bezoek nodig.</div>
         <ul class="prijs-list">
-          <li>Statistische SoH-inschatting</li>
+          <li>Statistische SoH-inschatting op basis van kenteken</li>
           <li>Vergelijking ADAC-normen</li>
           <li>Marktcijfers vergelijkbare Tesla</li>
-          <li>Toekomstprognose 2027-2031</li>
+          <li>Toekomstprognose 2027 tot 2031</li>
         </ul>
       </div>
-      <div class="prijs-card featured">
-        <div class="prijs-badge">Aanbevolen</div>
-        <div class="prijs-label">AVILOO Flash Test</div>
+
+      <div class="prijs-card">
+        <div class="prijs-label">AccuCheck</div>
         <div class="prijs-amount">€129</div>
-        <div class="prijs-desc">Onafhankelijke celmeting op locatie. TÜV-gecertificeerd certificaat.</div>
+        <div class="prijs-desc">Particulier. €95 zakelijk. Alleen de accutest.</div>
         <ul class="prijs-list">
-          <li>Celspanningsmeting alle cellen</li>
+          <li>AVILOO Flash Test op celniveau</li>
           <li>Onafhankelijk van OTA-updates</li>
-          <li>Defecte cellen detecteerbaar</li>
-          <li>TÜV-gecertificeerd certificaat</li>
-          <li>Resultaat dezelfde dag</li>
-          <li>Op locatie bij de auto</li>
+          <li>TUV-gecertificeerd certificaat</li>
+          <li>AVILOO Batterijgarantie inbegrepen</li>
+          <li>15 tot 20 minuten op locatie</li>
+          <li>Dezelfde dag digitaal</li>
         </ul>
       </div>
+
+      <div class="prijs-card featured">
+        <div class="prijs-badge">Populairste keuze</div>
+        <div class="prijs-label">AccuZeker Pakket</div>
+        <div class="prijs-amount">€228</div>
+        <div class="prijs-desc">Compleet rapport. Geen verrassingen achteraf.</div>
+        <ul class="prijs-list">
+          <li>AVILOO Flash Test op celniveau</li>
+          <li>TUV-gecertificeerd accucertificaat</li>
+          <li>12 maanden AVILOO Batterijgarantie</li>
+          <li>Lakdiktemeting</li>
+          <li>Bandenprofiel meting</li>
+          <li>Optische en technische controle</li>
+          <li>Onderhoudshistorie gecontroleerd</li>
+          <li>Staat van de remmen (indien zichtbaar van buitenkant)</li>
+          <li>Beschadigingen: ja of nee</li>
+        </ul>
+      </div>
+
+      <div class="prijs-card">
+        <div class="prijs-label">Premium + AccuCheck</div>
+        <div class="prijs-amount">€449</div>
+        <div class="prijs-desc">Inclusief proefrit en persoonlijk advies van Pepijn Westhoff.</div>
+        <ul class="prijs-list">
+          <li>Alles uit AccuZeker Pakket</li>
+          <li>Proefrit</li>
+          <li>Persoonlijk expert advies</li>
+          <li>Marktprijsbeoordeling</li>
+        </ul>
+      </div>
+
     </div>
     <p style="font-size:13px; color:var(--muted); margin-top:14px; text-align:center;">Binnen 40 km rondom Barendrecht zijn reiskosten inbegrepen. Rotterdam valt hier volledig binnen.</p>
   </div>
 
   <!-- CTA -->
   <div class="cta-final">
-    <h2>Tesla gevonden die je wilt kopen?</h2>
-    <p>Stuur het kenteken via WhatsApp. Ik kijk direct met je mee en plan een AccuCheck in.</p>
+    <h2>Tesla gevonden die u wilt kopen?</h2>
+    <p>Stuur het kenteken via WhatsApp. Pepijn kijkt direct met u mee en plant een AccuCheck in. Dezelfde dag antwoord.</p>
     <a class="btn-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Tesla%20AccuCheck%20aanvragen">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.886l6.188-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.88 9.88 0 01-5.031-1.378l-.361-.214-3.741.981.997-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.421 0 9.894 4.474 9.894 9.894 0 5.421-4.473 9.894-9.894 9.894z"/></svg>
       Stuur kenteken, ik kijk direct mee
     </a>
     <div class="trust-row">
       <span>Officieel AVILOO-partner</span>
-      <span>TÜV-gecertificeerd</span>
+      <span>TUV-gecertificeerd</span>
       <span>16 jaar automotive ervaring</span>
       <span>Geen verkoopbelang</span>
     </div>
+    <p class="cta-reversal">Als de auto het niet is, zegt Pepijn dat direct. Geen verkoopbelang. Geen provisie.</p>
   </div>
 
-</div>
+</div><!-- /wrap -->
 
 <footer>
-  <p>ZekerOpWeg · Tesla AccuCheck · Barendrecht · <a href="https://zekeropweg.nu" style="color:var(--muted);">zekeropweg.nu</a></p>
+  <p>ZekerOpWeg · Tesla AccuCheck · Barendrecht</p>
+  <p>
+    <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a> &nbsp;|&nbsp;
+    Tel/WhatsApp: <a href="tel:0623452349">06 23 45 23 49</a>
+  </p>
+  <p>
+    <a href="https://zekeropweg.nu">zekeropweg.nu</a> &nbsp;|&nbsp;
+    <a href="/ev-accucheck">EV AccuCheck</a> &nbsp;|&nbsp;
+    <a href="/aankoopadvies">Aankoopadvies</a> &nbsp;|&nbsp;
+    <a href="/ev-accu-vervangen-kosten">Accu vervangen kosten</a>
+  </p>
+  <p style="margin-top:8px; font-size:12px;">KvK 99323575 · Pagina bijgewerkt: juli 2026</p>
 </footer>
 
 <a class="sticky-wa" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Tesla%20AccuCheck%20aanvragen">
