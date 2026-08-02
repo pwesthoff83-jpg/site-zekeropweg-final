@@ -3,331 +3,553 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volvo PHEV AccuCheck | XC60, XC40, V60 PHEV | ZekerOpWeg</title>
-  <meta name="description" content="Onafhankelijke AVILOO Flash Test voor Volvo plug-in hybride modellen. XC60 PHEV, XC40 PHEV en V60 PHEV. Defecte cellen direct zichtbaar. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.">
-  <link rel="canonical" href="https://zekeropweg.nu/volvo-ev-accucheck.html" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Volvo PHEV AccuCheck",
-    "provider": {"@id": "https://zekeropweg.nu#org"},
-    "description": "Onafhankelijke AVILOO Flash Test voor Volvo XC60 PHEV, XC40 PHEV en V60 PHEV. TUV-gecertificeerd. Op locatie in Rotterdam en omgeving.",
-    "url": "https://zekeropweg.nu/volvo-ev-accucheck.html",
-    "areaServed": ["Barendrecht","Rotterdam","Zuid-Holland","Noord-Brabant"],
-    "offers": {"@type": "Offer", "price": "129", "priceCurrency": "EUR"}
-  }
+  <title>Volvo EV AccuCheck | XC40 Recharge, C40, T8 PHEV | ZekerOpWeg</title>
+  <meta name="description" content="AVILOO Flash Test voor Volvo XC40 Recharge, C40 Recharge, XC60 T8, XC90 T8, V60 T8 en alle Volvo PHEV op locatie. TUV-gecertificeerd. €129 incl. AVILOO Batterijgarantie tot €3.000.">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/zop-luxury-polish.css" />
+  <link rel="stylesheet" href="css/zop-stability.css" />
+  <link rel="canonical" href="https://zekeropweg.nu/volvo-ev-accucheck" />
+  <style>
+    /* === PREFIX: volvo- === */
+    .volvo-hero {
+      position: relative;
+      background: #0b1220;
+      padding: 76px 0 68px;
+      overflow: hidden;
+    }
+    .volvo-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 65% 35%, rgba(201,169,110,0.08) 0%, transparent 62%);
+      pointer-events: none;
+    }
+    .volvo-hero .container { position: relative; z-index: 1; }
+    .volvo-ey {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9a96e;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .volvo-hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      max-width: 680px;
+    }
+    .volvo-hero h1 span {
+      display: block;
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 400;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .01em;
+      margin-top: 4px;
+    }
+    .volvo-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 16px 0 26px;
+    }
+    .volvo-trust {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+    .volvo-badge {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,.75);
+    }
+    .volvo-badge.gold {
+      background: rgba(201,169,110,.13);
+      border-color: rgba(201,169,110,.32);
+      color: #c9a96e;
+      font-weight: 600;
+    }
+    /* Prijzen */
+    .volvo-pricing {
+      background: #f6f5f1;
+      padding: 76px 0;
+    }
+    .volvo-pricing h2 {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 650;
+      color: #0b1220;
+      margin-bottom: 10px;
+    }
+    .volvo-pricing-intro {
+      text-align: center;
+      font-size: 15px;
+      color: #5a6472;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .volvo-price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto 28px;
+    }
+    .volvo-price-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 26px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.06);
+      position: relative;
+    }
+    .volvo-price-card.featured {
+      border: 2px solid #c9a96e;
+    }
+    .volvo-featured-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #c9a96e;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .volvo-card-ey {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c9a96e;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .volvo-price-card h3 {
+      font-size: 18px;
+      font-weight: 650;
+      color: #0b1220;
+      margin-bottom: 6px;
+    }
+    .volvo-price-amount {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0b1220;
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+    .volvo-price-note {
+      font-size: 12px;
+      color: #5a6472;
+      margin-bottom: 16px;
+    }
+    .volvo-feat-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .volvo-feat-list li {
+      font-size: 13.5px;
+      color: #3a3f4a;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+    .volvo-feat-list li::before {
+      content: "\2713";
+      color: #c9a96e;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .volvo-feat-list li.highlight::before {
+      color: #8a6d1a;
+    }
+    .volvo-feat-list li.highlight {
+      color: #8a6d1a;
+      font-weight: 600;
+    }
+    /* Modellen */
+    .volvo-models {
+      background: #fff;
+      padding: 72px 0;
+    }
+    .volvo-models h2 {
+      font-size: 24px;
+      font-weight: 650;
+      color: #0b1220;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .volvo-models-intro {
+      text-align: center;
+      font-size: 15px;
+      color: #5a6472;
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+    .volvo-models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .volvo-model-card {
+      background: #f6f5f1;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .volvo-model-card strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0b1220;
+      margin-bottom: 4px;
+    }
+    .volvo-model-card span {
+      font-size: 12px;
+      color: #5a6472;
+      line-height: 1.5;
+    }
+    /* Content */
+    .volvo-content {
+      background: #f6f5f1;
+      padding: 72px 0;
+    }
+    .volvo-content-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .volvo-content-inner h2 {
+      font-size: 24px;
+      font-weight: 650;
+      color: #0b1220;
+      margin-bottom: 12px;
+    }
+    .volvo-content-inner p {
+      font-size: 15px;
+      color: #5a6472;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .volvo-content-inner strong { color: #0b1220; }
+    /* FAQ */
+    .volvo-faq {
+      background: #fff;
+      padding: 72px 0;
+    }
+    .volvo-faq h2 {
+      font-size: 24px;
+      font-weight: 650;
+      color: #0b1220;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .volvo-faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .volvo-faq-item {
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 22px 0;
+    }
+    .volvo-faq-item:last-child { border-bottom: none; }
+    .volvo-faq-item h3 {
+      font-size: 15px;
+      font-weight: 650;
+      color: #0b1220;
+      margin: 0 0 8px;
+    }
+    .volvo-faq-item p {
+      font-size: 14px;
+      color: #5a6472;
+      line-height: 1.75;
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .volvo-hero { padding: 52px 0 44px; }
+      .volvo-price-grid,
+      .volvo-models-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17962185957');
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Waarom is een accucheck bij een Volvo PHEV occasion belangrijk?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Volvo PHEV-modellen zijn populaire zakelijke leaseauto's die in grote aantallen als occasion op de markt komen. Het laadgedrag van de vorige eigenaar bepaalt grotendeels de werkelijke accustaat. Leaserijders die nauwelijks laden laten de accu structureel ontladen, wat leidt tot versnelde degradatie die niet zichtbaar is in een BMS-uitlezing."
+        "@type": "LocalBusiness",
+        "@id": "https://zekeropweg.nu/#business",
+        "name": "ZekerOpWeg",
+        "url": "https://zekeropweg.nu",
+        "telephone": "+31623452349",
+        "email": "info@zekeropweg.nu",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Barendrecht",
+          "addressRegion": "Zuid-Holland",
+          "addressCountry": "NL"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "reviewCount": "7"
         }
       },
       {
-        "@type": "Question",
-        "name": "Welke Volvo modellen kunnen getest worden?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ZekerOpWeg voert AVILOO Flash Tests uit voor Volvo XC60 PHEV (T6/T8 Recharge), XC40 PHEV (T4/T5 Recharge) en V60 PHEV (T6/T8 Recharge). Alle modellen op locatie in de regio Rotterdam en Zuid-Holland."
-        }
+        "@type": "Service",
+        "@id": "https://zekeropweg.nu/volvo-ev-accucheck#service",
+        "name": "Volvo AccuCheck",
+        "description": "TUV-gecertificeerde AVILOO Flash Test op locatie voor Volvo modellen. Celanalyse op individueel niveau. Officieel AVILOO-certificaat. Ondersteunt meer dan 95% van alle EV- en hybride voertuigen.",
+        "provider": { "@id": "https://zekeropweg.nu/#business" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "AVILOO Flash Test op locatie",
+            "price": "129",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://zekeropweg.nu/volvo-ev-accucheck"
+          },
+          {
+            "@type": "Offer",
+            "name": "AccuZeker Pakket",
+            "price": "228",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://zekeropweg.nu/volvo-ev-accucheck"
+          }
+        ]
       },
       {
-        "@type": "Question",
-        "name": "Hoe snel degradeert een Volvo XC60 PHEV accu?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bij regelmatig laden degradeert de XC60 PHEV accu gemiddeld 2 tot 3% per jaar. Na 4 jaar zakelijk gebruik zonder regelmatig laden ligt de restcapaciteit doorgaans tussen 68 en 83%. Het laadgedrag van de vorige eigenaar is bepalend en alleen zichtbaar via een onafhankelijke AVILOO Flash Test."
-        }
+        "@type": "FAQPage",
+        "mainEntity": [{"@type":"Question","name":"Ondersteunt AVILOO ook Volvo T8 PHEV-modellen?","acceptedAnswer":{"@type":"Answer","text":"Ja. De AVILOO Flash Test ondersteunt meer dan 95% van alle EV- en hybride voertuigen, inclusief Volvo T8 PHEV-modellen als XC60, XC90, V60 en V90 Recharge. De meting geeft inzicht in de SoH van de plug-in accu."}},
+          {"@type":"Question","name":"Wat kost een AccuCheck voor een Volvo XC40 Recharge?","acceptedAnswer":{"@type":"Answer","text":"Een AVILOO Flash Test op locatie kost &euro;129 inclusief btw. Het AccuZeker Pakket (AccuCheck plus lakdiktemeting, bandenprofiel en schadecheck) kost &euro;228. Rijdt u naar Barendrecht, dan is de AccuCheck &euro;95."}},
+          {"@type":"Question","name":"Waarom degradeert een Volvo T8 PHEV-accu snel?","acceptedAnswer":{"@type":"Answer","text":"De T8 PHEV heeft een relatief kleine accu van 14,9 tot 18,8 kWh. Wanneer een rijder de auto weinig oplaadt en voornamelijk op benzine rijdt, wordt de accu anders belast dan ontworpen. Dit kan leiden tot versnelde degradatie. De AVILOO Flash Test meet de werkelijke celstatus, ongeacht het gebruikspatroon."}},
+          {"@type":"Question","name":"Hoelang duurt een AccuCheck voor een Volvo?","acceptedAnswer":{"@type":"Answer","text":"De AVILOO Flash Test duurt circa 3 minuten. Inclusief aansluiten, voertuigidentificatie en bespreking van de uitkomst bent u in totaal 15 tot 20 minuten verder."}}]
       }
     ]
   }
   </script>
-
-  <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
-  <link rel="stylesheet" href="css/zop-buttons.css?v=3" />
-  <link rel="stylesheet" href="css/zop-stability.css" />
-  <link rel="stylesheet" href="css/luxury.css" />
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="shortcut icon" href="/assets/images/logos/favicon/favicon.png">
-
-  <style>
-  .model-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(0,0,0,0.08)}
-  .model-nav-item{font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1px solid rgba(0,0,0,0.1);color:#0a3d62;text-decoration:none;transition:all 0.15s;white-space:nowrap}
-  .model-nav-item:hover{background:#0a3d62;color:#fff;border-color:#0a3d62}
-  .model-blok{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.75rem 2rem 2rem;margin-bottom:1.5rem;scroll-margin-top:80px}
-  .model-blok:hover{border-color:rgba(0,0,0,0.15)}
-  .model-header{margin-bottom:1.25rem}
-  .model-type-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px;background:#fffdf0;color:#856404}
-  .model-naam{font-size:1.4rem;font-weight:600;color:#0d1b2a;margin:0;line-height:1.3}
-  .model-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
-  @media(max-width:560px){.model-specs-grid{grid-template-columns:1fr}}
-  .spec-item{background:#f9f9fb;border-radius:8px;padding:12px 16px}
-  .spec-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 4px}
-  .spec-val{font-size:14px;font-weight:500;color:#0d1b2a;margin:0;line-height:1.4}
-  .model-sectie-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
-  .model-sectie{padding:12px 16px;border-radius:8px;background:#f9f9fb;border-left:3px solid rgba(0,0,0,0.08)}
-  .model-sectie-risico{border-left-color:#e0a800;background:#fffdf0}
-  .model-sectie-check{border-left-color:#1a6091;background:#f0f7ff}
-  .sectie-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin:0 0 5px}
-  .sectie-label-risico{color:#856404}
-  .sectie-label-check{color:#0a3d62}
-  .sectie-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
-  .model-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .model-check-btn{background:transparent;border:1.5px solid #0a3d62;color:#0a3d62;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.15s;display:inline-block}
-  .model-check-btn:hover{background:#0a3d62;color:#fff}
-  .page-intro{font-size:1rem;line-height:1.8;color:#333;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.08)}
-  .info-blok{background:#fff8e1;border:1px solid rgba(224,168,0,0.3);border-left:3px solid #e0a800;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
-  .info-blok-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#856404;margin:0 0 8px}
-  .info-blok-tekst{font-size:14px;color:#333;line-height:1.75;margin:0}
-  .artikel-link-blok{background:#f4f5f7;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-  .artikel-link-tekst{flex:1;min-width:200px}
-  .artikel-link-tekst p{font-size:0.85rem;color:#888;margin:0 0 3px}
-  .artikel-link-tekst strong{font-size:0.95rem;color:#0d1b2a;display:block}
-  </style>
 </head>
+<body>
+  <header class="zop-header">
+    <div class="zop-header-inner">
+      <a href="index.html" class="zop-logo">ZekerOpWeg</a>
+      <nav class="zop-nav">
+        <a href="index.html">Home</a>
+        <a href="aankoopadvies.html">Aankoopadvies</a>
+        <div class="zop-dropdown">
+          <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck.html">EV AccuCheck</a>
+            <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+          </div>
+        </div>
+        <div class="zop-dropdown">
+          <span class="zop-drop-label">Voor bedrijven</span>
+          <div class="zop-drop-menu">
+            <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
+          </div>
+        </div>
+        <a href="bezwaarservice.html">Bezwaar</a>
+        <a href="over.html">Over</a>
+        <a href="contact.html" class="zop-contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </header>
 
-<body class="fade-in">
-<header class="zop-header">
-  <div class="zop-header-inner">
-    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-    <nav class="zop-nav">
-      <a href="index.html">Home</a>
-      <a href="aankoopadvies.html">Aankoopadvies</a>
-      <div class="zop-dropdown">
-        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
+  <main>
+    <section class="volvo-hero">
+      <div class="container">
+        <span class="volvo-ey">AVILOO FLASH TEST &middot; TUV-GECERTIFICEERD &middot; OP LOCATIE</span>
+        <h1>Volvo AccuCheck op locatie<span>XC40 Recharge &middot; C40 Recharge &middot; XC60/XC90 T8 &middot; V60 T8</span></h1>
+        <p class="volvo-sub">ZekerOpWeg voert TUV-gecertificeerde AVILOO Flash Tests uit voor alle Volvo EV- en PHEV-modellen. XC40 Recharge, C40 Recharge en alle T8 plug-in hybrides. Officieel AVILOO-certificaat met celanalyse. Op locatie bij de auto.</p>
+        <div class="volvo-trust">
+          <span class="volvo-badge gold"><span style="color:#c9a96e;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5,0 Google</span>
+          <span class="volvo-badge">TUV-gecertificeerd</span>
+          <span class="volvo-badge">Officieel AVILOO-partner</span>
+          <span class="volvo-badge">AVILOO Batterijgarantie tot &euro;3.000</span>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="intake.html?dienst=ev-accucheck" class="btn-primary">Plan AccuCheck op locatie &middot; &euro;129</a>
+          <a href="https://wa.me/31623452349?text=Ik%20wil%20een%20AccuCheck%20aanvragen" class="btn-secondary">06 23 45 23 49</a>
         </div>
       </div>
-      <div class="zop-dropdown">
-        <span class="zop-drop-label">Voor bedrijven</span>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-          <a href="automatisering.html">Automatisering</a>
+    </section>
+
+    <section style="background:#0b1220; padding:44px 0;">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:20px; max-width:800px; margin:0 auto; text-align:center;">
+          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">95%</p><p style="font-size:12px;color:rgba(255,255,255,.55);">van alle EV- en hybride voertuigen</p></div>
+          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">15 tot 20</p><p style="font-size:12px;color:rgba(255,255,255,.55);">minuten inclusief uitleg</p></div>
+          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">&euro;3.000</p><p style="font-size:12px;color:rgba(255,255,255,.55);">AVILOO Batterijgarantie</p></div>
+          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">5,0 <span style="font-size:20px;">&#9733;</span></p><p style="font-size:12px;color:rgba(255,255,255,.55);">Google &middot; 7 reviews</p></div>
         </div>
       </div>
-      <a href="bezwaarservice.html">Bezwaar</a>
-      <a href="over.html">Over</a>
-      <a href="contact.html" class="zop-contact">Contact</a>
-    </nav>
-    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
-  </div>
-</header>
-<div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" aria-label="Sluiten">&times;</button>
-  <nav class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-    <a href="bezwaarservice.html">Bezwaar</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</div>
-<div id="menuOverlay" class="menu-overlay"></div>
+    </section>
 
-<main class="page-content">
-<section class="hero hero-standard">
-  <div class="hero-content">
-    <span class="hero-eyebrow">AVILOO Flash Test &middot; TUV-gecertificeerd &middot; Op locatie Rotterdam</span>
-    <h1>Volvo PHEV AccuCheck</h1>
-    <p>Onafhankelijke accumeting voor Volvo XC60, XC40 en V60 PHEV. AVILOO Flash Test op celniveau. Niet afhankelijk van Volvo-software of dealer uitlezing.</p>
-    <div class="hero-actions">
-      <a href="intake.html?dienst=ev-accucheck&model=volvo" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
-    </div>
-    <div class="hero-trust" style="margin-top:1.5rem">
-      <span>&#10003; Officieel AVILOO-partner</span>
-      <span>&#10003; TUV-gecertificeerd</span>
-      <span>&#10003; Op locatie bij de auto</span>
-      <span>&#10003; 16 jaar automotive ervaring</span>
-    </div>
-  </div>
-</section>
+    <section class="volvo-pricing">
+      <div class="container">
+        <span class="volvo-ey" style="color:#c9a96e; text-align:center; display:block;">Tarieven</span>
+        <h2>Kies uw AccuCheck variant</h2>
+        <p class="volvo-pricing-intro">Dezelfde TUV-gecertificeerde AVILOO Flash Test. Het verschil zit in de locatie en de omvang van de check.</p>
+        <div class="volvo-price-grid">
+          <div class="volvo-price-card">
+            <p class="volvo-card-ey">AccuCheck op locatie</p>
+            <h3>AVILOO Flash Test</h3>
+            <div class="volvo-price-amount">&euro;129</div>
+            <p class="volvo-price-note">Incl. btw &middot; Op locatie bij de auto &middot; Certificaat inbegrepen</p>
+            <ul class="volvo-feat-list">
+              <li>Celanalyse op individueel niveau</li>
+              <li>Officieel AVILOO-certificaat</li>
+              <li>TUV-gecertificeerde diagnoseapparatuur</li>
+              <li>Meting 15 tot 20 minuten</li>
+              <li class="highlight">AVILOO Batterijgarantie tot &euro;3.000 inbegrepen</li>
+            </ul>
+            <a href="intake.html?dienst=ev-accucheck" class="btn-primary" style="display:block; text-align:center;">Plan AccuCheck</a>
+          </div>
+          <div class="volvo-price-card featured">
+            <div class="volvo-featured-badge">Meest compleet</div>
+            <p class="volvo-card-ey">Accucheck + voertuig</p>
+            <h3>AccuZeker Pakket</h3>
+            <div class="volvo-price-amount">&euro;228</div>
+            <p class="volvo-price-note">Incl. btw &middot; Op locatie &middot; Alles in &eacute;&eacute;n bezoek</p>
+            <ul class="volvo-feat-list">
+              <li>AVILOO Flash Test op celniveau</li>
+              <li>TUV-gecertificeerd AVILOO-certificaat</li>
+              <li class="highlight">AVILOO Batterijgarantie tot &euro;3.000</li>
+              <li>Professionele lakdiktemeting per paneel</li>
+              <li>Bandenprofiel gemeten met dieptemeter</li>
+              <li>Schade en onderhoudsstaat check</li>
+              <li>Marktprijsanalyse</li>
+            </ul>
+            <a href="https://wa.me/31623452349?text=Ik%20wil%20het%20AccuZeker%20Pakket%20aanvragen" class="btn-primary" style="display:block; text-align:center;">AccuZeker Pakket &middot; &euro;228</a>
+          </div>
+        </div>
+        <p style="text-align:center; font-size:13px; color:#5a6472; margin-top:10px;">Rijdt u naar Barendrecht? Dan is de AccuCheck &euro;95. <a href="ev-accucheck.html" style="color:#c9a96e;">Alle tarieven en varianten</a></p>
+      </div>
+    </section>
 
-<section class="services-section container">
+    <section class="volvo-models">
+      <div class="container">
+        <span class="volvo-ey" style="color:#c9a96e; text-align:center; display:block;">Ondersteunde modellen</span>
+        <h2>Volvo modellen die ZekerOpWeg meet</h2>
+        <p class="volvo-models-intro">De AVILOO Flash Test ondersteunt meer dan 95% van alle EV- en hybride voertuigen, inclusief alle gangbare Volvo modellen.</p>
+        <div class="volvo-models-grid">
+          <div class="volvo-model-card"><strong>Volvo XC40 Recharge</strong><span>69 kWh &middot; 78 kWh &middot; Twin Motor</span></div>
+          <div class="volvo-model-card"><strong>Volvo C40 Recharge</strong><span>69 kWh &middot; 78 kWh &middot; Twin Motor</span></div>
+          <div class="volvo-model-card"><strong>Volvo XC60 T8</strong><span>Plug-in hybride &middot; Recharge</span></div>
+          <div class="volvo-model-card"><strong>Volvo XC90 T8</strong><span>Plug-in hybride &middot; Recharge</span></div>
+          <div class="volvo-model-card"><strong>Volvo V60 T8</strong><span>Plug-in hybride &middot; Recharge</span></div>
+          <div class="volvo-model-card"><strong>Volvo V90 T8</strong><span>Plug-in hybride &middot; Recharge</span></div>
+          <div class="volvo-model-card"><strong>Volvo S90 T8</strong><span>Plug-in hybride &middot; Recharge</span></div>
+          <div class="volvo-model-card"><strong>Ander Volvo model?</strong><span>Neem contact op voor beschikbaarheid</span></div>
+        </div>
+      </div>
+    </section>
 
-  <p class="page-intro">
-    Volvo PHEV-modellen zijn populaire zakelijke leaseauto's die in grote aantallen als occasion op de markt komen. De XC60, XC40 en V60 Recharge zijn jarenlang favoriete keuzes geweest voor zakelijke rijders. Het probleem: veel van die rijders hebben nauwelijks geladen. De accu degradeerde terwijl de auto op benzine reed. Dat is niet zichtbaar in een standaard BMS-uitlezing. Een AVILOO Flash Test toont de werkelijke accustaat in 3 minuten, onafhankelijk van de Volvo-software.
-  </p>
+    <section class="volvo-content">
+      <div class="container">
+        <div class="volvo-content-inner">
+          <span class="volvo-ey" style="color:#c9a96e;">Waarom een AccuCheck voor een Volvo?</span>
+          <h2>Wat de AVILOO Flash Test zichtbaar maakt bij een Volvo</h2>
+          <p>Volvo XC40 Recharge en C40 Recharge zijn populaire tweedehands EV-keuzes in Nederland. Volvo verplicht dealers niet tot akkurapportage bij tweedehands verkoop. De T8 PHEV-modellen (XC60, XC90, V60, V90) hebben een 14,9 kWh of 18,8 kWh accu die bij frequent korte ritten en weinig laden merkbaar degradeert. Een rijder die nooit laadt, gebruikt de PHEV feitelijk als gewone hybride en belast de accu anders dan de ontwerper verwacht. De AVILOO Flash Test laat de werkelijke accustatus zien, ongeacht het gebruikspatroon.</p>
+          <p>De Volvo XC40 Recharge en C40 Recharge hebben een 69 kWh (netto) of 78 kWh (netto) accu. De T8 PHEV-varianten hebben een 14,9 kWh of 18,8 kWh plug-in accu. De AVILOO Flash Test ondersteunt beide types.</p>
+          <p>Na elke meting ontvangt u een officieel AVILOO-certificaat met de gemeten SoH-score en celanalyse. Ondertekend door dr. Marcus Berger (CEO AVILOO GmbH), TUV-gecertificeerd en rechtsgeldig bij garantieclaims en wederverkoop. De meting duurt 15 tot 20 minuten inclusief bespreking van de uitkomst.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+            <a href="intake.html?dienst=ev-accucheck" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+            <a href="ev-accucheck.html" class="btn-secondary">Bekijk alle tarieven</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="info-blok">
-    <p class="info-blok-label">Het laadgedrag-probleem bij Volvo PHEV occasions</p>
-    <p class="info-blok-tekst">Een BMS-uitlezing leest de fabriekswaarde uit die de boordcomputer berekent. Die waarde zegt niets over hoe de accu feitelijk is gebruikt. Bij Volvo PHEV-occasions van zakelijke rijders is het laadgedrag de grootste onbekende. De AVILOO Flash Test analyseert elke cel individueel en maakt direct zichtbaar wat de werkelijke restcapaciteit is, onafhankelijk van de Volvo-software en eventuele updates.</p>
-  </div>
+    <section class="volvo-faq">
+      <div class="container">
+        <h2>Veelgestelde vragen over Volvo AccuCheck</h2>
+        <div class="volvo-faq-list">
+          <div class="volvo-faq-item"><h3>Ondersteunt AVILOO ook Volvo T8 PHEV-modellen?</h3><p>Ja. De AVILOO Flash Test ondersteunt meer dan 95% van alle EV- en hybride voertuigen, inclusief Volvo T8 PHEV-modellen als XC60, XC90, V60 en V90 Recharge. De meting geeft inzicht in de SoH van de plug-in accu.</p></div>
+          <div class="volvo-faq-item"><h3>Wat kost een AccuCheck voor een Volvo XC40 Recharge?</h3><p>Een AVILOO Flash Test op locatie kost &euro;129 inclusief btw. Het AccuZeker Pakket (AccuCheck plus lakdiktemeting, bandenprofiel en schadecheck) kost &euro;228. Rijdt u naar Barendrecht, dan is de AccuCheck &euro;95.</p></div>
+          <div class="volvo-faq-item"><h3>Waarom degradeert een Volvo T8 PHEV-accu snel?</h3><p>De T8 PHEV heeft een relatief kleine accu van 14,9 tot 18,8 kWh. Wanneer een rijder de auto weinig oplaadt en voornamelijk op benzine rijdt, wordt de accu anders belast dan ontworpen. Dit kan leiden tot versnelde degradatie. De AVILOO Flash Test meet de werkelijke celstatus, ongeacht het gebruikspatroon.</p></div>
+          <div class="volvo-faq-item"><h3>Hoelang duurt een AccuCheck voor een Volvo?</h3><p>De AVILOO Flash Test duurt circa 3 minuten. Inclusief aansluiten, voertuigidentificatie en bespreking van de uitkomst bent u in totaal 15 tot 20 minuten verder.</p></div>
+        </div>
+      </div>
+    </section>
 
-  <nav class="model-nav" aria-label="Volvo modellen">
-    <a href="#volvo-xc60-phev" class="model-nav-item">XC60 PHEV</a>
-    <a href="#volvo-xc40-phev" class="model-nav-item">XC40 PHEV</a>
-    <a href="#volvo-v60-phev" class="model-nav-item">V60 PHEV</a>
-  </nav>
+    <section style="background:#0b1220; padding:64px 0;">
+      <div class="container" style="text-align:center; max-width:560px;">
+        <span class="volvo-ey" style="display:block; text-align:center; margin-bottom:12px;">ZekerOpWeg &middot; Officieel AVILOO-partner</span>
+        <h2 style="font-size:24px; font-weight:650; color:#fff; margin-bottom:12px; line-height:1.3;">Plan uw Volvo AccuCheck</h2>
+        <p style="font-size:14px; color:rgba(255,255,255,.65); line-height:1.7; margin-bottom:24px;">Op locatie bij de auto. TUV-gecertificeerd. Officieel AVILOO-certificaat. 15 tot 20 minuten. Batterijgarantie tot &euro;3.000.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <a href="intake.html?dienst=ev-accucheck" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
+          <a href="https://wa.me/31623452349" class="btn-secondary">06 23 45 23 49</a>
+        </div>
+      </div>
+    </section>
 
-  <div class="artikel-link-blok">
-    <div class="artikel-link-tekst">
-      <p>Kennisartikel</p>
-      <strong>Moba vs. AVILOO Flash Test: wat is het verschil?</strong>
-    </div>
-    <a href="bms-vs-celniveau.html" class="btn-info">Lees het artikel &rarr;</a>
-  </div>
+    <section style="background:#f6f5f1; padding:36px 0;">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:8px; max-width:820px; margin:0 auto;">
+          <a href="audi-ev-accucheck.html" style="background:#fff;border-radius:10px;padding:13px 15px;text-decoration:none;display:block;font-size:13px;font-weight:600;color:#0b1220;box-shadow:0 2px 8px rgba(0,0,0,.04);">Audi AccuCheck</a>
+          <a href="bmw-ev-accucheck.html" style="background:#fff;border-radius:10px;padding:13px 15px;text-decoration:none;display:block;font-size:13px;font-weight:600;color:#0b1220;box-shadow:0 2px 8px rgba(0,0,0,.04);">BMW AccuCheck</a>
+          <a href="ev-accucheck.html" style="background:#fff;border-radius:10px;padding:13px 15px;text-decoration:none;display:block;font-size:13px;font-weight:600;color:#0b1220;box-shadow:0 2px 8px rgba(0,0,0,.04);">EV AccuCheck tarieven</a>
+          <a href="batterijgarantie-ev.html" style="background:#fff;border-radius:10px;padding:13px 15px;text-decoration:none;display:block;font-size:13px;font-weight:600;color:#0b1220;box-shadow:0 2px 8px rgba(0,0,0,.04);">AVILOO Batterijgarantie</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <!-- Volvo XC60 PHEV -->
-  <div class="model-blok" id="volvo-xc60-phev">
-    <div class="model-header">
-      <span class="model-type-badge">Plug-in hybride (PHEV)</span>
-      <h2 class="model-naam">Volvo XC60 PHEV (T6/T8 Recharge)</h2>
-    </div>
-    <div class="model-specs-grid">
-      <div class="spec-item">
-        <p class="spec-label">Accupakket</p>
-        <p class="spec-val">11,6 kWh netto bruikbaar</p>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <p class="footer-title">ZekerOpWeg</p>
+        <p>&copy; 2026 ZekerOpWeg</p>
+        <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
+          Handelsnaam van Pepijn Westhoff<br />KvK 99323575<br />BTW NL005381985B31
+        </p>
       </div>
-      <div class="spec-item">
-        <p class="spec-label">Elektrisch bereik (WLTP)</p>
-        <p class="spec-val">Circa 45 tot 63 km elektrisch</p>
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a></p>
+        <p><a href="https://wa.me/31623452349">Tel / WhatsApp: 06 23 45 23 49</a></p>
       </div>
-    </div>
-    <div class="model-sectie-grid">
-      <div class="model-sectie">
-        <p class="sectie-label">Typische degradatie</p>
-        <p class="sectie-tekst">Bij regelmatig laden degradeert de XC60 PHEV accu gemiddeld 2 tot 3% per jaar. Na 4 jaar zakelijk gebruik zonder regelmatig laden ligt de restcapaciteit doorgaans tussen 68 en 83%. Sterk afhankelijk van laadgedrag van de vorige eigenaar.</p>
-      </div>
-      <div class="model-sectie model-sectie-risico">
-        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-        <p class="sectie-tekst">De XC60 PHEV is een van de meest voorkomende zakelijke leaseretours. Rijders die niet laden rijden feitelijk op benzine terwijl de accu ongebruikt degradeert door diepe ontlaadcycli. Een BMS-uitlezing toont het gemiddelde over het pakket. Afwijkende cellen door structurele ontlading blijven onzichtbaar tot ze merkbaar worden in het rijbereik.</p>
-      </div>
-      <div class="model-sectie model-sectie-check">
-        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-        <p class="sectie-tekst">Celanalyse detecteert de werkelijke accustaat onafhankelijk van de Volvo-software. Vergelijking met XC60 PHEV referentiedata in de AVILOO database geeft direct inzicht in laadgedrag en accugezondheid. Niet beïnvloed door software-updates.</p>
+      <div class="footer-col">
+        <p class="footer-title">Diensten</p>
+        <p><a href="ev-accucheck.html">EV AccuCheck</a></p>
+        <p><a href="aankoopadvies.html">Aankoopadvies</a></p>
+        <p><a href="accurisico-rapport.html">AccuRisico Rapport</a></p>
+        <p><a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a></p>
       </div>
     </div>
-    <div class="model-cta-row">
-      <a href="rapport.html?model=volvo-xc60-phev" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-      <a href="intake.html?dienst=ev-accucheck&model=volvo-xc60-phev" class="model-check-btn">Plan AccuCheck voor de XC60</a>
-    </div>
-  </div>
-
-  <!-- Volvo XC40 PHEV -->
-  <div class="model-blok" id="volvo-xc40-phev">
-    <div class="model-header">
-      <span class="model-type-badge">Plug-in hybride (PHEV)</span>
-      <h2 class="model-naam">Volvo XC40 PHEV (T4/T5 Recharge)</h2>
-    </div>
-    <div class="model-specs-grid">
-      <div class="spec-item">
-        <p class="spec-label">Accupakket</p>
-        <p class="spec-val">10,7 kWh netto bruikbaar</p>
-      </div>
-      <div class="spec-item">
-        <p class="spec-label">Elektrisch bereik (WLTP)</p>
-        <p class="spec-val">Circa 44 km elektrisch</p>
-      </div>
-    </div>
-    <div class="model-sectie-grid">
-      <div class="model-sectie">
-        <p class="sectie-label">Typische degradatie</p>
-        <p class="sectie-tekst">Kleinere accu dan de XC60. Degradeert sneller in percentage bij onregelmatig laden. Na 4 jaar gemiddeld 65 tot 80% restcapaciteit. Kleinere accucapaciteit betekent dat degradatie sneller merkbaar is in het praktische rijbereik.</p>
-      </div>
-      <div class="model-sectie model-sectie-risico">
-        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-        <p class="sectie-tekst">Zelfde laadgedrag-risico als de XC60 maar met een kleinere accu die gevoeliger is voor de gevolgen. Een BMS-uitlezing of dealer rapport geeft alleen de fabriekswaarde door. Die waarde zegt niets over hoe de accu is gebruikt gedurende de leaseperiode.</p>
-      </div>
-      <div class="model-sectie model-sectie-check">
-        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-        <p class="sectie-tekst">Celanalyse en vergelijking met XC40 PHEV referentiedata in de AVILOO database. Toont direct wat de werkelijke restcapaciteit is en of er celafwijkingen aanwezig zijn.</p>
-      </div>
-    </div>
-    <div class="model-cta-row">
-      <a href="rapport.html?model=volvo-xc40-phev" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-      <a href="intake.html?dienst=ev-accucheck&model=volvo-xc40-phev" class="model-check-btn">Plan AccuCheck voor de XC40</a>
-    </div>
-  </div>
-
-  <!-- Volvo V60 PHEV -->
-  <div class="model-blok" id="volvo-v60-phev">
-    <div class="model-header">
-      <span class="model-type-badge">Plug-in hybride (PHEV)</span>
-      <h2 class="model-naam">Volvo V60 PHEV (T6/T8 Recharge)</h2>
-    </div>
-    <div class="model-specs-grid">
-      <div class="spec-item">
-        <p class="spec-label">Accupakket</p>
-        <p class="spec-val">11,6 kWh netto bruikbaar</p>
-      </div>
-      <div class="spec-item">
-        <p class="spec-label">Elektrisch bereik (WLTP)</p>
-        <p class="spec-val">Circa 57 km elektrisch</p>
-      </div>
-    </div>
-    <div class="model-sectie-grid">
-      <div class="model-sectie">
-        <p class="sectie-label">Typische degradatie</p>
-        <p class="sectie-tekst">Deelt accuarchitectuur met de XC60 PHEV. Bij regelmatig laden gemiddeld 2 tot 3% per jaar. Na 4 jaar doorgaans 68 tot 83% restcapaciteit afhankelijk van laadgedrag.</p>
-      </div>
-      <div class="model-sectie model-sectie-risico">
-        <p class="sectie-label sectie-label-risico">Bekende aandachtspunten</p>
-        <p class="sectie-tekst">Populaire zakelijke occasion in het premiumsegment. Dezelfde risico's als de XC60: zakelijke rijders die nauwelijks laden laten de accu structureel ontladen. Een BMS-uitlezing of dealer rapport geeft geen eerlijk beeld van werkelijk gebruik. Volvo vermeldt zelf dat de weergegeven waarden indicatief zijn.</p>
-      </div>
-      <div class="model-sectie model-sectie-check">
-        <p class="sectie-label sectie-label-check">Wat de AVILOO Flash Test controleert</p>
-        <p class="sectie-tekst">Vergelijkt gemeten restcapaciteit met V60 PHEV referentiedata in de AVILOO database. Detecteert celafwijkingen direct. Onafhankelijk van Volvo-software en dealer updates.</p>
-      </div>
-    </div>
-    <div class="model-cta-row">
-      <a href="rapport.html?model=volvo-v60-phev" class="btn-primary">AccuRisico Rapport &middot; &euro;19,95</a>
-      <a href="intake.html?dienst=ev-accucheck&model=volvo-v60-phev" class="model-check-btn">Plan AccuCheck voor de V60</a>
-    </div>
-  </div>
-
-  <div style="background:#0d1b2a;border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;">
-    <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;">ZekerOpWeg &middot; Officieel AVILOO-partner &middot; 16 jaar automotive ervaring</p>
-    <h3 style="font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3;">Klaar voor zekerheid over uw Volvo?</h3>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 1.5rem;line-height:1.7;">Een Volvo dealer uitlezing geeft een indicatie. De AVILOO Flash Test geeft in 3 minuten zekerheid op celniveau. Op locatie in Rotterdam en omgeving. Onafhankelijk, zonder verkoopbelang.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="intake.html?dienst=ev-accucheck&model=volvo" class="btn-primary">Plan AccuCheck &middot; &euro;129</a>
-      <a href="rapport.html" style="background:transparent;border:1.5px solid rgba(255,255,255,0.4);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">AccuRisico Rapport &middot; &euro;19,95</a>
-    </div>
-  </div>
-
-</section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <p class="footer-title">ZekerOpWeg</p>
-      <p>&copy; 2025 ZekerOpWeg</p>
-      <p style="margin-top:1.2rem;font-size:.85rem;opacity:.65;line-height:1.6;">Handelsnaam van Pepijn Westhoff<br>KvK 99323575<br>BTW NL005381985B31</p>
-    </div>
-    <div class="footer-col">
-      <p class="footer-title">Contact</p>
-      <p><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a></p>
-    </div>
-    <div class="footer-col">
-      <p class="footer-title">Meer modellen</p>
-      <p><a href="bmw-ev-accucheck.html">BMW AccuCheck</a></p>
-      <p><a href="audi-ev-accucheck.html">Audi AccuCheck</a></p>
-      <p><a href="hyundai-kia-ev-accucheck.html">Hyundai &amp; Kia AccuCheck</a></p>
-      <p><a href="ev-accucheck.html">Alle modellen</a></p>
-    </div>
-  </div>
-  <div style="margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.08);">
-    <div class="container">
-      <p class="footer-legal">Diensten worden geleverd conform Nederlandse wetgeving. ZekerOpWeg is onafhankelijk adviseur zonder verkoopbelang.</p>
-    </div>
-  </div>
-</footer>
-<script src="scripts/menu.js" defer></script>
+  </footer>
+  <a href="https://wa.me/31623452349" class="wa-fab">App mij direct</a>
+  <script src="scripts/menu.js" defer></script>
 </body>
 </html>
