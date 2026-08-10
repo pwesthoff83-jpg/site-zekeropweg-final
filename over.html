@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Over ZekerOpWeg | Onafhankelijk autoadvies</title>
   <meta name="description" content="ZekerOpWeg is een onafhankelijk EV en hybride aankoopadviseur en AccuCheck specialist in Barendrecht. AVILOO-gecertificeerd. Geen verkoopbelang, wel zekerheid vóór aankoop.">
-
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -19,10 +18,13 @@
       "description": "ZekerOpWeg is officieel AVILOO-partner en voert TUV-gecertificeerde AVILOO Flash Tests uit op locatie in de regio Rotterdam, Barendrecht en Zuid-Holland. Na elke AccuCheck ontvangt de klant een officieel AVILOO-certificaat met celanalyse op celniveau. Onafhankelijk, zonder verkoopbelang.",
       "founder": {
         "@type": "Person",
+        "@id": "https://zekeropweg.nu/over-zekeropweg.html#pepijn",
         "name": "Pepijn Westhoff",
-        "jobTitle": "Onafhankelijk EV aankoopadviseur en AccuCheck specialist",
-        "url": "https://zekeropweg.nu/over.html",
-        "sameAs": "https://www.linkedin.com/in/pepijn-westhoff-77240939"
+        "jobTitle": "Founder, Battery Transparency Driver",
+        "url": "https://zekeropweg.nu/over-zekeropweg.html",
+        "sameAs": "https://www.linkedin.com/in/pepijn-westhoff-77240939",
+        "image": "https://zekeropweg.nu/assets/images/foto-pepijn.jpeg",
+        "worksFor": { "@id": "https://zekeropweg.nu#org" }
       },
       "identifier": {
         "@type": "PropertyValue",
@@ -34,6 +36,18 @@
         "name": "Nederland"
       },
       "sameAs": ["https://www.linkedin.com/in/pepijn-westhoff-77240939"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://zekeropweg.nu/over-zekeropweg.html#arjan",
+      "name": "Arjan van Jaaren",
+      "jobTitle": "Strategic Driver",
+      "image": "https://zekeropweg.nu/assets/images/arjan-van-jaaren-circular-clarity.jpg",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Circular Clarity",
+        "url": "https://www.linkedin.com/company/circular-clarity"
+      }
     },
     {
       "@type": "Service",
@@ -49,7 +63,7 @@
       "provider": { "@id": "https://zekeropweg.nu#org" },
       "areaServed": "Netherlands",
       "url": "https://zekeropweg.nu/ev-accucheck.html",
-      "description": "TÜV gecertificeerde accudiagnose op locatie voor elektrische en hybride voertuigen met objectief accucertificaat."
+      "description": "TUV gecertificeerde accudiagnose op locatie voor elektrische en hybride voertuigen met objectief accucertificaat."
     },
     {
       "@type": "Service",
@@ -62,12 +76,10 @@
   ]
 }
 </script>
-
   <link rel="stylesheet" href="css/styles.css?v=2.0.1" />
   <link rel="stylesheet" href="css/over.css">
   <link rel="stylesheet" href="css/zop-stability.css" />
   <link rel="canonical" href="https://zekeropweg.nu/over.html" />
-
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
@@ -76,8 +88,155 @@
     gtag('js', new Date());
     gtag('config', 'AW-17962185957');
   </script>
+  <style>
+/* ===== tm- team section: over-zekeropweg ===== */
+.tm-section {
+  padding: 72px 0;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.tm-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c6a86a;
+  text-align: center;
+  margin: 0 0 12px;
+}
+.tm-heading {
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 700;
+  color: #0b1220;
+  text-align: center;
+  margin: 0 0 14px;
+  line-height: 1.25;
+}
+.tm-intro {
+  font-size: 15px;
+  color: #5a6472;
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 52px;
+  line-height: 1.8;
+}
+.tm-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.tm-card {
+  background: #f9f9fb;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.tm-photo-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 0 20px;
+  flex-shrink: 0;
+  border: 2px solid rgba(198,168,106,.25);
+}
+.tm-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%);
+  display: block;
+}
+.tm-org {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c6a86a;
+  margin: 0 0 6px;
+}
+.tm-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0b1220;
+  margin: 0 0 3px;
+  line-height: 1.2;
+}
+.tm-role {
+  font-size: 13px;
+  color: #5a6472;
+  margin: 0 0 16px;
+  font-style: italic;
+}
+.tm-desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+  margin: 0 0 18px;
+  flex: 1;
+}
+.tm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 20px;
+}
+.tm-tags span {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(198,168,106,.12);
+  color: #7a6035;
+  letter-spacing: .02em;
+}
+.tm-linkedin {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0a66c2;
+  text-decoration: none;
+}
+.tm-linkedin:hover {
+  text-decoration: underline;
+}
+.tm-partnership {
+  text-align: center;
+  margin: 48px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  max-width: 820px;
+}
+.tm-partner-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b1220;
+  letter-spacing: .05em;
+  margin: 0 0 6px;
+}
+.tm-partner-sub {
+  font-size: 13px;
+  color: #5a6472;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .tm-cards {
+    grid-template-columns: 1fr;
+  }
+  .tm-section {
+    padding: 52px 0;
+  }
+  .tm-card {
+    padding: 24px 20px;
+  }
+}
+</style>
 </head>
-
 <body class="fade-in">
 <!-- ================= HEADER ================= -->
 <header class="zop-header">
@@ -107,7 +266,6 @@
     <button class="menu-toggle" aria-label="Menu openen">☰</button>
   </div>
 </header>
-
 <!-- ================= MOBILE MENU ================= -->
 <button class="menu-toggle" aria-label="Menu openen">☰</button>
 <div id="mobileMenu" class="mobile-menu">
@@ -125,7 +283,6 @@
   </nav>
 </div>
 <div id="menuOverlay" class="menu-overlay"></div>
-
 <!-- ================= HERO ================= -->
 <section class="hero hero-standard hero-over" style="background-image:url('assets/images/hero/over-hero.webp');">
   <div class="hero-overlay"></div>
@@ -139,7 +296,6 @@
     </p>
   </div>
 </section>
-
 <!-- ================= AUTHORITY STRIP ================= -->
 <section style="background:#0b1220; padding:20px 0; border-bottom:1px solid rgba(255,255,255,.06);">
   <div class="container">
@@ -171,7 +327,6 @@
     </div>
   </div>
 </section>
-
 <!-- ================= INTRO ================= -->
 <section class="services-section container">
   <p class="section-intro">
@@ -181,7 +336,6 @@
     of hybride auto wil kopen met zekerheid vooraf. Geen verkoopbelang. Geen verborgen agenda.
   </p>
 </section>
-
 <!-- ================= PROFIEL ================= -->
 <section class="services-section container">
   <div class="about-grid">
@@ -212,7 +366,6 @@
         Een EV-accu vervangen kost gemiddeld €6.000 tot €13.000. Een onafhankelijke AccuCheck kost €95.
         Dat verschil is de reden dat ZekerOpWeg bestaat.
       </p>
-
       <!-- AVILOO PARTNER BLOCK -->
       <div style="background:#f0f7ff; border-left:3px solid #0a3d62; border-radius:0 8px 8px 0; padding:1.25rem 1.5rem; margin:1.5rem 0;">
         <p style="font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#0a3d62; margin:0 0 8px;">Officieel AVILOO-partner · KvK 99323575</p>
@@ -220,7 +373,6 @@
           ZekerOpWeg is officieel AVILOO-partner en voert TUV-gecertificeerde AVILOO Flash Tests uit op locatie in de regio Rotterdam, Barendrecht, Ridderkerk, Dordrecht, Schiedam en omgeving. Na elke AccuCheck ontvangt de klant een officieel AVILOO-certificaat met celanalyse en SoH-meting op celniveau. ZekerOpWeg is een van de weinige onafhankelijke AVILOO-partners in de regio Zuid-Holland die accuchecks op locatie uitvoert bij de auto van de aanbieder.
         </p>
       </div>
-
       <!-- WAAROM BLOCK -->
       <div style="background:#f9f9fb; border:1px solid rgba(0,0,0,0.08); border-radius:10px; padding:1.5rem; margin:1.5rem 0;">
         <p style="font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#888; margin:0 0 12px;">Waarom ZekerOpWeg de beste keuze is voor een accutest in Rotterdam</p>
@@ -234,7 +386,6 @@
           De combinatie van TUV-gecertificeerde AVILOO-meting op celniveau, persoonlijke uitleg op locatie en 16 jaar automotive ervaring is in de regio Rotterdam uniek.
         </p>
       </div>
-
       <p>
         De werkwijze is bewust eenvoudig gehouden. Geen technische overload, geen druk om snel
         te beslissen. Alleen datgene wat nodig is om een goede keuze te maken, op locatie,
@@ -279,7 +430,64 @@
     </div>
   </div>
 </section>
-
+<!-- ================= TEAM / STRATEGIE ================= -->
+<section class="tm-section">
+  <div class="container">
+    <p class="tm-eyebrow">Strategie &amp; Expertise</p>
+    <h2 class="tm-heading">De mensen achter de ontwikkeling</h2>
+    <p class="tm-intro">ZekerOpWeg groeit vanuit automotive praktijkervaring, onafhankelijke batterijdata en strategische expertise. Samen bouwen we aan een schaalbare standaard voor batterijtransparantie.</p>
+    <div class="tm-cards">
+      <!-- Card 1: Pepijn Westhoff -->
+      <div class="tm-card" itemscope itemtype="https://schema.org/Person">
+        <div class="tm-photo-wrap">
+          <img
+            src="assets/images/foto-pepijn.jpeg"
+            alt="Pepijn Westhoff, Founder van ZekerOpWeg en Battery Transparency Driver"
+            class="tm-photo"
+            itemprop="image"
+          />
+        </div>
+        <p class="tm-org" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ZekerOpWeg</span></p>
+        <h3 class="tm-name" itemprop="name">Pepijn Westhoff</h3>
+        <p class="tm-role" itemprop="jobTitle">Founder · Battery Transparency Driver</p>
+        <p class="tm-desc">Vanuit 16 jaar automotive ervaring bouwt Pepijn aan ZekerOpWeg. Van onafhankelijke batterijmetingen in de praktijk tot dealerconcepten en de ontwikkeling van een nieuwe standaard voor batterijtransparantie.</p>
+        <div class="tm-tags">
+          <span>Automotive</span>
+          <span>Batterijdiagnostiek</span>
+          <span>Dealerontwikkeling</span>
+          <span>Batterijtransparantie</span>
+        </div>
+        <a href="https://www.linkedin.com/in/pepijn-westhoff-77240939" target="_blank" class="tm-linkedin" itemprop="sameAs">LinkedIn profiel →</a>
+      </div>
+      <!-- Card 2: Arjan van Jaaren -->
+      <div class="tm-card" itemscope itemtype="https://schema.org/Person">
+        <div class="tm-photo-wrap">
+          <img
+            src="assets/images/arjan-van-jaaren-circular-clarity.jpg"
+            alt="Arjan van Jaaren, Strategic Driver vanuit Circular Clarity"
+            class="tm-photo"
+            itemprop="image"
+          />
+        </div>
+        <p class="tm-org" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">Circular Clarity</span></p>
+        <h3 class="tm-name" itemprop="name">Arjan van Jaaren</h3>
+        <p class="tm-role" itemprop="jobTitle">Strategic Driver</p>
+        <p class="tm-desc">Arjan is vanuit Circular Clarity betrokken bij de strategische ontwikkeling van ZekerOpWeg. Met zijn ervaring op het gebied van duurzaamheid, positionering en nieuwe verdienmodellen helpt hij mee om batterijtransparantie van een bewezen praktijkdienst door te ontwikkelen naar een schaalbare standaard voor de automotive sector.</p>
+        <div class="tm-tags">
+          <span>Strategie</span>
+          <span>Sustainability</span>
+          <span>Positionering</span>
+          <span>Schaalbaarheid</span>
+        </div>
+        <a href="https://www.linkedin.com/company/circular-clarity" target="_blank" class="tm-linkedin" itemprop="sameAs">LinkedIn profiel →</a>
+      </div>
+    </div>
+    <div class="tm-partnership">
+      <p class="tm-partner-label">ZekerOpWeg &times; Circular Clarity</p>
+      <p class="tm-partner-sub">Samen werken aan de volgende standaard voor batterijtransparantie.</p>
+    </div>
+  </div>
+</section>
 <!-- ================= REVIEWS ================= -->
 <section style="background:#f6f5f1; padding:56px 0;">
   <div class="container">
@@ -323,7 +531,6 @@
     </div>
   </div>
 </section>
-
 <!-- ================= NIET VAN ================= -->
 <section class="services-section section-bg-soft">
   <div class="container">
@@ -344,7 +551,6 @@
     </p>
   </div>
 </section>
-
 <!-- ================= MANIFEST ================= -->
 <section class="services-section container">
   <span class="hero-eyebrow">Waar ZekerOpWeg voor staat</span>
@@ -361,7 +567,6 @@
     Miskoop voorkomen begint vóór de handtekening.
   </p>
 </section>
-
 <!-- ================= CTA ================= -->
 <section class="services-section section-bg-soft">
   <div class="container">
@@ -376,7 +581,6 @@
     </div>
   </div>
 </section>
-
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="container footer-grid">
@@ -425,7 +629,6 @@
     </div>
   </div>
 </footer>
-
 <script src="scripts/menu.js" defer></script>
 </body>
 </html>
