@@ -785,13 +785,11 @@
 
   <div class="ev-list" id="ev-list" aria-label="Beschikbare voertuigen"></div><!-- /ev-list, gevuld door JS -->
 
+  <!-- Voertuigendata: geladen via beheer.html → evs-data.js, anders inline fallback -->
+  <script src="evs-data.js"></script>
   <script>
-  /* ============================================================
-     EV SELECTIE — VOERTUIGENDATA
-     Auto toevoegen: kopieer een object, vul de velden in, sla op.
-     Auto verwijderen: verwijder het object.
-     Volgorde op pagina = volgorde in dit array.
-  ============================================================ */
+  /* Inline fallback — wordt gebruikt als evs-data.js niet beschikbaar is (lokale preview) */
+  if (typeof evs === 'undefined') {
   const evs = [
     {
       id:         'bmw-ix3-1',          // map naar submap /evs/<id>/
@@ -837,7 +835,8 @@
       aviloo_warranty: true,
     },
     */
-  ];
+  ]; // einde inline fallback
+  } // einde if (typeof evs === 'undefined')
 
   /* ============================================================
      RENDERER — niet aanpassen
