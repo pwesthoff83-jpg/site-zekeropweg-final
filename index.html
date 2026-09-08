@@ -536,13 +536,31 @@ html { scroll-padding-top: 80px; }
 <!-- HEADER -->
 <header class="zop-header">
   <div class="zop-header-inner">
-    <a href="index.html" class="zop-logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-      <svg width="32" height="36" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 0L0 6V18C0 27.9 7 37.1 16 36C25 37.1 32 27.9 32 18V6L16 0Z" fill="#1a6091"/>
-        <path d="M16 2L2 7.5V18C2 26.8 8.2 34.6 16 34C23.8 34.6 30 26.8 30 18V7.5L16 2Z" fill="#1a6091" opacity="0.3"/>
-        <text x="16" y="23" text-anchor="middle" fill="white" font-size="14" font-weight="800" font-family="Arial,sans-serif" letter-spacing="-1">Z</text>
+    <a href="index.html" class="zop-logo" style="text-decoration:none;display:inline-flex;align-items:center;">
+      <svg width="210" height="64" viewBox="0 0 210 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield outer border -->
+        <path d="M26 2 L4 10 L4 32 C4 46 14 57 26 60 C38 57 48 46 48 32 L48 10 Z"
+              fill="none" stroke="#1a2a5e" stroke-width="1.8"/>
+        <!-- Shield inner border -->
+        <path d="M26 7 L9 14 L9 32 C9 43 17 52 26 55 C35 52 43 43 43 32 L43 14 Z"
+              fill="none" stroke="#1a2a5e" stroke-width="1.2"/>
+        <!-- Z letter inside shield -->
+        <text x="26" y="40" text-anchor="middle"
+              fill="#1a2a5e" font-size="22" font-weight="900"
+              font-family="Arial Black,Arial,sans-serif"
+              font-style="italic" letter-spacing="-1">Z</text>
+        <!-- ZekerOpWeg main text -->
+        <text x="60" y="34"
+              fill="#1a2a5e" font-size="22" font-weight="700"
+              font-family="Georgia,Times New Roman,serif"
+              letter-spacing="-0.3">ZekerOpWeg</text>
+        <!-- Tagline with dashes -->
+        <line x1="60" y1="46" x2="74" y2="46" stroke="#1a2a5e" stroke-width="0.8"/>
+        <text x="77" y="49"
+              fill="#1a2a5e" font-size="6.5" font-weight="500"
+              font-family="Arial,sans-serif" letter-spacing="2.2">ZEKER NAAR UW VOLGENDE AUTO</text>
+        <line x1="195" y1="46" x2="209" y2="46" stroke="#1a2a5e" stroke-width="0.8"/>
       </svg>
-      <span style="font-size:1.15rem;font-weight:700;color:#0d1b2a;letter-spacing:-0.3px;font-family:inherit;">ZekerOpWeg</span>
     </a>
     <nav class="zop-nav">
       <a href="index.html">Home</a>
