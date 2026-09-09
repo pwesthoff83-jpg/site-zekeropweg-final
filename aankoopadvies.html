@@ -51,51 +51,96 @@
 
     /* ─── HERO ─────────────────────────────────────────────────────── */
     .aa-hero {
-      position: relative;
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(160deg, rgba(4,14,24,0.68) 0%, rgba(4,14,24,0.82) 55%, rgba(4,14,24,0.95) 100%),
-        url('assets/images/hero/aankoopadvies-hero.webp') center 65% / cover no-repeat;
-      color: #fff;
-      padding: 4.5rem 0 4rem;
+      background: #faf9f7;
+      padding: 60px 0 52px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
-    .aa-hero__inner { position: relative; z-index: 2; max-width: 640px; }
+    .aa-hero__inner-wrap {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      align-items: start;
+    }
     .aa-hero__eyebrow {
-      display: flex; align-items: center; gap: .75rem;
-      font-size: .65rem; font-weight: 600; letter-spacing: .18em;
-      text-transform: uppercase; color: rgba(255,255,255,.42);
-      margin-bottom: 2rem;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--zop-gold, #c9a96e);
+      margin-bottom: 18px; display: block;
     }
-    .aa-hero__eyebrow .stars { color: #c9a96e; font-size: .72rem; letter-spacing: .05em; }
-    .aa-hero__eyebrow .sep { color: rgba(255,255,255,.18); }
     .aa-hero h1 {
-      font-size: clamp(2rem, 3.8vw, 2.9rem);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -.025em; margin: 0 0 1.4rem;
-      color: #fff;
+      font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.02em; margin: 0 0 14px;
+      color: #0b1220;
     }
-    .aa-hero h1 em { font-style: normal; color: #c9a96e; }
     .aa-hero__sub {
-      font-size: .98rem; line-height: 1.8;
-      color: rgba(255,255,255,.68);
-      margin: 0 0 2rem; max-width: 520px;
+      font-size: .97rem; line-height: 1.75;
+      color: #4a5568; margin: 0 0 8px;
     }
-    .aa-hero__sub strong { color: #fff; font-weight: 600; }
-    .aa-hero__checks {
-      list-style: none; margin: 0 0 2.2rem; padding: 0;
-      display: flex; flex-direction: column; gap: .6rem;
+    .aa-hero__sub strong { color: #0b1220; font-weight: 600; }
+    .aa-hero__verdict {
+      font-size: .92rem; color: #0b1220;
+      font-weight: 600; margin: 0 0 22px;
     }
-    .aa-hero__checks li {
-      font-size: .9rem; color: rgba(255,255,255,.78);
-      display: flex; align-items: flex-start; gap: .65rem; line-height: 1.55;
+    .aa-hero__ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .aa-hero__trust { font-size: .78rem; color: #6b7280; margin: 0 0 14px; }
+    .aa-hero__ev-note {
+      font-size: .8rem; color: #9ca3af;
+      border-top: 1px solid rgba(0,0,0,.07);
+      padding-top: 12px; margin-top: 4px; line-height: 1.6;
     }
-    .aa-hero__checks li .ck { color: #c9a96e; font-size: .78rem; flex-shrink: 0; margin-top: .2rem; }
-    .aa-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .aa-hero__meta { font-size: .72rem; color: rgba(255,255,255,.3); line-height: 1.65; }
-
-    /* ─── TRUST BAR, LICHT ────────────────────────────────────────── */
+    .aa-hero__ev-note a { color: var(--zop-gold,#c9a96e); text-decoration: none; }
+    /* Keuzehulp kaart */
+    .aa-hero__card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 26px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .aa-hero__card-title {
+      font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase;
+      color: #0b1220; font-weight: 700; margin-bottom: 4px; display: block;
+    }
+    .aa-hero__card-sub {
+      font-size: 13px; color: #6b7280; margin-bottom: 18px;
+    }
+    .aa-tier {
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .aa-tier:last-of-type { border-bottom: none; }
+    .aa-tier__top {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 3px;
+    }
+    .aa-tier__name { font-size: 14px; font-weight: 700; color: #0b1220; }
+    .aa-tier__price {
+      font-size: 15px; font-weight: 700; color: #0b1220; white-space: nowrap;
+    }
+    .aa-tier__price span { font-size: 11px; font-weight: 400; color: #9ca3af; }
+    .aa-tier__desc { font-size: 12.5px; color: #6b7280; line-height: 1.5; }
+    .aa-hero__card-btn {
+      display: flex; width: 100%;
+      background: #0b1220; color: #fff !important;
+      border-radius: 10px; padding: 13px 20px;
+      font-weight: 650; font-size: 14.5px;
+      text-decoration: none; margin-top: 18px;
+      min-height: 44px; align-items: center; justify-content: center;
+      transition: background 0.2s; box-sizing: border-box;
+    }
+    .aa-hero__card-btn:hover { background: var(--zop-gold, #c9a96e); }
+    .aa-hero__card-note {
+      font-size: 11px; color: #9ca3af;
+      text-align: center; margin: 9px 0 0; line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .aa-hero__inner-wrap { grid-template-columns: 1fr; }
+      .aa-hero__card { max-width: 480px; }
+    }
+    @media (max-width: 760px) {
+      .aa-hero { padding: 40px 0 36px; }
+      .aa-hero h1 { font-size: 1.65rem; }
+    }
     .aa-trustbar {
       background: #fff;
       border-bottom: 1px solid #e8edf3;
@@ -506,38 +551,68 @@
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
 <section class="aa-hero">
   <div class="container">
-    <div class="aa-hero__inner">
-      <div class="aa-hero__eyebrow">
-        <span style="color:#c9a96e; font-size:.75rem; letter-spacing:.02em;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="sep">&middot;</span>
-        <span>16 jaar automotive ervaring</span>
-        <span class="sep">&middot;</span>
-        <span>Officieel AVILOO-partner</span>
-        <span class="sep">&middot;</span>
-        <span>Geen verkoopbelang</span>
+    <div class="aa-hero__inner-wrap">
+
+      <!-- Linkerkolom -->
+      <div class="aa-hero__left">
+        <span class="aa-hero__eyebrow">ONAFHANKELIJK AANKOOPADVIES &nbsp;&middot;&nbsp; VOOR IEDERE OCCASION</span>
+        <h1>Een auto op het oog?<br>Weet wat u koopt voordat u tekent.</h1>
+        <p class="aa-hero__sub">
+          Pepijn beoordeelt de auto, advertentie, historie, prijs en de belangrijkste aankooprisico's.
+          <strong>Van benzine en diesel tot hybride en volledig elektrisch.</strong>
+        </p>
+        <p class="aa-hero__verdict">U krijgt een duidelijk oordeel: kopen, onderhandelen of laten staan.</p>
+        <div class="aa-hero__ctas">
+          <a href="https://zekeropweg.nu/start-aankoopadvies.html" class="btn-primary" style="min-height:44px; display:inline-flex; align-items:center;">
+            Laat deze auto beoordelen
+          </a>
+          <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto" class="btn-secondary" style="min-height:44px; display:inline-flex; align-items:center;">
+            Stuur advertentie via WhatsApp
+          </a>
+        </div>
+        <p class="aa-hero__trust">&#9733;&#9733;&#9733;&#9733;&#9733; 5,0 op Google &nbsp;&middot;&nbsp; 16 jaar automotive ervaring &nbsp;&middot;&nbsp; Geen verkoopbelang</p>
+        <p class="aa-hero__ev-note">
+          Kijkt u naar een EV of plug-inhybride? Voeg een onafhankelijke <a href="ev-accucheck.html">AVILOO AccuCheck</a> toe aan uw aankoopadvies.
+        </p>
       </div>
-      <h1>Twijfel over deze auto?<br><em>Ik zeg je of je hem<br>moet kopen of niet.</em></h1>
-      <p class="aa-hero__sub">
-        Een foute beslissing bij de aankoop van een tweedehands EV of hybride kost gemiddeld
-        <strong>&euro;3.000 tot &euro;25.000.</strong>
-        Ik voorkom dat voor <strong>&euro;49.</strong>
-      </p>
-      <ul class="aa-hero__checks">
-        <li><span class="ck">&#10003;</span> Alleen kenteken nodig. Geen afspraak, geen bezoek, geen auto aanwezig.</li>
-        <li><span class="ck">&#10003;</span> Vandaag nog antwoord: kopen, onderhandelen of laten staan.</li>
-        <li><span class="ck">&#10003;</span> Voor EV en hybride inclusief gecertificeerde AccuCheck: 1 jaar &middot; 20.000 km &middot; &euro;3.000 garantie.</li>
-      </ul>
-      <div class="aa-hero__ctas">
-        <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto" class="btn-primary">
-          Stuur kenteken &middot; &euro;49
-        </a>
-        <a href="https://wa.me/31623452349?text=Ik%20wil%20aankoopadvies%20voor%20een%20auto" class="btn-secondary">
-          App via WhatsApp
-        </a>
+
+      <!-- Rechterkolom: keuzehulp -->
+      <div class="aa-hero__right">
+        <div class="aa-hero__card">
+          <span class="aa-hero__card-title">Welke hulp heeft u nodig?</span>
+          <p class="aa-hero__card-sub">Kies het niveau dat bij uw situatie past.</p>
+
+          <div class="aa-tier">
+            <div class="aa-tier__top">
+              <span class="aa-tier__name">Snel laten meekijken</span>
+              <span class="aa-tier__price">v.a. &euro;49 <span>incl. btw</span></span>
+            </div>
+            <p class="aa-tier__desc">Advertentie, voertuiggegevens en eerste risico's beoordeeld. Alleen uw kenteken nodig.</p>
+          </div>
+
+          <div class="aa-tier">
+            <div class="aa-tier__top">
+              <span class="aa-tier__name">Auto uitgebreid laten beoordelen</span>
+              <span class="aa-tier__price">v.a. &euro;249 <span>incl. btw</span></span>
+            </div>
+            <p class="aa-tier__desc">Onafhankelijk aankoopadvies inclusief beoordeling op locatie, lak, banden en staat van de auto.</p>
+          </div>
+
+          <div class="aa-tier">
+            <div class="aa-tier__top">
+              <span class="aa-tier__name">Volledig begeleid worden</span>
+              <span class="aa-tier__price">v.a. &euro;399 <span>incl. btw</span></span>
+            </div>
+            <p class="aa-tier__desc">Van beoordeling en inspectie tot onderhandeling, koopovereenkomst en aflevercontrole.</p>
+          </div>
+
+          <a href="https://zekeropweg.nu/start-aankoopadvies.html" class="aa-hero__card-btn">
+            Laat deze auto beoordelen
+          </a>
+          <p class="aa-hero__card-note">Doorgaans binnen 5 minuten reactie &middot; Pepijn geeft u snel duidelijkheid</p>
+        </div>
       </div>
-      <p class="aa-hero__meta">
-        Dagelijks gebruikt bij aankopen van &euro;10.000 tot &euro;80.000 &middot; Als de auto het niet is, zeg ik dat direct.
-      </p>
+
     </div>
   </div>
 </section>
@@ -545,9 +620,14 @@
 <div class="aa-trustbar">
   <div class="container">
     <div class="aa-trustbar__inner">
-      <div class="aa-trustbar__item" style="color:#c9a96e; font-weight:600;">&#9733;&#9733;&#9733;&#9733;&#9733; Google beoordeeld</div>
-      <div class="aa-trustbar__item"><span class="icon">&#10003;</span> TUV-gecertificeerde AVILOO Flash Test</div>
-      <div class="aa-trustbar__item"><span class="icon">&#128272;</span> AVILOO Batterijgarantie tot &euro;3.000</div>
+      <div class="aa-trustbar__item"><span class="icon">&#9733;</span> 16 jaar automotive ervaring</div>
+      <div class="aa-trustbar__item"><span class="icon">&#10003;</span> Persoonlijk advies door Pepijn</div>
+      <div class="aa-trustbar__item"><span class="icon">&#10003;</span> Voor iedere auto</div>
+      <div class="aa-trustbar__item"><span class="icon">&#10003;</span> Geen verkoopbelang</div>
+      <div class="aa-trustbar__item"><span class="icon">&#10003;</span> Duidelijk oordeel v&oacute;&oacute;r aankoop</div>
+    </div>
+  </div>
+</div>
       <div class="aa-trustbar__item"><span class="icon">&#128205;</span> Op locatie bij de auto</div>
     </div>
   </div>
@@ -917,7 +997,7 @@
         <h4>Tweedehands EV kopen</h4>
         <p>Complete gids en checklist voor de aankoop van een gebruikte elektrische auto.</p>
       </a>
-      <a href="praktijkcase-tesla-model-s-308000km.html" class="aa-know-card" style="border-color:#bbf7d0;background:linear-gradient(to bottom right,#f0fdf4,#fff);">
+      <a href="praktijkcase-tesla-model-s-308000-km.html" class="aa-know-card" style="border-color:#bbf7d0;background:linear-gradient(to bottom right,#f0fdf4,#fff);">
         <p class="aa-know-card__tag" style="color:#0f4c3a;">Praktijkcase</p>
         <h4>Tesla Model S met 308.000 km</h4>
         <p>87,0% SoH, 1 mV celverschil, actieve accugarantie. Bekijk het volledige aankoopadvies inclusief AVILOO-meting.</p>
