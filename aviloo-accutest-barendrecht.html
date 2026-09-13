@@ -188,13 +188,12 @@
     }
     .foto-strip img {
       width: 100%;
-      height: 380px;
-      object-fit: cover;
-      object-position: center 72%;
+      max-height: 560px;
+      object-fit: contain;
       display: block;
     }
     @media(max-width: 600px) {
-      .foto-strip img { height: 220px; }
+      .foto-strip img { max-height: 320px; }
     }
 
     /* PRIJS SECTIE */
