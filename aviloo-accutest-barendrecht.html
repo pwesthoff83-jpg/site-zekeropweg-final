@@ -673,6 +673,108 @@
       transition: border-color .2s;
     }
     .btn-secondary-light:hover { border-color: rgba(255,255,255,.7); }
+
+    /* PLANNING SECTIE */
+    .planning-sectie {
+      background: #f7f9fc;
+      border-radius: 16px;
+      padding: 2.8rem 2.4rem;
+      margin: 3rem 0;
+      border: 1px solid #e0e8f0;
+    }
+    .planning-sectie h2 { margin-top: 0; }
+    .planning-intro {
+      font-size: 1.05rem;
+      color: #3a3a3a;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .planning-punten {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 2.4rem;
+    }
+    @media(max-width: 700px) { .planning-punten { grid-template-columns: 1fr; } }
+    .planning-punt {
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+    .planning-icoon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .planning-punt strong { display: block; font-size: .95rem; color: #071a2b; margin-bottom: .3rem; }
+    .planning-punt p { font-size: .88rem; color: #555; line-height: 1.65; margin: 0; }
+
+    /* CASE STUDY */
+    .case-study {
+      background: #fff;
+      border-left: 4px solid #2e7d5a;
+      border-radius: 0 12px 12px 0;
+      padding: 1.8rem 2rem;
+      position: relative;
+    }
+    .case-study-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #2e7d5a;
+      margin-bottom: .7rem;
+    }
+    .case-study-titel {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #071a2b;
+      margin: 0 0 .8rem;
+    }
+    .case-study p { font-size: .95rem; color: #3a3a3a; line-height: 1.8; margin: 0 0 1rem; }
+    .case-study-conclusie {
+      font-size: .92rem;
+      font-weight: 600;
+      color: #2e7d5a;
+      border-top: 1px solid #e0ede8;
+      padding-top: .9rem;
+      margin-top: .4rem;
+    }
+
+    /* AANKOOP VOORDELEN */
+    .aankoop-voordelen {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    @media(max-width: 640px) { .aankoop-voordelen { grid-template-columns: 1fr; } }
+    .aankoop-voordeel {
+      background: #f7f9fc;
+      border-radius: 12px;
+      padding: 1.5rem 1.6rem;
+      border: 1px solid #e0e8f0;
+    }
+    .aankoop-voordeel h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #071a2b;
+      margin: 0 0 .9rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid #e0e8f0;
+    }
+    .aankoop-voordeel ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .aankoop-voordeel li {
+      font-size: .9rem;
+      color: #3a3a3a;
+      line-height: 1.7;
+      margin-bottom: .3rem;
+    }
   </style>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
@@ -932,6 +1034,50 @@
     </div>
   </div>
 
+  <!-- PLANNING SECTIE -->
+  <section class="planning-sectie">
+    <h2>Flexibel gepland. Op uw tempo.</h2>
+    <p class="planning-intro">
+      U hoeft niet aanwezig te zijn bij de meting of het aankoopadvies. Pepijn plant altijd flexibel en denkt mee met uw situatie. Doorgaans is een accucheck of aankoopadvies dezelfde dag of avond nog mogelijk.
+    </p>
+    <div class="planning-punten">
+      <div class="planning-punt">
+        <span class="planning-icoon">&#128337;</span>
+        <div>
+          <strong>Dezelfde dag of avond</strong>
+          <p>Meldt u zich 's ochtends, dan is de meting of het advies er doorgaans nog dezelfde dag of avond.</p>
+        </div>
+      </div>
+      <div class="planning-punt">
+        <span class="planning-icoon">&#128100;</span>
+        <div>
+          <strong>U hoeft er niet bij te zijn</strong>
+          <p>Pepijn rijdt naar de auto, voert de meting uit en stuurt u het rapport en zijn advies direct digitaal toe.</p>
+        </div>
+      </div>
+      <div class="planning-punt">
+        <span class="planning-icoon">&#128172;</span>
+        <div>
+          <strong>Altijd overleg vooraf</strong>
+          <p>Via WhatsApp kijkt Pepijn direct met u mee naar de advertentie en geeft hij aan wat zinvol is voor deze specifieke auto.</p>
+        </div>
+      </div>
+    </div>
+    <div class="case-study">
+      <div class="case-study-label">Praktijkvoorbeeld</div>
+      <h3 class="case-study-titel">Tesla aankoopadvies: 's avonds rapport, de volgende ochtend de sleutels</h3>
+      <p>
+        Een klant contacteerde Pepijn 's ochtends. Hij wilde de volgende dag naar een Tesla gaan kijken, maar had die dag geen moment vrij.
+        Pepijn ging diezelfde avond naar de Tesla: aankoopadvies inclusief AVILOO accucheck.
+        Nog diezelfde avond ontving de klant een uitgebreid rapport met een helder advies.
+        De volgende ochtend ging hij met een gerust hart naar de Tesla en heeft hem aangeschaft.
+      </p>
+      <div class="case-study-conclusie">
+        Stuur 's ochtends het kenteken via WhatsApp. Ontvang dezelfde avond uw rapport en advies.
+      </div>
+    </div>
+  </section>
+
   <!-- REVIEWS -->
   <div class="reviews-sectie">
     <div class="reviews-header">
@@ -1009,6 +1155,27 @@
     ZekerOpWeg is volledig onafhankelijk en heeft geen belang bij de verkoop van het voertuig.
     Het advies is uitsluitend in uw belang. Pakketten vanaf €249.
   </p>
+
+  <div class="aankoop-voordelen">
+    <div class="aankoop-voordeel">
+      <h4>Voordelen voor de koper</h4>
+      <ul>
+        <li>Onafhankelijk beeld van de werkelijke staat van de auto</li>
+        <li>Zekerheid over de batterijgezondheid voordat u beslist</li>
+        <li>Concrete basis voor onderhandelingen</li>
+        <li>Geen onaangename verrassingen achteraf</li>
+      </ul>
+    </div>
+    <div class="aankoop-voordeel">
+      <h4>Voordelen voor de verkoper</h4>
+      <ul>
+        <li>De koper heeft alle informatie vooraf</li>
+        <li>Geen tijdverlies door vragen over banden, onderhoud of schade</li>
+        <li>Minder kans op afspringen: de koper komt gericht en voorbereid</li>
+        <li>Het certificaat verhoogt het vertrouwen en onderbouwt de vraagprijs</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="pillar-cta">
     <h3>Aankoopkeuring aanvragen</h3>
