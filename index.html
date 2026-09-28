@@ -85,16 +85,17 @@ html { scroll-padding-top: 80px; }
 /* HERO */
 .hm-hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 60%) minmax(360px, 40%);
   min-height: 540px;
   background: #f7f9fb;
+  align-items: center;
 }
 .hm-hero-text {
-  padding: 4rem 3rem 4rem 6%;
+  padding: 3.5rem 3rem 3.5rem 6%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 560px;
+  max-width: 680px;
 }
 .hm-hero-eyebrow {
   font-size: 11px;
@@ -169,6 +170,10 @@ html { scroll-padding-top: 80px; }
 .hm-hero-img {
   position: relative;
   overflow: hidden;
+  height: 460px;
+  margin: 32px 40px 32px 0;
+  border-radius: 16px;
+  box-shadow: 0 14px 34px rgba(13,27,42,.12);
 }
 .hm-hero-img img {
   width: 100%;
@@ -559,7 +564,11 @@ html { scroll-padding-top: 80px; }
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hm-hero { grid-template-columns: 1fr; }
-  .hm-hero-img { height: 280px; }
+  .hm-hero-img {
+    height: 260px;
+    margin: 0 5% 2rem;
+    border-radius: 14px;
+  }
   .hm-hero-text { padding: 3rem 5% 2.5rem; max-width: 100%; }
   .hm-diensten-grid { grid-template-columns: 1fr; max-width: 480px; }
   .hm-aviloo-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -692,7 +701,7 @@ html { scroll-padding-top: 80px; }
         <span class="hm-card-pill hm-card-pill--blue">Elke auto &middot; benzine, diesel, LPG, hybride, EV</span>
         <h3 class="hm-card-h3">Aankoopadvies voor iedere auto</h3>
         <p class="hm-card-text">Pepijn beoordeelt de advertentie, historie, marktwaarde en aankooprisico's. Bij Premium en Volledige begeleiding wordt de auto ook op locatie beoordeeld, inclusief proefrit, zichtbare staat en waar passend een lakdiktemeting. U krijgt een eerlijk advies: kopen, onderhandelen of laten staan.</p>
-        <div class="hm-card-price">Vanaf &euro;249 <span>&middot; inspectie op locatie vanaf &euro;349</span></div>
+        <div class="hm-card-price">Vanaf &euro;249 <span>&middot; inspectie op locatie inclusief EV AccuCheck &euro;349</span></div>
         <a href="aankoopadvies.html" class="hm-card-cta">Bekijk aankoopadvies</a>
       </div>
     </div>
