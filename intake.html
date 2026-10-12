@@ -120,6 +120,11 @@
         grid-template-columns: 1fr;
       }
     }
+    .izk-availability { max-width:650px;margin:0 auto 20px;font-size:14px;color:#495463;line-height:1.6; }
+    .izk-veld-hint,.locatie-note { color:#596372; }
+    .page-intake select,.page-intake input[type="date"],.page-intake textarea { width:100%;box-sizing:border-box;min-width:0;padding:12px;border:1px solid #c7cbd1;border-radius:8px;font:inherit;background:#fff;color:#0b1220; }
+    .page-intake a { text-underline-offset:3px; }
+    .page-intake input:focus-visible,.page-intake select:focus-visible,.page-intake textarea:focus-visible { outline:2px solid #0b1220;outline-offset:2px; }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
   <script>
@@ -157,15 +162,16 @@
   <section class="services-section container" style="text-align:center;">
     <h1 class="section-title" id="paginaTitel">EV AccuCheck aanvragen</h1>
     <p class="section-subtitle">
-      Na uw aanvraag neem ik dezelfde dag contact op voor planning.<br>
-      Geen betaling vooraf.
+      Eerst controleer ik of AVILOO uw exacte auto ondersteunt. Daarna bevestig ik de afspraak.<br>
+      U betaalt na de meting en persoonlijke uitleg.
     </p>
 
     <span class="izk-prijsbadge" id="prijsBadge">AccuCheck op locatie &middot; &euro;129 incl. btw</span>
-    <p style="font-size:13px; color:#d7b56d; font-weight:600; margin: -12px 0 18px;">
-      Inclusief AVILOO Batterijgarantie tot &euro;3.000
+    <p style="font-size:13px; color:#495463; font-weight:500; margin: -8px auto 18px;max-width:650px;line-height:1.7;">
+      12 maanden AVILOO Battery Warranty zonder meerprijs bij een kwalificerende volledig elektrische auto en testuitslag. Maximaal 20.000 km, volgens de voorwaarden. Niet beschikbaar voor plug-inhybrides. <a href="batterijgarantie-ev.html">Lees de voorwaarden</a>.
     </p>
 
+    <p class="izk-availability">Meestal binnen 24 uur, vaak nog dezelfde dag, afhankelijk van planning en voertuigondersteuning.</p>
     <div class="izk-trustbar">
       <span><span class="izk-sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp;5,0 op Google</span>
       <span>TUV-gecertificeerd</span>
@@ -188,6 +194,15 @@
         <input type="hidden" name="versie" value="2026-2">
         <input type="hidden" name="product" id="productField" value="ev-accucheck-particulier">
         <input type="hidden" name="platform" value="website">
+
+        <h3>Kies waar u wilt meten</h3>
+        <label for="meetLocatie">Locatie van de AccuCheck</label>
+        <select id="meetLocatie" aria-describedby="locatieKeuzeHint">
+          <option value="mobiel">Bij de auto · €129 incl. btw binnen 40 km</option>
+          <option value="barendrecht">In Barendrecht · €95 incl. btw, op afspraak</option>
+        </select>
+        <p class="izk-veld-hint" id="locatieKeuzeHint">Beide tarieven inclusief persoonlijke uitleg en het officiële AVILOO-certificaat na betaling.</p>
+        <hr class="izk-divider">
 
         <!-- Sectie 1: Uw gegevens -->
         <h3>Uw gegevens</h3>
@@ -221,11 +236,11 @@
         <div id="locatieVast" style="display:none;">
           <label>Locatie</label>
           <div class="locatie-fixed">
-            Sneekermeer 11<br>
-            2993 RL Barendrecht
+            Barendrecht<br>
+            Openbare parkeerlocatie, op afspraak
           </div>
-          <p class="locatie-note">Alleen op afspraak. Na uw aanvraag neem ik contact op voor planning.</p>
-          <input type="hidden" name="locatie_auto" value="Sneekermeer 11, 2993 RL Barendrecht">
+          <p class="locatie-note">De meting vindt op afspraak plaats op de afgesproken openbare parkeerlocatie in Barendrecht. U ontvangt de exacte plek bij de afspraakbevestiging.</p>
+          <input type="hidden" id="locatieVastInput" name="locatie_auto" value="Barendrecht, openbare parkeerlocatie op afspraak" disabled>
         </div>
 
         <div id="locatieVrij" style="display:none;">
@@ -235,9 +250,19 @@
                  name="locatie_auto"
                  placeholder="Bijv. Rotterdam, naam dealer of volledig adres"
                  required>
-          <p class="izk-veld-hint">Ik kom naar de auto toe. Reiskosten inbegrepen binnen 40 km rondom Barendrecht.</p>
+          <label for="postcodeAuto">Postcode van de auto *</label>
+          <input type="text" id="postcodeAuto" name="postcode_auto" autocomplete="off" placeholder="Bijv. 3311 AB" maxlength="7" required>
+          <p class="izk-veld-hint">€129 inclusief btw en reiskosten binnen 40 km van Barendrecht. Buiten dit gebied ontvangt u vooraf een prijsopgave.</p>
         </div>
 
+        <hr class="izk-divider">
+
+        <h3>Wanneer komt het uit?</h3>
+        <label for="voorkeursdatum">Voorkeursdatum (optioneel)</label>
+        <input type="date" id="voorkeursdatum" name="voorkeursdatum" aria-describedby="datumHint">
+        <p class="izk-veld-hint" id="datumHint">Dit is een voorkeur, geen bevestigde reservering. Pepijn stemt de mogelijkheden persoonlijk met u af.</p>
+        <label for="planningOpmerking">Tijdstip of aanvullende informatie (optioneel)</label>
+        <textarea id="planningOpmerking" name="planning_opmerking" rows="3" placeholder="Bijvoorbeeld: liefst in de ochtend, of de auto staat bij een verkoper."></textarea>
         <hr class="izk-divider">
 
         <!-- Sectie 3: Doel -->
@@ -268,8 +293,10 @@
         </label>
 
         <p class="advisor-microtrust">
-          Onafhankelijk &middot; TUV-gecertificeerd &middot; Geen betaling vooraf
+          Eerst ondersteuning controleren &middot; Betalen na de meting en uitleg
         </p>
+
+        <p class="izk-veld-hint">Zo werkt het: ondersteuning controleren, afspraak maken, meten, uitslag persoonlijk uitleggen, digitale betaallink. Na betaling ontvangt u het AVILOO-certificaat en eventueel het garantiecertificaat.</p>
 
         <button type="submit" class="advisor-submit" id="submitBtn">
           AccuCheck aanvragen
@@ -306,6 +333,10 @@
 <script>
   const params      = new URLSearchParams(window.location.search);
   const dienstParam = params.get("dienst");
+  const meetLocatie = document.getElementById("meetLocatie");
+  const locatieVastInput = document.getElementById("locatieVastInput");
+  const postcodeAuto = document.getElementById("postcodeAuto");
+  meetLocatie.value = dienstParam === "ev-accucheck-barendrecht" ? "barendrecht" : "mobiel";
 
   const dienstField      = document.getElementById("dienstField");
   const prijsField       = document.getElementById("prijsField");
@@ -317,28 +348,38 @@
   const paginaTitel      = document.getElementById("paginaTitel");
 
   function initDienst() {
-    if (dienstParam === "ev-accucheck-barendrecht") {
+    if (meetLocatie.value === "barendrecht") {
       dienstField.value  = "ev-accucheck-barendrecht";
       prijsField.value   = "95";
       productField.value = "ev-accucheck-barendrecht-95";
       locatieVast.style.display = "block";
       locatieVrij.style.display = "none";
-      if (locatieVrijInput) locatieVrijInput.required = false;
+      locatieVrijInput.required = false;
+      locatieVrijInput.disabled = true;
+      postcodeAuto.required = false;
+      postcodeAuto.disabled = true;
+      locatieVastInput.disabled = false;
       prijsBadge.textContent = "AccuCheck in Barendrecht · €95 incl. btw";
       paginaTitel.textContent = "AccuCheck aanvragen · Barendrecht";
 
     } else {
-      dienstField.value  = dienstParam || "ev-accucheck";
+      dienstField.value  = "ev-accucheck";
       prijsField.value   = "129";
       productField.value = "ev-accucheck-locatie-129";
       locatieVast.style.display = "none";
       locatieVrij.style.display = "block";
-      if (locatieVrijInput) locatieVrijInput.required = true;
+      locatieVrijInput.required = true;
+      locatieVrijInput.disabled = false;
+      postcodeAuto.required = true;
+      postcodeAuto.disabled = false;
+      locatieVastInput.disabled = true;
+      paginaTitel.textContent = "EV AccuCheck aanvragen";
       prijsBadge.textContent = "AccuCheck op locatie · €129 incl. btw";
     }
   }
 
   initDienst();
+  meetLocatie.addEventListener("change", initDienst);
 
   // Submit via fetch met laadstatus
   const form      = document.getElementById("accucheckForm");
