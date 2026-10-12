@@ -126,13 +126,9 @@
     .page-intake a { text-underline-offset:3px; }
     .page-intake input:focus-visible,.page-intake select:focus-visible,.page-intake textarea:focus-visible { outline:2px solid #0b1220;outline-offset:2px; }
   </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17962185957"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17962185957');
-  </script>
+  
+  
+  <script src="/scripts/zow-analytics.js" defer></script>
 </head>
 <body class="fade-in page-intake" data-page="intake">
 
@@ -396,7 +392,9 @@
     })
     .then(function (response) {
       if (!response.ok) throw new Error("Webhook fout");
-      window.location.href = "bedankt-accucheck.html";
+      const goToThanks = function () { window.location.href = "bedankt-accucheck.html"; };
+      if (typeof window.zowLeadReceived === "function") window.zowLeadReceived(goToThanks);
+      else goToThanks();
     })
     .catch(function () {
       submitBtn.disabled    = false;
