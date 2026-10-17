@@ -1,0 +1,1318 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>
+    Plug-inhybride accu slijtage: EV vs hybride | ZekerOpWeg
+  </title>
+
+  <meta name="description"
+        content="Laad je jouw plug-inhybride bijna dagelijks op? Ontdek het verschil in laadcycli met een elektrische auto en wat een onafhankelijke batterijtest vertelt.">
+
+  <meta name="robots" content="index,follow">
+
+  <style>
+    :root {
+      --navy: #10283f;
+      --navy-dark: #0b1d30;
+      --blue: #087cba;
+      --light-blue: #eaf5fb;
+      --text: #243447;
+      --muted: #566575;
+      --line: #dce6ed;
+      --white: #ffffff;
+      --soft: #f5f8fa;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system,
+                   BlinkMacSystemFont, "Segoe UI",
+                   sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: var(--blue); }
+
+    .container {
+      width: min(1100px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 850;
+      text-decoration: none;
+      color: var(--navy);
+      letter-spacing: -.7px;
+    }
+
+    .brand span { color: var(--blue); }
+
+    .header-link {
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: linear-gradient(
+        135deg, #10283f, #16486b
+      );
+      color: white;
+      padding: 90px 0 78px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #87cdee;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.17;
+      letter-spacing: -.6px;
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(35px, 5.2vw, 62px);
+      margin: 16px 0;
+    }
+
+    h2 {
+      font-size: clamp(29px, 3.5vw, 42px);
+      color: var(--navy);
+      margin: 0 0 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 650;
+      color: #b8e3f8;
+      margin: 0 0 28px;
+    }
+
+    .hero-copy {
+      max-width: 710px;
+      font-size: 18px;
+      color: #edf6fc;
+    }
+
+    .hero-copy p { margin: 0 0 14px; }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 14px 23px;
+      background: var(--blue);
+      color: white;
+      border-radius: 9px;
+      font-weight: 750;
+      text-decoration: none;
+      text-align: center;
+      transition: background .15s;
+    }
+
+    .btn:hover {
+      background: #05618f;
+      color: white;
+    }
+
+    .hero .btn {
+      margin-top: 20px;
+      background: white;
+      color: var(--navy);
+    }
+
+    .hero .btn:hover {
+      background: #e7f4fb;
+    }
+
+    section.content-section {
+      padding: 76px 0;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .comparison {
+      background: var(--soft);
+    }
+
+    .comparison-heading {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 35px;
+    }
+
+    .comparison-heading p {
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .cycle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .cycle-card {
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      padding: 35px 26px;
+      text-align: center;
+    }
+
+    .cycle-card.phev {
+      border-color: var(--blue);
+      box-shadow: 0 8px 25px
+                  rgba(8, 124, 186, .08);
+    }
+
+    .cycle-type {
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      color: var(--navy);
+    }
+
+    .battery-icon {
+      display: flex;
+      align-items: center;
+      width: 75px;
+      height: 35px;
+      border: 3px solid var(--blue);
+      border-radius: 6px;
+      padding: 4px;
+      margin: 22px auto;
+      position: relative;
+    }
+
+    .battery-icon::after {
+      content: "";
+      position: absolute;
+      right: -9px;
+      width: 6px;
+      height: 16px;
+      background: var(--blue);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .battery-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 2px;
+      width: 100%;
+    }
+
+    .phev .battery-icon {
+      width: 53px;
+    }
+
+    .cycle-number {
+      font-size: clamp(56px, 9vw, 100px);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--navy);
+      letter-spacing: -4px;
+      margin: 15px 0;
+    }
+
+    .cycle-card.phev .cycle-number {
+      color: var(--blue);
+    }
+
+    .cycle-label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .cycle-range {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .range-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 28px 0;
+    }
+
+    .range-btn {
+      border: 1px solid #a8bdcb;
+      background: white;
+      color: var(--navy);
+      padding: 11px 20px;
+      border-radius: 9px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .range-btn.active,
+    .range-btn[aria-pressed="true"] {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .comparison-result {
+      text-align: center;
+      margin: 30px auto 0;
+    }
+
+    .comparison-result strong {
+      display: block;
+      color: var(--navy);
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.2;
+    }
+
+    .comparison-result p {
+      color: var(--blue);
+      font-size: 23px;
+      font-weight: 750;
+      margin: 10px 0;
+    }
+
+    .note {
+      margin: 28px auto 0;
+      padding: 19px 22px;
+      max-width: 900px;
+      background: #e6eff5;
+      border-left: 4px solid var(--blue);
+      border-radius: 7px;
+      font-size: 14px;
+      color: #35495a;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .info-panel {
+      background: var(--light-blue);
+      padding: 30px;
+      border-radius: 18px;
+    }
+
+    .info-panel h3 { margin-top: 0; }
+
+    .info-panel ul { padding-left: 21px; }
+
+    .info-panel li { margin: 12px 0; }
+
+    .practice {
+      background: var(--navy);
+      color: white;
+    }
+
+    .practice h2,
+    .practice h3 {
+      color: white;
+    }
+
+    .practice .section-intro {
+      color: #d6e8f4;
+    }
+
+    .practice-card {
+      background: white;
+      color: var(--text);
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .practice-visual {
+      min-height: 320px;
+      background: #dbeaf2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      color: var(--navy);
+    }
+
+    .practice-visual svg {
+      width: 88px;
+      height: 88px;
+      margin-bottom: 20px;
+    }
+
+    .practice-data {
+      padding: 34px;
+    }
+
+    .practice-data h3 {
+      color: var(--navy);
+      margin-top: 0;
+    }
+
+    .soh {
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--blue);
+    }
+
+    .metric {
+      border-top: 1px solid var(--line);
+      padding: 12px 0;
+    }
+
+    .metric strong { color: var(--navy); }
+
+    .practice-note {
+      margin-top: 24px;
+      color: #d6e8f4;
+      max-width: 900px;
+    }
+
+    .recognition {
+      background: var(--soft);
+    }
+
+    .recognition-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .recognition-item {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 24px;
+      border-radius: 12px;
+      font-weight: 650;
+    }
+
+    .recognition-item::before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-blue);
+      color: var(--blue);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      margin-right: 12px;
+      font-weight: 900;
+    }
+
+    .recognition-close {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: 750;
+      color: var(--navy);
+    }
+
+    .cta-section {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      max-width: 850px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-section p {
+      max-width: 750px;
+      margin: 0 auto 26px;
+      color: #d6e8f4;
+      font-size: 18px;
+    }
+
+    .cta-section .btn {
+      background: white;
+      color: var(--navy);
+    }
+
+    .cta-section .btn:hover {
+      background: #e7f4fb;
+    }
+
+    .faq {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+      font-size: 17px;
+      color: var(--navy);
+    }
+
+    details p {
+      color: var(--muted);
+      margin: 14px 0 4px;
+    }
+
+    footer {
+      background: var(--navy-dark);
+      color: #c4d5e1;
+      padding: 35px 0;
+      font-size: 14px;
+    }
+
+    footer a { color: white; }
+
+    :focus-visible {
+      outline: 3px solid #f0ae3c;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        padding: 65px 0;
+      }
+
+      section.content-section {
+        padding: 55px 0;
+      }
+
+      .two-column,
+      .practice-card {
+        grid-template-columns: 1fr;
+      }
+
+      .recognition-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cycle-grid {
+        gap: 10px;
+      }
+
+      .cycle-card {
+        padding: 22px 9px;
+        border-radius: 12px;
+      }
+
+      .cycle-number {
+        font-size: clamp(43px, 10vw, 75px);
+        letter-spacing: -2px;
+      }
+
+      .cycle-type {
+        font-size: 10px;
+        min-height: 35px;
+      }
+
+      .cycle-label {
+        font-size: 12px;
+      }
+
+      .cycle-range {
+        font-size: 12px;
+      }
+
+      .practice-visual {
+        min-height: 210px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        Zeker<span>OpWeg</span>
+      </a>
+
+      <a class="header-link"
+         href="/intake.html?dienst=ev-accucheck">
+        Batterijtest aanvragen
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">
+          Onafhankelijke batterijdiagnose
+        </div>
+
+        <h1>
+          Gebruik jij je plug-inhybride
+          als een elektrische auto?
+        </h1>
+
+        <p class="hero-subtitle">
+          Wat doet dat eigenlijk met je accu?
+        </p>
+
+        <div class="hero-copy">
+          <p>
+            Je laadt hem bijna iedere dag op.
+            Je rijdt zoveel mogelijk elektrisch.
+            En bij de pomp merk je dat je
+            minder brandstof verbruikt.
+          </p>
+
+          <p>
+            Precies waarvoor je een
+            plug-inhybride hebt gekocht.
+          </p>
+
+          <p>
+            Maar heb je je ooit afgevraagd
+            wat dat intensieve elektrische
+            gebruik met je batterij doet?
+          </p>
+        </div>
+
+        <a class="btn"
+           href="/intake.html?dienst=ev-accucheck">
+          Ontdek hoe gezond jouw accu nog is
+        </a>
+      </div>
+    </section>
+
+    <!-- VERGELIJKING -->
+    <section class="content-section comparison"
+             id="vergelijking">
+      <div class="container">
+
+        <div class="comparison-heading">
+          <div class="eyebrow">
+            Een eenvoudig rekenvoorbeeld
+          </div>
+
+          <h2>
+            Stel: je rijdt 50.000 kilometer
+            volledig elektrisch.
+          </h2>
+
+          <p>
+            Hoeveel keer gebruik je dan
+            de capaciteit van je accu?
+          </p>
+        </div>
+
+        <div class="cycle-grid">
+
+          <article class="cycle-card">
+            <div class="cycle-type">
+              Volledig elektrische auto
+            </div>
+
+            <div class="battery-icon"
+                 aria-hidden="true">
+              <div class="battery-fill"></div>
+            </div>
+
+            <div class="cycle-range">
+              500 km actieradius per volle accu
+            </div>
+
+            <div class="cycle-number">
+              100
+            </div>
+
+            <div class="cycle-label">
+              Equivalente volledige laadcycli
+            </div>
+          </article>
+
+          <article class="cycle-card phev">
+            <div class="cycle-type">
+              Plug-inhybride
+            </div>
+
+            <div class="battery-icon"
+                 aria-hidden="true">
+              <div class="battery-fill"></div>
+            </div>
+
+            <div class="cycle-range">
+              <span id="phev-range">50</span>
+              km elektrische actieradius
+              per volle accu
+            </div>
+
+            <div class="cycle-number"
+                 id="phev-cycles"
+                 aria-live="polite">
+              1.000
+            </div>
+
+            <div class="cycle-label">
+              Equivalente volledige laadcycli
+            </div>
+          </article>
+
+        </div>
+
+        <div class="range-controls"
+             role="group"
+             aria-label="Kies de elektrische actieradius van de plug-inhybride">
+
+          <button class="range-btn active"
+                  type="button"
+                  data-range="50"
+                  aria-pressed="true">
+            50 km
+          </button>
+
+          <button class="range-btn"
+                  type="button"
+                  data-range="80"
+                  aria-pressed="false">
+            80 km
+          </button>
+
+          <button class="range-btn"
+                  type="button"
+                  data-range="100"
+                  aria-pressed="false">
+            100 km
+          </button>
+        </div>
+
+        <div class="comparison-result">
+          <strong id="cycle-result">
+            10 keer zoveel laadcycli.
+          </strong>
+
+          <p>
+            En dat met een veel kleinere batterij.
+          </p>
+        </div>
+
+        <div class="note">
+          <strong>Belangrijke nuance:</strong>
+          dit is een vereenvoudigd rekenvoorbeeld
+          bij hetzelfde aantal elektrisch gereden
+          kilometers. Een equivalente volledige
+          laadcyclus is niet hetzelfde als één
+          laadbeurt. Meer laadcycli betekenen
+          niet automatisch tien keer zoveel
+          batterijslijtage. De werkelijke
+          belasting hangt onder andere af
+          van het energieverbruik en de
+          bruikbare accucapaciteit.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UITLEG -->
+    <section class="content-section">
+      <div class="container two-column">
+
+        <div>
+          <h2>
+            Wat betekent dit voor jouw accu?
+          </h2>
+
+          <p>
+            Een plug-inhybride heeft meestal
+            een kleinere accu dan een volledig
+            elektrische auto.
+          </p>
+
+          <p>
+            Wie veel elektrisch rijdt, gebruikt
+            die kleinere batterij relatief
+            intensief. Daardoor kunnen meer
+            equivalente volledige laadcycli
+            ontstaan.
+          </p>
+
+          <p>
+            Die laadcycli kunnen bijdragen
+            aan het verlies van accucapaciteit.
+            Maar ze zijn niet de enige factor.
+          </p>
+
+          <p>
+            Ook temperatuur, leeftijd,
+            batterijtechniek, laadgedrag en
+            het batterijmanagementsysteem
+            spelen een rol.
+          </p>
+
+          <p>
+            <strong>
+              Dagelijks opladen betekent
+              niet automatisch dat je iets
+              verkeerd doet.
+            </strong>
+            Een plug-inhybride is juist
+            ontworpen om elektrisch te rijden.
+          </p>
+        </div>
+
+        <aside class="info-panel">
+          <h3>
+            Waarom is de kleinere batterij
+            belangrijk?
+          </h3>
+
+          <p>
+            Vergelijk het met twee watertanks.
+            Uit een kleine tank moet je
+            vaker een volledige inhoud halen
+            om dezelfde hoeveelheid water
+            te gebruiken.
+          </p>
+
+          <p>
+            Bij een accu werkt het principe
+            van relatief gebruik vergelijkbaar.
+            Maar de daadwerkelijke veroudering
+            hangt af van veel meer dan alleen
+            het aantal cycli.
+          </p>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- PRAKTIJKMETING -->
+    <section class="content-section practice"
+             id="praktijkmeting">
+      <div class="container">
+
+        <div class="eyebrow">
+          Een echte meting door ZekerOpWeg
+        </div>
+
+        <h2>
+          Hoe gezond was de accu van
+          deze BMW X5?
+        </h2>
+
+        <p class="section-intro">
+          Een onafhankelijke batterijdiagnose
+          geeft inzicht in de conditie van
+          een specifieke auto.
+        </p>
+
+        <div class="practice-card">
+
+          <div class="practice-visual">
+
+            <!--
+              FOTO:
+              Vervang dit illustratieblok
+              door de originele BMW X5-foto
+              zodra het afbeeldingsbestand
+              beschikbaar is.
+
+              Voorbeeld:
+              <img
+                src="images/bmw-x5-aviloo.webp"
+                alt="BMW X5 xDrive50e tijdens
+                een AVILOO batterijdiagnose
+                door ZekerOpWeg"
+                loading="lazy"
+                style="width:100%;height:100%;
+                object-fit:cover;">
+            -->
+
+            <svg viewBox="0 0 100 100"
+                 fill="none"
+                 aria-hidden="true">
+              <rect x="12" y="18"
+                    width="68" height="64"
+                    rx="9"
+                    stroke="#087cba"
+                    stroke-width="5"/>
+              <path d="M27 35h38M27 49h38M27 63h23"
+                    stroke="#087cba"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+              <path d="M79 40h8v20h-8"
+                    fill="#087cba"/>
+            </svg>
+
+            <strong>
+              BMW X5 xDrive50e
+            </strong>
+
+            <p>
+              Onafhankelijk getest
+              door ZekerOpWeg
+            </p>
+          </div>
+
+          <div class="practice-data">
+            <h3>BMW X5 xDrive50e</h3>
+
+            <div class="soh">93,7%</div>
+
+            <p>
+              Batterijgezondheid volgens
+              AVILOO FLASH
+            </p>
+
+            <div class="metric">
+              <strong>Kilometerstand:</strong>
+              53.725 km
+            </div>
+
+            <div class="metric">
+              <strong>Beoordeling:</strong>
+              goede toestand
+            </div>
+
+            <div class="metric">
+              <strong>Controles:</strong>
+              geen afwijkingen vastgesteld
+            </div>
+
+            <p>
+              Volgens deze diagnose is de
+              geschatte batterijcapaciteit
+              ongeveer 6,3% lager dan
+              de nieuwreferentie.
+            </p>
+          </div>
+
+        </div>
+
+        <p class="practice-note">
+          <strong>
+            Wat weten we niet?
+          </strong>
+          We weten niet hoeveel van de
+          53.725 kilometer daadwerkelijk
+          elektrisch is gereden.
+          Daarom kunnen we niet bepalen
+          welk deel van het capaciteitsverlies
+          door laadcycli is ontstaan.
+        </p>
+
+        <p class="practice-note">
+          <strong>
+            Een percentage vertelt niet
+            het hele verhaal.
+            De uitleg erbij maakt het verschil.
+          </strong>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- HERKENNING -->
+    <section class="content-section recognition">
+      <div class="container">
+
+        <h2>Herken jij jezelf hierin?</h2>
+
+        <div class="recognition-grid">
+
+          <div class="recognition-item">
+            Ik laad mijn plug-inhybride
+            bijna iedere avond op.
+          </div>
+
+          <div class="recognition-item">
+            Ik probeer zoveel mogelijk
+            elektrisch te rijden.
+          </div>
+
+          <div class="recognition-item">
+            Ik gebruik de benzinemotor
+            vooral voor langere ritten.
+          </div>
+
+          <div class="recognition-item">
+            Ik heb eigenlijk geen idee
+            hoeveel batterijcapaciteit
+            er nog over is.
+          </div>
+
+        </div>
+
+        <p class="recognition-close">
+          Herkenbaar? Dan is het interessant
+          om te weten hoe gezond jouw accu
+          vandaag is.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- SOH UITLEG -->
+    <section class="content-section">
+      <div class="container two-column">
+
+        <div>
+          <h2>
+            Wat vertelt een onafhankelijke
+            batterijtest?
+          </h2>
+
+          <p>
+            State of Health, afgekort SoH,
+            is een inschatting van de
+            resterende batterijcapaciteit
+            ten opzichte van een
+            nieuwreferentie.
+          </p>
+
+          <p>
+            Die inschatting is afhankelijk
+            van de gebruikte meetmethode.
+            Verschillende systemen kunnen
+            daarom verschillende
+            percentages rapporteren.
+          </p>
+
+          <p>
+            Een AVILOO FLASH-diagnose
+            analyseert beschikbare
+            batterijgegevens. Het is niet
+            hetzelfde als een volledige
+            fysieke ontlaadtest.
+          </p>
+
+          <p>
+            Een goede SoH is bovendien
+            geen garantie voor de toekomstige
+            gezondheid van een accu.
+          </p>
+        </div>
+
+        <aside class="info-panel">
+          <h3>
+            Wat doet ZekerOpWeg?
+          </h3>
+
+          <ul>
+            <li>
+              Controleren welke batterijtest
+              geschikt is voor jouw auto.
+            </li>
+            <li>
+              Een onafhankelijke diagnose
+              uitvoeren wanneer het
+              voertuig wordt ondersteund.
+            </li>
+            <li>
+              Het SoH-percentage en de
+              beschikbare meetgegevens
+              begrijpelijk uitleggen.
+            </li>
+            <li>
+              Duidelijk aangeven wat
+              een test wel en niet
+              kan vaststellen.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- CONVERSIE -->
+    <section class="content-section cta-section"
+             id="batterijtest">
+
+      <div class="container">
+        <h2>
+          Je weet hoeveel kilometer je auto
+          heeft gereden. Maar weet je ook
+          hoe gezond je accu nog is?
+        </h2>
+
+        <p>
+          Laat de batterijconditie van jouw
+          plug-inhybride onafhankelijk
+          controleren. ZekerOpWeg kijkt
+          welke test mogelijk is voor
+          jouw auto en legt de uitkomst
+          helder uit.
+        </p>
+
+        <a class="btn"
+           href="/intake.html?dienst=ev-accucheck">
+          Vraag een batterijtest aan
+        </a>
+
+        <p style="font-size:14px;margin-top:18px">
+          We controleren vooraf of jouw
+          voertuig geschikt is voor
+          de beschikbare batterijtest.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="content-section"
+             id="veelgestelde-vragen">
+      <div class="container faq">
+
+        <h2>Veelgestelde vragen</h2>
+
+        <details>
+          <summary>
+            Slijt de accu van een plug-inhybride
+            sneller dan die van een elektrische auto?
+          </summary>
+          <p>
+            Niet automatisch. Een kleinere accu
+            kan bij hetzelfde aantal elektrisch
+            gereden kilometers meer equivalente
+            laadcycli doorlopen. Maar batterijslijtage
+            hangt ook af van de techniek,
+            temperatuur, leeftijd en het gebruik.
+            Je kunt daarom niet zonder meer zeggen
+            dat iedere plug-inhybride sneller slijt.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Is iedere dag opladen slecht
+            voor mijn accu?
+          </summary>
+          <p>
+            Nee, niet per definitie.
+            Plug-inhybrides zijn ontworpen
+            om regelmatig elektrisch te rijden.
+            Volg de laadadviezen van de fabrikant.
+            Langdurige blootstelling aan hoge
+            temperaturen en een hoog laadniveau
+            kan bij bepaalde batterijtypen
+            extra veroudering veroorzaken.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Hoeveel laadcycli heeft mijn
+            plug-inhybride gehad?
+          </summary>
+          <p>
+            Dat is meestal niet rechtstreeks
+            uit de kilometerstand af te leiden.
+            Je moet onder andere weten hoeveel
+            kilometers elektrisch zijn gereden
+            en hoeveel energie de batterij
+            heeft geleverd. Een laadbeurt
+            is bovendien niet hetzelfde als
+            een equivalente volledige laadcyclus.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Wat is een goede batterijgezondheid
+            voor een plug-inhybride?
+          </summary>
+          <p>
+            Er bestaat geen universeel percentage
+            dat voor iedere auto goed of slecht is.
+            Leeftijd, model, batterijtechniek,
+            meetmethode en eventuele afwijkingen
+            zijn belangrijk voor de beoordeling.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Kan ik batterijdegradatie merken
+            tijdens het rijden?
+          </summary>
+          <p>
+            Soms merk je dat de elektrische
+            actieradius afneemt. Maar ook
+            buitentemperatuur, rijstijl,
+            snelheid en verwarming beïnvloeden
+            het bereik. Minder kilometers
+            op het dashboard bewijzen dus
+            niet automatisch batterijslijtage.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Hoe weet ik hoeveel batterijcapaciteit
+            mijn auto nog heeft?
+          </summary>
+          <p>
+            Een geschikte batterijdiagnose
+            kan een inschatting geven van
+            de batterijgezondheid.
+            De betekenis en nauwkeurigheid
+            hangen af van de gebruikte
+            testmethode.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Kan ZekerOpWeg mijn
+            plug-inhybride testen?
+          </summary>
+          <p>
+            Dat hangt af van het merk,
+            model, bouwjaar en de ondersteuning
+            door de beschikbare diagnosemethode.
+            ZekerOpWeg controleert dit
+            voordat een test wordt ingepland.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>ZekerOpWeg</strong>
+      <p>
+        Onafhankelijke batterijdiagnose
+        en begrijpelijke uitleg.
+      </p>
+      <p>
+        <a href="/">Terug naar ZekerOpWeg</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll(
+        ".range-btn"
+      );
+
+      const cyclesEl = document.getElementById(
+        "phev-cycles"
+      );
+
+      const rangeEl = document.getElementById(
+        "phev-range"
+      );
+
+      const resultEl = document.getElementById(
+        "cycle-result"
+      );
+
+      const formatter = new Intl.NumberFormat(
+        "nl-NL",
+        { maximumFractionDigits: 2 }
+      );
+
+      buttons.forEach(function (button) {
+        button.addEventListener(
+          "click",
+          function () {
+            const range = Number(
+              button.dataset.range
+            );
+
+            const cycles = 50000 / range;
+            const ratio = cycles / 100;
+
+            rangeEl.textContent = range;
+
+            cyclesEl.textContent =
+              formatter.format(cycles);
+
+            resultEl.textContent =
+              formatter.format(ratio) +
+              " keer zoveel laadcycli.";
+
+            buttons.forEach(function (other) {
+              const selected = other === button;
+
+              other.classList.toggle(
+                "active",
+                selected
+              );
+
+              other.setAttribute(
+                "aria-pressed",
+                String(selected)
+              );
+            });
+          }
+        );
+      });
+    })();
+  </script>
+
+</body>
+</html>
