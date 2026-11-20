@@ -1,0 +1,86 @@
+.zow-brandbook {
+  --zow-night: #0A1E23;
+  --zow-petrol: #0E3B43;
+  --zow-copper: #B8734A;
+  --zow-copper-light: #E39B68;
+  --zow-ivory-light: #FBF8F2;
+  --zow-sand: #EEE7DB;
+  --zow-line: #DDD6CA;
+  --zow-font: Geist, Aptos, Arial, sans-serif;
+  background-color: var(--zow-ivory-light);
+  color: var(--zow-petrol);
+  font-family: var(--zow-font);
+}
+.zow-brandbook :is(h1,h2,h3,h4,button,input,select,textarea,summary) {
+  font-family: var(--zow-font) !important;
+}
+.zow-brandbook :is(header,footer) {
+  background: var(--zow-night) !important;
+  color: var(--zow-ivory-light) !important;
+  border-color: transparent;
+}
+.zow-brandbook header :is(nav a,summary),
+.zow-brandbook footer :is(a,p,strong) {
+  color: var(--zow-ivory-light) !important;
+}
+.zow-brandbook header .mobile-nav :is(nav,summary) {
+  background: var(--zow-night);
+}
+.zow-brandbook header .zow-brand-link {
+  display: inline-flex !important;
+  flex: 0 0 auto;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 16px;
+}
+.zow-brandbook header img.zow-brand-logo {
+  display: block;
+  width: clamp(140px, 24vw, 190px) !important;
+  max-width: none !important;
+  height: auto !important;
+  transform: none !important;
+}
+.zow-brandbook footer img.zow-brand-logo {
+  display: block;
+  width: 180px !important;
+  max-width: none !important;
+  height: auto !important;
+  box-sizing: content-box;
+  padding: 16px;
+}
+.zow-brandbook :is(.primary,.button:not(.secondary),.rid-btn-gold) {
+  background: var(--zow-petrol);
+  color: var(--zow-ivory-light);
+  border-radius: 8px;
+}
+.zow-brandbook header a.zow-header-action {
+  background: var(--zow-copper-light) !important;
+  color: var(--zow-night) !important;
+  border-color: transparent;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+.zow-brandbook .warrantyBadge {
+  background: var(--zow-ivory-light);
+  color: var(--zow-petrol);
+  border: 1px solid var(--zow-line);
+  border-inline-start: 6px solid var(--zow-copper);
+  border-radius: 16px;
+  padding-inline-start: 48px;
+  position: relative;
+}
+.zow-brandbook .warrantyBadge::before {
+  content: "";
+  position: absolute;
+  inset: 12px auto auto 12px;
+  width: 24px;
+  height: 24px;
+  background: url("./favicon.svg") center / contain no-repeat;
+}
+.zow-brandbook .warrantyBadge :is(strong,span) {
+  color: var(--zow-petrol);
+}
+@media (max-width: 480px) {
+  .zow-brandbook header nav { flex-wrap: wrap; }
+}
