@@ -697,6 +697,7 @@
     </style>
     <script src="/scripts/zow-analytics.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
   <body>
     <a class="skip" href="#inhoud">
@@ -705,25 +706,29 @@
     <div class="bar">
       ZekerOpWeg · Officieel AVILOO-partner · Barendrecht
     </div>
-    <header class="nav">
-      <div class="wrap">
-        <a class="brand" href="/" aria-label="ZekerOpWeg home" style="display:flex;align-items:center;width:clamp(120px,24vw,190px);height:auto;overflow:visible;"><img src="/assets/brand/logo-licht.svg" alt="ZekerOpWeg" style="display:block;width:100%;max-width:190px;height:auto;transform:none;"></a>
-        <nav class="links" aria-label="Hoofdnavigatie">
-          <a href="/ev-accucheck.html">
-            EV AccuCheck
-          </a>
-          <a href="/aankoopadvies.html">
-            Aankoopadvies
-          </a>
-          <a href="/praktijkcase-tesla-model-s-308000km.html">
-            Praktijkcase
-          </a>
-          <a class="pill" href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20weten%20of%20mijn%20auto%20door%20AVILOO%20wordt%20ondersteund.">
-            WhatsApp
-          </a>
-        </nav>
-      </div>
-    </header>
+    <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
     <main id="inhoud">
       <section class="hero">
         <div class="wrap heroGrid">
@@ -1050,7 +1055,7 @@
             Wat klanten zeggen
           </h2>
           <p class="intro">
-            5,0 sterren uit 17 Google-reviews, stand op 22 september 2026.
+            5,0 sterren uit 20+ Google-reviews.
           </p>
           <div class="reviews">
             <div class="quote">
@@ -1242,5 +1247,6 @@
     <script>
       document.getElementById('requestForm').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(this);const msg=['Hallo Pepijn, ik wil een AVILOO AccuCheck aanvragen.','Auto: '+f.get('plate'),'Keuze: '+f.get('service'),'Postcode auto: '+f.get('postcode'),'Voorkeursdatum: '+(f.get('date')||'in overleg'),'Kun je eerst controleren of AVILOO deze uitvoering ondersteunt?'].join('\n');window.open('https://wa.me/31623452349?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer')});
     </script>
-  </body>
+  <script defer src="/scripts/zow-menu.js"></script>
+</body>
 </html>

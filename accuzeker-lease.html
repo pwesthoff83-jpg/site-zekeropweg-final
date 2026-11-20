@@ -339,6 +339,8 @@ footer { background: var(--navy); padding: 40px 6%; }
   section { padding: 64px 5%; }
 }
 </style>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -353,20 +355,29 @@ footer { background: var(--navy); padding: 40px 6%; }
 </svg>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">
-    <svg width="28" height="32" style="flex-shrink:0;margin-right:8px"><use href="#zow-shield" color="#21965C"/></svg>
-    <span class="logo-accu">Accu</span><span class="logo-zeker">Zeker</span>
-    <span class="logo-lease">Lease</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#hoe-het-werkt">Werkwijze</a></li>
-    <li><a href="#inbegrepen">Wat is inbegrepen</a></li>
-    <li><a href="#waarom">Waarom AccuZeker</a></li>
-    <li><a href="#contact" class="nav-cta">Aanvraag indienen</a></li>
-  </ul>
-</nav>
-
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
@@ -747,10 +758,7 @@ footer { background: var(--navy); padding: 40px 6%; }
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo" style="display:flex;align-items:center;gap:10px;">
-        <svg width="22" height="26"><use href="#zow-shield" color="#21965C"/></svg>
-        <span>Accu<span style="color:var(--green-mid)">Zeker</span> Lease · ZekerOpWeg</span>
-      </div>
+      <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
       <div class="footer-tagline">"Jij least de auto. Wij garanderen de accu."</div>
     </div>
     <div class="footer-links">
@@ -809,5 +817,6 @@ function submitForm(e) {
 }
 bereken();
 </script>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

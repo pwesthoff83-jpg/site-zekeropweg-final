@@ -72,17 +72,33 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://zekeropweg.nu/opel-corsa-e-accucheck#service","name":"Opel Corsa-e AccuCheck","description":"AVILOO Flash Test op celniveau voor Opel Corsa-e. E-CMP platform, geen actieve koeling. TUV-gecertificeerd, 15 tot 20 minuten op locatie.","provider":{"@id":"https://zekeropweg.nu/#organization"},"areaServed":{"@type":"Country","name":"Nederland"},"offers":{"@type":"Offer","price":"129","priceCurrency":"EUR"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Heeft de Opel Corsa-e actieve accukoeling?","acceptedAnswer":{"@type":"Answer","text":"Nee. De Opel Corsa-e heeft geen actieve thermische koeling. Het e-CMP platform van Stellantis werkt met passieve koeling. Dit deelt het platform met de Peugeot e-208 en DS 3 E-Tense. Bij warm weer of intensief snelladen zijn de cellen kwetsbaarder voor snellere degradatie."}},{"@type":"Question","name":"Hoe wordt de Opel Corsa-e batterij getest?","acceptedAnswer":{"@type":"Answer","text":"ZekerOpWeg gebruikt de AVILOO Flash Test. In 15 tot 20 minuten worden celspanningen, SoH, temperaturen en BMS-communicatie op celniveau gemeten. TUV-gecertificeerd resultaat, geen demontage nodig."}},{"@type":"Question","name":"Wat kost een AccuCheck voor de Opel Corsa-e?","acceptedAnswer":{"@type":"Answer","text":"Op locatie: €129. In Barendrecht: €95. Het AccuZeker Pakket kost €228 inclusief 12 maanden AVILOO Batterijgarantie tot €3.000."}}]}]}
   </script>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
-  <header style="background:#0b1220;padding:16px 24px;display:flex;justify-content:space-between;align-items:center">
-    <a href="/" style="color:#f8f7f4;text-decoration:none;font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700">ZekerOpWeg</a>
-    <nav style="display:flex;gap:24px">
-      <a href="/ev-accucheck" style="color:#a0aec0;text-decoration:none;font-size:.9rem">AccuCheck</a>
-      <a href="/aankoopadvies" style="color:#a0aec0;text-decoration:none;font-size:.9rem">Aankoopadvies</a>
-      <a href="/contact" style="color:#a0aec0;text-decoration:none;font-size:.9rem">Contact</a>
-    </nav>
-  </header>
-
+  <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
   <section class="oce-hero">
     <div class="oce-badge">AVILOO gecertificeerd partner</div>
     <h1>Opel Corsa-e AccuCheck<br><em>E-CMP platform, geen actieve koeling</em></h1>
@@ -195,7 +211,8 @@
   </section>
 
   <footer style="background:#060d1a;padding:40px 24px;text-align:center">
-    <p style="color:#6b7280;font-size:.85rem">ZekerOpWeg &middot; Pepijn Westhoff &middot; KvK 99323575 &middot; <a href="mailto:info@zekeropweg.nu" style="color:#c9a96e">info@zekeropweg.nu</a> &middot; Tel/WhatsApp 06 23 45 23 49</p>
+    <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
+<p style="color:#6b7280;font-size:.85rem">ZekerOpWeg &middot; Pepijn Westhoff &middot; KvK 99323575 &middot; <a href="mailto:info@zekeropweg.nu" style="color:#c9a96e">info@zekeropweg.nu</a> &middot; Tel/WhatsApp 06 23 45 23 49</p>
     <nav style="margin-top:12px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
       <a href="/ev-accucheck" style="color:#6b7280;font-size:.8rem;text-decoration:none">EV AccuCheck</a>
       <a href="/peugeot-e208-accucheck" style="color:#6b7280;font-size:.8rem;text-decoration:none">Peugeot e-208 AccuCheck</a>
@@ -204,5 +221,6 @@
       <a href="/privacyverklaring" style="color:#6b7280;font-size:.8rem;text-decoration:none">Privacy</a>
     </nav>
   </footer>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

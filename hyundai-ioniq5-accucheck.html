@@ -707,19 +707,35 @@
       .i5-cta-section { padding: 56px 20px; }
     }
   </style>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
 
 <!-- ======= NAVIGATIE ======= -->
-<nav style="background:#04131f;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);">
-  <a href="/" style="color:#c9a96e;font-weight:700;font-size:1.1rem;text-decoration:none;letter-spacing:0.04em;">ZekerOpWeg</a>
-  <div style="display:flex;gap:20px;flex-wrap:wrap;">
-    <a href="/ev-accucheck" style="color:rgba(255,255,255,0.75);font-size:0.87rem;text-decoration:none;">AccuCheck</a>
-    <a href="/aankoopadvies" style="color:rgba(255,255,255,0.75);font-size:0.87rem;text-decoration:none;">Aankoopadvies</a>
-    <a href="https://wa.me/31623452349" style="color:#c9a96e;font-size:0.87rem;font-weight:600;text-decoration:none;">WhatsApp</a>
-  </div>
-</nav>
-
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
 <!-- ======= HERO ======= -->
 <section class="i5-hero">
   <span class="i5-hero__eyebrow">Hyundai IONIQ 5 · Officieel AVILOO-partner</span>
@@ -1110,7 +1126,8 @@
 
 <!-- ======= FOOTER ======= -->
 <footer class="i5-footer">
-  <p>
+  <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
+<p>
     <strong style="color:rgba(255,255,255,0.85);">ZekerOpWeg</strong> &nbsp;|&nbsp;
     Onafhankelijk EV-advies en AVILOO-partner &nbsp;|&nbsp; Barendrecht
   </p>
@@ -1133,5 +1150,6 @@
   </p>
 </footer>
 
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

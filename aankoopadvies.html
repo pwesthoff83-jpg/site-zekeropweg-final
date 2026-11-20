@@ -502,61 +502,35 @@
       .aa-foto-grid { grid-template-columns: 1fr; }
     }
 
-    /* ─── HOOFDMENU EN LOGO (Brandbook v2.0, §3.4 en §8.2) ──────────── */
-    .zop-header-inner { gap: 32px; }
-    .zop-logo {
-      display: block; flex: none; line-height: 0;
-      width: clamp(140px, 17vw, 190px);
-    }
-    .zop-logo img { display: block; width: 100%; height: auto; }
-    .zop-nav a { white-space: nowrap; }
-    @media (max-width: 1100px) { .zop-nav { gap: 20px; } }
-    .zop-nav a[aria-current="page"] { color: #c6a86a; font-weight: 600; }
-    .zop-nav a[aria-current="page"]::after { width: 100%; }
-    .zop-nav a.zop-nav-wa,
-    .mobile-nav a.zop-nav-wa {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 44px; padding: 10px 18px; border-radius: 8px;
-      background: #E39B68; color: #0A1E23; font-weight: 600;
-      text-decoration: none;
-    }
-    .zop-nav a.zop-nav-wa::after { display: none; }
-    .zop-nav a.zop-nav-wa:hover,
-    .mobile-nav a.zop-nav-wa:hover { background: #B8734A; color: #0A1E23; }
-    .mobile-nav a.zop-nav-wa { align-self: flex-start; margin-top: .4rem; }
   </style>
 <script defer="" src="/scripts/zow-analytics.js"></script>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body class="fade-in">
 <!-- NAV -->
-<header class="zop-header">
-<div class="zop-header-inner">
-<a aria-label="ZekerOpWeg, naar de homepage" class="zop-logo" href="index.html">
-<img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/>
-</a>
-<nav aria-label="Hoofdnavigatie" class="zop-nav">
-<a aria-current="page" href="/aankoopadvies.html">Aankoopadvies</a>
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html" aria-current="page">Aankoopadvies</a>
 <a href="/ev-accucheck.html">EV AccuCheck</a>
 <a href="/ev-selectie.html">EV Selectie</a>
 <a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
 <a href="/over.html">Over Pepijn</a>
-<a class="zop-nav-wa" href="https://wa.me/31623452349">WhatsApp</a>
-</nav>
-<button aria-controls="mobileMenu" aria-label="Menu openen" class="menu-toggle">☰</button>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
 </div>
-</header>
-<div class="mobile-menu" id="mobileMenu">
-<button aria-label="Menu sluiten" class="close-menu">×</button>
-<nav aria-label="Mobiele navigatie" class="mobile-nav">
-<a aria-current="page" class="active" href="/aankoopadvies.html">Aankoopadvies</a>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html" aria-current="page">Aankoopadvies</a>
 <a href="/ev-accucheck.html">EV AccuCheck</a>
 <a href="/ev-selectie.html">EV Selectie</a>
 <a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
 <a href="/over.html">Over Pepijn</a>
-<a class="zop-nav-wa" href="https://wa.me/31623452349">WhatsApp</a>
-</nav>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
 </div>
-<div class="menu-overlay" id="menuOverlay"></div>
+</div>
 <main class="page-content">
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
 <section class="aa-hero">
@@ -579,7 +553,7 @@
             Stuur advertentie via WhatsApp
           </a>
 </div>
-<p class="aa-hero__trust">★★★★★ 5,0 op Google  ·  <span data-zow="review-count">16</span> reviews  ·  16 jaar automotive ervaring  ·  Geen verkoopbelang</p>
+<p class="aa-hero__trust">★★★★★ 5,0 op Google  ·  <span data-zow="review-count">20+</span> reviews  ·  16 jaar automotive ervaring  ·  Geen verkoopbelang</p>
 <p class="aa-hero__ev-note">
           Kijkt u naar een EV of plug-inhybride? Voeg een onafhankelijke <a href="ev-accucheck.html">AVILOO AccuCheck</a> toe aan uw aankoopadvies.
         </p>
@@ -889,7 +863,7 @@
 <p class="aa-eyebrow">Ervaringen van klanten</p>
 <h2 class="aa-h2">Wat klanten zeggen</h2>
 <hr class="aa-h2-rule"/>
-<p style="text-align:center; font-size:.85rem; color:#94a3b8; margin-bottom:1.5rem;">★★★★★ 5,0 op basis van <span data-zow="review-count">16</span> Google-reviews</p>
+<p style="text-align:center; font-size:.85rem; color:#94a3b8; margin-bottom:1.5rem;">★★★★★ 5,0 op basis van <span data-zow="review-count">20+</span> Google-reviews</p>
 <div class="aa-reviews">
 <div class="aa-review">
 <p class="aa-review__stars">★★★★★</p>
@@ -1049,5 +1023,6 @@
 <a class="wa-fab" href="https://wa.me/31623452349">App mij direct</a>
 <script defer="" src="scripts/menu.js"></script>
 <script defer="" src="js/site-config.js"></script>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

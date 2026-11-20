@@ -873,15 +873,35 @@
     line-height: 1.5;
   }
 </style>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="https://zekeropweg.nu" class="logo">Zeker<span>OpWeg</span></a>
-  <a href="https://wa.me/31623452349" class="nav-cta">📱 WhatsApp</a>
-</nav>
-
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">🔍 Onafhankelijk aankoopadvies</div>
@@ -1227,7 +1247,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p style="margin-bottom: 8px;">
+  <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
+<p style="margin-bottom: 8px;">
     <a href="https://zekeropweg.nu">ZekerOpWeg</a> · Barendrecht · KvK 99323575 · 
     <a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a> · 
     <a href="tel:0623452349">06 23452349</a>
@@ -1235,5 +1256,6 @@
   <p>© 2026 ZekerOpWeg · Onafhankelijk aankoopadvies voor elke occasion</p>
 </footer>
 
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

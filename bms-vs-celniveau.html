@@ -378,48 +378,32 @@
   }
   .artikel-gerelateerd a:hover { color: #0d1b2a; }
   </style>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body class="fade-in" data-page="artikel">
-<header class="zop-header">
-  <div class="zop-header-inner">
-    <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-    <nav class="zop-nav">
-      <a href="index.html">Home</a>
-      <a href="aankoopadvies.html">Aankoopadvies</a>
-      <div class="zop-dropdown">
-        <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck.html">EV AccuCheck</a>
-          <a href="bmw-x5-45e-50e-accucheck.html">Premium PHEV Beslischeck – BMW X5 45e / 50e</a>
-        </div>
-      </div>
-      <div class="zop-dropdown">
-        <span class="zop-drop-label">Voor bedrijven</span>
-        <div class="zop-drop-menu">
-          <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-          <a href="automatisering.html">Automatisering</a>
-        </div>
-      </div>
-      <a href="bezwaarservice.html">Bezwaar</a>
-      <a href="over.html">Over</a>
-      <a href="contact.html" class="zop-contact">Contact</a>
-    </nav>
-    <button class="menu-toggle" aria-label="Menu openen">&#9776;</button>
-  </div>
-</header>
-<div id="mobileMenu" class="mobile-menu">
-  <button class="close-menu" aria-label="Menu sluiten">&#xd7;</button>
-  <nav class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="aankoopadvies.html">Aankoopadvies</a>
-    <a href="ev-accucheck.html">EV AccuCheck</a>
-    <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-    <a href="bezwaarservice.html">Bezwaar</a>
-    <a href="over.html">Over</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
 </div>
-<div id="menuOverlay" class="menu-overlay"></div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
 <main class="page-content">
 <section class="hero hero-standard">
   <div class="hero-content">
@@ -670,7 +654,7 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <p class="footer-title">ZekerOpWeg</p>
+      <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
       <p>&copy; 2026 ZekerOpWeg</p>
       <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
         Handelsnaam van Pepijn Westhoff<br>
@@ -697,5 +681,6 @@
   </div>
 </footer>
 <script src="scripts/menu.js" defer></script>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>
