@@ -1,0 +1,70 @@
+/* ZekerOpWeg hoofdmenu (Brandbook v2.0, §3.4 en §8.2)
+   Eén header voor alle pagina's. Bewust met eigen klassen en divs,
+   zodat bestaande pagina-CSS op header/nav/a er zo min mogelijk invloed op heeft. */
+.zow-header {
+  position: relative; z-index: 900;
+  background: #fff; border-bottom: 1px solid rgba(0,0,0,.06);
+  margin: 0; padding: 0; width: 100%;
+  font-family: "Inter", "DM Sans", "Helvetica Neue", Arial, sans-serif; line-height: 1.4;
+}
+.zow-header *, .zow-header *::before, .zow-header *::after { box-sizing: border-box; }
+.zow-header__inner {
+  max-width: 1180px; margin: 0 auto; padding: 26px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.zow-header__logo {
+  display: block; flex: none; line-height: 0; padding: 0; margin: 0;
+  width: clamp(140px, 17vw, 190px); background: none; border: 0;
+}
+.zow-header__logo img {
+  display: block; width: 100%; max-width: none; height: auto;
+  margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; transform: none;
+}
+.zow-header__nav {
+  display: flex; align-items: center; gap: 36px;
+  position: static; margin: 0; padding: 0; background: none;
+}
+.zow-header__nav a, .zow-header__mobile a {
+  font-family: inherit; font-size: 14px; font-weight: 400; letter-spacing: normal;
+  text-transform: none; text-decoration: none; white-space: nowrap;
+  color: #0b1220; background: none; border: 0; padding: 6px 0; margin: 0;
+  position: relative; opacity: 1;
+}
+.zow-header__nav a::after {
+  content: ""; position: absolute; left: 0; bottom: -6px;
+  width: 0; height: 2px; background: linear-gradient(90deg, #e0c07a, #c6a86a);
+  transition: width .25s ease;
+}
+.zow-header__nav a:hover::after,
+.zow-header__nav a[aria-current="page"]::after { width: 100%; }
+.zow-header__nav a[aria-current="page"],
+.zow-header__mobile a[aria-current="page"] { color: #c6a86a; font-weight: 600; }
+.zow-header a.zow-header__wa {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 10px 18px; border-radius: 8px;
+  background: #E39B68; color: #0A1E23; font-weight: 600; text-decoration: none;
+}
+.zow-header a.zow-header__wa::after { display: none; }
+.zow-header a.zow-header__wa:hover { background: #B8734A; color: #0A1E23; }
+.zow-header__toggle {
+  display: none; margin: 0 0 0 auto; padding: 8px 4px; min-width: 44px; min-height: 44px;
+  background: none; border: 0; box-shadow: none; cursor: pointer;
+  font-size: 1.5rem; line-height: 1; color: #0b1220;
+}
+.zow-header__mobile {
+  display: none; padding: 8px 18px 20px; background: #fff;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.zow-header__mobile a {
+  display: block; font-size: 1.05rem; font-weight: 600; padding: 12px 0;
+}
+.zow-header__mobile a.zow-header__wa { display: inline-flex; margin-top: 8px; }
+@media (max-width: 1100px) {
+  .zow-header__nav { gap: 20px; }
+}
+@media (max-width: 900px) {
+  .zow-header__inner { padding: 18px; gap: 16px; }
+  .zow-header__nav { display: none; }
+  .zow-header__toggle { display: block; }
+  .zow-header.is-open .zow-header__mobile { display: block; }
+}

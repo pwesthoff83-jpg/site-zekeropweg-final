@@ -335,14 +335,34 @@
     }
     .sticky-wa:hover { transform: scale(1.05); }
   </style>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
 
-  <nav>
-    <a class="nav-logo" href="https://zekeropweg.nu">Zeker<span>OpWeg</span></a>
-    <a class="nav-cta" href="https://wa.me/31623452349?text=Ik%20wil%20een%20Einde%20Garantie%20Check%20aanvragen">Plan Garantie Check</a>
-  </nav>
-
+  <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
   <div class="urgency-strip">
     <p>EV's van 2017 tot 2019 naderen het einde van hun accugarantie. <strong>Na verloop kun je geen claim meer indienen.</strong></p>
   </div>
@@ -531,5 +551,6 @@
     revealEls.forEach(el => observer.observe(el));
   </script>
 
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

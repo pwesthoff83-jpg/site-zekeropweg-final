@@ -77,17 +77,32 @@
   {"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://zekeropweg.nu/fiat-500e-accucheck#service","name":"Fiat 500e AccuCheck","description":"AVILOO Flash Test op celniveau voor Fiat 500e. Geen actieve thermische koeling. TUV-gecertificeerd, 15 tot 20 minuten op locatie.","provider":{"@id":"https://zekeropweg.nu/#organization"},"areaServed":{"@type":"Country","name":"Nederland"},"offers":{"@type":"Offer","price":"129","priceCurrency":"EUR"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Heeft de Fiat 500e actieve accukoeling?","acceptedAnswer":{"@type":"Answer","text":"Nee. De Fiat 500e heeft geen actieve thermische koeling. De accucellen worden passief gekoeld. Dit betekent dat de cellen bij warm weer of intensief snelladen hogere temperaturen bereiken dan bij systemen met actieve koeling, wat versnelde degradatie kan veroorzaken bij intensief gebruik."}},{"@type":"Question","name":"Hoe wordt de batterij van een Fiat 500e getest?","acceptedAnswer":{"@type":"Answer","text":"ZekerOpWeg gebruikt de AVILOO Flash Test, een TUV-gecertificeerde meting op celniveau. In 15 tot 20 minuten worden batterijmanagementsysteem, celspanningen, temperaturen en voertuigcommunicatie geanalyseerd. De AVILOO Flash Test ondersteunt 95% van alle EV- en hybride voertuigen."}},{"@type":"Question","name":"Wat is de garantiegrens van de Fiat 500e accu?","acceptedAnswer":{"@type":"Answer","text":"Stellantis geeft 8 jaar of 160.000 km garantie met minimaal 70% SoH. Een TUV-gecertificeerd AVILOO-certificaat is het bewijs voor een garantieclaim bij Fiat."}},{"@type":"Question","name":"Wat kost een AccuCheck voor de Fiat 500e?","acceptedAnswer":{"@type":"Answer","text":"Een AVILOO Flash Test op locatie kost €129 inclusief BTW. In Barendrecht: €95. Het AccuZeker Pakket is €228 inclusief 12 maanden AVILOO Batterijgarantie tot €3.000."}}]}]}
   </script>
   <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
-  <header style="background:#0b1220;padding:16px 24px;display:flex;justify-content:space-between;align-items:center">
-    <a href="/" style="color:#f8f7f4;text-decoration:none;font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700"><img src="/assets/brand/logo-donker.svg" alt="ZekerOpWeg" style="display:block;width:clamp(140px,24vw,190px);max-width:100%;height:auto;transform:none;object-fit:contain;vertical-align:middle"></a>
-    <nav style="display:flex;gap:24px">
-      <a href="/ev-accucheck" style="color:#a0aec0;text-decoration:none;font-size:.9rem">AccuCheck</a>
-      <a href="/aankoopadvies" style="color:#a0aec0;text-decoration:none;font-size:.9rem">Aankoopadvies</a>
-      <a href="/contact" style="color:#a0aec0;text-decoration:none;font-size:.9rem">Contact</a>
-    </nav>
-  </header>
-
+  <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
   <section class="fi5-hero">
     <div class="fi5-badge">AVILOO gecertificeerd partner</div>
     <h1>Fiat 500e AccuCheck<br><em>Kleine batterij, geen actieve koeling</em></h1>
@@ -211,5 +226,6 @@
       <a href="/privacyverklaring" style="color:#6b7280;font-size:.8rem;text-decoration:none">Privacy</a>
     </nav>
   </footer>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

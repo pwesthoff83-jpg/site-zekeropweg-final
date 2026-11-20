@@ -710,21 +710,34 @@
       }
     }
   </style>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
 
-  <header class="header">
-    <div class="wrap header-inner">
-      <a href="index.html" class="logo">Zeker<span>Op</span>Weg</a>
-
-      <div class="header-right">
-        <div class="mini-proof">Onafhankelijk batterij- en aankooprapport voor gebruikte EV’s en plug-in hybrides</div>
-        <a href="#voorbeeld" class="btn btn-secondary">Bekijk voorbeeld</a>
-        <a href="bestel-rapport.html" class="btn btn-primary">Start uw rapport voor €19,95</a>
-      </div>
-    </div>
-  </header>
-
+  <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -1040,5 +1053,6 @@
     <a href="bestel-rapport.html">Start uw rapport voor €19,95</a>
   </div>
 
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>

@@ -317,7 +317,7 @@
           "@type": "AggregateRating",
           "ratingValue": "5",
           "bestRating": "5",
-          "reviewCount": "7"
+          "reviewCount": "20"
         }
       },
       {
@@ -355,35 +355,33 @@
     ]
   }
   </script>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
 </head>
 <body>
-  <header class="zop-header">
-    <div class="zop-header-inner">
-      <a href="index.html" class="zop-logo">ZekerOpWeg</a>
-      <nav class="zop-nav">
-        <a href="index.html">Home</a>
-        <a href="aankoopadvies.html">Aankoopadvies</a>
-        <div class="zop-dropdown">
-          <a href="ev-accucheck.html" class="zop-drop-label">AccuCheck</a>
-          <div class="zop-drop-menu">
-            <a href="ev-accucheck.html">EV AccuCheck</a>
-            <a href="bmw-x5-45e-50e-accucheck.html">BMW X5 45e / 50e Beslischeck</a>
-          </div>
-        </div>
-        <div class="zop-dropdown">
-          <span class="zop-drop-label">Voor bedrijven</span>
-          <div class="zop-drop-menu">
-            <a href="ev-accucheck-zakelijk.html">EV AccuCheck zakelijk</a>
-          </div>
-        </div>
-        <a href="bezwaarservice.html">Bezwaar</a>
-        <a href="over.html">Over</a>
-        <a href="contact.html" class="zop-contact">Contact</a>
-      </nav>
-      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
-    </div>
-  </header>
-
+  <!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
   <main>
     <section class="audi-hero">
       <div class="container">
@@ -409,7 +407,7 @@
           <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">95%</p><p style="font-size:12px;color:rgba(255,255,255,.55);">van alle EV- en hybride voertuigen</p></div>
           <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">15 tot 20</p><p style="font-size:12px;color:rgba(255,255,255,.55);">minuten inclusief uitleg</p></div>
           <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">&euro;3.000</p><p style="font-size:12px;color:rgba(255,255,255,.55);">AVILOO Batterijgarantie</p></div>
-          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">5,0 <span style="font-size:20px;">&#9733;</span></p><p style="font-size:12px;color:rgba(255,255,255,.55);">Google &middot; 7 reviews</p></div>
+          <div><p style="font-size:32px;font-weight:700;color:#c9a96e;line-height:1;margin-bottom:5px;">5,0 <span style="font-size:20px;">&#9733;</span></p><p style="font-size:12px;color:rgba(255,255,255,.55);">Google &middot; 20+ reviews</p></div>
         </div>
       </div>
     </section>
@@ -529,7 +527,7 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <p class="footer-title">ZekerOpWeg</p>
+        <div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
         <p>&copy; 2026 ZekerOpWeg</p>
         <p style="margin-top:1.2rem; font-size:.85rem; opacity:.65; line-height:1.6;">
           Handelsnaam van Pepijn Westhoff<br />KvK 99323575<br />BTW NL005381985B31
@@ -551,5 +549,6 @@
   </footer>
   <a href="https://wa.me/31623452349" class="wa-fab">App mij direct</a>
   <script src="scripts/menu.js" defer></script>
+<script defer src="/scripts/zow-menu.js"></script>
 </body>
 </html>
