@@ -161,8 +161,8 @@
   <section class="services-section container" style="text-align:center;">
     <h1 class="section-title" id="paginaTitel">EV AccuCheck aanvragen</h1>
     <p class="section-subtitle">
-      Eerst controleer ik of AVILOO uw exacte auto ondersteunt. Daarna bevestig ik de afspraak.<br>
-      U betaalt na de meting en persoonlijke uitleg.
+      Stuur uw gegevens. Pepijn controleert of uw auto geschikt is voor de AVILOO-test en stemt daarna de afspraak met u af.<br>
+      Een aanvraag is nog geen bevestigde afspraak. U betaalt na de meting en persoonlijke uitleg.
     </p>
 
     <span class="izk-prijsbadge" id="prijsBadge">AccuCheck op locatie &middot; &euro;129 incl. btw</span>
@@ -193,6 +193,20 @@
         <input type="hidden" name="versie" value="2026-2">
         <input type="hidden" name="product" id="productField" value="ev-accucheck-particulier">
         <input type="hidden" name="platform" value="website">
+
+        <h3>Waarin heeft u interesse?</h3>
+        <div class="izk-doel-grid" role="radiogroup" aria-label="Interesse in AccuCheck of KoopZeker PRO">
+          <label class="izk-doel-optie">
+            <input type="radio" name="interesse" value="ev-accucheck" checked>
+            EV AccuCheck
+          </label>
+          <label class="izk-doel-optie">
+            <input type="radio" name="interesse" value="koopzeker-pro">
+            KoopZeker PRO &middot; &euro;499
+          </label>
+        </div>
+        <p class="izk-veld-hint" id="interesseHint">De AccuCheck geeft inzicht in de accugezondheid, met het AVILOO-certificaat en persoonlijke toelichting.</p>
+        <hr class="izk-divider">
 
         <h3>Kies waar u wilt meten</h3>
         <label for="meetLocatie">Locatie van de AccuCheck</label>
@@ -231,6 +245,10 @@
                placeholder="Bijv. AB-123-C"
                style="text-transform:uppercase; letter-spacing:.05em;">
 
+        <label for="advertentielink">Advertentielink (indien van toepassing)</label>
+        <input type="text" id="advertentielink" name="advertentielink" inputmode="url" autocomplete="off"
+               placeholder="Bijv. link naar de advertentie op Marktplaats of AutoScout24">
+
         <!-- Locatie: wisselt op basis van dienst-parameter -->
         <div id="locatieVast" style="display:none;">
           <label>Locatie</label>
@@ -256,7 +274,7 @@
 
         <hr class="izk-divider">
 
-        <h3>Wanneer komt het uit?</h3>
+        <h3>Uw voorkeursmoment</h3>
         <label for="voorkeursdatum">Voorkeursdatum (optioneel)</label>
         <input type="date" id="voorkeursdatum" name="voorkeursdatum" aria-describedby="datumHint">
         <p class="izk-veld-hint" id="datumHint">Dit is een voorkeur, geen bevestigde reservering. Pepijn stemt de mogelijkheden persoonlijk met u af.</p>
@@ -304,7 +322,7 @@
 
       <div class="izk-wa-alt">
         Liever direct contact?
-        <a href="https://wa.me/31623452349?text=Ik%20wil%20een%20AccuCheck%20aanvragen">
+        <a id="waAanvraag" href="https://wa.me/31623452349?text=Ik%20wil%20een%20EV%20AccuCheck%20aanvragen.%0AKenteken%3A%20%0ALocatie%20of%20postcode%20van%20de%20auto%3A%20%0AAdvertentielink%20(indien%20van%20toepassing)%3A%20%0AVoorkeursmoment%3A%20">
           App via WhatsApp
         </a>
       </div>
@@ -380,6 +398,38 @@
   initDienst();
   meetLocatie.addEventListener("change", initDienst);
 
+  // Interesse: EV AccuCheck of KoopZeker PRO (extra veld "interesse"; dienst/prijs/product blijven de AccuCheck-stap)
+  const submitBtnLabel = { "ev-accucheck": "AccuCheck aanvragen", "koopzeker-pro": "KoopZeker PRO aanvragen" };
+  const interesseHint  = document.getElementById("interesseHint");
+  const waAanvraag     = document.getElementById("waAanvraag");
+  const waTekst = {
+    "ev-accucheck": "Ik wil een EV AccuCheck aanvragen.",
+    "koopzeker-pro": "Ik heb interesse in KoopZeker PRO (€499 incl. btw)."
+  };
+  if (dienstParam === "koopzeker-pro") {
+    document.querySelector('input[name="interesse"][value="koopzeker-pro"]').checked = true;
+  }
+  function huidigeInteresse() {
+    return document.querySelector('input[name="interesse"]:checked').value;
+  }
+  function initInteresse() {
+    const keuze = huidigeInteresse();
+    document.getElementById("submitBtn").textContent = submitBtnLabel[keuze];
+    if (keuze === "koopzeker-pro") {
+      paginaTitel.textContent = "KoopZeker PRO aanvragen";
+      prijsBadge.textContent  = "KoopZeker PRO · €499 incl. btw";
+      interesseHint.textContent = "KoopZeker PRO start met de AccuCheck van €129. Na uw akkoord volgen de uitgebreide proefrit, bruginspectie, controle van remmen en banden, foto's, aankoopadvies en rapport. Het restant is €370.";
+    } else {
+      initDienst();
+      interesseHint.textContent = "De AccuCheck geeft inzicht in de accugezondheid, met het AVILOO-certificaat en persoonlijke toelichting.";
+    }
+    const regels = [waTekst[keuze], "Kenteken: ", "Locatie of postcode van de auto: ", "Advertentielink (indien van toepassing): ", "Voorkeursmoment: "];
+    waAanvraag.href = "https://wa.me/31623452349?text=" + encodeURIComponent(regels.join("\n"));
+  }
+  document.querySelectorAll('input[name="interesse"]').forEach(function (r) { r.addEventListener("change", initInteresse); });
+  meetLocatie.addEventListener("change", function () { if (huidigeInteresse() === "koopzeker-pro") initInteresse(); });
+  initInteresse();
+
   // Submit via fetch met laadstatus
   const form      = document.getElementById("accucheckForm");
   const submitBtn = document.getElementById("submitBtn");
@@ -401,7 +451,7 @@
     })
     .catch(function () {
       submitBtn.disabled    = false;
-      submitBtn.textContent = "AccuCheck aanvragen";
+      submitBtn.textContent = submitBtnLabel[huidigeInteresse()];
       alert("Er ging iets mis. Probeer het opnieuw of app ons via WhatsApp: 06 23 45 23 49");
     });
   });

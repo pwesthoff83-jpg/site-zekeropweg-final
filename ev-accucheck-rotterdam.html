@@ -88,7 +88,7 @@
   <div class="wrap">
     <div class="eyebrow">KoopZeker PRO in de praktijk</div>
     <h2 id="kia-praktijk-rotterdam">Kia Sportage PHEV: van accutest naar een onderbouwde aankoop</h2>
-    <p>Bij deze Kia met bijna 140.000 km gaf de AVILOO-meting een accugezondheid van <strong>96,5%</strong>. Na akkoord van de klant volgden een uitgebreide proefrit en een inspectie op de hefbrug. Daarbij zag ik roest op de remschijven en ongelijkmatige slijtage aan de voorbanden. Ik adviseerde om de remschijven te laten beoordelen en de uitlijning te laten controleren. Zo kon de klant deze punten vóór de koop met de verkoper bespreken.</p>
+    <p>Bij deze Kia Sportage PHEV met bijna 140.000 km gaf de AVILOO-meting een State of Health van <strong>96,5%</strong>. Na akkoord van de klant volgden een uitgebreide proefrit naar de garage en een bruginspectie. Aandachtspunten waren roestvorming op de remschijven en ongelijkmatige bandenslijtage, met het advies de uitlijning te laten controleren. Zo kon de klant de bevindingen vóór de aankoop bespreken.</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
       <a class="primary" href="/praktijkvoorbeeld-kia-sportage-phev.html">Bekijk het Kia-praktijkvoorbeeld</a>
       <a class="pill" href="https://wa.me/31623452349?text=Hallo%20Pepijn%2C%20ik%20wil%20graag%20meer%20weten%20over%20KoopZeker%20PRO.">Vraag naar KoopZeker PRO</a>
@@ -246,13 +246,18 @@ AVILOO AccuCheck van een BMW iX3. De meetmodule leest tijdens de test relevante 
 <div>
 <div class="eyebrow">Plan uw AccuCheck</div>
 <h2>Eerst controleren we uw auto.</h2>
-<p>Stuur kenteken, locatie en voorkeursdatum. Pepijn bevestigt daarna of AVILOO uw uitvoering ondersteunt en wanneer de meting kan plaatsvinden.</p>
+<p>Stuur uw gegevens. Pepijn controleert of uw auto geschikt is voor de AVILOO-test en stemt daarna de afspraak met u af.</p>
 <p>
 <strong>Bij de auto in Rotterdam €129 · Testlocatie Barendrecht €95</strong>
 <br>Beide tarieven inclusief btw. U betaalt na de meting.</p>
 <p class="fine">AVILOO Battery Warranty: alleen bij een geschikte volledig elektrische auto waarvan voertuig en testuitslag voldoen aan de AVILOO-voorwaarden. De garantie geldt niet voor plug-inhybrides.</p>
 </div>
 <form class="form" id="requestForm">
+<label for="interesse">Waarin heeft u interesse?</label>
+<select id="interesse" name="interesse">
+<option value="EV AccuCheck">EV AccuCheck</option>
+<option value="KoopZeker PRO (€499 incl. btw)">KoopZeker PRO · €499</option>
+</select>
 <label for="plate">Kenteken of merk, model en bouwjaar</label>
 <input id="plate" name="plate" autocomplete="off" required placeholder="Bijvoorbeeld AB-123-C of BMW iX3 2022">
 <label for="service">Waar wilt u de meting?</label>
@@ -262,7 +267,9 @@ AVILOO AccuCheck van een BMW iX3. De meetmodule leest tijdens de test relevante 
 </select>
 <label for="postcode">Postcode van de auto</label>
 <input id="postcode" name="postcode" required autocomplete="postal-code" placeholder="Bijvoorbeeld 2991 AA">
-<label for="date">Voorkeursdatum (optioneel)</label>
+<label for="advert">Advertentielink (indien van toepassing)</label>
+<input id="advert" name="advert" inputmode="url" autocomplete="off" placeholder="Link naar de advertentie">
+<label for="date">Voorkeursmoment (optioneel)</label>
 <input id="date" name="date" type="date">
 <button class="primary" type="submit">Stuur mijn aanvraag via WhatsApp →</button>
 <p class="fine">De ingevulde gegevens openen in WhatsApp. Uw afspraak staat pas vast na bevestiging door Pepijn.</p>
@@ -321,7 +328,7 @@ AVILOO AccuCheck van een BMW iX3. De meetmodule leest tijdens de test relevante 
 <a class="primary" href="#aanvragen">Controleer mijn kenteken · Rotterdam €129</a>
 </div>
   <script>
-    document.getElementById('requestForm').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(this);const msg=['Hallo Pepijn, ik wil een AVILOO AccuCheck aanvragen.','Auto: '+f.get('plate'),'Keuze: '+f.get('service'),'Postcode auto: '+f.get('postcode'),'Voorkeursdatum: '+(f.get('date')||'in overleg'),'Kun je eerst controleren of AVILOO deze uitvoering ondersteunt?'].join('\n');window.open('https://wa.me/31623452349?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer')});
+    document.getElementById('requestForm').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(this);const pro=/KoopZeker PRO/.test(f.get('interesse')||'');const msg=[pro?'Hallo Pepijn, ik heb interesse in KoopZeker PRO (€499 incl. btw).':'Hallo Pepijn, ik wil een AVILOO AccuCheck aanvragen.','Auto: '+f.get('plate'),'Keuze meting: '+f.get('service'),'Postcode auto: '+f.get('postcode'),'Advertentielink: '+(f.get('advert')||'niet van toepassing'),'Voorkeursmoment: '+(f.get('date')||'in overleg'),'Kun je eerst controleren of AVILOO deze uitvoering ondersteunt?'].join('\n');window.open('https://wa.me/31623452349?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer')});
   </script>
 <script defer src="/scripts/zow-menu.js"></script>
 </body>
