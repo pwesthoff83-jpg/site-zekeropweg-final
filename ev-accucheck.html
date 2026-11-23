@@ -771,6 +771,39 @@
     .zow-cases-cta .btn-primary{min-height:48px;display:inline-flex;align-items:center;justify-content:center;text-align:center;}
     .zow-cases a:focus-visible{outline:3px solid #80622e;outline-offset:5px;}
     @media(max-width:760px){.zow-cases{padding:44px 0;}.zow-cases-grid{grid-template-columns:1fr;}.zow-case{padding:24px;}.zow-cases-cta{align-items:flex-start;}.zow-cases-cta .btn-primary{width:100%;}}
+
+    /* ─── KEUZE ACCUCHECK OF KOOPZEKER PRO (Brandbook v2.0) ─── */
+    .zow-keuze { max-width: 1000px; margin: 0 auto 56px; }
+    .zow-keuze__kop { text-align: center; margin: 0 auto 24px; max-width: 640px; }
+    .zow-keuze__label { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #55666B; margin: 0 0 8px; }
+    .zow-keuze__kop h2 { font-size: clamp(26px, 3vw, 32px); color: #0E3B43; margin: 0 0 10px; line-height: 1.25; }
+    .zow-keuze__kop p { font-size: 16px; line-height: 1.6; color: #55666B; margin: 0; }
+    .zow-keuze__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .zow-keuze__kaart { background: #FBF8F2; border: 1px solid #DDD6CA; border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column; color: #0E3B43; }
+    .zow-keuze__kaart--pro { background: #EEE7DB; border-left: 6px solid #B8734A; }
+    .zow-keuze__kaart h3 { font-size: 22px; font-weight: 600; margin: 0 0 6px; color: #0E3B43; }
+    .zow-keuze__voor { font-size: 15px; line-height: 1.55; color: #55666B; margin: 0 0 18px; }
+    .zow-keuze__prijs { font-size: 34px; font-weight: 600; line-height: 1.1; color: #0E3B43; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+    .zow-keuze__prijs small { font-size: 16px; font-weight: 500; color: #55666B; }
+    .zow-keuze__btw { font-size: 13px; color: #55666B; margin: 0 0 18px; line-height: 1.5; }
+    .zow-keuze__lijst { list-style: none; margin: 0 0 20px; padding: 0; }
+    .zow-keuze__lijst li { position: relative; padding: 6px 0 6px 26px; font-size: 15px; line-height: 1.5; color: #0E3B43; border-bottom: 1px solid #DDD6CA; }
+    .zow-keuze__lijst li:last-child { border-bottom: 0; }
+    .zow-keuze__lijst li::before { content: "\2713"; position: absolute; left: 2px; top: 6px; color: #B8734A; font-weight: 700; }
+    .zow-keuze__betaling { font-size: 14px; line-height: 1.6; color: #0E3B43; background: #FBF8F2; border-radius: 8px; padding: 12px 14px; margin: 0 0 20px; }
+    .zow-keuze__acties { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .zow-keuze__knop { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 8px; background: #0E3B43; color: #FBF8F2 !important; font-weight: 600; font-size: 15px; text-decoration: none; }
+    .zow-keuze__knop:hover { background: #0A1E23; }
+    .zow-keuze__knop--wa { background: #E39B68; color: #0A1E23 !important; }
+    .zow-keuze__knop--wa:hover { background: #B8734A; }
+    .zow-keuze__link { font-size: 14px; font-weight: 600; color: #94593A; text-decoration: underline; }
+    .zow-pro-stappen { margin: 0 0 20px; padding: 16px 18px 16px 38px; background: #fff; border-radius: 10px; font-size: 15px; line-height: 1.6; color: #0E3B43; }
+    .zow-pro-stappen li { margin: 0 0 6px; }
+    .zow-pro-stappen li:last-child { margin-bottom: 0; }
+    @media (max-width: 760px) {
+      .zow-keuze__grid { grid-template-columns: 1fr; }
+      .zow-keuze__kaart { padding: 24px 20px; }
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   
@@ -1051,12 +1084,56 @@
     <!-- 2. TWEE PRIJSOPTIES -->
     <section class="price-section" id="tarieven">
       <div class="container">
+        <!-- Keuze: EV AccuCheck of KoopZeker PRO -->
+        <div class="zow-keuze" aria-labelledby="zow-keuze-titel">
+          <div class="zow-keuze__kop">
+            <p class="zow-keuze__label">Tarieven</p>
+            <h2 id="zow-keuze-titel">Alleen de accu, of de hele auto?</h2>
+            <p>Kies de EV AccuCheck als u wilt weten hoe gezond de accu is. Kies KoopZeker PRO als u een occasion wilt kopen en ook de rest van de auto beoordeeld wilt hebben.</p>
+          </div>
+          <div class="zow-keuze__grid">
+            <div class="zow-keuze__kaart">
+              <h3>EV AccuCheck</h3>
+              <p class="zow-keuze__voor">Helder inzicht in de accugezondheid, met een officieel certificaat en persoonlijke uitleg.</p>
+              <p class="zow-keuze__prijs">&euro;95 <small>of</small> &euro;129</p>
+              <p class="zow-keuze__btw">Inclusief btw. &euro;95 op afspraak in Barendrecht, &euro;129 op locatie binnen 40 km rond Barendrecht.</p>
+              <ul class="zow-keuze__lijst">
+                <li>Inzicht in de accugezondheid (State of Health) met de AVILOO Flash Test</li>
+                <li>Officieel AVILOO-certificaat</li>
+                <li>Persoonlijke toelichting op de uitslag door Pepijn</li>
+              </ul>
+              <div class="zow-keuze__acties">
+                <a class="zow-keuze__knop" href="#accucheck-varianten">Kies uw AccuCheck</a>
+                <a class="zow-keuze__link" href="https://wa.me/31623452349?text=Ik%20wil%20een%20EV%20AccuCheck%20aanvragen.%0AKenteken%3A%20%0ALocatie%20of%20postcode%20van%20de%20auto%3A%20%0AAdvertentielink%20(indien%20van%20toepassing)%3A%20%0AVoorkeursmoment%3A%20">Vraag aan via WhatsApp</a>
+              </div>
+            </div>
+            <div class="zow-keuze__kaart zow-keuze__kaart--pro">
+              <h3>KoopZeker PRO</h3>
+              <p class="zow-keuze__voor">Voor wie een occasion wil kopen: de accu en de auto zelf beoordeeld, met een onderbouwd aankoopadvies.</p>
+              <p class="zow-keuze__prijs">&euro;499</p>
+              <p class="zow-keuze__btw">Inclusief btw.</p>
+              <ul class="zow-keuze__lijst">
+                <li>EV AccuCheck met AVILOO-certificaat</li>
+                <li>Uitgebreide proefrit</li>
+                <li>Bruginspectie</li>
+                <li>Controle van remmen en banden</li>
+                <li>Foto&rsquo;s van de bevindingen</li>
+                <li>Persoonlijk aankoopadvies en rapport</li>
+              </ul>
+              <p class="zow-keuze__betaling">U betaalt in twee stappen: eerst &euro;129 voor de AccuCheck, daarna het restant van &euro;370. <a class="zow-keuze__link" href="#koopzeker-pro">Zo werkt KoopZeker PRO</a></p>
+              <div class="zow-keuze__acties">
+                <a class="zow-keuze__knop" href="intake.html?dienst=koopzeker-pro">Vraag KoopZeker PRO aan</a>
+                <a class="zow-keuze__knop zow-keuze__knop--wa" href="https://wa.me/31623452349?text=Ik%20heb%20interesse%20in%20KoopZeker%20PRO.%0AKenteken%3A%20%0ALocatie%20of%20postcode%20van%20de%20auto%3A%20%0AAdvertentielink%3A%20%0AVoorkeursmoment%3A%20">WhatsApp over PRO</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <p class="price-eyebrow" style="text-align:center;">EV ACCUCHECK</p>
         <h2 style="text-align:center; font-size:32px; margin-bottom:10px;">Kies de variant die bij u past</h2>
         <p style="text-align:center; font-size:15px; color:var(--zop-muted); max-width:560px; margin:0 auto 32px; line-height:1.6;">
           Dezelfde onafhankelijke meting, T&Uuml;V-gecertificeerd, AVILOO-certificaat inbegrepen. Ondersteunt meer dan 95% van alle EV- en plug-inhybride voertuigen. Het verschil zit alleen in de locatie.
         </p>
-        <div class="price-cards-grid">
+        <div class="price-cards-grid" id="accucheck-varianten" style="scroll-margin-top:24px;">
           <!-- VARIANT 1: Op locatie -->
           <div class="price-card-wrap">
             <div class="price-badge">Meest gekozen</div>
@@ -1119,6 +1196,15 @@
           <p style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#785a26;margin:0 0 8px;">KoopZeker PRO</p>
           <h2 id="koopzeker-pro-titel" style="font-size:clamp(22px,4vw,30px);line-height:1.25;margin:0 0 12px;">Een occasion op het oog? Laat ook de rest van de auto controleren.</h2>
           <p style="margin:0 0 18px;">Met een EV AccuCheck weet u hoe gezond de accu is. Met KoopZeker PRO krijgt u ook inzicht in de staat van de auto, met een uitgebreide proefrit, een inspectie op de hefbrug en persoonlijk aankoopadvies.</p>
+          <p style="margin:0 0 8px;font-size:18px;font-weight:600;color:#0E3B43;">&euro;499 inclusief btw</p>
+          <h3 style="font-size:18px;margin:0 0 6px;">Zo werkt de betaling</h3>
+          <ol class="zow-pro-stappen">
+            <li>U betaalt eerst &euro;129 voor de EV AccuCheck.</li>
+            <li>Pepijn bespreekt de meetgegevens met u, telefonisch of via WhatsApp.</li>
+            <li>Na uw akkoord volgt de PRO-inspectie. Het accucertificaat ontvangt u alvast.</li>
+            <li>Na de inspectie bespreekt Pepijn de bevindingen met u.</li>
+            <li>Na betaling van het restant van &euro;370 ontvangt u het rapport.</li>
+          </ol>
           <h3 style="font-size:18px;margin:0 0 6px;">Uit de praktijk: Kia Sportage plug-inhybride</h3>
           <p style="margin:0 0 10px;">De koper twijfelde tussen een Hyundai en deze Kia Sportage. Nadat we de pluspunten en aandachtspunten naast elkaar hadden gezet, koos hij ervoor de Kia verder te laten onderzoeken. Terwijl hij aan het werk was, begon Pepijn met de AVILOO-meting: <strong>96,5% accugezondheid</strong>. Na overleg volgden een uitgebreide proefrit en de inspectie op de hefbrug.</p>
           <p style="margin:0 0 10px;">De proefrit gaf een goede indruk. Op de brug zagen we roestvorming op de remschijven en meer slijtage aan de binnenzijde van de voorbanden. Zo wist de koper welke punten hij vóór het tekenen met de verkoper kon bespreken.</p>
@@ -1129,6 +1215,7 @@
             <p style="margin:8px 0 0;"><a href="https://www.google.com/maps/search/?api=1&amp;query=ZekerOpWeg%20Barendrecht" style="color:#785a26;font-weight:700;text-decoration:underline;">Bekijk de Google-reviews van ZekerOpWeg</a></p>
           </figure>
           <a href="https://wa.me/31623452349?text=Ik%20wil%20graag%20meer%20weten%20over%20KoopZeker%20PRO%20voor%20een%20occasion." class="btn-primary" style="display:inline-flex;align-items:center;min-height:44px;">Vraag naar KoopZeker PRO</a>
+          <a href="intake.html?dienst=koopzeker-pro" style="display:inline-flex;align-items:center;min-height:44px;margin-left:12px;color:#785a26;font-weight:700;text-decoration:underline;">Of vraag KoopZeker PRO aan via het formulier</a>
         </div>
       </div>
     </section>
