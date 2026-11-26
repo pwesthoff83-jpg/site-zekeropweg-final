@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Betrouwbaarheid EV-accutest: wat zegt een SOH van 100%? | ZekerOpWeg</title>
+<meta content="Een accucertificaat van een onafhankelijke partij is niet automatisch een onafhankelijk vastgestelde accucapaciteit. Over BMS-uitlezing, SOH, BMW, MOBA, AVILOO en de noodzaak van uniforme kwaliteitseisen voor accutests." name="description"/>
+<link href="https://zekeropweg.nu/betrouwbaarheid-ev-accutest.html" rel="canonical"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+<meta content="Pepijn Westhoff" name="author"/>
+<meta content="article" property="og:type"/>
+<meta content="nl_NL" property="og:locale"/>
+<meta content="ZekerOpWeg" property="og:site_name"/>
+<meta content="100% State of Health na 128.000 kilometer. Maar wat is er daadwerkelijk getest?" property="og:title"/>
+<meta content="De consument heeft recht op accutransparantie. Waarom de elektrische occasionmarkt uniforme kwaliteitseisen voor accutests nodig heeft: BMS-uitlezing, fabrikant-SOH en onafhankelijke metingen naast elkaar." property="og:description"/>
+<meta content="https://zekeropweg.nu/betrouwbaarheid-ev-accutest.html" property="og:url"/>
+<meta content="https://zekeropweg.nu/images/betrouwbaarheid-ev-accutest-og.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Pepijn Westhoff sluit een testmodule aan tijdens een accutest op locatie" property="og:image:alt"/>
+<meta content="2026-11-26T09:00:00+01:00" property="article:published_time"/>
+<meta content="Pepijn Westhoff" property="article:author"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="100% State of Health na 128.000 kilometer. Maar wat is er daadwerkelijk getest?" name="twitter:title"/>
+<meta content="De consument heeft recht op accutransparantie. Waarom de elektrische occasionmarkt uniforme kwaliteitseisen voor accutests nodig heeft." name="twitter:description"/>
+<meta content="https://zekeropweg.nu/images/betrouwbaarheid-ev-accutest-og.jpg" name="twitter:image"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://zekeropweg.nu/#organization",
+      "name": "ZekerOpWeg",
+      "url": "https://zekeropweg.nu",
+      "logo": "https://zekeropweg.nu/assets/brand/logo-licht.svg",
+      "slogan": "Betrouwbaar onderweg naar morgen",
+      "email": "info@zekeropweg.nu",
+      "telephone": "+31623452349"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://zekeropweg.nu/over.html#pepijn-westhoff",
+      "name": "Pepijn Westhoff",
+      "jobTitle": "Oprichter ZekerOpWeg",
+      "url": "https://zekeropweg.nu/over.html",
+      "image": "https://zekeropweg.nu/assets/images/foto-pepijn.jpeg",
+      "worksFor": { "@id": "https://zekeropweg.nu/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://zekeropweg.nu/betrouwbaarheid-ev-accutest.html#artikel",
+      "headline": "100% State of Health na 128.000 kilometer. Maar wat is er daadwerkelijk getest?",
+      "alternativeHeadline": "Waarom de elektrische occasionmarkt behoefte heeft aan uniforme kwaliteitseisen voor accutests",
+      "description": "Een accucertificaat van een onafhankelijke partij is niet automatisch een onafhankelijk vastgestelde accucapaciteit. Over BMS-uitlezing, SOH, BMW, MOBA, AVILOO en de noodzaak van uniforme kwaliteitseisen voor accutests.",
+      "inLanguage": "nl-NL",
+      "datePublished": "2026-11-26T09:00:00+01:00",
+      "dateModified": "2026-11-26T09:00:00+01:00",
+      "author": { "@id": "https://zekeropweg.nu/over.html#pepijn-westhoff" },
+      "publisher": { "@id": "https://zekeropweg.nu/#organization" },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://zekeropweg.nu/images/betrouwbaarheid-ev-accutest-og.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "mainEntityOfPage": "https://zekeropweg.nu/betrouwbaarheid-ev-accutest.html",
+      "articleSection": "Kennis & Inzicht",
+      "timeRequired": "PT20M",
+      "wordCount": 4300,
+      "keywords": ["betrouwbaarheid EV accutest", "onafhankelijke accutest elektrische auto", "SOH elektrische auto", "BMS uitlezen", "accucertificaat elektrische auto", "Europees batterijpaspoort", "accutest standaardisering"],
+      "citation": [
+        "https://www.autoweek.nl/autonieuws/artikel/ev-occasionmarkt-wordt-volwassener-maar-is-er-nog-niet/",
+        "https://www.hofmann.auto/batteriepass/passWBA41EU0409S77507.pdf",
+        "https://get-moba.com/en/moba-certify-pro-en/",
+        "https://www.bovag.nl/pers/persberichten/onderzoek-betrouwbaarheid-batterijtesten-tweedehands-elektrische-autos",
+        "https://cara-europe.org/battery-health/",
+        "https://eur-lex.europa.eu/eli/reg/2023/1542/oj"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zekeropweg.nu/" },
+        { "@type": "ListItem", "position": 2, "name": "EV AccuCheck", "item": "https://zekeropweg.nu/ev-accucheck.html" },
+        { "@type": "ListItem", "position": 3, "name": "Betrouwbaarheid van EV-accutests", "item": "https://zekeropweg.nu/betrouwbaarheid-ev-accutest.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is een SOH van 100% na 128.000 kilometer onbetrouwbaar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Niet per definitie. Een SOH van 100% kan kloppen binnen de definitie die de fabrikant hanteert, bijvoorbeeld als het BMS rekent met de netto bruikbare capaciteit en een buffer gebruikt. Zonder vermelding van de herkomst, de referentiewaarde en de meetmethode is de waarde alleen niet goed te interpreteren." }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat is het verschil tussen een BMS-uitlezing en een onafhankelijke accutest?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bij een BMS-uitlezing wordt de SOH overgenomen die het batterijmanagementsysteem van de fabrikant zelf heeft berekend. Bij een onafhankelijke analyse berekent een externe partij de SOH zelf, op basis van voertuiggegevens, eigen algoritmes en referentiedata. Bij een capaciteitstest wordt de beschikbare energie tijdens een laad- of ontlaadcyclus vastgesteld." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is een accucertificaat altijd een onafhankelijke meting?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nee. Een certificaat kan door een onafhankelijke partij zijn uitgegeven en digitaal verifieerbaar zijn, terwijl de SOH op het certificaat de waarde is die het BMS van de fabrikant heeft berekend. De onafhankelijkheid van de uitgever, van de berekening en van de capaciteitsvaststelling zijn drie verschillende dingen." }
+        },
+        {
+          "@type": "Question",
+          "name": "Geldt het Europese batterijpaspoort ook voor gebruikte elektrische auto's?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Volgens artikel 77 van Verordening (EU) 2023/1542 moeten batterijen voor elektrische voertuigen die vanaf 18 februari 2027 in de handel worden gebracht of in gebruik worden genomen een batterijpaspoort hebben. Voor de huidige vloot gebruikte elektrische auto's bestaat zo'n paspoort niet." }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat betekent CARA Approved?",
+          "acceptedAnswer": { "@type": "Answer", "text": "CARA Europe, een vereniging van partijen uit de Europese remarketingmarkt, certificeert accutests onder de naam Battery Health Check CARA Approved. CARA onderscheidt een Basic-test, die de SOH uit het BMS van de fabrikant gebruikt en volgens CARA geen onafhankelijke beoordeling is, en een Premium-test die de accu belast met laden, ontladen of rijden." }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe nauwkeurig is een accutest?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Iedere methode heeft een meetonzekerheid. BMW vermeldt bij zijn Battery Health Quick Report een maximale spreiding van 5% in ten minste 95% van de referentiemetingen. AVILOO vermeldt een maximale afwijking van 3% in ten minste 95% van de referentiemetingen. Een goed certificaat vermeldt de onzekerheid en hoe die is bepaald." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link href="/assets/brand/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="/assets/brand/zow-header.css" rel="stylesheet"/>
+<link as="image" fetchpriority="high" href="/images/betrouwbaarheid-ev-accutest-praktijk-800.jpg" imagesizes="(max-width: 900px) 100vw, 480px" imagesrcset="/images/betrouwbaarheid-ev-accutest-praktijk-800.jpg 800w, /images/betrouwbaarheid-ev-accutest-praktijk.jpg 1200w" rel="preload"/>
+<style>
+  /* Kennisartikel volgens ZekerOpWeg Brandbook v2.0 (tokens hoofdstuk 9.1) */
+  :root {
+    --zow-night: #0A1E23; --zow-petrol: #0E3B43; --zow-petrol-mid: #1F6E77; --zow-teal: #2A9BA6;
+    --zow-copper: #B8734A; --zow-copper-light: #E39B68; --zow-copper-deep: #94593A;
+    --zow-ivory: #F4EEE4; --zow-ivory-light: #FBF8F2; --zow-sand: #EEE7DB;
+    --zow-asphalt: #55666B; --zow-line: #DDD6CA;
+    --zow-font: "Geist", "Aptos", "Arial", sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--zow-ivory-light); color: var(--zow-petrol); font-family: var(--zow-font); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--zow-petrol); text-underline-offset: 3px; }
+  a:hover { color: var(--zow-copper-deep); }
+  a:focus-visible, summary:focus-visible { outline: 3px solid var(--zow-teal); outline-offset: 3px; border-radius: 4px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--zow-night); color: var(--zow-ivory-light); padding: 8px 16px; border-radius: 8px; z-index: 1000; }
+  .skip:focus { left: 16px; }
+  .wrap { width: min(1200px, calc(100% - 32px)); margin: 0 auto; }
+  .tekst { max-width: 720px; }
+  h1, h2, h3 { font-family: var(--zow-font); font-weight: 600; line-height: 1.2; color: var(--zow-petrol); margin: 0 0 16px; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(34px, 4vw, 48px); }
+  h2 { font-size: clamp(26px, 3vw, 34px); margin-top: 0; }
+  h3 { font-size: clamp(20px, 2vw, 24px); font-weight: 500; margin-top: 32px; }
+  p { margin: 0 0 16px; }
+  .label { font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--zow-asphalt); margin: 0 0 12px; }
+  .horizon { width: 64px; height: 3px; background: var(--zow-copper); border: 0; margin: 0 0 24px; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Kruimelpad */
+  .kruimel { font-size: 14px; color: var(--zow-asphalt); padding: 16px 0 0; }
+  .kruimel ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .kruimel li + li::before { content: "/"; margin-right: 6px; color: var(--zow-line); }
+  .kruimel a { color: var(--zow-asphalt); }
+
+  /* Hero */
+  .hero { padding: 32px 0 56px; border-bottom: 1px solid var(--zow-line); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) 480px; gap: 56px; align-items: center; }
+  .hero__sub { font-size: clamp(18px, 1.6vw, 21px); color: var(--zow-asphalt); max-width: 640px; margin-bottom: 24px; }
+  .byline { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--zow-asphalt); }
+  .byline img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+  .byline strong { color: var(--zow-petrol); font-weight: 600; }
+  .hero figure { margin: 0; }
+  .hero figure img { border-radius: 16px; aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  .hero figcaption { font-size: 13px; color: var(--zow-asphalt); margin-top: 8px; }
+
+  /* Artikelopbouw */
+  .artikel { display: grid; grid-template-columns: 260px minmax(0, 720px); gap: 64px; padding: 56px 0 24px; }
+  .toc { position: sticky; top: 24px; align-self: start; font-size: 15px; }
+  .toc ol { margin: 0; padding: 0 0 0 20px; color: var(--zow-asphalt); }
+  .toc li { margin: 0 0 8px; }
+  .toc a { color: var(--zow-petrol); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc details summary { display: none; }
+  .sectie { padding: 0 0 48px; margin: 0 0 48px; border-bottom: 1px solid var(--zow-line); scroll-margin-top: 24px; }
+  .sectie:last-child { border-bottom: 0; }
+
+  .opening { margin: 0 0 40px; padding: 0 0 0 20px; border-left: 3px solid var(--zow-copper); }
+  .opening__zin { font-size: clamp(24px, 2.6vw, 30px); font-weight: 600; line-height: 1.25; color: var(--zow-petrol); margin: 0 0 12px; letter-spacing: -0.01em; }
+  .opening p:last-child { font-size: clamp(17px, 1.4vw, 19px); color: var(--zow-asphalt); margin: 0; }
+  .kern { background: var(--zow-sand); border-radius: 16px; padding: 24px 28px; margin: 0 0 48px; }
+  .kern h2 { font-size: 22px; margin-bottom: 12px; }
+  .kern ul { margin: 0; padding-left: 20px; }
+  .kern li { margin: 0 0 8px; }
+
+  .citaat { margin: 24px 0; padding: 20px 24px; background: #fff; border-left: 6px solid var(--zow-copper); border-radius: 0 16px 16px 0; }
+  .citaat blockquote { margin: 0 0 10px; font-size: 18px; line-height: 1.55; color: var(--zow-petrol); }
+  .citaat .vertaling { font-size: 15px; color: var(--zow-asphalt); margin: 0 0 8px; }
+  .citaat figcaption { font-size: 14px; color: var(--zow-asphalt); }
+
+  .noot { font-size: 15px; color: var(--zow-asphalt); background: var(--zow-ivory); border-radius: 8px; padding: 14px 16px; }
+  .vragen { background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 24px 28px; margin: 24px 0; }
+  .vragen h3 { margin-top: 0; }
+  .vragen ol { margin: 0; padding-left: 22px; }
+  .vragen li { margin: 0 0 10px; }
+
+  /* Drie methodes */
+  .methodes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 32px; }
+  .methode { background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 20px; }
+  .methode__nr { font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--zow-copper-deep); margin: 0 0 6px; }
+  .methode h3 { font-size: 19px; margin: 0 0 8px; }
+  .methode p { font-size: 15px; margin: 0; color: var(--zow-asphalt); }
+  .stroom { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 13px; margin: 0 0 12px; }
+  .stroom span { background: var(--zow-sand); border-radius: 999px; padding: 3px 10px; color: var(--zow-petrol); }
+  .stroom i { font-style: normal; color: var(--zow-copper); }
+
+  /* Tabellen */
+  .tabel-scroll { overflow-x: auto; margin: 24px 0; border: 1px solid var(--zow-line); border-radius: 16px; background: #fff; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15px; }
+  caption { text-align: left; padding: 16px 18px 4px; font-weight: 600; color: var(--zow-petrol); }
+  th, td { text-align: left; vertical-align: top; padding: 12px 18px; border-bottom: 1px solid var(--zow-line); }
+  thead th { font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--zow-asphalt); background: var(--zow-ivory); }
+  tbody th { font-weight: 600; color: var(--zow-petrol); width: 24%; }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .tabel-hint { display: none; font-size: 13px; color: var(--zow-asphalt); margin: -12px 0 24px; }
+
+  .onafh { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .onafh div { background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 18px 20px; }
+  .onafh strong { display: block; margin-bottom: 6px; }
+  .onafh p { margin: 0; font-size: 15px; color: var(--zow-asphalt); }
+
+  /* NAP en standpunt */
+  .nap { background: var(--zow-sand); border-radius: 16px; padding: 28px; }
+  .standpunt { background: var(--zow-night); color: var(--zow-ivory); border-radius: 16px; padding: clamp(24px, 4vw, 48px); }
+  .standpunt h2, .standpunt h3 { color: var(--zow-ivory-light); }
+  .standpunt .label { color: var(--zow-copper-light); }
+  .standpunt .horizon { background: var(--zow-copper-light); }
+  .standpunt a { color: var(--zow-ivory-light); }
+  .standpunt ol { margin: 0 0 24px; padding-left: 24px; }
+  .standpunt li { margin: 0 0 8px; }
+  .standpunt .slot { border-top: 1px solid rgba(244,238,228,.2); padding-top: 24px; margin-top: 8px; font-size: clamp(18px, 1.6vw, 21px); }
+  .standpunt .slot p:last-child { color: var(--zow-copper-light); font-weight: 600; margin: 0; }
+
+  /* FAQ */
+  .faq details { border-bottom: 1px solid var(--zow-line); padding: 16px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--zow-copper); font-weight: 500; }
+  .faq details[open] summary::after { content: "\2212"; }
+  .faq details p { margin: 12px 0 0; color: var(--zow-petrol); }
+
+  /* Bronnen */
+  .bronnen ol { padding-left: 22px; font-size: 15px; }
+  .bronnen li { margin: 0 0 12px; }
+  .bronnen .wat { color: var(--zow-asphalt); }
+  .transparant { background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 20px 24px; font-size: 15px; }
+
+  /* Gerelateerd en CTA */
+  .gerelateerd { padding: 24px 0 64px; }
+  .kaarten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .kaart { display: block; background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 20px; text-decoration: none; color: var(--zow-petrol); }
+  .kaart:hover { border-color: var(--zow-copper); color: var(--zow-petrol); }
+  .kaart strong { display: block; font-size: 17px; margin-bottom: 6px; }
+  .kaart span { font-size: 15px; color: var(--zow-asphalt); }
+  .cta { background: var(--zow-petrol); color: var(--zow-ivory-light); padding: clamp(40px, 6vw, 72px) 0; }
+  .cta h2 { color: var(--zow-ivory-light); }
+  .cta p { max-width: 640px; color: var(--zow-ivory); }
+  .cta .prijzen { font-size: 15px; color: var(--zow-ivory); }
+  .knoppen { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .knop { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 22px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+  .knop--primair { background: var(--zow-copper-light); color: var(--zow-night); }
+  .knop--primair:hover { background: var(--zow-copper); color: var(--zow-night); }
+  .knop--secundair { border: 1px solid rgba(251,248,242,.5); color: var(--zow-ivory-light); }
+  .knop--secundair:hover { border-color: var(--zow-ivory-light); color: var(--zow-ivory-light); background: rgba(251,248,242,.06); }
+
+  /* Footer */
+  .voet { background: var(--zow-night); color: var(--zow-ivory); padding: 48px 0 32px; font-size: 15px; }
+  .voet a { color: var(--zow-ivory-light); }
+  .voet__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
+  .voet__titel { font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--zow-copper-light); margin: 0 0 12px; }
+  .voet ul { list-style: none; margin: 0; padding: 0; }
+  .voet li { margin: 0 0 6px; }
+  .voet__klein { border-top: 1px solid rgba(244,238,228,.15); margin-top: 32px; padding-top: 20px; font-size: 13px; color: rgba(244,238,228,.75); }
+
+  @media (max-width: 1000px) {
+    .artikel { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .toc { position: static; background: #fff; border: 1px solid var(--zow-line); border-radius: 16px; padding: 16px 20px; }
+    .toc details summary { display: block; cursor: pointer; font-weight: 600; }
+    .toc .label.desktop { display: none; }
+    .toc ol { margin-top: 12px; }
+  }
+  @media (max-width: 900px) {
+    .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+    .methodes, .kaarten { grid-template-columns: 1fr; }
+    .voet__grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 700px) {
+    .onafh { grid-template-columns: 1fr; }
+    .tabel-hint { display: block; }
+    .kern, .vragen { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<script defer src="/scripts/zow-analytics.js"></script>
+</head>
+<body>
+<a class="skip" href="#inhoud">Ga naar de inhoud</a>
+<!-- ZekerOpWeg hoofdmenu (assets/brand/zow-header.css, scripts/zow-menu.js) -->
+<div class="zow-header" data-zow-header="" role="banner">
+<div class="zow-header__inner">
+<a aria-label="ZekerOpWeg, naar de homepage" class="zow-header__logo" href="/"><img alt="ZekerOpWeg" height="55" src="/assets/brand/logo-licht.svg" width="190"/></a>
+<div aria-label="Hoofdnavigatie" class="zow-header__nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+<button aria-controls="zow-mobile-nav" aria-expanded="false" aria-label="Menu openen" class="zow-header__toggle" type="button">☰</button>
+</div>
+<div aria-label="Mobiele navigatie" class="zow-header__mobile" id="zow-mobile-nav" role="navigation">
+<a href="/aankoopadvies.html">Aankoopadvies</a>
+<a href="/ev-accucheck.html">EV AccuCheck</a>
+<a href="/ev-selectie.html">EV Selectie</a>
+<a href="/ev-accucheck-zakelijk.html">Zakelijk</a>
+<a href="/over.html">Over Pepijn</a>
+<a class="zow-header__wa" href="https://wa.me/31623452349">WhatsApp</a>
+</div>
+</div>
+
+<main id="inhoud">
+<article>
+<header class="hero">
+<div class="wrap">
+<nav aria-label="Kruimelpad" class="kruimel">
+<ol>
+<li><a href="/">Home</a></li>
+<li><a href="/ev-accucheck.html">EV AccuCheck</a></li>
+<li aria-current="page">Betrouwbaarheid van EV-accutests</li>
+</ol>
+</nav>
+<div class="hero__grid" style="margin-top:24px;">
+<div>
+<p class="label">Kennis &amp; Inzicht</p>
+<h1>100% State of Health na 128.000 kilometer. Maar wat is er daadwerkelijk getest?</h1>
+<p class="hero__sub">Waarom de elektrische occasionmarkt behoefte heeft aan uniforme kwaliteitseisen voor accutests.</p>
+<div class="byline">
+<img alt="Pepijn Westhoff" height="52" loading="lazy" src="/assets/images/foto-pepijn.jpeg" width="52"/>
+<div>
+<strong>Pepijn Westhoff</strong>, oprichter ZekerOpWeg<br/>
+<time datetime="2026-11-26">26 november 2026</time> · Leestijd ongeveer 20 minuten
+</div>
+</div>
+</div>
+<figure>
+<img alt="Pepijn Westhoff zit in een Porsche Cayenne en sluit een testmodule aan op de diagnosepoort tijdens een accutest op locatie" fetchpriority="high" height="900" sizes="(max-width: 900px) 100vw, 480px" src="/images/betrouwbaarheid-ev-accutest-praktijk-800.jpg" srcset="/images/betrouwbaarheid-ev-accutest-praktijk-800.jpg 800w, /images/betrouwbaarheid-ev-accutest-praktijk.jpg 1200w" width="1200"/>
+<figcaption>Een accutest op locatie. Wat de uitslag betekent, hangt af van de methode die achter het percentage zit.</figcaption>
+</figure>
+</div>
+</div>
+</header>
+
+<div class="wrap artikel">
+<aside class="toc" aria-label="Inhoudsopgave">
+<details open>
+<summary>Inhoudsopgave</summary>
+<p class="label desktop">In dit artikel</p>
+<ol>
+<li><a href="#aanleiding">Aanleiding</a></li>
+<li><a href="#voorbeeld">Het voorbeeld: 100% na 128.000 km</a></li>
+<li><a href="#bms">Hoe een BMS de SOH berekent</a></li>
+<li><a href="#bmw-moba">Fabrikantwaarde en certificaat</a></li>
+<li><a href="#testmethodes">Drie testmethodes vergeleken</a></li>
+<li><a href="#onderzoek">Onderzoek en Europese regels</a></li>
+<li><a href="#nap">De NAP van de EV-occasion</a></li>
+<li><a href="#standpunt">Standpunt ZekerOpWeg</a></li>
+<li><a href="#faq">Veelgestelde vragen</a></li>
+<li><a href="#bronnen">Bronnen en transparantie</a></li>
+</ol>
+</details>
+</aside>
+
+<div>
+<div class="opening">
+<p class="opening__zin">De consument heeft recht op accutransparantie.</p>
+<p>Niet op een percentage alleen, maar op het verhaal erachter. Wie heeft de accu beoordeeld? Is de waarde uitgelezen, berekend of gemeten? En met welke zekerheid? Bij een van de meest waardevolle onderdelen van een elektrische auto hoort een antwoord dat iedere koper kan controleren.</p>
+</div>
+<section aria-labelledby="kern-titel" class="kern">
+<h2 id="kern-titel">De kern in vijf punten</h2>
+<ul>
+<li>Volgens onderzoek van AVILOO weet 50,7% van de ondervraagde potentiële kopers van een elektrische occasion niet dat de accu vooraf getest kan worden.</li>
+<li>De volgende vraag is minstens zo belangrijk: hoe is de accu getest, en wie heeft de State of Health (SOH) berekend?</li>
+<li>Een onafhankelijk uitgegeven accucertificaat is niet automatisch het bewijs van een onafhankelijk vastgestelde accucapaciteit.</li>
+<li>BMW noemt de SOH uit zijn eigen snelle rapport een indicatie op basis van batterijsoftware, met een vermelde spreiding van maximaal 5%.</li>
+<li>ZekerOpWeg pleit voor uniforme, bij voorkeur Europese kwaliteitseisen, zodat ieder accucertificaat vermeldt hoe de SOH tot stand is gekomen.</li>
+</ul>
+</section>
+
+<section aria-labelledby="aanleiding" class="sectie">
+<h2 id="aanleiding">Aanleiding: de helft weet niet dat een accu getest kan worden</h2>
+<hr class="horizon"/>
+<p>AutoWeek publiceerde op 24 november 2026 de resultaten van de AVILOO Used EV Trust Study. AVILOO Battery Diagnostics, de initiatiefnemer van het onderzoek, ondervroeg online 837 consumenten met interesse in elektrische auto's en 443 bedrijven in Frankrijk, Duitsland, Italië, Nederland, Noorwegen, Zweden, het Verenigd Koninkrijk en de Verenigde Staten. In Nederland ging het om 109 consumenten en 58 bedrijven. Het veldwerk liep van april tot en met september 2026.</p>
+<figure class="citaat">
+<blockquote>“Nog altijd is 50,7 procent van de potentiële kopers dus niet op de hoogte van de mogelijkheid om de conditie van het accupakket vooraf te laten testen.”</blockquote>
+<figcaption>AutoWeek, 24 november 2026, op basis van de AVILOO Used EV Trust Study. <a href="https://www.autoweek.nl/autonieuws/artikel/ev-occasionmarkt-wordt-volwassener-maar-is-er-nog-niet/" rel="noopener">Bekijk het artikel</a></figcaption>
+</figure>
+<p>Uit hetzelfde onderzoek blijkt dat 48,1% van de deelnemende autobedrijven minimaal driekwart van hun gebruikte elektrische auto's met een accucertificaat aanbiedt. Batterijgezondheid en verwachte levensduur scoren samen met toekomstige reparatiekosten het hoogst als drempel bij de aankoop van een gebruikte elektrische auto: 4,1 op een schaal van 1 tot 5.</p>
+<p>Het accucertificaat wordt dus snel gewoner. Daarmee verschuift de vraag. Niet alleen of een accu is getest is belangrijk, maar vooral hoe. Twee certificaten met hetzelfde percentage kunnen op een totaal verschillende manier tot stand zijn gekomen. Voor een koper is dat verschil op het certificaat zelf vaak niet te zien.</p>
+</section>
+
+<section aria-labelledby="voorbeeld" class="sectie">
+<h2 id="voorbeeld">Het voorbeeld: 100% State of Health na 128.000 kilometer</h2>
+<hr class="horizon"/>
+<p class="noot">Dit is een illustratief voorbeeld, geen meting van een bestaande auto.</p>
+<p>Stel: een elektrische auto van vier jaar oud heeft 128.000 kilometer gereden. In de advertentie staat een State of Health van 100%, rechtstreeks uitgelezen uit het Battery Management System (BMS) van de auto.</p>
+<p>Is die waarde onjuist? Niet per definitie. Het BMS rekent met de definitie die de fabrikant heeft gekozen. Als de fabrikant de SOH relateert aan de netto bruikbare capaciteit, en een deel van de accu als buffer achter de hand houdt, kan de bruikbare capaciteit binnen die definitie nog op het oorspronkelijke niveau liggen. Het percentage kan dan kloppen, terwijl de cellen wel degelijk enige veroudering hebben doorgemaakt.</p>
+<p>Het punt is niet dat de waarde fout is. Het punt is dat de waarde zonder context niet goed te interpreteren is. Wie heeft het percentage berekend? Ten opzichte van welke referentiecapaciteit? Met welke meetonzekerheid? En is er naast het percentage ook gekeken naar de toestand van de afzonderlijke cellen?</p>
+</section>
+
+<section aria-labelledby="bms" class="sectie">
+<h2 id="bms">Hoe een BMS de State of Health berekent</h2>
+<hr class="horizon"/>
+<p>Het Battery Management System is de software en elektronica die de tractieaccu bewaakt en aanstuurt. Het BMS meet continu spanningen, stromen en temperaturen en schat op basis daarvan onder meer de laadtoestand en de veroudering van de accu. De State of Health is daarbij in de regel een berekende schatting: het BMS leidt de resterende capaciteit af uit modellen en meetgegevens, zonder dat de accu daarvoor volledig wordt ontladen.</p>
+
+<h3>Geen universele definitie</h3>
+<p>SOH is geen volledig gestandaardiseerd percentage dat zonder context tussen merken en testmethodes vergeleken kan worden. Fabrikanten kunnen verschillende definities en referentiewaarden hanteren. De ene fabrikant relateert de SOH aan de nominale capaciteit bij aflevering, de andere aan de bruikbare energie volgens de typegoedkeuring of aan een interne referentie. Sommige merken tonen bovendien geen SOH maar een degradatiepercentage. MOBA beschrijft dat zelf ook: het BMS berekent volgens MOBA “een SOH of, voor bepaalde merken, een degradatiepercentage” (<a href="https://get-moba.com/en/moba-certify-pro-en/" rel="noopener">MOBA</a>, vertaald).</p>
+<p>De Europese Batterijenverordening kiest voor batterijen van elektrische voertuigen een eigen begrip: de staat van gecertificeerde energie, State of Certified Energy (SOCE), als parameter voor de conditie van de accu (<a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj" rel="noopener">Verordening (EU) 2023/1542, bijlage VII, deel A</a>). Dat onderstreept dat het begrip conditie niet vanzelfsprekend eenduidig is.</p>
+
+<h3>Bruto en netto capaciteit, en de rol van buffers</h3>
+<p>De bruto capaciteit is de totale energie die de cellen fysiek kunnen opslaan. De netto capaciteit is het deel dat de auto de bestuurder laat gebruiken. Het verschil is een buffer aan de bovenkant, de onderkant of beide, die de cellen beschermt tegen extreme laadtoestanden. Fabrikanten bepalen zelf hoe groot die buffer is en of en hoe die in de loop van de tijd wordt aangesproken. Een SOH die aan de netto capaciteit is gerelateerd, kan daardoor langer op of rond 100% blijven dan de fysieke toestand van de cellen doet vermoeden.</p>
+
+<h3>Software, kalibratie en temperatuur</h3>
+<p>De SOH-schatting van een BMS is afhankelijk van de software en van de kalibratie van het model. Een software-update kan de berekening veranderen. Na een periode met weinig volledige laad- en ontlaadcycli kan de schatting minder nauwkeurig zijn, omdat het BMS minder referentiepunten heeft om zich op te ijken. Ook temperatuur speelt een rol: de beschikbare capaciteit en de interne weerstand van lithium-ioncellen hangen af van de celtemperatuur. Daarom vermelden fabrikanten een spreiding in de bepaling. BMW schrijft bij zijn eigen rapport dat de capaciteitsbepaling in de auto “systembedingt” een zekere spreiding heeft, die per batterijgeneratie verschilt.</p>
+
+<h3>Geschat of gemeten</h3>
+<p>Een geschatte capaciteit is een rekenkundige afleiding uit gegevens die de auto beschikbaar heeft. Een gemeten capaciteit wordt vastgesteld door energie daadwerkelijk in of uit de accu te laten gaan, bijvoorbeeld tijdens een volledige laadbeurt of een ontlading van vol naar bijna leeg, en die energie te registreren. Ook een meting heeft een onzekerheid, maar de bron van de waarde is een andere.</p>
+
+<h3>Waarom 100% niet betekent dat er geen veroudering is</h3>
+<p>Een SOH van 100% zegt dat de accu volgens de gekozen definitie en referentie geen capaciteit heeft verloren. Dat is iets anders dan zeggen dat de cellen niet zijn verouderd. Een buffer, een conservatieve referentiewaarde of een nog niet bijgestelde schatting kunnen veroudering maskeren. Een getal van 100% na vier jaar en 128.000 kilometer verdient daarom een tweede blik, geen afwijzing.</p>
+
+<h3>Waarom een hoge SOH problemen niet uitsluit</h3>
+<p>De SOH is een samenvatting van het hele accupakket. Een pakket bestaat uit tientallen tot honderden cellen of celgroepen. Eén afwijkende celgroep kan de bruikbare capaciteit van het geheel op termijn beperken, terwijl het gemiddelde nog goed oogt. Relevante aanvullende signalen zijn onder meer:</p>
+<ul>
+<li>de spreiding in celspanningen tussen celgroepen, in rust en onder belasting;</li>
+<li>temperatuurverschillen binnen het pakket;</li>
+<li>de interne weerstand, die bij veroudering doorgaans toeneemt;</li>
+<li>opgeslagen foutcodes in het accusysteem.</li>
+</ul>
+<p>Welke van deze signalen een test meeneemt, verschilt per methode en per automodel. Ook dat hoort op een certificaat te staan. Meer achtergrond leest u in <a href="/bms-vs-celniveau.html">BMS-uitlezing versus analyse op celniveau</a> en in <a href="/soh-betekenis-elektrische-auto.html">wat een SOH-percentage betekent</a>.</p>
+</section>
+
+<section aria-labelledby="bmw-moba" class="sectie">
+<h2 id="bmw-moba">BMW en MOBA: fabrikantwaarde en extern certificaat</h2>
+<hr class="horizon"/>
+<p>Het onderscheid tussen een berekende fabrikantwaarde en een onafhankelijk vastgestelde capaciteit wordt concreet als we twee documenten naast elkaar leggen: het BMW Battery Health Quick Report en de uitleg van MOBA over zijn certificaat Certify Pro.</p>
+
+<h3>Wat BMW zelf over zijn snelle rapport zegt</h3>
+<p>Het hier besproken BMW Battery Health Quick Report is een online gepubliceerd rapport van één pagina, te vinden op de website hofmann.auto. Het vermeldt een batterijcapaciteit van 99% bij een kilometerstand van 70.339 km, uitgelezen op 22 december 2025. De tekst op het rapport is helder over de status van die waarde:</p>
+<figure class="citaat">
+<blockquote lang="de">“Diese Schnellauswertung basiert auf Algorithmen der Software der Hochvolt-Batterie im Fahrzeug und stellt kein verbindliches Resultat, sondern lediglich eine Indikation über die aktuelle Restkapazität der Hochvolt-Batterie dar.”</blockquote>
+<p class="vertaling">Vertaling: deze snelle evaluatie is gebaseerd op algoritmes van de software van de hoogvoltaccu in de auto en is geen bindend resultaat, maar slechts een indicatie van de huidige restcapaciteit.</p>
+<figcaption>BMW Battery Health Quick Report, pagina 1. <a href="https://www.hofmann.auto/batteriepass/passWBA41EU0409S77507.pdf" rel="noopener">Bekijk het rapport (pdf)</a></figcaption>
+</figure>
+<p>Op dezelfde pagina staat dat het rapport “nicht die detaillierte Messung im Rahmen eines ‘Battery Health Pass’” vervangt: het is geen vervanging voor de uitgebreidere meting die BMW Battery Health Pass noemt. Verder vermeldt BMW:</p>
+<ul>
+<li>dat de waarde wordt bepaald door het batterijmanagementsysteem en alleen geldt voor het moment van de diagnose;</li>
+<li>dat de waarde geen voorspelling geeft over de verdere ontwikkeling van de capaciteit;</li>
+<li>dat de capaciteitsbepaling bij deze batterijgeneratie “in mindestens 95 % der Referenzmessungen eine maximale Schwankungsbreite von 5 %” heeft, dus een spreiding van maximaal 5% in ten minste 95% van de referentiemetingen;</li>
+<li>dat de vastgestelde waarde “keine Gewährleistungs- oder Garantieansprüche” begründet: er kunnen geen garantieaanspraken aan worden ontleend.</li>
+</ul>
+<p>Dat is een zorgvuldige en transparante formulering. De fabrikant zegt zelf: dit is een softwarematige schatting met een vermelde bandbreedte, bedoeld als indicatie.</p>
+
+<h3>Wat MOBA over Certify Pro zegt</h3>
+<p>MOBA biedt met Certify Pro een uitleesoplossing via de OBD-aansluiting, een app en een digitaal certificaat met een unieke URL. MOBA is daarover duidelijk:</p>
+<figure class="citaat">
+<blockquote lang="en">“Moba Certify Pro is the first ‘CARA Approved’ battery diagnostics solution, certifying that the SOH provided by the Moba certificate is the same as the manufacturer’s SOH”</blockquote>
+<p class="vertaling">Vertaling: Moba Certify Pro is de eerste ‘CARA Approved’ oplossing voor batterijdiagnose, die certificeert dat de SOH op het Moba-certificaat gelijk is aan de SOH van de fabrikant.</p>
+<figcaption>MOBA, productpagina Certify Pro. <a href="https://get-moba.com/en/moba-certify-pro-en/" rel="noopener">Bekijk de bron</a></figcaption>
+</figure>
+<p>MOBA licht die keuze ook toe. Volgens de topman van MOBA is gekozen voor “the OEM SOH calculated by the BMS”, omdat dit volgens het bedrijf de enige methode is die past bij industriële schaal en de informatie levert die nodig is om een fabrieksgarantie op de accu te kunnen gebruiken. Dat is een legitieme, openlijk benoemde keuze.</p>
+
+<h3>De voordelen van de fabrikant-SOH</h3>
+<p>Het overnemen van de fabrikantwaarde heeft echte voordelen. De waarde sluit aan bij de bron die de fabrikant zelf gebruikt. Een uitlezing is snel, goed reproduceerbaar en schaalbaar voor dealers, leasemaatschappijen en veilinghuizen. En een digitaal, door een derde uitgegeven certificaat voorkomt dat een getal wordt overgetypt of aangepast. BOVAG en de Vereniging Elektrische Rijders adviseren bovendien om bij situaties waarin fabrieksgarantie een rol speelt altijd een officiële fabrikanttest als leidend document te gebruiken (<a href="https://www.bovag.nl/pers/persberichten/onderzoek-betrouwbaarheid-batterijtesten-tweedehands-elektrische-autos" rel="noopener">BOVAG, 18 december 2024</a>).</p>
+<p>Het BMW-rapport vermeldt daarnaast dat aan de waarde uit dit snelle rapport geen garantieaanspraken kunnen worden ontleend. Hoe een fabrikantwaarde in een concreet garantiegeval wordt beoordeeld, hangt af van de garantievoorwaarden en de procedure van de betreffende fabrikant.</p>
+
+<div class="vragen">
+<h3>De vragen die dit oproept</h3>
+<ol>
+<li>Wanneer een autofabrikant zijn eigen SOH als indicatie of schatting beschouwt, welke aanvullende zekerheid biedt het extern certificeren van diezelfde waarde?</li>
+<li>Is het onafhankelijk uitlezen en certificeren van een fabrikantwaarde hetzelfde als het onafhankelijk vaststellen van de accugezondheid?</li>
+<li>Worden de onzekerheden en beperkingen van de oorspronkelijke fabrikantwaarde voldoende duidelijk overgebracht aan consumenten?</li>
+<li>Begrijpt de consument het verschil tussen de echtheid van een certificaat en de betrouwbaarheid van de onderliggende SOH-berekening?</li>
+<li>Moet bij iedere voertuigadvertentie waarin een SOH wordt genoemd ook de gebruikte testmethodiek worden vermeld?</li>
+</ol>
+</div>
+<p>Dit zijn geen verwijten. MOBA zegt openlijk wat het doet, en BMW zegt openlijk wat zijn waarde wel en niet is. Het probleem ontstaat pas verderop in de keten, als een percentage los van die uitleg in een advertentie of verkoopgesprek terechtkomt.</p>
+</section>
+
+<section aria-labelledby="testmethodes" class="sectie">
+<h2 id="testmethodes">Drie testmethodes vergeleken</h2>
+<hr class="horizon"/>
+<p>In de praktijk zijn er grofweg drie manieren om tot een SOH te komen. Ze gebruiken allemaal gegevens uit de auto. Het verschil zit in wie de waarde berekent, met welke gegevens, en of de beschikbare energie daadwerkelijk wordt vastgesteld.</p>
+<div class="methodes">
+<div class="methode">
+<p class="methode__nr">Methode 1</p>
+<h3>BMS-uitlezing</h3>
+<p class="stroom" aria-label="Werking: BMS berekent SOH, tester leest waarde uit"><span>BMS</span><i>→</i><span>uitlezen</span></p>
+<p>De SOH die het BMS van de fabrikant heeft berekend, wordt uitgelezen en weergegeven.</p>
+</div>
+<div class="methode">
+<p class="methode__nr">Methode 2</p>
+<h3>Onafhankelijke analyse</h3>
+<p class="stroom" aria-label="Werking: voertuigdata worden door een externe partij met eigen algoritmes en referentiedata geanalyseerd"><span>voertuigdata</span><i>→</i><span>eigen model</span></p>
+<p>Een externe partij berekent de SOH zelf uit voertuiggegevens, met eigen algoritmes en referentiedata.</p>
+</div>
+<div class="methode">
+<p class="methode__nr">Methode 3</p>
+<h3>Capaciteitstest</h3>
+<p class="stroom" aria-label="Werking: energie wordt tijdens laden of ontladen geregistreerd"><span>laden of ontladen</span><i>→</i><span>energie</span></p>
+<p>De beschikbare energie wordt vastgesteld tijdens een (vrijwel) volledige laad- of ontlaadcyclus.</p>
+</div>
+</div>
+
+<div class="tabel-scroll" role="region" aria-labelledby="tabel1-titel" tabindex="0">
+<table>
+<caption id="tabel1-titel">Vergelijking van de drie testmethodes</caption>
+<thead>
+<tr><th scope="col">Kenmerk</th><th scope="col">1. BMS-uitlezing</th><th scope="col">2. Onafhankelijke analyse</th><th scope="col">3. Capaciteitstest</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Herkomst SOH</th><td>Berekening van het BMS van de fabrikant</td><td>Berekening door de externe partij</td><td>Vastgestelde energie tijdens laden of ontladen</td></tr>
+<tr><th scope="row">Onafhankelijk van de fabrikantberekening</th><td>Nee</td><td>Ja, voor zover het eigen model de fabrikant-SOH niet overneemt</td><td>Ja</td></tr>
+<tr><th scope="row">Fabrikantspecifieke gegevens</th><td>Ja, de SOH zelf</td><td>Ja, als invoer (spanningen, stromen, temperaturen en andere signalen)</td><td>Ja, als meetbron tijdens de cyclus</td></tr>
+<tr><th scope="row">Externe referentiedata</th><td>Niet nodig</td><td>Ja, kern van de methode</td><td>Mogelijk, als vergelijking</td></tr>
+<tr><th scope="row">Controle op celafwijkingen</th><td>Afhankelijk van de tester en van wat de auto beschikbaar stelt</td><td>Mogelijk, als celgegevens beschikbaar zijn</td><td>Mogelijk, als celgegevens worden vastgelegd</td></tr>
+<tr><th scope="row">Vaststelling beschikbare energie</th><td>Nee, schatting van het BMS</td><td>Nee, berekening</td><td>Ja</td></tr>
+<tr><th scope="row">Meetonzekerheid</th><td>Die van het BMS; niet altijd vermeld</td><td>Afhankelijk van model en referentiedata</td><td>Afhankelijk van meetopstelling en omstandigheden</td></tr>
+<tr><th scope="row">Sterk punt</th><td>Snel, schaalbaar, sluit aan bij de fabrikant</td><td>Snel, eigen beoordeling naast de fabrikant</td><td>Dichtst bij de werkelijk beschikbare energie</td></tr>
+<tr><th scope="row">Beperking</th><td>Neemt aannames en onzekerheid van het BMS over</td><td>Afhankelijk van de kwaliteit van het model en de dekking per model</td><td>Kost meer tijd, vraagt een volledige cyclus</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tabel-hint">Veeg horizontaal om de hele tabel te zien.</p>
+
+<h3>Waar de besproken tests in dit schema vallen</h3>
+<div class="tabel-scroll" role="region" aria-labelledby="tabel2-titel" tabindex="0">
+<table>
+<caption id="tabel2-titel">Vier tests, op basis van wat de aanbieders zelf publiceren</caption>
+<thead>
+<tr><th scope="col">Test</th><th scope="col">Methode</th><th scope="col">Hoe de SOH tot stand komt</th><th scope="col">Vermelde onzekerheid</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">BMW Battery Health Quick Report</th><td>1</td><td>Algoritmes van de batterijsoftware in de auto; volgens BMW een indicatie</td><td>Maximaal 5% spreiding in ten minste 95% van de referentiemetingen (bij de batterijgeneratie op het rapport)</td></tr>
+<tr><th scope="row">MOBA Certify Pro</th><td>1</td><td>Uitlezing van de fabrikant-SOH via OBD; certificaat bevestigt dat de SOH gelijk is aan die van de fabrikant</td><td>Niet gevonden op de geraadpleegde pagina's van MOBA</td></tr>
+<tr><th scope="row">AVILOO FLASH</th><td>2</td><td>Analyse van voertuiggegevens met eigen algoritmes, statistische modellen en een referentiedatabase; ongeveer drie minuten, zonder rijtest</td><td>Volgens AVILOO ongeveer 3% ten opzichte van de PREMIUM-test</td></tr>
+<tr><th scope="row">AVILOO PREMIUM</th><td>3</td><td>Registratie van een volledige cyclus: laden tot 100% en normaal rijden tot 10% laadtoestand, binnen zeven dagen</td><td>AVILOO vermeldt een maximale afwijking van 3% in ten minste 95% van de referentiemetingen, zonder de referentiemethode te noemen</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tabel-hint">Veeg horizontaal om de hele tabel te zien.</p>
+<p>Ook AVILOO gebruikt gegevens uit de auto. Volgens AVILOO zelf gebeurt de berekening “ausschließlich auf Basis der vom Fahrzeug bereitgestellten Daten”, dus uitsluitend op basis van gegevens die het voertuig aanlevert (<a href="https://aviloo.com/de/aviloo-certified" rel="noopener">AVILOO</a>). Het onderscheid met een BMS-uitlezing zit niet in de bron van de ruwe gegevens, maar in de manier waarop die gegevens worden geanalyseerd, verwerkt, gecontroleerd en gevalideerd.</p>
+<p>AVILOO is ook niet foutloos. De FLASH-test is een berekening en geen capaciteitsmeting, en de vermelde nauwkeurigheid van ongeveer 3% is een vergelijking met de eigen PREMIUM-test. AVILOO vermeldt verder dat defecten waarover de auto geen gegevens via de diagnose-interface levert, zoals mechanische schade, niet kunnen worden herkend, en dat voor sommige modellen nog gegevens ontbreken. De PREMIUM-test komt dichter bij de beschikbare energie, maar vraagt een volledige cyclus en dus meer tijd. Een vergelijking van beide aanbieders vanuit de koper leest u in <a href="/aviloo-vs-moba.html">AVILOO versus MOBA</a>.</p>
+
+<h3>Vier soorten onafhankelijkheid</h3>
+<p>In gesprekken over accucertificaten wordt het woord onafhankelijk vaak voor verschillende dingen gebruikt. Het helpt om ze uit elkaar te houden:</p>
+<div class="onafh">
+<div><strong>Onafhankelijkheid van de uitvoerende partij</strong><p>Heeft de partij die de test uitvoert geen belang bij de verkoop van de auto?</p></div>
+<div><strong>Onafhankelijkheid van de SOH-berekening</strong><p>Is de SOH door de testpartij zelf berekend, of overgenomen van het BMS van de fabrikant?</p></div>
+<div><strong>Onafhankelijke validatie van de capaciteit</strong><p>Is de uitkomst getoetst aan een onafhankelijk vastgestelde capaciteit, bijvoorbeeld via een laad- of ontlaadmeting?</p></div>
+<div><strong>Authenticiteit van het certificaat</strong><p>Is het document echt, ongewijzigd en digitaal te verifiëren?</p></div>
+</div>
+<p>Een certificaat kan op het vierde punt volledig betrouwbaar zijn en op het tweede en derde punt niets toevoegen. Dat is niet erg, zolang het maar duidelijk is.</p>
+</section>
+
+<section aria-labelledby="onderzoek" class="sectie">
+<h2 id="onderzoek">Wat onafhankelijk onderzoek en Europese regels zeggen</h2>
+<hr class="horizon"/>
+
+<h3>BOVAG en Vereniging Elektrische Rijders</h3>
+<p>In december 2024 publiceerden BOVAG en de Vereniging Elektrische Rijders (VER) een gezamenlijk onderzoek naar vijf testsystemen: AVILOO (Flashtest), MOBA, Bosch, Mahle en Hella-Gutmann. Volgens het persbericht ging het om 185 testrondes op 24 automerken en -modellen. De testen van AVILOO en MOBA kwamen als meest betrouwbaar naar voren: “Beide testen blinken uit in snelheid en betrouwbaarheid.” Voor Mahle en Hella-Gutmann was de beschikbare data volgens BOVAG en VER te beperkt voor een volledige beoordeling (<a href="https://www.bovag.nl/pers/persberichten/onderzoek-betrouwbaarheid-batterijtesten-tweedehands-elektrische-autos" rel="noopener">BOVAG, 18 december 2024</a>).</p>
+<p>Belangrijk voor de interpretatie: het persbericht noemt als vergelijking de fabrikant. “De uitkomsten van deze testen komen sterk overeen met die van de fabrikant”, aldus BOVAG. Een validatie tegen een onafhankelijk gemeten referentiecapaciteit, bijvoorbeeld via een volledige laad- en ontlaadmeting, wordt in het persbericht niet beschreven. Overeenstemming met fabrikantwaarden en validatie tegen een gemeten referentie zijn twee verschillende toetsen. Een test die de fabrikant-SOH uitleest, zal per definitie goed overeenkomen met de fabrikant-SOH.</p>
+
+<h3>CARA Europe: Basic en Premium</h3>
+<p>CARA Europe is volgens de eigen website een non-profitorganisatie van partijen uit de Europese markt voor gebruikte auto's en remarketing. CARA certificeert accutests onder de naam Battery Health Check CARA Approved, met als doel een standaard voor SOH-meting in de remarketingbranche. CARA onderscheidt twee typen:</p>
+<ul>
+<li><strong>Basic:</strong> de SOH wordt gegenereerd door of berekend uit de eigen systemen van de auto, zoals het BMS. CARA schrijft daarbij letterlijk: “It should be noted that the Basic test is not an independent assessment of the battery health, as it refers to the OEM generated data in the BMS.” Vertaald: de Basic-test is geen onafhankelijke beoordeling van de batterijgezondheid, omdat deze verwijst naar door de fabrikant gegenereerde gegevens in het BMS.</li>
+<li><strong>Premium:</strong> de SOH komt uit een externe, onafhankelijke testmethode die gegevens uit de auto gebruikt, maar de accu ook belast door laden, ontladen of rijden, en niet leunt op de door het BMS geschatte SOH.</li>
+</ul>
+<p>Op de pagina van CARA staan onder meer AVILOO Flash Test, Moba Certify Pro en TÜV NORD BatterieCheck vermeld als CARA Approved. In welke categorie iedere aanbieder valt, vermeldt de pagina niet per aanbieder. Volgens de tekst richtte de eerste fase zich op Basic-oplossingen die de SOH uit het BMS uitlezen; of een Premium-certificering inmiddels actief is, hebben we op basis van de geraadpleegde pagina niet kunnen vaststellen (<a href="https://cara-europe.org/battery-health/" rel="noopener">CARA Europe</a>).</p>
+
+<h3>De Europese Batterijenverordening en het batterijpaspoort</h3>
+<p>Verordening (EU) 2023/1542 regelt onder meer twee zaken die voor deze discussie belangrijk zijn (<a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj" rel="noopener">EUR-Lex</a>):</p>
+<ul>
+<li><strong>Gegevens in het BMS (artikel 14).</strong> Sinds 18 augustus 2024 moet het BMS van batterijen voor elektrische voertuigen actuele gegevens bevatten voor de parameters uit bijlage VII. Voor EV-batterijen is dat de staat van gecertificeerde energie (SOCE). De koper van de batterij, onafhankelijke marktdeelnemers en derden die namens hen optreden, moeten read-only toegang krijgen, onder meer om de restwaarde of resterende levensduur te beoordelen.</li>
+<li><strong>Batterijpaspoort (artikel 77).</strong> “Met ingang van 18 februari 2027” moeten batterijen voor elektrische voertuigen die in de handel worden gebracht of in gebruik worden genomen een elektronisch dossier hebben, het batterijpaspoort.</li>
+</ul>
+<p>Het paspoort geldt dus voor batterijen vanaf die datum. Voor de huidige vloot gebruikte elektrische auto's bestaat het niet. Artikel 14 verwijst voor de parameters bovendien naar afstemming met het mondiale technische reglement nr. 22 van de VN over de duurzaamheid van accu's in elektrische voertuigen. In de hier besproken artikelen staan geen kwaliteitseisen voor commerciële accucertificaten bij de verkoop van gebruikte auto's.</p>
+
+<div class="tabel-scroll" role="region" aria-labelledby="tabel3-titel" tabindex="0">
+<table>
+<caption id="tabel3-titel">Wat is wet, wat is vrijwillig, en waar pleit ZekerOpWeg voor?</caption>
+<thead>
+<tr><th scope="col">Soort regel</th><th scope="col">Voorbeeld</th><th scope="col">Status</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Bestaande wettelijke verplichting</th><td>Actuele conditieparameters in het BMS en read-only toegang (artikel 14 Verordening 2023/1542)</td><td>Van toepassing sinds 18 augustus 2024</td></tr>
+<tr><th scope="row">Toekomstige wettelijke verplichting</th><td>Batterijpaspoort voor nieuwe EV-batterijen (artikel 77)</td><td>Vanaf 18 februari 2027</td></tr>
+<tr><th scope="row">Vrijwillige kwaliteitsstandaard</th><td>CARA Approved (Basic, en mogelijk Premium)</td><td>Vrijwillig, branche-initiatief</td></tr>
+<tr><th scope="row">Voorstel ZekerOpWeg</th><td>Uniforme minimale informatie op ieder accucertificaat en transparantie over de testmethode in advertenties</td><td>Pleidooi, nog geen regelgeving</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tabel-hint">Veeg horizontaal om de hele tabel te zien.</p>
+</section>
+
+<section aria-labelledby="nap" class="sectie">
+<h2 id="nap">De NAP van de elektrische occasionmarkt</h2>
+<hr class="horizon"/>
+<div class="nap">
+<p>Bij de aankoop van een gebruikte auto vinden we het vanzelfsprekend dat de kilometerhistorie controleerbaar is. De Nationale Auto Pas en de registratie van tellerstanden bij de RDW hebben daar in Nederland aan bijgedragen. Een koper kan nagaan of de kilometerstand logisch verloopt, en een afwijking valt op.</p>
+<p>Bij een elektrische auto is de accu een van de meest waardevolle onderdelen. Waarom zouden we voor dat onderdeel niet dezelfde ambitie hebben?</p>
+<p>Het gaat daarbij niet alleen om het beschikbaar stellen van een SOH-percentage. Het gaat om drie dingen tegelijk:</p>
+<ul>
+<li><strong>Betrouwbaarheid:</strong> hoe is de waarde vastgesteld, en met welke onzekerheid?</li>
+<li><strong>Herkomst:</strong> is de waarde uitgelezen, onafhankelijk berekend of gemeten, en door wie?</li>
+<li><strong>Ontwikkeling:</strong> hoe heeft de waarde zich over de tijd en de kilometers ontwikkeld?</li>
+</ul>
+<p>Een kilometerstand krijgt betekenis door de historie. Voor accugezondheid geldt hetzelfde: één meting zegt iets, een reeks controleerbare metingen zegt veel meer.</p>
+</div>
+<p>Vanuit die gedachte werkt ZekerOpWeg aan het Accu Garantie Paspoort: een digitaal dossier waarin metingen, hun methode en hun datum bij elkaar komen en met de auto kunnen meegaan. Dat is een eigen initiatief, geen officiële Europese of landelijke standaard. Het Europese batterijpaspoort gaat vanaf 2027 een rol spelen voor nieuwe batterijen. Voor de elektrische auto's die nu al rijden, is een controleerbare accuhistorie nog een open vraag.</p>
+</section>
+
+<section aria-labelledby="standpunt" class="sectie">
+<div class="standpunt">
+<p class="label">Standpunt van ZekerOpWeg</p>
+<h2 id="standpunt">Tijd voor uniforme kwaliteitseisen voor accutests</h2>
+<hr class="horizon"/>
+<p>ZekerOpWeg pleit voor een onafhankelijke, bij voorkeur Europese kwaliteitsstandaard waarbij ieder accucertificaat minimaal vermeldt:</p>
+<ol>
+<li>De gebruikte testmethodiek.</li>
+<li>Of de SOH is uitgelezen, onafhankelijk berekend of via een capaciteitstest vastgesteld.</li>
+<li>De gebruikte gegevensbronnen.</li>
+<li>De gehanteerde referentiecapaciteit.</li>
+<li>De gecontroleerde batterijparameters.</li>
+<li>De meetnauwkeurigheid en de beperkingen.</li>
+<li>De onafhankelijkheid van de beoordeling.</li>
+<li>De datum en de kilometerstand van de test.</li>
+<li>De digitale verifieerbaarheid.</li>
+<li>Eventuele beperkingen met betrekking tot fabrieksgarantie.</li>
+</ol>
+<p>Daarnaast pleit ZekerOpWeg voor verplichte transparantie over de testmethodiek wanneer een SOH-percentage commercieel wordt gebruikt in een voertuigadvertentie. Een vermelding als “SOH 96%, BMS-uitlezing” of “SOH 96%, capaciteitstest” kost weinig ruimte en voorkomt veel misverstanden.</p>
+<p>De kwaliteit van de test moet leidend zijn, niet de naam van de testleverancier. Dat geldt ook voor de tests die ZekerOpWeg zelf uitvoert.</p>
+<div class="slot">
+<p>De elektrische occasionmarkt heeft niet simpelweg behoefte aan méér accucertificaten, maar aan betrouwbare, vergelijkbare en begrijpelijke accucertificaten.</p>
+<p>De consument heeft recht op meer dan alleen een percentage.</p>
+<p>Vertrouwen begint bij transparantie.</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="faq" class="sectie faq">
+<h2 id="faq">Veelgestelde vragen</h2>
+<hr class="horizon"/>
+<details>
+<summary>Is een SOH van 100% na 128.000 kilometer onbetrouwbaar?</summary>
+<p>Niet per definitie. Een SOH van 100% kan kloppen binnen de definitie die de fabrikant hanteert, bijvoorbeeld als het BMS rekent met de netto bruikbare capaciteit en een buffer gebruikt. Zonder vermelding van de herkomst, de referentiewaarde en de meetmethode is de waarde alleen niet goed te interpreteren.</p>
+</details>
+<details>
+<summary>Wat is het verschil tussen een BMS-uitlezing en een onafhankelijke accutest?</summary>
+<p>Bij een BMS-uitlezing wordt de SOH overgenomen die het batterijmanagementsysteem van de fabrikant zelf heeft berekend. Bij een onafhankelijke analyse berekent een externe partij de SOH zelf, op basis van voertuiggegevens, eigen algoritmes en referentiedata. Bij een capaciteitstest wordt de beschikbare energie tijdens een laad- of ontlaadcyclus vastgesteld.</p>
+</details>
+<details>
+<summary>Is een accucertificaat altijd een onafhankelijke meting?</summary>
+<p>Nee. Een certificaat kan door een onafhankelijke partij zijn uitgegeven en digitaal verifieerbaar zijn, terwijl de SOH op het certificaat de waarde is die het BMS van de fabrikant heeft berekend. De onafhankelijkheid van de uitgever, van de berekening en van de capaciteitsvaststelling zijn drie verschillende dingen.</p>
+</details>
+<details>
+<summary>Geldt het Europese batterijpaspoort ook voor gebruikte elektrische auto's?</summary>
+<p>Volgens artikel 77 van Verordening (EU) 2023/1542 moeten batterijen voor elektrische voertuigen die vanaf 18 februari 2027 in de handel worden gebracht of in gebruik worden genomen een batterijpaspoort hebben. Voor de huidige vloot gebruikte elektrische auto's bestaat zo'n paspoort niet.</p>
+</details>
+<details>
+<summary>Wat betekent CARA Approved?</summary>
+<p>CARA Europe, een vereniging van partijen uit de Europese remarketingmarkt, certificeert accutests onder de naam Battery Health Check CARA Approved. CARA onderscheidt een Basic-test, die de SOH uit het BMS van de fabrikant gebruikt en volgens CARA geen onafhankelijke beoordeling is, en een Premium-test die de accu belast met laden, ontladen of rijden.</p>
+</details>
+<details>
+<summary>Hoe nauwkeurig is een accutest?</summary>
+<p>Iedere methode heeft een meetonzekerheid. BMW vermeldt bij zijn Battery Health Quick Report een maximale spreiding van 5% in ten minste 95% van de referentiemetingen. AVILOO vermeldt een maximale afwijking van 3% in ten minste 95% van de referentiemetingen. Een goed certificaat vermeldt de onzekerheid en hoe die is bepaald.</p>
+</details>
+</section>
+
+<section aria-labelledby="bronnen" class="sectie bronnen">
+<h2 id="bronnen">Bronnen en transparantie</h2>
+<hr class="horizon"/>
+<div class="transparant">
+<p><strong>Over de auteur en belangen.</strong> Pepijn Westhoff is oprichter van ZekerOpWeg en heeft 16 jaar ervaring in de automotive branche. ZekerOpWeg is officieel AVILOO-partner en voert betaalde accutests uit met de AVILOO FLASH-test. Om die reden zijn in dit artikel ook de beperkingen en de vermelde meetonzekerheid van AVILOO benoemd. Citaten van BMW en MOBA zijn letterlijk overgenomen uit de genoemde bronnen; vertalingen zijn van ZekerOpWeg.</p>
+<p style="margin:0;">Waar een bewering niet kon worden geverifieerd, is die weggelaten of is de onzekerheid vermeld. Alle bronnen zijn geraadpleegd op 26 november 2026.</p>
+</div>
+<ol>
+<li><a href="https://www.autoweek.nl/autonieuws/artikel/ev-occasionmarkt-wordt-volwassener-maar-is-er-nog-niet/" rel="noopener">AutoWeek: Helft kopers EV-occasion niet op hoogte van mogelijkheid SoH-test accupakket</a> <span class="wat">Luc Vranken, 24 november 2026. Over de AVILOO Used EV Trust Study.</span></li>
+<li><a href="https://www.hofmann.auto/batteriepass/passWBA41EU0409S77507.pdf" rel="noopener">BMW Battery Health Quick Report</a> <span class="wat">Openbaar gepubliceerd rapport, pagina 1. Disclaimer over indicatie, spreiding en garantie.</span></li>
+<li><a href="https://get-moba.com/en/moba-certify-pro-en/" rel="noopener">MOBA: Moba Certify Pro</a> <span class="wat">Productpagina met verklaring over de fabrikant-SOH en de keuze voor de BMS-berekening.</span></li>
+<li><a href="https://get-moba.com/en/faqs/" rel="noopener">MOBA: veelgestelde vragen</a> <span class="wat">Werking van de uitlezing en het certificaat.</span></li>
+<li><a href="https://www.bovag.nl/pers/persberichten/onderzoek-betrouwbaarheid-batterijtesten-tweedehands-elektrische-autos" rel="noopener">BOVAG en VER: onderzoek betrouwbaarheid batterijtesten tweedehands elektrische auto's</a> <span class="wat">Persbericht, 18 december 2024.</span></li>
+<li><a href="https://cara-europe.org/battery-health/" rel="noopener">CARA Europe: Battery Health Check CARA Approved</a> <span class="wat">Definities Basic en Premium, lijst gecertificeerde aanbieders.</span></li>
+<li><a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj" rel="noopener">Verordening (EU) 2023/1542 betreffende batterijen en afgedankte batterijen</a> <span class="wat">Artikel 14, artikel 77 en bijlage VII.</span></li>
+<li><a href="https://aviloo.com/de/aviloo-certified" rel="noopener">AVILOO: AVILOO Certified</a> <span class="wat">Berekening op basis van voertuiggegevens, vermelde afwijking en beperkingen.</span></li>
+<li><a href="https://aviloo.com/de/read-out-vs-testing" rel="noopener">AVILOO: uitlezen versus testen</a> <span class="wat">Werking en duur van de FLASH-test.</span></li>
+<li><a href="https://aviloo.com/de/aviloo-private" rel="noopener">AVILOO: PREMIUM-test</a> <span class="wat">Werking van de test van 100% naar 10% laadtoestand.</span></li>
+<li><a href="https://aviloo.com/" rel="noopener">AVILOO: veelgestelde vragen</a> <span class="wat">Nauwkeurigheid van de FLASH-test ten opzichte van PREMIUM.</span></li>
+</ol>
+</section>
+</div>
+</div>
+</article>
+
+<section aria-labelledby="gerelateerd-titel" class="gerelateerd">
+<div class="wrap">
+<p class="label">Verder lezen</p>
+<h2 id="gerelateerd-titel">Gerelateerde kennisartikelen</h2>
+<div class="kaarten">
+<a class="kaart" href="/aviloo-vs-moba.html"><strong>AVILOO versus MOBA</strong><span>Welke accutest past bij de aankoop van een gebruikte EV of plug-inhybride?</span></a>
+<a class="kaart" href="/bms-vs-celniveau.html"><strong>BMS-uitlezing versus celniveau</strong><span>Wat een uitlezing wel en niet laat zien over afzonderlijke cellen.</span></a>
+<a class="kaart" href="/soh-betekenis-elektrische-auto.html"><strong>Wat betekent SOH?</strong><span>Hoe u een State of Health-percentage leest en wat 90% betekent.</span></a>
+<a class="kaart" href="/wat-is-accudegradatie.html"><strong>Wat is accudegradatie?</strong><span>Waarom een accu capaciteit verliest en wat normaal is.</span></a>
+<a class="kaart" href="/praktijkvoorbeeld-kia-sportage-phev.html#bodeminspectie"><strong>Aankoopadvies met bruginspectie</strong><span>Praktijkvoorbeeld van een Kia Sportage PHEV: accutest, proefrit en inspectie op de brug.</span></a>
+<a class="kaart" href="/aankoopadvies.html"><strong>Onafhankelijk aankoopadvies</strong><span>Van BeslisCheck tot KoopZeker PRO: zo beoordeelt Pepijn een occasion.</span></a>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="cta-titel" class="cta">
+<div class="wrap">
+<p class="label" style="color:var(--zow-copper-light);">EV AccuCheck</p>
+<h2 id="cta-titel">Weet wat je koopt.</h2>
+<p>Laat de accugezondheid van jouw elektrische auto onafhankelijk beoordelen en begrijp wat de meetresultaten daadwerkelijk betekenen.</p>
+<p class="prijzen">EV AccuCheck: €95 op afspraak in Barendrecht of €129 op locatie binnen 40 km rond Barendrecht, inclusief btw. Wilt u ook de rest van de auto laten beoordelen? Bekijk <a href="/ev-accucheck.html#koopzeker-pro" style="color:var(--zow-ivory-light);">KoopZeker PRO</a>.</p>
+<div class="knoppen">
+<a class="knop knop--secundair" href="/ev-accucheck.html">Meer over de EV AccuCheck</a>
+<a class="knop knop--primair" href="/intake.html?dienst=ev-accucheck">Plan een onafhankelijke accutest</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="voet">
+<div class="wrap">
+<div class="voet__grid">
+<div>
+<div class="zow-footer-logo" style="margin:0 0 16px;line-height:0;"><img alt="ZekerOpWeg · Betrouwbaar onderweg naar morgen" height="55" src="/assets/brand/logo-payoff-donker.svg" style="display:inline-block;width:190px;max-width:100%;height:auto;" width="190"/></div>
+<p style="margin:0;">Onafhankelijk aankoopadvies en EV AccuCheck.<br/>Handelsnaam van Pepijn Westhoff · KvK 99323575</p>
+</div>
+<div>
+<p class="voet__titel">Contact</p>
+<ul>
+<li><a href="https://wa.me/31623452349">WhatsApp: 06 23 45 23 49</a></li>
+<li><a href="mailto:info@zekeropweg.nu">info@zekeropweg.nu</a></li>
+<li><a href="/contact.html">Contactgegevens</a></li>
+</ul>
+</div>
+<div>
+<p class="voet__titel">Kennis</p>
+<ul>
+<li><a href="/aviloo-vs-moba.html">AVILOO versus MOBA</a></li>
+<li><a href="/bms-vs-celniveau.html">BMS-uitlezing versus celniveau</a></li>
+<li><a href="/soh-betekenis-elektrische-auto.html">Wat betekent SOH?</a></li>
+<li><a href="/privacyverklaring.html">Privacyverklaring</a></li>
+</ul>
+</div>
+</div>
+<p class="voet__klein">© 2026 ZekerOpWeg. AVILOO® is een geregistreerd handelsmerk van AVILOO GmbH. Genoemde merken zijn eigendom van de betreffende rechthebbenden.</p>
+</div>
+</footer>
+<script defer src="/scripts/zow-menu.js"></script>
+<script>
+  /* Inhoudsopgave op smalle schermen standaard ingeklapt */
+  (function () {
+    var toc = document.querySelector(".toc details");
+    if (toc && window.matchMedia("(max-width: 1000px)").matches) toc.removeAttribute("open");
+  })();
+</script>
+</body>
+</html>
