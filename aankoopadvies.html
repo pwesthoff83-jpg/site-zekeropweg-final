@@ -502,6 +502,79 @@
       .aa-foto-grid { grid-template-columns: 1fr; }
     }
 
+  
+    /* ─── KOOPZEKER PRO · BODEMINSPECTIE ───────────────────────────── */
+    .aa-bodem {
+      --zow-night: #0A1E23; --zow-petrol: #0E3B43; --zow-copper: #B8734A;
+      --zow-copper-light: #E39B68; --zow-ivory-light: #FBF8F2; --zow-line: #DDD6CA;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-areas: "foto intro" "foto tekst" "case tekst";
+      grid-template-rows: auto 1fr auto;
+      gap: 1.25rem 2.5rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    .aa-bodem__intro { grid-area: intro; font-size: 1rem; line-height: 1.8; color: #334155; margin: 0; }
+    .aa-bodem__foto { grid-area: foto; margin: 0; }
+    .aa-bodem__foto img {
+      display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover;
+      border-radius: 14px; box-shadow: 0 10px 30px rgba(10,30,35,.14);
+    }
+    .aa-bodem__foto figcaption { font-size: .78rem; color: #64748b; line-height: 1.5; margin-top: .55rem; }
+    .aa-bodem__tekst { grid-area: tekst; }
+    .aa-bodem__h3 { font-size: 1.12rem; font-weight: 700; color: var(--zow-petrol); margin: 0 0 .6rem; }
+    .aa-bodem__lijst { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+    .aa-bodem__lijst li {
+      position: relative; padding: .55rem 0 .55rem 1.8rem;
+      font-size: .93rem; line-height: 1.6; color: #334155; border-bottom: 1px solid #ebe5da;
+    }
+    .aa-bodem__lijst li:last-child { border-bottom: 0; }
+    .aa-bodem__lijst li::before {
+      content: "\2713"; position: absolute; left: 0; top: .55rem;
+      width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--zow-petrol); color: #fff;
+      font-size: .7rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .aa-bodem__lijst strong { color: var(--zow-petrol); }
+    .aa-bodem__combi { font-size: .93rem; line-height: 1.7; color: #334155; margin: 0 0 1.25rem; }
+    .aa-bodem__combi a { color: var(--zow-petrol); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .aa-bodem__krijgt {
+      background: #fff; border: 1px solid var(--zow-line); border-left: 4px solid var(--zow-copper);
+      border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1rem;
+    }
+    .aa-bodem__krijgt-titel { font-weight: 700; color: var(--zow-petrol); margin: 0 0 .3rem; }
+    .aa-bodem__krijgt p:last-child { margin: 0; font-size: .92rem; line-height: 1.65; color: #334155; }
+    .aa-bodem__gemak, .aa-bodem__prijs { font-size: .9rem; line-height: 1.65; color: #475569; margin: 0 0 .8rem; }
+    .aa-bodem__gemak strong, .aa-bodem__prijs strong { color: var(--zow-petrol); }
+    .aa-bodem__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.4rem; }
+    .aa-bodem__btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+    .aa-bodem__case {
+      grid-area: case; background: var(--zow-petrol); color: var(--zow-ivory-light);
+      border-radius: 14px; padding: 1.3rem 1.4rem;
+    }
+    .aa-bodem__case-tag {
+      font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--zow-copper-light); margin: 0 0 .45rem;
+    }
+    .aa-bodem__case-titel { font-weight: 700; font-size: 1rem; margin: 0 0 .5rem; color: #fff; }
+    .aa-bodem__case p:not([class]) { font-size: .86rem; line-height: 1.65; color: rgba(251,248,242,.85); margin: 0 0 .7rem; }
+    .aa-bodem__case-link {
+      display: inline-flex; align-items: center; min-height: 44px;
+      color: var(--zow-copper-light); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+    }
+    .aa-bodem__case-link::after { content: " \2192"; white-space: pre; }
+    .aa-bodem__vervolg { font-size: 1.12rem; font-weight: 700; color: #071a2b; margin: 0 0 .6rem; }
+    @media (max-width: 860px) {
+      .aa-bodem {
+        grid-template-columns: 1fr;
+        grid-template-areas: "intro" "foto" "tekst" "case";
+        grid-template-rows: none;
+      }
+      .aa-bodem__foto img { aspect-ratio: 4 / 3; object-position: center 40%; }
+    }
+    @media (max-width: 480px) {
+      .aa-bodem__btn { width: 100%; }
+    }
   </style>
 <script defer="" src="/scripts/zow-analytics.js"></script>
 <link href="/assets/brand/zow-header.css" rel="stylesheet"/>
@@ -556,6 +629,9 @@
 <p class="aa-hero__trust">★★★★★ 5,0 op Google  ·  <span data-zow="review-count">20+</span> reviews  ·  16 jaar automotive ervaring  ·  Geen verkoopbelang</p>
 <p class="aa-hero__ev-note">
           Kijkt u naar een EV of plug-inhybride? Voeg een onafhankelijke <a href="ev-accucheck.html">AVILOO AccuCheck</a> toe aan uw aankoopadvies.
+        </p>
+<p class="aa-hero__ev-note">
+          Wilt u ook de onderkant laten bekijken? Kies <a href="#koopzeker-pro">KoopZeker PRO met inspectie op de brug</a>.
         </p>
 </div>
 <!-- Rechterkolom: keuzehulp -->
@@ -669,6 +745,76 @@
 <p style="margin-top:1.2rem; font-size:.82rem; color:#94a3b8; text-align:center;">U kunt op elk moment instappen of opschalen. Eerder betaald wordt altijd verrekend.</p>
 </div>
 </section>
+<!-- KOOPZEKER PRO: ALLE AUTOS -->
+<section class="aa-section aa-section--alt" id="koopzeker-pro">
+<div class="container">
+<p class="aa-eyebrow">KoopZeker PRO · Inspectie op de brug</p>
+<h2 class="aa-h2">Bovenkant netjes. Maar hoe ziet de auto er vanonder uit?</h2>
+<hr class="aa-h2-rule"/>
+<div class="aa-bodem">
+<p class="aa-bodem__intro">Bij een bezichtiging ziet u lak, interieur en banden. De onderzijde ziet u pas goed als de auto op de brug staat. Daarom is de bodeminspectie een vast onderdeel van KoopZeker PRO. U weet dan niet alleen hoe de auto eruitziet, maar ook in welke staat hij verkeert.</p>
+<figure class="aa-bodem__foto">
+<img src="images/kia-sportage-phev-op-de-brug-aankoopinspectie.webp" width="1050" height="1400" loading="lazy" decoding="async" alt="Grijze Kia Sportage PHEV op de hefbrug in de werkplaats tijdens de aankoopinspectie, achteraanzicht met onleesbaar gemaakt kenteken"/>
+<figcaption>De Kia Sportage PHEV uit de praktijkcase, op de brug tijdens de KoopZeker PRO-inspectie.</figcaption>
+</figure>
+<div class="aa-bodem__tekst">
+<h3 class="aa-bodem__h3">Wat we op de brug bekijken</h3>
+<ul class="aa-bodem__lijst">
+<li><strong>De onderzijde</strong> op zichtbare lekkages, corrosie en beschadigingen.</li>
+<li><strong>Het onderstel:</strong> de staat van draagarmen, ophangingsrubbers en andere bereikbare onderdelen.</li>
+<li><strong>Remmen en banden:</strong> de staat van de remmen en het slijtagebeeld van de banden, ook aan de binnenzijde. Geeft dat slijtagebeeld aanleiding, dan adviseren we de uitlijning te laten controleren.</li>
+<li><strong>Bij een EV of plug-inhybride:</strong> de zichtbare staat van de accubehuizing en de bodembescherming, voor zover toegankelijk.</li>
+</ul>
+<p class="aa-bodem__combi">Bij een EV of plug-inhybride combineert KoopZeker PRO de bruginspectie met de <a href="ev-accucheck.html">AVILOO AccuCheck</a> en een uitgebreide proefrit. Zo beoordelen we de accu en de auto zelf in samenhang.</p>
+<div class="aa-bodem__krijgt">
+<p class="aa-bodem__krijgt-titel">Wat u ontvangt</p>
+<p>Begrijpelijke bevindingen, foto's van wat we zagen en persoonlijk advies. Zo neemt u een onderbouwde aankoopbeslissing en bespreekt u aandachtspunten vóór aankoop met de verkoper.</p>
+</div>
+<p class="aa-bodem__gemak"><strong>U hoeft er niet bij te zijn.</strong> ZekerOpWeg stemt de inspectie af en voert deze uit, terwijl u gewoon aan het werk kunt.</p>
+<p class="aa-bodem__prijs"><strong>KoopZeker PRO voor een EV of plug-inhybride: €499 incl. btw.</strong> U start met de AccuCheck van €129. Na het bespreken van de accu-uitkomst geeft u akkoord voor het vervolg. De €129 telt mee in de totaalprijs.</p>
+<div class="aa-bodem__ctas">
+<a class="btn-primary aa-bodem__btn" href="intake.html?dienst=koopzeker-pro">Laat mijn occasion beoordelen</a>
+<a class="btn-secondary aa-bodem__btn" href="https://wa.me/31623452349?text=Ik%20overweeg%20deze%20occasion%20en%20wil%20graag%20KoopZeker%20PRO%20met%20bodeminspectie%20bespreken.%20Dit%20is%20de%20advertentie%3A%20">Bespreek via WhatsApp</a>
+</div>
+</div>
+<aside class="aa-bodem__case" aria-labelledby="aa-bodem-case-titel">
+<p class="aa-bodem__case-tag">Uit de praktijk</p>
+<p class="aa-bodem__case-titel" id="aa-bodem-case-titel">Kia Sportage PHEV uit Denemarken, bijna 140.000 km</p>
+<p>Een zeer verzorgde algemene indruk en een AVILOO-resultaat van 96,5% SOH. Na een uitgebreide proefrit naar de garage volgde de bruginspectie. Daar kwamen aandachtspunten aan de remschijven en de bandenslijtage naar voren, met het advies de uitlijning te laten controleren. De koper kon deze bevindingen meenemen in de aankoopafspraken.</p>
+<a class="aa-bodem__case-link" href="praktijkvoorbeeld-kia-sportage-phev.html">Bekijk de Kia-praktijkcase</a>
+</aside>
+</div>
+<h3 class="aa-bodem__vervolg">KoopZeker PRO: prijs en werkwijze</h3>
+<p class="aa-lead">Bij KoopZeker PRO combineren we de aankoopinspectie met een uitgebreide controle van de onderkant van de auto bij onze samenwerkende garage in Barendrecht. Geschikt voor benzine, diesel, hybride en elektrische auto's.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.4rem;align-items:stretch;">
+<div class="aa-pakket aa-pakket--featured">
+<p class="aa-pakket__badge">Technische verdieping</p>
+<p class="aa-pakket__name">KoopZeker PRO</p>
+<p class="aa-pakket__price">Vanaf €370</p>
+<p class="aa-pakket__sub" style="color:#071a2b;font-weight:650;">Benzine of diesel: €370 incl. btw<br/>EV of geschikte hybride met AVILOO: €499 incl. btw</p>
+<ul class="aa-pakket__list">
+<li>Inspectie van carrosserie, lak, banden en rijgedrag</li>
+<li>Auto omhoog voor controle van bodem en onderstel</li>
+<li>Draagarmen, ophangingsrubbers en zichtbare speling</li>
+<li>Remmen, stuurinrichting en zichtbare lekkages</li>
+<li>Controle op beschadigingen aan de onderzijde</li>
+<li>Bij EV en geschikte hybride: onafhankelijke AVILOO AccuCheck inbegrepen</li>
+<li>Direct mondeling de belangrijkste bevindingen</li>
+<li>Uitgebreid digitaal inspectierapport na betaling</li>
+</ul>
+<a class="btn-primary" href="https://wa.me/31623452349?text=Ik%20wil%20KoopZeker%20PRO%20aanvragen%20voor%20mijn%20auto" style="text-align:center">Vraag KoopZeker PRO aan</a>
+</div>
+<div style="background:#fff;border:1px solid #e8edf3;border-radius:14px;padding:2rem;">
+<h3 style="font-size:1.12rem;color:#071a2b;margin:0 0 1rem;">Hoe werkt deze extra controle?</h3>
+<p style="color:#475569;line-height:1.75;">Met toestemming van de verkoper nemen wij de auto tijdelijk mee naar onze technische partner in Barendrecht. Daar wordt de auto omhooggebracht zodat onderdelen die normaal niet goed zichtbaar zijn kunnen worden bekeken. Klanten zijn niet aanwezig in de werkplaats.</p>
+<p style="color:#475569;line-height:1.75;">Voor benzine- en dieselauto's vervalt de AVILOO AccuCheck van €129 en betaalt u €370 in plaats van €499. Bij EV's en geschikte hybrides is de AVILOO AccuCheck inbegrepen voor €499 totaal. Bij EV's stemmen we de laadtesten vooraf af op de auto en de beschikbare aansluitingen.</p>
+<p style="color:#475569;line-height:1.75;">Beschikbaar bij aanlevering in Barendrecht of, afhankelijk van de afstand, bij de verkoper in de regio. Planning altijd in overleg met de garage.</p>
+<a href="tesla-occasion-keuren.html" style="font-weight:700;color:#8c6b34;">Bekijk KoopZeker PRO voor Tesla →</a>
+</div>
+</div>
+<p style="font-size:.79rem;color:#64748b;margin-top:1rem;">De controle is visueel en functioneel waar toegankelijk en vervangt geen demontage of merkgebonden diagnose. Bij ernstige veiligheidsproblemen kunnen vervolgtesten worden stopgezet.</p>
+</div>
+</section>
 <!-- ── KOOPZEKER PAKKET ───────────────────────────────────────────── -->
 <section class="aa-section aa-section--alt">
 <div class="container">
@@ -715,57 +861,6 @@
 </section>
 <!-- ── COMBI EV ────────────────────────────────────────────────────── -->
 
-<!-- KOOPZEKER PRO: ALLE AUTOS -->
-<section class="aa-section aa-section--alt" id="koopzeker-pro">
-<div class="container">
-<p class="aa-eyebrow">Nieuw: uitgebreide technische aankoopcontrole</p>
-<h2 class="aa-h2">KoopZeker PRO: ook de onderkant van uw auto laten controleren</h2>
-<hr class="aa-h2-rule"/>
-<p class="aa-lead">Een auto kan er van buiten uitstekend uitzien, terwijl slijtage of schade aan de onderkant verborgen blijft. Bij KoopZeker PRO combineren we de aankoopinspectie met een uitgebreide controle van de onderkant van de auto bij onze samenwerkende garage in Barendrecht. Geschikt voor benzine, diesel, hybride en elektrische auto's.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.4rem;align-items:stretch;">
-<div class="aa-pakket aa-pakket--featured">
-<p class="aa-pakket__badge">Technische verdieping</p>
-<p class="aa-pakket__name">KoopZeker PRO</p>
-<p class="aa-pakket__price">Vanaf €370</p>
-<p class="aa-pakket__sub" style="color:#071a2b;font-weight:650;">Benzine of diesel: €370 incl. btw<br/>EV of geschikte hybride met AVILOO: €499 incl. btw</p>
-<ul class="aa-pakket__list">
-<li>Inspectie van carrosserie, lak, banden en rijgedrag</li>
-<li>Auto omhoog voor controle van bodem en onderstel</li>
-<li>Draagarmen, ophangingsrubbers en zichtbare speling</li>
-<li>Remmen, stuurinrichting en zichtbare lekkages</li>
-<li>Controle op beschadigingen aan de onderzijde</li>
-<li>Bij EV en geschikte hybride: onafhankelijke AVILOO AccuCheck inbegrepen</li>
-<li>Direct mondeling de belangrijkste bevindingen</li>
-<li>Uitgebreid digitaal inspectierapport na betaling</li>
-</ul>
-  <div style="margin:1.25rem 0;padding:1.1rem 1.2rem;background:#f8f6f0;border:1px solid #ded9cd;border-left:4px solid #a78042;border-radius:10px;color:#071a2b;">
-  <strong style="display:block;margin-bottom:.35rem;">
-    Praktijkcase: wat vonden we op de brug?
-  </strong>
-  <p style="margin:0 0 .75rem;">
-    De Kia Sportage PHEV scoorde 96,5% batterijgezondheid.
-    Op de brug zagen we extra slijtage aan de binnenzijde van de voorbanden
-    en roestvorming op de remschijven. Concrete punten die de koper vóór
-    aankoop met de verkoper kon bespreken.
-  </p>
-  <a href="/praktijkvoorbeeld-kia-sportage-phev.html"
-     style="display:inline-flex;align-items:center;min-height:44px;color:#071a2b;font-weight:700;text-decoration:underline;">
-    Bekijk de inspectie en foto’s van de Kia Sportage
-  </a>
-</div>
-<a class="btn-primary" href="https://wa.me/31623452349?text=Ik%20wil%20KoopZeker%20PRO%20aanvragen%20voor%20mijn%20auto" style="text-align:center">Vraag KoopZeker PRO aan</a>
-</div>
-<div style="background:#fff;border:1px solid #e8edf3;border-radius:14px;padding:2rem;">
-<h3 style="font-size:1.12rem;color:#071a2b;margin:0 0 1rem;">Hoe werkt deze extra controle?</h3>
-<p style="color:#475569;line-height:1.75;">Met toestemming van de verkoper nemen wij de auto tijdelijk mee naar onze technische partner in Barendrecht. Daar wordt de auto omhooggebracht zodat onderdelen die normaal niet goed zichtbaar zijn kunnen worden bekeken. Klanten zijn niet aanwezig in de werkplaats.</p>
-<p style="color:#475569;line-height:1.75;">Voor benzine- en dieselauto's vervalt de AVILOO AccuCheck van €129 en betaalt u €370 in plaats van €499. Bij EV's en geschikte hybrides is de AVILOO AccuCheck inbegrepen voor €499 totaal. Bij EV's stemmen we de laadtesten vooraf af op de auto en de beschikbare aansluitingen.</p>
-<p style="color:#475569;line-height:1.75;">Beschikbaar bij aanlevering in Barendrecht of, afhankelijk van de afstand, bij de verkoper in de regio. Planning altijd in overleg met de garage.</p>
-<a href="tesla-occasion-keuren.html" style="font-weight:700;color:#8c6b34;">Bekijk KoopZeker PRO voor Tesla →</a>
-</div>
-</div>
-<p style="font-size:.79rem;color:#64748b;margin-top:1rem;">De controle is visueel en functioneel waar toegankelijk en vervangt geen demontage of merkgebonden diagnose. Bij ernstige veiligheidsproblemen kunnen vervolgtesten worden stopgezet.</p>
-</div>
-</section>
 <!-- ── PEPIJN ──────────────────────────────────────────────────────── -->
 <section class="aa-section aa-section--alt">
 <div class="container">
